@@ -1,103 +1,90 @@
-import Image from "next/image";
+import {
+  Banner,
+  OurServiceSection,
+  OurExecutionSection,
+  MapSection,
+  FooterSection,
+} from "@/src/components/home";
+import { ServiceCardData } from "@/src/types/service";
+import { CursorFollower } from "@/src/components/shared/cursor-follower";
+import RoadmapSection from "@/src/components/home/roadmap-section";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const menuItems = [
+    { text: "Home", url: "/" },
+    { text: "About Us", url: "/about" },
+    { text: "Our projects", url: "/projects" },
+    { text: "Canopy insights", url: "/insights" },
+    { text: "Contact", url: "/contact" },
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  const serviceData: ServiceCardData[] = [
+    {
+      id: "arr",
+      abbreviation: "ARR",
+      fullTitle: "Afforestation, Reforestation, and Revegetation",
+      description:
+        "Restoring degraded land or establish new forests to generate durable carbon sinks with biodiversity, community and resilience benefits.",
+      iconType: "arr",
+    },
+    {
+      id: "redd",
+      abbreviation: "REDD+",
+      fullTitle: "Reducing Emissions from Deforestation",
+      description:
+        "Preventing forest loss by protecting high-risk areas through structured patrolling, monitoring systems, and community-aligned enforcement.",
+      iconType: "redd",
+    },
+    {
+      id: "wrc",
+      abbreviation: "WRC",
+      fullTitle: "Wetland Restoration and Conservation",
+      description:
+        "Restoring and conserving peatland ecosystems to generate high-integrity carbon credits while supporting water regulation and soil stability.",
+      iconType: "wrc",
+    },
+    {
+      id: "biochar",
+      abbreviation: "Biochar",
+      fullTitle: "Agricultural Waste Management",
+      description:
+        "Managing agricultural residues, primarily by converting biomass into biochar, cutting emissions and producing materials for industrial use.",
+      iconType: "biochar",
+    },
+  ];
+
+  return (
+    <>
+      <div className="min-h-screen flex flex-col gap-16">
+        {/* Cursor Follower for the entire home screen */}
+        <CursorFollower
+          size={24}
+          color="#94A4B1"
+          opacity={0.4}
+          blur={8}
+          enabled={true}
+        />
+
+        <Banner
+          title="Canopy Carbon"
+          subtitle="A Climate Infrastructure Company Specialising in Nature-Based Solutions."
+          menuItems={menuItems}
+          logoUrl="/assets/banner-shared-component/logo.png"
+        />
+
+        <OurServiceSection
+          title="We originate and deliver large-scale nature-based carbon offset projects, engineered for long-term impact and institutional-grade integrity."
+          services={serviceData}
+        />
+
+        <RoadmapSection />
+
+        <OurExecutionSection />
+
+        <MapSection />
+      </div>
+
+      <FooterSection />
+    </>
   );
 }
