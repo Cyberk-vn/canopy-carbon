@@ -3,8 +3,8 @@ import {
   OurServiceSection,
   OurExecutionSection,
   MapSection,
-  FooterSection,
 } from "@/src/components/home";
+import { FooterSection } from "@/src/components/common";
 import { ServiceCardData } from "@/src/types/service";
 import { CursorFollower } from "@/src/components/shared/cursor-follower";
 import RoadmapSection from "@/src/components/home/roadmap-section";
