@@ -1,0 +1,49 @@
+export interface CarouselCard {
+  id: string;
+  src: string;
+  alt: string;
+}
+
+export interface CarouselCardGroup {
+  id: string;
+  groupName: string;
+  cards: CarouselCard[];
+}
+
+export interface CarouselImage {
+  id: string;
+  src: string;
+  alt: string;
+}
+
+export interface OurTeamCarouselData {
+  images: CarouselImage[];
+  cardGroups?: CarouselCardGroup[];
+  carouselTitle?: string;
+  description: string;
+  buttonText: string;
+  buttonAction?: () => void;
+}
+
+export interface DescriptionSectionData {
+  mainText: string;
+  backgroundImage: string;
+  logoImage?: string;
+}
+
+export interface OurProjectSectionData {
+  carouselData: OurTeamCarouselData;
+  descriptionData: DescriptionSectionData;
+}
+
+export interface OurProjectSectionProps {
+  data?: OurProjectSectionData;
+}
+
+export interface OurTeamCarouselProps {
+  data: OurTeamCarouselData;
+}
+
+export interface DescriptionSectionProps {
+  data: DescriptionSectionData;
+}

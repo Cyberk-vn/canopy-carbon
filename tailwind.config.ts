@@ -73,6 +73,10 @@ const config: Config = {
         "light-gray-2": "#B7C0C9", 
         "light-gray-3": "#F1F5F9",
         "banner-border": "rgba(140, 140, 140, 0.3)",
+        // Contact Us Banner colors
+        "contact-green": "#9DAE83",
+        "contact-text-light": "#D8DBD6",
+        "contact-text-secondary": "#DDE2E6",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -85,6 +89,7 @@ const config: Config = {
         roboto: ["var(--font-roboto)", "sans-serif"],
         "open-sans": ["var(--font-open-sans)", "sans-serif"],
         inter: ["var(--font-inter)", "sans-serif"],
+        avenir: ["Avenir", "system-ui", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
