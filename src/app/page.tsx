@@ -15,7 +15,7 @@ export default function Home() {
     { text: "About Us", url: "/about" },
     { text: "Our projects", url: "/projects" },
     { text: "Canopy insights", url: "/insights" },
-    { text: "Contact", url: "/contact" },
+    { text: "Contact", url: "/contact-us" },
   ];
 
   const serviceData: ServiceCardData[] = [

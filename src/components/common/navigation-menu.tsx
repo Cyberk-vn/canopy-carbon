@@ -12,9 +12,14 @@ interface MenuItem {
 interface NavigationMenuProps {
   menuItems: MenuItem[];
   logoUrl: string;
+  mobileMenuIconColor?: string;
 }
 
-export function NavigationMenu({ menuItems, logoUrl }: NavigationMenuProps) {
+export function NavigationMenu({
+  menuItems,
+  logoUrl,
+  mobileMenuIconColor = "#F1F5F9",
+}: NavigationMenuProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -56,7 +61,8 @@ export function NavigationMenu({ menuItems, logoUrl }: NavigationMenuProps) {
             {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
-                className="text-[#F1F5F9] hover:text-white p-2 transition-colors duration-200"
+                className="hover:text-white p-2 transition-colors duration-200"
+                style={{ color: mobileMenuIconColor }}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 {isMobileMenuOpen ? (
@@ -115,7 +121,7 @@ export function NavigationMenu({ menuItems, logoUrl }: NavigationMenuProps) {
                 <Link
                   key={index}
                   href={item.url}
-                  className="flex items-center gap-[10px] px-4 py-3 text-[#F1F5F9] font-open-sans text-base font-normal leading-[1.5] hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 transform hover:scale-105"
+                  className="flex items-center gap-[10px] px-4 py-3 text-[#F1F5F9] font-open-sans text-base font-normal leading-[1.5] hover:text-[#00A5FF] active:text-[#00A5FF] focus:text-[#00A5FF] hover:bg-white/10 active:bg-white/10 focus:bg-white/10 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-105"
                   onClick={() => setIsMobileMenuOpen(false)}
                   style={{
                     animation: `fadeInUp ${

@@ -9,3 +9,8 @@ export interface BannerProps {
   menuItems: MenuItem[];
   logoUrl: string;
 }
+
+export interface ContactUsBannerProps {
+  menuItems: MenuItem[];
+  logoUrl: string;
+}
