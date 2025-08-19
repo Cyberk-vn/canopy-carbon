@@ -14,3 +14,8 @@ export interface ContactUsBannerProps {
   menuItems: MenuItem[];
   logoUrl: string;
 }
+
+export interface OurProjectBannerProps {
+  menuItems: MenuItem[];
+  logoUrl: string;
+}

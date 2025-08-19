@@ -25,7 +25,7 @@ export function NavigationMenu({
   return (
     <>
       {/* Navigation Menu */}
-      <nav className="pt-8 px-4 md:px-[120px]">
+      <nav className="pt-8 px-6 md:px-[120px]">
         <div
           className="flex items-stretch backdrop-blur-[1px]"
           style={{
