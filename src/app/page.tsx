@@ -13,7 +13,7 @@ export default function Home() {
   const menuItems = [
     { text: "Home", url: "/" },
     { text: "About Us", url: "/about" },
-    { text: "Our projects", url: "/projects" },
+    { text: "Our Project", url: "/our-project" },
     { text: "Canopy insights", url: "/insights" },
     { text: "Contact", url: "/contact-us" },
   ];
