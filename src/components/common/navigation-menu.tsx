@@ -103,7 +103,7 @@ export function NavigationMenu({
       {/* Mobile Menu Dropdown - Absolute positioned over banner */}
       {isMobileMenuOpen && (
         <div
-          className="md:hidden absolute top-20 left-4 right-4 z-40"
+          className="md:hidden absolute top-20 left-6 right-6 z-40"
           style={{
             animation:
               "slideDown 250ms linear(0, 0.6796, 1.0326, 1.0275, 1.0011, 0.9981, 0.9997, 1)",
