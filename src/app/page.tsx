@@ -12,10 +12,9 @@ import RoadmapSection from "@/src/components/home/roadmap-section";
 export default function Home() {
   const menuItems = [
     { text: "Home", url: "/" },
-    { text: "About Us", url: "/about" },
+    { text: "About Us", url: "/about-us" },
     { text: "Our Project", url: "/our-project" },
     { text: "Canopy insights", url: "/insights" },
-    { text: "Contact", url: "/contact-us" },
   ];
 
   const serviceData: ServiceCardData[] = [

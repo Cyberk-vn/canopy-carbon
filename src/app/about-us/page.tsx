@@ -1,19 +1,19 @@
 import {
-  ContactUsBanner,
+  AboutUsBanner,
   OurPracticalSection,
   OurPurposeSection,
   DevelopmentSequenceSection,
   OurProjectSection,
-} from "@/src/components/contact-us";
+} from "@/src/components/about-us";
 import { FooterSection } from "@/src/components/common";
 
-const contactUsPage = () => {
+const aboutUsPage = () => {
   const menuItems = [
     { text: "Home", url: "/" },
     { text: "About Us", url: "/about" },
     { text: "Our projects", url: "/projects" },
     { text: "Canopy insights", url: "/insights" },
-    { text: "Contact", url: "/contact-us" },
+    { text: "About Us", url: "/about-us" },
   ];
 
   const logoUrl = "/assets/banner-shared-component/logo.png";
@@ -29,7 +29,7 @@ const contactUsPage = () => {
         id: "pre-feasibility",
         title: "Pre-Feasibility Study",
         description: "Preliminary review of regulatory context and spatial characteristics of the site, alongside early-stage carbon potential assessment.",
-        backgroundImage: "/assets/contact-us/our-purpose-main-image.png", // Using existing image as placeholder
+        backgroundImage: "/assets/about-us/our-purpose-main-image.png", // Using existing image as placeholder
         textColor: "light" as const,
         overlayType: "gradient" as const,
         learnMoreUrl: "#"
@@ -38,7 +38,7 @@ const contactUsPage = () => {
         id: "climate-action",
         title: "Climate Action Implementation",
         description: "Execution of core interventions including forest protection, ARR, and enrichment—carried out in line with validated project design and ecological conditions.",
-        backgroundImage: "/assets/contact-us/our-practical-bg-image.png", // Using existing image as placeholder
+        backgroundImage: "/assets/about-us/our-practical-bg-image.png", // Using existing image as placeholder
         textColor: "dark" as const,
         overlayType: "rounded" as const,
         learnMoreUrl: "#"
@@ -48,7 +48,7 @@ const contactUsPage = () => {
 
   return (
     <main className="min-h-screen w-full">
-      <ContactUsBanner menuItems={menuItems} logoUrl={logoUrl} />
+      <AboutUsBanner menuItems={menuItems} logoUrl={logoUrl} />
       <OurPurposeSection />
       <OurPracticalSection />
       <DevelopmentSequenceSection data={developmentSequenceData} />
@@ -58,4 +58,4 @@ const contactUsPage = () => {
   );
 };
 
-export default contactUsPage;
+export default aboutUsPage;

@@ -20,7 +20,7 @@ export const OurPurposeSection = () => {
               className="card-effect purpose-card relative w-[85%] h-[87%]"
             >
               <Image
-                src="/assets/contact-us/our-purpose-main-image.png"
+                src="/assets/about-us/our-purpose-main-image.png"
                 alt="Our Purpose"
                 fill
                 className="object-cover"
@@ -68,7 +68,7 @@ export const OurPurposeSection = () => {
             <div className="flex justify-center">
               <div className="w-[200px] h-[60px] relative opacity-45">
                 <Image
-                  src="/assets/contact-us/app-icon.png"
+                  src="/assets/about-us/app-icon.png"
                   alt="Canopy Carbon App Icon"
                   fill
                   className="object-contain"
@@ -105,7 +105,7 @@ export const OurPurposeSection = () => {
                 }}
               >
                 <Image
-                  src="/assets/contact-us/our-purpose-main-image.png"
+                  src="/assets/about-us/our-purpose-main-image.png"
                   alt="Our Purpose"
                   fill
                   className="object-cover"
@@ -122,7 +122,7 @@ export const OurPurposeSection = () => {
             {/* App Icon */}
             <div className="w-[250px] h-[77px] relative">
               <Image
-                src="/assets/contact-us/app-icon.png"
+                src="/assets/about-us/app-icon.png"
                 alt="Canopy Carbon App Icon"
                 fill
                 className="object-contain"

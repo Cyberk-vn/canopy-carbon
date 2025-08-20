@@ -8,9 +8,9 @@ export function CanopyInsightBanner() {
   // Menu items data - following the same pattern as other pages
   const menuItems = [
     { text: "Home", url: "/" },
+    { text: "About Us", url: "/about-us" },
     { text: "Our Project", url: "/our-project" },
     { text: "Canopy Insight", url: "/canopy-insight" },
-    { text: "Contact Us", url: "/contact-us" },
   ];
 
   return (

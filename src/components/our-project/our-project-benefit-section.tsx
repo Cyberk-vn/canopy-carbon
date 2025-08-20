@@ -291,7 +291,7 @@ const OurProjectBenefitSection: React.FC = () => {
                 aria-label="Previous pair"
               >
                 <Image
-                  src="/assets/contact-us/our-project-section/arrow-left-circle.png"
+                  src="/assets/about-us/our-project-section/arrow-left-circle.png"
                   alt="Previous"
                   width={20}
                   height={20}
@@ -306,7 +306,7 @@ const OurProjectBenefitSection: React.FC = () => {
                 aria-label="Next pair"
               >
                 <Image
-                  src="/assets/contact-us/our-project-section/arrow-right-circle.png"
+                  src="/assets/about-us/our-project-section/arrow-right-circle.png"
                   alt="Next"
                   width={20}
                   height={20}

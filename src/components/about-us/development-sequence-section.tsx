@@ -103,7 +103,7 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
               {/* Decorative Image */}
               <div className="w-[136px] h-[55px] justify-self-end">
                 <img
-                  src="/assets/contact-us/development-sequence/right-title-effect-image-side.png"
+                  src="/assets/about-us/development-sequence/right-title-effect-image-side.png"
                   alt="Development sequence decorative element"
                   className="w-full h-full object-cover"
                 />
@@ -154,7 +154,7 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
                             <div
                               className="w-full h-[192px] rounded-[5px] p-4 flex flex-col gap-2"
                               style={{
-                                background: `linear-gradient(rgba(47, 58, 53, 0.45), rgba(47, 58, 53, 0.45)), url('/assets/contact-us/development-sequence/card-bg-image.png')`,
+                                background: `linear-gradient(rgba(47, 58, 53, 0.45), rgba(47, 58, 53, 0.45)), url('/assets/about-us/development-sequence/card-bg-image.png')`,
                                 backgroundSize: "cover",
                                 backgroundPosition: "top",
                                 backgroundRepeat: "no-repeat",
@@ -215,7 +215,7 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
                       <div
                         className="w-full h-[192px] rounded-[5px] p-4 flex flex-col gap-2"
                         style={{
-                          background: `linear-gradient(rgba(47, 58, 53, 0.45), rgba(47, 58, 53, 0.45)), url('/assets/contact-us/development-sequence/card-bg-image.png')`,
+                          background: `linear-gradient(rgba(47, 58, 53, 0.45), rgba(47, 58, 53, 0.45)), url('/assets/about-us/development-sequence/card-bg-image.png')`,
                           backgroundSize: "cover",
                           backgroundPosition: "top",
                           backgroundRepeat: "no-repeat",
@@ -348,7 +348,7 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
                                 className="absolute inset-0 w-screen h-full left-1/2 transform -translate-x-1/2"
                                 style={{
                                   backgroundImage:
-                                    "url('/assets/contact-us/inner-card-background-absolute.png')",
+                                    "url('/assets/about-us/inner-card-background-absolute.png')",
                                   backgroundSize: "cover",
                                   backgroundPosition: "center",
                                   backgroundRepeat: "no-repeat",

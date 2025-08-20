@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { NavigationMenu } from "@/src/components/common/navigation-menu";
-import { ContactUsBannerProps } from "@/src/types/banner";
+import { AboutUsBannerProps } from "@/src/types/banner";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { useScrollAnimation } from "@/src/hooks/responsive/use-scroll-animation";
@@ -10,7 +10,7 @@ import { useScrollAnimation } from "@/src/hooks/responsive/use-scroll-animation"
 // Import Swiper styles
 import "swiper/css";
 
-export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
+export function AboutUsBanner({ menuItems, logoUrl }: AboutUsBannerProps) {
   // Statistics data from Figma
   const statisticsData = [
     {
@@ -50,8 +50,8 @@ export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/assets/contact-us/contact-us-banner-bg-image.png"
-            alt="Contact Us Banner Background"
+            src="/assets/about-us/contact-us-banner-bg-image.png"
+            alt="About Us Banner Background"
             fill
             className="object-cover"
             priority
@@ -83,7 +83,7 @@ export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
         >
           <div className="card-effect decorative-card">
             <Image
-              src="/assets/contact-us/banner-child-image.png"
+              src="/assets/about-us/banner-child-image.png"
               alt="Decorative Banner Element"
               width={152}
               height={236}
@@ -155,7 +155,7 @@ export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/assets/contact-us/contact-us-banner-second-bg.png"
+            src="/assets/about-us/contact-us-banner-second-bg.png"
             alt="Secondary Banner Background"
             fill
             className="object-cover"
@@ -411,4 +411,4 @@ export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
   );
 }
 
-export default ContactUsBanner;
+export default AboutUsBanner;

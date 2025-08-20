@@ -79,7 +79,7 @@ export const OurPracticalSection = () => {
               <div className="h-[264px]"></div>
               <div className="flex-1 relative">
                 <Image
-                  src="/assets/contact-us/our-pratical-bg-mobile-image.png"
+                  src="/assets/about-us/our-pratical-bg-mobile-image.png"
                   alt="Mobile Background"
                   fill
                   className="object-cover"
@@ -90,7 +90,7 @@ export const OurPracticalSection = () => {
             {/* Desktop Background */}
             <div className="hidden md:block w-full h-full relative">
               <Image
-                src="/assets/contact-us/our-practical-bg-image.png"
+                src="/assets/about-us/our-practical-bg-image.png"
                 alt="Background"
                 fill
                 className="object-cover"

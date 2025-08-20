@@ -10,7 +10,7 @@ export interface BannerProps {
   logoUrl: string;
 }
 
-export interface ContactUsBannerProps {
+export interface AboutUsBannerProps {
   menuItems: MenuItem[];
   logoUrl: string;
 }

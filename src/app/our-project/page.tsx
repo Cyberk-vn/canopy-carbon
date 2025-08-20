@@ -10,10 +10,9 @@ import { FooterSection } from "@/src/components/common";
 const OurProjectPage = () => {
   const menuItems = [
     { text: "Home", url: "/" },
-    { text: "About Us", url: "/about" },
+    { text: "About Us", url: "/about-us" },
     { text: "Our projects", url: "/our-project" },
     { text: "Canopy insights", url: "/insights" },
-    { text: "Contact", url: "/contact-us" },
   ];
 
   const logoUrl = "/assets/banner-shared-component/logo.png";

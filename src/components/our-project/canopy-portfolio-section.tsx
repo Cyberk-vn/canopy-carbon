@@ -228,7 +228,7 @@ const CanopyPortfolioSection: React.FC = () => {
                   aria-label="Previous project"
                 >
                   <Image
-                    src="/assets/contact-us/our-project-section/arrow-left-circle.png"
+                    src="/assets/about-us/our-project-section/arrow-left-circle.png"
                     alt="Previous"
                     width={23}
                     height={23}
@@ -243,7 +243,7 @@ const CanopyPortfolioSection: React.FC = () => {
                   aria-label="Next project"
                 >
                   <Image
-                    src="/assets/contact-us/our-project-section/arrow-right-circle.png"
+                    src="/assets/about-us/our-project-section/arrow-right-circle.png"
                     alt="Next"
                     width={23}
                     height={23}
