@@ -110,11 +110,6 @@ export const OurPracticalSection = () => {
                 return (
                   <div
                     key={index}
-                    ref={useScrollAnimation({ 
-                      animationType: isRightAligned ? 'fadeInRight' : 'fadeInLeft', 
-                      delay: index * 10,
-                      threshold: 0.3 
-                    })}
                     className={`w-full flex flex-col gap-4 ${
                       isRightAligned ? "justify-self-end" : "justify-self-start"
                     }`}
@@ -170,11 +165,6 @@ export const OurPracticalSection = () => {
               {practicalCards.map((card, index) => (
                 <div
                   key={index}
-                  ref={useScrollAnimation({ 
-                    animationType: index % 2 === 0 ? 'fadeInLeft' : 'fadeInRight', 
-                    delay: index * 5,
-                    threshold: 0.2 
-                  })}
                   className={`p-6 rounded-xl transition-all duration-300 hover:transform hover:scale-105 ${
                     index % 2 === 0
                       ? "lg:justify-self-start"

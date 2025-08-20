@@ -323,7 +323,6 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
                   <>
                     {/* Mobile: Swiper Carousel */}
                     <div 
-                      ref={useScrollAnimation({ animationType: 'slideInUp', delay: 30, threshold: 0.2 })}
                       className="block md:hidden w-full"
                     >
                       <Swiper
@@ -424,7 +423,6 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
 
                     {/* Desktop: Grid */}
                     <div 
-                      ref={useScrollAnimation({ animationType: 'slideInUp', delay: 30, threshold: 0.2 })}
                       className="hidden md:grid gap-6 md:grid-cols-2 lg:grid-cols-3"
                     >
                       {climateActionCards.map((card) => (
