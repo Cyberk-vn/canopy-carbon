@@ -1,61 +1,70 @@
+import { Metadata } from "next";
 import {
-  ContactUsBanner,
-  OurPracticalSection,
-  OurPurposeSection,
-  DevelopmentSequenceSection,
-  OurProjectSection,
+  ContactHeroSection,
+  ContactFooterSection,
 } from "@/src/components/contact-us";
-import { FooterSection } from "@/src/components/common";
 
-const contactUsPage = () => {
-  const menuItems = [
-    { text: "Home", url: "/" },
-    { text: "About Us", url: "/about" },
-    { text: "Our projects", url: "/projects" },
-    { text: "Canopy insights", url: "/insights" },
-    { text: "Contact", url: "/contact-us" },
+export const metadata: Metadata = {
+  title: "Contact Us | Canopy Carbon",
+  description:
+    "Connect with Canopy Carbon for high-integrity nature-based solutions. Partner with us as credit offtakers, capital allocators, researchers, or project proponents.",
+  keywords: [
+    "carbon credits",
+    "nature-based solutions",
+    "climate finance",
+    "sustainability",
+    "contact",
+    "partnerships",
+  ],
+  openGraph: {
+    title: "Contact Us | Canopy Carbon",
+    description:
+      "Connect with Canopy Carbon for high-integrity nature-based solutions. Partner with us as credit offtakers, capital allocators, researchers, or project proponents.",
+    type: "website",
+    url: "/contact-us",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us | Canopy Carbon",
+    description:
+      "Connect with Canopy Carbon for high-integrity nature-based solutions. Partner with us as credit offtakers, capital allocators, researchers, or project proponents.",
+  },
+};
+
+const ContactUsPage = () => {
+  const contactUsCards = [
+    {
+      id: "credit-offtakers",
+      title: "Credit Offtakers",
+      description:
+        "Secure high-integrity carbon credits through direct offtake or long-term partnerships with us. Our projects meet CCP and CCOP thresholds, with flexibility to tailor structures to your climate goals.",
+    },
+    {
+      id: "capital-allocators",
+      title: "Capital Allocators",
+      description:
+        "Partner with us to finance premium nature-based assets. We offer institutional-grade execution, transparent reporting, and clear use-of-proceeds frameworks across our growing project pipeline.",
+    },
+    {
+      id: "researchers",
+      title: "Researchers",
+      description:
+        "Co-develop insights across climate, biodiversity, and community themes. Access structured field data from our active NBS projects to support impactful, real-world research collaboration.",
+    },
+    {
+      id: "project-proponents",
+      title: "Project Proponents",
+      description:
+        "Co-develop projects with Canopy and benefit from our field-tested SOPs, operational know-how, and network resources. We provide practical support to accelerate your project's success.",
+    },
   ];
-
-  const logoUrl = "/assets/banner-shared-component/logo.png";
-
-  // Development Sequence Data
-  const developmentSequenceData = {
-    sectionTitle: "Development Sequence",
-    sectionSubtitle: "Our nature-based projects follow a structured development pathway, segmented into six distinct phases.",
-    contentSectionTitle: "Ongoing Project Workstreams",
-    contentSectionDescription: "Each NBS Project requires ongoing, multifaceted execution far beyond initial validation and verification.",
-    projectCards: [
-      {
-        id: "pre-feasibility",
-        title: "Pre-Feasibility Study",
-        description: "Preliminary review of regulatory context and spatial characteristics of the site, alongside early-stage carbon potential assessment.",
-        backgroundImage: "/assets/contact-us/our-purpose-main-image.png", // Using existing image as placeholder
-        textColor: "light" as const,
-        overlayType: "gradient" as const,
-        learnMoreUrl: "#"
-      },
-      {
-        id: "climate-action",
-        title: "Climate Action Implementation",
-        description: "Execution of core interventions including forest protection, ARR, and enrichment—carried out in line with validated project design and ecological conditions.",
-        backgroundImage: "/assets/contact-us/our-practical-bg-image.png", // Using existing image as placeholder
-        textColor: "dark" as const,
-        overlayType: "rounded" as const,
-        learnMoreUrl: "#"
-      }
-    ]
-  };
 
   return (
     <main className="min-h-screen w-full">
-      <ContactUsBanner menuItems={menuItems} logoUrl={logoUrl} />
-      <OurPurposeSection />
-      <OurPracticalSection />
-      <DevelopmentSequenceSection data={developmentSequenceData} />
-      <OurProjectSection />
-      <FooterSection />
+      <ContactHeroSection cards={contactUsCards} />
+      <ContactFooterSection />
     </main>
   );
 };
 
-export default contactUsPage;
+export default ContactUsPage;

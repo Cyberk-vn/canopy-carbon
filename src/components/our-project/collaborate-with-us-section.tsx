@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "motion/react";
 
 const CollaborateWithUsSection = () => {
   return (
@@ -7,12 +10,27 @@ const CollaborateWithUsSection = () => {
       <div className="relative z-10 pt-[42px] px-6 md:px-[120px]">
         <div className="w-full max-w-[342px]">
           {/* Content Section */}
-          <div className="flex flex-col gap-3">
-            <h2 className="text-[#EDEDED] font-bold text-xl leading-[1.5em] text-left font-['Open_Sans']">
+          <motion.div
+            initial={{ opacity: 0.8, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="flex flex-col gap-3"
+          >
+            <motion.h2
+              initial={{ opacity: 0.7, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+              className="text-[#EDEDED] font-bold text-xl leading-[1.5em] text-left font-['Open_Sans']"
+            >
               Collaborate With Us
-            </h2>
+            </motion.h2>
 
-            <div className="flex flex-col gap-3">
+            <motion.div
+              initial={{ opacity: 0.6, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+              className="flex flex-col gap-3"
+            >
               <p className="text-[#9E9E9E] text-[13px] leading-[1.385em] text-left font-['Open_Sans']">
                 We believe meaningful climate solutions are built through
                 partnership. At Canopy, we welcome collaboration with project
@@ -26,39 +44,68 @@ const CollaborateWithUsSection = () => {
                 field, we&apos;d love to hear from you. Together, we can scale
                 impact where it matters most.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Card Grid Section */}
-          <div className="flex flex-col gap-1 mt-6 w-full h-[112px]">
+          <motion.div
+            initial={{ opacity: 0.6, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+            className="flex flex-col gap-1 mt-6 w-full h-[112px]"
+          >
             {/* Top Row */}
             <div className="flex gap-2 w-full">
-              <div className="flex items-center justify-center bg-black/20 w-[168px] px-[37px] py-2 rounded hover:bg-black/30 transition-colors cursor-pointer">
+              <motion.div
+                initial={{ opacity: 0.7, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.5, ease: "easeOut" }}
+                whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                className="flex items-center justify-center bg-black/20 w-[168px] px-[37px] py-2 rounded hover:bg-black/30 transition-colors cursor-pointer"
+              >
                 <span className="text-white font-bold text-sm leading-[1.714em] text-center font-['Open_Sans']">
                   Co-Develop
                 </span>
-              </div>
-              <div className="flex items-center justify-center bg-black/20 w-[168px] px-4 py-2 rounded hover:bg-black/30 transition-colors cursor-pointer">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0.7, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.6, ease: "easeOut" }}
+                whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                className="flex items-center justify-center bg-black/20 w-[168px] px-4 py-2 rounded hover:bg-black/30 transition-colors cursor-pointer"
+              >
                 <span className="text-white font-bold text-sm leading-[1.714em] text-center font-['Open_Sans']">
                   Purchase Credits
                 </span>
-              </div>
+              </motion.div>
             </div>
 
             {/* Bottom Row */}
             <div className="flex gap-2 w-full">
-              <div className="flex items-center justify-center bg-black/20 w-[168px] px-[29px] py-2 rounded hover:bg-black/30 transition-colors cursor-pointer">
+              <motion.div
+                initial={{ opacity: 0.7, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.7, ease: "easeOut" }}
+                whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                className="flex items-center justify-center bg-black/20 w-[168px] px-[29px] py-2 rounded hover:bg-black/30 transition-colors cursor-pointer"
+              >
                 <span className="text-white font-bold text-sm leading-[1.714em] text-center font-['Open_Sans']">
                   Fund Pipeline
                 </span>
-              </div>
-              <div className="flex items-center justify-center bg-black/20 w-[168px] px-[38px] py-2 rounded hover:bg-black/30 transition-colors cursor-pointer">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0.7, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.8, ease: "easeOut" }}
+                whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                className="flex items-center justify-center bg-black/20 w-[168px] px-[20px] py-2 rounded hover:bg-black/30 transition-colors cursor-pointer"
+              >
                 <span className="text-white font-bold text-sm leading-[1.714em] text-center font-['Open_Sans']">
                   Co-Innovate
                 </span>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 

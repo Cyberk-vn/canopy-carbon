@@ -1,10 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { DevelopmentSequenceSectionProps } from "@/src/types/development-sequence";
 import { memo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import { useScrollAnimation } from "@/src/hooks/responsive/use-scroll-animation";
 
 // Import Swiper styles
 import "swiper/css";
@@ -59,13 +59,11 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
 
     return (
       <section 
-        ref={useScrollAnimation({ animationType: 'fadeInUp', threshold: 0.1 })}
         className="w-full py-12 px-4 md:px-8 lg:px-16 bg-white"
       >
         <div className="mx-auto lg:max-w-[600px]">
           {/* Header Section */}
           <div 
-            ref={useScrollAnimation({ animationType: 'fadeInUp', delay: 0, threshold: 0.3 })}
             className="w-full max-w-[367px] mb-5"
           >
             {/* Top decorative lines */}
@@ -102,9 +100,11 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
 
               {/* Decorative Image */}
               <div className="w-[136px] h-[55px] justify-self-end">
-                <img
-                  src="/assets/contact-us/development-sequence/right-title-effect-image-side.png"
+                <Image
+                  src="/assets/about-us/development-sequence/right-title-effect-image-side.png"
                   alt="Development sequence decorative element"
+                  width={136}
+                  height={55}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -115,8 +115,7 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
           <div className="mt-12">
             {/* Development Cards - Mobile: Swiper Carousel */}
             <div 
-              ref={useScrollAnimation({ animationType: 'slideInUp', delay: 10, threshold: 0.2 })}
-              className="block md:hidden w-full"
+                            className="block md:hidden w-full"
             >
               <Swiper
                 modules={[Autoplay]}
@@ -154,7 +153,7 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
                             <div
                               className="w-full h-[192px] rounded-[5px] p-4 flex flex-col gap-2"
                               style={{
-                                background: `linear-gradient(rgba(47, 58, 53, 0.45), rgba(47, 58, 53, 0.45)), url('/assets/contact-us/development-sequence/card-bg-image.png')`,
+                                background: `linear-gradient(rgba(47, 58, 53, 0.45), rgba(47, 58, 53, 0.45)), url('/assets/about-us/development-sequence/card-bg-image.png')`,
                                 backgroundSize: "cover",
                                 backgroundPosition: "top",
                                 backgroundRepeat: "no-repeat",
@@ -193,8 +192,7 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
 
             {/* Development Cards - Desktop: Grid */}
             <div 
-              ref={useScrollAnimation({ animationType: 'slideInUp', delay: 10, threshold: 0.2 })}
-              className="hidden md:grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+                            className="hidden md:grid gap-6 md:grid-cols-2 lg:grid-cols-3"
             >
               {developmentCards.map((card) => (
                 <div key={card.id} className="w-full h-[273px] mx-auto">
@@ -215,7 +213,7 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
                       <div
                         className="w-full h-[192px] rounded-[5px] p-4 flex flex-col gap-2"
                         style={{
-                          background: `linear-gradient(rgba(47, 58, 53, 0.45), rgba(47, 58, 53, 0.45)), url('/assets/contact-us/development-sequence/card-bg-image.png')`,
+                          background: `linear-gradient(rgba(47, 58, 53, 0.45), rgba(47, 58, 53, 0.45)), url('/assets/about-us/development-sequence/card-bg-image.png')`,
                           backgroundSize: "cover",
                           backgroundPosition: "top",
                           backgroundRepeat: "no-repeat",
@@ -251,7 +249,6 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
 
             {/* Content Section Header */}
             <div 
-              ref={useScrollAnimation({ animationType: 'fadeInUp', delay: 20, threshold: 0.3 })}
               className="mb-8 flex flex-col items-center w-full mx-auto mt-8"
             >
               {/* Decorative Line */}
@@ -348,7 +345,7 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
                                 className="absolute inset-0 w-screen h-full left-1/2 transform -translate-x-1/2"
                                 style={{
                                   backgroundImage:
-                                    "url('/assets/contact-us/inner-card-background-absolute.png')",
+                                    "url('/assets/about-us/inner-card-background-absolute.png')",
                                   backgroundSize: "cover",
                                   backgroundPosition: "center",
                                   backgroundRepeat: "no-repeat",

@@ -1,17 +1,23 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "motion/react";
 import { NavigationMenu } from "@/src/components/common/navigation-menu";
-import { ContactUsBannerProps } from "@/src/types/banner";
+import { AboutUsBannerProps } from "@/src/types/banner";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import { useScrollAnimation } from "@/src/hooks/responsive/use-scroll-animation";
+import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
 
 // Import Swiper styles
 import "swiper/css";
 
-export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
-  // Statistics data from Figma
+export function AboutUsBanner({ menuItems, logoUrl, mobileMenuStyles }: AboutUsBannerProps) {
+  // Simple Motion animations with persistence
+  const decorativeImageMotion = useSimpleMotion('about-decorative-image');
+  const missionVisionMotion = useSimpleMotion('about-mission-vision');
+  const thesisMotion = useSimpleMotion('about-thesis');
+  const statisticsMotion = useSimpleMotion('about-statistics');
+
   const statisticsData = [
     {
       id: 1,
@@ -50,8 +56,8 @@ export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/assets/contact-us/contact-us-banner-bg-image.png"
-            alt="Contact Us Banner Background"
+            src="/assets/about-us/contact-us-banner-bg-image.png"
+            alt="About Us Banner Background"
             fill
             className="object-cover"
             priority
@@ -73,28 +79,31 @@ export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
             menuItems={menuItems}
             logoUrl={logoUrl}
             mobileMenuIconColor="#8C8C8C"
+            mobileMenuStyles={mobileMenuStyles}
           />
         </div>
 
         {/* Decorative Image - Card Effect */}
-        <div 
-          ref={useScrollAnimation({ animationType: 'scaleIn', delay: 0, threshold: 0.2 })}
+        <motion.div
+          {...SIMPLE_ANIMATIONS.scaleIn}
+          {...decorativeImageMotion}
           className="absolute left-8 top-[208px] md:top-[158px] md:left-[58px] lg:left-[108px] z-10"
         >
           <div className="card-effect decorative-card">
             <Image
-              src="/assets/contact-us/banner-child-image.png"
+              src="/assets/about-us/banner-child-image.png"
               alt="Decorative Banner Element"
               width={152}
               height={236}
               className="object-cover w-full h-full"
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Mission and Vision Content */}
-        <div 
-          ref={useScrollAnimation({ animationType: 'fadeInUp', delay: 10, threshold: 0.2 })}
+        <motion.div
+          {...SIMPLE_ANIMATIONS.fadeInUp}
+          {...missionVisionMotion}
           className="absolute bottom-0 left-0 right-0 px-4 pb-4 md:px-[120px] md:pb-10 z-30"
         >
           <div className="flex flex-col gap-[14px] max-w-[390px] md:max-w-[600px] lg:max-w-[800px]">
@@ -147,7 +156,7 @@ export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Secondary Banner Section with Smooth Transition */}
@@ -155,7 +164,7 @@ export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/assets/contact-us/contact-us-banner-second-bg.png"
+            src="/assets/about-us/contact-us-banner-second-bg.png"
             alt="Secondary Banner Background"
             fill
             className="object-cover"
@@ -174,8 +183,9 @@ export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
         {/* Content */}
         <div className="relative z-20 h-full px-4 py-6 md:px-[120px] md:py-10 flex flex-col justify-between">
           {/* Thesis Section */}
-          <div 
-            ref={useScrollAnimation({ animationType: 'fadeInLeft', delay: 0, threshold: 0.3 })}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.fadeInLeft}
+            {...thesisMotion}
             className="flex flex-col gap-[3px] items-center md:items-start mt-4"
           >
             {/* Mobile Layout - Center aligned with decorative line */}
@@ -235,11 +245,12 @@ export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Statistics Cards Carousel */}
-          <div 
-            ref={useScrollAnimation({ animationType: 'slideInUp', delay: 20, threshold: 0.3 })}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.slideInUp}
+            {...statisticsMotion}
             className="flex flex-col gap-6 md:gap-8"
           >
             {/* Mobile: Swiper Carousel */}
@@ -344,7 +355,7 @@ export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -411,4 +422,4 @@ export function ContactUsBanner({ menuItems, logoUrl }: ContactUsBannerProps) {
   );
 }
 
-export default ContactUsBanner;
+export default AboutUsBanner;

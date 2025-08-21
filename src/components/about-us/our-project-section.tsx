@@ -2,12 +2,13 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 import {
   OurProjectSectionProps,
   CarouselImage,
   CarouselCardGroup,
 } from "../../types/our-project";
-import { useScrollAnimation } from "@/src/hooks/responsive/use-scroll-animation";
+import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
 
 // Inline component interfaces
 interface InlineCarouselData {
@@ -30,12 +31,12 @@ const defaultData = {
     images: [
       {
         id: "1",
-        src: "/assets/contact-us/book-card-1.png",
+        src: "/assets/about-us/book-card-1.png",
         alt: "Team collaboration book card 1",
       },
       {
         id: "2",
-        src: "/assets/contact-us/book-card-2.png",
+        src: "/assets/about-us/book-card-2.png",
         alt: "Team collaboration book card 2",
       },
     ],
@@ -46,27 +47,27 @@ const defaultData = {
         cards: [
           {
             id: "card-1-1",
-            src: "/assets/contact-us/our-project-section/book-card-1-group/card-1.png",
+            src: "/assets/about-us/our-project-section/book-card-1-group/card-1.png",
             alt: "Book card group 1 - card 1",
           },
           {
             id: "card-1-2",
-            src: "/assets/contact-us/our-project-section/book-card-1-group/card-2.png",
+            src: "/assets/about-us/our-project-section/book-card-1-group/card-2.png",
             alt: "Book card group 1 - card 2",
           },
           {
             id: "card-1-3",
-            src: "/assets/contact-us/our-project-section/book-card-1-group/card-3.png",
+            src: "/assets/about-us/our-project-section/book-card-1-group/card-3.png",
             alt: "Book card group 1 - card 3",
           },
           {
             id: "card-1-4",
-            src: "/assets/contact-us/our-project-section/book-card-1-group/card-4.png",
+            src: "/assets/about-us/our-project-section/book-card-1-group/card-4.png",
             alt: "Book card group 1 - card 4",
           },
           {
             id: "card-1-5",
-            src: "/assets/contact-us/our-project-section/book-card-1-group/card-5.png",
+            src: "/assets/about-us/our-project-section/book-card-1-group/card-5.png",
             alt: "Book card group 1 - card 5",
           },
         ],
@@ -77,32 +78,32 @@ const defaultData = {
         cards: [
           {
             id: "card-2-1",
-            src: "/assets/contact-us/our-project-section/book-card-2-group/card-1.png",
+            src: "/assets/about-us/our-project-section/book-card-2-group/card-1.png",
             alt: "Book card group 2 - card 1",
           },
           {
             id: "card-2-2",
-            src: "/assets/contact-us/our-project-section/book-card-2-group/card-2.png",
+            src: "/assets/about-us/our-project-section/book-card-2-group/card-2.png",
             alt: "Book card group 2 - card 2",
           },
           {
             id: "card-2-3",
-            src: "/assets/contact-us/our-project-section/book-card-2-group/card-3.png",
+            src: "/assets/about-us/our-project-section/book-card-2-group/card-3.png",
             alt: "Book card group 2 - card 3",
           },
           {
             id: "card-2-4",
-            src: "/assets/contact-us/our-project-section/book-card-2-group/card-4.png",
+            src: "/assets/about-us/our-project-section/book-card-2-group/card-4.png",
             alt: "Book card group 2 - card 4",
           },
           {
             id: "card-2-5",
-            src: "/assets/contact-us/our-project-section/book-card-2-group/card-5.png",
+            src: "/assets/about-us/our-project-section/book-card-2-group/card-5.png",
             alt: "Book card group 2 - card 5",
           },
           {
             id: "card-2-6",
-            src: "/assets/contact-us/our-project-section/book-card-2-group/card-6.png",
+            src: "/assets/about-us/our-project-section/book-card-2-group/card-6.png",
             alt: "Book card group 2 - card 6",
           },
         ],
@@ -120,9 +121,9 @@ const defaultData = {
     mainText:
       "At Canopy, we're institutionalizing the NBS carbon project model—bringing executional discipline, radical transparency, and long-term vision to deliver large-scale, high-integrity projects that anchor the emergence of carbon as a legitimate asset class.",
     backgroundImage:
-      "/assets/contact-us/our-project-section/description-bg.png",
+      "/assets/about-us/our-project-section/description-bg.png",
     logoImage:
-      "/assets/contact-us/our-project-section/logo-description-absolute.png",
+      "/assets/about-us/our-project-section/logo-description-absolute.png",
   },
 };
 
@@ -130,16 +131,26 @@ export const OurProjectSection = ({
   data = defaultData,
 }: OurProjectSectionProps) => {
   const { carouselData, descriptionData } = data;
+  
+  // Simple Motion animations
+  const containerMotion = useSimpleMotion('about-project-container');
+  const mobileCarouselMotion = useSimpleMotion('about-project-mobile-carousel');
+  const mobileDescriptionMotion = useSimpleMotion('about-project-mobile-description');
+  const desktopCarouselMotion = useSimpleMotion('about-project-desktop-carousel');
+  const desktopDescriptionMotion = useSimpleMotion('about-project-desktop-description');
 
   return (
-    <section 
-      ref={useScrollAnimation({ animationType: 'fadeInUp', threshold: 0.1 })}
+    <motion.section
+      {...SIMPLE_ANIMATIONS.fadeInUp}
+      {...containerMotion}
       className="w-full px-0 md:px-[118px]"
     >
       <div className="w-full">
         <div className="flex flex-col lg:hidden">
-          <div 
-            ref={useScrollAnimation({ animationType: 'scaleIn', delay: 0, threshold: 0.3 })}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.scaleIn}
+            {...mobileCarouselMotion}
+            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
             className="w-full flex justify-center px-4 relative z-[2]"
           >
             <OurTeamCarouselInline
@@ -148,22 +159,26 @@ export const OurProjectSection = ({
                 buttonAction: carouselData.buttonAction || (() => {}),
               }}
             />
-          </div>
+          </motion.div>
 
           {/* Description Section - Mobile with 20px overlap */}
-          <div 
-            ref={useScrollAnimation({ animationType: 'fadeInUp', delay: 10, threshold: 0.3 })}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.fadeInUp}
+            {...mobileDescriptionMotion}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             className="w-full relative z-[1] -mt-5"
           >
             <DescriptionSectionInline data={descriptionData} />
-          </div>
+          </motion.div>
         </div>
 
         {/* Desktop Layout - Flexbox Side by Side */}
         <div className="hidden lg:flex lg:gap-3 lg:items-start">
           {/* Left Side - Carousel */}
-          <div 
-            ref={useScrollAnimation({ animationType: 'fadeInLeft', delay: 0, threshold: 0.3 })}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.fadeInLeft}
+            {...desktopCarouselMotion}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="flex-shrink-0 w-[368px] relative z-[2]"
           >
             <OurTeamCarouselInline
@@ -172,18 +187,20 @@ export const OurProjectSection = ({
                 buttonAction: carouselData.buttonAction || (() => {}),
               }}
             />
-          </div>
+          </motion.div>
 
           {/* Right Side - Description with 20px overlap */}
-          <div 
-            ref={useScrollAnimation({ animationType: 'fadeInRight', delay: 10, threshold: 0.3 })}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.fadeInRight}
+            {...desktopDescriptionMotion}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             className="flex-1 min-w-0 max-w-[492.87px] relative z-[1] -ml-5"
           >
             <DescriptionSectionInline data={descriptionData} />
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
@@ -387,7 +404,7 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
       <div className="flex gap-[8px] ml-[13px] mb-1">
         <div className="w-[76.44px] h-[43px] relative flex-shrink-0">
           <Image
-            src="/assets/contact-us/our-team-header-image.png"
+            src="/assets/about-us/our-team-header-image.png"
             alt="Header decoration 1"
             fill
             className="object-cover"
@@ -518,7 +535,7 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
               aria-label="Previous slide"
             >
               <Image
-                src="/assets/contact-us/our-project-section/arrow-left-circle.png"
+                src="/assets/about-us/our-project-section/arrow-left-circle.png"
                 alt="Previous"
                 width={32}
                 height={32}
@@ -533,7 +550,7 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
               aria-label="Next slide"
             >
               <Image
-                src="/assets/contact-us/our-project-section/arrow-right-circle.png"
+                src="/assets/about-us/our-project-section/arrow-right-circle.png"
                 alt="Next"
                 width={32}
                 height={32}

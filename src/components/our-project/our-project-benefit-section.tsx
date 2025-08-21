@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 
 /**
  * Interface for individual carousel image
@@ -219,27 +220,53 @@ const OurProjectBenefitSection: React.FC = () => {
     <section className="w-full bg-[#232A26] pt-[32px] px-6 md:px-[120px]">
       <div className="max-w-[392px] mx-auto md:mx-0 md:max-w-[600px] lg:max-w-[800px]">
         {/* Title and Content Section */}
-        <div className="flex flex-col items-center gap-6 mb-[54px]">
+        <motion.div
+          initial={{ opacity: 0.8, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex flex-col items-center gap-6 mb-[54px]"
+        >
           {/* Title */}
-          <h2 className="font-open-sans font-semibold text-[20px] leading-[1.5em] text-[#CCCCCC] text-start max-w-[342px]">
+          <motion.h2
+            initial={{ opacity: 0.7, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+            className="font-open-sans font-semibold text-[20px] leading-[1.5em] text-[#CCCCCC] text-start max-w-[342px]"
+          >
             Our Co-Benefits & Safeguards Strategy
-          </h2>
+          </motion.h2>
 
           {/* Benefit Logo */}
-          <BenefitLogo />
+          <motion.div
+            initial={{ opacity: 0.6, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
+          >
+            <BenefitLogo />
+          </motion.div>
 
           {/* Description */}
-          <p className="font-open-sans font-normal text-[13px] leading-[1.538em] text-[#949494] text-left max-w-[342px]">
+          <motion.p
+            initial={{ opacity: 0.6, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+            className="font-open-sans font-normal text-[13px] leading-[1.538em] text-[#949494] text-left max-w-[342px]"
+          >
             Every Canopy project is built to deliver both carbon and broader
             benefits—supporting ecosystems, communities, and climate goals. We
             follow global best practices, aim for certifications like CCB, apply
             ICVCM principles, and contribute to as many of the 17 UN SDGs as
             possible to ensure impact beyond carbon.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Carousel Section */}
-        <div className="relative">
+        <motion.div
+          initial={{ opacity: 0.7, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+          className="relative"
+        >
           {/* Carousel Background */}
           <div className="bg-white px-6 pt-[18px] pb-[18px]">
             {/* Title logos */}
@@ -291,7 +318,7 @@ const OurProjectBenefitSection: React.FC = () => {
                 aria-label="Previous pair"
               >
                 <Image
-                  src="/assets/contact-us/our-project-section/arrow-left-circle.png"
+                  src="/assets/about-us/our-project-section/arrow-left-circle.png"
                   alt="Previous"
                   width={20}
                   height={20}
@@ -306,7 +333,7 @@ const OurProjectBenefitSection: React.FC = () => {
                 aria-label="Next pair"
               >
                 <Image
-                  src="/assets/contact-us/our-project-section/arrow-right-circle.png"
+                  src="/assets/about-us/our-project-section/arrow-right-circle.png"
                   alt="Next"
                   width={20}
                   height={20}
@@ -315,7 +342,7 @@ const OurProjectBenefitSection: React.FC = () => {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

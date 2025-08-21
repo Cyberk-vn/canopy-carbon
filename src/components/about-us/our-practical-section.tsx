@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useScrollAnimation } from "@/src/hooks/responsive/use-scroll-animation";
+import { motion } from "motion/react";
+import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
 
 interface PracticalCard {
   title: string;
@@ -64,9 +65,12 @@ const practicalCards: PracticalCard[] = [
 ];
 
 export const OurPracticalSection = () => {
+  const containerMotion = useSimpleMotion('practical-container');
+  
   return (
-    <div 
-      ref={useScrollAnimation({ animationType: 'fadeInUp', threshold: 0.1 })}
+    <motion.div
+      {...SIMPLE_ANIMATIONS.fadeInUp}
+      {...containerMotion}
       className="w-full min-h-[989px] md:min-h-[600px]"
     >
       {/* Background Layer - Using Grid */}
@@ -79,7 +83,7 @@ export const OurPracticalSection = () => {
               <div className="h-[264px]"></div>
               <div className="flex-1 relative">
                 <Image
-                  src="/assets/contact-us/our-pratical-bg-mobile-image.png"
+                  src="/assets/about-us/our-pratical-bg-mobile-image.png"
                   alt="Mobile Background"
                   fill
                   className="object-cover"
@@ -90,7 +94,7 @@ export const OurPracticalSection = () => {
             {/* Desktop Background */}
             <div className="hidden md:block w-full h-full relative">
               <Image
-                src="/assets/contact-us/our-practical-bg-image.png"
+                src="/assets/about-us/our-practical-bg-image.png"
                 alt="Background"
                 fill
                 className="object-cover"
@@ -210,7 +214,7 @@ export const OurPracticalSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
