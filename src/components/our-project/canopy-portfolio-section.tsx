@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 
 /**
  * Interface for individual portfolio project
@@ -127,21 +128,41 @@ const CanopyPortfolioSection: React.FC = () => {
 
         {/* Header Content */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 md:px-[120px]">
-          <div className="max-w-[400px] text-center">
+          <motion.div
+            initial={{ opacity: 0.8, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="max-w-[400px] text-center"
+          >
             {/* Title */}
-            <h2 className="font-roboto font-extrabold text-[28px] leading-[1.143em] text-[#EDEDED] mb-[4px]">
+            <motion.h2
+              initial={{ opacity: 0.7, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+              className="font-roboto font-extrabold text-[28px] leading-[1.143em] text-[#EDEDED] mb-[4px]"
+            >
               The Canopy Portfolio
-            </h2>
+            </motion.h2>
 
             {/* Description */}
-            <p className="font-open-sans font-light text-[12px] leading-[1.417em] text-[#F0F0F0] mb-[11px] max-w-[300px]">
+            <motion.p
+              initial={{ opacity: 0.6, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
+              className="font-open-sans font-light text-[12px] leading-[1.417em] text-[#F0F0F0] mb-[11px] max-w-[300px]"
+            >
               We execute our projects alongside key partners globally recognised
               for their domain expertise.
-            </p>
+            </motion.p>
 
             {/* Decorative Line */}
-            <div className="w-[230px] h-[1px] bg-[#454545] mx-auto" />
-          </div>
+            <motion.div
+              initial={{ opacity: 0.5, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+              className="w-[230px] h-[1px] bg-[#454545] mx-auto"
+            />
+          </motion.div>
         </div>
       </div>
 
@@ -169,20 +190,33 @@ const CanopyPortfolioSection: React.FC = () => {
         <div className="relative px-6 md:px-[120px]">
           <div className="max-w-[392px] mx-auto md:mx-0 md:max-w-[600px] lg:max-w-[800px]">
             {/* Project Card */}
-            <div className="relative z-10 mx-[16px] pt-0 transition-all duration-500 ease-in-out">
+            <motion.div
+              initial={{ opacity: 0.8, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+              className="relative z-10 mx-[16px] pt-0 transition-all duration-500 ease-in-out"
+            >
               <div className="bg-white overflow-hidden shadow-lg h-[596px] flex flex-col">
                 {/* Project Image */}
-                <div className="relative w-full h-[350px] flex-shrink-0">
+                <motion.div
+                  initial={{ opacity: 0.7, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
+                  className="relative w-full h-[350px] flex-shrink-0"
+                >
                   <Image
                     src={currentProject.imageUrl}
                     alt={currentProject.title}
                     fill
                     className="object-cover transition-opacity duration-300"
                   />
-                </div>
+                </motion.div>
 
                 {/* Project Content */}
-                <div
+                <motion.div
+                  initial={{ opacity: 0.7, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }}
                   className={`px-[15px] py-[24px] h-[250px] flex flex-col ${
                     currentProject.isComingSoon
                       ? "bg-[#16221C] bg-opacity-65"
@@ -190,41 +224,72 @@ const CanopyPortfolioSection: React.FC = () => {
                   }`}
                 >
                   {/* Project Title */}
-                  <h3 className="font-roboto font-black text-[21px] leading-[1.429em] text-white text-center mb-[2.93px]">
+                  <motion.h3
+                    initial={{ opacity: 0.7, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 1.0, ease: "easeOut" }}
+                    className="font-roboto font-black text-[21px] leading-[1.429em] text-white text-center mb-[2.93px]"
+                  >
                     {currentProject.title}
-                  </h3>
+                  </motion.h3>
 
                   {/* Project Location */}
-                  <p className="font-open-sans font-light text-[12px] leading-[2.333em] text-white text-center mb-[4px]">
+                  <motion.p
+                    initial={{ opacity: 0.6, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 1.1, ease: "easeOut" }}
+                    className="font-open-sans font-light text-[12px] leading-[2.333em] text-white text-center mb-[4px]"
+                  >
                     {currentProject.location}
-                  </p>
+                  </motion.p>
 
                   {/* Project Description - Only show if not Coming Soon */}
                   {!currentProject.isComingSoon && (
                     <>
-                      <div className="px-[15px] mb-[8px] flex-grow flex items-center">
+                      <motion.div
+                        initial={{ opacity: 0.6, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                        className="px-[15px] mb-[8px] flex-grow flex items-center"
+                      >
                         <p className="font-roboto font-normal text-[12px] leading-[1.417em] tracking-[-0.04em] text-white text-center">
                           {currentProject.description}
                         </p>
-                      </div>
+                      </motion.div>
 
                       {/* Read More Button */}
-                      <div className="text-center mt-auto">
+                      <motion.div
+                        initial={{ opacity: 0.6, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: 1.3, ease: "easeOut" }}
+                        whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                        className="text-center mt-auto"
+                      >
                         <button className="font-open-sans font-normal text-[12px] leading-[1.5em] text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300">
                           Read More →
                         </button>
-                      </div>
+                      </motion.div>
                     </>
                   )}
-                </div>
+                </motion.div>
               </div>
 
               {/* Navigation Arrows */}
-              <div className="flex justify-between items-center mt-[23.45px] px-0">
+              <motion.div
+                initial={{ opacity: 0.6, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.4, ease: "easeOut" }}
+                className="flex justify-between items-center mt-[23.45px] px-0"
+              >
                 {/* Left Arrow */}
-                <button
+                <motion.button
+                  initial={{ opacity: 0.7, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 1.5, ease: "easeOut" }}
+                  whileHover={{ scale: 1.15, transition: { duration: 0.2 } }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={handlePrevProject}
-                  className="w-[22.76px] h-[23.45px] flex items-center justify-center transition-all duration-300 hover:scale-110 hover:opacity-80"
+                  className="w-[22.76px] h-[23.45px] flex items-center justify-center transition-all duration-300 hover:opacity-80"
                   aria-label="Previous project"
                 >
                   <Image
@@ -234,12 +299,17 @@ const CanopyPortfolioSection: React.FC = () => {
                     height={23}
                     className="object-contain"
                   />
-                </button>
+                </motion.button>
 
                 {/* Right Arrow */}
-                <button
+                <motion.button
+                  initial={{ opacity: 0.7, x: 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 1.6, ease: "easeOut" }}
+                  whileHover={{ scale: 1.15, transition: { duration: 0.2 } }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={handleNextProject}
-                  className="w-[22.76px] h-[23.45px] flex items-center justify-center transition-all duration-300 hover:scale-110 hover:opacity-80"
+                  className="w-[22.76px] h-[23.45px] flex items-center justify-center transition-all duration-300 hover:opacity-80"
                   aria-label="Next project"
                 >
                   <Image
@@ -249,9 +319,9 @@ const CanopyPortfolioSection: React.FC = () => {
                     height={23}
                     className="object-contain"
                   />
-                </button>
-              </div>
-            </div>
+                </motion.button>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>

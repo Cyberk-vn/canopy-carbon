@@ -2,12 +2,13 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 import {
   OurProjectSectionProps,
   CarouselImage,
   CarouselCardGroup,
 } from "../../types/our-project";
-import { useScrollAnimation } from "@/src/hooks/responsive/use-scroll-animation";
+import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
 
 // Inline component interfaces
 interface InlineCarouselData {
@@ -130,16 +131,26 @@ export const OurProjectSection = ({
   data = defaultData,
 }: OurProjectSectionProps) => {
   const { carouselData, descriptionData } = data;
+  
+  // Simple Motion animations
+  const containerMotion = useSimpleMotion('about-project-container');
+  const mobileCarouselMotion = useSimpleMotion('about-project-mobile-carousel');
+  const mobileDescriptionMotion = useSimpleMotion('about-project-mobile-description');
+  const desktopCarouselMotion = useSimpleMotion('about-project-desktop-carousel');
+  const desktopDescriptionMotion = useSimpleMotion('about-project-desktop-description');
 
   return (
-    <section 
-      ref={useScrollAnimation({ animationType: 'fadeInUp', threshold: 0.1 })}
+    <motion.section
+      {...SIMPLE_ANIMATIONS.fadeInUp}
+      {...containerMotion}
       className="w-full px-0 md:px-[118px]"
     >
       <div className="w-full">
         <div className="flex flex-col lg:hidden">
-          <div 
-            ref={useScrollAnimation({ animationType: 'scaleIn', delay: 0, threshold: 0.3 })}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.scaleIn}
+            {...mobileCarouselMotion}
+            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
             className="w-full flex justify-center px-4 relative z-[2]"
           >
             <OurTeamCarouselInline
@@ -148,22 +159,26 @@ export const OurProjectSection = ({
                 buttonAction: carouselData.buttonAction || (() => {}),
               }}
             />
-          </div>
+          </motion.div>
 
           {/* Description Section - Mobile with 20px overlap */}
-          <div 
-            ref={useScrollAnimation({ animationType: 'fadeInUp', delay: 10, threshold: 0.3 })}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.fadeInUp}
+            {...mobileDescriptionMotion}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             className="w-full relative z-[1] -mt-5"
           >
             <DescriptionSectionInline data={descriptionData} />
-          </div>
+          </motion.div>
         </div>
 
         {/* Desktop Layout - Flexbox Side by Side */}
         <div className="hidden lg:flex lg:gap-3 lg:items-start">
           {/* Left Side - Carousel */}
-          <div 
-            ref={useScrollAnimation({ animationType: 'fadeInLeft', delay: 0, threshold: 0.3 })}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.fadeInLeft}
+            {...desktopCarouselMotion}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="flex-shrink-0 w-[368px] relative z-[2]"
           >
             <OurTeamCarouselInline
@@ -172,18 +187,20 @@ export const OurProjectSection = ({
                 buttonAction: carouselData.buttonAction || (() => {}),
               }}
             />
-          </div>
+          </motion.div>
 
           {/* Right Side - Description with 20px overlap */}
-          <div 
-            ref={useScrollAnimation({ animationType: 'fadeInRight', delay: 10, threshold: 0.3 })}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.fadeInRight}
+            {...desktopDescriptionMotion}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             className="flex-1 min-w-0 max-w-[492.87px] relative z-[1] -ml-5"
           >
             <DescriptionSectionInline data={descriptionData} />
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

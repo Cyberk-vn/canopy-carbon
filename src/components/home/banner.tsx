@@ -1,21 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "motion/react";
 import { BannerProps } from "@/src/types/banner";
-import { useScrollAnimation } from "@/src/hooks/responsive/use-scroll-animation";
+import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
 import { NavigationMenu } from "@/src/components/common/navigation-menu";
 
-export function Banner({ title, subtitle, menuItems, logoUrl }: BannerProps) {
+export function Banner({ title, subtitle, menuItems, logoUrl, mobileMenuStyles }: BannerProps) {
 
-  // Scroll animations
-  const titleRef = useScrollAnimation<HTMLHeadingElement>({
-    animationType: "fadeInLeft",
-    delay: 200,
-  });
-  const subtitleRef = useScrollAnimation<HTMLParagraphElement>({
-    animationType: "fadeInLeft",
-    delay: 400,
-  });
+  // Simple Motion animations with persistence
+  const titleMotion = useSimpleMotion('home-title');
+  const subtitleMotion = useSimpleMotion('home-subtitle');
   return (
     <div className="relative w-full h-[832px] lg:h-[700px] overflow-hidden flex flex-col">
       {/* Background Image */}
@@ -74,26 +69,30 @@ export function Banner({ title, subtitle, menuItems, logoUrl }: BannerProps) {
         </div>
       </div>
 
-      <NavigationMenu menuItems={menuItems} logoUrl={logoUrl} />
+      <NavigationMenu menuItems={menuItems} logoUrl={logoUrl} mobileMenuStyles={mobileMenuStyles} />
 
       {/* Main Content */}
       <div className="flex-1 z-30 flex items-end lg:items-center pb-[50%] lg:pb-0 pl-4 md:pl-[120px]">
         <div className="flex flex-col gap-6">
           {/* Main Title */}
-          <h1
-            ref={titleRef}
+          <motion.h1
+            {...SIMPLE_ANIMATIONS.fadeInLeft}
+            {...titleMotion}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="font-roboto font-black text-3xl md:text-5xl lg:text-[64px] leading-[1.0625] text-[#F0F0F0]"
           >
             {title}
-          </h1>
+          </motion.h1>
 
           {/* Subtitle */}
-          <p
-            ref={subtitleRef}
+          <motion.p
+            {...SIMPLE_ANIMATIONS.fadeInLeft}
+            {...subtitleMotion}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             className="font-open-sans font-semibold text-lg md:text-2xl lg:text-[32px] leading-[1.25] text-[#B7C0C9] max-w-[617.84px]"
           >
             {subtitle}
-          </p>
+          </motion.p>
         </div>
       </div>
     </div>

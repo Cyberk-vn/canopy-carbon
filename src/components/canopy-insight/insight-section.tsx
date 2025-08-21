@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "motion/react";
+import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
 
 interface InsightSectionProps {
   title: string;
@@ -20,8 +22,16 @@ export function InsightSection({
   showDecorators = true,
   isEmbedded = false,
 }: InsightSectionProps) {
+  // Simple Motion animations
+  const containerMotion = useSimpleMotion(`insight-section-${title.slice(0, 10)}`);
+  const titleMotion = useSimpleMotion(`insight-title-${title.slice(0, 10)}`);
+  const descriptionMotion = useSimpleMotion(`insight-description-${title.slice(0, 10)}`);
+  const imagesMotion = useSimpleMotion(`insight-images-${title.slice(0, 10)}`);
+  
   const sectionContent = (
-    <div
+    <motion.div
+      {...SIMPLE_ANIMATIONS.fadeInUp}
+      {...containerMotion}
       className="w-full flex flex-col"
       style={{ backgroundColor: "#FCFCFC" }}
     >
@@ -33,7 +43,10 @@ export function InsightSection({
         }}
       >
         {/* Title */}
-        <div
+        <motion.div
+          {...SIMPLE_ANIMATIONS.fadeInLeft}
+          {...titleMotion}
+          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
           className="w-full mb-3 text-left"
           style={{
             fontFamily: "Inter",
@@ -44,10 +57,13 @@ export function InsightSection({
           }}
         >
           {title}
-        </div>
+        </motion.div>
 
         {/* Description */}
-        <div
+        <motion.div
+          {...SIMPLE_ANIMATIONS.fadeInLeft}
+          {...descriptionMotion}
+          transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
           className="w-full mb-8 text-left"
           style={{
             fontFamily: "Open Sans",
@@ -59,10 +75,15 @@ export function InsightSection({
           }}
         >
           {description}
-        </div>
+        </motion.div>
 
         {/* Book Images Container */}
-        <div className="w-full flex flex-col gap-4">
+        <motion.div
+          {...SIMPLE_ANIMATIONS.slideInUp}
+          {...imagesMotion}
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+          className="w-full flex flex-col gap-4"
+        >
           {/* Overlapping Images Group - Respects section max-width */}
           <div
             className="relative w-full h-[159.43px] mx-auto overflow-hidden"
@@ -121,9 +142,9 @@ export function InsightSection({
               Request Access
             </span>
           </button>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 
   return (

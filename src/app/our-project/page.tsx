@@ -6,20 +6,16 @@ import {
   CollaborateWithUsSection,
 } from "@/src/components/our-project";
 import { FooterSection } from "@/src/components/common";
+import { getMenuItems, getLogoUrl, getMobileMenuStyles } from "@/src/lib/navigation";
 
 const OurProjectPage = () => {
-  const menuItems = [
-    { text: "Home", url: "/" },
-    { text: "About Us", url: "/about-us" },
-    { text: "Our projects", url: "/our-project" },
-    { text: "Canopy insights", url: "/insights" },
-  ];
-
-  const logoUrl = "/assets/banner-shared-component/logo.png";
+  const menuItems = getMenuItems();
+  const logoUrl = getLogoUrl();
+  const mobileMenuStyles = getMobileMenuStyles("our-project");
 
   return (
     <main>
-      <OurProjectBanner menuItems={menuItems} logoUrl={logoUrl} />
+      <OurProjectBanner menuItems={menuItems} logoUrl={logoUrl} mobileMenuStyles={mobileMenuStyles} />
       <CorePrincipleSection />
       <OurProjectBenefitSection />
       <CanopyPortfolioSection />

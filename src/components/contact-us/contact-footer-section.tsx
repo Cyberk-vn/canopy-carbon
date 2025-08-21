@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 
 interface ContactFormData {
   name: string;
@@ -60,17 +61,25 @@ const ContactFooterSection = () => {
       <div className="relative z-20 max-w-[1200px] mx-auto px-4">
         <div className="py-18">
           {/* Header Title - Always at top */}
-          <h2
+          <motion.h2
+            initial={{ opacity: 0.8, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className="text-[18px] lg:text-[48px] font-semibold text-[#3B464F] mb-8 text-start lg:text-left leading-[1.67] lg:leading-normal"
             style={{ fontFamily: "Open Sans" }}
           >
             Get In Touch
-          </h2>
+          </motion.h2>
 
           {/* Content Container with reordered columns */}
           <div className="flex flex-col lg:flex-row gap-5 lg:gap-[204px]">
             {/* Mobile: Contact Form First, Desktop: Contact Information First */}
-            <div className="w-full lg:w-[486px] order-2 lg:order-1">
+            <motion.div
+              initial={{ opacity: 0.7, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+              className="w-full lg:w-[486px] order-2 lg:order-1"
+            >
               {/* Contact Information */}
               <div className="space-y-4 mb-8">
                 <p
@@ -163,10 +172,15 @@ const ContactFooterSection = () => {
                   </svg>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Mobile: Contact Information Second, Desktop: Contact Form Second */}
-            <div className="w-full lg:w-[510px] order-1 lg:order-2">
+            <motion.div
+              initial={{ opacity: 0.7, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+              className="w-full lg:w-[510px] order-1 lg:order-2"
+            >
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <input
@@ -228,7 +242,7 @@ const ContactFooterSection = () => {
                   Send
                 </button>
               </form>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

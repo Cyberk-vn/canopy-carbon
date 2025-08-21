@@ -8,14 +8,11 @@ import { FooterSection } from "@/src/components/common";
 import { ServiceCardData } from "@/src/types/service";
 import { CursorFollower } from "@/src/components/shared/cursor-follower";
 import RoadmapSection from "@/src/components/home/roadmap-section";
+import { getMenuItems, getLogoUrl, getMobileMenuStyles } from "@/src/lib/navigation";
 
 export default function Home() {
-  const menuItems = [
-    { text: "Home", url: "/" },
-    { text: "About Us", url: "/about-us" },
-    { text: "Our Project", url: "/our-project" },
-    { text: "Canopy insights", url: "/insights" },
-  ];
+  const menuItems = getMenuItems();
+  const mobileMenuStyles = getMobileMenuStyles("home");
 
   const serviceData: ServiceCardData[] = [
     {
@@ -68,7 +65,8 @@ export default function Home() {
           title="Canopy Carbon"
           subtitle="A Climate Infrastructure Company Specialising in Nature-Based Solutions."
           menuItems={menuItems}
-          logoUrl="/assets/banner-shared-component/logo.png"
+          logoUrl={getLogoUrl()}
+          mobileMenuStyles={mobileMenuStyles}
         />
 
         <OurServiceSection

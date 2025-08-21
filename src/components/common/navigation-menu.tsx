@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { MobileMenuStyles } from "@/src/lib/navigation";
 
 interface MenuItem {
   text: string;
@@ -13,13 +14,24 @@ interface NavigationMenuProps {
   menuItems: MenuItem[];
   logoUrl: string;
   mobileMenuIconColor?: string;
+  mobileMenuStyles?: MobileMenuStyles;
 }
 
 export function NavigationMenu({
   menuItems,
   logoUrl,
   mobileMenuIconColor = "#F1F5F9",
+  mobileMenuStyles,
 }: NavigationMenuProps) {
+  // Default mobile menu styles (for backward compatibility)
+  const defaultMobileMenuStyles: MobileMenuStyles = {
+    background: "rgba(0, 0, 0, 0.3)",
+    borderTop: "0.75px solid rgba(140, 140, 140, 0.3)",
+    backdropFilter: "blur(8px)",
+    textColor: "#F1F5F9",
+  };
+
+  const currentMobileMenuStyles = mobileMenuStyles || defaultMobileMenuStyles;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -110,10 +122,11 @@ export function NavigationMenu({
           }}
         >
           <div
-            className="backdrop-blur-[8px] p-6 shadow-lg"
+            className="p-6 shadow-lg"
             style={{
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-              border: "0.75px solid rgba(140, 140, 140, 0.3)",
+              background: currentMobileMenuStyles.background,
+              borderTop: currentMobileMenuStyles.borderTop,
+              backdropFilter: currentMobileMenuStyles.backdropFilter,
             }}
           >
             <div className="flex flex-col gap-4">
@@ -121,9 +134,10 @@ export function NavigationMenu({
                 <Link
                   key={index}
                   href={item.url}
-                  className="flex items-center gap-[10px] px-4 py-3 text-[#F1F5F9] font-open-sans text-base font-normal leading-[1.5] hover:text-[#00A5FF] active:text-[#00A5FF] focus:text-[#00A5FF] hover:bg-white/10 active:bg-white/10 focus:bg-white/10 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-105"
+                  className="flex items-center gap-[10px] px-4 py-3 font-open-sans text-base font-normal leading-[1.5] hover:text-[#00A5FF] active:text-[#00A5FF] focus:text-[#00A5FF] hover:bg-white/10 active:bg-white/10 focus:bg-white/10 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-105"
                   onClick={() => setIsMobileMenuOpen(false)}
                   style={{
+                    color: currentMobileMenuStyles.textColor,
                     animation: `fadeInUp ${
                       250 + index * 50
                     }ms linear(0, 0.6796, 1.0326, 1.0275, 1.0011, 0.9981, 0.9997, 1)`,

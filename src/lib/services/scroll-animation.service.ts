@@ -8,6 +8,7 @@ export interface ScrollAnimationEntry {
   rootMargin?: string;
   once?: boolean;
   triggered?: boolean;
+  elementId?: string; // Used for tracking with Zustand store
 }
 
 export interface ScrollProgress {
@@ -135,7 +136,7 @@ export class ScrollAnimationService {
     id: string,
     element: HTMLElement,
     callback: (entry: IntersectionObserverEntry, progress: number) => void,
-    options: { threshold?: number; rootMargin?: string; once?: boolean } = {}
+    options: { threshold?: number; rootMargin?: string; once?: boolean; elementId?: string } = {}
   ): void {
     const entry: ScrollAnimationEntry = {
       id,
@@ -144,7 +145,8 @@ export class ScrollAnimationService {
       threshold: options.threshold || 0.1,
       rootMargin: options.rootMargin || '0px',
       once: options.once || false,
-      triggered: false
+      triggered: false,
+      elementId: options.elementId
     };
 
     this.entries.set(id, entry);

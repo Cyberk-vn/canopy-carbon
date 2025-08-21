@@ -1,18 +1,27 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "motion/react";
 import { NavigationMenu } from "../common";
 import type { ContactCardsProps } from "@/src/types/contact-us";
 
 const ContactCard = ({
   title,
   description,
+  index,
 }: {
   title: string;
   description: string;
+  index: number;
 }) => {
   return (
-    <div className="w-full max-w-[342px] mx-auto">
+    <motion.div
+      initial={{ opacity: 0.8, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
+      whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+      className="w-full max-w-[342px] mx-auto"
+    >
       {/* Card Background */}
       <div
         className="relative p-4 rounded-lg h-full"
@@ -41,7 +50,7 @@ const ContactCard = ({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -109,13 +118,19 @@ export function ContactHeroSection({ cards }: ContactCardsProps) {
                 key={card.id || index}
                 title={card.title}
                 description={card.description}
+                index={index}
               />
             ))}
           </div>
         </div>
 
         {/* Decorative Elements - Mobile only - Below ContactCard section */}
-        <div className="relative mt-4 md:hidden">
+        <motion.div
+          initial={{ opacity: 0.6, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
+          className="relative mt-4 md:hidden"
+        >
           <div className="flex items-center gap-4 px-6">
             <div className="w-10 h-10 rounded-full bg-white">
               <Image
@@ -143,7 +158,7 @@ export function ContactHeroSection({ cards }: ContactCardsProps) {
               />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

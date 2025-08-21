@@ -1,10 +1,21 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "motion/react";
+import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
 
 export function CanopyPortfolioSection() {
+  // Simple Motion animations
+  const containerMotion = useSimpleMotion('canopy-portfolio-container');
+  const titleMotion = useSimpleMotion('canopy-portfolio-title');
+  const subtitleMotion = useSimpleMotion('canopy-portfolio-subtitle');
+  
   return (
-    <div className="relative w-full h-[400px]">
+    <motion.div
+      {...SIMPLE_ANIMATIONS.fadeInUp}
+      {...containerMotion}
+      className="relative w-full h-[400px]"
+    >
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <Image
@@ -38,7 +49,10 @@ export function CanopyPortfolioSection() {
           }}
         >
           {/* Main Title */}
-          <h2
+          <motion.h2
+            {...SIMPLE_ANIMATIONS.fadeInUp}
+            {...titleMotion}
+            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             className="font-open-sans font-semibold text-[#1E2E26]"
             style={{
               fontSize: "20px",
@@ -47,10 +61,13 @@ export function CanopyPortfolioSection() {
             }}
           >
             Built on research. Disciplined in thought. Precise in execution.
-          </h2>
+          </motion.h2>
 
           {/* Subtitle */}
-          <p
+          <motion.p
+            {...SIMPLE_ANIMATIONS.fadeInUp}
+            {...subtitleMotion}
+            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
             className="font-open-sans font-normal text-[#37423B]"
             style={{
               fontSize: "13px",
@@ -59,7 +76,7 @@ export function CanopyPortfolioSection() {
             }}
           >
             Contribute to our next thought piece
-          </p>
+          </motion.p>
 
           {/* Call to Action */}
           <div
@@ -74,7 +91,7 @@ export function CanopyPortfolioSection() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,4 +1,7 @@
+"use client";
+
 import React, { JSX } from "react";
+import { motion } from "motion/react";
 
 /**
  * Interface for individual principle card configuration
@@ -77,9 +80,13 @@ const CorePrincipleSection: React.FC = () => {
     },
   ];
 
-  const renderCard = (card: PrincipleCard): JSX.Element => (
-    <div
+  const renderCard = (card: PrincipleCard, index: number): JSX.Element => (
+    <motion.div
       key={card.id}
+      initial={{ opacity: 0.7, scale: 0.95, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
+      whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
       className="w-[163px] flex flex-col justify-center items-center gap-[10px] mb-4"
       style={{
         backgroundColor: card.backgroundColor,
@@ -89,32 +96,42 @@ const CorePrincipleSection: React.FC = () => {
       <span className="font-open-sans font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
         {card.text}
       </span>
-    </div>
+    </motion.div>
   );
 
   return (
     <section className="w-full bg-[#1E2421] px-6 md:px-[120px] py-6">
       <div className="max-w-[392px] mx-auto md:mx-0 md:max-w-[600px] lg:max-w-[800px]">
         {/* Title */}
-        <h2 className="font-open-sans font-semibold text-xl leading-[1.5em] text-[#9C9C9C] mb-[24px]">
+        <motion.h2
+          initial={{ opacity: 0.8, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="font-open-sans font-semibold text-xl leading-[1.5em] text-[#9C9C9C] mb-[24px]"
+        >
           The Core Carbon Principle
-        </h2>
+        </motion.h2>
 
         {/* Principle Cards Grid */}
         <div className="flex justify-center md:justify-start gap-[16px] mb-[24px]">
           {/* Left Column */}
           <div className="flex flex-col">
-            {leftColumnCards.map((card) => renderCard(card))}
+            {leftColumnCards.map((card, index) => renderCard(card, index))}
           </div>
 
           {/* Right Column */}
           <div className="flex flex-col">
-            {rightColumnCards.map((card) => renderCard(card))}
+            {rightColumnCards.map((card, index) => renderCard(card, index + leftColumnCards.length))}
           </div>
         </div>
 
         {/* Description Section */}
-        <div className="max-w-[342px] mx-auto md:mx-0">
+        <motion.div
+          initial={{ opacity: 0.6, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.0, ease: "easeOut" }}
+          className="max-w-[342px] mx-auto md:mx-0"
+        >
           <div className="flex flex-col items-center md:items-start gap-4">
             <p className="font-open-sans font-normal text-[13px] leading-[1.538em] text-[#949494] text-left w-full">
               Developed and published in 2023 by the Integrity Council for the
@@ -127,7 +144,7 @@ const CorePrincipleSection: React.FC = () => {
               alignment with the framework.
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

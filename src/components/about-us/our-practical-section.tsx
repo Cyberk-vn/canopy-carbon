@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useScrollAnimation } from "@/src/hooks/responsive/use-scroll-animation";
+import { motion } from "motion/react";
+import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
 
 interface PracticalCard {
   title: string;
@@ -64,9 +65,12 @@ const practicalCards: PracticalCard[] = [
 ];
 
 export const OurPracticalSection = () => {
+  const containerMotion = useSimpleMotion('practical-container');
+  
   return (
-    <div 
-      ref={useScrollAnimation({ animationType: 'fadeInUp', threshold: 0.1 })}
+    <motion.div
+      {...SIMPLE_ANIMATIONS.fadeInUp}
+      {...containerMotion}
       className="w-full min-h-[989px] md:min-h-[600px]"
     >
       {/* Background Layer - Using Grid */}
@@ -210,7 +214,7 @@ export const OurPracticalSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

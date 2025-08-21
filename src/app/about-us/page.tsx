@@ -6,17 +6,12 @@ import {
   OurProjectSection,
 } from "@/src/components/about-us";
 import { FooterSection } from "@/src/components/common";
+import { getMenuItems, getLogoUrl, getMobileMenuStyles } from "@/src/lib/navigation";
 
 const aboutUsPage = () => {
-  const menuItems = [
-    { text: "Home", url: "/" },
-    { text: "About Us", url: "/about" },
-    { text: "Our projects", url: "/projects" },
-    { text: "Canopy insights", url: "/insights" },
-    { text: "About Us", url: "/about-us" },
-  ];
-
-  const logoUrl = "/assets/banner-shared-component/logo.png";
+  const menuItems = getMenuItems();
+  const logoUrl = getLogoUrl();
+  const mobileMenuStyles = getMobileMenuStyles("about-us");
 
   // Development Sequence Data
   const developmentSequenceData = {
@@ -48,7 +43,7 @@ const aboutUsPage = () => {
 
   return (
     <main className="min-h-screen w-full">
-      <AboutUsBanner menuItems={menuItems} logoUrl={logoUrl} />
+      <AboutUsBanner menuItems={menuItems} logoUrl={logoUrl} mobileMenuStyles={mobileMenuStyles} />
       <OurPurposeSection />
       <OurPracticalSection />
       <DevelopmentSequenceSection data={developmentSequenceData} />

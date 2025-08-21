@@ -1,17 +1,19 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "motion/react";
 import { NavigationMenu } from "../common";
 import { InsightSection } from "./insight-section";
+import { getMenuItems, getLogoUrl, getMobileMenuStyles } from "@/src/lib/navigation";
+import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
 
 export function CanopyInsightBanner() {
-  // Menu items data - following the same pattern as other pages
-  const menuItems = [
-    { text: "Home", url: "/" },
-    { text: "About Us", url: "/about-us" },
-    { text: "Our Project", url: "/our-project" },
-    { text: "Canopy Insight", url: "/canopy-insight" },
-  ];
+  // Simple Motion animations
+  const decorativeImageMotion = useSimpleMotion('canopy-insight-decorative-image');
+  const contentMotion = useSimpleMotion('canopy-insight-content');
+  
+  const menuItems = getMenuItems();
+  const mobileMenuStyles = getMobileMenuStyles("canopy-insight");
 
   return (
     <div className="w-full min-h-[1183px] mx-auto">
@@ -46,15 +48,21 @@ export function CanopyInsightBanner() {
         <div className="relative z-20">
           <NavigationMenu
             menuItems={menuItems}
-            logoUrl="/assets/banner-shared-component/logo.png"
+            logoUrl={getLogoUrl()}
             mobileMenuIconColor="rgba(139, 147, 140, 0.5)"
+            mobileMenuStyles={mobileMenuStyles}
           />
         </div>
 
         {/* Content Container */}
         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between px-6 lg:px-[92px] pt-[120px] pb-[20px]">
           {/* Decorative Image with Card Effect */}
-          <div className="relative w-[206px] h-[259px] mb-8 lg:mb-0">
+          <motion.div
+            {...SIMPLE_ANIMATIONS.scaleIn}
+            {...decorativeImageMotion}
+            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+            className="relative w-[206px] h-[259px] mb-8 lg:mb-0"
+          >
             {/* Effect background */}
             <div
               className="absolute left-0 top-[23px] w-[182px] h-[236px]"
@@ -73,14 +81,19 @@ export function CanopyInsightBanner() {
                 className="object-cover w-full h-full"
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* Spacer for layout balance */}
           <div className="flex-1" />
         </div>
 
         {/* Content Section with improved layout */}
-        <div className="relative z-10 px-6 lg:py-12 justify-center items-center">
+        <motion.div
+          {...SIMPLE_ANIMATIONS.fadeInUp}
+          {...contentMotion}
+          transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+          className="relative z-10 px-6 lg:py-12 justify-center items-center"
+        >
           {/* Title and Description Container */}
           <div className="max-w-[342px] mb-12">
             <h1 className="font-sans font-semibold text-[#2A4035] text-[30px] leading-[38px] mb-[13px]">
@@ -136,7 +149,7 @@ export function CanopyInsightBanner() {
             ]}
             isEmbedded={true}
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

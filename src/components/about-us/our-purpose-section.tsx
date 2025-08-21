@@ -1,12 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { useScrollAnimation } from "@/src/hooks/responsive/use-scroll-animation";
+import { motion } from "motion/react";
+import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
 
 export const OurPurposeSection = () => {
+  // Simple Motion animations
+  const containerMotion = useSimpleMotion('purpose-container');
+  const imageMotion = useSimpleMotion('purpose-image');
+  const contentMotion = useSimpleMotion('purpose-content');
+  const desktopImageMotion = useSimpleMotion('purpose-desktop-image');
+  const desktopContentMotion = useSimpleMotion('purpose-desktop-content');
+  
   return (
-    <div 
-      ref={useScrollAnimation({ animationType: 'fadeInUp', threshold: 0.2 })}
+    <motion.div
+      {...SIMPLE_ANIMATIONS.fadeInUp}
+      {...containerMotion}
       className="relative w-full px-0 md:px-[118px]"
     >
       {/* Main Container - Mobile First */}
@@ -15,8 +24,10 @@ export const OurPurposeSection = () => {
           {/* Left Side with Card Effect - Mobile */}
           <div className="relative flex items-start justify-center">
             {/* Image with Card Effect */}
-            <div 
-              ref={useScrollAnimation({ animationType: 'scaleIn', delay: 0, threshold: 0.3 })}
+            <motion.div
+              {...SIMPLE_ANIMATIONS.scaleIn}
+              {...imageMotion}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
               className="card-effect purpose-card relative w-[85%] h-[87%]"
             >
               <Image
@@ -25,12 +36,14 @@ export const OurPurposeSection = () => {
                 fill
                 className="object-cover"
               />
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Side Content - Mobile */}
-          <div 
-            ref={useScrollAnimation({ animationType: 'fadeInRight', delay: 10, threshold: 0.3 })}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.fadeInRight}
+            {...contentMotion}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             className="flex flex-col justify-center px-2"
           >
             {/* Title Section */}
@@ -75,14 +88,16 @@ export const OurPurposeSection = () => {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Desktop Layout - Side by Side */}
         <div className="hidden md:flex md:gap-8 lg:gap-12">
           {/* Left Side with Card Effect - Desktop */}
-          <div 
-            ref={useScrollAnimation({ animationType: 'fadeInLeft', delay: 0, threshold: 0.3 })}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.fadeInLeft}
+            {...desktopImageMotion}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="flex-shrink-0"
           >
             <div className="relative w-[139px] h-[377px] lg:w-[180px] lg:h-[480px]">
@@ -112,11 +127,13 @@ export const OurPurposeSection = () => {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Side Content - Desktop */}
-          <div 
-            ref={useScrollAnimation({ animationType: 'fadeInRight', delay: 10, threshold: 0.3 })}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.fadeInRight}
+            {...desktopContentMotion}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             className="flex-1 flex flex-col justify-center gap-8 max-w-[600px]"
           >
             {/* App Icon */}
@@ -156,7 +173,7 @@ export const OurPurposeSection = () => {
                 -Our Purpose
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -222,7 +239,7 @@ export const OurPurposeSection = () => {
           }
         }
       `}</style>
-    </div>
+    </motion.div>
   );
 };
 
