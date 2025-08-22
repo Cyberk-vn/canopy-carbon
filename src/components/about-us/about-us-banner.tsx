@@ -80,6 +80,7 @@ export function AboutUsBanner({ menuItems, logoUrl, mobileMenuStyles }: AboutUsB
             logoUrl={logoUrl}
             mobileMenuIconColor="#8C8C8C"
             mobileMenuStyles={mobileMenuStyles}
+            activeItem="About Us"
           />
         </div>
 

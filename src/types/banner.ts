@@ -1,4 +1,5 @@
 import { MobileMenuStyles } from "@/src/lib/navigation";
+import { ServiceCardData } from "./service";
 
 export interface MenuItem {
   text: string;
@@ -11,6 +12,7 @@ export interface BannerProps {
   menuItems: MenuItem[];
   logoUrl: string;
   mobileMenuStyles?: MobileMenuStyles;
+  services?: ServiceCardData[];
 }
 
 export interface AboutUsBannerProps {
