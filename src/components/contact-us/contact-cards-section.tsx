@@ -106,6 +106,7 @@ export function ContactHeroSection({ cards }: ContactCardsProps) {
           menuItems={menuItems}
           logoUrl="/assets/banner-shared-component/logo.png"
           mobileMenuIconColor="#EDEDED"
+          activeItem="Contact Us"
         />
       </div>
 

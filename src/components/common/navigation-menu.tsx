@@ -15,6 +15,7 @@ interface NavigationMenuProps {
   logoUrl: string;
   mobileMenuIconColor?: string;
   mobileMenuStyles?: MobileMenuStyles;
+  activeItem?: string;
 }
 
 export function NavigationMenu({
@@ -22,6 +23,7 @@ export function NavigationMenu({
   logoUrl,
   mobileMenuIconColor = "#F1F5F9",
   mobileMenuStyles,
+  activeItem,
 }: NavigationMenuProps) {
   // Default mobile menu styles (for backward compatibility)
   const defaultMobileMenuStyles: MobileMenuStyles = {
@@ -37,41 +39,30 @@ export function NavigationMenu({
   return (
     <>
       {/* Navigation Menu */}
-      <nav className="pt-8 px-6 md:px-[120px]">
-        <div
-          className="flex items-stretch backdrop-blur-[1px]"
-          style={{
-            backgroundColor: "rgba(255, 255, 255, 0)",
-            border: "0.75px solid rgba(140, 140, 140, 0.3)",
-          }}
-        >
-          <div className="h-12 flex items-center pl-3">
-            <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
-              <Image
-                src={logoUrl}
-                alt="Canopy Carbon Logo"
-                width={32}
-                height={32}
-                className="object-cover"
-              />
-            </div>
-          </div>
-
-          <div className="flex-1 flex items-center justify-end gap-4 pr-4">
-            <div className="hidden md:flex items-center gap-4">
-              {menuItems.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.url}
-                  className="flex items-center gap-[10px] px-[6px] py-1 text-[#F1F5F9] font-open-sans text-base font-normal leading-[1.5] hover:text-white transition-colors duration-200"
-                >
-                  {item.text}
-                </Link>
-              ))}
+      <nav className="pt-8 px-6 md:px-10">
+        {/* Mobile Menu - with logo and border */}
+        <div className="md:hidden">
+          <div
+            className="flex items-stretch backdrop-blur-[1px]"
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0)",
+              border: "0.75px solid rgba(140, 140, 140, 0.3)",
+            }}
+          >
+            <div className="h-12 flex items-center pl-3">
+              <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
+                <Image
+                  src={logoUrl}
+                  alt="Canopy Carbon Logo"
+                  width={32}
+                  height={32}
+                  className="object-cover"
+                />
+              </div>
             </div>
 
-            {/* Mobile Menu Button */}
-            <div className="md:hidden">
+            <div className="flex-1 flex items-center justify-end gap-4 pr-4">
+              {/* Mobile Menu Button */}
               <button
                 className="hover:text-white p-2 transition-colors duration-200"
                 style={{ color: mobileMenuIconColor }}
@@ -109,6 +100,43 @@ export function NavigationMenu({
               </button>
             </div>
           </div>
+        </div>
+
+        {/* Desktop Menu - no logo, no border, equidistant items */}
+        <div className="hidden md:flex justify-between items-center h-12 backdrop-blur-[1px]" style={{ margin: '0 40px' }}>
+          {menuItems.map((item, index) => {
+            const isActive = activeItem === item.text;
+            return (
+              <Link
+                key={index}
+                href={item.url}
+                className="flex items-center justify-center flex-1 px-4 py-1 text-center transition-colors duration-200"
+                style={{
+                  fontStyle: 'normal',
+                  textTransform: 'none',
+                  letterSpacing: '0.05em',
+                  fontSize: '16px',
+                  fontWeight: 400,
+                  fontFamily: 'work-sans-v2, var(--font-open-sans), sans-serif',
+                  color: isActive ? '#1D67CD' : '#C4C9C6'
+                }}
+                onMouseEnter={(e) => {
+                  (e.target as HTMLElement).style.color = '#1D67CD';
+                }}
+                onMouseLeave={(e) => {
+                  (e.target as HTMLElement).style.color = isActive ? '#1D67CD' : '#C4C9C6';
+                }}
+                onFocus={(e) => {
+                  (e.target as HTMLElement).style.color = '#1D67CD';
+                }}
+                onBlur={(e) => {
+                  (e.target as HTMLElement).style.color = isActive ? '#1D67CD' : '#C4C9C6';
+                }}
+              >
+                {item.text}
+              </Link>
+            );
+          })}
         </div>
       </nav>
 

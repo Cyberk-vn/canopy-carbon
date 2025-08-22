@@ -51,6 +51,7 @@ export function CanopyInsightBanner() {
             logoUrl={getLogoUrl()}
             mobileMenuIconColor="rgba(139, 147, 140, 0.5)"
             mobileMenuStyles={mobileMenuStyles}
+            activeItem="Canopy Insight"
           />
         </div>
 

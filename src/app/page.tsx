@@ -8,7 +8,11 @@ import { FooterSection } from "@/src/components/common";
 import { ServiceCardData } from "@/src/types/service";
 import { CursorFollower } from "@/src/components/shared/cursor-follower";
 import RoadmapSection from "@/src/components/home/roadmap-section";
-import { getMenuItems, getLogoUrl, getMobileMenuStyles } from "@/src/lib/navigation";
+import {
+  getMenuItems,
+  getLogoUrl,
+  getMobileMenuStyles,
+} from "@/src/lib/navigation";
 
 export default function Home() {
   const menuItems = getMenuItems();
@@ -67,6 +71,7 @@ export default function Home() {
           menuItems={menuItems}
           logoUrl={getLogoUrl()}
           mobileMenuStyles={mobileMenuStyles}
+          services={serviceData}
         />
 
         <OurServiceSection
