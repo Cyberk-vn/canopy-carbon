@@ -465,52 +465,47 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
                   : {};
 
                 return (
-                  <div
+                  <motion.div
                     key={card.id}
                     className="absolute w-[145.18px] h-[202.89px] cursor-pointer group"
-                    style={{
+                    initial={{
                       left: position.left,
                       top: position.top,
-                      boxShadow:
-                        middleCardEffects.boxShadow ||
-                        "0px 4px 16px 0px rgba(1, 27, 13, 0.08)",
-                      opacity: 1,
-                      transform: `translateX(${horizontalOffset}px) translateY(0px) scaleX(1) scaleY(1) rotate(0deg)`,
-                      filter: middleCardEffects.filter || "none",
-                      zIndex: currentGroup.cards.length - index,
-                      transitionProperty:
-                        "transform, box-shadow, left, top, filter",
-                      transitionDuration: isPositionTransitioning
-                        ? "1.0s"
-                        : slideDirection
-                        ? "1.2s"
-                        : "0.5s",
-                      transitionTimingFunction: slideDirection
-                        ? "cubic-bezier(0.25, 0.8, 0.25, 1)"
-                        : "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                      transitionDelay: isPositionTransitioning
-                        ? `${index * 0.05}s`
-                        : slideDirection
-                        ? `${index * 0.03}s`
-                        : "0s",
+                      x: horizontalOffset,
+                      y: 0,
+                      scale: 1,
                     }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = `translateX(${horizontalOffset}px) translateY(-5px) scale(1.05) rotate(0deg)`;
-                      e.currentTarget.style.boxShadow = isMiddleCard
+                    animate={{
+                      left: position.left,
+                      top: position.top,
+                      x: horizontalOffset,
+                      y: 0,
+                      scale: 1,
+                      boxShadow: middleCardEffects.boxShadow || "0px 4px 16px 0px rgba(1, 27, 13, 0.08)",
+                      filter: middleCardEffects.filter || "brightness(1) saturate(1)",
+                    }}
+                    whileHover={{
+                      y: -5,
+                      scale: 1.05,
+                      boxShadow: isMiddleCard 
                         ? "0px 12px 28px 0px rgba(1, 27, 13, 0.2), 0px 4px 8px 0px rgba(255, 255, 255, 0.15)"
-                        : "0px 8px 24px 0px rgba(1, 27, 13, 0.15)";
-                      if (isMiddleCard) {
-                        e.currentTarget.style.filter =
-                          "brightness(1.15) saturate(1.3)";
-                      }
+                        : "0px 8px 24px 0px rgba(1, 27, 13, 0.15)",
+                      filter: isMiddleCard ? "brightness(1.15) saturate(1.3)" : "brightness(1) saturate(1)",
                     }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = `translateX(${horizontalOffset}px) translateY(0px) scale(1) rotate(0deg)`;
-                      e.currentTarget.style.boxShadow =
-                        middleCardEffects.boxShadow ||
-                        "0px 4px 16px 0px rgba(1, 27, 13, 0.08)";
-                      e.currentTarget.style.filter =
-                        middleCardEffects.filter || "none";
+                    transition={{
+                      duration: isPositionTransitioning ? 1.0 : slideDirection ? 1.2 : 0.5,
+                      ease: slideDirection ? "circOut" : "anticipate",
+                      delay: isPositionTransitioning
+                        ? index * 0.05
+                        : slideDirection
+                        ? index * 0.03
+                        : 0,
+                      type: "spring",
+                      stiffness: slideDirection ? 100 : 200,
+                      damping: slideDirection ? 25 : 20,
+                    }}
+                    style={{
+                      zIndex: currentGroup.cards.length - index,
                     }}
                   >
                     <Image
@@ -520,7 +515,7 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
                       className="object-cover rounded-[2px]"
                       priority={index < 2}
                     />
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
