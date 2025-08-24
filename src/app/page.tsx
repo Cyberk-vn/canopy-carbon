@@ -55,16 +55,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col gap-16">
-        {/* Cursor Follower for the entire home screen */}
-        <CursorFollower
-          size={24}
-          color="#94A4B1"
-          opacity={0.4}
-          blur={8}
-          enabled={true}
-        />
-
+      <div className="min-h-screen flex flex-col gap-8">
         <Banner
           title="Canopy Carbon"
           subtitle="A Climate Infrastructure Company Specialising in Nature-Based Solutions."

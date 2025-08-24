@@ -5,10 +5,11 @@ import Image from "next/image";
 import { motion, useInView } from "motion/react";
 import { ExecutionItem, OurExecutionSectionProps } from "@/src/types/execution";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css";
+import "swiper/css/effect-fade";
 
 // Mobile/Tablet execution items (original carousel images)
 const mobileExecutionItems: ExecutionItem[] = [
@@ -168,7 +169,11 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
         <div className="block lg:hidden">
           <div className="relative w-full">
             <Swiper
-              modules={[Autoplay]}
+              modules={[Autoplay, EffectFade]}
+              effect="fade"
+              fadeEffect={{
+                crossFade: true,
+              }}
               spaceBetween={0}
               slidesPerView={1}
               loop={true}
@@ -177,7 +182,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                 disableOnInteraction: true,
                 pauseOnMouseEnter: true,
               }}
-              speed={600}
+              speed={800}
               allowTouchMove={true}
               grabCursor={true}
               className="execution-swiper"

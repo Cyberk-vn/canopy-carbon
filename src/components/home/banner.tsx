@@ -79,14 +79,14 @@ function DesktopServiceCard({
 
         <div className="flex flex-col gap-1 mt-2">
           {/* Title - Abbreviation */}
-          <motion.div 
+          <motion.div
             className="text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ 
+            transition={{
               duration: 0.95,
               ease: [0.25, 0.46, 0.45, 0.94],
-              delay: 0.1
+              delay: 0.1,
             }}
           >
             <h2 className="font-inter font-bold text-[#1e2e26] text-[14px]">
@@ -95,14 +95,14 @@ function DesktopServiceCard({
           </motion.div>
 
           {/* Subtitle - Full Title */}
-          <motion.div 
+          <motion.div
             className="text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ 
+            transition={{
               duration: 0.95,
               ease: [0.25, 0.46, 0.45, 0.94],
-              delay: 0.2
+              delay: 0.2,
             }}
           >
             <h3 className="font-open-sans font-semibold text-[#7b7b7b] leading-[1.5] text-[12px]">
@@ -111,14 +111,14 @@ function DesktopServiceCard({
           </motion.div>
 
           {/* Description */}
-          <motion.div 
+          <motion.div
             className="flex-1 flex items-start justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ 
+            transition={{
               duration: 0.95,
               ease: [0.25, 0.46, 0.45, 0.94],
-              delay: 0.3
+              delay: 0.3,
             }}
           >
             <p className="font-open-sans font-normal text-[#5B5F58] text-xs leading-[1.43] text-center max-w-[360px]">
@@ -143,6 +143,7 @@ export function Banner({
   const titleMotion = useSimpleMotion("home-title");
   const subtitleMotion = useSimpleMotion("home-subtitle");
   const decoratorMotion = useSimpleMotion("home-decorator");
+  const mobileDecoratorMotion = useSimpleMotion("mobile-banner-decorator");
 
   return (
     <div className="relative w-full h-[832px] lg:h-[1300px] overflow-hidden flex flex-col">
@@ -164,6 +165,22 @@ export function Banner({
               "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.05) 20%, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.15) 60%, rgba(0, 0, 0, 0.5) 100%)",
           }}
         />
+
+        {/* Mobile Decorator */}
+        <motion.div
+          {...SIMPLE_ANIMATIONS.scaleIn}
+          {...mobileDecoratorMotion}
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          className="absolute top-[18%] right-0 z-[15] w-[319px] h-[319px]"
+          style={{ right: "0px" }}
+        >
+          <Image
+            src="/assets/banner-decorator-mobile.png"
+            alt="Mobile banner decorator"
+            fill
+            className="object-contain object-right opacity-75"
+          />
+        </motion.div>
       </div>
 
       {/* Desktop Layout - New 4/6 Split Layout */}
@@ -194,10 +211,10 @@ export function Banner({
             <motion.h1
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ 
+              transition={{
                 duration: 1.35,
                 ease: [0.175, 0.885, 0.32, 1.275],
-                delay: 0.2
+                delay: 0.2,
               }}
               className="text-[88px] leading-[110px] font-normal text-black mb-6"
               style={{
@@ -214,10 +231,10 @@ export function Banner({
             <motion.p
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ 
+              transition={{
                 duration: 1.35,
                 ease: [0.175, 0.885, 0.32, 1.275],
-                delay: 0.4
+                delay: 0.4,
               }}
               className="text-[20px] leading-[33.4px] font-normal text-[#94A4B1] mb-8"
               style={{
@@ -264,14 +281,17 @@ export function Banner({
       />
 
       {/* Mobile Content - Keep existing mobile layout */}
-      <div className="lg:hidden flex-1 z-30 flex items-end pb-[50%] pl-4">
-        <div className="flex flex-col gap-6">
+      <div className="lg:hidden flex-1 z-30 flex items-end pb-[55%] pl-6">
+        <div className="flex flex-col gap-[6px]">
           {/* Main Title */}
           <motion.h1
             {...SIMPLE_ANIMATIONS.fadeInLeft}
             {...titleMotion}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="font-roboto font-black text-3xl md:text-5xl leading-[1.0625] text-[#F0F0F0]"
+            className="font-roboto text-[32px] leading-[38px] text-[#F0F0F0]"
+            style={{
+              fontWeight: 900,
+            }}
           >
             {title}
           </motion.h1>
@@ -281,7 +301,10 @@ export function Banner({
             {...SIMPLE_ANIMATIONS.fadeInLeft}
             {...subtitleMotion}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            className="font-open-sans font-semibold text-lg md:text-2xl leading-[1.25] text-[#B7C0C9]"
+            className="font-open-sans font-semibold text-[15px] leading-[24px] text-[#B7C0C9] max-w-[309px]"
+            style={{
+              fontWeight: 600,
+            }}
           >
             {subtitle}
           </motion.p>

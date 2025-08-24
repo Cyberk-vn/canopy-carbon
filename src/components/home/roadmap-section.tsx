@@ -61,12 +61,12 @@ const RoadmapSection = () => {
         }
       `}</style>
 
-      <section className="w-full bg-white py-16">
+      <section className="w-full bg-white py-0">
         {/* Mobile Layout - Keep existing mobile design */}
-        <div className="lg:hidden flex flex-col items-center gap-[54px] mx-auto px-4">
+        <div className="lg:hidden flex flex-col w-full gap-[30px] mx-auto px-6">
           {/* Section Title */}
           <motion.h2
-            className="text-[20px] font-light leading-[30px] text-start text-[#2E2F2D] flex items-center"
+            className="text-[20px] font-light leading-[30px] text-start text-[#2E2F2D] flex items-start justify-start max-w-[90%]"
             style={{ fontFamily: "Open Sans", fontWeight: "300" }}
             {...SIMPLE_ANIMATIONS.fadeInUp}
             {...titleMotion}
@@ -76,7 +76,7 @@ const RoadmapSection = () => {
 
           {/* Mobile Image */}
           <motion.div
-            className="w-full max-w-[375px]"
+            className="w-full"
             {...SIMPLE_ANIMATIONS.scaleIn}
             {...imageMotion}
           >
@@ -139,10 +139,10 @@ const RoadmapSection = () => {
                     }}
                     initial={{ opacity: 0, y: 35 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
+                    transition={{
                       duration: 1.35,
                       ease: [0.175, 0.885, 0.32, 1.275],
-                      delay: 0.4
+                      delay: 0.4,
                     }}
                   >
                     Full-Cycle Project Development Expertise
@@ -156,10 +156,10 @@ const RoadmapSection = () => {
                     }}
                     initial={{ opacity: 0, y: 25 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
+                    transition={{
                       duration: 0.95,
                       ease: [0.25, 0.46, 0.45, 0.94],
-                      delay: 0.7
+                      delay: 0.7,
                     }}
                   >
                     Every Canopy project follows a rigorous development
