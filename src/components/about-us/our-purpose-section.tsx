@@ -2,16 +2,19 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
+import {
+  useSimpleMotion,
+  SIMPLE_ANIMATIONS,
+} from "@/src/hooks/responsive/use-simple-motion";
 
 export const OurPurposeSection = () => {
   // Simple Motion animations
-  const containerMotion = useSimpleMotion('purpose-container');
-  const imageMotion = useSimpleMotion('purpose-image');
-  const contentMotion = useSimpleMotion('purpose-content');
-  const desktopImageMotion = useSimpleMotion('purpose-desktop-image');
-  const desktopContentMotion = useSimpleMotion('purpose-desktop-content');
-  
+  const containerMotion = useSimpleMotion("purpose-container");
+  const imageMotion = useSimpleMotion("purpose-image");
+  const contentMotion = useSimpleMotion("purpose-content");
+  const desktopImageMotion = useSimpleMotion("purpose-desktop-image");
+  const desktopContentMotion = useSimpleMotion("purpose-desktop-content");
+
   return (
     <motion.div
       {...SIMPLE_ANIMATIONS.fadeInUp}
@@ -22,13 +25,25 @@ export const OurPurposeSection = () => {
       <div className="relative w-full md:max-w-none">
         <div className="grid grid-cols-[35%_65%] w-full h-[377px] md:hidden">
           {/* Left Side with Card Effect - Mobile */}
-          <div className="relative flex items-start justify-center">
-            {/* Image with Card Effect */}
+          <div className="relative flex items-start justify-center overflow-visible">
+            {/* Background Overlap - Mobile */}
+            <div
+              className="absolute z-0"
+              style={{
+                left: "0",
+                top: "0",
+                width: "85%",
+                height: "90%",
+                backgroundColor: "##1D1F1F",
+              }}
+            />
+
+            {/* Decorative Image - Card Effect */}
             <motion.div
               {...SIMPLE_ANIMATIONS.scaleIn}
               {...imageMotion}
               transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-              className="card-effect purpose-card relative w-[85%] h-[87%]"
+              className="card-effect purpose-card relative w-[85%] h-[87%] z-10"
             >
               <Image
                 src="/assets/about-us/our-purpose-main-image.png"
@@ -109,7 +124,7 @@ export const OurPurposeSection = () => {
                 }}
               />
 
-              {/* Image with Card Effect */}
+              {/* Decorative Image - Card Effect */}
               <div
                 className="card-effect purpose-card absolute"
                 style={{
@@ -220,12 +235,13 @@ export const OurPurposeSection = () => {
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {
           .card-effect {
-            box-shadow: -20px 0px 0 0px #1d1f1f, -20px 15px 0 0px #1d1f1f;
+            background: rgba(29, 31, 31, 0.4);
+            box-shadow: none;
           }
 
           .card-effect:hover {
-            transform: translate(7px, -7px);
-            box-shadow: -28px 0px 0 0px #1d1f1f, -28px 22px 0 0px #1d1f1f;
+            transform: translate(3px, -3px);
+            box-shadow: none;
           }
         }
 
