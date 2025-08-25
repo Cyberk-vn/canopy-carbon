@@ -17,14 +17,14 @@ const MapSection = () => {
 
   return (
     <section
-      className="bg-white relative overflow-hidden w-full focus:outline-none"
+      className="relative overflow-hidden w-full focus:outline-none"
       tabIndex={0}
       role="region"
       aria-label="Our Operations Map"
     >
-      <div className="w-full px-4">
-        {/* Desktop: 6/4 Layout Split */}
-        <div className="hidden lg:flex flex-row gap-8 h-[900px]">
+      {/* Desktop Layout */}
+      <div className="hidden lg:block w-full px-6">
+        <div className="flex flex-row gap-8 h-[900px]">
           {/* Left Side (60%) - Map and Title */}
           <motion.div
             className="flex-[3] max-w-[70%] flex items-end justify-start"
@@ -60,7 +60,7 @@ const MapSection = () => {
                 {...titleMotion}
               >
                 {/* Title Text with Hidden to Show Animation */}
-                <motion.div 
+                <motion.div
                   className="flex-1"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -100,60 +100,75 @@ const MapSection = () => {
             </div>
           </motion.div>
         </div>
+      </div>
 
-        {/* Mobile Layout - Unchanged */}
-        <div className="lg:hidden block">
-          {/* Mobile: Horizontal scrollable image */}
+      {/* Mobile Layout */}
+      <div className="lg:hidden mt-8">
+        {/* Mobile: Horizontal scrollable image */}
+        <div className="w-full">
           <div
-            className="overflow-x-auto overflow-y-hidden scrollbar-hide mb-6"
+            className="overflow-x-scroll overflow-y-hidden scrollbar-hide mb-6 px-6"
             style={{
               scrollBehavior: "smooth",
               WebkitOverflowScrolling: "touch",
-              touchAction: "auto",
             }}
           >
-            <div className="min-w-[1198px]" style={{ touchAction: "auto" }}>
+            <div
+              className="w-[1198px] h-[351px]"
+              style={{
+                minWidth: "1198px",
+                width: "1198px",
+              }}
+            >
               <Image
                 src="/assets/map-image.png"
                 alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
                 width={1198}
-                height={623}
-                className="w-[1198px] h-[500px] object-cover"
+                height={351}
+                className="w-[1198px] h-[351px] object-cover"
                 priority
-                style={{ touchAction: "auto" }}
               />
             </div>
           </div>
 
           {/* Mobile Title Text with Hidden to Show Animation */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-          >
-            <motion.h3 
-              className="text-[14px] font-light leading-[20px] text-start text-[#3B464F] tracking-[-0.02em] mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+          <div className="px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             >
-              Scroll right to see more of our presence.
-            </motion.h3>
-            <motion.h2
-              className="text-[14px] font-light leading-[20px] text-start text-[#3B464F] tracking-[-0.02em]"
-              style={{
-                fontFamily: "Open Sans",
-                fontStyle: "normal",
-              }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
-              Our current efforts are centered in Indonesia, prioritising tight
-              oversight, execution quality, and the development of robust
-              operational foundations for scale.
-            </motion.h2>
-          </motion.div>
+              <motion.h3
+                className="text-[9px] font-open-sans leading-[18px] text-start text-[#3B464F] tracking-[-0.02em] mb-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                style={{
+                  fontFamily: "Open Sans",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                }}
+              >
+                Scroll right to see more of our presence.
+              </motion.h3>
+              <motion.h2
+                className="text-[14px] font-light leading-[20px] text-start text-[#3B464F] tracking-[-0.02em]"
+                style={{
+                  fontFamily: "Open Sans",
+                  fontStyle: "normal",
+                  fontWeight: 300,
+                  letterSpacing: "-2%",
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+              >
+                Our current efforts are centered in Indonesia, prioritising
+                tight oversight, execution quality, and the development of
+                robust operational foundations for scale.
+              </motion.h2>
+            </motion.div>
+          </div>
         </div>
       </div>
 
@@ -163,12 +178,11 @@ const MapSection = () => {
           scrollbar-width: none;
           /* Enhanced mobile touch scrolling */
           -webkit-overflow-scrolling: touch;
-          touch-action: auto;
         }
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
-        /* Ensure smooth touch scrolling on iOS */
+        /* Ensure smooth touch scrolling on iOS and Android */
         @supports (-webkit-touch-callout: none) {
           .scrollbar-hide {
             -webkit-overflow-scrolling: touch;

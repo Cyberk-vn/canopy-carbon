@@ -176,10 +176,8 @@ ServiceCardIcon.displayName = "ServiceCardIcon";
 const AnimatedTextContent = memo(
   ({
     currentService,
-    direction,
   }: {
     currentService: ServiceCardData;
-    direction: number;
   }) => {
     return (
       <motion.div
@@ -379,7 +377,6 @@ export const ServiceCard = memo(
                   <AnimatedTextContent
                     key={`${currentService.id}-content`}
                     currentService={currentService}
-                    direction={swipeDirection}
                   />
                 </AnimatePresence>
               </motion.div>

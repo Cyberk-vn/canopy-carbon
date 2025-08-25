@@ -7,6 +7,7 @@ import {
   useSimpleMotion,
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
+import MobileRoadmap from "./mobile-roadmap";
 
 const RoadmapSection = () => {
   const leftSideMotion = useSimpleMotion("roadmap-left-side");
@@ -61,7 +62,7 @@ const RoadmapSection = () => {
         }
       `}</style>
 
-      <section className="w-full bg-white py-0">
+      <section className="w-full py-0">
         {/* Mobile Layout - Keep existing mobile design */}
         <div className="lg:hidden flex flex-col w-full gap-[30px] mx-auto px-6">
           {/* Section Title */}
@@ -74,20 +75,13 @@ const RoadmapSection = () => {
             Full-Cycle Project Development Expertise
           </motion.h2>
 
-          {/* Mobile Image */}
+          {/* Mobile Roadmap Implementation */}
           <motion.div
             className="w-full"
             {...SIMPLE_ANIMATIONS.scaleIn}
             {...imageMotion}
           >
-            <Image
-              src="/assets/road-map-section-mobile.png"
-              alt="Canopy Carbon Project Development Roadmap - Mobile optimized view of the 8-step process from origination to credit issuance"
-              width={375}
-              height={800}
-              className="w-full h-auto object-contain"
-              priority
-            />
+            <MobileRoadmap />
           </motion.div>
         </div>
 

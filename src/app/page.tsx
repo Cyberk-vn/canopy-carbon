@@ -6,7 +6,6 @@ import {
 } from "@/src/components/home";
 import { FooterSection } from "@/src/components/common";
 import { ServiceCardData } from "@/src/types/service";
-import { CursorFollower } from "@/src/components/shared/cursor-follower";
 import RoadmapSection from "@/src/components/home/roadmap-section";
 import {
   getMenuItems,
@@ -55,7 +54,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col gap-8">
+      <div className="min-h-screen flex flex-col gap-8 bg-[#FCFCFC]">
         <Banner
           title="Canopy Carbon"
           subtitle="A Climate Infrastructure Company Specialising in Nature-Based Solutions."
@@ -66,7 +65,7 @@ export default function Home() {
         />
 
         <OurServiceSection
-          title="We originate and deliver large-scale nature-based carbon offset projects, engineered for long-term impact and institutional-grade integrity."
+          title="We originate and deliver large-scale nature-based carbon offset projects, engineered for long-term impact and institutional-grade integrity.pt"
           services={serviceData}
         />
 

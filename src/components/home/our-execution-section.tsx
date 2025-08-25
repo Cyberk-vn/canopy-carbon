@@ -1,43 +1,14 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, useInView } from "motion/react";
-import { ExecutionItem, OurExecutionSectionProps } from "@/src/types/execution";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade } from "swiper/modules";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-fade";
-
-// Mobile/Tablet execution items (original carousel images)
-const mobileExecutionItems: ExecutionItem[] = [
-  {
-    id: 1,
-    imageSrc: "/assets/our-execution-delivery-image.png",
-    altText:
-      "Precision in Delivery - Our execution ethos focused on precise project delivery",
-  },
-  {
-    id: 2,
-    imageSrc: "/assets/our-execution-focus-image.png",
-    altText:
-      "Community Focused - Our execution ethos centered on community engagement",
-  },
-  {
-    id: 3,
-    imageSrc: "/assets/our-execution-integrity-image.png",
-    altText:
-      "Environmental Integrity - Our execution ethos maintaining environmental standards",
-  },
-  {
-    id: 4,
-    imageSrc: "/assets/our-execution-transparency-image.png",
-    altText:
-      "Radical Transparency - Our execution ethos promoting transparent practices",
-  },
-];
+import { motion, useInView, AnimatePresence } from "motion/react";
+import {
+  ExecutionItem,
+  EnhancedExecutionItem,
+  OurExecutionSectionProps,
+} from "@/src/types/execution";
+import { useExecutionSwipe } from "@/src/hooks/execution/use-execution-swipe";
 
 // Desktop execution items (new grid layout images)
 const desktopExecutionItems: ExecutionItem[] = [
@@ -71,24 +42,167 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
+  // Use Zustand store for state management (now consolidated)
+  const {
+    selectedPrincipleId,
+    currentImageOffset,
+    mobileExecutionItems,
+    allPrinciples,
+    autoSwitchState,
+    actions,
+    handleDragEnd, // Now comes from consolidated hook
+    handlePrincipleSelection,
+    handleImageCycle,
+    canSwipe,
+  } = useExecutionSwipe();
+
+  // Check for reduced motion preference
+  const prefersReducedMotion = useRef(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    prefersReducedMotion.current = mediaQuery.matches;
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      prefersReducedMotion.current = e.matches;
+
+      // Disable auto-switch if user prefers reduced motion
+      if (e.matches && autoSwitchState.enabled) {
+        actions.toggleAutoSwitch();
+      }
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+
+    // Initial check - disable auto-switch if reduced motion is preferred
+    if (mediaQuery.matches && autoSwitchState.enabled) {
+      actions.toggleAutoSwitch();
+    }
+
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, [autoSwitchState.enabled, actions]);
+
+  // Handle pause/resume on hover and focus events
+  const handleMouseEnter = () => {
+    if (autoSwitchState.enabled) {
+      actions.pauseAutoSwitch();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (autoSwitchState.enabled) {
+      actions.resumeAutoSwitch();
+    }
+  };
+
+  const handleFocus = () => {
+    if (autoSwitchState.enabled) {
+      actions.pauseAutoSwitch();
+    }
+  };
+
+  const handleBlur = () => {
+    if (autoSwitchState.enabled) {
+      actions.resumeAutoSwitch();
+    }
+  };
+
+  // Handle touch events for mobile
+  const handleTouchStart = () => {
+    if (autoSwitchState.enabled) {
+      actions.pauseAutoSwitch();
+    }
+  };
+
+  const handleTouchEnd = () => {
+    // Resume after a short delay to prevent immediate restart during swipe
+    setTimeout(() => {
+      if (autoSwitchState.enabled) {
+        actions.resumeAutoSwitch();
+      }
+    }, 1000);
+  };
+
+  // Mobile Execution Card Component (optimized - no loading states or placeholders)
+  const ExecutionCard = ({
+    item,
+    principleId,
+  }: {
+    item: EnhancedExecutionItem;
+    principleId: number;
+  }) => {
+    const cardShadow = item.isMainCard
+      ? "0px 3px 10px 0px rgba(1, 12, 27, 0.1)"
+      : "";
+
+    return (
+      <div
+        className="relative"
+        style={{
+          width: `${item.cardWidth}px`,
+          height: `${item.cardHeight}px`,
+          boxShadow: cardShadow,
+        }}
+      >
+        {/* Direct image render - no loading states or placeholders */}
+        <Image
+          src={item.imageSrc}
+          alt={item.altText}
+          width={item.cardWidth}
+          height={item.cardHeight}
+          className="w-full h-full object-cover"
+          priority={item.isMainCard}
+          loading={item.isMainCard ? "eager" : "lazy"}
+        />
+
+        {/* Text Overlay for Selected Card */}
+        {item.hasTextOverlay && (
+          <div
+            key={`overlay-container-${principleId}`}
+            className="absolute bottom-0 left-[-2] right-0 bg-[#F7F7F7] border-[#F7F7F7] flex items-center justify-center"
+            style={{
+              height: "64px",
+              width: item.cardWidth + 4,
+            }}
+          >
+            <h3
+              className="text-black font-semibold text-[15px] leading-[1.6] text-center"
+              style={{
+                fontFamily: "Open Sans",
+                fontWeight: 600,
+              }}
+            >
+              {allPrinciples.find((p) => p.id === principleId)?.title ||
+                item.title}
+            </h3>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <section
       ref={sectionRef}
-      className={`bg-white relative overflow-hidden w-full focus:outline-none ${className}`}
+      className={`relative overflow-hidden w-full focus:outline-none ${className}`}
       tabIndex={0}
       role="region"
       aria-label="Our Execution Ethos"
+      aria-live="polite"
+      aria-atomic="false"
+      onFocus={handleFocus}
+      onBlur={handleBlur}
     >
-      <div className="w-full px-4 md:px-16">
+      <div className="w-full px-6 md:px-16 mt-6">
         {/* Section Title */}
         <motion.div
-          className="text-center mb-12 lg:mb-20"
+          className="text-center lg:mb-20"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ 
+          transition={{
             duration: 1.35,
             ease: [0.175, 0.885, 0.32, 1.275],
-            delay: 0.3
+            delay: 0.3,
           }}
         >
           <h2
@@ -144,11 +258,15 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                           className="text-center text-[18px] font-medium text-[#2E2F2D] leading-tight"
                           style={{ fontFamily: "Open Sans" }}
                           initial={{ opacity: 0, y: 15 }}
-                          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-                          transition={{ 
+                          animate={
+                            isInView
+                              ? { opacity: 1, y: 0 }
+                              : { opacity: 0, y: 15 }
+                          }
+                          transition={{
                             duration: 0.95,
                             ease: [0.25, 0.46, 0.45, 0.94],
-                            delay: index * 0.1 + 0.8
+                            delay: index * 0.1 + 0.8,
                           }}
                         >
                           {item.title}
@@ -165,45 +283,76 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
           </div>
         </div>
 
-        {/* Mobile/Tablet Layout - Swiper Carousel */}
+        {/* Mobile/Tablet Layout - Fixed 3-Card Layout with Fade Transitions */}
         <div className="block lg:hidden">
-          <div className="relative w-full">
-            <Swiper
-              modules={[Autoplay, EffectFade]}
-              effect="fade"
-              fadeEffect={{
-                crossFade: true,
-              }}
-              spaceBetween={0}
-              slidesPerView={1}
-              loop={true}
-              autoplay={{
-                delay: 2000,
-                disableOnInteraction: true,
-                pauseOnMouseEnter: true,
-              }}
-              speed={800}
-              allowTouchMove={true}
-              grabCursor={true}
-              className="execution-swiper"
-            >
-              {mobileExecutionItems.map((item) => (
-                <SwiperSlide key={item.id}>
-                  <div className="relative w-full h-auto">
-                    <Image
-                      src={item.imageSrc}
-                      alt={item.altText}
-                      width={1200}
-                      height={600}
-                      className="w-full h-auto object-cover"
-                      priority={item.id === 1}
-                      sizes="100vw"
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+          {/* Auto-switch status indicator for screen readers */}
+          <div className="sr-only" aria-live="polite">
+            {autoSwitchState.enabled &&
+            autoSwitchState.isRunning &&
+            !autoSwitchState.isPaused
+              ? "Auto-switching cards every 3 seconds. Hover or focus to pause."
+              : autoSwitchState.isPaused
+              ? "Auto-switching paused"
+              : "Auto-switching disabled"}
           </div>
+
+          <motion.div
+            className="relative w-full overflow-visible"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{
+              duration: 0.8,
+              ease: "easeOut",
+              delay: 0.4,
+            }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.1}
+            onDragEnd={handleDragEnd}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            aria-label="Execution principles carousel"
+          >
+            {/* Fixed 3-Card Container */}
+            <div
+              className="flex items-center justify-center gap-4 px-6 py-8 min-h-[420px]"
+              role="group"
+              aria-label="Execution principle cards"
+            >
+              <AnimatePresence mode="wait">
+                {mobileExecutionItems.map((item, index) => (
+                  <motion.div
+                    key={`${selectedPrincipleId}-${currentImageOffset}-${index}`}
+                    className={`flex-shrink-0 ${index === 1 ? "z-10" : ""}`}
+                    style={{
+                      opacity: index === 1 ? 1 : 0.7,
+                      transform: index === 1 ? "scale(1)" : "scale(0.9)",
+                      marginLeft: index > 0 ? "-2px" : "0", // Slight overlap to remove gaps
+                      marginRight: index < 2 ? "-2px" : "0", // Slight overlap to remove gaps
+                    }}
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: index === 1 ? 1 : 0.7,
+                      scale: index === 1 ? 1 : 0.9,
+                    }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      duration: 0.4,
+                      ease: "easeInOut",
+                      delay: index * 0.05, // Slight stagger for smoother effect
+                    }}
+                  >
+                    <ExecutionCard
+                      item={item}
+                      principleId={selectedPrincipleId}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

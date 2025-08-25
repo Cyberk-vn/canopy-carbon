@@ -2,9 +2,9 @@
 
 import { OurServiceSectionProps, ServiceCardData } from "@/src/types/service";
 import { ServiceCard } from "./service-card";
+import { MobileServiceTitleOverlay } from "./mobile-service-title-overlay";
 import { useRef } from "react";
 import { motion } from "motion/react";
-import Image from "next/image";
 import {
   useSimpleMotion,
   SIMPLE_ANIMATIONS,
@@ -42,14 +42,12 @@ function ServiceCardWithAnimation({
 
 export function OurServiceSection({ title, services }: OurServiceSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const titleMotion = useSimpleMotion("our-service-title");
-  const decoratorMotion = useSimpleMotion("our-service-title-decorator");
 
   return (
     <>
       <section
         ref={sectionRef}
-        className="bg-white relative w-full focus:outline-none"
+        className="relative w-full focus:outline-none"
         tabIndex={0}
         role="region"
         aria-label="Our Services"
@@ -91,40 +89,14 @@ export function OurServiceSection({ title, services }: OurServiceSectionProps) {
           </div>
         </div>
 
-        {/* Mobile Layout - Keep existing mobile layout */}
+        {/* Mobile Layout - Refactored with new MobileServiceTitle */}
         <div className="lg:hidden block w-full px-6 py-0">
-          {/* Mobile Title */}
+          {/* Mobile Title - New component with 4-line constraint */}
           <div className="mb-8 w-full">
-            <div className="relative w-full max-w-[90%]">
-              <motion.p
-                {...SIMPLE_ANIMATIONS.fadeInUp}
-                {...titleMotion}
-                transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                className="font-open-sans font-bold text-[#94A4B1] text-[14px] leading-[20px] text-left"
-                style={{
-                  fontFamily: "Open Sans",
-                  fontWeight: 700,
-                  letterSpacing: "normal",
-                }}
-              >
-                {title}{" "}
-                <motion.span
-                  {...SIMPLE_ANIMATIONS.fadeInRight}
-                  {...decoratorMotion}
-                  transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-                  className="inline-block align-baseline whitespace-nowrap"
-                >
-                  <span className="inline-block h-[1px] bg-[#B7C0C9] align-baseline opacity-25" />
-                  <Image
-                    src="/assets/icon/plus-icon.png"
-                    alt="Plus icon"
-                    width={16}
-                    height={16}
-                    className="inline-block h-[16px] w-[16px] align-bottom"
-                  />
-                </motion.span>
-              </motion.p>
-            </div>
+            <MobileServiceTitleOverlay 
+              title={title}
+              className="w-full"
+            />
           </div>
 
           {/* Mobile: Swiper Carousel */}

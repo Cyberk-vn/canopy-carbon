@@ -11,19 +11,98 @@ interface ContactFormData {
 
 interface FooterMobileProps {
   formData: ContactFormData;
-  onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onInputChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   onSubmit: (e: React.FormEvent) => void;
 }
 
-const FooterMobile = ({ formData, onInputChange, onSubmit }: FooterMobileProps) => {
+interface FloatingLabelInputProps {
+  label: string;
+  name: string;
+  type: "text" | "email" | "textarea";
+  value: string;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  required?: boolean;
+  rows?: number;
+  labelSize?: "small" | "medium";
+}
+
+const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
+  label,
+  name,
+  type,
+  value,
+  onChange,
+  required = false,
+  rows = 4,
+  labelSize = "small",
+}) => {
+  const labelStyles = {
+    fontSize: labelSize === "medium" ? "12px" : "11px",
+    fontFamily: "Open Sans",
+    fontWeight: "600",
+    color: "#6B7280",
+    lineHeight: "1.82",
+  };
+
+  const inputStyles = {
+    fontFamily: "Inter",
+    fontWeight: "400",
+    fontSize: "12px",
+    color: "rgba(209, 213, 219, 0.8)",
+    lineHeight: "1.67",
+    border: "0.3px solid rgba(107, 114, 128, 0.4)",
+    padding: "12px 16px",
+  };
+
   return (
-    <section className="w-full bg-white lg:hidden">
-      <div className="max-w-[1200px] mx-auto px-4">
+    <div className="flex flex-col" style={{ gap: "8px" }}>
+      <label htmlFor={name} style={labelStyles}>
+        {label}
+      </label>
+      {type === "textarea" ? (
+        <textarea
+          id={name}
+          name={name}
+          value={value}
+          onChange={onChange}
+          rows={rows}
+          required={required}
+          style={inputStyles}
+          className="w-full focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent resize-vertical"
+        />
+      ) : (
+        <input
+          id={name}
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
+          required={required}
+          style={inputStyles}
+          className="w-full focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent"
+        />
+      )}
+    </div>
+  );
+};
+
+const FooterMobile = ({
+  formData,
+  onInputChange,
+  onSubmit,
+}: FooterMobileProps) => {
+  return (
+    <section className="w-full lg:hidden">
+      <div className="max-w-[1200px] mx-auto px-6">
         <div className="py-16">
           {/* Header Title */}
           <h2
-            className="text-[18px] font-semibold text-[#3B464F] mb-8 text-start leading-[1.67]"
-            style={{ fontFamily: "Open Sans" }}
+            className="text-[18px] font-semibold text-[#3B464F] mb-8 text-start leading-[30px]"
+            style={{ fontFamily: "Open Sans", fontWeight: "600" }}
           >
             Get In Touch
           </h2>
@@ -32,66 +111,59 @@ const FooterMobile = ({ formData, onInputChange, onSubmit }: FooterMobileProps) 
           <div className="flex flex-col gap-5">
             {/* Contact Form First */}
             <div className="w-full order-1">
-              <form onSubmit={onSubmit} className="space-y-6">
-                {/* Name and Subject inputs - vertical on mobile */}
-                <div className="flex flex-col gap-6">
-                  <div className="flex-1">
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Name"
-                      value={formData.name}
-                      onChange={onInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px]"
-                      style={{ fontFamily: "Open Sans", fontWeight: "600" }}
-                      required
-                    />
-                  </div>
+              <form
+                onSubmit={onSubmit}
+                className="mx-auto flex flex-col"
+                style={{ gap: "16px" }}
+              >
+                <FloatingLabelInput
+                  label="Name"
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={onInputChange}
+                  labelSize="medium"
+                  required
+                />
 
-                  <div className="flex-1">
-                    <input
-                      type="text"
-                      name="subject"
-                      placeholder="Subject"
-                      value={formData.subject}
-                      onChange={onInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px]"
-                      style={{ fontFamily: "Open Sans", fontWeight: "600" }}
-                      required
-                    />
-                  </div>
-                </div>
+                <FloatingLabelInput
+                  label="Subject"
+                  name="subject"
+                  type="text"
+                  value={formData.subject}
+                  onChange={onInputChange}
+                  required
+                />
 
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={onInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px]"
-                    style={{ fontFamily: "Open Sans", fontWeight: "600" }}
-                    required
-                  />
-                </div>
+                <FloatingLabelInput
+                  label="Email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={onInputChange}
+                  required
+                />
 
-                <div>
-                  <textarea
-                    name="message"
-                    placeholder="Message"
-                    value={formData.message}
-                    onChange={onInputChange}
-                    rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent resize-vertical text-[12px]"
-                    style={{ fontFamily: "Open Sans", fontWeight: "600" }}
-                    required
-                  />
-                </div>
+                <FloatingLabelInput
+                  label="Message"
+                  name="message"
+                  type="textarea"
+                  value={formData.message}
+                  onChange={onInputChange}
+                  rows={6}
+                  required
+                />
 
                 <button
                   type="submit"
-                  className="bg-[#7D8F89] text-white px-8 py-3 rounded-md hover:bg-[#6B7C75] transition-colors duration-200 font-medium w-full text-[12px]"
-                  style={{ fontFamily: "Open Sans", fontWeight: "600" }}
+                  className="h-[44px] bg-[#7D8F89] text-white hover:bg-[#6B7C75] transition-colors duration-200"
+                  style={{
+                    fontFamily: "Open Sans",
+                    fontWeight: "400",
+                    fontSize: "14px",
+                    color: "#FFFFFF",
+                    lineHeight: "1.43",
+                  }}
                 >
                   Send
                 </button>
