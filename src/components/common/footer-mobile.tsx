@@ -72,7 +72,7 @@ const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
           rows={rows}
           required={required}
           style={inputStyles}
-          className="w-full focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent resize-vertical"
+          className="w-full focus:outline-none focus:ring-2 focus:ring-[#D1D5DBCC] focus:border-transparent resize-vertical"
         />
       ) : (
         <input
@@ -83,7 +83,7 @@ const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
           onChange={onChange}
           required={required}
           style={inputStyles}
-          className="w-full focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent"
+          className="w-full focus:outline-none focus:ring-2 focus:ring-[#D1D5DBCC] focus:border-transparent"
         />
       )}
     </div>
