@@ -33,7 +33,7 @@ export const MobileServiceTitleOverlay: React.FC<MobileTitleProps> = ({
   };
 
   return (
-    <div className={`relative w-full max-w-[360px] ${className}`}>
+    <div className={`relative w-full max-w-[334px] ${className}`}>
       {/* Layer 1: Full-Width Line+Plus Decorator (Behind) */}
       <motion.div
         {...SIMPLE_ANIMATIONS.fadeInRight}
