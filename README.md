@@ -1,5 +1,49 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Core Concept: The Subagent Team
+
+At the heart of this setup is the idea of a specialized team of AI agents, each with a distinct role and set of responsibilities. When you (the user) assign a task, the main "Implementation Specialist" agent delegates parts of the task to the most appropriate subagent, ensuring that every aspect of the development process is handled by an expert.
+
+This approach allows for a more robust and efficient workflow, from initial planning and research to implementation, testing, documentation, and code review.
+
+### The Team
+
+- **Planner & Researcher (`planner-researcher`)**: The technical lead who researches best practices, analyzes the codebase, designs system architecture, and creates detailed implementation plans.
+- **Tester (`tester`)**: The QA engineer who validates code quality by running unit and integration tests, analyzing test coverage, and verifying build processes.
+- **Debugger (`debugger`)**: The issue investigator who analyzes system behavior, diagnoses performance problems, examines logs, and identifies the root causes of bugs.
+- **Database Admin (`database-admin`)**: The database specialist who handles everything from query optimization and schema design to backup strategies and performance tuning.
+- **Docs Manager (`docs-manager`)**: The technical writer who ensures documentation is always up-to-date, consistent, and easy for developers to use.
+- **Code Reviewer (`code-reviewer`)**: The senior engineer who performs comprehensive code reviews, checking for quality, security, and adherence to best practices.
+- **Git Manager (`git-manager`)**: The version control specialist who handles staging, committing, and pushing code, ensuring that all changes are secure and follow conventional commit standards.
+
+## Custom Commands
+
+This setup includes a suite of custom commands to streamline common development tasks:
+
+- `/watzup`: Review recent changes and wrap up the work.
+- `/plan`: Research, analyze, and create implementation plans without starting the implementation.
+- `/cook`: Implement a feature based on the provided arguments.
+- `/fix`: Analyze and fix an issue quickly.
+- `/fix-test`: Run test flows and fix issues.
+- `/fix-ci`: Analyze Github Actions logs and fix issues.
+- `/test`: Run tests locally and analyze the summary report.
+- `/debug`: Debug technical issues and provide solutions.
+- `/cmp` (commit and push): Stage, commit, and push all code in the current branch.
+
+## Getting Started
+
+To use this setup in your own project, simply copy the `.claude` directory into your project's root folder. Claude Code will automatically detect and use the configuration, agents, and commands defined within it.
+
+## Development Philosophy
+
+This setup is built around a set of professional development rules:
+
+- **Plan Before You Code**: The `planner-researcher` agent is always consulted first to create a solid plan.
+- **Test Everything**: The `tester` agent is used to ensure code is reliable and meets quality standards.
+- **Security First**: The `git-manager` ensures no sensitive information is ever committed to the repository.
+- **Clean Commits**: All commits follow the [Conventional Commits](https://www.conventionalcommits.org/) specification.
+- **Readable and Maintainable Code**: The focus is on creating code that is easy for humans to understand and maintain.
+
 ## Getting Started
 
 First, run the development server:

@@ -56,7 +56,8 @@ export function NavigationMenu({
                   alt="Canopy Carbon Logo"
                   width={32}
                   height={32}
-                  className="object-cover"
+                  z-index={1}
+                  className="object-fill"
                 />
               </div>
             </div>
@@ -103,7 +104,10 @@ export function NavigationMenu({
         </div>
 
         {/* Desktop Menu - no logo, no border, equidistant items */}
-        <div className="hidden md:flex justify-between items-center h-12 backdrop-blur-[1px]" style={{ margin: '0 40px' }}>
+        <div
+          className="hidden md:flex justify-between items-center h-12 backdrop-blur-[1px]"
+          style={{ margin: "0 40px" }}
+        >
           {menuItems.map((item, index) => {
             const isActive = activeItem === item.text;
             return (
@@ -112,25 +116,29 @@ export function NavigationMenu({
                 href={item.url}
                 className="flex items-center justify-center flex-1 px-4 py-1 text-center transition-colors duration-200"
                 style={{
-                  fontStyle: 'normal',
-                  textTransform: 'none',
-                  letterSpacing: '0.05em',
-                  fontSize: '16px',
+                  fontStyle: "normal",
+                  textTransform: "none",
+                  letterSpacing: "0.05em",
+                  fontSize: "16px",
                   fontWeight: 400,
-                  fontFamily: 'work-sans-v2, var(--font-open-sans), sans-serif',
-                  color: isActive ? '#1D67CD' : '#C4C9C6'
+                  fontFamily: "work-sans-v2, var(--font-open-sans), sans-serif",
+                  color: isActive ? "#1D67CD" : "#C4C9C6",
                 }}
                 onMouseEnter={(e) => {
-                  (e.target as HTMLElement).style.color = '#1D67CD';
+                  (e.target as HTMLElement).style.color = "#1D67CD";
                 }}
                 onMouseLeave={(e) => {
-                  (e.target as HTMLElement).style.color = isActive ? '#1D67CD' : '#C4C9C6';
+                  (e.target as HTMLElement).style.color = isActive
+                    ? "#1D67CD"
+                    : "#C4C9C6";
                 }}
                 onFocus={(e) => {
-                  (e.target as HTMLElement).style.color = '#1D67CD';
+                  (e.target as HTMLElement).style.color = "#1D67CD";
                 }}
                 onBlur={(e) => {
-                  (e.target as HTMLElement).style.color = isActive ? '#1D67CD' : '#C4C9C6';
+                  (e.target as HTMLElement).style.color = isActive
+                    ? "#1D67CD"
+                    : "#C4C9C6";
                 }}
               >
                 {item.text}

@@ -8,6 +8,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-roboto: var(--font-roboto);
+  --font-open-sans: var(--font-open-sans);
+  --font-inter: var(--font-inter);
+  --font-avenir: "Avenir", system-ui, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -129,4 +133,102 @@
 
 .horizontal-scroll-cards::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
+}
+
+/* Word-Level Background Masking Styles */
+.word-background-container {
+  /* Ensure proper text flow and line breaking */
+  word-wrap: break-word;
+  hyphens: auto;
+  
+  /* Maintain text selectability */
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+}
+
+.word-span {
+  /* Individual word background styling */
+  display: inline-block;
+  background-clip: padding-box;
+  
+  /* Smooth background transitions */
+  transition: background-color 0.2s ease;
+  
+  /* Ensure proper baseline alignment */
+  vertical-align: baseline;
+  
+  /* Prevent word breaking within spans */
+  white-space: nowrap;
+}
+
+.word-spacer {
+  /* Transparent spacer between words */
+  display: inline-block;
+  
+  /* Allow decorator line to show through */
+  background: transparent;
+  
+  /* Prevent collapse */
+  min-width: 1px;
+  
+  /* Maintain line height */
+  height: 1em;
+  vertical-align: baseline;
+}
+
+/* Accessibility enhancements */
+.word-span:focus-within {
+  /* Ensure focus is visible on word-level elements */
+  outline: 2px solid rgba(0, 123, 255, 0.5);
+  outline-offset: 1px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .word-span {
+    /* Ensure adequate contrast in high contrast mode */
+    border: 1px solid transparent;
+  }
+  
+  .word-spacer {
+    /* Make spacers more visible in high contrast */
+    border-bottom: 1px dotted currentColor;
+    opacity: 0.3;
+  }
+}
+
+/* Mobile-specific word spacing refinements */
+@media (max-width: 768px) {
+  .mobile-service-title-text .word-span {
+    /* Tighter spacing on mobile for better text density */
+    padding: 0 0.5px;
+  }
+  
+  .mobile-service-title-text .word-spacer {
+    /* Slightly reduced spacing on mobile */
+    width: 0.2em;
+  }
+}
+
+/* High-DPI display adjustments */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .word-span {
+    /* Sharper edges on high-DPI displays */
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+  }
+}
+
+/* Print styles */
+@media print {
+  .word-span {
+    /* Remove backgrounds for print */
+    background: transparent !important;
+  }
+  
+  .word-spacer {
+    /* Normalize spacing for print */
+    width: 0.25em;
+  }
 }

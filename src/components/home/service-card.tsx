@@ -1,12 +1,133 @@
 "use client";
 
 import { ServiceCardData } from "@/src/types/service";
-import { memo, forwardRef } from "react";
+import {
+  memo,
+  forwardRef,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import Image from "next/image";
+import { motion, AnimatePresence, PanInfo } from "motion/react";
 
 interface ServiceCardProps {
-  service: ServiceCardData;
+  services: ServiceCardData[];
+  autoRotateInterval?: number;
 }
+
+// Animation variants with directional transitions
+const createContentVariants = (direction: number) => ({
+  enter: {
+    opacity: 0,
+    x: direction * 100,
+    scale: 0.95,
+  },
+  center: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+  },
+  exit: {
+    opacity: 0,
+    x: direction * -100,
+    scale: 0.95,
+  },
+});
+
+// Fade animation variants for content area
+const contentAreaVariants = {
+  enter: {
+    opacity: 0,
+  },
+  center: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
+
+// Fade-only animation variants for description text
+const descriptionVariants = {
+  enter: {
+    opacity: 0,
+  },
+  center: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
+
+const titleVariants = {
+  enter: {
+    opacity: 0,
+  },
+  center: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
+
+const iconVariants = {
+  enter: {
+    opacity: 0,
+    scale: 0.8,
+    rotate: -10,
+  },
+  center: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.8,
+    rotate: 10,
+  },
+};
+
+const staggerContainer = {
+  center: {
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.08,
+    },
+  },
+  exit: {
+    transition: {
+      staggerChildren: 0.08,
+      staggerDirection: -1,
+    },
+  },
+};
+
+// Transition configurations with increased timing for smoother animations
+const transitionConfig = {
+  type: "spring" as const,
+  stiffness: 180,
+  damping: 25,
+  mass: 1.2,
+};
+
+const fastTransition = {
+  type: "spring" as const,
+  stiffness: 220,
+  damping: 28,
+  mass: 1.0,
+};
+
+const quickTransition = {
+  type: "spring" as const,
+  stiffness: 280,
+  damping: 32,
+  mass: 0.8,
+};
 
 const ServiceCardIcon = memo(
   ({ iconType }: { iconType: ServiceCardData["iconType"] }) => {
@@ -29,67 +150,242 @@ const ServiceCardIcon = memo(
     if (!iconPath) return null;
 
     return (
-      <Image
-        src={iconPath}
-        alt={`${iconType} icon`}
-        width={28}
-        height={28}
+      <motion.div
+        variants={iconVariants}
+        initial="enter"
+        animate="center"
+        exit="exit"
+        transition={quickTransition}
         className="shrink-0"
-      />
+      >
+        <Image
+          src={iconPath}
+          alt={`${iconType} icon`}
+          width={28}
+          height={28}
+          className="shrink-0"
+        />
+      </motion.div>
     );
   }
 );
 
 ServiceCardIcon.displayName = "ServiceCardIcon";
 
-export const ServiceCard = memo(forwardRef<HTMLDivElement, ServiceCardProps>(({ service }, ref) => {
-  return (
-    <div ref={ref} className="bg-[#EEF0F2] w-full aspect-[4/3] min-h-[280px] max-h-[350px] p-3 md:p-4 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
-      <div className="w-full h-full flex flex-col">
-        {/* Title Header */}
-        <div className="bg-white flex items-center justify-center h-[50px] md:h-[62px]">
-          <div className="flex items-center gap-2">
-            <ServiceCardIcon iconType={service.iconType} />
-            <span
-              className="font-inter font-bold text-[#1D2E27] text-lg md:text-[20px]"
-              style={{
-                lineHeight: "1.5",
-              }}
+// Animated Text Content Component
+const AnimatedTextContent = memo(
+  ({
+    currentService,
+  }: {
+    currentService: ServiceCardData;
+  }) => {
+    return (
+      <motion.div
+        key={currentService.id}
+        variants={staggerContainer}
+        initial="enter"
+        animate="center"
+        exit="exit"
+        className="text-center max-w-[96%] md:max-w-[278px] flex flex-col gap-2"
+      >
+        {/* Animated Full Title with directional transitions */}
+        <motion.h3
+          variants={titleVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={transitionConfig}
+          className="font-open-sans font-semibold text-[#5B5F58] text-center text-sm md:text-[16px]"
+          style={{
+            lineHeight: "1.5",
+          }}
+        >
+          {currentService.fullTitle}
+        </motion.h3>
+
+        {/* Animated Description - Fade only */}
+        <motion.p
+          variants={descriptionVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={transitionConfig}
+          className="font-open-sans font-normal text-[#5B5F58] text-center text-xs md:text-[14px]"
+          style={{
+            lineHeight: "1.4285714285714286",
+          }}
+        >
+          {currentService.description}
+        </motion.p>
+      </motion.div>
+    );
+  }
+);
+
+AnimatedTextContent.displayName = "AnimatedTextContent";
+
+export const ServiceCard = memo(
+  forwardRef<HTMLDivElement, ServiceCardProps>(
+    ({ services, autoRotateInterval = 3000 }, ref) => {
+      const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
+      const [swipeDirection, setSwipeDirection] = useState(1);
+      const [isAutoRotating, setIsAutoRotating] = useState(true);
+      const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+      // Navigate to next/previous service
+      const navigateToService = useCallback(
+        (direction: number) => {
+          setSwipeDirection(direction);
+          setCurrentServiceIndex((prevIndex) => {
+            if (direction === 1) {
+              return prevIndex === services.length - 1 ? 0 : prevIndex + 1;
+            } else {
+              return prevIndex === 0 ? services.length - 1 : prevIndex - 1;
+            }
+          });
+        },
+        [services.length]
+      );
+
+      // Enhanced auto-rotation logic
+      useEffect(() => {
+        if (services.length <= 1 || !isAutoRotating) return;
+
+        intervalRef.current = setInterval(() => {
+          navigateToService(1); // Always go forward in auto-rotation
+        }, autoRotateInterval);
+
+        return () => {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+          }
+        };
+      }, [
+        services.length,
+        autoRotateInterval,
+        isAutoRotating,
+        navigateToService,
+      ]);
+
+      // Pause auto-rotation temporarily on manual interaction
+      const pauseAutoRotation = () => {
+        setIsAutoRotating(false);
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
+
+        // Resume after 5 seconds
+        setTimeout(() => {
+          setIsAutoRotating(true);
+        }, 5000);
+      };
+
+      // Accessibility: Respect prefers-reduced-motion
+      const prefersReducedMotion =
+        typeof window !== "undefined"
+          ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          : false;
+
+      if (!services.length) return null;
+
+      const currentService = services[currentServiceIndex];
+
+      // Swipe gesture handlers
+      const handlePanEnd = (
+        event: MouseEvent | TouchEvent | PointerEvent,
+        info: PanInfo
+      ) => {
+        const swipeThreshold = 50;
+
+        if (Math.abs(info.offset.x) > swipeThreshold) {
+          pauseAutoRotation();
+          if (info.offset.x > 0) {
+            // Swipe right - go to previous service
+            navigateToService(-1);
+          } else {
+            // Swipe left - go to next service
+            navigateToService(1);
+          }
+        }
+      };
+
+      const currentServiceVariants = createContentVariants(swipeDirection);
+
+      return (
+        <motion.div
+          ref={ref}
+          className="bg-[#EEF0F2] w-full aspect-[4/3] max-h-[210px] p-3 md:p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-grab select-none"
+          whileHover={{
+            scale: prefersReducedMotion ? 1 : 1.02,
+            transition: { duration: 0.2 },
+          }}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.2}
+          onPanEnd={handlePanEnd}
+          whileDrag={{ cursor: "grabbing" }}
+        >
+          <div className="w-full h-full flex flex-col">
+            {/* Animated Title Header */}
+            <motion.div
+              className="bg-white flex items-center justify-center h-[50px] md:h-[62px]"
+              layout={!prefersReducedMotion}
             >
-              {service.abbreviation}
-            </span>
-          </div>
-        </div>
+              <div className="flex items-center gap-2">
+                <AnimatePresence mode="wait">
+                  <ServiceCardIcon
+                    key={`${currentService.id}-icon`}
+                    iconType={currentService.iconType}
+                  />
+                </AnimatePresence>
 
-        {/* Content Area */}
-        <div className="flex-1 relative">
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-2">
-            <div className="text-center max-w-[250px] md:max-w-[278px] flex flex-col gap-2">
-              {/* Full Title */}
-              <h3
-                className="font-open-sans font-semibold text-[#5B5F58] text-center text-sm md:text-[16px]"
-                style={{
-                  lineHeight: "1.5",
-                }}
-              >
-                {service.fullTitle}
-              </h3>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={`${currentService.id}-abbrev`}
+                    variants={currentServiceVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={
+                      prefersReducedMotion ? { duration: 0.1 } : fastTransition
+                    }
+                    className="font-inter font-bold text-[#1D2E27] text-lg md:text-[20px]"
+                    style={{ lineHeight: "1.5" }}
+                  >
+                    {currentService.abbreviation}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+            </motion.div>
 
-              {/* Description */}
-              <p
-                className="font-open-sans font-normal text-[#5B5F58] text-center text-xs md:text-[14px]"
-                style={{
-                  lineHeight: "1.4285714285714286",
-                }}
+            {/* Animated Content Area */}
+            <motion.div
+              className="flex-1 relative overflow-hidden"
+              variants={contentAreaVariants}
+              initial="enter"
+              animate="center"
+              transition={transitionConfig}
+            >
+              <motion.div
+                className="absolute inset-0 flex flex-col items-center justify-center px-2"
+                variants={contentAreaVariants}
+                initial="enter"
+                animate="center"
+                transition={fastTransition}
               >
-                {service.description}
-              </p>
-            </div>
+                <AnimatePresence mode="wait">
+                  <AnimatedTextContent
+                    key={`${currentService.id}-content`}
+                    currentService={currentService}
+                  />
+                </AnimatePresence>
+              </motion.div>
+            </motion.div>
           </div>
-        </div>
-      </div>
-    </div>
-  );
-}));
+        </motion.div>
+      );
+    }
+  )
+);
 
 ServiceCard.displayName = "ServiceCard";

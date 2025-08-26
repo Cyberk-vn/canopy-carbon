@@ -2,6 +2,7 @@
 
 import { OurServiceSectionProps, ServiceCardData } from "@/src/types/service";
 import { ServiceCard } from "./service-card";
+import { MobileServiceTitleOverlay } from "./mobile-service-title-overlay";
 import { useRef } from "react";
 import { motion } from "motion/react";
 import {
@@ -16,17 +17,17 @@ import "swiper/css";
 
 // Animated Service Card Wrapper for Mobile
 function ServiceCardWithAnimation({
-  service,
+  services,
   index,
 }: {
-  service: ServiceCardData;
+  services: ServiceCardData[];
   index: number;
 }) {
-  const cardMotion = useSimpleMotion(`service-card-${service.id}`);
+  const cardMotion = useSimpleMotion(`unified-service-card`);
 
   return (
     <motion.div
-      {...SIMPLE_ANIMATIONS.fadeInUp}
+      {...SIMPLE_ANIMATIONS.slideInUp}
       {...cardMotion}
       transition={{ duration: 0.6, delay: index * 0.1 + 0.3, ease: "easeOut" }}
       className="flex-shrink-0 transition-all duration-500 ease-out hover:scale-105 w-full"
@@ -34,50 +35,19 @@ function ServiceCardWithAnimation({
         scrollSnapAlign: "start",
       }}
     >
-      <ServiceCard service={service} />
+      <ServiceCard services={services} />
     </motion.div>
   );
 }
 
-// Desktop Grid Card Component - Currently unused
-// function DesktopServiceCard({
-//   service,
-//   index,
-// }: {
-//   service: ServiceCardData;
-//   index: number;
-// }) {
-//   const cardMotion = useSimpleMotion(`desktop-service-card-${service.id}`);
-
-//   return (
-//     <motion.div
-//       {...SIMPLE_ANIMATIONS.scaleIn}
-//       {...cardMotion}
-//       transition={{
-//         duration: 0.5,
-//         delay: index * 0.15 + 0.2,
-//         ease: [0.25, 0.46, 0.45, 0.94],
-//       }}
-//       whileHover={{
-//         scale: 1.05,
-//         transition: { duration: 0.2 },
-//       }}
-//       className="w-full"
-//     >
-//       <ServiceCard service={service} />
-//     </motion.div>
-//   );
-// }
-
 export function OurServiceSection({ title, services }: OurServiceSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const titleMotion = useSimpleMotion("our-service-title");
 
   return (
     <>
       <section
         ref={sectionRef}
-        className="bg-white relative w-full focus:outline-none"
+        className="relative w-full focus:outline-none"
         tabIndex={0}
         role="region"
         aria-label="Our Services"
@@ -98,10 +68,10 @@ export function OurServiceSection({ title, services }: OurServiceSectionProps) {
                 <motion.p
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
+                  transition={{
                     duration: 1.35,
                     ease: [0.175, 0.885, 0.32, 1.275],
-                    delay: 0.5
+                    delay: 0.5,
                   }}
                   className="font-open-sans font-semibold text-[#94A4B1] text-[32px] text-start max-w-[800px]"
                   style={{
@@ -119,22 +89,14 @@ export function OurServiceSection({ title, services }: OurServiceSectionProps) {
           </div>
         </div>
 
-        {/* Mobile Layout - Keep existing mobile layout */}
-        <div className="lg:hidden block w-full px-4 py-16">
-          {/* Mobile Title */}
-          <div className="mb-8">
-            <motion.p
-              {...SIMPLE_ANIMATIONS.fadeInUp}
-              {...titleMotion}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="font-open-sans font-bold text-[#94A4B1] text-[14px] text-left"
-              style={{
-                lineHeight: "1.4285714285714286em",
-                fontFamily: "Open Sans",
-              }}
-            >
-              {title}
-            </motion.p>
+        {/* Mobile Layout - Refactored with new MobileServiceTitle */}
+        <div className="lg:hidden block w-full px-6 py-0">
+          {/* Mobile Title - New component with 4-line constraint */}
+          <div className="mb-8 w-full">
+            <MobileServiceTitleOverlay 
+              title={title}
+              className="w-full"
+            />
           </div>
 
           {/* Mobile: Swiper Carousel */}
@@ -154,13 +116,11 @@ export function OurServiceSection({ title, services }: OurServiceSectionProps) {
               grabCursor={true}
               className="service-swiper"
             >
-              {services.map((service, index) => (
-                <SwiperSlide key={service.id}>
-                  <div className="px-2">
-                    <ServiceCardWithAnimation service={service} index={index} />
-                  </div>
-                </SwiperSlide>
-              ))}
+              <SwiperSlide key="unified-services">
+                <div>
+                  <ServiceCardWithAnimation services={services} index={0} />
+                </div>
+              </SwiperSlide>
             </Swiper>
           </div>
         </div>
