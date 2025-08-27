@@ -23,25 +23,33 @@ export const MobileServiceTitleOverlay: React.FC<MobileTitleProps> = ({
   // Motion hooks for animations
   const titleMotion = useSimpleMotion("mobile-service-title");
   const decoratorMotion = useSimpleMotion("mobile-service-decorator");
+  const calculateDecoratorPosition = () => {
+    const lineHeight = 20; // px
+    const estimatedLines = Math.ceil(title.length / 25);
+    const actualLines = Math.max(1, Math.min(estimatedLines, 6));
 
-  // Word-level background configuration
+    const textHeight = actualLines * lineHeight;
+    const decoratorPosition = Math.round(textHeight * 0.75) - 24;
+
+    return `${Math.max(0, decoratorPosition)}px`;
+  };
+
   const wordBackgroundConfig: WordBackgroundConfig = {
     backgroundColor: getOverlayBackgroundColor(),
-    wordPadding: "0 1px", // Minimal padding around each word
-    wordSpacing: "0.25em", // Space between words for decorator visibility
+    wordPadding: "0 1px",
+    wordSpacing: "0.25em",
     preserveLineBreaks: true,
   };
 
   return (
     <div className={`relative w-full max-w-[334px] ${className}`}>
-      {/* Layer 1: Full-Width Line+Plus Decorator (Behind) */}
       <motion.div
         {...SIMPLE_ANIMATIONS.fadeInRight}
         {...decoratorMotion}
         transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
         className="absolute flex items-center w-full"
         style={{
-          top: "66px",
+          top: calculateDecoratorPosition(),
           left: "0px",
           zIndex: 1,
         }}
@@ -73,9 +81,8 @@ export const MobileServiceTitleOverlay: React.FC<MobileTitleProps> = ({
         {...SIMPLE_ANIMATIONS.fadeInUp}
         {...titleMotion}
         transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-        className="mobile-service-title-text relative max-w-[334px]"
+        className="mobile-service-title-text relative max-w-[334px] safari-hw-accel"
         style={{
-          // Design specifications from Figma
           fontFamily: "Open Sans",
           fontWeight: 700,
           fontSize: "14px",
@@ -84,19 +91,26 @@ export const MobileServiceTitleOverlay: React.FC<MobileTitleProps> = ({
           letterSpacing: "normal",
           textAlign: "left",
           zIndex: 2,
-
           width: "312px",
-          maxHeight: "80px",
-          overflow: "hidden",
-
-          // CSS line-clamp for 4 lines
-          display: "-webkit-box",
-          WebkitLineClamp: 4,
-          WebkitBoxOrient: "vertical",
-
-          // Fallback for browsers without line-clamp
+          minHeight: "20px",
+          overflow: "visible",
+          display: "block",
+          WebkitAppearance: "none",
+          WebkitBackfaceVisibility: "hidden",
+          backfaceVisibility: "hidden",
+          textOverflow: "unset",
           wordWrap: "break-word",
+          overflowWrap: "break-word",
           hyphens: "auto",
+          WebkitHyphens: "auto",
+          WebkitTransform: "translateZ(0)",
+          transform: "translateZ(0)",
+          willChange: "transform",
+          WebkitFontSmoothing: "antialiased",
+          MozOsxFontSmoothing: "grayscale",
+          WebkitTouchCallout: "none",
+          WebkitUserSelect: "text",
+          userSelect: "text",
         }}
       >
         <WordBackgroundRenderer

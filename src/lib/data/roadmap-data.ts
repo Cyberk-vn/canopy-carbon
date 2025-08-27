@@ -5,10 +5,10 @@ export const roadmapNodes: RoadmapNode[] = [
     id: 1,
     title: "Concession Compliance Assessment",
     description: "Review legal status and land rights",
-    position: { x: 35, y: 130 },
+    position: { x: 40, y: 150 },
     cardAlignment: "center",
     markerType: "secondary",
-    cardPosition: { x: 75, y: 78 },
+    cardPosition: { x: 75, y: 101 },
     cardWidth: 225,
     titleWidth: 200,
     descriptionWidth: 180,
@@ -117,7 +117,7 @@ export const roadmapNodes: RoadmapNode[] = [
 
 export const roadmapConfig = {
   backgroundColor: "#F7F7F7",
-  appIconPosition: { x: 33, y: 1045 },
+  appIconPosition: { x: 33, y: 1010 },
   title: "Full-Cycle Project Development Expertise",
   subtitle:
     "Every Canopy project follows a rigorous development sequence, from origination to issuance.",

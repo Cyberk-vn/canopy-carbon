@@ -103,7 +103,7 @@ const MapSection = () => {
       </div>
 
       {/* Mobile Layout */}
-      <div className="lg:hidden mt-8">
+      <div className="lg:hidden">
         {/* Mobile: Horizontal scrollable image */}
         <div className="w-full">
           <div
@@ -114,18 +114,18 @@ const MapSection = () => {
             }}
           >
             <div
-              className="w-[1198px] h-[351px]"
+              className="w-[736px] h-[383px]"
               style={{
-                minWidth: "1198px",
-                width: "1198px",
+                minWidth: "736px",
+                width: "736px",
               }}
             >
               <Image
                 src="/assets/map-image.png"
                 alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
-                width={1198}
-                height={351}
-                className="w-[1198px] h-[351px] object-cover"
+                width={736}
+                height={383}
+                className="w-[736px] h-[383px] object-cover"
                 priority
               />
             </div>

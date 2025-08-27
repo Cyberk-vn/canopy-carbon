@@ -4,11 +4,11 @@ export interface ExecutionPrinciple {
   id: number;
   title: string;
   altTextBase: string;
-  images: string[]; // Array of 4 images per principle
+  images: string[];
 }
 
 export interface SwipeGestureInfo {
-  direction: 'left' | 'right';
+  direction: "left" | "right";
   velocity: number;
   distance: number;
   isLongSwipe: boolean;
@@ -23,11 +23,11 @@ export interface ExecutionTransitionConfig {
 
 export interface ExecutionSwipeConfig {
   shortSwipeThreshold: number; // Default: 50px
-  longSwipeThreshold: number;  // Default: 150px
-  velocityThreshold: number;   // For velocity-based detection
-  maxVelocity: number;         // Cap for velocity calculations
-  transitionDuration: number;  // Default: 300ms
-  dragElastic: number;         // Default: 0.1
+  longSwipeThreshold: number; // Default: 150px
+  velocityThreshold: number; // For velocity-based detection
+  maxVelocity: number; // Cap for velocity calculations
+  transitionDuration: number; // Default: 300ms
+  dragElastic: number; // Default: 0.1
 }
 
 // Default configuration constants
@@ -89,18 +89,26 @@ export const EXECUTION_PRINCIPLES: ExecutionPrinciple[] = [
 ];
 
 // Helper functions for working with execution data
-export const getExecutionPrinciple = (id: number): ExecutionPrinciple | undefined => {
-  return EXECUTION_PRINCIPLES.find(principle => principle.id === id);
+export const getExecutionPrinciple = (
+  id: number
+): ExecutionPrinciple | undefined => {
+  return EXECUTION_PRINCIPLES.find((principle) => principle.id === id);
 };
 
-export const getExecutionImage = (principleId: number, imageOffset: number): string => {
+export const getExecutionImage = (
+  principleId: number,
+  imageOffset: number
+): string => {
   const principle = getExecutionPrinciple(principleId);
-  if (!principle) return '';
-  
-  const validOffset = Math.max(0, Math.min(imageOffset, principle.images.length - 1));
+  if (!principle) return "";
+
+  const validOffset = Math.max(
+    0,
+    Math.min(imageOffset, principle.images.length - 1)
+  );
   return principle.images[validOffset];
 };
 
 export const getAllExecutionImages = (): string[] => {
-  return EXECUTION_PRINCIPLES.flatMap(principle => principle.images);
+  return EXECUTION_PRINCIPLES.flatMap((principle) => principle.images);
 };

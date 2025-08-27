@@ -64,7 +64,7 @@ const RoadmapSection = () => {
 
       <section className="w-full py-0">
         {/* Mobile Layout - Keep existing mobile design */}
-        <div className="lg:hidden flex flex-col w-full gap-[30px] mx-auto px-6">
+        <div className="lg:hidden flex flex-col w-full gap-[40px] mx-auto px-6">
           {/* Section Title */}
           <motion.h2
             className="text-[20px] font-light leading-[30px] text-start text-[#2E2F2D] flex items-start justify-start max-w-[90%]"

@@ -140,7 +140,7 @@
   /* Ensure proper text flow and line breaking */
   word-wrap: break-word;
   hyphens: auto;
-  
+
   /* Maintain text selectability */
   user-select: text;
   -webkit-user-select: text;
@@ -151,13 +151,13 @@
   /* Individual word background styling */
   display: inline-block;
   background-clip: padding-box;
-  
+
   /* Smooth background transitions */
   transition: background-color 0.2s ease;
-  
+
   /* Ensure proper baseline alignment */
   vertical-align: baseline;
-  
+
   /* Prevent word breaking within spans */
   white-space: nowrap;
 }
@@ -165,13 +165,13 @@
 .word-spacer {
   /* Transparent spacer between words */
   display: inline-block;
-  
+
   /* Allow decorator line to show through */
   background: transparent;
-  
+
   /* Prevent collapse */
   min-width: 1px;
-  
+
   /* Maintain line height */
   height: 1em;
   vertical-align: baseline;
@@ -190,7 +190,7 @@
     /* Ensure adequate contrast in high contrast mode */
     border: 1px solid transparent;
   }
-  
+
   .word-spacer {
     /* Make spacers more visible in high contrast */
     border-bottom: 1px dotted currentColor;
@@ -204,7 +204,7 @@
     /* Tighter spacing on mobile for better text density */
     padding: 0 0.5px;
   }
-  
+
   .mobile-service-title-text .word-spacer {
     /* Slightly reduced spacing on mobile */
     width: 0.2em;
@@ -226,9 +226,162 @@
     /* Remove backgrounds for print */
     background: transparent !important;
   }
-  
+
   .word-spacer {
     /* Normalize spacing for print */
     width: 0.25em;
+  }
+}
+
+/* Safari Mobile Compatibility Fixes */
+
+/* CSS aspect ratio fallback for Safari < iOS 15 */
+.service-card-aspect-ratio {
+  aspect-ratio: 4/3;
+}
+
+@supports not (aspect-ratio: 4/3) {
+  .service-card-aspect-ratio {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card-aspect-ratio::before {
+    content: "";
+    display: block;
+    padding-top: 75%; /* 4:3 aspect ratio */
+  }
+
+  .service-card-aspect-ratio > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+/* Safari flexbox compatibility fixes */
+.safari-flex-fix {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+/* Enhanced Safari hardware acceleration */
+.safari-hw-accel {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+
+  /* Optimize rendering performance */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Force layer creation for better performance */
+  isolation: isolate;
+}
+
+/* Viewport height fixes for Safari mobile */
+.safari-vh-fix {
+  height: 100vh;
+  height: -webkit-fill-available;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Mobile service title - Full text display without truncation */
+.mobile-service-title-text {
+  display: block;
+  overflow: visible;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  text-overflow: unset;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  line-height: 20px !important;
+  min-height: 20px;
+}
+
+@supports not (-webkit-line-clamp: 4) {
+  .mobile-service-title-text {
+    display: block;
+    overflow: visible;
+    position: relative;
+  }
+
+  .mobile-service-title-text::after {
+    display: none;
+  }
+}
+
+/* Additional Safari iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .mobile-service-title-text {
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
+
+/* Safari touch handling improvements */
+.safari-touch-fix {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  touch-action: pan-x;
+}
+
+/* Safari Service Card Layout Fixes */
+.safari-service-card-fix {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  min-height: 210px;
+  height: 210px;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Safari mobile flexbox content area fixes */
+@supports (-webkit-touch-callout: none) {
+  .safari-service-card-fix .service-card-content-area {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    min-height: calc(100% - 62px);
+    height: calc(100% - 62px);
+  }
+}
+
+/* Additional Safari mobile aspect ratio fixes */
+@supports (-webkit-touch-callout: none) {
+  .service-card-aspect-ratio {
+    aspect-ratio: 4/3;
+    width: 100%;
+    position: relative;
   }
 }

@@ -166,21 +166,57 @@ export function Banner({
           }}
         />
 
-        {/* Mobile Decorator */}
-        <motion.div
-          {...SIMPLE_ANIMATIONS.scaleIn}
-          {...mobileDecoratorMotion}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="absolute top-[18%] right-0 z-[15] w-[319px] h-[319px]"
-          style={{ right: "0px" }}
-        >
-          <Image
-            src="/assets/banner-decorator-mobile.png"
-            alt="Mobile banner decorator"
-            fill
-            className="object-contain object-right opacity-75"
-          />
-        </motion.div>
+        {/* Mobile Layout Container - NEW FLEXBOX STRUCTURE */}
+        <div className="absolute inset-0 z-[15] flex flex-col justify-between mt-[40%] gap-[30px]">
+          {/* Mobile Decorator */}
+          <div className="flex justify-end">
+            <motion.div
+              {...SIMPLE_ANIMATIONS.scaleIn}
+              {...mobileDecoratorMotion}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              className="w-[319px] h-[319px]"
+            >
+              <Image
+                src="/assets/banner-decorator-mobile.png"
+                alt="Mobile banner decorator"
+                width={319}
+                height={319}
+                className="object-contain object-right w-[319px] h-[319px]"
+              />
+            </motion.div>
+          </div>
+
+          {/* Mobile Content - MOVED FROM ORIGINAL LOCATION */}
+          <div className="flex-1 flex items-start pl-6">
+            <div className="flex flex-col gap-[6px]">
+              {/* Main Title */}
+              <motion.h1
+                {...SIMPLE_ANIMATIONS.fadeInLeft}
+                {...titleMotion}
+                transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                className="font-roboto text-[32px] leading-[38px] text-[#F0F0F0]"
+                style={{
+                  fontWeight: 900,
+                }}
+              >
+                {title}
+              </motion.h1>
+
+              {/* Subtitle */}
+              <motion.p
+                {...SIMPLE_ANIMATIONS.fadeInLeft}
+                {...subtitleMotion}
+                transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+                className="font-open-sans font-semibold text-[15px] leading-[24px] text-[#B7C0C9] max-w-[309px]"
+                style={{
+                  fontWeight: 600,
+                }}
+              >
+                {subtitle}
+              </motion.p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Desktop Layout - New 4/6 Split Layout */}
@@ -279,37 +315,6 @@ export function Banner({
         mobileMenuStyles={mobileMenuStyles}
         activeItem="Home"
       />
-
-      {/* Mobile Content - Keep existing mobile layout */}
-      <div className="lg:hidden flex-1 z-30 flex items-end pb-[55%] pl-6">
-        <div className="flex flex-col gap-[6px]">
-          {/* Main Title */}
-          <motion.h1
-            {...SIMPLE_ANIMATIONS.fadeInLeft}
-            {...titleMotion}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="font-roboto text-[32px] leading-[38px] text-[#F0F0F0]"
-            style={{
-              fontWeight: 900,
-            }}
-          >
-            {title}
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            {...SIMPLE_ANIMATIONS.fadeInLeft}
-            {...subtitleMotion}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            className="font-open-sans font-semibold text-[15px] leading-[24px] text-[#B7C0C9] max-w-[309px]"
-            style={{
-              fontWeight: 600,
-            }}
-          >
-            {subtitle}
-          </motion.p>
-        </div>
-      </div>
     </div>
   );
 }

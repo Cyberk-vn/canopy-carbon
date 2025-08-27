@@ -174,11 +174,7 @@ ServiceCardIcon.displayName = "ServiceCardIcon";
 
 // Animated Text Content Component
 const AnimatedTextContent = memo(
-  ({
-    currentService,
-  }: {
-    currentService: ServiceCardData;
-  }) => {
+  ({ currentService }: { currentService: ServiceCardData }) => {
     return (
       <motion.div
         key={currentService.id}
@@ -186,7 +182,7 @@ const AnimatedTextContent = memo(
         initial="enter"
         animate="center"
         exit="exit"
-        className="text-center max-w-[96%] md:max-w-[278px] flex flex-col gap-2"
+        className="text-center max-w-[96%] md:max-w-[278px] flex flex-col gap-[7px]"
       >
         {/* Animated Full Title with directional transitions */}
         <motion.h3
@@ -195,9 +191,10 @@ const AnimatedTextContent = memo(
           animate="center"
           exit="exit"
           transition={transitionConfig}
-          className="font-open-sans font-semibold text-[#5B5F58] text-center text-sm md:text-[16px]"
+          className="font-open-sans font-bold text-[#5B5F58] text-center text-[12px] md:text-[16px]"
           style={{
-            lineHeight: "1.5",
+            lineHeight: "20px",
+            letterSpacing: "-3%",
           }}
         >
           {currentService.fullTitle}
@@ -210,9 +207,9 @@ const AnimatedTextContent = memo(
           animate="center"
           exit="exit"
           transition={transitionConfig}
-          className="font-open-sans font-normal text-[#5B5F58] text-center text-xs md:text-[14px]"
+          className="font-open-sans font-normal text-[#5B5F58] text-center text-[11.5px] md:text-[14px]"
           style={{
-            lineHeight: "1.4285714285714286",
+            lineHeight: "15px",
           }}
         >
           {currentService.description}
@@ -314,7 +311,15 @@ export const ServiceCard = memo(
       return (
         <motion.div
           ref={ref}
-          className="bg-[#EEF0F2] w-full aspect-[4/3] max-h-[210px] p-3 md:p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-grab select-none"
+          className="bg-[#EEF0F2] w-full service-card-aspect-ratio safari-service-card-fix max-h-[210px] p-3 md:p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-grab select-none"
+          style={{
+            // Safari fallback for aspect-ratio
+            aspectRatio: "4/3",
+            // Hardware acceleration for Safari
+            WebkitTransform: "translateZ(0)",
+            transform: "translateZ(0)",
+            willChange: "transform",
+          }}
           whileHover={{
             scale: prefersReducedMotion ? 1 : 1.02,
             transition: { duration: 0.2 },
@@ -325,10 +330,25 @@ export const ServiceCard = memo(
           onPanEnd={handlePanEnd}
           whileDrag={{ cursor: "grabbing" }}
         >
-          <div className="w-full h-full flex flex-col">
+          <div
+            className="w-full h-full flex flex-col gap-[25px]"
+            style={{
+              // Safari flexbox fixes
+              display: "flex",
+              WebkitBoxOrient: "vertical",
+              WebkitBoxDirection: "normal",
+              WebkitFlexDirection: "column",
+              flexDirection: "column",
+              WebkitFlex: "1 1 auto",
+              flex: "1 1 auto",
+              // Explicit height for Safari consistency
+              minHeight: "100%",
+              height: "100%",
+            }}
+          >
             {/* Animated Title Header */}
             <motion.div
-              className="bg-white flex items-center justify-center h-[50px] md:h-[62px]"
+              className="bg-white flex items-center justify-center h-[62px] py-[18px]"
               layout={!prefersReducedMotion}
             >
               <div className="flex items-center gap-2">
@@ -350,7 +370,7 @@ export const ServiceCard = memo(
                       prefersReducedMotion ? { duration: 0.1 } : fastTransition
                     }
                     className="font-inter font-bold text-[#1D2E27] text-lg md:text-[20px]"
-                    style={{ lineHeight: "1.5" }}
+                    style={{ lineHeight: "30px" }}
                   >
                     {currentService.abbreviation}
                   </motion.span>
@@ -360,14 +380,40 @@ export const ServiceCard = memo(
 
             {/* Animated Content Area */}
             <motion.div
-              className="flex-1 relative overflow-hidden"
+              className="relative overflow-hidden service-card-content-area"
+              style={{
+                // Safari flexbox fixes with explicit height calculation
+                WebkitFlex: "1 1 auto",
+                flex: "1 1 auto",
+                minHeight: "calc(100% - 62px)",
+                height: "calc(100% - 62px)",
+                WebkitTransform: "translateZ(0)",
+                transform: "translateZ(0)",
+                position: "relative",
+                display: "flex",
+                WebkitBoxPack: "center",
+                justifyContent: "center",
+                WebkitBoxAlign: "center",
+                alignItems: "center",
+              }}
               variants={contentAreaVariants}
               initial="enter"
               animate="center"
               transition={transitionConfig}
             >
               <motion.div
-                className="absolute inset-0 flex flex-col items-center justify-center px-2"
+                className="flex flex-col px-[7px]"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  WebkitBoxPack: "center",
+                  justifyContent: "start",
+                  WebkitBoxAlign: "center",
+                  alignItems: "center",
+                  WebkitBoxOrient: "vertical",
+                  flexDirection: "column",
+                }}
                 variants={contentAreaVariants}
                 initial="enter"
                 animate="center"

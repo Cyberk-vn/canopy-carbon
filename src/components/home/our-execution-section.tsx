@@ -123,7 +123,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
     }, 1000);
   };
 
-  // Mobile Execution Card Component (optimized - no loading states or placeholders)
+  // Mobile Execution Card Component
   const ExecutionCard = ({
     item,
     principleId,
@@ -206,8 +206,8 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
           }}
         >
           <h2
-            className="text-[32px] font-light text-[#2E2F2D]"
-            style={{ fontFamily: "Open Sans" }}
+            className="text-[20px] font-light text-[#2E2F2D]"
+            style={{ fontFamily: "Open Sans", lineHeight: "30px" }}
           >
             Our Execution Ethos
           </h2>
@@ -317,7 +317,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
           >
             {/* Fixed 3-Card Container */}
             <div
-              className="flex items-center justify-center gap-4 px-6 py-8 min-h-[420px]"
+              className="flex items-center justify-center gap-4 px-6 py-8 min-h-[326px]"
               role="group"
               aria-label="Execution principle cards"
             >
@@ -329,8 +329,8 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                     style={{
                       opacity: index === 1 ? 1 : 0.7,
                       transform: index === 1 ? "scale(1)" : "scale(0.9)",
-                      marginLeft: index > 0 ? "-2px" : "0", // Slight overlap to remove gaps
-                      marginRight: index < 2 ? "-2px" : "0", // Slight overlap to remove gaps
+                      marginLeft: index > 0 ? "-2px" : "0",
+                      marginRight: index < 2 ? "-2px" : "0",
                     }}
                     initial={{ opacity: 0 }}
                     animate={{
@@ -341,7 +341,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                     transition={{
                       duration: 0.4,
                       ease: "easeInOut",
-                      delay: index * 0.05, // Slight stagger for smoother effect
+                      delay: index * 0.05,
                     }}
                   >
                     <ExecutionCard
