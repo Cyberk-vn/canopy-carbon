@@ -71,7 +71,7 @@ export function NavigationMenu({
               >
                 {isMobileMenuOpen ? (
                   <svg
-                    className="w-6 h-6 transition-transform duration-200"
+                    className="w-7 h-7 transition-transform duration-200"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -84,19 +84,13 @@ export function NavigationMenu({
                     />
                   </svg>
                 ) : (
-                  <svg
-                    className="w-6 h-6 transition-transform duration-200"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
+                  <Image
+                    src="/assets/icon/menu-icon.png"
+                    alt="Menu"
+                    width={24}
+                    height={16}
+                    className="transition-transform duration-200 w-[24px] h-[16px]"
+                  />
                 )}
               </button>
             </div>
