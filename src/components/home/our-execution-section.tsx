@@ -317,7 +317,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
           >
             {/* Fixed 3-Card Container */}
             <div
-              className="flex items-center justify-center gap-4 px-6 py-8 min-h-[326px]"
+              className="flex items-center justify-center gap-4 px-6 py-[30px] min-h-[326px]"
               role="group"
               aria-label="Execution principle cards"
             >

@@ -385,3 +385,65 @@
     position: relative;
   }
 }
+
+/* Single Phrase Background Rendering Styles */
+.single-phrase-container {
+  /* Maintain existing text flow */
+  word-wrap: break-word;
+  hyphens: auto;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+}
+
+.single-phrase-enhanced {
+  /* Enhanced text with WordBackgroundRenderer styling */
+  /* Styles are handled by WordBackgroundRenderer component */
+}
+
+.single-phrase-default {
+  /* Default text styling to match existing appearance */
+  display: inline;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  
+  /* Ensure no background interference */
+  background: transparent;
+  
+  /* Maintain proper text flow */
+  white-space: inherit;
+  word-break: inherit;
+  overflow-wrap: inherit;
+}
+
+/* Fallback styles for error cases */
+.single-phrase-fallback {
+  display: inline;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  background: transparent;
+}
+
+/* Ensure seamless integration between enhanced and default text */
+.single-phrase-container .single-phrase-enhanced,
+.single-phrase-container .single-phrase-default {
+  vertical-align: baseline;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .single-phrase-container {
+    /* Maintain mobile text rendering optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+}

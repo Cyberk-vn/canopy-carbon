@@ -96,7 +96,7 @@ export function OurServiceSection({ title, services }: OurServiceSectionProps) {
 
         {/* Mobile Layout - Refactored with new MobileServiceTitle */}
         <div className="lg:hidden block w-full px-6 py-0">
-          {/* Mobile Title - New component with 4-line constraint */}
+          {/* Mobile Title */}
           <div className="mb-8 w-full">
             <MobileServiceTitleOverlay title={title} className="w-full" />
           </div>

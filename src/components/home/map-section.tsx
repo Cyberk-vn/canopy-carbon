@@ -107,7 +107,7 @@ const MapSection = () => {
         {/* Mobile: Horizontal scrollable image */}
         <div className="w-full">
           <div
-            className="overflow-x-scroll overflow-y-hidden scrollbar-hide mb-6 px-6"
+            className="overflow-x-scroll overflow-y-hidden scrollbar-hide mb-6"
             style={{
               scrollBehavior: "smooth",
               WebkitOverflowScrolling: "touch",
@@ -139,7 +139,7 @@ const MapSection = () => {
               transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             >
               <motion.h3
-                className="text-[9px] font-open-sans leading-[18px] text-start text-[#3B464F] tracking-[-0.02em] mb-4"
+                className="text-[9px] font-open-sans leading-[18px] text-start text-[#3B464F] tracking-[-0.02em] mb-[12px]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}

@@ -7,7 +7,7 @@ import {
   useSimpleMotion,
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
-import { WordBackgroundRenderer } from "./word-background-renderer";
+import { SinglePhraseBackgroundRenderer } from "./single-phrase-background-renderer";
 import { getOverlayBackgroundColor } from "@/src/lib/utils/background-utils";
 import type { WordBackgroundConfig } from "@/src/lib/utils/word-background-utils";
 import type { MobileTitleProps } from "@/src/types/text-layout";
@@ -24,7 +24,7 @@ export const MobileServiceTitleOverlay: React.FC<MobileTitleProps> = ({
   const titleMotion = useSimpleMotion("mobile-service-title");
   const decoratorMotion = useSimpleMotion("mobile-service-decorator");
   const calculateDecoratorPosition = () => {
-    const lineHeight = 20; // px
+    const lineHeight = 20;
     const estimatedLines = Math.ceil(title.length / 25);
     const actualLines = Math.max(1, Math.min(estimatedLines, 6));
 
@@ -36,13 +36,16 @@ export const MobileServiceTitleOverlay: React.FC<MobileTitleProps> = ({
 
   const wordBackgroundConfig: WordBackgroundConfig = {
     backgroundColor: getOverlayBackgroundColor(),
-    wordPadding: "0 1px",
-    wordSpacing: "0.25em",
+    wordPadding: "0 0.5px",
+    wordSpacing: "",
     preserveLineBreaks: true,
   };
 
+  // Target phrase for single phrase background renderer
+  const TARGET_PHRASE = "institutional-grade integrity.pt";
+
   return (
-    <div className={`relative w-full max-w-[334px] ${className}`}>
+    <div className={`relative w-full max-w-[330px] ${className}`}>
       <motion.div
         {...SIMPLE_ANIMATIONS.fadeInRight}
         {...decoratorMotion}
@@ -81,17 +84,18 @@ export const MobileServiceTitleOverlay: React.FC<MobileTitleProps> = ({
         {...SIMPLE_ANIMATIONS.fadeInUp}
         {...titleMotion}
         transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-        className="mobile-service-title-text relative max-w-[334px] safari-hw-accel"
+        className="mobile-service-title-text relative safari-hw-accel text-start w-[312px]"
         style={{
           fontFamily: "Open Sans",
           fontWeight: 700,
           fontSize: "14px",
           lineHeight: "20px",
           color: "#94A4B1",
-          letterSpacing: "normal",
-          textAlign: "left",
+          letterSpacing: "-0.01em",
+          wordSpacing: "normal",
+          wordBreak: "break-word",
+          whiteSpace: "normal",
           zIndex: 2,
-          width: "312px",
           minHeight: "20px",
           overflow: "visible",
           display: "block",
@@ -99,7 +103,6 @@ export const MobileServiceTitleOverlay: React.FC<MobileTitleProps> = ({
           WebkitBackfaceVisibility: "hidden",
           backfaceVisibility: "hidden",
           textOverflow: "unset",
-          wordWrap: "break-word",
           overflowWrap: "break-word",
           hyphens: "auto",
           WebkitHyphens: "auto",
@@ -113,11 +116,12 @@ export const MobileServiceTitleOverlay: React.FC<MobileTitleProps> = ({
           userSelect: "text",
         }}
       >
-        <WordBackgroundRenderer
+        <SinglePhraseBackgroundRenderer
           text={title}
+          targetPhrase={TARGET_PHRASE}
           config={wordBackgroundConfig}
           fontSize={14}
-          className="word-level-masking"
+          className="single-phrase-masking"
         />
       </motion.p>
     </div>

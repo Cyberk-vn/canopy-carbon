@@ -1,23 +1,36 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect } from "react";
 import { NavigationMenu } from "@/src/components/common/navigation-menu";
 import { AboutUsBannerProps } from "@/src/types/banner";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
+import {
+  useSimpleMotion,
+  SIMPLE_ANIMATIONS,
+  STATISTICS_ANIMATIONS,
+} from "@/src/hooks/responsive/use-simple-motion";
 
-// Import Swiper styles
-import "swiper/css";
+// Statistics carousel timer configuration
+const STATISTICS_AUTO_SWITCH_INTERVAL = 6000;
+const STATISTICS_RESUME_DELAY = 5000;
 
-export function AboutUsBanner({ menuItems, logoUrl, mobileMenuStyles }: AboutUsBannerProps) {
+export function AboutUsBanner({
+  menuItems,
+  logoUrl,
+  mobileMenuStyles,
+}: AboutUsBannerProps) {
   // Simple Motion animations with persistence
-  const decorativeImageMotion = useSimpleMotion('about-decorative-image');
-  const missionVisionMotion = useSimpleMotion('about-mission-vision');
-  const thesisMotion = useSimpleMotion('about-thesis');
-  const statisticsMotion = useSimpleMotion('about-statistics');
+  const decorativeImageMotion = useSimpleMotion("about-decorative-image");
+  const missionVisionMotion = useSimpleMotion("about-mission-vision");
+  const thesisMotion = useSimpleMotion("about-thesis");
+  const statisticsMotion = useSimpleMotion("about-statistics");
 
+  // State management for timer-based content switcher
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Statistics data
   const statisticsData = [
     {
       id: 1,
@@ -48,6 +61,60 @@ export function AboutUsBanner({ menuItems, logoUrl, mobileMenuStyles }: AboutUsB
         "At current rates, the global CO₂ budget could be fully depleted by 2042, unless urgent action is taken to scale removals and cut emissions dramatically.",
     },
   ];
+
+  // Timer-based content switching
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setActiveSlideIndex(
+        (prevIndex) => (prevIndex + 1) % statisticsData.length
+      );
+    }, STATISTICS_AUTO_SWITCH_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, [isPaused, statisticsData.length]);
+
+  // Pause/resume handlers for mouse interaction
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
+
+  // Touch interaction handlers for mobile statistics
+  const handleMobileSwipe = (
+    event: PointerEvent,
+    info: {
+      offset: { x: number; y: number };
+      velocity: { x: number; y: number };
+    }
+  ) => {
+    const swipeThreshold = 50;
+
+    if (Math.abs(info.offset.x) > swipeThreshold) {
+      const direction = info.offset.x > 0 ? "prev" : "next";
+      const newIndex =
+        direction === "next"
+          ? (activeSlideIndex + 1) % statisticsData.length
+          : (activeSlideIndex - 1 + statisticsData.length) %
+            statisticsData.length;
+
+      setActiveSlideIndex(newIndex);
+      setIsPaused(true);
+
+      setTimeout(() => setIsPaused(false), STATISTICS_RESUME_DELAY);
+    }
+  };
+
+  const handleTouchStart = () => {
+    setIsPaused(true);
+  };
+
+  const handleTouchEnd = () => {
+    // Resume after delay to prevent immediate restart
+    setTimeout(() => setIsPaused(false), 1000);
+  };
+
+  // Get current statistic based on active slide index
+  const currentStatistic = statisticsData[activeSlideIndex];
 
   return (
     <div className="relative w-full h-[1306px] bg-black">
@@ -84,84 +151,178 @@ export function AboutUsBanner({ menuItems, logoUrl, mobileMenuStyles }: AboutUsB
           />
         </div>
 
-        {/* Decorative Image - Card Effect */}
-        <motion.div
-          {...SIMPLE_ANIMATIONS.scaleIn}
-          {...decorativeImageMotion}
-          className="absolute left-8 top-[208px] md:top-[158px] md:left-[58px] lg:left-[108px] z-10"
-        >
-          <div className="card-effect decorative-card">
-            <Image
-              src="/assets/about-us/banner-child-image.png"
-              alt="Decorative Banner Element"
-              width={152}
-              height={236}
-              className="object-cover w-full h-full"
-            />
-          </div>
-        </motion.div>
+        {/* Mobile-Only Flexbox Layout */}
+        <div className="block lg:hidden absolute inset-0 z-20">
+          <div className="flex flex-col pt-[130px] md:pt-[158px] px-[24px] md:px-[58px]">
+            {/* Decorative Image - Mobile Flexbox */}
+            <motion.div
+              {...SIMPLE_ANIMATIONS.scaleIn}
+              {...decorativeImageMotion}
+              className="self-start"
+            >
+              <div className="card-effect decorative-card ml-6">
+                <Image
+                  src="/assets/about-us/banner-child-image.png"
+                  alt="Decorative Banner Element"
+                  width={152}
+                  height={236}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </motion.div>
 
-        {/* Mission and Vision Content */}
-        <motion.div
-          {...SIMPLE_ANIMATIONS.fadeInUp}
-          {...missionVisionMotion}
-          className="absolute bottom-0 left-0 right-0 px-4 pb-4 md:px-[120px] md:pb-10 z-30"
-        >
-          <div className="flex flex-col gap-[14px] max-w-[390px] md:max-w-[600px] lg:max-w-[800px]">
-            {/* Mission Section */}
-            <div className="flex flex-col gap-2">
-              <h2
-                className="font-open-sans font-bold text-white"
-                style={{
-                  fontSize: "21px",
-                  lineHeight: "30px",
-                }}
-              >
-                Mission
-              </h2>
-              <p
-                className="font-open-sans font-normal text-white"
-                style={{
-                  fontSize: "12px",
-                  lineHeight: "20px",
-                }}
-              >
-                To expand the global supply of high-quality carbon offsets
-                through disciplined project execution and deep capital market
-                expertise, with technology as a supporting enabler.
-              </p>
-            </div>
+            {/* Spacing to position Mission/Vision at same location as original (425px from top) */}
+            <div className="h-[59px] md:h-[31px]" />
 
-            {/* Vision Section */}
-            <div className="flex flex-col gap-2">
-              <h2
-                className="font-open-sans font-bold text-white"
-                style={{
-                  fontSize: "21px",
-                  lineHeight: "30px",
-                }}
-              >
-                Vision
-              </h2>
-              <p
-                className="font-open-sans font-normal text-white"
-                style={{
-                  fontSize: "12px",
-                  lineHeight: "20px",
-                }}
-              >
-                To become Southeast Asia&apos;s leading nature-based solutions
-                specialist, trusted globally for investing in, developing,
-                operating, and delivering premium carbon offsets to both
-                voluntary and compliance markets.
-              </p>
-            </div>
+            {/* Mission and Vision Content - Mobile Flexbox */}
+            <motion.div
+              {...SIMPLE_ANIMATIONS.fadeInUp}
+              {...missionVisionMotion}
+              className="w-full z-30"
+            >
+              <div className="flex flex-col gap-[14px] max-w-[390px] md:max-w-[600px]">
+                {/* Mission Section */}
+                <div className="flex flex-col gap-2">
+                  <h2
+                    className="font-open-sans font-bold text-white"
+                    style={{
+                      fontSize: "21px",
+                      lineHeight: "30px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    Mission
+                  </h2>
+                  <p
+                    className="font-open-sans font-normal text-white"
+                    style={{
+                      fontSize: "12px",
+                      lineHeight: "20px",
+                      fontWeight: 400,
+                    }}
+                  >
+                    To expand the global supply of high-quality carbon offsets
+                    through disciplined project execution and deep capital
+                    market expertise, with technology as a supporting enabler.
+                  </p>
+                </div>
+
+                {/* Vision Section */}
+                <div className="flex flex-col gap-2">
+                  <h2
+                    className="font-open-sans font-bold text-white"
+                    style={{
+                      fontSize: "21px",
+                      lineHeight: "30px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    Vision
+                  </h2>
+                  <p
+                    className="font-open-sans font-normal text-white"
+                    style={{
+                      fontSize: "12px",
+                      lineHeight: "20px",
+                      fontWeight: 400,
+                    }}
+                  >
+                    To become Southeast Asia&apos;s leading nature-based
+                    solutions specialist, trusted globally for investing in,
+                    developing, operating, and delivering premium carbon offsets
+                    to both voluntary and compliance markets.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
+
+        {/* Desktop Layout - Completely Preserved */}
+        <div className="hidden lg:block">
+          {/* Decorative Image - Card Effect */}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.scaleIn}
+            {...decorativeImageMotion}
+            className="absolute left-[108px] top-[130px] z-10"
+          >
+            <div className="card-effect decorative-card">
+              <Image
+                src="/assets/about-us/banner-child-image.png"
+                alt="Decorative Banner Element"
+                width={152}
+                height={236}
+                className="object-cover w-full h-full"
+              />
+            </div>
+          </motion.div>
+
+          {/* Mission and Vision Content */}
+          <motion.div
+            {...SIMPLE_ANIMATIONS.fadeInUp}
+            {...missionVisionMotion}
+            className="absolute top-[425px] left-0 right-0 px-[120px] pb-10 z-30"
+          >
+            <div className="flex flex-col gap-[14px] max-w-[800px]">
+              {/* Mission Section */}
+              <div className="flex flex-col gap-2">
+                <h2
+                  className="font-open-sans font-bold text-white"
+                  style={{
+                    fontSize: "21px",
+                    lineHeight: "30px",
+                    fontWeight: 700,
+                  }}
+                >
+                  Mission
+                </h2>
+                <p
+                  className="font-open-sans font-normal text-white"
+                  style={{
+                    fontSize: "12px",
+                    lineHeight: "20px",
+                    fontWeight: 400,
+                  }}
+                >
+                  To expand the global supply of high-quality carbon offsets
+                  through disciplined project execution and deep capital market
+                  expertise, with technology as a supporting enabler.
+                </p>
+              </div>
+
+              {/* Vision Section */}
+              <div className="flex flex-col gap-2">
+                <h2
+                  className="font-open-sans font-bold text-white"
+                  style={{
+                    fontSize: "21px",
+                    lineHeight: "30px",
+                    fontWeight: 700,
+                  }}
+                >
+                  Vision
+                </h2>
+                <p
+                  className="font-open-sans font-normal text-white"
+                  style={{
+                    fontSize: "12px",
+                    lineHeight: "20px",
+                    fontWeight: 400,
+                  }}
+                >
+                  To become Southeast Asia&apos;s leading nature-based solutions
+                  specialist, trusted globally for investing in, developing,
+                  operating, and delivering premium carbon offsets to both
+                  voluntary and compliance markets.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Secondary Banner Section with Smooth Transition */}
-      <div className="relative h-[478px] w-full">
+      <div className="relative h-[478px] w-full z-10">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -182,7 +343,7 @@ export function AboutUsBanner({ menuItems, logoUrl, mobileMenuStyles }: AboutUsB
         />
 
         {/* Content */}
-        <div className="relative z-20 h-full px-4 py-6 md:px-[120px] md:py-10 flex flex-col justify-between">
+        <div className="relative z-20 h-full px-6 md:px-[120px] md:py-10 flex flex-col justify-start gap-[36px]">
           {/* Thesis Section */}
           <motion.div
             {...SIMPLE_ANIMATIONS.fadeInLeft}
@@ -205,7 +366,8 @@ export function AboutUsBanner({ menuItems, logoUrl, mobileMenuStyles }: AboutUsB
                     className="font-open-sans font-bold text-[#DDE2E6] text-left"
                     style={{
                       fontSize: "13px",
-                      lineHeight: "1.5384615384615385em",
+                      lineHeight: "20px",
+                      fontWeight: 700,
                     }}
                   >
                     The urgency of climate change has outpaced the global
@@ -222,7 +384,8 @@ export function AboutUsBanner({ menuItems, logoUrl, mobileMenuStyles }: AboutUsB
                   className="font-open-sans font-light text-[#D8DBD6]"
                   style={{
                     fontSize: "12px",
-                    lineHeight: "0.8333333333333334em",
+                    lineHeight: "10px",
+                    fontWeight: 300,
                   }}
                 >
                   Our Thesis Statement
@@ -254,85 +417,106 @@ export function AboutUsBanner({ menuItems, logoUrl, mobileMenuStyles }: AboutUsB
             {...statisticsMotion}
             className="flex flex-col gap-6 md:gap-8"
           >
-            {/* Mobile: Swiper Carousel */}
+            {/* Mobile: Enhanced Card with Touch Interactions */}
             <div className="block md:hidden w-full">
-              <Swiper
-                modules={[Autoplay]}
-                spaceBetween={16}
-                slidesPerView={1}
-                loop={true}
-                autoplay={{
-                  delay: 3000,
-                  disableOnInteraction: true,
-                  pauseOnMouseEnter: true,
+              <motion.div
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.1}
+                onDragEnd={handleMobileSwipe}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                className="w-full cursor-grab active:cursor-grabbing"
+                style={{
+                  touchAction: "pan-x",
                 }}
-                speed={600}
-                allowTouchMove={true}
-                grabCursor={true}
-                className="statistics-swiper"
               >
-                {statisticsData.map((stat) => (
-                  <SwiperSlide key={stat.id}>
-                    <div className="px-2 h-full">
-                      <div
-                        className="flex flex-col gap-[10px] w-full rounded-[5px] h-[280px]"
+                <div
+                  className="flex flex-col gap-[10px] w-full h-[238px] max-h-[238px] transition-transform duration-200 hover:scale-[1.01]"
+                  style={{
+                    backgroundColor: "rgba(0, 0, 0, 0.3)",
+                    padding: "24px 16px",
+                  }}
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`statistic-${currentStatistic.id}`}
+                      className="flex flex-col items-center justify-start gap-[15px] w-full h-full"
+                      style={{
+                        willChange: "opacity, transform",
+                        backfaceVisibility: "hidden",
+                      }}
+                      {...STATISTICS_ANIMATIONS.smartCardSwitch}
+                    >
+                      {/* Statistics Number */}
+                      <motion.div
+                        key={`number-${currentStatistic.id}`}
+                        className="font-avenir font-extrabold text-[#9DAE83] text-center w-full flex-shrink-0"
                         style={{
-                          backgroundColor: "rgba(0, 0, 0, 0.3)",
-                          padding: "24px 16px",
+                          fontSize: "48px",
+                          lineHeight: "44px",
+                          letterSpacing: "-2%",
                         }}
+                        {...STATISTICS_ANIMATIONS.progressiveNumberFade}
                       >
-                        <div className="flex flex-col items-center justify-between gap-4 w-full h-full">
-                          {/* Statistics Number */}
-                          <div
-                            className="font-avenir font-extrabold text-[#9DAE83] text-center w-full flex-shrink-0"
-                            style={{
-                              fontSize: "48px",
-                              lineHeight: "0.9166666666666666em",
-                              letterSpacing: "-2%",
-                            }}
-                          >
-                            {stat.number}
-                          </div>
+                        {currentStatistic.number}
+                      </motion.div>
 
-                          {/* Content Frame */}
-                          <div className="flex flex-col items-center gap-[6px] w-full flex-1 justify-center">
-                            {/* Statistics Title */}
-                            <h4
-                              className="font-open-sans font-bold text-[#9DAE83] text-center w-full flex-shrink-0"
-                              style={{
-                                fontSize: "17px",
-                                lineHeight: "1.411764705882353em",
-                              }}
-                            >
-                              {stat.title}
-                            </h4>
+                      {/* Content Frame */}
+                      <div className="flex flex-col items-start w-full flex-1 justify-start gap-[4px]">
+                        {/* Statistics Title */}
+                        <motion.h4
+                          key={`title-${currentStatistic.id}`}
+                          className="font-open-sans font-bold text-[#9DAE83] text-center w-full flex-shrink-0"
+                          style={{
+                            fontSize: "17px",
+                            lineHeight: "24px",
+                          }}
+                          {...STATISTICS_ANIMATIONS.progressiveTitleFade}
+                        >
+                          {currentStatistic.title}
+                        </motion.h4>
 
-                            {/* Statistics Description */}
-                            <p
-                              className="font-open-sans font-normal text-white text-center w-full flex-1 flex items-center justify-center"
-                              style={{
-                                fontSize: "14px",
-                                lineHeight: "1.4285714285714286em",
-                              }}
-                            >
-                              {stat.description}
-                            </p>
-                          </div>
-                        </div>
+                        {/* Statistics Description */}
+                        <motion.p
+                          key={`description-${currentStatistic.id}`}
+                          className="font-open-sans font-normal text-white text-center w-full flex-1 flex"
+                          style={{
+                            fontSize: "13px",
+                            lineHeight: "20px",
+                          }}
+                          {...STATISTICS_ANIMATIONS.progressiveDescriptionFade}
+                        >
+                          {currentStatistic.description}
+                        </motion.p>
                       </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </motion.div>
             </div>
 
             {/* Desktop: Horizontal Scroll Cards */}
             <div className="hidden md:block">
               <div className="flex gap-6 overflow-x-auto overflow-y-hidden pb-4">
-                {statisticsData.map((stat) => (
-                  <div
+                {statisticsData.map((stat, index) => (
+                  <motion.div
                     key={stat.id}
                     className="flex-shrink-0 bg-black/40 backdrop-blur-sm rounded-lg p-6 md:p-8 min-w-[400px] max-w-[400px] h-[250px]"
+                    style={{
+                      willChange: "opacity, transform",
+                      backfaceVisibility: "hidden",
+                    }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: 1.5 + index * 0.1, // Base delay + stagger
+                      duration: 0.3,
+                      ease: "easeOut",
+                    }}
+                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
                   >
                     <div className="flex flex-col gap-4 h-full justify-between">
                       {/* Statistics Number */}
@@ -352,7 +536,7 @@ export function AboutUsBanner({ menuItems, logoUrl, mobileMenuStyles }: AboutUsB
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -384,38 +568,52 @@ export function AboutUsBanner({ menuItems, logoUrl, mobileMenuStyles }: AboutUsB
           animation: glitch 0.3s infinite;
         }
 
-        @keyframes glitch {
-          0% {
-            transform: translate(2px, 2px) translate(5px, -5px);
-          }
-          25% {
-            transform: translate(-2px, -2px) translate(5px, -5px);
-          }
-          50% {
-            transform: translate(-2px, 2px) translate(5px, -5px);
-          }
-          75% {
-            transform: translate(2px, -2px) translate(5px, -5px);
-          }
-          100% {
-            transform: translate(2px, 2px) translate(5px, -5px);
-          }
-        }
-
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {
           .card-effect {
-            box-shadow: -16px 16px 0 rgba(175, 175, 175, 0.3);
-          }
-
-          .card-effect:hover {
-            transform: translate(3px, -3px);
-            box-shadow: -11px 11px 0 rgba(175, 175, 175, 0.3);
+            box-shadow: -24px 24px 0 rgba(175, 175, 175, 0.3);
           }
 
           .decorative-card {
             max-width: 152px;
             height: 236px;
+          }
+        }
+
+        /* Touch-friendly mobile interactions */
+        .touch-target {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+        }
+
+        .touch-target::before {
+          content: "";
+          position: absolute;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background: transparent;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        /* Smooth transitions for mobile statistics */
+        .mobile-stat-card {
+          will-change: transform;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+
+        /* Enhanced cursor states for mobile */
+        @media (hover: hover) {
+          .cursor-grab:hover {
+            cursor: grab;
+          }
+          .cursor-grab:active {
+            cursor: grabbing;
           }
         }
       `}</style>

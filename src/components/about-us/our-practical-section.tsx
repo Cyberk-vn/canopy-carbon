@@ -2,7 +2,10 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
+import {
+  useSimpleMotion,
+  SIMPLE_ANIMATIONS,
+} from "@/src/hooks/responsive/use-simple-motion";
 
 interface PracticalCard {
   title: string;
@@ -65,8 +68,8 @@ const practicalCards: PracticalCard[] = [
 ];
 
 export const OurPracticalSection = () => {
-  const containerMotion = useSimpleMotion('practical-container');
-  
+  const containerMotion = useSimpleMotion("practical-container");
+
   return (
     <motion.div
       {...SIMPLE_ANIMATIONS.fadeInUp}
@@ -119,19 +122,22 @@ export const OurPracticalSection = () => {
                     }`}
                     style={{
                       maxWidth: isRightAligned ? "359px" : "363px",
+                      alignItems: isRightAligned ? "flex-end" : "flex-start",
                     }}
                   >
                     {/* Card Title - Aligned with card text content */}
                     <div
-                      className={`px-6 ${
-                        isRightAligned ? "text-right" : "text-left"
+                      className={`px-6 max-w-[226px] ${
+                        isRightAligned
+                          ? "text-right items-end justify-end"
+                          : "text-left"
                       }`}
                     >
                       <h3
                         className="font-open-sans font-light text-black"
                         style={{
                           fontSize: "16px",
-                          lineHeight: "1.25em",
+                          lineHeight: "20px",
                         }}
                       >
                         {card.title}

@@ -100,10 +100,10 @@ const FooterMobile = ({
   return (
     <section className="w-full lg:hidden">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="py-16">
+        <div className="py-[67px]">
           {/* Header Title */}
           <h2
-            className="text-[18px] font-semibold text-[#3B464F] mb-8 text-start leading-[30px]"
+            className="text-[18px] font-semibold text-[#3B464F] mb-[20px] text-start leading-[30px]"
             style={{ fontFamily: "Open Sans", fontWeight: "600" }}
           >
             Get In Touch

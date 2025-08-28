@@ -313,9 +313,7 @@ export const ServiceCard = memo(
           ref={ref}
           className="bg-[#EEF0F2] w-full service-card-aspect-ratio safari-service-card-fix max-h-[210px] p-3 md:p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-grab select-none"
           style={{
-            // Safari fallback for aspect-ratio
             aspectRatio: "4/3",
-            // Hardware acceleration for Safari
             WebkitTransform: "translateZ(0)",
             transform: "translateZ(0)",
             willChange: "transform",
@@ -333,7 +331,6 @@ export const ServiceCard = memo(
           <div
             className="w-full h-full flex flex-col gap-[25px]"
             style={{
-              // Safari flexbox fixes
               display: "flex",
               WebkitBoxOrient: "vertical",
               WebkitBoxDirection: "normal",
@@ -341,14 +338,13 @@ export const ServiceCard = memo(
               flexDirection: "column",
               WebkitFlex: "1 1 auto",
               flex: "1 1 auto",
-              // Explicit height for Safari consistency
               minHeight: "100%",
               height: "100%",
             }}
           >
             {/* Animated Title Header */}
             <motion.div
-              className="bg-white flex items-center justify-center h-[62px] py-[18px]"
+              className="bg-white flex items-center justify-center h-[62px] py-[18px] px-[10px]"
               layout={!prefersReducedMotion}
             >
               <div className="flex items-center gap-2">

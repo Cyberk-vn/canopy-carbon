@@ -23,18 +23,18 @@ export const OurPurposeSection = () => {
     >
       {/* Main Container - Mobile First */}
       <div className="relative w-full md:max-w-none">
-        <div className="grid grid-cols-[35%_65%] w-full h-[377px] md:hidden">
+        <div className="grid grid-cols-[35%_65%] w-full h-[377px] md:hidden -mt-[52px] relative z-20 gap-[10px]">
           {/* Left Side with Card Effect - Mobile */}
           <div className="relative flex items-start justify-center overflow-visible">
             {/* Background Overlap - Mobile */}
             <div
-              className="absolute z-0"
+              className="absolute z-10"
               style={{
                 left: "0",
                 top: "0",
-                width: "85%",
-                height: "90%",
-                backgroundColor: "##1D1F1F",
+                width: "104px",
+                height: "377px",
+                backgroundColor: "#1D1F1F",
               }}
             />
 
@@ -43,7 +43,13 @@ export const OurPurposeSection = () => {
               {...SIMPLE_ANIMATIONS.scaleIn}
               {...imageMotion}
               transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-              className="card-effect purpose-card relative w-[85%] h-[87%] z-10"
+              className="card-effect purpose-card relative z-20"
+              style={{
+                width: "118px",
+                height: "329px",
+                marginLeft: "21px",
+                marginTop: "30px",
+              }}
             >
               <Image
                 src="/assets/about-us/our-purpose-main-image.png"
@@ -59,17 +65,17 @@ export const OurPurposeSection = () => {
             {...SIMPLE_ANIMATIONS.fadeInRight}
             {...contentMotion}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            className="flex flex-col justify-center px-2"
+            className="flex flex-col justify-end items-center h-full w-full max-w-[200px] -mt-[34px]"
           >
             {/* Title Section */}
-            <div className="flex flex-col gap-3 mb-4">
+            <div className="flex flex-col gap-3 mb-8">
               {/* Main Purpose Text - Figma styling */}
               <p
                 className="font-open-sans text-[#95A4B0]"
                 style={{
                   fontSize: "14px",
                   fontWeight: 600,
-                  lineHeight: "1.4285714285714286em",
+                  lineHeight: "20px",
                   letterSpacing: "-3%",
                 }}
               >
@@ -84,7 +90,7 @@ export const OurPurposeSection = () => {
                 style={{
                   fontSize: "10px",
                   fontWeight: 300,
-                  lineHeight: "1.8em",
+                  lineHeight: "18px",
                   color: "rgba(139, 147, 140, 0.8)",
                 }}
               >
@@ -93,8 +99,8 @@ export const OurPurposeSection = () => {
             </div>
 
             {/* App Icon - Centered below text */}
-            <div className="flex justify-center">
-              <div className="w-[200px] h-[60px] relative opacity-45">
+            <div className="flex justify-end">
+              <div className="w-[250px] h-[77px] relative opacity-45">
                 <Image
                   src="/assets/about-us/app-icon.png"
                   alt="Canopy Carbon App Icon"
