@@ -74,7 +74,7 @@ export const OurPracticalSection = () => {
     <motion.div
       {...SIMPLE_ANIMATIONS.fadeInUp}
       {...containerMotion}
-      className="w-full min-h-[989px] md:min-h-[600px]"
+      className="w-full min-h-[975px] md:min-h-[600px]"
     >
       {/* Background Layer - Using Grid */}
       <div className="w-full h-full grid grid-rows-1 grid-cols-1">
@@ -82,8 +82,8 @@ export const OurPracticalSection = () => {
         <div className="row-start-1 col-start-1 w-full h-full">
           <div className="w-full h-full flex flex-col md:flex-row">
             {/* Mobile Background Stack */}
-            <div className="w-full h-[989px] md:hidden flex flex-col">
-              <div className="h-[264px]"></div>
+            <div className="w-full h-[975px] md:hidden flex flex-col">
+              <div className="h-[121px]"></div>
               <div className="flex-1 relative">
                 <Image
                   src="/assets/about-us/our-pratical-bg-mobile-image.png"
@@ -109,15 +109,15 @@ export const OurPracticalSection = () => {
         {/* Content Layer - Using Flex Grid */}
         <div className="row-start-1 col-start-1 z-10 w-full h-full">
           {/* Mobile Layout - Proper CSS Grid */}
-          <div className="md:hidden w-full h-full pt-[53px] px-4">
-            <div className="grid grid-cols-1 gap-8 auto-rows-max">
+          <div className="md:hidden w-full h-full pt-[53px]">
+            <div className="grid grid-cols-1 gap-[34px] auto-rows-max">
               {practicalCards.map((card, index) => {
                 const isRightAligned = index === 1 || index === 3;
 
                 return (
                   <div
                     key={index}
-                    className={`w-full flex flex-col gap-4 ${
+                    className={`w-full flex flex-col gap-[5px] ${
                       isRightAligned ? "justify-self-end" : "justify-self-start"
                     }`}
                     style={{
@@ -127,10 +127,10 @@ export const OurPracticalSection = () => {
                   >
                     {/* Card Title - Aligned with card text content */}
                     <div
-                      className={`px-6 max-w-[226px] ${
+                      className={`max-w-[226px] ${
                         isRightAligned
-                          ? "text-right items-end justify-end"
-                          : "text-left"
+                          ? "text-right items-end justify-end mr-[33px]"
+                          : "text-left ml-[44px]"
                       }`}
                     >
                       <h3
@@ -146,14 +146,16 @@ export const OurPracticalSection = () => {
 
                     {/* Card Background with Content */}
                     <div
-                      className="rounded-[10px] px-6 py-4 min-h-[121px] flex items-center"
+                      className="rounded-[10px] pt-[13px] pr-[28px] pb-[47px] max-h-[121px] h-[121px] min-h-[121px] flex items-start"
                       style={{
                         backgroundColor: card.backgroundColor,
                       }}
                     >
                       <p
                         className={`font-open-sans font-semibold text-[#798C9B] w-full ${
-                          isRightAligned ? "text-right" : "text-left"
+                          isRightAligned
+                            ? "text-right mr-[33px]"
+                            : "text-left ml-[44px]"
                         }`}
                         style={{
                           fontSize: "12px",
