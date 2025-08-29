@@ -175,7 +175,7 @@ const FooterMobile = ({
             {/* Contact Information Second */}
             <div className="w-full order-2">
               {/* Contact Information */}
-              <div className="space-y-4 mb-8">
+              <div className="space-y-2 mb-8">
                 <p
                   className="text-[14px] font-normal text-[#7D8F89] leading-[1.43]"
                   style={{ fontFamily: "Open Sans" }}

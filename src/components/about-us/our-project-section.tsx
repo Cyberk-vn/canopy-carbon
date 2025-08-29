@@ -152,15 +152,16 @@ export const OurProjectSection = ({
     <motion.section
       {...SIMPLE_ANIMATIONS.fadeInUp}
       {...containerMotion}
-      className="w-full px-[11px] md:px-[118px]"
+      className="w-full h-full"
     >
       <div className="w-full">
-        <div className="flex flex-col lg:hidden justify-center items-center">
+        <div className="flex flex-col lg:hidden">
           <motion.div
             {...SIMPLE_ANIMATIONS.scaleIn}
             {...mobileCarouselMotion}
             transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="w-full flex justify-center relative z-[2] max-h-[336px] h-[336px]"
+            className="w-full flex justify-center relative z-[1] min-h-[360px] px-[11px] overflow-visible"
+            style={{ height: "auto" }}
           >
             <OurTeamCarouselInline
               data={{
@@ -175,7 +176,7 @@ export const OurProjectSection = ({
             {...SIMPLE_ANIMATIONS.fadeInUp}
             {...mobileDescriptionMotion}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            className="w-full relative z-[1] -mt-5 flex justify-center items-center"
+            className="w-full relative -z-[1] -mt-5 flex justify-center items-center h-full"
           >
             <DescriptionSectionInline data={descriptionData} />
           </motion.div>
@@ -387,9 +388,12 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
   const currentGroup = cardGroups[currentGroupIndex];
 
   return (
-    <div className="w-full flex flex-col">
-      <div className="flex gap-[8px] ml-[13px] mb-1">
-        <div className="w-[76.44px] h-[43px] relative flex-shrink-0">
+    <div
+      className="w-full flex flex-col overflow-visible z-10"
+      style={{ backgroundColor: "rgba(250, 250, 250, 0)" }}
+    >
+      <div className="flex gap-[8px] ml-[13px] mb-1 absolute mt-[15px] z-40">
+        <div className="w-[107px] h-[43px] relative flex-shrink-0">
           <Image
             src="/assets/about-us/our-team-header-image.png"
             alt="Header decoration 1"
@@ -401,7 +405,7 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
 
       <div
         ref={containerRef}
-        className="w-full rounded-[5px] touch-pan-y relative mt-[38px]"
+        className="w-full rounded-[5px] touch-pan-y relative mt-[38px] px-[13px]"
         style={{
           backgroundColor: "rgba(250, 250, 250, 0.6)",
           paddingBottom: "20px",
@@ -417,10 +421,10 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
             zIndex: 10,
           }}
         />
-        <div className="flex flex-col mb-[14px] mt-[24px]">
-          <div className="relative mb-12 px-[13px]">
+        <div className="flex flex-col mb-[14px] mt-[62px]">
+          <div className="flex flex-col justify-center items-center mb-12">
             <div
-              className="relative w-full mx-auto"
+              className="relative w-full mx-auto flex flex-col items-center overflow-hidden"
               style={{ height: `${dimensions.containerHeight}px` }}
             >
               {currentGroup.cards.map((card, index) => {
@@ -435,17 +439,21 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
                 let horizontalOffset = 0;
 
                 if (!isLastCard && slideDirection === "left") {
-                  // Scale horizontal offset based on fixed card width for proportional animation
                   horizontalOffset = isTransitioning
-                    ? dimensions.cardWidth * 1.4
+                    ? Math.min(
+                        dimensions.cardWidth * 1.4,
+                        dimensions.availableWidth * 0.3
+                      )
                     : 0;
                 } else if (!isLastCard && slideDirection === "right") {
                   horizontalOffset = isTransitioning
-                    ? -dimensions.cardWidth * 1.4
+                    ? Math.max(
+                        -dimensions.cardWidth * 1.4,
+                        -dimensions.availableWidth * 0.3
+                      )
                     : 0;
                 }
 
-                // Enhanced effects for middle cards
                 const middleCardEffects = isMiddleCard
                   ? {
                       filter: isTransitioning
@@ -460,7 +468,7 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
                 return (
                   <motion.div
                     key={card.id}
-                    className="absolute cursor-pointer group"
+                    className="absolute cursor-pointer group flex items-center"
                     style={{
                       width: `${dimensions.cardWidth}px`,
                       height: `${dimensions.cardHeight}px`,
@@ -485,16 +493,6 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
                       filter:
                         middleCardEffects.filter || "brightness(1) saturate(1)",
                     }}
-                    whileHover={{
-                      y: -5,
-                      scale: 1.05,
-                      boxShadow: isMiddleCard
-                        ? "0px 12px 28px 0px rgba(1, 27, 13, 0.2), 0px 4px 8px 0px rgba(255, 255, 255, 0.15)"
-                        : "0px 8px 24px 0px rgba(1, 27, 13, 0.15)",
-                      filter: isMiddleCard
-                        ? "brightness(1.15) saturate(1.3)"
-                        : "brightness(1) saturate(1)",
-                    }}
                     transition={{
                       duration: isPositionTransitioning
                         ? 1.0
@@ -516,7 +514,7 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
                       src={card.src}
                       alt={card.alt}
                       fill
-                      className="object-cover rounded-[2px]"
+                      className="object-cover"
                       priority={index < 2}
                     />
                   </motion.div>
@@ -530,14 +528,14 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
             <button
               onClick={handlePrev}
               disabled={isTransitioning}
-              className="w-8 h-8 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-6 h-6 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed"
               aria-label="Previous slide"
             >
               <Image
-                src="/assets/about-us/our-project-section/arrow-left-circle.png"
+                src="/assets/about-us/our-project-section/arrow-left-circle.svg"
                 alt="Previous"
-                width={32}
-                height={32}
+                width={24}
+                height={24}
                 className="object-contain"
               />
             </button>
@@ -545,27 +543,27 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
             <button
               onClick={handleNext}
               disabled={isTransitioning}
-              className="w-8 h-8 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-6 h-6 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed"
               aria-label="Next slide"
             >
               <Image
-                src="/assets/about-us/our-project-section/arrow-right-circle.png"
+                src="/assets/about-us/our-project-section/arrow-right-circle.svg"
                 alt="Next"
-                width={32}
-                height={32}
+                width={24}
+                height={24}
                 className="object-contain"
               />
             </button>
           </div>
         </div>
 
-        <div className="flex flex-col w-full max-w-[342px]">
+        <div className="flex flex-col w-full gap-[15px]">
           <p
-            className="font-open-sans mb-4"
+            className="font-open-sans"
             style={{
               fontSize: "13px",
               fontWeight: 300,
-              lineHeight: "1.5384615384615385em",
+              lineHeight: "20px",
               color: "#2E2F2D",
               textAlign: "left",
             }}
@@ -608,79 +606,85 @@ const DescriptionSectionInline = ({
   const { mainText, backgroundImage, logoImage } = data;
 
   return (
-    <div className="w-full h-auto">
-      {/* Main Description Container using Flexbox Layout */}
-      <div className="flex flex-col w-full min-h-[453px] lg:min-h-[492px] relative overflow-hidden8">
-        <div className="absolute inset-0 w-full h-full">
-          <div className="absolute left-0 top-0 w-full h-full">
-            <Image
-              src={backgroundImage}
-              alt="Description background"
-              fill
-              className="object-cover object-left"
-              priority
-            />
-          </div>
-
-          <div
-            className="absolute inset-0 w-full h-full"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.8) 85%, rgba(255, 255, 255, 1) 100%)",
-            }}
+    <div className="flex flex-col w-full min-h-[453px] relative overflow-hidden h-[480px]">
+      <div className="absolute inset-0 w-full h-full">
+        <div className="absolute -left-4 top-0 w-full h-full">
+          <Image
+            src={backgroundImage}
+            alt="Description background"
+            fill
+            className="object-cover object-left"
+            priority
           />
         </div>
 
-        {/* Absolute positioned logo at top-right */}
-        {logoImage && (
-          <div className="absolute right-0 top-0 z-20 w-auto h-auto">
-            <Image
-              src={logoImage}
-              alt="Logo description absolute"
-              width={295}
-              height={295}
-              className="object-contain"
-              style={{
-                maxWidth: "170px",
-                maxHeight: "260px",
-              }}
-            />
-          </div>
-        )}
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.8) 85%, rgba(255, 255, 255, 1) 100%)",
+          }}
+        />
 
-        {/* Content Container - Flexbox layout to push text to bottom */}
-        <div className="absolute bottom-0 z-10 flex flex-col justify-end h-full px-5 md:px-8 pb-6 ml-4">
-          <div className="flex-1" />
+        {/* Background overlay with #FCFCFC gradient */}
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            background:
+              "linear-gradient(180deg, #FCFCFC 0%, rgba(252, 252, 252, 0) 80%, rgba(252, 252, 252, 0) 100%)",
+          }}
+        />
+      </div>
 
-          <div className="w-full max-w-[354px]">
-            <p
-              className="font-open-sans"
-              style={{
-                fontSize: "13px",
-                fontWeight: 300,
-                lineHeight: "1.5384615384615385em",
-                textAlign: "left",
-                color: "#2E2F2D",
-              }}
-            >
-              {mainText}
-            </p>
-          </div>
+      {/* Absolute positioned logo at top-right */}
+      {logoImage && (
+        <div className="absolute -right-13 top-0 z-20 w-auto h-auto overflow-hidden">
+          <Image
+            src={logoImage}
+            alt="Logo description absolute"
+            width={295}
+            height={295}
+            className="object-contain"
+            style={{
+              maxWidth: "295px",
+              maxHeight: "295px",
+            }}
+          />
+        </div>
+      )}
 
-          <div className="flex flex-col gap-[7px] mt-6 w-full max-w-[203px]">
-            <div
-              className="w-full h-0"
-              style={{
-                borderTop: "3px solid rgba(91, 95, 88, 0.04)",
-              }}
-            />
-            <div
-              className="w-[100px] h-0"
-              style={{
-                borderTop: "2px solid rgba(91, 95, 88, 0.04)",
-              }}
-            />
-          </div>
+      {/* Content Container - Flexbox layout to push text to bottom */}
+      <div className="absolute bottom-0 z-10 flex flex-col justify-end h-full md:px-8 pb-6 ml-4">
+        <div className="flex-1" />
+
+        <div className="w-full max-w-[354px]">
+          <p
+            className="font-open-sans"
+            style={{
+              fontSize: "13px",
+              fontWeight: 300,
+              lineHeight: "1.5384615384615385em",
+              textAlign: "left",
+              color: "#2E2F2D",
+            }}
+          >
+            {mainText}
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-[7px] mt-[8px] w-full max-w-[203px]">
+          <div
+            className="w-full h-0"
+            style={{
+              borderTop: "3px solid rgba(91, 95, 88, 0.04)",
+            }}
+          />
+          <div
+            className="w-[100px] h-0"
+            style={{
+              borderTop: "2px solid rgba(91, 95, 88, 0.04)",
+            }}
+          />
         </div>
       </div>
     </div>

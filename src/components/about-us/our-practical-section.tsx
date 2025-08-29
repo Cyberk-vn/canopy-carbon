@@ -39,15 +39,6 @@ const practicalCards: PracticalCard[] = [
     position: { x: 30, y: 186 },
   },
   {
-    title: "Co-Benefits at the Core",
-    description:
-      "Beyond carbon, we pursue SDG outcomes and adopt co-benefit labels like CCB to create real impact across environmental and social dimensions.",
-    titleAlignment: "right",
-    backgroundColor: "#FCFCFC",
-    textAlignment: "right",
-    position: { x: 30, y: 558 },
-  },
-  {
     title: "Community-Integrated Design",
     description:
       "We place community consultation at the heart of development to ensure local relevance and contextual appropriateness.",
@@ -55,6 +46,15 @@ const practicalCards: PracticalCard[] = [
     backgroundColor: "#FCFCFC",
     textAlignment: "left",
     position: { x: 0, y: 372 },
+  },
+  {
+    title: "Co-Benefits at the Core",
+    description:
+      "Beyond carbon, we pursue SDG outcomes and adopt co-benefit labels like CCB to create real impact across environmental and social dimensions.",
+    titleAlignment: "right",
+    backgroundColor: "#FCFCFC",
+    textAlignment: "right",
+    position: { x: 30, y: 558 },
   },
   {
     title: "Market-Aligned Agility",
@@ -121,7 +121,6 @@ export const OurPracticalSection = () => {
                       isRightAligned ? "justify-self-end" : "justify-self-start"
                     }`}
                     style={{
-                      maxWidth: isRightAligned ? "359px" : "363px",
                       alignItems: isRightAligned ? "flex-end" : "flex-start",
                     }}
                   >
@@ -154,7 +153,7 @@ export const OurPracticalSection = () => {
                       <p
                         className={`font-open-sans font-semibold text-[#798C9B] w-full ${
                           isRightAligned
-                            ? "text-right mr-[33px]"
+                            ? "text-right ml-[36px]"
                             : "text-left ml-[44px]"
                         }`}
                         style={{
