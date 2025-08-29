@@ -142,6 +142,8 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
           width: `${item.cardWidth}px`,
           height: `${item.cardHeight}px`,
           boxShadow: cardShadow,
+          willChange: item.isMainCard ? "transform" : "auto",
+          transform: "translate3d(0, 0, 0)",
         }}
       >
         {/* Direct image render - no loading states or placeholders */}
@@ -153,6 +155,8 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
           className="w-full h-full object-cover"
           priority={item.isMainCard}
           loading={item.isMainCard ? "eager" : "lazy"}
+          decoding="async"
+          fetchPriority={item.isMainCard ? "high" : "auto"}
         />
 
         {/* Text Overlay for Selected Card */}
@@ -301,9 +305,9 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{
-              duration: 0.8,
+              duration: 0.2,
               ease: "easeOut",
-              delay: 0.4,
+              delay: 0.1,
             }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -318,6 +322,10 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
             {/* Fixed 3-Card Container */}
             <div
               className="flex items-center justify-center gap-4 px-6 py-[30px] min-h-[326px]"
+              style={{
+                willChange: "contents",
+                transform: "translate3d(0, 0, 0)",
+              }}
               role="group"
               aria-label="Execution principle cards"
             >
@@ -327,21 +335,30 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                     key={`${selectedPrincipleId}-${currentImageOffset}-${index}`}
                     className={`flex-shrink-0 ${index === 1 ? "z-10" : ""}`}
                     style={{
-                      opacity: index === 1 ? 1 : 0.7,
-                      transform: index === 1 ? "scale(1)" : "scale(0.9)",
                       marginLeft: index > 0 ? "-2px" : "0",
                       marginRight: index < 2 ? "-2px" : "0",
+                      willChange: "transform, box-shadow",
+                      transform: "translate3d(0, 0, 0)",
                     }}
-                    initial={{ opacity: 0 }}
+                    initial={{ y: 4, opacity: 0 }}
                     animate={{
-                      opacity: index === 1 ? 1 : 0.7,
-                      scale: index === 1 ? 1 : 0.9,
+                      y: 0,
+                      opacity: 1,
+                      boxShadow:
+                        index === 1
+                          ? "0px 8px 24px 0px rgba(1, 12, 27, 0.15), 0px 2px 6px 0px rgba(255, 255, 255, 0.1)"
+                          : "0px 2px 8px 0px rgba(1, 12, 27, 0.05)",
+                      filter:
+                        index === 1
+                          ? "brightness(1) saturate(1.05)"
+                          : "brightness(0.92) saturate(0.95)",
+                      scale: index === 1 ? 1.02 : 0.98,
                     }}
-                    exit={{ opacity: 0 }}
+                    exit={{ y: -4, opacity: 0 }}
                     transition={{
-                      duration: 0.4,
-                      ease: "easeInOut",
-                      delay: index * 0.05,
+                      duration: 0.2,
+                      ease: "easeOut",
+                      type: "tween",
                     }}
                   >
                     <ExecutionCard
