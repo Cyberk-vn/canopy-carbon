@@ -8,7 +8,11 @@ import {
   CarouselImage,
   CarouselCardGroup,
 } from "../../types/our-project";
-import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
+import {
+  useSimpleMotion,
+  SIMPLE_ANIMATIONS,
+} from "@/src/hooks/responsive/use-simple-motion";
+import { useResponsiveCardDimensions } from "@/src/hooks/responsive/use-responsive-card-dimensions";
 
 // Inline component interfaces
 interface InlineCarouselData {
@@ -120,8 +124,7 @@ const defaultData = {
   descriptionData: {
     mainText:
       "At Canopy, we're institutionalizing the NBS carbon project model—bringing executional discipline, radical transparency, and long-term vision to deliver large-scale, high-integrity projects that anchor the emergence of carbon as a legitimate asset class.",
-    backgroundImage:
-      "/assets/about-us/our-project-section/description-bg.png",
+    backgroundImage: "/assets/about-us/our-project-section/description-bg.png",
     logoImage:
       "/assets/about-us/our-project-section/logo-description-absolute.png",
   },
@@ -131,27 +134,33 @@ export const OurProjectSection = ({
   data = defaultData,
 }: OurProjectSectionProps) => {
   const { carouselData, descriptionData } = data;
-  
+
   // Simple Motion animations
-  const containerMotion = useSimpleMotion('about-project-container');
-  const mobileCarouselMotion = useSimpleMotion('about-project-mobile-carousel');
-  const mobileDescriptionMotion = useSimpleMotion('about-project-mobile-description');
-  const desktopCarouselMotion = useSimpleMotion('about-project-desktop-carousel');
-  const desktopDescriptionMotion = useSimpleMotion('about-project-desktop-description');
+  const containerMotion = useSimpleMotion("about-project-container");
+  const mobileCarouselMotion = useSimpleMotion("about-project-mobile-carousel");
+  const mobileDescriptionMotion = useSimpleMotion(
+    "about-project-mobile-description"
+  );
+  const desktopCarouselMotion = useSimpleMotion(
+    "about-project-desktop-carousel"
+  );
+  const desktopDescriptionMotion = useSimpleMotion(
+    "about-project-desktop-description"
+  );
 
   return (
     <motion.section
       {...SIMPLE_ANIMATIONS.fadeInUp}
       {...containerMotion}
-      className="w-full px-0 md:px-[118px]"
+      className="w-full px-[11px] md:px-[118px]"
     >
       <div className="w-full">
-        <div className="flex flex-col lg:hidden">
+        <div className="flex flex-col lg:hidden justify-center items-center">
           <motion.div
             {...SIMPLE_ANIMATIONS.scaleIn}
             {...mobileCarouselMotion}
             transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="w-full flex justify-center px-4 relative z-[2]"
+            className="w-full flex justify-center relative z-[2] max-h-[336px] h-[336px]"
           >
             <OurTeamCarouselInline
               data={{
@@ -166,7 +175,7 @@ export const OurProjectSection = ({
             {...SIMPLE_ANIMATIONS.fadeInUp}
             {...mobileDescriptionMotion}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            className="w-full relative z-[1] -mt-5"
+            className="w-full relative z-[1] -mt-5 flex justify-center items-center"
           >
             <DescriptionSectionInline data={descriptionData} />
           </motion.div>
@@ -225,36 +234,14 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
   const minSwipeDistance = 50;
   const totalGroups = cardGroups?.length || 0;
 
-  const getCardPositions = (cardCount: number) => {
-    const FIXED_LAST_CARD_POSITION = { left: 196.82, top: 0 };
+  // Get current card count for responsive calculations
+  const currentCardCount = cardGroups?.[currentGroupIndex]?.cards.length || 0;
 
-    if (cardCount <= 5) {
-      const positions = [
-        { left: 0, top: 22.78 }, // Card 1
-        { left: 49.81, top: 17.31 }, // Card 2
-        { left: 98.71, top: 12.76 }, // Card 3
-        { left: 148.22, top: 6.68 }, // Card 4
-        FIXED_LAST_CARD_POSITION,
-      ];
-      return positions.slice(0, cardCount).map((pos) => ({
-        left: `${pos.left}px`,
-        top: `${pos.top}px`,
-      }));
-    } else {
-      const positions = [
-        { left: 0, top: 22.78 },
-        { left: 41, top: 17.31 },
-        { left: 82, top: 12.76 },
-        { left: 123, top: 6.68 },
-        { left: 164, top: 0 },
-        FIXED_LAST_CARD_POSITION,
-      ];
-      return positions.slice(0, cardCount).map((pos) => ({
-        left: `${pos.left}px`,
-        top: `${pos.top}px`,
-      }));
-    }
-  };
+  // Use responsive card dimensions with unified height
+  const { dimensions, getCardPositions } = useResponsiveCardDimensions(
+    cardGroups || [],
+    currentCardCount
+  );
 
   // Handle group changes and position transitions
   useEffect(() => {
@@ -414,7 +401,7 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
 
       <div
         ref={containerRef}
-        className="w-full max-w-[368px] sm:w-[368px] rounded-[5px] touch-pan-y relative"
+        className="w-full rounded-[5px] touch-pan-y relative mt-[38px]"
         style={{
           backgroundColor: "rgba(250, 250, 250, 0.6)",
           paddingBottom: "20px",
@@ -430,13 +417,14 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
             zIndex: 10,
           }}
         />
-        <div className="flex flex-col mb-[14px]">
-          <div className="relative mb-12">
-            <div className="relative w-full max-w-[342px] h-[225.67px] mx-auto">
+        <div className="flex flex-col mb-[14px] mt-[24px]">
+          <div className="relative mb-12 px-[13px]">
+            <div
+              className="relative w-full mx-auto"
+              style={{ height: `${dimensions.containerHeight}px` }}
+            >
               {currentGroup.cards.map((card, index) => {
-                const cardPositions = getCardPositions(
-                  currentGroup.cards.length
-                );
+                const cardPositions = getCardPositions();
                 const position =
                   cardPositions[index] ||
                   cardPositions[cardPositions.length - 1];
@@ -447,9 +435,14 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
                 let horizontalOffset = 0;
 
                 if (!isLastCard && slideDirection === "left") {
-                  horizontalOffset = isTransitioning ? 200 : 0;
+                  // Scale horizontal offset based on fixed card width for proportional animation
+                  horizontalOffset = isTransitioning
+                    ? dimensions.cardWidth * 1.4
+                    : 0;
                 } else if (!isLastCard && slideDirection === "right") {
-                  horizontalOffset = isTransitioning ? -200 : 0;
+                  horizontalOffset = isTransitioning
+                    ? -dimensions.cardWidth * 1.4
+                    : 0;
                 }
 
                 // Enhanced effects for middle cards
@@ -467,7 +460,12 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
                 return (
                   <motion.div
                     key={card.id}
-                    className="absolute w-[145.18px] h-[202.89px] cursor-pointer group"
+                    className="absolute cursor-pointer group"
+                    style={{
+                      width: `${dimensions.cardWidth}px`,
+                      height: `${dimensions.cardHeight}px`,
+                      zIndex: currentGroup.cards.length - index,
+                    }}
                     initial={{
                       left: position.left,
                       top: position.top,
@@ -481,19 +479,28 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
                       x: horizontalOffset,
                       y: 0,
                       scale: 1,
-                      boxShadow: middleCardEffects.boxShadow || "0px 4px 16px 0px rgba(1, 27, 13, 0.08)",
-                      filter: middleCardEffects.filter || "brightness(1) saturate(1)",
+                      boxShadow:
+                        middleCardEffects.boxShadow ||
+                        "0px 4px 16px 0px rgba(1, 27, 13, 0.08)",
+                      filter:
+                        middleCardEffects.filter || "brightness(1) saturate(1)",
                     }}
                     whileHover={{
                       y: -5,
                       scale: 1.05,
-                      boxShadow: isMiddleCard 
+                      boxShadow: isMiddleCard
                         ? "0px 12px 28px 0px rgba(1, 27, 13, 0.2), 0px 4px 8px 0px rgba(255, 255, 255, 0.15)"
                         : "0px 8px 24px 0px rgba(1, 27, 13, 0.15)",
-                      filter: isMiddleCard ? "brightness(1.15) saturate(1.3)" : "brightness(1) saturate(1)",
+                      filter: isMiddleCard
+                        ? "brightness(1.15) saturate(1.3)"
+                        : "brightness(1) saturate(1)",
                     }}
                     transition={{
-                      duration: isPositionTransitioning ? 1.0 : slideDirection ? 1.2 : 0.5,
+                      duration: isPositionTransitioning
+                        ? 1.0
+                        : slideDirection
+                        ? 1.2
+                        : 0.5,
                       ease: slideDirection ? "circOut" : "anticipate",
                       delay: isPositionTransitioning
                         ? index * 0.05
@@ -503,9 +510,6 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
                       type: "spring",
                       stiffness: slideDirection ? 100 : 200,
                       damping: slideDirection ? 25 : 20,
-                    }}
-                    style={{
-                      zIndex: currentGroup.cards.length - index,
                     }}
                   >
                     <Image

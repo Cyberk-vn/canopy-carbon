@@ -23,7 +23,7 @@ export const OurPurposeSection = () => {
     >
       {/* Main Container - Mobile First */}
       <div className="relative w-full md:max-w-none">
-        <div className="grid grid-cols-[35%_65%] w-full h-[377px] md:hidden -mt-[52px] relative z-20 gap-[10px]">
+        <div className="grid grid-cols-[35%_65%] w-full h-[377px] md:hidden -mt-[49px] relative z-20 gap-[27px]">
           {/* Left Side with Card Effect - Mobile */}
           <div className="relative flex items-start justify-center overflow-visible">
             {/* Background Overlap - Mobile */}
@@ -33,7 +33,7 @@ export const OurPurposeSection = () => {
                 left: "0",
                 top: "0",
                 width: "104px",
-                height: "377px",
+                height: "380px",
                 backgroundColor: "#1D1F1F",
               }}
             />
@@ -46,7 +46,7 @@ export const OurPurposeSection = () => {
               className="card-effect purpose-card relative z-20"
               style={{
                 width: "118px",
-                height: "329px",
+                height: "331px",
                 marginLeft: "21px",
                 marginTop: "30px",
               }}
@@ -65,10 +65,10 @@ export const OurPurposeSection = () => {
             {...SIMPLE_ANIMATIONS.fadeInRight}
             {...contentMotion}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            className="flex flex-col justify-end items-center h-full w-full max-w-[200px] -mt-[34px]"
+            className="flex flex-col justify-end items-center h-full max-w-[200px] w-[200px] -mt-[19px]"
           >
             {/* Title Section */}
-            <div className="flex flex-col gap-3 mb-8">
+            <div className="flex flex-col gap-[14px] mb-8">
               {/* Main Purpose Text - Figma styling */}
               <p
                 className="font-open-sans text-[#95A4B0]"

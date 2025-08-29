@@ -121,7 +121,7 @@ const MapSection = () => {
               }}
             >
               <Image
-                src="/assets/map-image.png"
+                src="/assets/map-image.svg"
                 alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
                 width={736}
                 height={383}

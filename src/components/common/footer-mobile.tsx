@@ -196,12 +196,12 @@ const FooterMobile = ({
                 </p>
               </div>
 
-              {/* Social Icons - PNG images for mobile */}
+              {/* Social Icons - SVG images for mobile */}
               <div className="flex gap-3 justify-end">
                 {/* Facebook */}
                 <div className="w-6 h-6 flex items-center justify-center">
                   <img
-                    src="/assets/icon/facebook.png"
+                    src="/assets/icon/facebook.svg"
                     alt="Facebook"
                     className="w-6 h-6"
                   />
@@ -210,7 +210,7 @@ const FooterMobile = ({
                 {/* Twitter */}
                 <div className="w-6 h-6 flex items-center justify-center">
                   <img
-                    src="/assets/icon/twitter.png"
+                    src="/assets/icon/twitter.svg"
                     alt="Twitter"
                     className="w-6 h-6"
                   />
@@ -219,7 +219,7 @@ const FooterMobile = ({
                 {/* LinkedIn */}
                 <div className="w-6 h-6 flex items-center justify-center">
                   <img
-                    src="/assets/icon/linked-in.png"
+                    src="/assets/icon/linked-in.svg"
                     alt="LinkedIn"
                     className="w-6 h-6"
                   />
@@ -228,7 +228,7 @@ const FooterMobile = ({
                 {/* Instagram */}
                 <div className="w-6 h-6 flex items-center justify-center">
                   <img
-                    src="/assets/icon/instagram.png"
+                    src="/assets/icon/instagram.svg"
                     alt="Instagram"
                     className="w-6 h-6"
                   />
