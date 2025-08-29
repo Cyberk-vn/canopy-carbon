@@ -182,7 +182,7 @@ const AnimatedTextContent = memo(
         initial="enter"
         animate="center"
         exit="exit"
-        className="text-center max-w-[96%] md:max-w-[278px] flex flex-col gap-[7px]"
+        className="text-center max-w-[96%] md:max-w-[278px] flex flex-col"
       >
         {/* Animated Full Title with directional transitions */}
         <motion.h3
