@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 
 const CollaborateWithUsSection = () => {
   return (
-    <section className="relative bg-[#232A26] w-full min-h-[492px]">
+    <section className="relative bg-[#232A26] w-full min-h-[492px] overflow-x-hidden">
       {/* Main Content Container */}
       <div className="relative z-10 pt-[42px] pl-[27px] pr-[24px] md:px-[120px]">
         <div className="w-full">
