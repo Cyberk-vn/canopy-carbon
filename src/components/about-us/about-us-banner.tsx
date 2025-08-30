@@ -141,7 +141,7 @@ export function AboutUsBanner({
         />
 
         {/* Navigation Menu - Absolutely positioned */}
-        <div className="absolute left-0 right-0 z-20">
+        <div className="absolute left-0 right-0 z-22">
           <NavigationMenu
             menuItems={menuItems}
             logoUrl={logoUrl}
