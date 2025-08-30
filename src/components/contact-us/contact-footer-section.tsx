@@ -36,17 +36,17 @@ const ContactFooterSection = () => {
   };
 
   return (
-    <section className="w-full relative">
+    <section className="w-full relative min-h-dvh">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0 h-[1200px]">
-        <Image
+      <Image
           src="/assets/contact-us/background-footer-image.png"
           alt=""
+          className="object-cover inset-0 z-0 w-[390px] h-[849px]"
           fill
-          className="object-cover"
+          role="presentation"
           priority
+          sizes="100vw"
         />
-      </div>
 
       {/* Gradient Overlay */}
       <div
@@ -58,7 +58,7 @@ const ContactFooterSection = () => {
       />
 
       {/* Content */}
-      <div className="relative z-20 max-w-[1200px] mx-auto px-4">
+      <div className="relative z-20 w-full max-w-[342px] mx-auto px-4">
         <div className="py-18">
           {/* Header Title - Always at top */}
           <motion.h2
@@ -178,57 +178,85 @@ const ContactFooterSection = () => {
             <motion.div
               initial={{ opacity: 0.7, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-              className="w-full lg:w-[510px] order-1 lg:order-2"
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+              className="w-full lg:w-[510px] order-1 lg:order-2 space-y-4"
             >
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
+                <div className="space-y-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-[12px] font-semibold text-[#6B7280] leading-[1.67]"
+                    style={{ fontFamily: "Open Sans" }}
+                  >
+                    Name
+                  </label>
                   <input
                     type="text"
                     name="name"
-                    placeholder="Name"
+                    placeholder="Text"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px] lg:text-base bg-white/90"
+                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px] lg:text-base bg-white/90 placeholder-[rgba(209,213,219,0.8)]"
                     style={{ fontFamily: "Open Sans", fontWeight: "600" }}
                     required
                   />
                 </div>
 
-                <div>
+                <div className="space-y-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-[11px] font-semibold text-[#6B7280] leading-[1.82]"
+                    style={{ fontFamily: "Open Sans" }}
+                  >
+                    Subject
+                  </label>
                   <input
                     type="text"
                     name="subject"
-                    placeholder="Subject"
+                    placeholder="Text"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px] lg:text-base bg-white/90"
+                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px] lg:text-base bg-white/90 placeholder-[rgba(209,213,219,0.8)]"
                     style={{ fontFamily: "Open Sans", fontWeight: "600" }}
                     required
                   />
                 </div>
 
-                <div>
+                <div className="space-y-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-[11px] font-semibold text-[#6B7280] leading-[1.82]"
+                    style={{ fontFamily: "Open Sans" }}
+                  >
+                    Email
+                  </label>
                   <input
                     type="email"
                     name="email"
-                    placeholder="Email"
+                    placeholder="Text"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px] lg:text-base bg-white/90"
+                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px] lg:text-base bg-white/90 placeholder-[rgba(209,213,219,0.8)]"
                     style={{ fontFamily: "Open Sans", fontWeight: "600" }}
                     required
                   />
                 </div>
 
-                <div>
+                <div className="space-y-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-[11px] font-semibold text-[#6B7280] leading-[1.82]"
+                    style={{ fontFamily: "Open Sans" }}
+                  >
+                    Message
+                  </label>
                   <textarea
                     name="message"
-                    placeholder="Message"
+                    placeholder="Text"
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent resize-vertical text-[12px] lg:text-base bg-white/90"
+                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent resize-vertical text-[12px] lg:text-base bg-white/90 placeholder-[rgba(209,213,219,0.8)]"
                     style={{ fontFamily: "Open Sans", fontWeight: "600" }}
                     required
                   />
@@ -236,7 +264,7 @@ const ContactFooterSection = () => {
 
                 <button
                   type="submit"
-                  className="bg-[#7D8F89] text-white px-8 py-3 rounded-md hover:bg-[#6B7C75] transition-colors duration-200 font-medium w-full text-[12px] lg:text-base"
+                  className="bg-[#7D8F89] text-white px-8 py-3 hover:bg-[#6B7C75] transition-colors duration-200 font-medium w-full text-[12px] lg:text-base"
                   style={{ fontFamily: "Open Sans", fontWeight: "600" }}
                 >
                   Send
