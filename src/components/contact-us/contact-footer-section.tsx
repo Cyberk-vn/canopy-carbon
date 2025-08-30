@@ -38,7 +38,8 @@ const ContactFooterSection = () => {
   return (
     <section className="w-full relative min-h-dvh">
       {/* Background Image */}
-      <Image
+      <div>
+        <Image
           src="/assets/contact-us/background-footer-image.png"
           alt=""
           className="object-cover inset-0 mt-50 z-0 w-[390px] h-[849px]"
@@ -47,15 +48,15 @@ const ContactFooterSection = () => {
           priority
           sizes="100vw"
         />
-
-      {/* Gradient Overlay */}
-      <div
-        className="absolute inset-0 z-1"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.1) 100%)",
-        }}
-      />
+        {/* overlay gradient */}
+        <div
+          className="
+            pointer-events-none
+            z-10
+            absolute inset-x-0 h-[555px]
+            bg-[linear-gradient(180deg,#FFFFFF_0%,#FFFFFF_80.29%,rgba(255,255,255,0)_100%)]"
+        />
+      </div>
 
       {/* Content */}
       <div className="relative z-20 w-full max-w-[342px] mx-auto pt-6">
