@@ -16,6 +16,7 @@ interface NavigationMenuProps {
   mobileMenuIconColor?: string;
   mobileMenuStyles?: MobileMenuStyles;
   activeItem?: string;
+  useWhiteMenuIcon?: boolean;
 }
 
 export function NavigationMenu({
@@ -24,6 +25,7 @@ export function NavigationMenu({
   mobileMenuIconColor = "#F1F5F9",
   mobileMenuStyles,
   activeItem,
+  useWhiteMenuIcon = false,
 }: NavigationMenuProps) {
   // Default mobile menu styles (for backward compatibility)
   const defaultMobileMenuStyles: MobileMenuStyles = {
@@ -85,7 +87,11 @@ export function NavigationMenu({
                   </svg>
                 ) : (
                   <Image
-                    src="/assets/icon/menu-icon.png"
+                    src={
+                      useWhiteMenuIcon
+                        ? "/assets/icon/menu-icon-white.png"
+                        : "/assets/icon/menu-icon.png"
+                    }
                     alt="Menu"
                     width={24}
                     height={16}

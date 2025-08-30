@@ -103,7 +103,7 @@ const CanopyPortfolioSection: React.FC = () => {
   const currentProject = portfolioProjects[currentProjectIndex];
 
   return (
-    <section className="w-full bg-[#232A26] relative">
+    <section className="w-full bg-[#232A26] relative -mt-[25px]">
       {/* Header Section */}
       <div className="relative w-full h-[182px]">
         {/* Background Image */}
@@ -122,12 +122,12 @@ const CanopyPortfolioSection: React.FC = () => {
           className="absolute inset-0 w-full h-full"
           style={{
             background:
-              "linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.2) 36%, rgba(0, 0, 0, 0) 49%, rgba(0, 0, 0, 1) 87%)",
+              "linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.2) 36%, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 1) 80%)",
           }}
         />
 
         {/* Header Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 md:px-[120px]">
+        <div className="relative z-10 flex flex-col items-center justify-end h-full px-6 md:px-[120px] pb-[33px]">
           <motion.div
             initial={{ opacity: 0.8, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -149,7 +149,7 @@ const CanopyPortfolioSection: React.FC = () => {
               initial={{ opacity: 0.6, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
-              className="font-open-sans font-light text-[12px] leading-[1.417em] text-[#F0F0F0] mb-[11px] max-w-[300px]"
+              className="font-open-sans font-light text-[12px] leading-[1.417em] text-[#F0F0F0] mb-[11px] max-w-[280px]"
             >
               We execute our projects alongside key partners globally recognised
               for their domain expertise.
@@ -167,7 +167,7 @@ const CanopyPortfolioSection: React.FC = () => {
       </div>
 
       {/* Carousel Section */}
-      <div className="relative pb-[50px]">
+      <div className="relative pb-[16px]">
         {/* Blueprint Background Image - Full Screen */}
         <div className="absolute inset-0 opacity-30">
           <Image
@@ -183,12 +183,12 @@ const CanopyPortfolioSection: React.FC = () => {
           className="absolute inset-0 w-full h-full"
           style={{
             background:
-              "linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(123, 123, 123, 0.8) 45%, rgba(255, 255, 255, 0) 71%, rgba(255, 255, 255, 1) 97%)",
+              "linear-gradient(180deg, #000000 0%, rgba(123, 123, 123, 0.8) 45.08%, rgba(255, 255, 255, 0) 71.06%, #FFFFFF 97.44%)",
           }}
         />
 
         <div className="relative px-6 md:px-[120px]">
-          <div className="max-w-[392px] mx-auto md:mx-0 md:max-w-[600px] lg:max-w-[800px]">
+          <div className="mx-auto md:mx-0 max-w-[637px] lg:max-w-[800px]">
             {/* Project Card */}
             <motion.div
               initial={{ opacity: 0.8, y: 30, scale: 0.95 }}
@@ -196,13 +196,13 @@ const CanopyPortfolioSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
               className="relative z-10 mx-[16px] pt-0 transition-all duration-500 ease-in-out"
             >
-              <div className="bg-white overflow-hidden shadow-lg h-[596px] flex flex-col">
+              <div className="overflow-hidden shadow-lg h-[596px] relative rounded-[5px]">
                 {/* Project Image */}
                 <motion.div
                   initial={{ opacity: 0.7, scale: 1.05 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
-                  className="relative w-full h-[350px] flex-shrink-0"
+                  className="relative w-full h-[384px] flex-shrink-0"
                 >
                   <Image
                     src={currentProject.imageUrl}
@@ -212,14 +212,14 @@ const CanopyPortfolioSection: React.FC = () => {
                   />
                 </motion.div>
 
-                {/* Project Content */}
+                {/* Project Content - Positioned absolutely over the bottom portion */}
                 <motion.div
                   initial={{ opacity: 0.7, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }}
-                  className={`px-[15px] py-[24px] h-[250px] flex flex-col ${
+                  className={`absolute bottom-0 left-0 right-0 px-[12px] pt-[24px] h-[211px] w-full flex flex-col rounded-b-[5px] ${
                     currentProject.isComingSoon
-                      ? "bg-[#16221C] bg-opacity-65"
+                      ? "bg-[rgba(22,34,28,0.65)]"
                       : "bg-[#16221C]"
                   }`}
                 >
@@ -249,10 +249,19 @@ const CanopyPortfolioSection: React.FC = () => {
                       <motion.div
                         initial={{ opacity: 0.6, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
-                        className="px-[15px] mb-[8px] flex-grow flex items-center"
+                        transition={{
+                          duration: 0.5,
+                          delay: 1.2,
+                          ease: "easeOut",
+                        }}
+                        className="flex-grow flex items-center overflow-hidden h-[67px] max-h-[67px]"
                       >
-                        <p className="font-roboto font-normal text-[12px] leading-[1.417em] tracking-[-0.04em] text-white text-center">
+                        <p
+                          className="font-roboto font-normal text-center text-[12px] leading-[17px] text-white max"
+                          style={{
+                            letterSpacing: "-4%",
+                          }}
+                        >
                           {currentProject.description}
                         </p>
                       </motion.div>
@@ -261,9 +270,16 @@ const CanopyPortfolioSection: React.FC = () => {
                       <motion.div
                         initial={{ opacity: 0.6, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 1.3, ease: "easeOut" }}
-                        whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                        className="text-center mt-auto"
+                        transition={{
+                          duration: 0.4,
+                          delay: 1.3,
+                          ease: "easeOut",
+                        }}
+                        whileHover={{
+                          scale: 1.05,
+                          transition: { duration: 0.2 },
+                        }}
+                        className="text-center mb-[14px] mt-auto justify-center flex items-center"
                       >
                         <button className="font-open-sans font-normal text-[12px] leading-[1.5em] text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300">
                           Read More →
@@ -293,7 +309,7 @@ const CanopyPortfolioSection: React.FC = () => {
                   aria-label="Previous project"
                 >
                   <Image
-                    src="/assets/about-us/our-project-section/arrow-left-circle.png"
+                    src="/assets/about-us/our-project-section/arrow-left-circle.svg"
                     alt="Previous"
                     width={23}
                     height={23}
@@ -313,13 +329,38 @@ const CanopyPortfolioSection: React.FC = () => {
                   aria-label="Next project"
                 >
                   <Image
-                    src="/assets/about-us/our-project-section/arrow-right-circle.png"
+                    src="/assets/about-us/our-project-section/arrow-right-circle.svg"
                     alt="Next"
                     width={23}
                     height={23}
                     className="object-contain"
                   />
                 </motion.button>
+              </motion.div>
+
+              {/* Double Line Decorator */}
+              <motion.div
+                initial={{ opacity: 0.6, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 1.7, ease: "easeOut" }}
+                className="flex justify-center pt-[13px]"
+              >
+                <div className="relative w-[203px] h-[9px]">
+                  {/* First Line - Full Width */}
+                  <div
+                    className="absolute top-0 left-0 w-full h-0"
+                    style={{
+                      borderTop: "3px solid rgba(172, 184, 194, 0.2)",
+                    }}
+                  />
+                  {/* Second Line - Half Width, Centered */}
+                  <div
+                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[100px] h-0"
+                    style={{
+                      borderTop: "2px solid rgba(172, 184, 194, 0.2)",
+                    }}
+                  />
+                </div>
               </motion.div>
             </motion.div>
           </div>

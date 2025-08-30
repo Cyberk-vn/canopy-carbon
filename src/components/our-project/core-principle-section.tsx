@@ -101,7 +101,7 @@ const CorePrincipleSection: React.FC = () => {
 
   return (
     <section className="w-full bg-[#1E2421] px-6 md:px-[120px] py-6">
-      <div className="max-w-[392px] mx-auto md:mx-0 md:max-w-[600px] lg:max-w-[800px]">
+      <div className="mx-auto md:mx-0 md:max-w-[600px] lg:max-w-[800px]">
         {/* Title */}
         <motion.h2
           initial={{ opacity: 0.8, y: 15 }}
@@ -113,7 +113,7 @@ const CorePrincipleSection: React.FC = () => {
         </motion.h2>
 
         {/* Principle Cards Grid */}
-        <div className="flex justify-center md:justify-start gap-[16px] mb-[24px]">
+        <div className="flex justify-center md:justify-start gap-[16px] mb-[8px]">
           {/* Left Column */}
           <div className="flex flex-col">
             {leftColumnCards.map((card, index) => renderCard(card, index))}
@@ -121,7 +121,9 @@ const CorePrincipleSection: React.FC = () => {
 
           {/* Right Column */}
           <div className="flex flex-col">
-            {rightColumnCards.map((card, index) => renderCard(card, index + leftColumnCards.length))}
+            {rightColumnCards.map((card, index) =>
+              renderCard(card, index + leftColumnCards.length)
+            )}
           </div>
         </div>
 
@@ -129,10 +131,10 @@ const CorePrincipleSection: React.FC = () => {
         <motion.div
           initial={{ opacity: 0.6, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.0, ease: "easeOut" }}
-          className="max-w-[342px] mx-auto md:mx-0"
+          transition={{ duration: 0.4, delay: 1.0, ease: "easeOut" }}
+          className="mx-auto md:mx-0"
         >
-          <div className="flex flex-col items-center md:items-start gap-4">
+          <div className="flex flex-col items-center md:items-start gap-4 mb-[46px]">
             <p className="font-open-sans font-normal text-[13px] leading-[1.538em] text-[#949494] text-left w-full">
               Developed and published in 2023 by the Integrity Council for the
               Voluntary Carbon Market (ICVCM), the CCP was formulated in
