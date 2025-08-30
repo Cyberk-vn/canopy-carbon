@@ -53,17 +53,18 @@ export function useResponsiveCardDimensions(
   // Calculate available width based on screen type
   const availableWidth = useMemo(() => {
     const horizontalPadding = 26; // px-[13px] = 26px total
+    const safetyMargin = 10; // Additional margin for safety
     
     let containerWidth: number;
     if (isMobile) {
-      // Mobile: Use most of screen width minus padding
-      containerWidth = Math.min(screenWidth - horizontalPadding, screenWidth * 0.95);
+      // Mobile: Use most of screen width minus padding and safety margin
+      containerWidth = Math.min(screenWidth - horizontalPadding - safetyMargin, screenWidth * 0.9);
     } else {
       // Desktop: Fixed container width from existing implementation
-      containerWidth = 368;
+      containerWidth = 368 - safetyMargin;
     }
     
-    return containerWidth - horizontalPadding;
+    return Math.max(containerWidth - horizontalPadding, 200); // Minimum width fallback
   }, [isMobile, screenWidth]);
 
   // Calculate overlap ratio for current card count
@@ -105,18 +106,27 @@ export function useResponsiveCardDimensions(
 
   const getCardPositions = useMemo(() => {
     return (): CardPosition[] => {
-      const { cardWidth, overlapRatio } = dimensions;
+      const { cardWidth, overlapRatio, availableWidth } = dimensions;
       
       // Calculate effective card width (how much space each card occupies with overlap)
       const effectiveCardWidth = cardWidth * (1 - overlapRatio);
       
+      // Calculate total width needed for all cards
+      const totalWidth = (currentCardCount - 1) * effectiveCardWidth + cardWidth;
+      
+      // Calculate starting offset to center the cards within available width
+      const startOffset = Math.max(0, (availableWidth - totalWidth) / 2);
+      
       return Array.from({ length: currentCardCount }, (_, index) => {
-        const leftPosition = index * effectiveCardWidth;
+        const leftPosition = startOffset + (index * effectiveCardWidth);
+        // Ensure card doesn't exceed container boundaries
+        const constrainedLeft = Math.min(leftPosition, availableWidth - cardWidth);
+        
         // Consistent vertical staggering - rightward cards appear higher (lower top offset)
         const topOffset = (currentCardCount - 1 - index) * VERTICAL_STAGGER;
         
         return {
-          left: `${leftPosition}px`,
+          left: `${Math.max(0, constrainedLeft)}px`,
           top: `${topOffset}px`,
         };
       });

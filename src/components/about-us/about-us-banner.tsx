@@ -117,7 +117,7 @@ export function AboutUsBanner({
   const currentStatistic = statisticsData[activeSlideIndex];
 
   return (
-    <div className="relative w-full h-[1306px] bg-black">
+    <div className="relative w-full">
       {/* Main Banner Section */}
       <div className="relative h-[828px] w-full overflow-hidden">
         {/* Background Image */}
@@ -136,7 +136,7 @@ export function AboutUsBanner({
           className="absolute inset-0 z-10"
           style={{
             background:
-              "linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 28.85%, rgba(0, 0, 0, 0.6) 53.37%, #000000 100%)",
+              "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.2) 28.85%, rgba(0, 0, 0, 0.37) 53.37%, #000000 100%)",
           }}
         />
 
@@ -153,7 +153,7 @@ export function AboutUsBanner({
 
         {/* Mobile-Only Flexbox Layout */}
         <div className="block lg:hidden absolute inset-0 z-20">
-          <div className="flex flex-col pt-[130px] md:pt-[158px] px-[24px] md:px-[58px]">
+          <div className="flex flex-col pt-[140px] md:pt-[158px] px-[24px] md:px-[58px]">
             {/* Decorative Image - Mobile Flexbox */}
             <motion.div
               {...SIMPLE_ANIMATIONS.scaleIn}
@@ -322,7 +322,7 @@ export function AboutUsBanner({
       </div>
 
       {/* Secondary Banner Section with Smooth Transition */}
-      <div className="relative h-[478px] w-full z-10">
+      <div className="relative h-[515px] w-full z-10 -mt-10">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -338,7 +338,7 @@ export function AboutUsBanner({
           className="absolute inset-0 z-10"
           style={{
             background:
-              "linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.9) 8%, rgba(0, 0, 0, 0.7) 15%, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0.8) 100%)",
+              "linear-gradient(180deg, rgba(0, 0, 0, 1) 5%, rgba(0, 0, 0, 0.9) 6%, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.3) 20%, rgba(0, 0, 0, 0.4) 20%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0.8) 100%)",
           }}
         />
 

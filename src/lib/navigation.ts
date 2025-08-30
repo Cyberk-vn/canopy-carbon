@@ -8,7 +8,7 @@ export interface MobileMenuStyles {
 }
 
 export const NAVIGATION_CONFIG = {
-  logoUrl: "/assets/banner-shared-component/logo.png",
+  logoUrl: "/assets/banner-shared-component/logo.svg",
   menuItems: [
     { text: "Home", url: "/" },
     { text: "About Us", url: "/about-us" },

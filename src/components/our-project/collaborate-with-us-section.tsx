@@ -5,16 +5,16 @@ import { motion } from "motion/react";
 
 const CollaborateWithUsSection = () => {
   return (
-    <section className="relative bg-[#232A26] w-full min-h-[460px] overflow-hidden">
+    <section className="relative bg-[#232A26] w-full min-h-[492px]">
       {/* Main Content Container */}
-      <div className="relative z-10 pt-[42px] px-6 md:px-[120px]">
-        <div className="w-full max-w-[342px]">
+      <div className="relative z-10 pt-[42px] pl-[27px] pr-[24px] md:px-[120px]">
+        <div className="w-full">
           {/* Content Section */}
           <motion.div
             initial={{ opacity: 0.8, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="flex flex-col gap-3"
+            className="flex flex-col gap-3 max-w-[342px]"
           >
             <motion.h2
               initial={{ opacity: 0.7, y: 15 }}
@@ -29,20 +29,32 @@ const CollaborateWithUsSection = () => {
               initial={{ opacity: 0.6, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-              className="flex flex-col gap-3"
+              className="flex flex-col gap-3 max-w-[342px]"
             >
-              <p className="text-[#9E9E9E] text-[13px] leading-[1.385em] text-left font-['Open_Sans']">
+              <p className="text-[#9E9E9E] text-[13px] leading-[18px] text-left font-['Open_Sans']">
                 We believe meaningful climate solutions are built through
-                partnership. At Canopy, we welcome collaboration with project
-                proponents, financiers, corporate buyers, and technical
-                specialists who share our vision for high-integrity,
-                nature-based development.
+                partnership. At Canopy, we welcome collaboration with{" "}
+                <span className="text-[#EDEDED]">project proponents</span>,{" "}
+                <span className="text-[#EDEDED]">financiers</span>,{" "}
+                <span className="text-[#EDEDED]">corporate buyers</span>,{" "}
+                <span className="text-[#EDEDED]">
+                  and technical specialists
+                </span>{" "}
+                who share our vision for high-integrity, nature-based
+                development.
               </p>
               <p className="text-[#9E9E9E] text-[13px] leading-[1.385em] text-left font-['Open_Sans']">
-                Whether you&apos;re looking to co-develop a project, secure
-                long-term carbon offtake, or bring technical innovation to the
-                field, we&apos;d love to hear from you. Together, we can scale
-                impact where it matters most.
+                Whether you&apos;re looking to{" "}
+                <span className="text-[#EDEDED]">co-develop a project</span>,{" "}
+                <span className="text-[#EDEDED]">
+                  secure long-term carbon offtake
+                </span>
+                , or{" "}
+                <span className="text-[#EDEDED]">
+                  bring technical innovation to the field
+                </span>
+                , we&apos;d love to hear from you. Together, we can scale impact
+                where it matters most.
               </p>
             </motion.div>
           </motion.div>

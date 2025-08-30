@@ -208,7 +208,7 @@ const OurProjectBenefitSection: React.FC = () => {
   const BenefitLogo = () => (
     <div className="relative w-[106px] h-[118px] flex-shrink-0 mx-auto">
       <Image
-        src="/assets/our-project/benefit-section/benefit-logo.png"
+        src="/assets/our-project/benefit-section/benefit-logo.svg"
         alt="Co-Benefits & Safeguards logo"
         fill
         className="object-contain"
@@ -217,14 +217,14 @@ const OurProjectBenefitSection: React.FC = () => {
   );
 
   return (
-    <section className="w-full bg-[#232A26] pt-[32px] px-6 md:px-[120px]">
-      <div className="max-w-[392px] mx-auto md:mx-0 md:max-w-[600px] lg:max-w-[800px]">
+    <section className="w-full bg-[#232A26] pt-[35px] md:px-[120px]">
+      <div className="mx-auto md:mx-0 md:max-w-[600px] lg:max-w-[800px]">
         {/* Title and Content Section */}
         <motion.div
           initial={{ opacity: 0.8, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="flex flex-col items-center gap-6 mb-[54px]"
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="flex flex-col items-center gap-6 mb-[21px] px-6"
         >
           {/* Title */}
           <motion.h2
@@ -264,13 +264,13 @@ const OurProjectBenefitSection: React.FC = () => {
         <motion.div
           initial={{ opacity: 0.7, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-          className="relative"
+          transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+          className="relative px-4 min-h-[271px] h-full"
         >
           {/* Carousel Background */}
-          <div className="bg-white px-6 pt-[18px] pb-[18px]">
+          <div className="bg-white pt-[21px] pb-[18px h-[271px]">
             {/* Title logos */}
-            <div className="flex justify-center items-center gap-[5px] mb-4">
+            <div className="flex justify-center items-center gap-[5px] mb-[26px] px-[9px]">
               <div className="w-[155px] h-[39px] relative">
                 <Image
                   src="/assets/our-project/benefit-section/left-logo.png"
@@ -314,36 +314,45 @@ const OurProjectBenefitSection: React.FC = () => {
               {/* Left Arrow */}
               <button
                 onClick={handlePrevPair}
-                className="absolute left-[-20px] w-8 h-8 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:opacity-80 z-10"
+                className="absolute left-[12px] w-6 h-6 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:opacity-80 z-10"
                 aria-label="Previous pair"
               >
                 <Image
-                  src="/assets/about-us/our-project-section/arrow-left-circle.png"
+                  src="/assets/about-us/our-project-section/arrow-left-circle.svg"
                   alt="Previous"
-                  width={20}
-                  height={20}
-                  className="object-contain"
+                  width={24}
+                  height={24}
+                  className="object-contain w-6 h-6"
                 />
               </button>
 
               {/* Right Arrow */}
               <button
                 onClick={handleNextPair}
-                className="absolute right-[-20px] w-8 h-8 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:opacity-80 z-10"
+                className="absolute right-[12px] w-6 h-6 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:opacity-80 z-10"
                 aria-label="Next pair"
               >
                 <Image
-                  src="/assets/about-us/our-project-section/arrow-right-circle.png"
+                  src="/assets/about-us/our-project-section/arrow-right-circle.svg"
                   alt="Next"
-                  width={20}
-                  height={20}
-                  className="object-contain"
+                  width={24}
+                  height={24}
+                  className="object-contain w-6 h-6"
                 />
               </button>
             </div>
           </div>
         </motion.div>
       </div>
+
+      {/* Gradient Transition Overlay */}
+      <div
+        className="w-full h-[98px] -mt-[40px]"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 76.92%)",
+        }}
+      />
     </section>
   );
 };

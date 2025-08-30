@@ -395,7 +395,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
         </div>
 
         {/* Content Section Header */}
-        <div className="mb-8 flex flex-col items-center w-full mx-auto mt-[44px]">
+        <div className="flex flex-col items-center w-full mx-auto mt-[44px]">
           {/* Decorative Line */}
           <div
             className="w-[60px] h-0 mb-2 flex justify-center items-center"
@@ -404,7 +404,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
 
           {/* Description Text */}
           <p
-            className="font-open-sans font-semibold text-[14px] leading-[20px] text-[#91A69E] text-center mb-3 w-full px-[25px]"
+            className="font-open-sans font-semibold text-[14px] leading-[20px] text-[#91A69E] text-center mb-3 w-full justify-center"
             style={{ letterSpacing: "-3%" }}
           >
             {data.contentSectionDescription}
@@ -420,7 +420,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
         </div>
 
         {/* Climate Action Implementation Card Section */}
-        <div className="mt-8">
+        <div className="mt-5">
           {/* Mobile: Timer-based Auto-changing */}
           <div className="w-full">
             <div

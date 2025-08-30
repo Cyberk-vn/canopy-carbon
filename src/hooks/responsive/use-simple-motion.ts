@@ -74,7 +74,7 @@ export const STATISTICS_ANIMATIONS = {
     animate: { opacity: 1 },
     exit: { opacity: 0 },
     transition: {
-      delay: 0.7,
+      delay: 0.3,
       duration: 0.3,
       ease: "easeOut",
     },
@@ -94,28 +94,28 @@ export const STATISTICS_ANIMATIONS = {
     initial: { opacity: 0, y: -10 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -10 },
-    transition: { delay: 0.7, duration: 0.3, ease: "easeOut" },
+    transition: { delay: 0.3, duration: 0.3, ease: "easeOut" },
   },
 
   progressiveTitleFade: {
     initial: { opacity: 0, y: 10 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: 10 },
-    transition: { delay: 0.7, duration: 0.3, ease: "easeOut" },
+    transition: { delay: 0.3, duration: 0.3, ease: "easeOut" },
   },
 
   progressiveDescriptionFade: {
     initial: { opacity: 0, y: 15 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: 15 },
-    transition: { delay: 0.7, duration: 0.3, ease: "easeOut" },
+    transition: { delay: 0.3, duration: 0.3, ease: "easeOut" },
   },
 
   desktopStaggeredCard: {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
     transition: {
-      delay: 0.7,
+      delay: 0.3,
       duration: 0.3,
       ease: "easeOut",
     },
