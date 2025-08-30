@@ -41,7 +41,7 @@ const ContactFooterSection = () => {
       <Image
           src="/assets/contact-us/background-footer-image.png"
           alt=""
-          className="object-cover inset-0 z-0 w-[390px] h-[849px]"
+          className="object-cover inset-0 mt-50 z-0 w-[390px] h-[849px]"
           fill
           role="presentation"
           priority
@@ -58,8 +58,8 @@ const ContactFooterSection = () => {
       />
 
       {/* Content */}
-      <div className="relative z-20 w-full max-w-[342px] mx-auto px-4">
-        <div className="py-18">
+      <div className="relative z-20 w-full max-w-[342px] mx-auto pt-6">
+        <div className="space-y-4">
           {/* Header Title - Always at top */}
           <motion.h2
             initial={{ opacity: 0.8, y: 10 }}
@@ -72,7 +72,104 @@ const ContactFooterSection = () => {
           </motion.h2>
 
           {/* Content Container with reordered columns */}
-          <div className="flex flex-col lg:flex-row gap-5 lg:gap-[204px]">
+          <div className="flex flex-col lg:flex-row gap-4 lg:gap-[204px]">
+            {/* Mobile: Contact Information Second, Desktop: Contact Form Second */}
+            <motion.div
+              initial={{ opacity: 0.7, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+              className="w-full lg:w-[510px] order-1 lg:order-2 space-y-4"
+            >
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-[12px] font-semibold text-[#6B7280] leading-[1.67]"
+                    style={{ fontFamily: "Open Sans" }}
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Text"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px] lg:text-base bg-white/90 placeholder-[rgba(209,213,219,0.8)]"
+                    style={{ fontFamily: "Open Sans", fontWeight: "600" }}
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-[11px] font-semibold text-[#6B7280] leading-[1.82]"
+                    style={{ fontFamily: "Open Sans" }}
+                  >
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    placeholder="Text"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px] lg:text-base bg-white/90 placeholder-[rgba(209,213,219,0.8)]"
+                    style={{ fontFamily: "Open Sans", fontWeight: "600" }}
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-[11px] font-semibold text-[#6B7280] leading-[1.82]"
+                    style={{ fontFamily: "Open Sans" }}
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Text"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px] lg:text-base bg-white/90 placeholder-[rgba(209,213,219,0.8)]"
+                    style={{ fontFamily: "Open Sans", fontWeight: "600" }}
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-[11px] font-semibold text-[#6B7280] leading-[1.82]"
+                    style={{ fontFamily: "Open Sans" }}
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    name="message"
+                    placeholder="Text"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows={6}
+                    className="w-full h-[80px] px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent resize-vertical text-[12px] lg:text-base bg-white/90 placeholder-[rgba(209,213,219,0.8)]"
+                    style={{ fontFamily: "Open Sans", fontWeight: "600" }}
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="bg-[#7D8F89] text-white px-8 py-3 hover:bg-[#6B7C75] transition-colors duration-200 font-medium w-full text-[12px] lg:text-base"
+                  style={{ fontFamily: "Open Sans", fontWeight: "600" }}
+                >
+                  Send
+                </button>
+              </form>
+            </motion.div>
             {/* Mobile: Contact Form First, Desktop: Contact Information First */}
             <motion.div
               initial={{ opacity: 0.7, x: -20 }}
@@ -172,104 +269,6 @@ const ContactFooterSection = () => {
                   </svg>
                 </div>
               </div>
-            </motion.div>
-
-            {/* Mobile: Contact Information Second, Desktop: Contact Form Second */}
-            <motion.div
-              initial={{ opacity: 0.7, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-              className="w-full lg:w-[510px] order-1 lg:order-2 space-y-4"
-            >
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <label
-                    htmlFor="name"
-                    className="block text-[12px] font-semibold text-[#6B7280] leading-[1.67]"
-                    style={{ fontFamily: "Open Sans" }}
-                  >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Text"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px] lg:text-base bg-white/90 placeholder-[rgba(209,213,219,0.8)]"
-                    style={{ fontFamily: "Open Sans", fontWeight: "600" }}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="subject"
-                    className="block text-[11px] font-semibold text-[#6B7280] leading-[1.82]"
-                    style={{ fontFamily: "Open Sans" }}
-                  >
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    name="subject"
-                    placeholder="Text"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px] lg:text-base bg-white/90 placeholder-[rgba(209,213,219,0.8)]"
-                    style={{ fontFamily: "Open Sans", fontWeight: "600" }}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="email"
-                    className="block text-[11px] font-semibold text-[#6B7280] leading-[1.82]"
-                    style={{ fontFamily: "Open Sans" }}
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Text"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-[12px] lg:text-base bg-white/90 placeholder-[rgba(209,213,219,0.8)]"
-                    style={{ fontFamily: "Open Sans", fontWeight: "600" }}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="message"
-                    className="block text-[11px] font-semibold text-[#6B7280] leading-[1.82]"
-                    style={{ fontFamily: "Open Sans" }}
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    placeholder="Text"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent resize-vertical text-[12px] lg:text-base bg-white/90 placeholder-[rgba(209,213,219,0.8)]"
-                    style={{ fontFamily: "Open Sans", fontWeight: "600" }}
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="bg-[#7D8F89] text-white px-8 py-3 hover:bg-[#6B7C75] transition-colors duration-200 font-medium w-full text-[12px] lg:text-base"
-                  style={{ fontFamily: "Open Sans", fontWeight: "600" }}
-                >
-                  Send
-                </button>
-              </form>
             </motion.div>
           </div>
         </div>
