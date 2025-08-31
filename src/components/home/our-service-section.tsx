@@ -3,6 +3,7 @@
 import { OurServiceSectionProps, ServiceCardData } from "@/src/types/service";
 import { ServiceCard } from "./service-card";
 import { MobileServiceTitleOverlay } from "./mobile-service-title-overlay";
+import { Container } from "@/src/components/shared";
 import { useRef } from "react";
 import { motion } from "motion/react";
 import {
@@ -57,43 +58,6 @@ export function OurServiceSection({ title, services }: OurServiceSectionProps) {
         role="region"
         aria-label="Our Services"
       >
-        {/* Desktop Layout - Title Section */}
-        <div className="hidden lg:block">
-          {/* Title Section - positioned below the overlapping cards */}
-          <div className="pt-16 pb-16 px-[120px]">
-            <div
-              className="grid gap-8"
-              style={{ gridTemplateColumns: "15% 60% 25%" }}
-            >
-              {/* Column 1 - Empty (20%) */}
-              <div></div>
-
-              {/* Column 2 - Title Section (60%) */}
-              <div className="flex justify-start">
-                <motion.p
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 1.35,
-                    ease: [0.175, 0.885, 0.32, 1.275],
-                    delay: 0.5,
-                  }}
-                  className="font-open-sans font-semibold text-[#94A4B1] text-[32px] text-start max-w-[800px]"
-                  style={{
-                    lineHeight: "1.4285714285714286em",
-                    fontFamily: "Open Sans",
-                  }}
-                >
-                  {title}
-                </motion.p>
-              </div>
-
-              {/* Column 3 - Empty (20%) */}
-              <div></div>
-            </div>
-          </div>
-        </div>
-
         {/* Mobile Layout - Refactored with new MobileServiceTitle */}
         <div className="lg:hidden block w-full px-6 py-0">
           {/* Mobile Title */}

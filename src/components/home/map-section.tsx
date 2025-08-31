@@ -7,10 +7,10 @@ import {
   useSimpleMotion,
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
+import { Container } from "@/src/components/shared";
 
 const MapSection = () => {
   // Motion animation hooks
-  const leftSectionMotion = useSimpleMotion("map-left-section");
   const rightSectionMotion = useSimpleMotion("map-right-section");
   const mapImageMotion = useSimpleMotion("map-image");
   const titleMotion = useSimpleMotion("map-title");
@@ -23,83 +23,125 @@ const MapSection = () => {
       aria-label="Our Operations Map"
     >
       {/* Desktop Layout */}
-      <div className="hidden lg:block w-full px-6">
-        <div className="flex flex-row gap-8 h-[900px]">
-          {/* Left Side (60%) - Map and Title */}
-          <motion.div
-            className="flex-[3] max-w-[70%] flex items-end justify-start"
-            {...SIMPLE_ANIMATIONS.fadeInLeft}
-            {...leftSectionMotion}
+      <div className="hidden lg:block w-full">
+        <Container maxWidth="default" className="px-[68px]">
+          <div
+            className="grid w-full overflow-hidden"
+            style={{
+              gridTemplateColumns: "972px 1fr",
+              gridTemplateRows: "90px auto 48px auto 1fr",
+              minHeight: "816px",
+            }}
           >
-            {/* Left subsection - 15% */}
-            <div className="w-[15%]"></div>
-
-            {/* Right subsection - 85% */}
-            <div className="w-[85%]">
-              {/* Map Image */}
-              <motion.div
-                className="w-full mb-5"
-                {...SIMPLE_ANIMATIONS.scaleIn}
-                {...mapImageMotion}
-              >
-                <Image
-                  src="/assets/map-image.png"
-                  alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
-                  width={1198}
-                  height={623}
-                  className="w-full h-auto object-contain"
-                  priority
-                />
-              </motion.div>
-
-              {/* Title below map with 20px top spacing */}
-              <motion.div
-                className="flex flex-row items-center gap-8"
-                style={{ marginTop: "20px" }}
-                {...SIMPLE_ANIMATIONS.fadeInUp}
-                {...titleMotion}
-              >
-                {/* Title Text with Hidden to Show Animation */}
-                <motion.div
-                  className="flex-1"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-                >
-                  <h2
-                    className="font-open-sans font-semibold text-[#94A4B1] text-[32px] text-start max-w-[1000px]"
-                    style={{
-                      lineHeight: "1.4285714285714286em",
-                      fontFamily: "Open Sans",
-                    }}
-                  >
-                    Our current efforts are centered in Indonesia, prioritising
-                    tight oversight, execution quality, and the development of
-                    robust operational foundations for scale.
-                  </h2>
-                </motion.div>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* Right Side (40%) - Decorator Icon */}
-          <motion.div
-            className="flex-[2] max-w-[30%] flex items-end justify-start"
-            {...SIMPLE_ANIMATIONS.fadeInRight}
-            {...rightSectionMotion}
-          >
-            <div className="w-full h-full flex items-start justify-end">
+            {/* Map Image */}
+            <motion.div
+              className="z-10"
+              style={{
+                gridColumn: "1",
+                gridRow: "2",
+              }}
+              {...SIMPLE_ANIMATIONS.scaleIn}
+              {...mapImageMotion}
+            >
               <Image
-                src="/assets/desktop/home/decorator-icon.png"
-                alt="Decorative icon representing our global carbon initiatives"
-                width={600}
-                height={600}
-                className="w-full h-auto max-w-[600px] object-contain"
+                src="/assets/map-image.svg"
+                alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
+                width={972}
+                height={495}
+                className="w-full h-auto object-contain"
                 priority
               />
-            </div>
-          </motion.div>
-        </div>
+            </motion.div>
+
+            {/* Title */}
+            <motion.div
+              className="z-10 flex flex-row items-start justify-start w-full"
+              style={{
+                gridColumn: "1",
+                gridRow: "4",
+              }}
+              {...SIMPLE_ANIMATIONS.fadeInUp}
+              {...titleMotion}
+            >
+              {/* Title Text with Hidden to Show Animation */}
+              <motion.div
+                className="flex-1 max-w-[664px]"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+              >
+                <h2
+                  className="font-open-sans font-bold text-[#9CA3AF] text-[20px] text-start max-w-[664px]"
+                  style={{
+                    lineHeight: "1.5em",
+                    fontFamily: "Open Sans",
+                  }}
+                >
+                  Our current efforts are centered in Indonesia, prioritising
+                  tight oversight, execution quality, and the development of
+                  robust operational foundations for scale.
+                </h2>
+              </motion.div>
+
+              {/* Read More Component */}
+              <motion.div
+                className="flex items-end justify-end gap-[6px] ml-4 h-full"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+              >
+                {/* Arrow Icon */}
+                <div className="w-5 h-5 flex items-center justify-center">
+                  <svg
+                    width="5"
+                    height="10"
+                    viewBox="0 0 5 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.5 0.5L4 5L0.5 9.5"
+                      stroke="#9DAE83"
+                      strokeWidth="1.25"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+                <span
+                  className="text-[16px] font-normal text-[#2A2E35]"
+                  style={{
+                    fontFamily: "Open Sans",
+                    lineHeight: "1.5em",
+                  }}
+                >
+                  Read More
+                </span>
+              </motion.div>
+            </motion.div>
+            {/* Decorator Icon */}
+            <motion.div
+              className="z-10 flex items-start justify-center"
+              style={{
+                gridColumn: "2",
+                gridRow: "1 / 5",
+              }}
+              {...SIMPLE_ANIMATIONS.fadeInRight}
+              {...rightSectionMotion}
+            >
+              <div className="w-[425px] h-[425px] flex items-center justify-center">
+                <Image
+                  src="/assets/desktop/home/decorator-icon.png"
+                  alt="Decorative icon representing our global carbon initiatives"
+                  width={425}
+                  height={425}
+                  className="w-full h-full object-contain"
+                  priority
+                />
+              </div>
+            </motion.div>
+          </div>
+        </Container>
       </div>
 
       {/* Mobile Layout */}

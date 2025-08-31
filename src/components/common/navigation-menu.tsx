@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { MobileMenuStyles } from "@/src/lib/navigation";
+import { Container } from "@/src/components/shared";
 
 interface MenuItem {
   text: string;
@@ -27,6 +28,12 @@ export function NavigationMenu({
   activeItem,
   useWhiteMenuIcon = false,
 }: NavigationMenuProps) {
+  // Color constants for desktop navigation
+  const NAVIGATION_COLORS = {
+    active: "#00A5FF",
+    default: "#1A1A1A",
+  } as const;
+
   // Default mobile menu styles (for backward compatibility)
   const defaultMobileMenuStyles: MobileMenuStyles = {
     background: "rgba(0, 0, 0, 0.3)",
@@ -38,152 +45,186 @@ export function NavigationMenu({
   const currentMobileMenuStyles = mobileMenuStyles || defaultMobileMenuStyles;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
+    (e.target as HTMLElement).style.color = NAVIGATION_COLORS.active;
+  };
+
+  const handleMouseLeave = (
+    e: React.MouseEvent<HTMLElement>,
+    isActive: boolean
+  ) => {
+    (e.target as HTMLElement).style.color = isActive
+      ? NAVIGATION_COLORS.active
+      : NAVIGATION_COLORS.default;
+  };
+
+  const handleFocus = (e: React.FocusEvent<HTMLElement>) => {
+    (e.target as HTMLElement).style.color = NAVIGATION_COLORS.active;
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLElement>, isActive: boolean) => {
+    (e.target as HTMLElement).style.color = isActive
+      ? NAVIGATION_COLORS.active
+      : NAVIGATION_COLORS.default;
+  };
+
   return (
     <>
       {/* Navigation Menu */}
-      <nav className="pt-8 px-6 md:px-10">
-        {/* Mobile Menu - with logo and border */}
-        <div className="md:hidden">
+      <nav className="pt-8">
+        <Container maxWidth="default" padding="default">
+          {/* Mobile Menu - with logo and border */}
+          <div className="md:hidden">
+            <div
+              className="flex items-stretch backdrop-blur-[1px]"
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0)",
+                border: "0.75px solid rgba(140, 140, 140, 0.3)",
+              }}
+            >
+              <div className="h-12 flex items-center pl-3">
+                <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
+                  <Image
+                    src={logoUrl}
+                    alt="Canopy Carbon Logo"
+                    width={32}
+                    height={32}
+                    z-index={1}
+                    className="object-fill"
+                  />
+                </div>
+              </div>
+
+              <div className="flex-1 flex items-center justify-end gap-4 pr-4">
+                {/* Mobile Menu Button */}
+                <button
+                  className="hover:text-white p-2 transition-colors duration-200"
+                  style={{ color: mobileMenuIconColor }}
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                >
+                  {isMobileMenuOpen ? (
+                    <svg
+                      className="w-7 h-7 transition-transform duration-200"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  ) : (
+                    <Image
+                      src={
+                        useWhiteMenuIcon
+                          ? "/assets/icon/menu-icon-white.png"
+                          : "/assets/icon/menu-icon.png"
+                      }
+                      alt="Menu"
+                      width={24}
+                      height={16}
+                      className="transition-transform duration-200 w-[24px] h-[16px]"
+                    />
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Menu - with logo and border */}
           <div
-            className="flex items-stretch backdrop-blur-[1px]"
+            className="hidden md:flex justify-between items-center h-12 backdrop-blur-[1px] mx-[120px]"
             style={{
               backgroundColor: "rgba(255, 255, 255, 0)",
               border: "0.75px solid rgba(140, 140, 140, 0.3)",
             }}
           >
-            <div className="h-12 flex items-center pl-3">
+            {/* Logo Section */}
+            <div className="flex items-center pl-3">
               <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
                 <Image
                   src={logoUrl}
                   alt="Canopy Carbon Logo"
                   width={32}
                   height={32}
-                  z-index={1}
                   className="object-fill"
                 />
               </div>
             </div>
 
-            <div className="flex-1 flex items-center justify-end gap-4 pr-4">
-              {/* Mobile Menu Button */}
-              <button
-                className="hover:text-white p-2 transition-colors duration-200"
-                style={{ color: mobileMenuIconColor }}
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
-                {isMobileMenuOpen ? (
-                  <svg
-                    className="w-7 h-7 transition-transform duration-200"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+            {/* Navigation Links */}
+            <div className="flex items-center gap-4 pr-4">
+              {menuItems.map((item, index) => {
+                const isActive = activeItem === item.text;
+                return (
+                  <Link
+                    key={index}
+                    href={item.url}
+                    className="flex items-center justify-center px-6 py-1 text-center transition-colors duration-200"
+                    style={{
+                      fontStyle: "normal",
+                      textTransform: "none",
+                      letterSpacing: "0.05em",
+                      fontSize: "16px",
+                      fontWeight: 400,
+                      lineHeight: "24px",
+                      fontFamily:
+                        "Open Sans, var(--font-open-sans), sans-serif",
+                      color: isActive
+                        ? NAVIGATION_COLORS.active
+                        : NAVIGATION_COLORS.default,
+                    }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={(e) => handleMouseLeave(e, isActive)}
+                    onFocus={handleFocus}
+                    onBlur={(e) => handleBlur(e, isActive)}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                ) : (
-                  <Image
-                    src={
-                      useWhiteMenuIcon
-                        ? "/assets/icon/menu-icon-white.png"
-                        : "/assets/icon/menu-icon.png"
-                    }
-                    alt="Menu"
-                    width={24}
-                    height={16}
-                    className="transition-transform duration-200 w-[24px] h-[16px]"
-                  />
-                )}
-              </button>
+                    {item.text}
+                  </Link>
+                );
+              })}
             </div>
           </div>
-        </div>
-
-        {/* Desktop Menu - no logo, no border, equidistant items */}
-        <div
-          className="hidden md:flex justify-between items-center h-12 backdrop-blur-[1px]"
-          style={{ margin: "0 40px" }}
-        >
-          {menuItems.map((item, index) => {
-            const isActive = activeItem === item.text;
-            return (
-              <Link
-                key={index}
-                href={item.url}
-                className="flex items-center justify-center flex-1 px-4 py-1 text-center transition-colors duration-200"
-                style={{
-                  fontStyle: "normal",
-                  textTransform: "none",
-                  letterSpacing: "0.05em",
-                  fontSize: "16px",
-                  fontWeight: 400,
-                  fontFamily: "work-sans-v2, var(--font-open-sans), sans-serif",
-                  color: isActive ? "#1D67CD" : "#C4C9C6",
-                }}
-                onMouseEnter={(e) => {
-                  (e.target as HTMLElement).style.color = "#1D67CD";
-                }}
-                onMouseLeave={(e) => {
-                  (e.target as HTMLElement).style.color = isActive
-                    ? "#1D67CD"
-                    : "#C4C9C6";
-                }}
-                onFocus={(e) => {
-                  (e.target as HTMLElement).style.color = "#1D67CD";
-                }}
-                onBlur={(e) => {
-                  (e.target as HTMLElement).style.color = isActive
-                    ? "#1D67CD"
-                    : "#C4C9C6";
-                }}
-              >
-                {item.text}
-              </Link>
-            );
-          })}
-        </div>
+        </Container>
       </nav>
 
       {/* Mobile Menu Dropdown - Absolute positioned over banner */}
       {isMobileMenuOpen && (
-        <div
-          className="md:hidden absolute top-20 left-6 right-6 z-50"
-          style={{
-            animation:
-              "slideDown 250ms linear(0, 0.6796, 1.0326, 1.0275, 1.0011, 0.9981, 0.9997, 1)",
-          }}
-        >
-          <div
-            className="p-6 shadow-lg"
-            style={{
-              background: currentMobileMenuStyles.background,
-              borderTop: currentMobileMenuStyles.borderTop,
-              backdropFilter: currentMobileMenuStyles.backdropFilter,
-            }}
-          >
-            <div className="flex flex-col gap-4">
-              {menuItems.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.url}
-                  className="flex items-center gap-[10px] px-4 py-3 font-open-sans text-base font-normal leading-[1.5] hover:text-[#00A5FF] active:text-[#00A5FF] focus:text-[#00A5FF] hover:bg-white/10 active:bg-white/10 focus:bg-white/10 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-105"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  style={{
-                    color: currentMobileMenuStyles.textColor,
-                    animation: `fadeInUp ${
-                      250 + index * 50
-                    }ms linear(0, 0.6796, 1.0326, 1.0275, 1.0011, 0.9981, 0.9997, 1)`,
-                  }}
-                >
-                  {item.text}
-                </Link>
-              ))}
+        <div className="md:hidden absolute top-20 left-0 right-0 z-50">
+          <Container maxWidth="default" padding="default">
+            <div
+              className="p-6 shadow-lg"
+              style={{
+                background: currentMobileMenuStyles.background,
+                borderTop: currentMobileMenuStyles.borderTop,
+                backdropFilter: currentMobileMenuStyles.backdropFilter,
+                animation:
+                  "slideDown 250ms linear(0, 0.6796, 1.0326, 1.0275, 1.0011, 0.9981, 0.9997, 1)",
+              }}
+            >
+              <div className="flex flex-col gap-4">
+                {menuItems.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.url}
+                    className="flex items-center gap-[10px] px-4 py-3 font-open-sans text-base font-normal leading-[1.5] hover:text-[#00A5FF] active:text-[#00A5FF] focus:text-[#00A5FF] hover:bg-white/10 active:bg-white/10 focus:bg-white/10 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-105"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    style={{
+                      color: currentMobileMenuStyles.textColor,
+                      animation: `fadeInUp ${
+                        250 + index * 50
+                      }ms linear(0, 0.6796, 1.0326, 1.0275, 1.0011, 0.9981, 0.9997, 1)`,
+                    }}
+                  >
+                    {item.text}
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
+          </Container>
         </div>
       )}
 
