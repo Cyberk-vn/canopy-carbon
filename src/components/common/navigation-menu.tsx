@@ -74,7 +74,7 @@ export function NavigationMenu({
       <nav className="pt-8">
         <Container maxWidth="default" padding="default">
           {/* Mobile Menu - with logo and border */}
-          <div className="md:hidden">
+          <div className="md:hidden mx-6">
             <div
               className="flex items-stretch backdrop-blur-[1px]"
               style={{
