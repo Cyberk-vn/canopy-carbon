@@ -6,6 +6,7 @@ import {
   useSimpleMotion,
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
+import { Container } from "@/src/components/shared";
 import Image from "next/image";
 
 interface ContactFormData {
@@ -29,26 +30,30 @@ const FooterDesktop = ({
   onSubmit,
 }: FooterDesktopProps) => {
   return (
-    <section className="w-full bg-white hidden lg:block mt-50 px-80">
-      <div className="mx-auto px-4">
-        <div className="py-16 flex flex-col gap-10">
-          {/* Desktop 50/50 Layout */}
-          <div className="flex flex-row gap-8">
-            {/* Left Side (50%) - Contact Information */}
+    <section className="w-full hidden lg:block">
+      <Container maxWidth="default" className="px-[68px]">
+        <div className="py-20 flex flex-col">
+          {/* Desktop Layout - Fixed Widths with 204px Gap */}
+          <div className="flex flex-row items-start justify-between">
+            {/* Left Side - Contact Information (486px) */}
             <motion.div
-              className="w-1/2 justify-start items-start"
+              className="w-[486px] flex flex-col justify-start items-start"
               {...useSimpleMotion("footer-contact-info")}
               {...SIMPLE_ANIMATIONS.fadeInLeft}
             >
               {/* Header Title */}
               <h2
-                className="text-[48px] font-semibold text-[#3B464F] mb-8 text-left leading-normal"
-                style={{ fontFamily: "Open Sans" }}
+                className="text-[48px] font-semibold text-[#3B464F] mb-8 text-left"
+                style={{
+                  fontFamily: "Open Sans",
+                  lineHeight: "1.36181640625em",
+                  fontWeight: 600,
+                }}
               >
                 Get In Touch
               </h2>
               {/* Contact Information */}
-              <div className="space-y-4 mb-8">
+              <div className="flex flex-col gap-[10px] mb-8">
                 <p
                   className="text-[20px] font-normal text-[#7D8F89] leading-normal"
                   style={{ fontFamily: "Open Sans" }}
@@ -70,11 +75,11 @@ const FooterDesktop = ({
               </div>
 
               {/* Social Icons - PNG images for desktop */}
-              <div className="flex gap-3 justify-start">
+              <div className="flex gap-3 justify-start items-center">
                 {/* Desktop Facebook PNG */}
                 <div className="w-9 h-9 flex items-center justify-center">
                   <Image
-                    src="/assets/desktop/home/facebook-logo.png"
+                    src="/assets/icon/facebook.svg"
                     alt="Facebook"
                     width={36}
                     height={36}
@@ -85,7 +90,7 @@ const FooterDesktop = ({
                 {/* Desktop Twitter PNG */}
                 <div className="w-9 h-9 flex items-center justify-center">
                   <Image
-                    src="/assets/desktop/home/twitter-logo.png"
+                    src="/assets/icon/twitter.svg"
                     alt="Twitter"
                     width={36}
                     height={36}
@@ -96,7 +101,7 @@ const FooterDesktop = ({
                 {/* Desktop LinkedIn PNG */}
                 <div className="w-9 h-9 flex items-center justify-center">
                   <Image
-                    src="/assets/desktop/home/linkedin-logo.png"
+                    src="/assets/icon/linked-in.svg"
                     alt="LinkedIn"
                     width={36}
                     height={36}
@@ -107,7 +112,7 @@ const FooterDesktop = ({
                 {/* Desktop Instagram PNG */}
                 <div className="w-9 h-9 flex items-center justify-center">
                   <Image
-                    src="/assets/desktop/home/instagram-logo.png"
+                    src="/assets/icon/instagram.svg"
                     alt="Instagram"
                     width={36}
                     height={36}
@@ -117,72 +122,138 @@ const FooterDesktop = ({
               </div>
             </motion.div>
 
-            {/* Right Side (50%) - Contact Form */}
+            {/* Right Side - Contact Form (510px) */}
             <motion.div
-              className="w-1/3"
+              className="w-[510px]"
               {...useSimpleMotion("footer-contact-form")}
               {...SIMPLE_ANIMATIONS.fadeInRight}
             >
-              <form onSubmit={onSubmit} className="space-y-6">
-                {/* Name and Subject inputs - horizontal row with 12px gap */}
-                <div className="flex flex-row gap-3">
-                  <div className="flex-1">
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Name"
-                      value={formData.name}
-                      onChange={onInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-base"
-                      style={{ fontFamily: "Open Sans", fontWeight: "600" }}
-                      required
-                    />
-                  </div>
-
-                  <div className="flex-1">
-                    <input
-                      type="text"
-                      name="subject"
-                      placeholder="Subject"
-                      value={formData.subject}
-                      onChange={onInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-base"
-                      style={{ fontFamily: "Open Sans", fontWeight: "600" }}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div>
+              <form onSubmit={onSubmit} className="flex flex-col gap-4">
+                {/* Name Input Field */}
+                <div className="flex flex-col gap-2">
+                  <label
+                    className="text-[16px] font-normal text-[#6B7280]"
+                    style={{
+                      fontFamily: "Open Sans",
+                      lineHeight: "1.25em",
+                      fontWeight: 400,
+                    }}
+                  >
+                    Name
+                  </label>
                   <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
+                    type="text"
+                    name="name"
+                    placeholder="Text"
+                    value={formData.name}
                     onChange={onInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent text-base"
-                    style={{ fontFamily: "Open Sans", fontWeight: "600" }}
+                    className="w-full px-4 py-3 text-[16px] text-[rgba(209,213,219,0.8)] focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent"
+                    style={{
+                      fontFamily: "Inter",
+                      fontWeight: 400,
+                      lineHeight: "1.25em",
+                      border: "0.3px solid rgba(107, 114, 128, 0.4)",
+                    }}
                     required
                   />
                 </div>
 
-                <div>
+                {/* Subject Input Field */}
+                <div className="flex flex-col gap-2">
+                  <label
+                    className="text-[16px] font-normal text-[#6B7280]"
+                    style={{
+                      fontFamily: "Open Sans",
+                      lineHeight: "1.25em",
+                      fontWeight: 400,
+                    }}
+                  >
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    placeholder="Text"
+                    value={formData.subject}
+                    onChange={onInputChange}
+                    className="w-full px-4 py-3 text-[16px] text-[rgba(209,213,219,0.8)] focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent"
+                    style={{
+                      fontFamily: "Inter",
+                      fontWeight: 400,
+                      lineHeight: "1.25em",
+                      border: "0.3px solid rgba(107, 114, 128, 0.4)",
+                    }}
+                    required
+                  />
+                </div>
+
+                {/* Email Input Field */}
+                <div className="flex flex-col gap-2">
+                  <label
+                    className="text-[16px] font-normal text-[#6B7280]"
+                    style={{
+                      fontFamily: "Open Sans",
+                      lineHeight: "1.25em",
+                      fontWeight: 400,
+                    }}
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Text"
+                    value={formData.email}
+                    onChange={onInputChange}
+                    className="w-full px-4 py-3 text-[16px] text-[rgba(209,213,219,0.8)] focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent"
+                    style={{
+                      fontFamily: "Inter",
+                      fontWeight: 400,
+                      lineHeight: "1.25em",
+                      border: "0.3px solid rgba(107, 114, 128, 0.4)",
+                    }}
+                    required
+                  />
+                </div>
+
+                {/* Message Input Field */}
+                <div className="flex flex-col gap-2">
+                  <label
+                    className="text-[16px] font-normal text-[#6B7280]"
+                    style={{
+                      fontFamily: "Open Sans",
+                      lineHeight: "1.25em",
+                      fontWeight: 400,
+                    }}
+                  >
+                    Message
+                  </label>
                   <textarea
                     name="message"
-                    placeholder="Message"
+                    placeholder="Text"
                     value={formData.message}
                     onChange={onInputChange}
-                    rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent resize-vertical text-base"
-                    style={{ fontFamily: "Open Sans", fontWeight: "600" }}
+                    rows={2}
+                    className="w-full px-4 py-3 text-[16px] text-[rgba(209,213,219,0.8)] focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent resize-vertical"
+                    style={{
+                      fontFamily: "Inter",
+                      fontWeight: 400,
+                      lineHeight: "1.25em",
+                      border: "0.3px solid rgba(107, 114, 128, 0.4)",
+                    }}
                     required
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="bg-[#7D8F89] text-white px-8 py-3 rounded-md hover:bg-[#6B7C75] transition-colors duration-200 font-medium w-full text-base"
-                  style={{ fontFamily: "Open Sans", fontWeight: "600" }}
+                  className="bg-[#7D8F89] text-white w-full h-[44px] hover:bg-[#6B7C75] transition-colors duration-200 flex items-center justify-center"
+                  style={{
+                    fontFamily: "Open Sans",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "1.5em",
+                  }}
                 >
                   Send
                 </button>
@@ -190,7 +261,7 @@ const FooterDesktop = ({
             </motion.div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

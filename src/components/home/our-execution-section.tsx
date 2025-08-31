@@ -9,6 +9,7 @@ import {
   OurExecutionSectionProps,
 } from "@/src/types/execution";
 import { useExecutionSwipe } from "@/src/hooks/execution/use-execution-swipe";
+import { Container } from "@/src/components/shared";
 
 // Desktop execution items (new grid layout images)
 const desktopExecutionItems: ExecutionItem[] = [
@@ -197,10 +198,10 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
       onFocus={handleFocus}
       onBlur={handleBlur}
     >
-      <div className="w-full px-6 md:px-16 mt-6">
+      <Container maxWidth="default" className="mt-6 px-[68px]">
         {/* Section Title */}
         <motion.div
-          className="text-center lg:mb-20"
+          className="text-center lg:mb-[64px]"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{
@@ -210,7 +211,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
           }}
         >
           <h2
-            className="text-[20px] font-light text-[#2E2F2D]"
+            className="text-[32px] font-light text-[#2E2F2D]"
             style={{ fontFamily: "Open Sans", lineHeight: "30px" }}
           >
             Our Execution Ethos
@@ -219,72 +220,60 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
 
         {/* Desktop Layout - 4 Cards Grid */}
         <div className="hidden lg:block">
-          <div>
-            <div
-              className="grid"
-              style={{ gridTemplateColumns: "12% 80% 10%" }}
-            >
-              {/* Left spacer*/}
-              <div></div>
+          <Container maxWidth="default" padding="none">
+            <div>
+              <div className="grid grid-cols-4 gap-6 w-full">
+                {desktopExecutionItems.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    className="flex flex-col items-center"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={
+                      isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+                    }
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.15,
+                      ease: "easeOut",
+                    }}
+                  >
+                    {/* Image Container */}
+                    <div className="relative mb-[31px]">
+                      <Image
+                        src={item.imageSrc}
+                        alt={item.altText}
+                        width={337}
+                        height={577}
+                        className="object-cover shadow-lg w-full h-auto aspect-[337/577]"
+                        priority={index < 2}
+                      />
+                    </div>
 
-              {/* Content area */}
-              <div className="flex justify-start">
-                <div className="grid grid-cols-4 gap-6 w-full">
-                  {desktopExecutionItems.map((item, index) => (
-                    <motion.div
-                      key={item.id}
-                      className="flex flex-col items-center"
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={
-                        isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
-                      }
-                      transition={{
-                        duration: 0.6,
-                        delay: index * 0.15,
-                        ease: "easeOut",
-                      }}
-                    >
-                      {/* Image Container */}
-                      <div className="relative mb-5">
-                        <Image
-                          src={item.imageSrc}
-                          alt={item.altText}
-                          width={337}
-                          height={577}
-                          className="object-cover shadow-lg w-[337px] h-[577px]"
-                          priority={index < 2}
-                        />
-                      </div>
-
-                      {/* Title */}
-                      {item.title && (
-                        <motion.h3
-                          className="text-center text-[18px] font-medium text-[#2E2F2D] leading-tight"
-                          style={{ fontFamily: "Open Sans" }}
-                          initial={{ opacity: 0, y: 15 }}
-                          animate={
-                            isInView
-                              ? { opacity: 1, y: 0 }
-                              : { opacity: 0, y: 15 }
-                          }
-                          transition={{
-                            duration: 0.95,
-                            ease: [0.25, 0.46, 0.45, 0.94],
-                            delay: index * 0.1 + 0.8,
-                          }}
-                        >
-                          {item.title}
-                        </motion.h3>
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
+                    {/* Title */}
+                    {item.title && (
+                      <motion.h3
+                        className="text-center text-[18px] font-medium text-[#2E2F2D] leading-tight"
+                        style={{ fontFamily: "Open Sans" }}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={
+                          isInView
+                            ? { opacity: 1, y: 0 }
+                            : { opacity: 0, y: 15 }
+                        }
+                        transition={{
+                          duration: 0.95,
+                          ease: [0.25, 0.46, 0.45, 0.94],
+                          delay: index * 0.1 + 0.8,
+                        }}
+                      >
+                        {item.title}
+                      </motion.h3>
+                    )}
+                  </motion.div>
+                ))}
               </div>
-
-              {/* Right spacer */}
-              <div></div>
             </div>
-          </div>
+          </Container>
         </div>
 
         {/* Mobile/Tablet Layout - Fixed 3-Card Layout with Fade Transitions */}
@@ -371,7 +360,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
             </div>
           </motion.div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

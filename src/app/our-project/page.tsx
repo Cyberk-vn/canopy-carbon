@@ -6,7 +6,11 @@ import {
   CollaborateWithUsSection,
 } from "@/src/components/our-project";
 import { FooterSection } from "@/src/components/common";
-import { getMenuItems, getLogoUrl, getMobileMenuStyles } from "@/src/lib/navigation";
+import {
+  getMenuItems,
+  getLogoUrl,
+  getMobileMenuStyles,
+} from "@/src/lib/navigation";
 
 const OurProjectPage = () => {
   const menuItems = getMenuItems();
@@ -15,7 +19,11 @@ const OurProjectPage = () => {
 
   return (
     <main>
-      <OurProjectBanner menuItems={menuItems} logoUrl={logoUrl} mobileMenuStyles={mobileMenuStyles} />
+      <OurProjectBanner
+        menuItems={menuItems}
+        logoUrl={logoUrl}
+        mobileMenuStyles={mobileMenuStyles}
+      />
       <CorePrincipleSection />
       <OurProjectBenefitSection />
       <CanopyPortfolioSection />
