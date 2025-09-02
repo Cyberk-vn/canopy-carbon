@@ -11,7 +11,7 @@ export const DevelopmentSequenceSection = memo<DevelopmentSequenceSectionProps>(
     const { isMobile } = useMobileDesktop();
 
     return (
-      <section className="w-full py-[23px] md:px-8 lg:px-16 bg-white">
+      <section className="w-full bg-white">
         {isMobile ? <MobileView data={data} /> : <DesktopView data={data} />}
       </section>
     );
