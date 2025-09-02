@@ -16,13 +16,13 @@ export function useMobileDesktop(): MobileDesktopState {
   const [state, setState] = useState<MobileDesktopState>({
     isMobile: false,
     isDesktop: true,
-    screenWidth: 1024, // Default to desktop for SSR
+    screenWidth: 1024,
   });
 
   useEffect(() => {
     const checkScreenSize = () => {
       const width = window.innerWidth;
-      const isMobile = width < 768; // md breakpoint
+      const isMobile = width < 768;
 
       setState({
         isMobile,
@@ -31,18 +31,18 @@ export function useMobileDesktop(): MobileDesktopState {
       });
     };
 
-    // Initial check
+    // Initial check immediately
     checkScreenSize();
 
-    // Listen for resize events
+    // Listen for resize events with passive option for better performance
     const handleResize = () => {
       checkScreenSize();
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize, { passive: true });
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

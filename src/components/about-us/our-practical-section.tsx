@@ -74,7 +74,7 @@ export const OurPracticalSection = () => {
     <motion.div
       {...SIMPLE_ANIMATIONS.fadeInUp}
       {...containerMotion}
-      className="w-full min-h-[975px] md:min-h-[600px]"
+      className="w-full min-h-[975px]"
     >
       {/* Background Layer - Using Grid */}
       <div className="w-full h-full grid grid-rows-1 grid-cols-1">
@@ -82,7 +82,7 @@ export const OurPracticalSection = () => {
         <div className="row-start-1 col-start-1 w-full h-full">
           <div className="w-full h-full flex flex-col md:flex-row">
             {/* Mobile Background Stack */}
-            <div className="w-full h-[975px] md:hidden flex flex-col">
+            <div className="w-full h-[975px] flex flex-col">
               <div className="h-[121px]"></div>
               <div className="flex-1 relative">
                 <Image
@@ -93,23 +93,13 @@ export const OurPracticalSection = () => {
                 />
               </div>
             </div>
-
-            {/* Desktop Background */}
-            <div className="hidden md:block w-full h-full relative">
-              <Image
-                src="/assets/about-us/our-practical-bg-image.png"
-                alt="Background"
-                fill
-                className="object-cover"
-              />
-            </div>
           </div>
         </div>
 
         {/* Content Layer - Using Flex Grid */}
         <div className="row-start-1 col-start-1 z-10 w-full h-full">
           {/* Mobile Layout - Proper CSS Grid */}
-          <div className="md:hidden w-full h-full pt-[53px]">
+          <div className="w-full h-full pt-[53px]">
             <div className="grid grid-cols-1 gap-[34px] auto-rows-max">
               {practicalCards.map((card, index) => {
                 const isRightAligned = index === 1 || index === 3;
@@ -170,55 +160,6 @@ export const OurPracticalSection = () => {
             </div>
           </div>
 
-          {/* Desktop Layout */}
-          <div className="hidden md:block py-16 px-0 md:px-16 lg:px-[120px]">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-              {practicalCards.map((card, index) => (
-                <div
-                  key={index}
-                  className={`p-6 rounded-xl transition-all duration-300 hover:transform hover:scale-105 ${
-                    index % 2 === 0
-                      ? "lg:justify-self-start"
-                      : "lg:justify-self-end"
-                  }`}
-                  style={{
-                    backgroundColor: card.backgroundColor,
-                    backdropFilter: "blur(10px)",
-                  }}
-                >
-                  {/* Card Title */}
-                  <h3
-                    className={`font-open-sans font-light text-black mb-4 ${
-                      card.titleAlignment === "right"
-                        ? "text-right"
-                        : "text-left"
-                    }`}
-                    style={{
-                      fontSize: "18px",
-                      lineHeight: "1.25em",
-                    }}
-                  >
-                    {card.title}
-                  </h3>
-
-                  {/* Card Description */}
-                  <p
-                    className={`font-open-sans font-semibold text-[#798C9B] ${
-                      card.textAlignment === "right"
-                        ? "text-right"
-                        : "text-left"
-                    }`}
-                    style={{
-                      fontSize: "14px",
-                      lineHeight: "1.6666666666666667em",
-                    }}
-                  >
-                    {card.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </motion.div>

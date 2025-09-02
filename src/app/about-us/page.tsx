@@ -1,3 +1,5 @@
+"use client";
+
 import {
   AboutUsBanner,
   OurPracticalSection,
@@ -5,6 +7,8 @@ import {
   DevelopmentSequenceSection,
   OurProjectSection,
 } from "@/src/components/about-us";
+import { AboutUsBannerDesktop } from "@/src/components/about-us/about-us-banner-desktop";
+import { OurPracticalSectionDesktop } from "@/src/components/about-us/our-practical-section-desktop";
 import { FooterSection } from "@/src/components/common";
 import {
   getMenuItems,
@@ -12,7 +16,7 @@ import {
   getMobileMenuStyles,
 } from "@/src/lib/navigation";
 
-const aboutUsPage = () => {
+const AboutUsPage = () => {
   const menuItems = getMenuItems();
   const logoUrl = getLogoUrl();
   const mobileMenuStyles = getMobileMenuStyles("about-us");
@@ -51,13 +55,34 @@ const aboutUsPage = () => {
 
   return (
     <main className="h-full flex flex-col w-full">
-      <AboutUsBanner
-        menuItems={menuItems}
-        logoUrl={logoUrl}
-        mobileMenuStyles={mobileMenuStyles}
-      />
+      {/* Render both banners and use CSS to show/hide - prevents flash */}
+      <div className="block md:hidden">
+        <AboutUsBanner
+          menuItems={menuItems}
+          logoUrl={logoUrl}
+          mobileMenuStyles={mobileMenuStyles}
+        />
+      </div>
+      <div className="hidden md:block">
+        <AboutUsBannerDesktop
+          menuItems={menuItems}
+          logoUrl={logoUrl}
+          mobileMenuStyles={mobileMenuStyles}
+        />
+      </div>
+      
+      {/* Core content sections - always visible */}
       <OurPurposeSection />
-      <OurPracticalSection />
+      
+      {/* Responsive sections - use CSS-based responsive design to prevent flash */}
+      <div className="block md:hidden">
+        <OurPracticalSection />
+      </div>
+      <div className="hidden md:block">
+        <OurPracticalSectionDesktop />
+      </div>
+      
+      {/* Common sections - always visible */}
       <DevelopmentSequenceSection data={developmentSequenceData} />
       <OurProjectSection />
       <FooterSection />
@@ -65,4 +90,4 @@ const aboutUsPage = () => {
   );
 };
 
-export default aboutUsPage;
+export default AboutUsPage;

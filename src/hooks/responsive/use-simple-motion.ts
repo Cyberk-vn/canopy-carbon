@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   useScrollAnimationActions,
@@ -14,6 +15,25 @@ export function useSimpleMotion(elementId: string, once: boolean = true) {
   const pathname = usePathname();
   const { markAnimationTriggered } = useScrollAnimationActions();
   const hasTriggered = useHasAnimationTriggered(elementId, pathname);
+  const [isClient, setIsClient] = useState(false);
+  const [forceAnimate, setForceAnimate] = useState(false);
+
+  // Handle client-side hydration
+  useEffect(() => {
+    setIsClient(true);
+    
+    // Small delay to ensure DOM is ready and layout is stable
+    const timer = setTimeout(() => {
+      // Check if we should force animate on page load (when element might already be in view)
+      if (!hasTriggered) {
+        setForceAnimate(true);
+        // Reset force animate after animations have had time to trigger
+        setTimeout(() => setForceAnimate(false), 1000);
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [hasTriggered]);
 
   const onViewportEnter = () => {
     if (once) {
@@ -21,11 +41,30 @@ export function useSimpleMotion(elementId: string, once: boolean = true) {
     }
   };
 
+  // If not client-side yet, return safe default props to avoid hydration mismatch
+  if (!isClient) {
+    return {
+      viewport: { once: false, amount: 0.1 },
+      onViewportEnter: () => {},
+      // Ensure content is always visible during hydration
+      initial: { opacity: 1 },
+      animate: { opacity: 1 },
+    };
+  }
+
   return {
-    viewport: { once, margin: "0px 0px -50px 0px" },
+    viewport: { 
+      once: once && !forceAnimate, 
+      margin: "0px 0px -50px 0px",
+      // Ensure viewport observer is more aggressive on initial load
+      amount: forceAnimate ? 0.1 : ("some" as const),
+    },
     onViewportEnter,
-    // Skip animation if already triggered
-    ...(hasTriggered && once ? {} : {}),
+    // Force initial animation if needed, otherwise use normal whileInView
+    ...(forceAnimate && !hasTriggered ? { 
+      initial: "initial", 
+      animate: "whileInView" 
+    } : {}),
   };
 }
 

@@ -31,8 +31,15 @@ export interface DescriptionSectionData {
   logoImage?: string;
 }
 
+export interface StaticLayoutData {
+  description: string;
+  buttonText: string;
+  buttonAction?: () => void;
+}
+
 export interface OurProjectSectionData {
-  carouselData: OurTeamCarouselData;
+  carouselData?: OurTeamCarouselData; // Keep for mobile compatibility
+  staticLayoutData?: StaticLayoutData; // New for desktop static layout
   descriptionData: DescriptionSectionData;
 }
 

@@ -238,87 +238,6 @@ export function AboutUsBanner({
           </div>
         </div>
 
-        {/* Desktop Layout - Completely Preserved */}
-        <div className="hidden lg:block">
-          {/* Decorative Image - Card Effect */}
-          <motion.div
-            {...SIMPLE_ANIMATIONS.scaleIn}
-            {...decorativeImageMotion}
-            className="absolute left-[108px] top-[130px] z-10"
-          >
-            <div className="card-effect decorative-card">
-              <Image
-                src="/assets/about-us/banner-child-image.png"
-                alt="Decorative Banner Element"
-                width={152}
-                height={236}
-                className="object-cover w-full h-full"
-              />
-            </div>
-          </motion.div>
-
-          {/* Mission and Vision Content */}
-          <motion.div
-            {...SIMPLE_ANIMATIONS.fadeInUp}
-            {...missionVisionMotion}
-            className="absolute top-[425px] left-0 right-0 px-[120px] pb-10 z-30"
-          >
-            <div className="flex flex-col gap-[14px] max-w-[800px]">
-              {/* Mission Section */}
-              <div className="flex flex-col gap-2">
-                <h2
-                  className="font-open-sans font-bold text-white"
-                  style={{
-                    fontSize: "21px",
-                    lineHeight: "30px",
-                    fontWeight: 700,
-                  }}
-                >
-                  Mission
-                </h2>
-                <p
-                  className="font-open-sans font-normal text-white"
-                  style={{
-                    fontSize: "12px",
-                    lineHeight: "20px",
-                    fontWeight: 400,
-                  }}
-                >
-                  To expand the global supply of high-quality carbon offsets
-                  through disciplined project execution and deep capital market
-                  expertise, with technology as a supporting enabler.
-                </p>
-              </div>
-
-              {/* Vision Section */}
-              <div className="flex flex-col gap-2">
-                <h2
-                  className="font-open-sans font-bold text-white"
-                  style={{
-                    fontSize: "21px",
-                    lineHeight: "30px",
-                    fontWeight: 700,
-                  }}
-                >
-                  Vision
-                </h2>
-                <p
-                  className="font-open-sans font-normal text-white"
-                  style={{
-                    fontSize: "12px",
-                    lineHeight: "20px",
-                    fontWeight: 400,
-                  }}
-                >
-                  To become Southeast Asia&apos;s leading nature-based solutions
-                  specialist, trusted globally for investing in, developing,
-                  operating, and delivering premium carbon offsets to both
-                  voluntary and compliance markets.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
       </div>
 
       {/* Secondary Banner Section with Smooth Transition */}
@@ -393,22 +312,6 @@ export function AboutUsBanner({
               </div>
             </div>
 
-            {/* Desktop Layout - Original design */}
-            <div className="hidden md:block">
-              <div className="text-right">
-                <h3 className="font-open-sans font-light text-[12px] text-contact-text-light">
-                  THESIS
-                </h3>
-              </div>
-              <div className="max-w-[600px] lg:max-w-[800px] mt-4">
-                <p className="font-open-sans font-bold text-[13px] leading-[20px] text-contact-text-secondary">
-                  The urgency of climate change has outpaced the global capacity
-                  to decarbonize. Without a dramatic scale-up in high-quality
-                  carbon offsets, there is little chance of meeting net-zero
-                  ambitions before breaching the carbon budget.
-                </p>
-              </div>
-            </div>
           </motion.div>
 
           {/* Statistics Cards Carousel */}
@@ -498,48 +401,6 @@ export function AboutUsBanner({
               </motion.div>
             </div>
 
-            {/* Desktop: Horizontal Scroll Cards */}
-            <div className="hidden md:block">
-              <div className="flex gap-6 overflow-x-auto overflow-y-hidden pb-4">
-                {statisticsData.map((stat, index) => (
-                  <motion.div
-                    key={stat.id}
-                    className="flex-shrink-0 bg-black/40 backdrop-blur-sm rounded-lg p-6 md:p-8 min-w-[400px] max-w-[400px] h-[250px]"
-                    style={{
-                      willChange: "opacity, transform",
-                      backfaceVisibility: "hidden",
-                    }}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: 1.5 + index * 0.1, // Base delay + stagger
-                      duration: 0.3,
-                      ease: "easeOut",
-                    }}
-                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
-                  >
-                    <div className="flex flex-col gap-4 h-full justify-between">
-                      {/* Statistics Number */}
-                      <div className="font-avenir font-black text-[48px] tracking-[-0.02em] text-contact-green flex-shrink-0">
-                        {stat.number}
-                      </div>
-
-                      <div className="flex flex-col gap-2 flex-1 justify-center">
-                        {/* Statistics Title */}
-                        <h4 className="font-open-sans font-bold text-[17px] leading-[24px] text-contact-green flex-shrink-0">
-                          {stat.title}
-                        </h4>
-
-                        {/* Statistics Description */}
-                        <p className="font-open-sans font-normal text-[13px] leading-[20px] text-white flex-1 flex items-center">
-                          {stat.description}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>

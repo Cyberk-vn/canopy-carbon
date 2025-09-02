@@ -226,7 +226,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
   const currentClimateActionCard = climateActionCards[activeClimateActionIndex];
 
   return (
-    <div className="mx-auto lg:max-w-[600px] flex flex-col gap-[26px]">
+    <div className="mx-auto lg:max-w-[600px] flex flex-col gap-[26px] py-[23px] md:px-8">
       {/* Header Section */}
       <div className="w-full flex flex-col gap-[33px]">
         {/* Top decorative lines */}
@@ -439,7 +439,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.1}
                 onDragEnd={handleClimateActionMobileSwipe}
-                className="w-full transition-transform duration-200 hover:scale-[1.01]"
+                className="w-full transition-transform duration-200 hover:scale-[1.01] overflow-hidden"
               >
                 <div className="h-full">
                   <div className="w-full h-[273px] mx-auto relative z-10">

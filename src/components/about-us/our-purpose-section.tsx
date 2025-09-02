@@ -6,6 +6,7 @@ import {
   useSimpleMotion,
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
+import { Container } from "@/src/components/shared/container";
 
 export const OurPurposeSection = () => {
   // Simple Motion animations
@@ -112,90 +113,54 @@ export const OurPurposeSection = () => {
           </motion.div>
         </div>
 
-        {/* Desktop Layout - Side by Side */}
-        <div className="hidden md:flex md:gap-8 lg:gap-12">
-          {/* Left Side with Card Effect - Desktop */}
-          <motion.div
-            {...SIMPLE_ANIMATIONS.fadeInLeft}
-            {...desktopImageMotion}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="flex-shrink-0"
+        {/* Desktop Layout*/}
+        <Container className="hidden md:block">
+          <div
+            className="flex gap-8 lg:gap-12 mb-[35px]"
+            style={{
+              marginTop: "79px",
+              height: "160px",
+              width: "714px",
+            }}
           >
-            <div className="relative w-[139px] h-[377px] lg:w-[180px] lg:h-[480px]">
-              {/* Background Rectangle */}
-              <div
-                className="absolute inset-0 lg:w-[135px] w-[104px] h-full"
-                style={{
-                  backgroundColor: "#1D1F1F",
-                }}
-              />
+            <motion.div
+              {...SIMPLE_ANIMATIONS.fadeInRight}
+              {...desktopContentMotion}
+              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+              className="flex-1 flex flex-col justify-center max-w-[714px]"
+            >
+              {/* Title Section */}
+              <div className="flex flex-col gap-[40px] max-w-[714px]">
+                {/* Main Purpose Text */}
+                <p
+                  className="font-open-sans text-[#95A4B0]"
+                  style={{
+                    fontSize: "24px",
+                    fontWeight: 600,
+                    lineHeight: "1.4em",
+                  }}
+                >
+                  Canopy Carbon was founded to address this structural supply
+                  shortfall - by delivering nature-based projects with
+                  uncompromising execution and long-term credibility.
+                </p>
 
-              {/* Decorative Image - Card Effect */}
-              <div
-                className="card-effect purpose-card absolute"
-                style={{
-                  left: "21px",
-                  top: "31px",
-                  width: "118px",
-                  height: "329px",
-                }}
-              >
-                <Image
-                  src="/assets/about-us/our-purpose-main-image.png"
-                  alt="Our Purpose"
-                  fill
-                  className="object-cover"
-                />
+                {/* Our Purpose Label */}
+                <p
+                  className="font-open-sans text-[rgba(139,147,140,0.8)]"
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: 400,
+                    lineHeight: "1.5em",
+                    height: "18px",
+                  }}
+                >
+                  - Our Purpose
+                </p>
               </div>
-            </div>
-          </motion.div>
-
-          {/* Right Side Content - Desktop */}
-          <motion.div
-            {...SIMPLE_ANIMATIONS.fadeInRight}
-            {...desktopContentMotion}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            className="flex-1 flex flex-col justify-center gap-8 max-w-[600px]"
-          >
-            {/* App Icon */}
-            <div className="w-[250px] h-[77px] relative">
-              <Image
-                src="/assets/about-us/app-icon.png"
-                alt="Canopy Carbon App Icon"
-                fill
-                className="object-contain"
-              />
-            </div>
-
-            {/* Title Section */}
-            <div className="flex flex-col gap-4 max-w-[400px]">
-              {/* Main Purpose Text */}
-              <p
-                className="font-open-sans font-semibold text-[#95A4B0]"
-                style={{
-                  fontSize: "16px",
-                  lineHeight: "1.4285714285714286em",
-                  letterSpacing: "-3%",
-                }}
-              >
-                Canopy Carbon was founded to address this structural supply
-                shortfall - by delivering nature-based projects with
-                uncompromising execution and long-term credibility.
-              </p>
-
-              {/* Our Purpose Label */}
-              <p
-                className="font-open-sans font-light text-[rgba(139,147,140,0.8)]"
-                style={{
-                  fontSize: "12px",
-                  lineHeight: "1.8em",
-                }}
-              >
-                -Our Purpose
-              </p>
-            </div>
-          </motion.div>
-        </div>
+            </motion.div>
+          </div>
+        </Container>
       </div>
 
       {/* Card Effect Styles - Updated with #1D1F1F color */}
