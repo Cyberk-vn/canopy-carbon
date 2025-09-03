@@ -18,6 +18,9 @@ interface NavigationMenuProps {
   mobileMenuStyles?: MobileMenuStyles;
   activeItem?: string;
   useWhiteMenuIcon?: boolean;
+  desktopTextColor?: string;
+  desktopMargin?: string;
+  removePadding?: boolean;
 }
 
 export function NavigationMenu({
@@ -27,11 +30,14 @@ export function NavigationMenu({
   mobileMenuStyles,
   activeItem,
   useWhiteMenuIcon = false,
+  desktopTextColor,
+  desktopMargin,
+  removePadding = false,
 }: NavigationMenuProps) {
   // Color constants for desktop navigation
   const NAVIGATION_COLORS = {
     active: "#00A5FF",
-    default: "#1A1A1A",
+    default: desktopTextColor || "#1A1A1A",
   } as const;
 
   // Default mobile menu styles (for backward compatibility)
@@ -71,7 +77,7 @@ export function NavigationMenu({
   return (
     <>
       {/* Navigation Menu */}
-      <nav className="pt-8">
+      <nav className={removePadding ? "" : "pt-8"}>
         <Container maxWidth="default" padding="default">
           {/* Mobile Menu - with logo and border */}
           <div className="md:hidden mx-6">
@@ -136,7 +142,7 @@ export function NavigationMenu({
 
           {/* Desktop Menu - with logo and border */}
           <div
-            className="hidden md:flex justify-between items-center h-12 backdrop-blur-[1px] mx-[120px]"
+            className={`hidden md:flex justify-between items-center h-12 backdrop-blur-[1px] ${desktopMargin || "mx-[120px]"}`}
             style={{
               backgroundColor: "rgba(255, 255, 255, 0)",
               border: "0.75px solid rgba(140, 140, 140, 0.3)",
