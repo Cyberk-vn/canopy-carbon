@@ -29,8 +29,8 @@ export function OurProjectBanner({
       />
 
       {/* Main Content Section */}
-      <div className="relative z-10 px-6 md:px-[120px] pb-[16px] pt-[73px] md:pt-20">
-        <div className="mx-auto md:mx-0 md:max-w-[600px] lg:max-w-[800px]">
+      <div className="relative z-10 px-6 pb-[16px] pt-[73px]">
+        <div className="mx-auto">
           <div className="flex flex-col gap-3">
             <motion.h1
               {...SIMPLE_ANIMATIONS.fadeInUp}
