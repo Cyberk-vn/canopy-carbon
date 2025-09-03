@@ -24,7 +24,7 @@ const ContactCard = ({
     >
       {/* Card Background */}
       <div
-        className="relative p-4 rounded-lg h-full"
+        className="relative p-4 h-full"
         style={{
           background:
             "linear-gradient(135deg, #FAFAFA 0%, rgba(250, 250, 250, 0.8) 100%)",
@@ -111,7 +111,7 @@ export function ContactHeroSection({ cards }: ContactCardsProps) {
       </div>
 
       {/* Contact Cards Section */}
-      <div className="relative z-20 pb-16 mt-8">
+      <div className="relative z-20 mt-8">
         <div className="mx-auto px-6">
           <div className="flex flex-col gap-3 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6">
             {cards.map((card, index) => (
@@ -132,16 +132,14 @@ export function ContactHeroSection({ cards }: ContactCardsProps) {
           transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
           className="relative mt-4 md:hidden"
         >
-          <div className="flex items-center gap-4 px-6">
-            <div className="w-10 h-10 rounded-full bg-white">
-              <Image
-                src="/assets/banner-shared-component/logo.png"
-                alt="Logo"
-                width={32}
-                height={32}
-                className="object-cover rounded-full p-1"
-              />
-            </div>
+          <div className="flex items-center px-6">
+            <Image
+              src="/assets/banner-shared-component/logo.png"
+              alt="Logo"
+              width={40}
+              height={40}
+              className="object-cover rounded-full"
+            />
 
             {/* Double Line Decorator */}
             <div className="w-[114px] h-1 relative">
