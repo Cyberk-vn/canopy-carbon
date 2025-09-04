@@ -1,19 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "motion/react";
-import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
+import FadeContent from "@/src/components/animation/fade-content";
 
 export function CanopyPortfolioSection() {
-  // Simple Motion animations
-  const containerMotion = useSimpleMotion('canopy-portfolio-container');
-  const titleMotion = useSimpleMotion('canopy-portfolio-title');
-  const subtitleMotion = useSimpleMotion('canopy-portfolio-subtitle');
-  
   return (
-    <motion.div
-      {...SIMPLE_ANIMATIONS.fadeInUp}
-      {...containerMotion}
+    <FadeContent
+      duration={600}
+      delay={0}
+      threshold={0.1}
+      easing="ease-out"
       className="relative w-full h-[400px]"
     >
       {/* Background Image */}
@@ -49,10 +45,11 @@ export function CanopyPortfolioSection() {
           }}
         >
           {/* Main Title */}
-          <motion.h2
-            {...SIMPLE_ANIMATIONS.fadeInUp}
-            {...titleMotion}
-            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+          <FadeContent
+            duration={500}
+            delay={100}
+            threshold={0.1}
+            easing="ease-out"
             className="font-open-sans font-semibold text-[#1E2E26]"
             style={{
               fontSize: "20px",
@@ -61,13 +58,14 @@ export function CanopyPortfolioSection() {
             }}
           >
             Built on research. Disciplined in thought. Precise in execution.
-          </motion.h2>
+          </FadeContent>
 
           {/* Subtitle */}
-          <motion.p
-            {...SIMPLE_ANIMATIONS.fadeInUp}
-            {...subtitleMotion}
-            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+          <FadeContent
+            duration={500}
+            delay={200}
+            threshold={0.1}
+            easing="ease-out"
             className="font-open-sans font-normal text-[#37423B]"
             style={{
               fontSize: "13px",
@@ -76,7 +74,7 @@ export function CanopyPortfolioSection() {
             }}
           >
             Contribute to our next thought piece
-          </motion.p>
+          </FadeContent>
 
           {/* Call to Action */}
           <div
@@ -91,7 +89,7 @@ export function CanopyPortfolioSection() {
           </div>
         </div>
       </div>
-    </motion.div>
+    </FadeContent>
   );
 }
 
