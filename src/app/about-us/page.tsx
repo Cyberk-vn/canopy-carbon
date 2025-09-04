@@ -55,7 +55,6 @@ const AboutUsPage = () => {
 
   return (
     <main className="h-full flex flex-col w-full">
-      {/* Render both banners and use CSS to show/hide - prevents flash */}
       <div className="block md:hidden">
         <AboutUsBanner
           menuItems={menuItems}
@@ -70,10 +69,10 @@ const AboutUsPage = () => {
           mobileMenuStyles={mobileMenuStyles}
         />
       </div>
-      
+
       {/* Core content sections - always visible */}
       <OurPurposeSection />
-      
+
       {/* Responsive sections - use CSS-based responsive design to prevent flash */}
       <div className="block md:hidden">
         <OurPracticalSection />
@@ -81,7 +80,7 @@ const AboutUsPage = () => {
       <div className="hidden md:block">
         <OurPracticalSectionDesktop />
       </div>
-      
+
       {/* Common sections - always visible */}
       <DevelopmentSequenceSection data={developmentSequenceData} />
       <OurProjectSection />

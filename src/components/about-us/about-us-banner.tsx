@@ -5,27 +5,18 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { NavigationMenu } from "@/src/components/common/navigation-menu";
 import { AboutUsBannerProps } from "@/src/types/banner";
-import {
-  useSimpleMotion,
-  SIMPLE_ANIMATIONS,
-  STATISTICS_ANIMATIONS,
-} from "@/src/hooks/responsive/use-simple-motion";
+import FadeContent from "@/src/components/animation/fade-content";
+import { STATISTICS_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
 
 // Statistics carousel timer configuration
-const STATISTICS_AUTO_SWITCH_INTERVAL = 6000;
-const STATISTICS_RESUME_DELAY = 5000;
+const STATISTICS_AUTO_SWITCH_INTERVAL = 3000;
+const STATISTICS_RESUME_DELAY = 2000;
 
 export function AboutUsBanner({
   menuItems,
   logoUrl,
   mobileMenuStyles,
 }: AboutUsBannerProps) {
-  // Simple Motion animations with persistence
-  const decorativeImageMotion = useSimpleMotion("about-decorative-image");
-  const missionVisionMotion = useSimpleMotion("about-mission-vision");
-  const thesisMotion = useSimpleMotion("about-thesis");
-  const statisticsMotion = useSimpleMotion("about-statistics");
-
   // State management for timer-based content switcher
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -155,11 +146,7 @@ export function AboutUsBanner({
         <div className="block lg:hidden absolute inset-0 z-20">
           <div className="flex flex-col pt-[140px] md:pt-[158px] px-[24px] md:px-[58px]">
             {/* Decorative Image - Mobile Flexbox */}
-            <motion.div
-              {...SIMPLE_ANIMATIONS.scaleIn}
-              {...decorativeImageMotion}
-              className="self-start"
-            >
+            <FadeContent duration={800} delay={200} className="self-start">
               <div className="card-effect decorative-card ml-6">
                 <Image
                   src="/assets/about-us/banner-child-image.png"
@@ -169,17 +156,13 @@ export function AboutUsBanner({
                   className="object-cover w-full h-full"
                 />
               </div>
-            </motion.div>
+            </FadeContent>
 
             {/* Spacing to position Mission/Vision at same location as original (425px from top) */}
             <div className="h-[59px] md:h-[31px]" />
 
             {/* Mission and Vision Content - Mobile Flexbox */}
-            <motion.div
-              {...SIMPLE_ANIMATIONS.fadeInUp}
-              {...missionVisionMotion}
-              className="w-full z-30"
-            >
+            <FadeContent duration={1000} delay={600} className="w-full z-30">
               <div className="flex flex-col gap-[14px] max-w-[390px] md:max-w-[600px]">
                 {/* Mission Section */}
                 <div className="flex flex-col gap-2">
@@ -234,10 +217,9 @@ export function AboutUsBanner({
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </FadeContent>
           </div>
         </div>
-
       </div>
 
       {/* Secondary Banner Section with Smooth Transition */}
@@ -264,9 +246,9 @@ export function AboutUsBanner({
         {/* Content */}
         <div className="relative z-20 h-full px-6 md:px-[120px] md:py-10 flex flex-col justify-start gap-[36px]">
           {/* Thesis Section */}
-          <motion.div
-            {...SIMPLE_ANIMATIONS.fadeInLeft}
-            {...thesisMotion}
+          <FadeContent
+            duration={800}
+            delay={400}
             className="flex flex-col gap-[3px] items-center md:items-start mt-4"
           >
             {/* Mobile Layout - Center aligned with decorative line */}
@@ -311,13 +293,12 @@ export function AboutUsBanner({
                 </h3>
               </div>
             </div>
-
-          </motion.div>
+          </FadeContent>
 
           {/* Statistics Cards Carousel */}
-          <motion.div
-            {...SIMPLE_ANIMATIONS.slideInUp}
-            {...statisticsMotion}
+          <FadeContent
+            duration={1000}
+            delay={800}
             className="flex flex-col gap-6 md:gap-8"
           >
             {/* Mobile: Enhanced Card with Touch Interactions */}
@@ -400,8 +381,7 @@ export function AboutUsBanner({
                 </div>
               </motion.div>
             </div>
-
-          </motion.div>
+          </FadeContent>
         </div>
       </div>
 
