@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import {
   ContactHeroSection,
+  ContactHeroSectionDesktop,
   ContactFooterSection,
 } from "@/src/components/contact-us";
 
@@ -60,10 +61,20 @@ const ContactUsPage = () => {
   ];
 
   return (
-    <main className="min-h-screen w-full">
-      <ContactHeroSection cards={contactUsCards} />
-      <ContactFooterSection />
-    </main>
+    <div className="min-h-screen bg-white">
+      {/* Render both hero sections and use CSS to show/hide - prevents flash */}
+      <div className="block md:hidden">
+        <ContactHeroSection cards={contactUsCards} />
+      </div>
+      <div className="hidden md:block">
+        <ContactHeroSectionDesktop cards={contactUsCards} />
+      </div>
+
+      {/* Responsive Footer Section */}
+      <div className="block md:hidden">
+        <ContactFooterSection />
+      </div>
+    </div>
   );
 };
 

@@ -76,7 +76,18 @@ const config: Config = {
         // Contact Us Banner colors
         "contact-green": "#9DAE83",
         "contact-text-light": "#D8DBD6",
-        "contact-text-secondary": "#DDE2E6",
+        "contact-text-banner-secondary": "#DDE2E6",
+        // Contact Desktop Figma-specific colors
+        "contact-form-bg": "rgba(226, 226, 226, 0.8)",
+        "contact-card-bg": "rgba(250, 250, 250, 0.6)",
+        "contact-card-inner": "rgba(0, 0, 0, 0.01)",
+        "contact-input-border": "rgba(107, 114, 128, 0.4)",
+        "contact-placeholder": "rgba(209, 213, 219, 0.8)",
+        "contact-button": "#EAE7DF",
+        "contact-text-primary": "#121C17",
+        "contact-text-secondary": "#6C6C6C",
+        "contact-text-button": "#3B464F",
+        "contact-label": "#0D1117",
       },
       borderRadius: {
         lg: "var(--radius)",
