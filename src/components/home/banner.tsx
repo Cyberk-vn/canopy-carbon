@@ -234,8 +234,11 @@ export function Banner({
         </div>
       </div>
 
+      {/* White Background Overlay - First 604px from top */}
+      <div className="hidden lg:block absolute top-[604px] left-0 right-0 h-[566px] bg-[#FCFCFC] z-0"></div>
+
       {/* Desktop Layout - Grid Based */}
-      <div className="hidden lg:block absolute inset-0 z-0">
+      <div className="hidden lg:block absolute inset-0 z-10">
         <Container maxWidth="default" padding="default" className="h-full">
           <div>
             <div

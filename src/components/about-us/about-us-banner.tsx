@@ -405,10 +405,6 @@ export function AboutUsBanner({
           position: relative;
         }
 
-        .decorative-card:hover {
-          animation: glitch 0.3s infinite;
-        }
-
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {
           .card-effect {

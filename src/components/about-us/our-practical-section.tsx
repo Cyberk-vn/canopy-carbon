@@ -135,9 +135,13 @@ export const OurPracticalSection = () => {
 
                     {/* Card Background with Content */}
                     <div
-                      className="rounded-[10px] pt-[13px] pr-[28px] pb-[47px] max-h-[121px] h-[121px] min-h-[121px] flex items-start"
+                      className="pt-[13px] pr-[28px] pb-[47px] max-h-[121px] h-[121px] min-h-[121px] flex items-start"
                       style={{
                         backgroundColor: card.backgroundColor,
+                        width: "371px",
+                        borderRadius: isRightAligned 
+                          ? "10px 0 0 10px" // top-left and bottom-left 10px
+                          : "0 10px 10px 0", // top-right and bottom-right 10px
                       }}
                     >
                       <p
@@ -159,7 +163,6 @@ export const OurPracticalSection = () => {
               })}
             </div>
           </div>
-
         </div>
       </div>
     </motion.div>
