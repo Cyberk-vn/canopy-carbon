@@ -28,7 +28,7 @@ const MapSection = () => {
           <div
             className="grid w-full overflow-hidden"
             style={{
-              gridTemplateColumns: "972px 1fr",
+              gridTemplateColumns: "885px 1fr",
               gridTemplateRows: "90px auto 48px auto 1fr",
               minHeight: "816px",
             }}

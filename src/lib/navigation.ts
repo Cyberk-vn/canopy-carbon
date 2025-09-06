@@ -12,9 +12,9 @@ export const NAVIGATION_CONFIG = {
   menuItems: [
     { text: "Home", url: "/" },
     { text: "About Us", url: "/about-us" },
-    { text: "Our Project", url: "/our-project" },
+    { text: "Our Projects", url: "/our-project" },
     { text: "Canopy Insights", url: "/canopy-insight" },
-    { text: "Contact Us", url: "/contact-us" },
+    { text: "Contact", url: "/contact-us" },
   ] as MenuItem[],
 };
 
