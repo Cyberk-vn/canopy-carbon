@@ -4,48 +4,34 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { NavigationMenu } from "../common";
 import { InsightSection } from "./insight-section";
-import { getMenuItems, getLogoUrl, getMobileMenuStyles } from "@/src/lib/navigation";
-import { useSimpleMotion, SIMPLE_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
+import {
+  getMenuItems,
+  getLogoUrl,
+  getMobileMenuStyles,
+} from "@/src/lib/navigation";
+import {
+  useSimpleMotion,
+  SIMPLE_ANIMATIONS,
+} from "@/src/hooks/responsive/use-simple-motion";
 
 export function CanopyInsightBanner() {
   // Simple Motion animations
-  const decorativeImageMotion = useSimpleMotion('canopy-insight-decorative-image');
-  const contentMotion = useSimpleMotion('canopy-insight-content');
-  
+  const contentMotion = useSimpleMotion("canopy-insight-content");
+
   const menuItems = getMenuItems();
   const mobileMenuStyles = getMobileMenuStyles("canopy-insight");
 
   return (
-    <div className="w-full min-h-[1183px] mx-auto">
+    <div className="w-full min-h-[927px] mx-auto">
       {/* Background Image Section with CSS background and overlay */}
       <div
         className="relative w-full min-h-[927px] bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/assets/canopy-insight/banner-background-image.png')`,
+          backgroundImage: `url('/assets/canopy-insight/canopy-insights-banner-background-image-mobile.svg')`,
         }}
       >
-        {/* Background Overlay - using CSS instead of absolute positioning */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, 1) 100%)",
-          }}
-        />
-
-        {/* Additional Banner Background Overlay - starts from Decorative Lines Container */}
-        <div
-          className="absolute inset-x-0 bottom-0 pointer-events-none"
-          style={{
-            height: "70%",
-            background:
-              "linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 1) 100%)",
-            zIndex: 5,
-          }}
-        />
-
         {/* Navigation Menu */}
-        <div className="relative z-20">
+        <div className="relative z-20 mt-[3px]">
           <NavigationMenu
             menuItems={menuItems}
             logoUrl={getLogoUrl()}
@@ -55,52 +41,42 @@ export function CanopyInsightBanner() {
           />
         </div>
 
-        {/* Content Container */}
-        <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between px-6 lg:px-[92px] pt-[120px] pb-[20px]">
-          {/* Decorative Image with Card Effect */}
-          <motion.div
-            {...SIMPLE_ANIMATIONS.scaleIn}
-            {...decorativeImageMotion}
-            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            className="relative w-[206px] h-[259px] mb-8 lg:mb-0"
-          >
-            {/* Effect background */}
-            <div
-              className="absolute left-0 top-[23px] w-[182px] h-[236px]"
-              style={{
-                backgroundColor: "#232A26",
-              }}
-            />
-
-            {/* Banner decorator image with card effect */}
-            <div className="card-effect decorative-card absolute left-[22px] top-0 w-[184px] h-[236px]">
-              <Image
-                src="/assets/canopy-insight/banner-decorator-image.png"
-                alt="Banner Decorator"
-                width={184}
-                height={236}
-                className="object-cover w-full h-full"
-              />
-            </div>
-          </motion.div>
-
-          {/* Spacer for layout balance */}
-          <div className="flex-1" />
-        </div>
+        {/* Background Overlay - positioned at 422px from top */}
+        <div
+          className="absolute inset-x-0 bottom-0 pointer-events-none z-5"
+          style={{
+            top: "422px",
+            background:
+              "linear-gradient(360deg, #FFFFFF 0%, #FFFFFF 55.29%, rgba(255, 255, 255, 0) 100%)",
+          }}
+        />
 
         {/* Content Section with improved layout */}
         <motion.div
           {...SIMPLE_ANIMATIONS.fadeInUp}
           {...contentMotion}
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-          className="relative z-10 px-6 lg:py-12 justify-center items-center"
+          className="absolute z-10 justify-center items-center"
+          style={{ top: "494px" }}
         >
           {/* Title and Description Container */}
-          <div className="max-w-[342px] mb-12">
-            <h1 className="font-sans font-semibold text-[#2A4035] text-[30px] leading-[38px] mb-[13px]">
+          <div className="max-w-[342px] w-[342px] mb-[39px] mx-6">
+            <h1
+              className="font-open-sans font-semibold text-[#2A4035] text-[30px] leading-[38px] mb-[13px]"
+              style={{
+                fontWeight: 600,
+                lineHeight: "38px",
+              }}
+            >
               Canopy Insights
             </h1>
-            <p className="font-sans text-[#777777] text-[13px] leading-[19px]">
+            <p
+              className="font-open-sans text-[#777777] text-[13px] leading-[19px]"
+              style={{
+                fontWeight: 400,
+                lineHeight: "19px",
+              }}
+            >
               At Canopy, every strategic decision is grounded in rigorous
               analysis. Canopy Insights is our dedicated platform for publishing
               thought leadership, field research, and market intelligence.
@@ -108,7 +84,7 @@ export function CanopyInsightBanner() {
           </div>
 
           {/* Decorative Lines Container */}
-          <div className="relative flex justify-between max-w-[364px] h-[48px]">
+          <div className="relative mx-6 flex justify-between h-[48px]">
             {/* Left Decorator */}
             <div className="relative w-[92px] h-[5px]">
               <div className="absolute top-0 left-0 w-full border-t-2 border-[rgba(172,184,194,0.4)]" />
@@ -121,35 +97,6 @@ export function CanopyInsightBanner() {
               <div className="absolute top-0 left-[23.57px] w-[45.32px] border-t border-[rgba(172,184,194,0.4)]" />
             </div>
           </div>
-
-          {/* Insight Section 1 - Using common InsightSection component */}
-          <InsightSection
-            title="Beyond Emissions Reduction: The Strategic Case for Carbon Offsets"
-            description="This paper reframes carbon offsets not just as a compensatory tool, but as a strategic enabler in global decarbonisation. It shows how offsets support hard-to-abate sectors, channel finance to climate-positive projects, and bridge the gap while emissions reductions align with net zero. When designed with integrity, carbon offsets are not a concession—but a climate necessity."
-            images={[
-              {
-                src: "/assets/canopy-insight/need-for-offset-1.png",
-                alt: "Carbon Offsets Book 1",
-              },
-              {
-                src: "/assets/canopy-insight/need-for-offset-2.png",
-                alt: "Carbon Offsets Book 2",
-              },
-              {
-                src: "/assets/canopy-insight/need-for-offset-3.png",
-                alt: "Carbon Offsets Book 3",
-              },
-              {
-                src: "/assets/canopy-insight/need-for-offset-4.png",
-                alt: "Carbon Offsets Book 4",
-              },
-              {
-                src: "/assets/canopy-insight/need-for-offset-5.png",
-                alt: "Carbon Offsets Book 5",
-              },
-            ]}
-            isEmbedded={true}
-          />
         </motion.div>
       </div>
     </div>

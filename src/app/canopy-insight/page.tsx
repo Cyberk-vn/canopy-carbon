@@ -22,32 +22,16 @@ const CanopyInsightPage = () => {
       <div className="hidden md:block">
         <CanopyInsightBannerDesktop />
       </div>
-      
-      {/* Responsive Insight Section */}
-      <div className="block md:hidden">
+
+      {/* Responsive Insight Section 1 - Overlapping banner by 241px */}
+      <div className="block md:hidden relative -mt-[221px] z-20">
         <InsightSection
-          title="The Need for Offsets"
-          description="An in-depth exploration of why the demand for carbon offset has gone through several phases."
+          title="Beyond Emissions Reduction: The Strategic Case for Carbon Offsets"
+          description="This paper reframes carbon offsets not just as a compensatory tool, but as a strategic enabler in global decarbonisation. It shows how offsets support hard-to-abate sectors, channel finance to climate-positive projects, and bridge the gap while emissions reductions align with net zero. When designed with integrity, carbon offsets are not a concession—but a climate necessity."
           images={[
             {
-              src: "/assets/canopy-insight/need-for-offset-1.png",
-              alt: "Need for Offset 1",
-            },
-            {
-              src: "/assets/canopy-insight/need-for-offset-2.png",
-              alt: "Need for Offset 2",
-            },
-            {
-              src: "/assets/canopy-insight/need-for-offset-3.png",
-              alt: "Need for Offset 3",
-            },
-            {
-              src: "/assets/canopy-insight/need-for-offset-4.png",
-              alt: "Need for Offset 4",
-            },
-            {
-              src: "/assets/canopy-insight/need-for-offset-5.png",
-              alt: "Need for Offset 5",
+              src: "/assets/canopy-insight/bayond-emission-card-mobile-1.png",
+              alt: "Beyond Emissions Card Mobile",
             },
           ]}
           showDecorators={true}
@@ -60,7 +44,7 @@ const CanopyInsightPage = () => {
           showDecorators={true}
         />
       </div>
-      
+
       {/* Responsive Insight Section 2 */}
       <div className="block md:hidden">
         <InsightSection2 />
@@ -68,7 +52,7 @@ const CanopyInsightPage = () => {
       <div className="hidden md:block">
         <InsightSection2Desktop />
       </div>
-      
+
       {/* Responsive Insight Section 3 */}
       <div className="block md:hidden">
         <InsightSection3 />
@@ -76,7 +60,7 @@ const CanopyInsightPage = () => {
       <div className="hidden md:block">
         <InsightSection3Desktop />
       </div>
-      
+
       {/* Responsive Portfolio Section */}
       <div className="block md:hidden">
         <CanopyPortfolioSection />
