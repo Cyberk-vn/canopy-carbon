@@ -6,7 +6,7 @@ import {
 } from "@/src/components/contact-us";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Canopy Carbon",
+  title: "Contact | Canopy Carbon",
   description:
     "Connect with Canopy Carbon for high-integrity nature-based solutions. Partner with us as credit offtakers, capital allocators, researchers, or project proponents.",
   keywords: [
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "partnerships",
   ],
   openGraph: {
-    title: "Contact Us | Canopy Carbon",
+    title: "Contact | Canopy Carbon",
     description:
       "Connect with Canopy Carbon for high-integrity nature-based solutions. Partner with us as credit offtakers, capital allocators, researchers, or project proponents.",
     type: "website",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Us | Canopy Carbon",
+    title: "Contact | Canopy Carbon",
     description:
       "Connect with Canopy Carbon for high-integrity nature-based solutions. Partner with us as credit offtakers, capital allocators, researchers, or project proponents.",
   },

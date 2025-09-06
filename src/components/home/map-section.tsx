@@ -28,7 +28,7 @@ const MapSection = () => {
           <div
             className="grid w-full overflow-hidden"
             style={{
-              gridTemplateColumns: "972px 1fr",
+              gridTemplateColumns: "925px 1fr",
               gridTemplateRows: "90px auto 48px auto 1fr",
               minHeight: "816px",
             }}
@@ -44,11 +44,11 @@ const MapSection = () => {
               {...mapImageMotion}
             >
               <Image
-                src="/assets/map-image.svg"
+                src="/assets/desktop/home/map-desktop.svg"
                 alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
                 width={972}
                 height={495}
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain lg:bg-white"
                 priority
               />
             </motion.div>

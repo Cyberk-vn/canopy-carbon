@@ -24,7 +24,7 @@ export function OurProjectBanner({
         logoUrl={logoUrl}
         mobileMenuIconColor="#F1F5F9"
         mobileMenuStyles={mobileMenuStyles}
-        activeItem="Our Project"
+        activeItem="Our Projects"
         useWhiteMenuIcon={true}
       />
 

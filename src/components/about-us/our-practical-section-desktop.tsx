@@ -103,7 +103,7 @@ export const OurPracticalSectionDesktop = () => {
               delay={index * 150}
               threshold={0.1}
               initialOpacity={0}
-              className="absolute p-6 transition-all duration-300 hover:transform hover:scale-105"
+              className="absolute transition-all duration-300 hover:transform hover:scale-105"
               style={{
                 left: `${card.position.x}px`,
                 top: `${card.position.y}px`,

@@ -61,7 +61,7 @@ export function ContactHeroSection({ cards }: ContactCardsProps) {
     { text: "About Us", url: "/about-us" },
     { text: "Our projects", url: "/our-project" },
     { text: "Canopy insights", url: "/canopy-insight" },
-    { text: "Contact Us", url: "/contact-us" },
+    { text: "Contact", url: "/contact-us" },
   ];
 
   return (
@@ -106,7 +106,7 @@ export function ContactHeroSection({ cards }: ContactCardsProps) {
           menuItems={menuItems}
           logoUrl="/assets/banner-shared-component/logo.png"
           mobileMenuIconColor="#EDEDED"
-          activeItem="Contact Us"
+          activeItem="Contact"
         />
       </div>
 

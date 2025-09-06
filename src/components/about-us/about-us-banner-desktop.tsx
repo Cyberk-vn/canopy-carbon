@@ -1,59 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "motion/react";
 import { NavigationMenu } from "@/src/components/common/navigation-menu";
 import { AboutUsBannerProps } from "@/src/types/banner";
-import {
-  useSimpleMotion,
-  SIMPLE_ANIMATIONS,
-} from "@/src/hooks/responsive/use-simple-motion";
 import { Container } from "../shared";
+import FadeContent from "../animation/fade-content";
 
 export function AboutUsBannerDesktop({
   menuItems,
   logoUrl,
   mobileMenuStyles,
 }: AboutUsBannerProps) {
-  // Simple Motion animations with persistence
-  const decorativeImageMotion = useSimpleMotion(
-    "about-desktop-decorative-image"
-  );
-  const missionVisionMotion = useSimpleMotion("about-desktop-mission-vision");
-  const thesisMotion = useSimpleMotion("about-desktop-thesis");
-  const statisticsMotion = useSimpleMotion("about-desktop-statistics");
-
-  // Statistics data for desktop
-  const statisticsData = [
-    {
-      id: 1,
-      number: "> 70%",
-      title: "Global Carbon Budget Utilised",
-      description:
-        "Over 70% of our global CO₂ budget has already been used as of 2024 — around 2.65 trillion tonnes out of the 3.67 trillion tCO₂e budget believed to limit warming to safer thresholds.",
-    },
-    {
-      id: 2,
-      number: "42%",
-      title: "Emissions Rate Reduction Needed",
-      description:
-        "To achieve 1.5°C targets, the IPCC recommends that global GHG emissions must fall by at least 42% from 2019 levels by 2030. Instead, global annual emissions were ~3.6% higher in 2024.",
-    },
-    {
-      id: 3,
-      number: "5-10x",
-      title: "Scale Up in Human-Led Removals",
-      description:
-        "Anthropogenic CO₂ removals amount to ~ 2 GtCO₂ per year today. A multifold scale-up is needed this century to meet climate targets and balance residual emissions.",
-    },
-    {
-      id: 4,
-      number: "2042-45",
-      title: "Complete Budget Depletion",
-      description:
-        "At current rates, the global CO₂ budget could be fully depleted by 2042, unless urgent action is taken to scale removals and cut emissions dramatically.",
-    },
-  ];
   return (
     <Container maxWidth="default" className="max-w-[1440px]">
       <div className="relative w-[1440px]">
@@ -111,9 +68,9 @@ export function AboutUsBannerDesktop({
             {/* Left padding */}
             <div style={{ gridColumn: "1", gridRow: "3" }}></div>
             {/* Decorative Image - Card Effect */}
-            <motion.div
-              {...SIMPLE_ANIMATIONS.scaleIn}
-              {...decorativeImageMotion}
+            <FadeContent
+              duration={600}
+              delay={200}
               className="ml-[76px]"
               style={{ gridColumn: "1/2", gridRow: "3" }}
             >
@@ -136,12 +93,12 @@ export function AboutUsBannerDesktop({
                   />
                 </div>
               </div>
-            </motion.div>
+            </FadeContent>
 
             {/* Mission and Vision Content */}
-            <motion.div
-              {...SIMPLE_ANIMATIONS.fadeInUp}
-              {...missionVisionMotion}
+            <FadeContent
+              duration={800}
+              delay={400}
               style={{
                 gridColumn: "4",
                 gridRow: "3",
@@ -202,7 +159,7 @@ export function AboutUsBannerDesktop({
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </FadeContent>
           </div>
         </div>
 
@@ -233,11 +190,11 @@ export function AboutUsBannerDesktop({
             className="relative z-30 h-[640px] flex justify-center mx-[67px] pt-[56px] pb-[116px]"
             style={{ background: "#0000004D" }}
           >
-            <div className="w-[1217px] flex flex-col gap-[60px] pl-[49px] pr-[40px] pt-[43px] pb-[51px]">
+            <div className="w-[1217px] flex flex-col gap-[60px] pr-[40px] pt-[43px] pb-[51px]">
               {/* Thesis Section */}
-              <motion.div
-                {...SIMPLE_ANIMATIONS.fadeInLeft}
-                {...thesisMotion}
+              <FadeContent
+                duration={1000}
+                delay={600}
                 className="flex items-center justify-center gap-[24px] w-[1200px] mx-auto"
               >
                 {/* Decorative Line */}
@@ -269,70 +226,223 @@ export function AboutUsBannerDesktop({
                     - Our Thesis Statement
                   </p>
                 </div>
-              </motion.div>
+              </FadeContent>
 
               {/* Statistics Cards Grid */}
-              <motion.div
-                {...SIMPLE_ANIMATIONS.slideInUp}
-                {...statisticsMotion}
+              <FadeContent
+                duration={1200}
+                delay={800}
                 className="grid grid-cols-4 gap-[24px] w-full"
               >
-                {statisticsData.map((stat, index) => (
-                  <motion.div
-                    key={stat.id}
-                    className="flex flex-col items-center gap-[10px] px-[16px] py-[36px]"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: 1.5 + index * 0.1,
-                      duration: 0.3,
-                      ease: "easeOut",
-                    }}
-                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
-                  >
-                    <div className="flex flex-col items-center gap-[16px] w-full">
-                      {/* Statistics Number */}
-                      <div
-                        className="font-avenir text-[#9DAE83] text-center"
+                {/* Statistics Card 1 */}
+                <FadeContent
+                  duration={300}
+                  delay={1000}
+                  className="flex flex-col items-center gap-[10px] px-[16px] py-[36px]"
+                  style={{ width: "286px", height: "306px" }}
+                >
+                  <div className="flex flex-col items-center gap-[16px] w-full">
+                    {/* Statistics Number */}
+                    <div
+                      className="font-avenir text-[#9DAE83] text-center"
+                      style={{
+                        fontSize: "48px",
+                        lineHeight: "44px",
+                        letterSpacing: "-2%",
+                        fontWeight: 800,
+                      }}
+                    >
+                      &gt; 70%
+                    </div>
+
+                    <div className="flex flex-col items-center gap-[6px] w-full">
+                      {/* Statistics Title */}
+                      <h4
+                        className="font-open-sans font-bold text-[#9DAE83] text-center"
                         style={{
-                          fontSize: "48px",
-                          lineHeight: "44px",
-                          letterSpacing: "-0.02em",
-                          fontWeight: 800,
+                          fontSize: "17px",
+                          lineHeight: "24px",
+                          fontWeight: 700,
                         }}
                       >
-                        {stat.number}
-                      </div>
+                        Global Carbon Budget Utilised
+                      </h4>
 
-                      <div className="flex flex-col items-center gap-[6px] w-full">
-                        {/* Statistics Title */}
-                        <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
-                          style={{
-                            fontSize: "17px",
-                            lineHeight: "24px",
-                            fontWeight: 700,
-                          }}
-                        >
-                          {stat.title}
-                        </h4>
-
-                        {/* Statistics Description */}
-                        <p
-                          className="font-open-sans font-normal text-white text-center"
-                          style={{
-                            fontSize: "12px",
-                            lineHeight: "20px",
-                            fontWeight: 400,
-                          }}
-                        >
-                          {stat.description}
-                        </p>
-                      </div>
+                      {/* Statistics Description */}
+                      <p
+                        className="font-open-sans font-normal text-white text-center"
+                        style={{
+                          fontSize: "12px",
+                          lineHeight: "20px",
+                          fontWeight: 400,
+                        }}
+                      >
+                        Over 70% of our global CO₂ budget has already been used
+                        as of 2024 — around 2.65 trillion tonnes out of the 3.67
+                        trillion tCO₂e budget believed to limit warming to safer
+                        thresholds.
+                      </p>
                     </div>
-                  </motion.div>
-                ))}
-              </motion.div>
+                  </div>
+                </FadeContent>
+
+                {/* Statistics Card 2 */}
+                <FadeContent
+                  duration={300}
+                  delay={1100}
+                  className="flex flex-col items-center gap-[10px] px-[16px] py-[36px]"
+                  style={{ width: "286px", height: "306px" }}
+                >
+                  <div className="flex flex-col items-center gap-[16px] w-full">
+                    {/* Statistics Number */}
+                    <div
+                      className="font-avenir text-[#9DAE83] text-center"
+                      style={{
+                        fontSize: "48px",
+                        lineHeight: "44px",
+                        letterSpacing: "-2%",
+                        fontWeight: 800,
+                      }}
+                    >
+                      42%
+                    </div>
+
+                    <div className="flex flex-col items-center gap-[6px] w-full">
+                      {/* Statistics Title */}
+                      <h4
+                        className="font-open-sans font-bold text-[#9DAE83] text-center"
+                        style={{
+                          fontSize: "17px",
+                          lineHeight: "24px",
+                          fontWeight: 700,
+                        }}
+                      >
+                        Emissions Rate Reduction Needed
+                      </h4>
+
+                      {/* Statistics Description */}
+                      <p
+                        className="font-open-sans font-normal text-white text-center"
+                        style={{
+                          fontSize: "12px",
+                          lineHeight: "20px",
+                          fontWeight: 400,
+                        }}
+                      >
+                        To achieve 1.5°C targets, the IPCC recommends that
+                        global GHG emissions must fall by at least 42% from 2019
+                        levels by 2030. Instead, global annual emissions were
+                        ~3.6% higher in 2024.
+                      </p>
+                    </div>
+                  </div>
+                </FadeContent>
+
+                {/* Statistics Card 3 */}
+                <FadeContent
+                  duration={300}
+                  delay={1200}
+                  className="flex flex-col items-center gap-[10px] px-[16px] py-[36px]"
+                  style={{ width: "286px", height: "306px" }}
+                >
+                  <div className="flex flex-col items-center gap-[16px] w-full">
+                    {/* Statistics Number */}
+                    <div
+                      className="font-avenir text-[#9DAE83] text-center"
+                      style={{
+                        fontSize: "48px",
+                        lineHeight: "44px",
+                        letterSpacing: "-2%",
+                        fontWeight: 800,
+                      }}
+                    >
+                      5-10x
+                    </div>
+
+                    <div className="flex flex-col items-center gap-[6px] w-full">
+                      {/* Statistics Title */}
+                      <h4
+                        className="font-open-sans font-bold text-[#9DAE83] text-center"
+                        style={{
+                          fontSize: "17px",
+                          lineHeight: "24px",
+                          fontWeight: 700,
+                        }}
+                      >
+                        Scale Up in Human-Led Removals
+                      </h4>
+
+                      {/* Statistics Description */}
+                      <p
+                        className="font-open-sans font-normal text-white text-center"
+                        style={{
+                          fontSize: "12px",
+                          lineHeight: "20px",
+                          fontWeight: 400,
+                        }}
+                      >
+                        Anthropogenic CO₂ removals amount to ~ 2 GtCO₂ per year
+                        today. <br /> A multifold scale-up is needed this
+                        century to meet climate targets and balance residual
+                        emissions.
+                      </p>
+                    </div>
+                  </div>
+                </FadeContent>
+
+                {/* Statistics Card 4 */}
+                <FadeContent
+                  duration={300}
+                  delay={1300}
+                  className="flex flex-col items-center gap-[10px] px-[16px] py-[36px]"
+                  style={{ width: "286px", height: "306px" }}
+                >
+                  <div className="flex flex-col items-center gap-[16px] w-full">
+                    {/* Statistics Number */}
+                    <div
+                      className="font-avenir text-[#9DAE83] text-center"
+                      style={{
+                        fontSize: "48px",
+                        lineHeight: "44px",
+                        letterSpacing: "-2%",
+                        fontWeight: 800,
+                      }}
+                    >
+                      2042-45
+                    </div>
+
+                    <div className="flex flex-col items-center gap-[6px] w-full">
+                      {/* Statistics Title */}
+                      <h4
+                        className="font-open-sans font-bold text-[#9DAE83] text-center"
+                        style={{
+                          fontSize: "17px",
+                          lineHeight: "24px",
+                          fontWeight: 700,
+                        }}
+                      >
+                        Complete Budget
+                        <br />
+                        Depletion
+                      </h4>
+
+                      {/* Statistics Description */}
+                      <p
+                        className="font-open-sans font-normal text-white text-center"
+                        style={{
+                          fontSize: "12px",
+                          lineHeight: "20px",
+                          fontWeight: 400,
+                        }}
+                      >
+                        At current rates, the global CO₂ budget could be fully
+                        depleted by 2042, unless urgent action is taken to scale
+                        removals and cut emissions dramatically.
+                      </p>
+                    </div>
+                  </div>
+                </FadeContent>
+              </FadeContent>
             </div>
           </div>
         </div>

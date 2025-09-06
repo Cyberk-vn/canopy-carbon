@@ -73,7 +73,7 @@ const RoadmapSection = () => {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden lg:block w-full">
+        <div className="hidden lg:block w-full bg-white">
           <Container maxWidth="default" padding="none">
             {/* CSS Grid Layout */}
             <div

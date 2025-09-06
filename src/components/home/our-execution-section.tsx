@@ -252,8 +252,12 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                     {/* Title */}
                     {item.title && (
                       <motion.h3
-                        className="text-center text-[18px] font-medium text-[#2E2F2D] leading-tight"
-                        style={{ fontFamily: "Open Sans" }}
+                        className="text-center text-[20px] font-medium text-[#000000] leading-tight"
+                        style={{
+                          fontFamily: "Open Sans",
+                          fontWeight: 600,
+                          lineHeight: "30px",
+                        }}
                         initial={{ opacity: 0, y: 15 }}
                         animate={
                           isInView
