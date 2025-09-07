@@ -194,7 +194,7 @@ const AnimatedTextContent = memo(
           className="font-open-sans font-bold text-[#5B5F58] text-center text-[12px] md:text-[16px]"
           style={{
             lineHeight: "20px",
-            letterSpacing: "-3%",
+            letterSpacing: "0.03",
           }}
         >
           {currentService.fullTitle}
