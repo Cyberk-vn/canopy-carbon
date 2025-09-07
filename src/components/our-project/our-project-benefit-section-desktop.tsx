@@ -33,8 +33,8 @@ const OurProjectBenefitSectionDesktop: React.FC = () => {
               initial={{ opacity: 0.6, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-              className="font-open-sans font-normal text-[16px] text-center max-w-[695px] text-[#949494]"
-              style={{ letterSpacing: "-2%", lineHeight: "100%" }}
+              className="font-open-sans font-normal text-[16px] text-center max-w-[720px] text-[#949494] w-[720px] items-center"
+              style={{ letterSpacing: "-2%", lineHeight: "22px" }}
             >
               Developed and published in 2023 by the Integrity Council for the
               Voluntary Carbon Market (ICVCM), the CCP was formulated in

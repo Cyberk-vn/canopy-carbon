@@ -49,13 +49,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-1",
-          src: "/assets/our-project/benefit-section/carousel-images/no-poverty.png",
+          src: "/assets/our-project/benefit-section/carousel-images/no-poverty.svg",
           alt: "SDG 1: No Poverty",
           name: "no-poverty",
         },
         {
           id: "sdg-2",
-          src: "/assets/our-project/benefit-section/carousel-images/zero-hunger.png",
+          src: "/assets/our-project/benefit-section/carousel-images/zero-hunger.svg",
           alt: "SDG 2: Zero Hunger",
           name: "zero-hunger",
         },
@@ -66,13 +66,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-3",
-          src: "/assets/our-project/benefit-section/carousel-images/good-health.png",
+          src: "/assets/our-project/benefit-section/carousel-images/good-health.svg",
           alt: "SDG 3: Good Health and Well-being",
           name: "good-health",
         },
         {
           id: "sdg-4",
-          src: "/assets/our-project/benefit-section/carousel-images/quality-education.png",
+          src: "/assets/our-project/benefit-section/carousel-images/quality-education.svg",
           alt: "SDG 4: Quality Education",
           name: "quality-education",
         },
@@ -83,13 +83,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-5",
-          src: "/assets/our-project/benefit-section/carousel-images/gender-equaliaty.png",
+          src: "/assets/our-project/benefit-section/carousel-images/gender-equaliaty.svg",
           alt: "SDG 5: Gender Equality",
           name: "gender-equaliaty",
         },
         {
           id: "sdg-6",
-          src: "/assets/our-project/benefit-section/carousel-images/clean-water.png",
+          src: "/assets/our-project/benefit-section/carousel-images/clean-water.svg",
           alt: "SDG 6: Clean Water and Sanitation",
           name: "clean-water",
         },
@@ -100,13 +100,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-7",
-          src: "/assets/our-project/benefit-section/carousel-images/affordable.png",
+          src: "/assets/our-project/benefit-section/carousel-images/affordable.svg",
           alt: "SDG 7: Affordable and Clean Energy",
           name: "affordable",
         },
         {
           id: "sdg-8",
-          src: "/assets/our-project/benefit-section/carousel-images/decent-work.png",
+          src: "/assets/our-project/benefit-section/carousel-images/decent-work.svg",
           alt: "SDG 8: Decent Work and Economic Growth",
           name: "decent-work",
         },
@@ -117,13 +117,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-9",
-          src: "/assets/our-project/benefit-section/carousel-images/industry.png",
+          src: "/assets/our-project/benefit-section/carousel-images/industry.svg",
           alt: "SDG 9: Industry, Innovation and Infrastructure",
           name: "industry",
         },
         {
           id: "sdg-10",
-          src: "/assets/our-project/benefit-section/carousel-images/reduced.png",
+          src: "/assets/our-project/benefit-section/carousel-images/reduced.svg",
           alt: "SDG 10: Reduced Inequalities",
           name: "reduced",
         },
@@ -134,13 +134,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-11",
-          src: "/assets/our-project/benefit-section/carousel-images/sustainable.png",
+          src: "/assets/our-project/benefit-section/carousel-images/sustainable.svg",
           alt: "SDG 11: Sustainable Cities and Communities",
           name: "sustainable",
         },
         {
           id: "sdg-12",
-          src: "/assets/our-project/benefit-section/carousel-images/responsible.png",
+          src: "/assets/our-project/benefit-section/carousel-images/responsible.svg",
           alt: "SDG 12: Responsible Consumption and Production",
           name: "responsible",
         },
@@ -151,13 +151,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-13",
-          src: "/assets/our-project/benefit-section/carousel-images/climate-action.png",
+          src: "/assets/our-project/benefit-section/carousel-images/climate-action.svg",
           alt: "SDG 13: Climate Action",
           name: "climate-action",
         },
         {
           id: "sdg-14",
-          src: "/assets/our-project/benefit-section/carousel-images/life-below-water.png",
+          src: "/assets/our-project/benefit-section/carousel-images/life-below-water.svg",
           alt: "SDG 14: Life Below Water",
           name: "life-below-water",
         },
@@ -168,13 +168,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-15",
-          src: "/assets/our-project/benefit-section/carousel-images/life-on-land.png",
+          src: "/assets/our-project/benefit-section/carousel-images/life-on-land.svg",
           alt: "SDG 15: Life on Land",
           name: "life-on-land",
         },
         {
           id: "sdg-16",
-          src: "/assets/our-project/benefit-section/carousel-images/peace.png",
+          src: "/assets/our-project/benefit-section/carousel-images/peace.svg",
           alt: "SDG 16: Peace, Justice and Strong Institutions",
           name: "peace",
         },
@@ -182,10 +182,10 @@ const OurProjectBenefitSection: React.FC = () => {
     },
     {
       id: "pair-9",
-      images: [
+      images: [ 
         {
           id: "sdg-17",
-          src: "/assets/our-project/benefit-section/carousel-images/partnership.png",
+          src: "/assets/our-project/benefit-section/carousel-images/partnership.svg",
           alt: "SDG 17: Partnerships for the Goals",
           name: "partnership",
         },
@@ -224,14 +224,14 @@ const OurProjectBenefitSection: React.FC = () => {
           initial={{ opacity: 0.8, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="flex flex-col items-center gap-6 mb-[21px] px-6"
+          className="flex flex-col gap-6 mb-[21px] px-6"
         >
           {/* Title */}
           <motion.h2
             initial={{ opacity: 0.7, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-            className="font-open-sans font-semibold text-[20px] leading-[1.5em] text-[#CCCCCC] text-start max-w-[342px]"
+            className="font-open-sans font-semibold text-[20px] leading-[1.5em] text-[#CCCCCC] text-start max-w-[342px] items-start justify-start"
           >
             Our Co-Benefits & Safeguards Strategy
           </motion.h2>

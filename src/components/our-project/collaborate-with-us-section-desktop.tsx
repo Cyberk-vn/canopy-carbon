@@ -7,10 +7,10 @@ import { motion } from "motion/react";
 const CollaborateWithUsSectionDesktop: React.FC = () => {
   return (
     <section className="bg-white w-full py-[80px] px-[68px] overflow-hidden">
-      {/* Main Layout Container - Grid Layout */}
-      <div className="grid grid-cols-12 gap-6 max-w-[1440px] mx-auto">
-        {/* Main Content Container - Spans 8 columns */}
-        <div className="col-span-8 bg-[#F9F9F9] px-[64px] py-[32px] h-fit">
+      {/* Main Layout Container - Flexbox Layout */}
+      <div className="flex max-w-[1440px] mx-auto">
+        {/* Main Content Container - Fixed width 957px */}
+        <div className="w-[957px] mr-[44px] bg-[#F9F9F9] px-[64px] py-[32px] h-fit">
           <div className="flex flex-col gap-[32px]">
             {/* Title */}
             <motion.h2
@@ -58,7 +58,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   initial={{ opacity: 0.7, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.5, ease: "easeOut" }}
-                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] px-[37px] py-[16px]"
+                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] p-[16px] w-[195px]"
                 >
                   <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center font-open-sans">
                     Co-Develop
@@ -68,7 +68,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   initial={{ opacity: 0.7, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.6, ease: "easeOut" }}
-                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] px-[16px] py-[16px]"
+                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] p-[16px] w-[195px]"
                 >
                   <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center font-open-sans">
                     Purchase Credits
@@ -78,7 +78,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   initial={{ opacity: 0.7, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.7, ease: "easeOut" }}
-                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] px-[29px] py-[16px]"
+                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] p-[16px] w-[195px]"
                 >
                   <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center font-open-sans">
                     Fund Pipeline
@@ -88,7 +88,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   initial={{ opacity: 0.7, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.8, ease: "easeOut" }}
-                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] px-[38px] py-[16px]"
+                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] p-[16px] w-[195px]"
                 >
                   <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center font-open-sans">
                     Co-Innovate
@@ -99,8 +99,8 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
           </div>
         </div>
 
-        {/* Decorator Image - Grid Column Layout */}
-        <div className="col-span-4 flex items-start justify-end pt-[14px]">
+        {/* Decorator Image - Fixed width layout */}
+        <div className="flex items-start justify-start pt-[14px]">
           <motion.div
             initial={{ opacity: 0.8, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
