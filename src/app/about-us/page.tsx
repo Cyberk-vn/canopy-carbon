@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import {
   AboutUsBanner,
   OurPracticalSection,
@@ -20,6 +21,47 @@ const AboutUsPage = () => {
   const menuItems = getMenuItems();
   const logoUrl = getLogoUrl();
   const mobileMenuStyles = getMobileMenuStyles("about-us");
+
+  // Mobile-first image preloading for critical images
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const isMobile = window.innerWidth < 768;
+      
+      // Critical images to preload on mobile (above-the-fold content)
+      const criticalImages = [
+        "/assets/about-us/contact-us-banner-bg-image.png", // Main banner
+        "/assets/about-us/banner-child-image.png", // Decorative element
+      ];
+
+      // Secondary images to preload after critical images (mobile-first)
+      const secondaryImages = isMobile ? [
+        "/assets/about-us/our-purpose-main-image.png", // Purpose section
+        "/assets/about-us/our-pratical-bg-mobile-image.png", // Practical section bg
+      ] : [];
+
+      // Preload critical images immediately
+      criticalImages.forEach((src) => {
+        const link = document.createElement("link");
+        link.rel = "preload";
+        link.as = "image";
+        link.href = src;
+        link.fetchPriority = "high";
+        document.head.appendChild(link);
+      });
+
+      // Preload secondary images with lower priority after a delay
+      setTimeout(() => {
+        secondaryImages.forEach((src) => {
+          const link = document.createElement("link");
+          link.rel = "preload";
+          link.as = "image";
+          link.href = src;
+          link.fetchPriority = "low";
+          document.head.appendChild(link);
+        });
+      }, 500);
+    }
+  }, []);
 
   // Development Sequence Data
   const developmentSequenceData = {
