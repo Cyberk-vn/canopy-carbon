@@ -8,9 +8,9 @@ const CorePrincipleSectionDesktop: React.FC = () => {
   return (
     <Container maxWidth="default">
       <section className="w-full bg-[#1E2421] px-[68px] pt-[80px] pb-[52px]">
-        <div className="flex flex-row gap-8">
+        <div className="flex flex-col xl:flex-row gap-8">
           {/* Decorator Image */}
-          <div className="w-[298.07px] h-[477.54px] flex-shrink-0">
+          <div className="w-[298.07px] h-[477.54px] flex-shrink-0 hidden xl:block">
             <img
               src="/assets/desktop/our-projects/principle-decorator-image.svg"
               alt="Principle decorator"
@@ -19,7 +19,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
           </div>
 
           {/* Content Section */}
-          <div className="w-[974px] flex flex-col gap-12">
+          <div className="w-full xl:w-[974px] flex flex-col gap-12">
             {/* Title */}
             <motion.h2
               initial={{ opacity: 0.8, y: 15 }}
@@ -31,7 +31,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
             </motion.h2>
 
             {/* Principle Cards Grid */}
-            <div className="w-[971px] h-[168px] grid grid-cols-5 gap-2">
+            <div className="w-full max-w-[971px] h-[168px] grid grid-cols-5 gap-2">
               {/* Row 1 */}
               <motion.div
                 key="card-1"
@@ -170,7 +170,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
               initial={{ opacity: 0.6, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 1.0, ease: "easeOut" }}
-              className="w-[888.52px]"
+              className="w-full max-w-[888.52px]"
             >
               <p className="font-open-sans font-normal text-[16px] leading-[1.36181640625em] tracking-[-0.02em] text-[#949494] text-left">
                 Developed and published in 2023 by the Integrity Council for the
