@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
+import { useInView } from "react-intersection-observer";
+import { useShouldLoadPair } from "@/src/hooks/responsive/use-lazy-carousel";
 
 /**
  * Interface for individual carousel image
@@ -195,6 +197,13 @@ const OurProjectBenefitSection: React.FC = () => {
 
   const [currentPairIndex, setCurrentPairIndex] = useState(0);
 
+  // Intersection observer for the carousel section
+  const { ref: carouselRef, inView: carouselInView } = useInView({
+    threshold: 0.1,
+    rootMargin: "50px 0px",
+    triggerOnce: true, // Only trigger once for better performance
+  });
+
   const handlePrevPair = () => {
     setCurrentPairIndex((prev) =>
       prev === 0 ? carouselPairs.length - 1 : prev - 1
@@ -215,6 +224,41 @@ const OurProjectBenefitSection: React.FC = () => {
       />
     </div>
   );
+
+  // Lazy loading component for carousel images
+  const LazyCarouselImage: React.FC<{
+    image: CarouselImage;
+    pairIndex: number;
+    imageIndex: number;
+  }> = ({ image, pairIndex, imageIndex }) => {
+    const shouldLoad = useShouldLoadPair(pairIndex, currentPairIndex, carouselPairs.length);
+    const isVisible = carouselInView && shouldLoad;
+
+    return (
+      <div
+        className="w-[124px] h-[124px] relative flex-shrink-0 rounded-[2px] overflow-hidden transform transition-all duration-500 ease-in-out bg-gray-200"
+        style={{
+          transitionDelay: `${imageIndex * 100}ms`,
+        }}
+      >
+        {isVisible ? (
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            className="object-cover transition-transform duration-300 hover:scale-105"
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 animate-pulse flex items-center justify-center">
+            <div className="w-8 h-8 border-2 border-gray-500 border-t-transparent rounded-full animate-spin opacity-50"></div>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <section className="w-full bg-[#232A26] pt-[35px] md:px-[120px]">
@@ -262,6 +306,7 @@ const OurProjectBenefitSection: React.FC = () => {
 
         {/* Carousel Section */}
         <motion.div
+          ref={carouselRef}
           initial={{ opacity: 0.7, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
@@ -294,20 +339,12 @@ const OurProjectBenefitSection: React.FC = () => {
               {/* Current Pair Images */}
               <div className="flex justify-center items-center gap-[15px] transition-opacity duration-500 ease-in-out">
                 {carouselPairs[currentPairIndex].images.map((image, index) => (
-                  <div
+                  <LazyCarouselImage
                     key={image.id}
-                    className="w-[124px] h-[124px] relative flex-shrink-0 rounded-[2px] overflow-hidden transform transition-all duration-500 ease-in-out"
-                    style={{
-                      transitionDelay: `${index * 100}ms`,
-                    }}
-                  >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      className="object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
+                    image={image}
+                    pairIndex={currentPairIndex}
+                    imageIndex={index}
+                  />
                 ))}
               </div>
 
