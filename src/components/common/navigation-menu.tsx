@@ -77,7 +77,7 @@ export function NavigationMenu({
   return (
     <>
       {/* Navigation Menu */}
-      <nav className={removePadding ? "" : "pt-8"}>
+      <nav className={removePadding ? "" : "pt-8"} style={{ zIndex: 9999 }}>
         <Container maxWidth="default" padding="default">
           {/* Mobile Menu - with logo and border */}
           <div className="md:hidden mx-6">
@@ -148,6 +148,7 @@ export function NavigationMenu({
             style={{
               backgroundColor: "rgba(255, 255, 255, 0)",
               border: "0.75px solid rgba(140, 140, 140, 0.3)",
+              zIndex: 9999,
             }}
           >
             {/* Logo Section */}

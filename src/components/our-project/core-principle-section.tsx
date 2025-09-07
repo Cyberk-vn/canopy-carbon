@@ -87,7 +87,7 @@ const CorePrincipleSection: React.FC = () => {
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
       whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-      className="w-[163px] flex flex-col justify-center items-center gap-[10px] mb-4"
+      className="w-full flex flex-col justify-center items-center gap-[10px] mb-4"
       style={{
         backgroundColor: card.backgroundColor,
         padding: card.padding,
@@ -113,14 +113,14 @@ const CorePrincipleSection: React.FC = () => {
         </motion.h2>
 
         {/* Principle Cards Grid */}
-        <div className="flex justify-center gap-[16px] mb-[8px]">
+        <div className="flex justify-center gap-[16px] mb-[8px] w-full">
           {/* Left Column */}
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             {leftColumnCards.map((card, index) => renderCard(card, index))}
           </div>
 
           {/* Right Column */}
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             {rightColumnCards.map((card, index) =>
               renderCard(card, index + leftColumnCards.length)
             )}
