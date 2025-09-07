@@ -44,7 +44,7 @@ const ContactCard = ({
             </div>
 
             {/* Description */}
-            <p className="max-w-[280px] md:max-w-none font-open-sans font-normal text-xs md:text-sm leading-5 text-center text-[#6C6C6C]">
+            <p className="w-[280px] md:max-w-none font-open-sans font-normal text-xs md:text-sm leading-5 text-center text-[#6C6C6C]">
               {description}
             </p>
           </div>
