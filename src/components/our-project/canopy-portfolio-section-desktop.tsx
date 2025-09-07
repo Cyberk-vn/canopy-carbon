@@ -71,13 +71,13 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
   return (
     <Container>
       <section
-        className="w-full relative"
-        style={{ width: "1440px", height: "1516px" }}
+        className="w-full relative mx-auto"
+        style={{ maxWidth: "1440px", height: "1516px" }}
       >
         {/* Top Background Section - portfolio-background-1 with gradient */}
         <div
           className="absolute"
-          style={{ width: "1440px", height: "625px", top: "0", left: "0" }}
+          style={{ width: "100%", height: "625px", top: "0", left: "0" }}
         >
           {/* Background Image 1 */}
           <div
@@ -103,7 +103,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
         {/* Bottom Background Section - portfolio-background-2 with gradient - NO GAP */}
         <div
           className="absolute"
-          style={{ width: "1440px", height: "891px", top: "625px", left: "0" }}
+          style={{ width: "100%", height: "891px", top: "625px", left: "0" }}
         >
           {/* Background Image 2 with white overlay */}
           <div
@@ -139,7 +139,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
             width: "1200px",
           }}
         >
-          <div className="w-full max-w-[1200px] flex flex-col items-center gap-14">
+          <div className="w-[1200px] flex flex-col items-center gap-14">
             {/* Title and Description Section */}
             <motion.div
               initial={{ opacity: 0.8, y: 20 }}
