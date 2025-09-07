@@ -24,11 +24,11 @@ const MapSection = () => {
     >
       {/* Desktop Layout */}
       <div className="hidden lg:block w-full">
-        <Container maxWidth="default" className="px-[68px]">
+        <Container maxWidth="default" className="pl-[68px]">
           <div
             className="grid w-full overflow-hidden"
             style={{
-              gridTemplateColumns: "925px 1fr",
+              gridTemplateColumns: "994px 1fr",
               gridTemplateRows: "90px auto 48px auto 1fr",
               minHeight: "816px",
             }}
