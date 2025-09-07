@@ -211,7 +211,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
           }}
         >
           <h2
-            className="text-[32px] font-light text-[#2E2F2D]"
+            className="text-[20px] font-light text-[#2E2F2D]"
             style={{ fontFamily: "Open Sans", lineHeight: "30px" }}
           >
             Our Execution Ethos

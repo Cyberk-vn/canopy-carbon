@@ -202,9 +202,9 @@ export function NavigationMenu({
 
       {/* Mobile Menu Dropdown - Absolute positioned over banner */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-20 left-0 right-0 z-50 max-w-[342px] mx-auto">
+        <div className="md:hidden absolute top-20 left-6 right-6 z-50 flex">
           <div
-            className="p-6 shadow-lg"
+            className="p-6 shadow-lg w-full"
             style={{
               background: currentMobileMenuStyles.background,
               borderTop: currentMobileMenuStyles.borderTop,
