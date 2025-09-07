@@ -43,7 +43,7 @@ const CollaborateWithUsSection = () => {
                     <span className="text-[#EDEDED]">
                       and technical specialists
                     </span>{" "}
-                    who share our vision for high-integrity, nature-based
+                    who share our vision for high-integrity, nature-based <br />
                     development.
                   </p>
                   <p className="text-[#9E9E9E] text-[13px] leading-[1.385em] text-left font-['Open_Sans']">
