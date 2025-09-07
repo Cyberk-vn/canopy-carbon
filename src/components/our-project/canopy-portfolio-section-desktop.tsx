@@ -136,7 +136,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
             left: "120px",
             right: "120px",
             bottom: "83px",
-            width: "1200px", // 1440px - 120px left - 120px right
+            width: "1200px",
           }}
         >
           <div className="w-full max-w-[1200px] flex flex-col items-center gap-14">
@@ -201,7 +201,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
 
                   {/* Project Content */}
                   <div
-                    className={`w-full h-[212px] px-[15px] py-[24px] rounded-b-[5px] flex flex-col flex-shrink-0 ${
+                    className={`w-full h-[212px] px-[15px] pt-[24px] rounded-b-[5px] flex flex-col flex-shrink-0 ${
                       project.isComingSoon
                         ? "bg-[rgba(22,34,28,0.65)]"
                         : "bg-[#16221C]"
@@ -220,10 +220,13 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                     {/* Project Description - Only show if not Coming Soon */}
                     {!project.isComingSoon && (
                       <>
-                        <div className="flex-grow flex items-center justify-center overflow-hidden h-[67px] mb-[4px]">
+                        <div className="flex-grow flex items-center justify-center overflow-hidden h-[67px]">
                           <p
-                            className="font-roboto font-normal text-center text-[12px] leading-[1.4166666666666667em] text-white"
-                            style={{ letterSpacing: "-4%" }}
+                            className="font-roboto font-normal text-center text-[12px] leading-[17px] text-white"
+                            style={{
+                              letterSpacing: "-0.04px",
+                              fontWeight: 400,
+                            }}
                           >
                             {project.description}
                           </p>
