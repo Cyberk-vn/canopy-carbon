@@ -76,7 +76,6 @@ const ConnectWithUsForm = () => {
               <input
                 type="text"
                 name="firstName"
-                placeholder="Text"
                 value={formData.firstName}
                 onChange={handleInputChange}
                 className="w-full py-[7px] px-2 bg-white border-[0.3px] border-contact-input-border text-xs font-normal leading-5 placeholder:text-contact-placeholder focus:outline-none focus:ring-1 focus:ring-[#121C17] font-open-sans"
@@ -97,7 +96,6 @@ const ConnectWithUsForm = () => {
               <input
                 type="text"
                 name="lastName"
-                placeholder="Text"
                 value={formData.lastName}
                 onChange={handleInputChange}
                 className="w-full py-[7px] px-4 bg-white border-[0.3px] border-contact-input-border text-xs font-normal leading-5 placeholder:text-contact-placeholder focus:outline-none focus:ring-1 focus:ring-[#121C17] font-open-sans"
@@ -121,7 +119,6 @@ const ConnectWithUsForm = () => {
             <input
               type="text"
               name="companyName"
-              placeholder="Text"
               value={formData.companyName}
               onChange={handleInputChange}
               className="w-full py-[7px] px-4 bg-white border-[0.3px] border-contact-input-border text-xs font-normal leading-5 placeholder:text-contact-placeholder focus:outline-none focus:ring-1 focus:ring-[#121C17] font-open-sans"
@@ -143,7 +140,6 @@ const ConnectWithUsForm = () => {
             <input
               type="email"
               name="email"
-              placeholder="Text"
               value={formData.email}
               onChange={handleInputChange}
               className="w-full py-[7px] px-4 bg-white border-[0.3px] border-contact-input-border text-xs font-normal leading-5 placeholder:text-contact-placeholder focus:outline-none focus:ring-1 focus:ring-[#121C17] font-open-sans"
@@ -236,7 +232,7 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
       {/* Background System with 4-layer overlay */}
       <div className="absolute inset-0">
         {/* Main background image */}
-        <div className="absolute inset-0 top-[137px]">
+        <div className="absolute inset-0 top-[137px] w-[1440px] h-[799.5px]">
           <Image
             src="/assets/desktop/contact-us/contact-us-background-image.png"
             alt=""
