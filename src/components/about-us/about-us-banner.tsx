@@ -394,11 +394,6 @@ export function AboutUsBanner({
           overflow: hidden;
         }
 
-        .card-effect:hover {
-          transform: translate(5px, -5px);
-          box-shadow: -17px 17px 0 rgba(175, 175, 175, 0.3);
-        }
-
         .decorative-card {
           max-width: 280px;
           height: 320px;
