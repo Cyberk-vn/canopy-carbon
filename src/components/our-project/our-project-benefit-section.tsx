@@ -221,6 +221,8 @@ const OurProjectBenefitSection: React.FC = () => {
         alt="Co-Benefits & Safeguards logo"
         fill
         className="object-contain"
+        loading="lazy"
+        sizes="106px"
       />
     </div>
   );
@@ -326,6 +328,10 @@ const OurProjectBenefitSection: React.FC = () => {
                   alt="Left certification logo"
                   fill
                   className="object-contain"
+                  loading="lazy"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  sizes="155px"
                 />
               </div>
               <div className="w-[147px] h-[36px] relative">
@@ -334,6 +340,10 @@ const OurProjectBenefitSection: React.FC = () => {
                   alt="Right certification logo"
                   fill
                   className="object-contain"
+                  loading="lazy"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  sizes="147px"
                 />
               </div>
             </div>
@@ -364,6 +374,7 @@ const OurProjectBenefitSection: React.FC = () => {
                   width={24}
                   height={24}
                   className="object-contain w-6 h-6"
+                  loading="lazy"
                 />
               </button>
 
@@ -379,6 +390,7 @@ const OurProjectBenefitSection: React.FC = () => {
                   width={24}
                   height={24}
                   className="object-contain w-6 h-6"
+                  loading="lazy"
                 />
               </button>
             </div>
