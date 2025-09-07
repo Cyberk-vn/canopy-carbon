@@ -30,7 +30,7 @@ const FooterDesktop = ({
   onSubmit,
 }: FooterDesktopProps) => {
   return (
-    <section className="w-full hidden lg:block">
+    <section className="w-full hidden lg:block bg-white">
       <Container maxWidth="default" className="px-[68px]">
         <div className="py-20 flex flex-col">
           {/* Desktop Layout - Fixed Widths with 204px Gap */}

@@ -51,13 +51,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-1",
-          src: "/assets/our-project/benefit-section/carousel-images/no-poverty.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/no-poverty.png",
           alt: "SDG 1: No Poverty",
           name: "no-poverty",
         },
         {
           id: "sdg-2",
-          src: "/assets/our-project/benefit-section/carousel-images/zero-hunger.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/zero-hunger.png",
           alt: "SDG 2: Zero Hunger",
           name: "zero-hunger",
         },
@@ -68,13 +68,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-3",
-          src: "/assets/our-project/benefit-section/carousel-images/good-health.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/good-health.png",
           alt: "SDG 3: Good Health and Well-being",
           name: "good-health",
         },
         {
           id: "sdg-4",
-          src: "/assets/our-project/benefit-section/carousel-images/quality-education.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/quality-education.png",
           alt: "SDG 4: Quality Education",
           name: "quality-education",
         },
@@ -85,13 +85,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-5",
-          src: "/assets/our-project/benefit-section/carousel-images/gender-equaliaty.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/gender-equaliaty.png",
           alt: "SDG 5: Gender Equality",
           name: "gender-equaliaty",
         },
         {
           id: "sdg-6",
-          src: "/assets/our-project/benefit-section/carousel-images/clean-water.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/clean-water.png",
           alt: "SDG 6: Clean Water and Sanitation",
           name: "clean-water",
         },
@@ -102,13 +102,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-7",
-          src: "/assets/our-project/benefit-section/carousel-images/affordable.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/affordable.png",
           alt: "SDG 7: Affordable and Clean Energy",
           name: "affordable",
         },
         {
           id: "sdg-8",
-          src: "/assets/our-project/benefit-section/carousel-images/decent-work.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/decent-work.png",
           alt: "SDG 8: Decent Work and Economic Growth",
           name: "decent-work",
         },
@@ -119,13 +119,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-9",
-          src: "/assets/our-project/benefit-section/carousel-images/industry.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/industry.png",
           alt: "SDG 9: Industry, Innovation and Infrastructure",
           name: "industry",
         },
         {
           id: "sdg-10",
-          src: "/assets/our-project/benefit-section/carousel-images/reduced.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/reduced.png",
           alt: "SDG 10: Reduced Inequalities",
           name: "reduced",
         },
@@ -136,13 +136,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-11",
-          src: "/assets/our-project/benefit-section/carousel-images/sustainable.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/sustainable.png",
           alt: "SDG 11: Sustainable Cities and Communities",
           name: "sustainable",
         },
         {
           id: "sdg-12",
-          src: "/assets/our-project/benefit-section/carousel-images/responsible.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/responsible.png",
           alt: "SDG 12: Responsible Consumption and Production",
           name: "responsible",
         },
@@ -153,13 +153,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-13",
-          src: "/assets/our-project/benefit-section/carousel-images/climate-action.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/climate-action.png",
           alt: "SDG 13: Climate Action",
           name: "climate-action",
         },
         {
           id: "sdg-14",
-          src: "/assets/our-project/benefit-section/carousel-images/life-below-water.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/life-below-water.png",
           alt: "SDG 14: Life Below Water",
           name: "life-below-water",
         },
@@ -170,13 +170,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-15",
-          src: "/assets/our-project/benefit-section/carousel-images/life-on-land.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/life-on-land.png",
           alt: "SDG 15: Life on Land",
           name: "life-on-land",
         },
         {
           id: "sdg-16",
-          src: "/assets/our-project/benefit-section/carousel-images/peace.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/peace.png",
           alt: "SDG 16: Peace, Justice and Strong Institutions",
           name: "peace",
         },
@@ -184,10 +184,10 @@ const OurProjectBenefitSection: React.FC = () => {
     },
     {
       id: "pair-9",
-      images: [ 
+      images: [
         {
           id: "sdg-17",
-          src: "/assets/our-project/benefit-section/carousel-images/partnership.svg",
+          src: "/assets/our-project/benefit-section/carousel-images/partnership.png",
           alt: "SDG 17: Partnerships for the Goals",
           name: "partnership",
         },
@@ -231,7 +231,11 @@ const OurProjectBenefitSection: React.FC = () => {
     pairIndex: number;
     imageIndex: number;
   }> = ({ image, pairIndex, imageIndex }) => {
-    const shouldLoad = useShouldLoadPair(pairIndex, currentPairIndex, carouselPairs.length);
+    const shouldLoad = useShouldLoadPair(
+      pairIndex,
+      currentPairIndex,
+      carouselPairs.length
+    );
     const isVisible = carouselInView && shouldLoad;
 
     return (
