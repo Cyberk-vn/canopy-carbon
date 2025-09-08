@@ -20,7 +20,7 @@ const ContactCard = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
       whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-      className="w-full max-w-[342px] mx-auto"
+      className="w-full mx-auto"
     >
       {/* Card Background */}
       <div
