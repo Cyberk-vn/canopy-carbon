@@ -109,7 +109,7 @@ const CorePrincipleSection: React.FC = () => {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="font-open-sans font-semibold text-xl leading-[1.5em] text-[#9C9C9C] mb-[24px]"
         >
-          The Core Carbon Principle
+          The Core Carbon Principles
         </motion.h2>
 
         {/* Principle Cards Grid */}

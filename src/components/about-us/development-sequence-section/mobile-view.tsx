@@ -5,6 +5,7 @@ import { DevelopmentSequenceSectionProps } from "@/src/types/development-sequenc
 import { memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
+import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 
 interface MobileViewProps {
   data: DevelopmentSequenceSectionProps["data"];
@@ -19,6 +20,9 @@ const CLIMATE_ACTION_AUTO_SWITCH_INTERVAL = 3000;
 const CLIMATE_ACTION_RESUME_DELAY = 2000;
 
 export const MobileView = memo<MobileViewProps>(({ data }) => {
+  // Contact redirect hook
+  const { redirectToContact } = useContactRedirect();
+
   // State management for timer-based content switcher
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -375,14 +379,12 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
                             </div>
 
                             {/* Learn More Link */}
-                            {currentCard.learnMoreUrl && (
-                              <a
-                                href={currentCard.learnMoreUrl}
-                                className="font-roboto font-normal text-[9px] leading-[2.22] text-white/60 hover:text-white transition-colors duration-200 inline-block"
-                              >
-                                Learn More &gt;
-                              </a>
-                            )}
+                            <button
+                              onClick={redirectToContact}
+                              className="font-roboto font-normal text-[9px] leading-[2.22] text-white/60 hover:text-white transition-colors duration-200 inline-block text-left"
+                            >
+                              Learn More &gt;
+                            </button>
                           </motion.div>
                         </AnimatePresence>
                       </div>
@@ -534,15 +536,15 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
                               </div>
 
                               {/* Learn More Link */}
-                              <a
-                                href={currentClimateActionCard.learnMoreUrl}
-                                className="font-roboto font-normal text-[9px] leading-[2.22] hover:opacity-80 transition-opacity duration-200 inline-block"
+                              <button
+                                onClick={redirectToContact}
+                                className="font-roboto font-normal text-[9px] leading-[2.22] hover:opacity-80 transition-opacity duration-200 inline-block text-left"
                                 style={{
                                   color: "rgba(46, 47, 45, 0.6)",
                                 }}
                               >
                                 Learn More &gt;
-                              </a>
+                              </button>
                             </motion.div>
                           </AnimatePresence>
                         </div>
