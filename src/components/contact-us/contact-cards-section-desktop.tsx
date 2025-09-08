@@ -40,7 +40,7 @@ const ConnectWithUsForm = () => {
   };
 
   return (
-    <div className="w-[510px] flex flex-col gap-6">
+    <div id="contact-desktop-form" className="w-[510px] flex flex-col gap-6">
       {/* Title */}
       <motion.h2
         initial={{ opacity: 0.8, y: 10 }}

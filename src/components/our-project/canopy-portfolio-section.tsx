@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
+import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 
 /**
  * Interface for individual portfolio project
@@ -35,6 +36,9 @@ interface PortfolioProject {
  * @returns JSX.Element - The rendered canopy portfolio section
  */
 const CanopyPortfolioSection: React.FC = () => {
+  // Contact redirect hook
+  const { redirectToContact } = useContactRedirect();
+
   // Portfolio projects data - matching Figma design specifications exactly
   const portfolioProjects: PortfolioProject[] = [
     {
@@ -203,7 +207,7 @@ const CanopyPortfolioSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
               className="relative z-10 mx-[16px] pt-0 transition-all duration-500 ease-in-out"
             >
-              <div className="overflow-hidden shadow-lg h-[596px] relative rounded-[5px]">
+              <div className="overflow-hidden shadow-lg h-[596px] relative rounded-[5px] gap-0">
                 {/* Project Image */}
                 <motion.div
                   initial={{ opacity: 0.7, scale: 1.05 }}
@@ -229,35 +233,36 @@ const CanopyPortfolioSection: React.FC = () => {
                   initial={{ opacity: 0.7, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }}
-                  className={`absolute bottom-0 left-0 right-0 px-[12px] pt-[24px] h-[211px] w-full flex flex-col rounded-b-[5px] ${
+                  className={`absolute bottom-0 left-0 right-0 px-[12px] pt-[24px] h-[212px] w-full flex flex-col justify-between rounded-b-[5px] ${
                     currentProject.isComingSoon
                       ? "bg-[rgba(22,34,28,0.65)]"
                       : "bg-[#16221C]"
                   }`}
                 >
-                  {/* Project Title */}
-                  <motion.h3
-                    initial={{ opacity: 0.7, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 1.0, ease: "easeOut" }}
-                    className="font-roboto font-black text-[21px] leading-[1.429em] text-white text-center mb-[2.93px]"
-                  >
-                    {currentProject.title}
-                  </motion.h3>
+                  {/* Top Content Container */}
+                  <div className="flex flex-col">
+                    {/* Project Title */}
+                    <motion.h3
+                      initial={{ opacity: 0.7, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 1.0, ease: "easeOut" }}
+                      className="font-roboto font-black text-[21px] leading-[1.429em] text-white text-center mb-[2.93px]"
+                    >
+                      {currentProject.title}
+                    </motion.h3>
 
-                  {/* Project Location */}
-                  <motion.p
-                    initial={{ opacity: 0.6, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 1.1, ease: "easeOut" }}
-                    className="font-open-sans font-light text-[12px] leading-[2.333em] text-white text-center mb-[4px]"
-                  >
-                    {currentProject.location}
-                  </motion.p>
+                    {/* Project Location */}
+                    <motion.p
+                      initial={{ opacity: 0.6, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 1.1, ease: "easeOut" }}
+                      className="font-open-sans font-light text-[12px] leading-[2.333em] text-white text-center mb-[4px]"
+                    >
+                      {currentProject.location}
+                    </motion.p>
 
-                  {/* Project Description - Only show if not Coming Soon */}
-                  {!currentProject.isComingSoon && (
-                    <>
+                    {/* Project Description - Only show if not Coming Soon */}
+                    {!currentProject.isComingSoon && (
                       <motion.div
                         initial={{ opacity: 0.6, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -266,10 +271,10 @@ const CanopyPortfolioSection: React.FC = () => {
                           delay: 1.2,
                           ease: "easeOut",
                         }}
-                        className="flex-grow flex items-center overflow-hidden h-[67px] max-h-[67px]"
+                        className="overflow-hidden"
                       >
                         <p
-                          className="font-roboto font-normal text-center text-[12px] leading-[17px] text-white max"
+                          className="font-roboto font-normal text-center text-[12px] leading-[17px] text-white"
                           style={{
                             letterSpacing: "-4%",
                           }}
@@ -277,27 +282,32 @@ const CanopyPortfolioSection: React.FC = () => {
                           {currentProject.description}
                         </p>
                       </motion.div>
+                    )}
+                  </div>
 
-                      {/* Read More Button */}
-                      <motion.div
-                        initial={{ opacity: 0.6, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: 0.4,
-                          delay: 1.3,
-                          ease: "easeOut",
-                        }}
-                        whileHover={{
-                          scale: 1.05,
-                          transition: { duration: 0.2 },
-                        }}
-                        className="text-center mb-[14px] mt-auto justify-center flex items-center"
+                  {/* Read More Button - Only show if not Coming Soon */}
+                  {!currentProject.isComingSoon && (
+                    <motion.div
+                      initial={{ opacity: 0.6, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.4,
+                        delay: 1.3,
+                        ease: "easeOut",
+                      }}
+                      whileHover={{
+                        scale: 1.05,
+                        transition: { duration: 0.2 },
+                      }}
+                      className="text-center mb-[14px] justify-center flex items-center"
+                    >
+                      <button
+                        onClick={redirectToContact}
+                        className="font-open-sans font-normal text-[12px] leading-[1.5em] text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
                       >
-                        <button className="font-open-sans font-normal text-[12px] leading-[1.5em] text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300">
-                          Read More →
-                        </button>
-                      </motion.div>
-                    </>
+                        Read More →
+                      </button>
+                    </motion.div>
                   )}
                 </motion.div>
               </div>

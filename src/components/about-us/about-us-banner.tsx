@@ -134,6 +134,16 @@ export function AboutUsBanner({
           }}
         />
 
+        {/* Bottom Gradient Overlay */}
+        <div
+          className="absolute bottom-10 left-0 right-0 z-11"
+          style={{
+            height: "160px",
+            background:
+              "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0) 100%)",
+          }}
+        />
+
         {/* Navigation Menu - Absolutely positioned */}
         <div className="absolute left-0 right-0 z-22">
           <NavigationMenu
@@ -249,7 +259,7 @@ export function AboutUsBanner({
           className="absolute inset-0 z-10"
           style={{
             background:
-              "linear-gradient(180deg, rgba(0, 0, 0, 1) 5%, rgba(0, 0, 0, 0.9) 6%, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.3) 20%, rgba(0, 0, 0, 0.4) 20%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0.8) 100%)",
+              "linear-gradient(180deg, rgba(0, 0, 0, 1) 5%, rgba(0, 0, 0, 0.9) 6%, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0.5) 45%, rgba(0, 0, 0, 0.3) 20%, rgba(0, 0, 0, 0.4) 20%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0.8) 100%)",
           }}
         />
 

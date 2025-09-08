@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "motion/react";
 import { NavigationMenu } from "../common";
 import { InsightSection } from "./insight-section";
 import {
@@ -9,15 +8,9 @@ import {
   getLogoUrl,
   getMobileMenuStyles,
 } from "@/src/lib/navigation";
-import {
-  useSimpleMotion,
-  SIMPLE_ANIMATIONS,
-} from "@/src/hooks/responsive/use-simple-motion";
+import FadeContent from "@/src/components/animation/fade-content";
 
 export function CanopyInsightBanner() {
-  // Simple Motion animations
-  const contentMotion = useSimpleMotion("canopy-insight-content");
-
   const menuItems = getMenuItems();
   const mobileMenuStyles = getMobileMenuStyles("canopy-insight");
 
@@ -52,17 +45,16 @@ export function CanopyInsightBanner() {
         />
 
         {/* Content Section with improved layout */}
-        <motion.div
-          {...SIMPLE_ANIMATIONS.fadeInUp}
-          {...contentMotion}
-          transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+        <FadeContent
+          duration={500}
+          delay={200}
           className="absolute z-10 justify-center items-center"
           style={{ top: "494px" }}
         >
           {/* Title and Description Container */}
-          <div className="max-w-[342px] w-[342px] mb-[39px] mx-6">
+          <div className=" mb-[39px] mx-6">
             <h1
-              className="font-open-sans font-semibold text-[#2A4035] text-[30px] leading-[38px] mb-[13px]"
+              className="font-open-sans font-semibold text-[#2A4035] text-[30px] leading-[38px] mb-[13px] max-w-[342px] w-[342px]"
               style={{
                 fontWeight: 600,
                 lineHeight: "38px",
@@ -71,7 +63,7 @@ export function CanopyInsightBanner() {
               Canopy Insights
             </h1>
             <p
-              className="font-open-sans text-[#777777] text-[13px] leading-[19px]"
+              className="font-open-sans text-[#777777] text-[13px] leading-[19px] max-w-[342px] w-[342px]"
               style={{
                 fontWeight: 400,
                 lineHeight: "19px",
@@ -82,22 +74,27 @@ export function CanopyInsightBanner() {
               thought leadership, field research, and market intelligence.
             </p>
           </div>
+        </FadeContent>
 
-          {/* Decorative Lines Container */}
-          <div className="relative mx-6 flex justify-between h-[48px]">
-            {/* Left Decorator */}
-            <div className="relative w-[92px] h-[5px]">
-              <div className="absolute top-0 left-0 w-full border-t-2 border-[rgba(172,184,194,0.4)]" />
-              <div className="absolute top-[5px] left-[23.11px] w-[45.32px] border-t border-[rgba(172,184,194,0.4)]" />
-            </div>
-
-            {/* Right Decorator */}
-            <div className="relative w-[92px] h-[5px] mt-[20px]">
-              <div className="absolute top-[5px] left-0 w-full border-t-2 border-[rgba(172,184,194,0.4)]" />
-              <div className="absolute top-0 left-[23.57px] w-[45.32px] border-t border-[rgba(172,184,194,0.4)]" />
-            </div>
+        {/* Decorative Lines Container - Full Width - Independent positioning */}
+        <FadeContent
+          duration={500}
+          delay={400}
+          className="absolute left-0 right-0 z-10 flex justify-between h-[48px] px-6"
+          style={{ top: "660px" }}
+        >
+          {/* Left Decorator */}
+          <div className="relative w-[92px] h-[5px]">
+            <div className="absolute top-0 left-0 w-full border-t-2 border-[rgba(172,184,194,0.4)]" />
+            <div className="absolute top-[5px] left-[23.11px] w-[45.32px] border-t border-[rgba(172,184,194,0.4)]" />
           </div>
-        </motion.div>
+
+          {/* Right Decorator */}
+          <div className="relative w-[92px] h-[5px] mt-[20px]">
+            <div className="absolute top-[5px] left-0 w-full border-t-2 border-[rgba(172,184,194,0.4)]" />
+            <div className="absolute top-0 left-[23.57px] w-[45.32px] border-t border-[rgba(172,184,194,0.4)]" />
+          </div>
+        </FadeContent>
       </div>
     </div>
   );

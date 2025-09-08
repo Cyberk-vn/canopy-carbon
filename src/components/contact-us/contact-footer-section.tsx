@@ -36,7 +36,7 @@ const ContactFooterSection = () => {
   };
 
   return (
-    <section className="w-full relative min-h-dvh">
+    <section id="contact-footer-section" className="w-full relative min-h-dvh">
       {/* Background Image */}
       <div>
         <Image
