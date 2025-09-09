@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useInView } from "react-intersection-observer";
 import { useShouldLoadPair } from "@/src/hooks/responsive/use-lazy-carousel";
 
@@ -79,12 +79,33 @@ const LazyCarouselImage = React.memo<LazyCarouselImageProps>(
       totalPairs
     );
     const isVisible = carouselInView && shouldLoad;
+    const isActivePair = pairIndex === currentPairIndex;
 
     return (
-      <div
-        className="w-[124px] h-[124px] relative flex-shrink-0 rounded-[2px] overflow-hidden transform transition-all duration-500 ease-in-out bg-gray-200"
-        style={{
-          transitionDelay: `${imageIndex * 100}ms`,
+      <motion.div
+        key={image.id}
+        className="w-[124px] h-[124px] relative flex-shrink-0 rounded-[2px] overflow-hidden bg-gray-200"
+        initial={{
+          opacity: 0,
+          scale: 0.9,
+          y: 10,
+        }}
+        animate={{
+          opacity: isActivePair ? 1 : 0.7,
+          scale: isActivePair ? 1 : 0.95,
+          y: 0,
+          zIndex: isActivePair ? 10 : 5,
+          filter: isActivePair ? "brightness(1) saturate(1.05)" : "brightness(0.92) saturate(0.95)",
+        }}
+        exit={{
+          opacity: 0,
+          scale: 0.9,
+          y: -10,
+        }}
+        transition={{
+          duration: 0.2,
+          ease: "easeInOut",
+          delay: imageIndex * 0.02,
         }}
       >
         {isVisible ? (
@@ -101,7 +122,7 @@ const LazyCarouselImage = React.memo<LazyCarouselImageProps>(
             <div className="w-8 h-8 border-2 border-gray-500 border-t-transparent rounded-full animate-spin opacity-50"></div>
           </div>
         )}
-      </div>
+      </motion.div>
     );
   }
 );
@@ -398,19 +419,32 @@ const OurProjectBenefitSection: React.FC = () => {
 
             {/* Image Carousel */}
             <div className="relative flex justify-center items-center">
-              {/* Current Pair Images */}
-              <div className="flex justify-center items-center gap-[15px] transition-opacity duration-500 ease-in-out">
-                {carouselPairs[currentPairIndex].images.map((image, index) => (
-                  <LazyCarouselImage
-                    key={image.id}
-                    image={image}
-                    pairIndex={currentPairIndex}
-                    imageIndex={index}
-                    currentPairIndex={currentPairIndex}
-                    carouselInView={carouselInView}
-                    totalPairs={carouselPairs.length}
-                  />
-                ))}
+              {/* Carousel Images with Layered Fade */}
+              <div className="relative flex justify-center items-center gap-[15px] min-h-[124px]">
+                <AnimatePresence>
+                  {carouselPairs.map((pair, pairIndex) => (
+                    <div
+                      key={pair.id}
+                      className="absolute flex justify-center items-center gap-[15px]"
+                      style={{
+                        opacity: pairIndex === currentPairIndex ? 1 : 0,
+                        pointerEvents: pairIndex === currentPairIndex ? "auto" : "none",
+                      }}
+                    >
+                      {pair.images.map((image, index) => (
+                        <LazyCarouselImage
+                          key={`${pair.id}-${image.id}`}
+                          image={image}
+                          pairIndex={pairIndex}
+                          imageIndex={index}
+                          currentPairIndex={currentPairIndex}
+                          carouselInView={carouselInView}
+                          totalPairs={carouselPairs.length}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </AnimatePresence>
               </div>
 
               {/* Left Arrow */}

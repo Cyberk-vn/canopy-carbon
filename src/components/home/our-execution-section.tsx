@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "motion/react";
 import {
@@ -111,7 +111,53 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
     }
   };
 
-  // Handle touch events for mobile
+  // Touch/drag handling for mobile swipe
+  const dragStart = useRef({ x: 0, y: 0 });
+  const isDragging = useRef(false);
+
+  const handlePointerDown = useCallback(
+    (e: React.PointerEvent) => {
+      dragStart.current = { x: e.clientX, y: e.clientY };
+      isDragging.current = true;
+      if (autoSwitchState.enabled) {
+        actions.pauseAutoSwitch();
+      }
+    },
+    [autoSwitchState.enabled, actions]
+  );
+
+  const handlePointerUp = useCallback(
+    (e: React.PointerEvent) => {
+      if (!isDragging.current) return;
+
+      const deltaX = e.clientX - dragStart.current.x;
+      const deltaY = e.clientY - dragStart.current.y;
+      const distance = Math.abs(deltaX);
+
+      // Only trigger swipe if horizontal movement is dominant
+      if (distance > 50 && Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Create mock DragInfo object for compatibility with existing handler
+        const mockInfo = {
+          offset: { x: deltaX, y: deltaY },
+          velocity: { x: deltaX, y: deltaY },
+        };
+
+        handleDragEnd(e.nativeEvent as PointerEvent, mockInfo);
+      }
+
+      isDragging.current = false;
+
+      // Resume auto-switch after delay
+      setTimeout(() => {
+        if (autoSwitchState.enabled) {
+          actions.resumeAutoSwitch();
+        }
+      }, 1000);
+    },
+    [autoSwitchState.enabled, actions, handleDragEnd]
+  );
+
+  // Legacy touch events for compatibility
   const handleTouchStart = () => {
     if (autoSwitchState.enabled) {
       actions.pauseAutoSwitch();
@@ -119,7 +165,6 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
   };
 
   const handleTouchEnd = () => {
-    // Resume after a short delay to prevent immediate restart during swipe
     setTimeout(() => {
       if (autoSwitchState.enabled) {
         actions.resumeAutoSwitch();
@@ -296,24 +341,19 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
               : "Auto-switching disabled"}
           </div>
 
-          <motion.div
-            className="relative w-full overflow-visible"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{
-              duration: 0.2,
-              ease: "easeOut",
-              delay: 0.1,
-            }}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.1}
-            onDragEnd={handleDragEnd}
+          <div
+            className="relative w-full overflow-visible cursor-grab active:cursor-grabbing"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
+            onPointerDown={handlePointerDown}
+            onPointerUp={handlePointerUp}
             aria-label="Execution principles carousel"
+            style={{
+              touchAction: "pan-y pinch-zoom",
+              userSelect: "none",
+            }}
           >
             {/* Fixed 3-Card Container */}
             <div
@@ -326,46 +366,64 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
               aria-label="Execution principle cards"
             >
               <AnimatePresence mode="wait">
-                {mobileExecutionItems.map((item, index) => (
-                  <motion.div
-                    key={`${selectedPrincipleId}-${currentImageOffset}-${index}`}
-                    className={`flex-shrink-0 ${index === 1 ? "z-10" : ""}`}
-                    style={{
-                      marginLeft: index > 0 ? "-2px" : "0",
-                      marginRight: index < 2 ? "-2px" : "0",
-                      willChange: "transform, box-shadow",
-                      transform: "translate3d(0, 0, 0)",
-                    }}
-                    initial={{ y: 4, opacity: 0 }}
-                    animate={{
-                      y: 0,
-                      opacity: 1,
-                      boxShadow:
-                        index === 1
-                          ? "0px 8px 24px 0px rgba(1, 12, 27, 0.15), 0px 2px 6px 0px rgba(255, 255, 255, 0.1)"
-                          : "0px 2px 8px 0px rgba(1, 12, 27, 0.05)",
-                      filter:
-                        index === 1
-                          ? "brightness(1) saturate(1.05)"
-                          : "brightness(0.92) saturate(0.95)",
-                      scale: index === 1 ? 1.02 : 0.98,
-                    }}
-                    exit={{ y: -4, opacity: 0 }}
-                    transition={{
-                      duration: 0.2,
-                      ease: "easeOut",
-                      type: "tween",
-                    }}
-                  >
-                    <ExecutionCard
-                      item={item}
-                      principleId={selectedPrincipleId}
-                    />
-                  </motion.div>
-                ))}
+                {mobileExecutionItems.map((item, index) => {
+                  const isCenter = index === 1;
+
+                  return (
+                    <motion.div
+                      key={`slide-${selectedPrincipleId}-${currentImageOffset}-${index}`}
+                      className={`flex-shrink-0 ${isCenter ? "z-10" : ""}`}
+                      style={{
+                        marginLeft: index > 0 ? "-2px" : "0",
+                        marginRight: index < 2 ? "-2px" : "0",
+                        willChange: "transform",
+                      }}
+                      initial={{
+                        x: 10,
+                        opacity: 0,
+                        scale: isCenter ? 0.95 : 0.9,
+                        y: isCenter ? 0 : 10,
+                      }}
+                      animate={{
+                        x: 0,
+                        opacity: isCenter ? 1 : 1,
+                        scale: isCenter ? 1.02 : 0.98,
+                        y: 0,
+                      }}
+                      exit={{
+                        x: -10,
+                        opacity: 0,
+                        scale: isCenter ? 0.95 : 0.9,
+                        y: isCenter ? 0 : -10,
+                      }}
+                      transition={{
+                        duration: 0.2,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <div
+                        style={{
+                          boxShadow: isCenter
+                            ? "0px 8px 24px 0px rgba(1, 12, 27, 0.15), 0px 2px 6px 0px rgba(255, 255, 255, 0.1)"
+                            : "0px 2px 8px 0px rgba(1, 12, 27, 0.05)",
+                          filter: isCenter
+                            ? "brightness(1) saturate(1.05)"
+                            : "brightness(0.92) saturate(0.95)",
+                          borderRadius: "8px",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <ExecutionCard
+                          item={item}
+                          principleId={selectedPrincipleId}
+                        />
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </AnimatePresence>
             </div>
-          </motion.div>
+          </div>
         </div>
       </Container>
     </section>
