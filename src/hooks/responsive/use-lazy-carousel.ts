@@ -58,5 +58,10 @@ export const useShouldLoadPair = (
   preloadRange: number = 1
 ): boolean => {
   const loadedPairs = useLazyCarousel(currentIndex, totalPairs, preloadRange);
-  return loadedPairs.includes(pairIndex);
+  
+  const shouldLoad = useMemo(() => {
+    return loadedPairs.includes(pairIndex);
+  }, [loadedPairs, pairIndex]);
+  
+  return shouldLoad;
 };

@@ -12,6 +12,12 @@ import {
 import Image from "next/image";
 import { motion, AnimatePresence, PanInfo } from "motion/react";
 
+// Icon imports
+import ArrIcon from "../../../public/assets/icon/arr-icon.png";
+import ReddIcon from "../../../public/assets/icon/redd-icon.png";
+import WrcIcon from "../../../public/assets/icon/wrc-icon.png";
+import BiocharIcon from "../../../public/assets/icon/blochar-icon.png";
+
 interface ServiceCardProps {
   services: ServiceCardData[];
   autoRotateInterval?: number;
@@ -131,23 +137,23 @@ const quickTransition = {
 
 const ServiceCardIcon = memo(
   ({ iconType }: { iconType: ServiceCardData["iconType"] }) => {
-    const getIconPath = () => {
+    const getIconSrc = () => {
       switch (iconType) {
         case "arr":
-          return "/assets/icon/arr-icon.png";
+          return ArrIcon;
         case "redd":
-          return "/assets/icon/redd-icon.png";
+          return ReddIcon;
         case "wrc":
-          return "/assets/icon/wrc-icon.png";
+          return WrcIcon;
         case "biochar":
-          return "/assets/icon/blochar-icon.png";
+          return BiocharIcon;
         default:
           return null;
       }
     };
 
-    const iconPath = getIconPath();
-    if (!iconPath) return null;
+    const iconSrc = getIconSrc();
+    if (!iconSrc) return null;
 
     return (
       <motion.div
@@ -159,7 +165,7 @@ const ServiceCardIcon = memo(
         className="shrink-0"
       >
         <Image
-          src={iconPath}
+          src={iconSrc}
           alt={`${iconType} icon`}
           width={28}
           height={28}

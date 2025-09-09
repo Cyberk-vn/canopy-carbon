@@ -9,6 +9,11 @@ import {
 } from "@/src/hooks/responsive/use-simple-motion";
 import { Container } from "@/src/components/shared";
 
+// Image imports
+import MapDesktop from "../../../public/assets/desktop/home/map-desktop.svg";
+import DecoratorIcon from "../../../public/assets/desktop/home/decorator-icon.png";
+import MapImageMobile from "../../../public/assets/map-image.svg";
+
 const MapSection = () => {
   // Motion animation hooks
   const rightSectionMotion = useSimpleMotion("map-right-section");
@@ -44,7 +49,7 @@ const MapSection = () => {
               {...mapImageMotion}
             >
               <Image
-                src="/assets/desktop/home/map-desktop.svg"
+                src={MapDesktop}
                 alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
                 width={972}
                 height={495}
@@ -131,7 +136,7 @@ const MapSection = () => {
             >
               <div className="w-[425px] h-[425px] flex items-center justify-center">
                 <Image
-                  src="/assets/desktop/home/decorator-icon.png"
+                  src={DecoratorIcon}
                   alt="Decorative icon representing our global carbon initiatives"
                   width={425}
                   height={425}
@@ -163,7 +168,7 @@ const MapSection = () => {
               }}
             >
               <Image
-                src="/assets/map-image.svg"
+                src={MapImageMobile}
                 alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
                 width={736}
                 height={383}

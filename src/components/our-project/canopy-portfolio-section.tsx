@@ -5,6 +5,17 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 
+// Image imports
+import CanopyPortfolioBg from "../../../public/assets/our-project/canopy-portfolio-section/canopy-portfolio-bg-381140.png";
+import CanopyBluePrintBg from "../../../public/assets/our-project/canopy-portfolio-section/canopy-blue-print-bg.png";
+import PortfolioImage1 from "../../../public/assets/our-project/portfolio/carousel-images/portfolio-image-1.png";
+import PortfolioImage2 from "../../../public/assets/our-project/portfolio/carousel-images/portfolio-image-2.png";
+import PortfolioImage3 from "../../../public/assets/our-project/portfolio/carousel-images/portfolio-image-3.png";
+import PortfolioImage4 from "../../../public/assets/our-project/portfolio/carousel-images/portfolio-image-4.png";
+import PortfolioImage5 from "../../../public/assets/our-project/portfolio/carousel-images/portfolio-image-5.png";
+import ArrowLeftCircle from "../../../public/assets/about-us/our-project-section/arrow-left-circle.svg";
+import ArrowRightCircle from "../../../public/assets/about-us/our-project-section/arrow-right-circle.svg";
+
 /**
  * Interface for individual portfolio project
  */
@@ -13,7 +24,7 @@ interface PortfolioProject {
   title: string;
   location: string;
   description: string;
-  imageUrl: string;
+  imageUrl: any;
   readMoreLink?: string;
   isComingSoon?: boolean;
 }
@@ -47,8 +58,7 @@ const CanopyPortfolioSection: React.FC = () => {
       location: "Pulang Pisau, Central Kalimantan",
       description:
         "A VM047 & VM007 project, CK-01 covers over 13,500 hectares with an indigenous community of 8 villages. The project integrates reforestation, forest and biodiversity conservation, and wetland restoration.",
-      imageUrl:
-        "/assets/our-project/portfolio/carousel-images/portfolio-image-1.png",
+      imageUrl: PortfolioImage1,
       readMoreLink: "#",
     },
     {
@@ -57,8 +67,7 @@ const CanopyPortfolioSection: React.FC = () => {
       location: "Barito Timur, Central Kalimantan",
       description:
         "A VM047 & VM007 project, CK-02 spans over 8,400 hectares and engages 8 villages. It focuses on reforestation and forest and biodiversity conservation.",
-      imageUrl:
-        "/assets/our-project/portfolio/carousel-images/portfolio-image-2.png",
+      imageUrl: PortfolioImage2,
       readMoreLink: "#",
     },
     {
@@ -67,8 +76,7 @@ const CanopyPortfolioSection: React.FC = () => {
       location: "Lamandau Central Kalimantan",
       description:
         "A VM047 & VM048 project, CK-03 covers close to 29,000 hectares. It involves 10 villages and is a large-scale reforestation initiative with supporting forest and biodiversity conservation components.",
-      imageUrl:
-        "/assets/our-project/portfolio/carousel-images/portfolio-image-3.png",
+      imageUrl: PortfolioImage3,
       readMoreLink: "#",
     },
     {
@@ -77,8 +85,7 @@ const CanopyPortfolioSection: React.FC = () => {
       location: "Pekanbaru, East Sumatra",
       description:
         "An agricultural waste management initiative developed in partnership with a globally recognized biochar specialist. The facility is designed to process 100 tons of input waste per day.",
-      imageUrl:
-        "/assets/our-project/portfolio/carousel-images/portfolio-image-4.png",
+      imageUrl: PortfolioImage4,
       readMoreLink: "#",
     },
     {
@@ -86,8 +93,7 @@ const CanopyPortfolioSection: React.FC = () => {
       title: "Coming Soon",
       location: "More impact driven projects brewing...",
       description: "",
-      imageUrl:
-        "/assets/our-project/portfolio/carousel-images/portfolio-image-5.png",
+      imageUrl: PortfolioImage5,
       isComingSoon: true,
     },
   ];
@@ -113,7 +119,7 @@ const CanopyPortfolioSection: React.FC = () => {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/assets/our-project/canopy-portfolio-section/canopy-portfolio-bg-381140.png"
+            src={CanopyPortfolioBg}
             alt="Canopy Portfolio Background"
             fill
             className="object-cover"
@@ -178,7 +184,7 @@ const CanopyPortfolioSection: React.FC = () => {
         {/* Blueprint Background Image - Full Screen */}
         <div className="absolute inset-0 opacity-30">
           <Image
-            src="/assets/our-project/canopy-portfolio-section/canopy-blue-print-bg.png"
+            src={CanopyBluePrintBg}
             alt="Blueprint Background Pattern"
             fill
             className="object-cover"
@@ -245,7 +251,11 @@ const CanopyPortfolioSection: React.FC = () => {
                     <motion.h3
                       initial={{ opacity: 0.7, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 1.0, ease: "easeOut" }}
+                      transition={{
+                        duration: 0.4,
+                        delay: 1.0,
+                        ease: "easeOut",
+                      }}
                       className="font-roboto font-black text-[21px] leading-[1.429em] text-white text-center mb-[2.93px]"
                     >
                       {currentProject.title}
@@ -255,7 +265,11 @@ const CanopyPortfolioSection: React.FC = () => {
                     <motion.p
                       initial={{ opacity: 0.6, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 1.1, ease: "easeOut" }}
+                      transition={{
+                        duration: 0.4,
+                        delay: 1.1,
+                        ease: "easeOut",
+                      }}
                       className="font-open-sans font-light text-[12px] leading-[2.333em] text-white text-center mb-[4px]"
                     >
                       {currentProject.location}
@@ -331,7 +345,7 @@ const CanopyPortfolioSection: React.FC = () => {
                   aria-label="Previous project"
                 >
                   <Image
-                    src="/assets/about-us/our-project-section/arrow-left-circle.svg"
+                    src={ArrowLeftCircle}
                     alt="Previous"
                     width={23}
                     height={23}
@@ -352,7 +366,7 @@ const CanopyPortfolioSection: React.FC = () => {
                   aria-label="Next project"
                 >
                   <Image
-                    src="/assets/about-us/our-project-section/arrow-right-circle.svg"
+                    src={ArrowRightCircle}
                     alt="Next"
                     width={23}
                     height={23}

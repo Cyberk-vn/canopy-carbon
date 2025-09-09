@@ -5,6 +5,9 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { Container } from "../shared";
 
+// Image imports
+import BenefitIconsTable from "../../../public/assets/desktop/our-projects/benefit-icons-table.svg";
+
 const OurProjectBenefitSectionDesktop: React.FC = () => {
   return (
     <Container maxWidth="default">
@@ -57,7 +60,7 @@ const OurProjectBenefitSectionDesktop: React.FC = () => {
             {/* Benefit Icons Table */}
             <div className="w-full h-full flex items-center justify-center">
               <Image
-                src="/assets/desktop/our-projects/benefit-icons-table.svg"
+                src={BenefitIconsTable}
                 alt="Benefit Icons Table"
                 width={1200}
                 height={431}

@@ -11,29 +11,35 @@ import {
 import { useExecutionSwipe } from "@/src/hooks/execution/use-execution-swipe";
 import { Container } from "@/src/components/shared";
 
+// Image imports
+import ExecutionImage1 from "../../../public/assets/desktop/home/our-execution-image-1.jpg";
+import ExecutionImage2 from "../../../public/assets/desktop/home/our-execution-image-2.jpg";
+import ExecutionImage3 from "../../../public/assets/desktop/home/our-execution-image-3.jpg";
+import ExecutionImage4 from "../../../public/assets/desktop/home/our-execution-image-4.jpg";
+
 // Desktop execution items (new grid layout images)
 const desktopExecutionItems: ExecutionItem[] = [
   {
     id: 1,
-    imageSrc: "/assets/desktop/home/our-execution-image-1.jpg",
+    imageSrc: ExecutionImage1,
     altText: "Precision in Delivery",
     title: "Precision in Delivery",
   },
   {
     id: 2,
-    imageSrc: "/assets/desktop/home/our-execution-image-2.jpg",
+    imageSrc: ExecutionImage2,
     altText: "Community Focused",
     title: "Community Focused",
   },
   {
     id: 3,
-    imageSrc: "/assets/desktop/home/our-execution-image-3.jpg",
+    imageSrc: ExecutionImage3,
     altText: "Environmental Integrity",
     title: "Environmental Integrity",
   },
   {
     id: 4,
-    imageSrc: "/assets/desktop/home/our-execution-image-4.jpg",
+    imageSrc: ExecutionImage4,
     altText: "Radical Transparency",
     title: "Radical Transparency",
   },

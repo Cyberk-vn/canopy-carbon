@@ -1,6 +1,8 @@
+import { StaticImageData } from "next/image";
+
 export interface CarouselCard {
   id: string;
-  src: string;
+  src: string | StaticImageData;
   alt: string;
 }
 
@@ -12,7 +14,7 @@ export interface CarouselCardGroup {
 
 export interface CarouselImage {
   id: string;
-  src: string;
+  src: string | StaticImageData;
   alt: string;
 }
 

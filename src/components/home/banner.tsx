@@ -12,33 +12,44 @@ import { Container } from "@/src/components/shared";
 // import { ServiceCard } from "./service-card"; // Temporarily commented - unused
 import { ServiceCardData } from "@/src/types/service";
 
+// Image imports
+import BannerBgMobile from "../../../public/assets/banner-bg-mobile.png";
+import BannerDecoratorMobile from "../../../public/assets/banner-decorator-mobile.png";
+import DesktopDecoratorIcon from "../../../public/assets/desktop/home/decorator-icon.png";
+
+// Icon imports for service cards
+import ArrIcon from "../../../public/assets/icon/arr-icon.png";
+import ReddIcon from "../../../public/assets/icon/redd-icon.png";
+import WrcIcon from "../../../public/assets/icon/wrc-icon.png";
+import BiocharIcon from "../../../public/assets/icon/blochar-icon.png";
+
 // Desktop Service Card Icon Component
 function DesktopServiceCardIcon({
   iconType,
 }: {
   iconType: ServiceCardData["iconType"];
 }) {
-  const getIconPath = () => {
+  const getIconSrc = () => {
     switch (iconType) {
       case "arr":
-        return "/assets/icon/arr-icon.png";
+        return ArrIcon;
       case "redd":
-        return "/assets/icon/redd-icon.png";
+        return ReddIcon;
       case "wrc":
-        return "/assets/icon/wrc-icon.png";
+        return WrcIcon;
       case "biochar":
-        return "/assets/icon/blochar-icon.png";
+        return BiocharIcon;
       default:
         return null;
     }
   };
 
-  const iconPath = getIconPath();
-  if (!iconPath) return null;
+  const iconSrc = getIconSrc();
+  if (!iconSrc) return null;
 
   return (
     <Image
-      src={iconPath}
+      src={iconSrc}
       alt={`${iconType} icon`}
       width={24}
       height={24}
@@ -165,7 +176,7 @@ export function Banner({
       {/* Mobile Background - Keep existing mobile layout */}
       <div className="lg:hidden absolute inset-0 z-0">
         <Image
-          src="/assets/banner-bg-mobile.png"
+          src={BannerBgMobile}
           alt="Canopy Carbon mobile background"
           fill
           className="object-cover"
@@ -192,7 +203,7 @@ export function Banner({
               className="w-[319px] h-[319px]"
             >
               <Image
-                src="/assets/banner-decorator-mobile.png"
+                src={BannerDecoratorMobile}
                 alt="Mobile banner decorator"
                 width={319}
                 height={319}
@@ -257,7 +268,7 @@ export function Banner({
                   className="relative"
                 >
                   <Image
-                    src="/assets/desktop/home/decorator-icon.png"
+                    src={DesktopDecoratorIcon}
                     alt="Canopy Carbon decorator icon"
                     width={460}
                     height={460}
