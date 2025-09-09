@@ -144,8 +144,8 @@ export const OurPracticalSection = () => {
                         pt-[13px] pr-[14px] pb-[47px] max-h-[121px] h-[121px] min-h-[121px] flex items-start 
                         w-[371px] ${
                           isRightAligned
-                            ? "xs:w-[calc(100%-17px)] xs:ml-[17px]"
-                            : "xs:w-[calc(100%-17px)] xs:mr-[17px]"
+                            ? "xxs:w-[calc(100%-17px)] xxs:ml-[17px] xs:w-[calc(100%-17px)] xs:ml-[17px]"
+                            : "xxs:w-[calc(100%-17px)] xxs:mr-[17px] xs:w-[calc(100%-17px)] xs:mr-[17px]"
                         }`}
                       style={{
                         backgroundColor: card.backgroundColor,
@@ -155,7 +155,7 @@ export const OurPracticalSection = () => {
                       }}
                     >
                       <p
-                        className={`font-open-sans font-semibold text-[#798C9B] w-full text-[12px] xs:text-[14px] ${
+                        className={`font-open-sans font-semibold text-[#798C9B] w-full text-[12px] xs:text-[14px] xxs:text-[13px] ${
                           isRightAligned
                             ? "text-right ml-[36px]"
                             : "text-left ml-[44px]"

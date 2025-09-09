@@ -197,7 +197,7 @@ const AnimatedTextContent = memo(
           animate="center"
           exit="exit"
           transition={transitionConfig}
-          className="font-open-sans font-bold text-[#5B5F58] text-center text-[12px] md:text-[16px]"
+          className="font-open-sans font-bold text-[#5B5F58] text-center text-[12px] xxs:text-[13px] xs:text-[14px] md:text-[16px]"
           style={{
             lineHeight: "20px",
             letterSpacing: "0.03",
@@ -213,7 +213,7 @@ const AnimatedTextContent = memo(
           animate="center"
           exit="exit"
           transition={transitionConfig}
-          className="font-open-sans font-normal text-[#5B5F58] text-center text-[11.5px] md:text-[14px]"
+          className="font-open-sans font-normal text-[#5B5F58] text-center text-[11.5px] xxs:text-[12px] xs:text-[13px] md:text-[14px]"
           style={{
             lineHeight: "15px",
           }}
@@ -371,7 +371,7 @@ export const ServiceCard = memo(
                     transition={
                       prefersReducedMotion ? { duration: 0.1 } : fastTransition
                     }
-                    className="font-inter font-bold text-[#1D2E27] text-lg md:text-[20px]"
+                    className="font-inter font-bold text-[#1D2E27] text-lg xxs:text-[19px] xs:text-[20px] md:text-[20px]"
                     style={{ lineHeight: "30px" }}
                   >
                     {currentService.abbreviation}

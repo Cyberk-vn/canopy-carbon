@@ -253,12 +253,12 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
         <div className="grid grid-cols-[1fr_136px] justify-around items-end pl-[29px]">
           {/* Text Content */}
           <div className="flex flex-col gap-[6px]">
-            <h2 className="font-open-sans font-bold text-[18px] leading-[28px] text-[#475850] text-left">
+            <h2 className="font-open-sans font-bold text-[18px] xxs:text-[19px] xs:text-[20px] leading-[28px] text-[#475850] text-left">
               {data.sectionTitle}
             </h2>
 
             <p
-              className="font-open-sans font-semibold text-[13px] leading-[1.5384615384615385] text-[#91A69E] text-left max-w-[234px]"
+              className="font-open-sans font-semibold text-[13px] xs:text-[13.5px] leading-[1.5384615384615385] text-[#91A69E] text-left max-w-[234px]"
               style={{ letterSpacing: "-3%" }}
             >
               {data.sectionSubtitle}
@@ -313,7 +313,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
                       <AnimatePresence mode="wait">
                         <motion.h4
                           key={`development-title-${currentCard.id}`}
-                          className="font-roboto font-black text-[16px] leading-[20px] text-white"
+                          className="font-roboto font-black text-[16px] xxs:text-[17px] xs:text-[18px] leading-[20px] text-white"
                           style={{
                             fontWeight: 900,
                             willChange: "opacity",
@@ -369,7 +369,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
                             {/* Description */}
                             <div className="flex-1">
                               <p
-                                className="font-roboto font-normal text-[12px] leading-[20px] text-white tracking-[-0.01em] w-full overflow-hidden"
+                                className="font-roboto font-normal text-[12px] xxs:text-[13px] xs:text-[14px] leading-[20px] text-white tracking-[-0.01em] w-full overflow-hidden"
                                 style={{
                                   letterSpacing: "-1%",
                                 }}
@@ -381,7 +381,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
                             {/* Learn More Link */}
                             <button
                               onClick={redirectToContact}
-                              className="font-roboto font-normal text-[9px] leading-[2.22] text-white/60 hover:text-white transition-colors duration-200 inline-block text-left"
+                              className="font-roboto font-normal text-[9px] xxs:text-[10px] xs:text-[11px] leading-[2.22] text-white/60 hover:text-white transition-colors duration-200 inline-block text-left"
                             >
                               Learn More &gt;
                             </button>
@@ -406,7 +406,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
 
           {/* Description Text */}
           <p
-            className="font-open-sans font-semibold text-[14px] leading-[20px] text-[#91A69E] text-center mb-3 w-full justify-center"
+            className="font-open-sans font-semibold text-[14px] xxs:text-[15px] xs:text-[16px] leading-[20px] text-[#91A69E] text-center mb-3 w-full justify-center"
             style={{ letterSpacing: "-3%" }}
           >
             {data.contentSectionDescription}
@@ -414,7 +414,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
 
           {/* Title */}
           <h3
-            className="font-open-sans font-bold text-[12px] leading-[1.6666666666666667] text-[#475850] text-center w-full"
+            className="font-open-sans font-bold text-[12px] xxs:text-[13px] xs:text-[14px] leading-[1.6666666666666667] text-[#475850] text-center w-full"
             style={{ letterSpacing: "-3%" }}
           >
             {data.contentSectionTitle}
@@ -457,7 +457,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
                         <AnimatePresence mode="wait">
                           <motion.h4
                             key={`climate-action-title-${currentClimateActionCard.id}`}
-                            className="font-roboto font-black text-[16px] leading-[1.25]"
+                            className="font-roboto font-black text-[16px] xxs:text-[17px] xs:text-[18px] leading-[1.25]"
                             style={{
                               color: "rgba(46, 47, 45, 0.7)",
                               willChange: "opacity",
@@ -525,7 +525,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
                               {/* Description */}
                               <div className="flex-1">
                                 <p
-                                  className="font-roboto font-normal text-[12px] leading-[1.67] w-full overflow-hidden"
+                                  className="font-roboto font-normal text-[12px] xxs:text-[13px] xs:text-[14px] leading-[1.67] w-full overflow-hidden"
                                   style={{
                                     color: "rgba(46, 47, 45, 0.8)",
                                     letterSpacing: "-1%",
@@ -538,7 +538,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
                               {/* Learn More Link */}
                               <button
                                 onClick={redirectToContact}
-                                className="font-roboto font-normal text-[9px] leading-[2.22] hover:opacity-80 transition-opacity duration-200 inline-block text-left"
+                                className="font-roboto font-normal text-[9px] xxs:text-[10px] xs:text-[11px] leading-[2.22] hover:opacity-80 transition-opacity duration-200 inline-block text-left"
                                 style={{
                                   color: "rgba(46, 47, 45, 0.6)",
                                 }}
