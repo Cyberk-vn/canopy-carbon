@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion } from "motion/react";
 import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 
@@ -24,7 +24,7 @@ interface PortfolioProject {
   title: string;
   location: string;
   description: string;
-  imageUrl: any;
+  imageUrl: StaticImageData;
   readMoreLink?: string;
   isComingSoon?: boolean;
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion } from "motion/react";
 import { Container } from "../shared";
 
@@ -19,7 +19,7 @@ interface PortfolioProject {
   title: string;
   location: string;
   description: string;
-  imageUrl: any;
+  imageUrl: StaticImageData;
   readMoreLink?: string;
   isComingSoon?: boolean;
 }
