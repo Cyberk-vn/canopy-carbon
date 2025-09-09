@@ -220,7 +220,7 @@ export function Banner({
                 {...SIMPLE_ANIMATIONS.fadeInLeft}
                 {...titleMotion}
                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                className="font-roboto text-[32px] leading-[38px] text-[#F0F0F0]"
+                className="font-roboto text-[32px] xxs:text-[33px] xs:text-[34px] leading-[38px] text-[#F0F0F0]"
                 style={{
                   fontWeight: 900,
                 }}
@@ -233,7 +233,7 @@ export function Banner({
                 {...SIMPLE_ANIMATIONS.fadeInLeft}
                 {...subtitleMotion}
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-                className="font-open-sans font-semibold text-[15px] leading-[24px] text-[#B7C0C9] max-w-[309px]"
+                className="font-open-sans font-semibold text-[15px] xxs:text-[16px] xs:text-[17px] leading-[24px] text-[#B7C0C9] max-w-[309px] xxs:max-w-[320px] xs:max-w-[335px]"
                 style={{
                   fontWeight: 600,
                 }}
