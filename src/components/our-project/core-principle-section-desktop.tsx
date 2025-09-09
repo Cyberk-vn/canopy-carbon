@@ -21,8 +21,6 @@ const CorePrincipleSectionDesktop: React.FC = () => {
               width={298}
               height={478}
               className="w-full h-full object-cover"
-              priority
-              placeholder="blur"
             />
           </div>
 

@@ -129,9 +129,8 @@ export const OurPracticalSection = () => {
                       }`}
                     >
                       <h3
-                        className="font-open-sans font-light text-black"
+                        className="font-open-sans font-light text-black text-[16px] xs:text-[18px]"
                         style={{
-                          fontSize: "16px",
                           lineHeight: "20px",
                         }}
                       >
@@ -141,23 +140,27 @@ export const OurPracticalSection = () => {
 
                     {/* Card Background with Content */}
                     <div
-                      className="pt-[13px] pr-[14px] pb-[47px] max-h-[121px] h-[121px] min-h-[121px] flex items-start"
+                      className={`
+                        pt-[13px] pr-[14px] pb-[47px] max-h-[121px] h-[121px] min-h-[121px] flex items-start 
+                        w-[371px] ${
+                          isRightAligned
+                            ? "xs:w-[calc(100%-17px)] xs:ml-[17px]"
+                            : "xs:w-[calc(100%-17px)] xs:mr-[17px]"
+                        }`}
                       style={{
                         backgroundColor: card.backgroundColor,
-                        width: "371px",
                         borderRadius: isRightAligned
                           ? "10px 0 0 10px" // top-left and bottom-left 10px
                           : "0 10px 10px 0", // top-right and bottom-right 10px
                       }}
                     >
                       <p
-                        className={`font-open-sans font-semibold text-[#798C9B] w-full ${
+                        className={`font-open-sans font-semibold text-[#798C9B] w-full text-[12px] xs:text-[14px] ${
                           isRightAligned
                             ? "text-right ml-[36px]"
                             : "text-left ml-[44px]"
                         }`}
                         style={{
-                          fontSize: "12px",
                           lineHeight: "1.6666666666666667em",
                         }}
                       >
