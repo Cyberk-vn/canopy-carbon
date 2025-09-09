@@ -1,9 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "motion/react";
 import FadeContent from "@/src/components/animation/fade-content";
+import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 
 export function CanopyPortfolioSection() {
+  // Contact redirect hook
+  const { redirectToContact } = useContactRedirect();
+
   return (
     <FadeContent
       duration={600}
@@ -75,15 +80,36 @@ export function CanopyPortfolioSection() {
           </FadeContent>
 
           {/* Call to Action */}
-          <div
-            className="font-open-sans font-normal text-[#7D8F89] cursor-pointer hover:text-[#5A6B63] transition-colors duration-200 text-[11px] xxs:text-[12px] xs:text-[13px]"
-            style={{
-              lineHeight: "1.6363636363636365em",
-              textAlign: "center",
-            }}
+          <FadeContent
+            duration={400}
+            delay={300}
+            threshold={0.1}
+            easing="ease-out"
           >
-            Collaborate →
-          </div>
+            <motion.div
+              onClick={redirectToContact}
+              className="font-open-sans font-normal text-[#7D8F89] cursor-pointer text-[11px] xxs:text-[12px] xs:text-[13px]"
+              style={{
+                lineHeight: "1.6363636363636365em",
+                textAlign: "center",
+              }}
+              whileHover={{
+                scale: 1.05,
+                color: "#5A6B63",
+                transition: { duration: 0.2, ease: "easeOut" }
+              }}
+              whileTap={{
+                scale: 0.95,
+                color: "#4A5A53",
+                transition: { duration: 0.1, ease: "easeIn" }
+              }}
+              initial={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              Collaborate →
+            </motion.div>
+          </FadeContent>
         </div>
       </div>
     </FadeContent>

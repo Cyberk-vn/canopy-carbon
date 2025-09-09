@@ -13,6 +13,7 @@ import {
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
 import { useResponsiveCardDimensions } from "@/src/hooks/responsive/use-responsive-card-dimensions";
+import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 
 // Image imports
 import BookCard1 from "../../../../public/assets/about-us/book-card-1.png";
@@ -162,6 +163,9 @@ const defaultData = {
 
 export const MobileView = memo<MobileViewProps>(({ data = defaultData }) => {
   const { carouselData = defaultData.carouselData, descriptionData } = data;
+  
+  // Contact redirect hook
+  const { redirectToContact } = useContactRedirect();
 
   // Simple Motion animations
   const containerMotion = useSimpleMotion("about-project-mobile-container");
@@ -188,7 +192,7 @@ export const MobileView = memo<MobileViewProps>(({ data = defaultData }) => {
             <OurTeamCarouselInline
               data={{
                 ...carouselData,
-                buttonAction: carouselData.buttonAction || (() => {}),
+                buttonAction: redirectToContact,
               }}
             />
           </motion.div>
@@ -574,24 +578,46 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
           </p>
 
           {/* Request Access Button */}
-          <button
+          <motion.button
             onClick={buttonAction}
-            className="w-full h-8 rounded-[2px] transition-all duration-300 hover:opacity-80 justify-center flex items-center"
+            className="w-full h-8 rounded-[2px] justify-center flex items-center"
             style={{
               backgroundColor: "rgba(87, 81, 81, 0.1)",
             }}
+            whileHover={{
+              scale: 1.02,
+              opacity: 0.85,
+              backgroundColor: "rgba(87, 81, 81, 0.15)",
+              transition: { duration: 0.2, ease: "easeOut" }
+            }}
+            whileTap={{
+              scale: 0.98,
+              opacity: 0.7,
+              transition: { duration: 0.1, ease: "easeIn" }
+            }}
+            initial={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <span
+            <motion.span
               className="font-open-sans text-[9px] xxs:text-[10px] xs:text-[11px]"
               style={{
                 fontWeight: 400,
                 lineHeight: "2.2222222222222223em",
                 color: "rgba(0, 0, 0, 0.4)",
               }}
+              whileHover={{
+                color: "rgba(0, 0, 0, 0.6)",
+                transition: { duration: 0.2, ease: "easeOut" }
+              }}
+              whileTap={{
+                color: "rgba(0, 0, 0, 0.8)",
+                transition: { duration: 0.1, ease: "easeIn" }
+              }}
             >
               {buttonText}
-            </span>
-          </button>
+            </motion.span>
+          </motion.button>
         </div>
       </div>
     </div>

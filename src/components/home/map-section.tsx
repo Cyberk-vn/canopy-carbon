@@ -8,6 +8,7 @@ import {
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
 import { Container } from "@/src/components/shared";
+import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 
 // Image imports
 import MapDesktop from "../../../public/assets/desktop/home/map-desktop.svg";
@@ -15,6 +16,9 @@ import DecoratorIcon from "../../../public/assets/desktop/home/decorator-icon.pn
 import MapImageMobile from "../../../public/assets/map-image.svg";
 
 const MapSection = () => {
+  // Contact redirect hook
+  const { redirectToContact } = useContactRedirect();
+
   // Motion animation hooks
   const rightSectionMotion = useSimpleMotion("map-right-section");
   const mapImageMotion = useSimpleMotion("map-image");
@@ -90,38 +94,70 @@ const MapSection = () => {
 
               {/* Read More Component */}
               <motion.div
-                className="flex items-end justify-end gap-[6px] ml-4 h-full"
+                onClick={redirectToContact}
+                className="flex items-end justify-end gap-[6px] ml-4 h-full cursor-pointer"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+                whileHover={{
+                  scale: 1.05,
+                  x: 5,
+                  transition: { duration: 0.2, ease: "easeOut" },
+                }}
+                whileTap={{
+                  scale: 0.95,
+                  transition: { duration: 0.1, ease: "easeIn" },
+                }}
               >
                 {/* Arrow Icon */}
-                <div className="w-5 h-5 flex items-center justify-center">
-                  <svg
+                <motion.div
+                  className="w-5 h-5 flex items-center justify-center"
+                  whileHover={{
+                    x: 3,
+                    transition: { duration: 0.2, ease: "easeOut" },
+                  }}
+                >
+                  <motion.svg
                     width="5"
                     height="10"
                     viewBox="0 0 5 10"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    whileHover={{
+                      scale: 1.1,
+                      transition: { duration: 0.2, ease: "easeOut" },
+                    }}
                   >
-                    <path
+                    <motion.path
                       d="M0.5 0.5L4 5L0.5 9.5"
                       stroke="#9DAE83"
                       strokeWidth="1.25"
                       strokeLinecap="round"
                       strokeLinejoin="round"
+                      whileHover={{
+                        stroke: "#7D9563",
+                        transition: { duration: 0.2, ease: "easeOut" },
+                      }}
                     />
-                  </svg>
-                </div>
-                <span
+                  </motion.svg>
+                </motion.div>
+                <motion.span
                   className="text-[16px] font-normal text-[#2A2E35]"
                   style={{
                     fontFamily: "Open Sans",
                     lineHeight: "1.5em",
                   }}
+                  whileHover={{
+                    color: "#1A1E25",
+                    transition: { duration: 0.2, ease: "easeOut" },
+                  }}
+                  whileTap={{
+                    color: "#0A0E15",
+                    transition: { duration: 0.1, ease: "easeIn" },
+                  }}
                 >
                   Read More
-                </span>
+                </motion.span>
               </motion.div>
             </motion.div>
             {/* Decorator Icon */}
