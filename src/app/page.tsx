@@ -74,9 +74,8 @@ export default function Home() {
         <OurExecutionSection />
 
         <MapSection />
+        <FooterSection />
       </div>
-
-      <FooterSection />
     </>
   );
 }

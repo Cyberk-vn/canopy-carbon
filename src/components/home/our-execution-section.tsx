@@ -58,9 +58,6 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
     autoSwitchState,
     actions,
     handleDragEnd, // Now comes from consolidated hook
-    handlePrincipleSelection,
-    handleImageCycle,
-    canSwipe,
   } = useExecutionSwipe();
 
   // Check for reduced motion preference

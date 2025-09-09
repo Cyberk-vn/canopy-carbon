@@ -3,7 +3,6 @@
 import { OurServiceSectionProps, ServiceCardData } from "@/src/types/service";
 import { ServiceCard } from "./service-card";
 import { MobileServiceTitleOverlay } from "./mobile-service-title-overlay";
-import { Container } from "@/src/components/shared";
 import { useRef } from "react";
 import { motion } from "motion/react";
 import {

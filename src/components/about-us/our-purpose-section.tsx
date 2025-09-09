@@ -17,7 +17,6 @@ export const OurPurposeSection = () => {
   const containerMotion = useSimpleMotion("purpose-container");
   const imageMotion = useSimpleMotion("purpose-image");
   const contentMotion = useSimpleMotion("purpose-content");
-  const desktopImageMotion = useSimpleMotion("purpose-desktop-image");
   const desktopContentMotion = useSimpleMotion("purpose-desktop-content");
 
   return (

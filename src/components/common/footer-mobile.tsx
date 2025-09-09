@@ -1,6 +1,13 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+
+// Icon imports
+import FacebookIcon from "../../../public/assets/icon/facebook.svg";
+import TwitterIcon from "../../../public/assets/icon/twitter.svg";
+import LinkedInIcon from "../../../public/assets/icon/linked-in.svg";
+import InstagramIcon from "../../../public/assets/icon/instagram.svg";
 
 interface ContactFormData {
   name: string;
@@ -99,8 +106,8 @@ const FooterMobile = ({
 }: FooterMobileProps) => {
   return (
     <section className="w-full lg:hidden bg-[FCFCFC]">
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="py-[67px]">
+      <div className="max-w-[1200px] mx-auto px-6 bg-[FCFCFC]">
+        <div className="py-[67px] bg-[FCFCFC]">
           {/* Header Title */}
           <h2
             className="text-[18px] font-semibold text-[#3B464F] mb-[20px] text-start leading-[30px]"
@@ -200,36 +207,44 @@ const FooterMobile = ({
               <div className="flex gap-3 justify-end">
                 {/* Facebook */}
                 <div className="w-6 h-6 flex items-center justify-center">
-                  <img
-                    src="/assets/icon/facebook.svg"
+                  <Image
+                    src={FacebookIcon}
                     alt="Facebook"
+                    width={24}
+                    height={24}
                     className="w-6 h-6"
                   />
                 </div>
 
                 {/* Twitter */}
                 <div className="w-6 h-6 flex items-center justify-center">
-                  <img
-                    src="/assets/icon/twitter.svg"
+                  <Image
+                    src={TwitterIcon}
                     alt="Twitter"
+                    width={24}
+                    height={24}
                     className="w-6 h-6"
                   />
                 </div>
 
                 {/* LinkedIn */}
                 <div className="w-6 h-6 flex items-center justify-center">
-                  <img
-                    src="/assets/icon/linked-in.svg"
+                  <Image
+                    src={LinkedInIcon}
                     alt="LinkedIn"
+                    width={24}
+                    height={24}
                     className="w-6 h-6"
                   />
                 </div>
 
                 {/* Instagram */}
                 <div className="w-6 h-6 flex items-center justify-center">
-                  <img
-                    src="/assets/icon/instagram.svg"
+                  <Image
+                    src={InstagramIcon}
                     alt="Instagram"
+                    width={24}
+                    height={24}
                     className="w-6 h-6"
                   />
                 </div>

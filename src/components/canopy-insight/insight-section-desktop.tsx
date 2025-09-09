@@ -15,7 +15,6 @@ interface InsightSectionDesktopProps {
 export function InsightSectionDesktop({
   title,
   description,
-  showDecorators = true,
   imagePosition = "right",
   titleFontSize = "28px",
   imageSrc = "/assets/desktop/canopy-insight/bayond-emission-card-1.png",
