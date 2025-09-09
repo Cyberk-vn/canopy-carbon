@@ -1,8 +1,12 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Container } from "../shared";
+
+// Image imports
+import PrincipleDecoratorImage from "../../../public/assets/desktop/our-projects/principle-decorator-image.svg";
 
 const CorePrincipleSectionDesktop: React.FC = () => {
   return (
@@ -11,10 +15,14 @@ const CorePrincipleSectionDesktop: React.FC = () => {
         <div className="flex flex-col xl:flex-row gap-8">
           {/* Decorator Image */}
           <div className="w-[298.07px] h-[477.54px] flex-shrink-0 hidden xl:block">
-            <img
-              src="/assets/desktop/our-projects/principle-decorator-image.svg"
+            <Image
+              src={PrincipleDecoratorImage}
               alt="Principle decorator"
+              width={298}
+              height={478}
               className="w-full h-full object-cover"
+              priority
+              placeholder="blur"
             />
           </div>
 

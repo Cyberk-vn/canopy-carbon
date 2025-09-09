@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import { NavigationMenu } from "../common";
-import { InsightSection } from "./insight-section";
 import {
   getMenuItems,
   getLogoUrl,
