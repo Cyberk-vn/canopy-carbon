@@ -10,6 +10,10 @@ import {
 import { Container } from "@/src/components/shared";
 import MobileRoadmap from "./mobile-roadmap";
 
+// Image imports
+import TreeImage from "../../../public/assets/desktop/home/tree.jpg";
+import RoadMapImage from "../../../public/assets/desktop/home/road-map.svg";
+
 const RoadmapSection = () => {
   const leftSideMotion = useSimpleMotion("roadmap-left-side");
   const rightSideMotion = useSimpleMotion("roadmap-right-side");
@@ -117,7 +121,7 @@ const RoadmapSection = () => {
                 >
                   <div className="decorative-card card-effect">
                     <Image
-                      src="/assets/desktop/home/tree.jpg"
+                      src={TreeImage}
                       alt="Decorative tree image representing sustainable forest management"
                       width={302}
                       height={547}
@@ -140,7 +144,7 @@ const RoadmapSection = () => {
               >
                 <div className="w-full">
                   <Image
-                    src="/assets/desktop/home/road-map.svg"
+                    src={RoadMapImage}
                     alt="Canopy Carbon Project Development Roadmap - Complete visual showing the 8-step process from origination to credit issuance"
                     width={885}
                     height={363}

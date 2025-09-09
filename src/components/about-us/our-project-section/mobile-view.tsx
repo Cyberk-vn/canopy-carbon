@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback, memo } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion } from "motion/react";
 import {
   OurProjectSectionProps,
@@ -14,6 +14,34 @@ import {
 } from "@/src/hooks/responsive/use-simple-motion";
 import { useResponsiveCardDimensions } from "@/src/hooks/responsive/use-responsive-card-dimensions";
 
+// Image imports
+import BookCard1 from "../../../../public/assets/about-us/book-card-1.png";
+import BookCard2 from "../../../../public/assets/about-us/book-card-2.png";
+
+// Group 1 card images
+import Group1Card1 from "../../../../public/assets/about-us/our-project-section/book-card-1-group/card-1.png";
+import Group1Card2 from "../../../../public/assets/about-us/our-project-section/book-card-1-group/card-2.png";
+import Group1Card3 from "../../../../public/assets/about-us/our-project-section/book-card-1-group/card-3.png";
+import Group1Card4 from "../../../../public/assets/about-us/our-project-section/book-card-1-group/card-4.png";
+import Group1Card5 from "../../../../public/assets/about-us/our-project-section/book-card-1-group/card-5.png";
+
+// Group 2 card images
+import Group2Card1 from "../../../../public/assets/about-us/our-project-section/book-card-2-group/card-1.png";
+import Group2Card2 from "../../../../public/assets/about-us/our-project-section/book-card-2-group/card-2.png";
+import Group2Card3 from "../../../../public/assets/about-us/our-project-section/book-card-2-group/card-3.png";
+import Group2Card4 from "../../../../public/assets/about-us/our-project-section/book-card-2-group/card-4.png";
+import Group2Card5 from "../../../../public/assets/about-us/our-project-section/book-card-2-group/card-5.png";
+import Group2Card6 from "../../../../public/assets/about-us/our-project-section/book-card-2-group/card-6.png";
+
+// Description section images
+import DescriptionBg from "../../../../public/assets/about-us/our-project-section/description-bg.png";
+import LogoDescriptionAbsolute from "../../../../public/assets/about-us/our-project-section/logo-description-absolute.png";
+
+// Navigation and header images
+import OurTeamHeaderImage from "../../../../public/assets/about-us/our-team-header-image.png";
+import ArrowLeftCircle from "../../../../public/assets/about-us/our-project-section/arrow-left-circle.svg";
+import ArrowRightCircle from "../../../../public/assets/about-us/our-project-section/arrow-right-circle.svg";
+
 // Inline component interfaces
 interface InlineCarouselData {
   images: CarouselImage[];
@@ -25,8 +53,8 @@ interface InlineCarouselData {
 
 interface InlineDescriptionData {
   mainText: string;
-  backgroundImage: string;
-  logoImage?: string;
+  backgroundImage: string | StaticImageData;
+  logoImage?: string | StaticImageData;
 }
 
 interface MobileViewProps {
@@ -39,12 +67,12 @@ const defaultData = {
     images: [
       {
         id: "1",
-        src: "/assets/about-us/book-card-1.png",
+        src: BookCard1,
         alt: "Team collaboration book card 1",
       },
       {
         id: "2",
-        src: "/assets/about-us/book-card-2.png",
+        src: BookCard2,
         alt: "Team collaboration book card 2",
       },
     ],
@@ -55,27 +83,27 @@ const defaultData = {
         cards: [
           {
             id: "card-1-1",
-            src: "/assets/about-us/our-project-section/book-card-1-group/card-1.png",
+            src: Group1Card1,
             alt: "Book card group 1 - card 1",
           },
           {
             id: "card-1-2",
-            src: "/assets/about-us/our-project-section/book-card-1-group/card-2.png",
+            src: Group1Card2,
             alt: "Book card group 1 - card 2",
           },
           {
             id: "card-1-3",
-            src: "/assets/about-us/our-project-section/book-card-1-group/card-3.png",
+            src: Group1Card3,
             alt: "Book card group 1 - card 3",
           },
           {
             id: "card-1-4",
-            src: "/assets/about-us/our-project-section/book-card-1-group/card-4.png",
+            src: Group1Card4,
             alt: "Book card group 1 - card 4",
           },
           {
             id: "card-1-5",
-            src: "/assets/about-us/our-project-section/book-card-1-group/card-5.png",
+            src: Group1Card5,
             alt: "Book card group 1 - card 5",
           },
         ],
@@ -86,32 +114,32 @@ const defaultData = {
         cards: [
           {
             id: "card-2-1",
-            src: "/assets/about-us/our-project-section/book-card-2-group/card-1.png",
+            src: Group2Card1,
             alt: "Book card group 2 - card 1",
           },
           {
             id: "card-2-2",
-            src: "/assets/about-us/our-project-section/book-card-2-group/card-2.png",
+            src: Group2Card2,
             alt: "Book card group 2 - card 2",
           },
           {
             id: "card-2-3",
-            src: "/assets/about-us/our-project-section/book-card-2-group/card-3.png",
+            src: Group2Card3,
             alt: "Book card group 2 - card 3",
           },
           {
             id: "card-2-4",
-            src: "/assets/about-us/our-project-section/book-card-2-group/card-4.png",
+            src: Group2Card4,
             alt: "Book card group 2 - card 4",
           },
           {
             id: "card-2-5",
-            src: "/assets/about-us/our-project-section/book-card-2-group/card-5.png",
+            src: Group2Card5,
             alt: "Book card group 2 - card 5",
           },
           {
             id: "card-2-6",
-            src: "/assets/about-us/our-project-section/book-card-2-group/card-6.png",
+            src: Group2Card6,
             alt: "Book card group 2 - card 6",
           },
         ],
@@ -127,9 +155,8 @@ const defaultData = {
   descriptionData: {
     mainText:
       "At Canopy, we're institutionalizing the NBS carbon project model—bringing executional discipline, radical transparency, and long-term vision to deliver large-scale, high-integrity projects that anchor the emergence of carbon as a legitimate asset class.",
-    backgroundImage: "/assets/about-us/our-project-section/description-bg.png",
-    logoImage:
-      "/assets/about-us/our-project-section/logo-description-absolute.png",
+    backgroundImage: DescriptionBg,
+    logoImage: LogoDescriptionAbsolute,
   },
 };
 
@@ -364,13 +391,12 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
       <div className="flex gap-[8px] ml-[13px] mb-1 absolute mt-[15px] z-40">
         <div className="w-[107px] h-[43px] relative flex-shrink-0">
           <Image
-            src="/assets/about-us/our-team-header-image.png"
+            src={OurTeamHeaderImage}
             alt="Header decoration 1"
             fill
             className="object-cover"
             loading="lazy"
             placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
             sizes="107px"
           />
         </div>
@@ -488,10 +514,8 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
                       alt={card.alt}
                       fill
                       className="object-cover"
-                      priority={index < 2}
-                      loading={index < 2 ? "eager" : "lazy"}
+                      priority={true}
                       placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                       sizes={`${dimensions.cardWidth}px`}
                     />
                   </motion.div>
@@ -509,7 +533,7 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
               aria-label="Previous slide"
             >
               <Image
-                src="/assets/about-us/our-project-section/arrow-left-circle.svg"
+                src={ArrowLeftCircle}
                 alt="Previous"
                 width={24}
                 height={24}
@@ -525,7 +549,7 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
               aria-label="Next slide"
             >
               <Image
-                src="/assets/about-us/our-project-section/arrow-right-circle.svg"
+                src={ArrowRightCircle}
                 alt="Next"
                 width={24}
                 height={24}

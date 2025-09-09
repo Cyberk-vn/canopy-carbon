@@ -1,10 +1,17 @@
 // Enhanced types for execution swipe functionality
+import { StaticImageData } from "next/image";
+
+// Mobile execution image imports
+import ExecutionImage1 from "../../public/assets/figma-execution/execution-image-1.png";
+import ExecutionImage2 from "../../public/assets/figma-execution/execution-image-2.png";
+import ExecutionImage3 from "../../public/assets/figma-execution/execution-image-3.png";
+import ExecutionImageMain from "../../public/assets/figma-execution/execution-image-main.png";
 
 export interface ExecutionPrinciple {
   id: number;
   title: string;
   altTextBase: string;
-  images: string[];
+  images: (string | StaticImageData)[];
 }
 
 export interface SwipeGestureInfo {
@@ -47,10 +54,10 @@ export const EXECUTION_PRINCIPLES: ExecutionPrinciple[] = [
     title: "Precision in Delivery",
     altTextBase: "Precision in Delivery",
     images: [
-      "/assets/figma-execution/execution-image-1.png",
-      "/assets/figma-execution/execution-image-main.png",
-      "/assets/figma-execution/execution-image-2.png",
-      "/assets/figma-execution/execution-image-3.png",
+      ExecutionImage1,
+      ExecutionImageMain,
+      ExecutionImage2,
+      ExecutionImage3,
     ],
   },
   {
@@ -58,10 +65,10 @@ export const EXECUTION_PRINCIPLES: ExecutionPrinciple[] = [
     title: "Community Focused",
     altTextBase: "Community Focused",
     images: [
-      "/assets/figma-execution/execution-image-main.png",
-      "/assets/figma-execution/execution-image-2.png",
-      "/assets/figma-execution/execution-image-3.png",
-      "/assets/figma-execution/execution-image-1.png",
+      ExecutionImageMain,
+      ExecutionImage2,
+      ExecutionImage3,
+      ExecutionImage1,
     ],
   },
   {
@@ -69,10 +76,10 @@ export const EXECUTION_PRINCIPLES: ExecutionPrinciple[] = [
     title: "Environmental Integrity",
     altTextBase: "Environmental Integrity",
     images: [
-      "/assets/figma-execution/execution-image-2.png",
-      "/assets/figma-execution/execution-image-3.png",
-      "/assets/figma-execution/execution-image-1.png",
-      "/assets/figma-execution/execution-image-main.png",
+      ExecutionImage2,
+      ExecutionImage3,
+      ExecutionImage1,
+      ExecutionImageMain,
     ],
   },
   {
@@ -80,10 +87,10 @@ export const EXECUTION_PRINCIPLES: ExecutionPrinciple[] = [
     title: "Radical Transparency",
     altTextBase: "Radical Transparency",
     images: [
-      "/assets/figma-execution/execution-image-3.png",
-      "/assets/figma-execution/execution-image-1.png",
-      "/assets/figma-execution/execution-image-main.png",
-      "/assets/figma-execution/execution-image-2.png",
+      ExecutionImage3,
+      ExecutionImage1,
+      ExecutionImageMain,
+      ExecutionImage2,
     ],
   },
 ];
@@ -98,7 +105,7 @@ export const getExecutionPrinciple = (
 export const getExecutionImage = (
   principleId: number,
   imageOffset: number
-): string => {
+): string | StaticImageData => {
   const principle = getExecutionPrinciple(principleId);
   if (!principle) return "";
 
@@ -109,6 +116,6 @@ export const getExecutionImage = (
   return principle.images[validOffset];
 };
 
-export const getAllExecutionImages = (): string[] => {
+export const getAllExecutionImages = (): (string | StaticImageData)[] => {
   return EXECUTION_PRINCIPLES.flatMap((principle) => principle.images);
 };

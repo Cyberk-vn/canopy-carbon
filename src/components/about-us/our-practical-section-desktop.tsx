@@ -9,6 +9,9 @@ import {
 import FadeContent from "@/src/components/animation/fade-content";
 import { Container } from "../shared";
 
+// Image imports
+import LogoDecorator from "../../../public/assets/desktop/about-us/logo-decorator.svg";
+
 interface PracticalCard {
   title: string;
   description: string;
@@ -78,7 +81,7 @@ export const OurPracticalSectionDesktop = () => {
           }}
         >
           <Image
-            src="/assets/desktop/about-us/logo-decorator.svg"
+            src={LogoDecorator}
             alt="Logo decorator"
             width={421.7}
             height={410.12}

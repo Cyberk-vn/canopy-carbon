@@ -7,6 +7,9 @@ import {
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
 
+// Image imports
+import OurPracticalBgMobile from "../../../public/assets/about-us/our-pratical-bg-mobile-image.png";
+
 interface PracticalCard {
   title: string;
   description: string;
@@ -86,13 +89,12 @@ export const OurPracticalSection = () => {
               <div className="h-[121px]"></div>
               <div className="flex-1 relative">
                 <Image
-                  src="/assets/about-us/our-pratical-bg-mobile-image.png"
+                  src={OurPracticalBgMobile}
                   alt="Mobile Background"
                   fill
                   className="object-cover"
                   loading="lazy"
                   placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   sizes="100vw"
                 />
               </div>

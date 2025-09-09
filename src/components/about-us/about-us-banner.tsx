@@ -8,6 +8,11 @@ import { AboutUsBannerProps } from "@/src/types/banner";
 import FadeContent from "@/src/components/animation/fade-content";
 import { STATISTICS_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
 
+// Image imports
+import AboutUsBannerBg from "../../../public/assets/about-us/contact-us-banner-bg-image.png";
+import BannerChildImage from "../../../public/assets/about-us/banner-child-image.png";
+import AboutUsBannerSecondBg from "../../../public/assets/about-us/contact-us-banner-second-bg.png";
+
 // Statistics carousel timer configuration
 const STATISTICS_AUTO_SWITCH_INTERVAL = 3000;
 const STATISTICS_RESUME_DELAY = 2000;
@@ -114,13 +119,12 @@ export function AboutUsBanner({
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/assets/about-us/contact-us-banner-bg-image.png"
+            src={AboutUsBannerBg}
             alt="About Us Banner Background"
             fill
             className="object-cover"
             priority
             placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
             sizes="100vw"
           />
         </div>
@@ -162,14 +166,13 @@ export function AboutUsBanner({
             <FadeContent duration={800} delay={200} className="self-start">
               <div className="card-effect decorative-card ml-6">
                 <Image
-                  src="/assets/about-us/banner-child-image.png"
+                  src={BannerChildImage}
                   alt="Decorative Banner Element"
                   width={152}
                   height={236}
                   className="object-cover w-full h-full"
                   loading="lazy"
                   placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
               </div>
             </FadeContent>
@@ -243,13 +246,12 @@ export function AboutUsBanner({
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/assets/about-us/contact-us-banner-second-bg.png"
+            src={AboutUsBannerSecondBg}
             alt="Secondary Banner Background"
             fill
             className="object-cover"
             loading="lazy"
             placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
             sizes="100vw"
           />
         </div>

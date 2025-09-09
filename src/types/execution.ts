@@ -1,6 +1,8 @@
+import { StaticImageData } from "next/image";
+
 export interface ExecutionItem {
   id: number;
-  imageSrc: string;
+  imageSrc: string | StaticImageData;
   altText: string;
   title?: string;
 }

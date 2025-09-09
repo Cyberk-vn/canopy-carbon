@@ -6,6 +6,11 @@ import { AboutUsBannerProps } from "@/src/types/banner";
 import { Container } from "../shared";
 import FadeContent from "../animation/fade-content";
 
+// Image imports
+import AboutUsBannerBgDesktop from "../../../public/assets/desktop/about-us/contact-us-banner-bg-image.svg";
+import BannerChildImage from "../../../public/assets/about-us/banner-child-image.png";
+import AboutUsBannerSecondBgDesktop from "../../../public/assets/desktop/about-us/contact-us-banner-second-bg.svg";
+
 export function AboutUsBannerDesktop({
   menuItems,
   logoUrl,
@@ -19,7 +24,7 @@ export function AboutUsBannerDesktop({
           {/* Background Image */}
           <div className="absolute inset-0">
             <Image
-              src="/assets/desktop/about-us/contact-us-banner-bg-image.svg"
+              src={AboutUsBannerBgDesktop}
               alt="About Us Banner Background"
               fill
               className="object-cover"
@@ -85,7 +90,7 @@ export function AboutUsBannerDesktop({
                 {/* Image */}
                 <div className="absolute w-[340px] h-[500px] top-0 left-[44px] overflow-hidden">
                   <Image
-                    src="/assets/about-us/banner-child-image.png"
+                    src={BannerChildImage}
                     alt="Decorative Banner Element"
                     width={340}
                     height={500}
@@ -168,7 +173,7 @@ export function AboutUsBannerDesktop({
           {/* Background Image */}
           <div className="absolute inset-0">
             <Image
-              src="/assets/desktop/about-us/contact-us-banner-second-bg.svg"
+              src={AboutUsBannerSecondBgDesktop}
               alt="Secondary Banner Background"
               fill
               className="object-cover"

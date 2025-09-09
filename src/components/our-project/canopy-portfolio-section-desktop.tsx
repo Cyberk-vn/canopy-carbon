@@ -5,12 +5,21 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { Container } from "../shared";
 
+// Image imports
+import PortfolioBackground1 from "../../../public/assets/desktop/our-projects/portfolio-background-1-536692.png";
+import PortfolioBackground2 from "../../../public/assets/desktop/our-projects/portfolio-background-2-77a3ad.png";
+import PortfolioImage1 from "../../../public/assets/our-project/portfolio/carousel-images/portfolio-image-1.png";
+import PortfolioImage2 from "../../../public/assets/our-project/portfolio/carousel-images/portfolio-image-2.png";
+import PortfolioImage3 from "../../../public/assets/our-project/portfolio/carousel-images/portfolio-image-3.png";
+import PortfolioImage4 from "../../../public/assets/our-project/portfolio/carousel-images/portfolio-image-4.png";
+import PortfolioImage5 from "../../../public/assets/our-project/portfolio/carousel-images/portfolio-image-5.png";
+
 interface PortfolioProject {
   id: string;
   title: string;
   location: string;
   description: string;
-  imageUrl: string;
+  imageUrl: any;
   readMoreLink?: string;
   isComingSoon?: boolean;
 }
@@ -23,8 +32,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
       location: "Pulang Pisau, Central Kalimantan",
       description:
         "A VM047 & VM007 project, CK-01 covers over 13,500 hectares with an indigenous community of 8 villages. The project integrates reforestation, forest and biodiversity conservation, and wetland restoration.",
-      imageUrl:
-        "/assets/our-project/portfolio/carousel-images/portfolio-image-1.png",
+      imageUrl: PortfolioImage1,
       readMoreLink: "#",
     },
     {
@@ -33,8 +41,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
       location: "Barito Timur, Central Kalimantan",
       description:
         "A VM047 & VM007 project, CK-02 spans over 8,400 hectares and engages 8 villages. It focuses on reforestation and forest and biodiversity conservation.",
-      imageUrl:
-        "/assets/our-project/portfolio/carousel-images/portfolio-image-2.png",
+      imageUrl: PortfolioImage2,
       readMoreLink: "#",
     },
     {
@@ -43,8 +50,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
       location: "Lamandau Central Kalimantan",
       description:
         "A VM047 & VM048 project, CK-03 covers close to 29,000 hectares. It involves 10 villages and is a large-scale reforestation initiative with supporting forest and biodiversity conservation components.",
-      imageUrl:
-        "/assets/our-project/portfolio/carousel-images/portfolio-image-3.png",
+      imageUrl: PortfolioImage3,
       readMoreLink: "#",
     },
     {
@@ -53,8 +59,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
       location: "Pekanbaru, East Sumatra",
       description:
         "An agricultural waste management initiative developed in partnership with a globally recognized biochar specialist. The facility is designed to process 100 tons of input waste per day.",
-      imageUrl:
-        "/assets/our-project/portfolio/carousel-images/portfolio-image-4.png",
+      imageUrl: PortfolioImage4,
       readMoreLink: "#",
     },
     {
@@ -62,8 +67,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
       title: "Coming Soon",
       location: "More impact driven projects brewing...",
       description: "",
-      imageUrl:
-        "/assets/our-project/portfolio/carousel-images/portfolio-image-5.png",
+      imageUrl: PortfolioImage5,
       isComingSoon: true,
     },
   ];
@@ -83,7 +87,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `url('/assets/desktop/our-projects/portfolio-background-1-536692.png')`,
+              backgroundImage: `url(${PortfolioBackground1.src})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -110,7 +114,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
             className="absolute inset-0"
             style={{
               backgroundColor: "rgba(255, 255, 255, 0.3)",
-              backgroundImage: `url('/assets/desktop/our-projects/portfolio-background-2-77a3ad.png')`,
+              backgroundImage: `url(${PortfolioBackground2.src})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",

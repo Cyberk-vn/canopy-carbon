@@ -8,6 +8,10 @@ import {
 } from "@/src/hooks/responsive/use-simple-motion";
 import { Container } from "@/src/components/shared/container";
 
+// Image imports
+import OurPurposeMainImage from "../../../public/assets/about-us/our-purpose-main-image.png";
+import AppIcon from "../../../public/assets/about-us/app-icon.png";
+
 export const OurPurposeSection = () => {
   // Simple Motion animations
   const containerMotion = useSimpleMotion("purpose-container");
@@ -53,13 +57,12 @@ export const OurPurposeSection = () => {
               }}
             >
               <Image
-                src="/assets/about-us/our-purpose-main-image.png"
+                src={OurPurposeMainImage}
                 alt="Our Purpose"
                 fill
                 className="object-cover"
                 loading="lazy"
                 placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 sizes="(max-width: 768px) 118px, 150px"
               />
             </motion.div>
@@ -107,13 +110,12 @@ export const OurPurposeSection = () => {
             <div className="flex justify-end">
               <div className="w-[250px] h-[77px] relative opacity-45">
                 <Image
-                  src="/assets/about-us/app-icon.png"
+                  src={AppIcon}
                   alt="Canopy Carbon App Icon"
                   fill
                   className="object-contain"
                   loading="lazy"
                   placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   sizes="250px"
                 />
               </div>

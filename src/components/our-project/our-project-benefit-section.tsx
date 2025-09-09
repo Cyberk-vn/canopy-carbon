@@ -1,17 +1,119 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 import { useShouldLoadPair } from "@/src/hooks/responsive/use-lazy-carousel";
+
+// Image imports
+import BenefitLogoImage from "../../../public/assets/our-project/benefit-section/benefit-logo.svg";
+import LeftLogo from "../../../public/assets/our-project/benefit-section/left-logo.png";
+import RightLogo from "../../../public/assets/our-project/benefit-section/right-logo.png";
+import ArrowLeftCircle from "../../../public/assets/about-us/our-project-section/arrow-left-circle.svg";
+import ArrowRightCircle from "../../../public/assets/about-us/our-project-section/arrow-right-circle.svg";
+
+// UN SDG carousel images imports
+import NoPovertyImage from "../../../public/assets/our-project/benefit-section/carousel-images/no-poverty.jpg";
+import ZeroHungerImage from "../../../public/assets/our-project/benefit-section/carousel-images/zero-hunger.jpg";
+import GoodHealthImage from "../../../public/assets/our-project/benefit-section/carousel-images/good-health.jpg";
+import QualityEducationImage from "../../../public/assets/our-project/benefit-section/carousel-images/quality-education.jpg";
+import GenderEqualityImage from "../../../public/assets/our-project/benefit-section/carousel-images/gender-equaliaty.jpg";
+import CleanWaterImage from "../../../public/assets/our-project/benefit-section/carousel-images/clean-water.jpg";
+import AffordableEnergyImage from "../../../public/assets/our-project/benefit-section/carousel-images/affordable.jpg";
+import DecentWorkImage from "../../../public/assets/our-project/benefit-section/carousel-images/decent-work.jpg";
+import IndustryImage from "../../../public/assets/our-project/benefit-section/carousel-images/industry.jpg";
+import ReducedInequalitiesImage from "../../../public/assets/our-project/benefit-section/carousel-images/reduced.jpg";
+import SustainableCitiesImage from "../../../public/assets/our-project/benefit-section/carousel-images/sustainable.jpg";
+import ResponsibleConsumptionImage from "../../../public/assets/our-project/benefit-section/carousel-images/responsible.jpg";
+import ClimateActionImage from "../../../public/assets/our-project/benefit-section/carousel-images/climate-action.jpg";
+import LifeBelowWaterImage from "../../../public/assets/our-project/benefit-section/carousel-images/life-below-water.jpg";
+import LifeOnLandImage from "../../../public/assets/our-project/benefit-section/carousel-images/life-on-land.jpg";
+import PeaceJusticeImage from "../../../public/assets/our-project/benefit-section/carousel-images/peace.jpg";
+import PartnershipImage from "../../../public/assets/our-project/benefit-section/carousel-images/partnership.jpg";
+
+/**
+ * BenefitLogo component - Static logo that should not re-render when carousel changes
+ * Extracted outside parent component and memoized for optimal performance
+ */
+const BenefitLogo = React.memo(() => (
+  <div className="relative w-[106px] h-[118px] flex-shrink-0 mx-auto">
+    <Image
+      src={BenefitLogoImage}
+      alt="Co-Benefits & Safeguards logo"
+      fill
+      className="object-contain"
+      loading="lazy"
+      sizes="106px"
+    />
+  </div>
+));
+
+BenefitLogo.displayName = "BenefitLogo";
+
+/**
+ * LazyCarouselImage component - Optimized carousel image with lazy loading
+ * Extracted outside parent component and memoized for optimal performance
+ */
+interface LazyCarouselImageProps {
+  image: CarouselImage;
+  pairIndex: number;
+  imageIndex: number;
+  currentPairIndex: number;
+  carouselInView: boolean;
+  totalPairs: number;
+}
+
+const LazyCarouselImage = React.memo<LazyCarouselImageProps>(
+  ({
+    image,
+    pairIndex,
+    imageIndex,
+    currentPairIndex,
+    carouselInView,
+    totalPairs,
+  }) => {
+    const shouldLoad = useShouldLoadPair(
+      pairIndex,
+      currentPairIndex,
+      totalPairs
+    );
+    const isVisible = carouselInView && shouldLoad;
+
+    return (
+      <div
+        className="w-[124px] h-[124px] relative flex-shrink-0 rounded-[2px] overflow-hidden transform transition-all duration-500 ease-in-out bg-gray-200"
+        style={{
+          transitionDelay: `${imageIndex * 100}ms`,
+        }}
+      >
+        {isVisible ? (
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            className="object-cover transition-transform duration-300 hover:scale-105"
+            placeholder="blur"
+            priority={true}
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 animate-pulse flex items-center justify-center">
+            <div className="w-8 h-8 border-2 border-gray-500 border-t-transparent rounded-full animate-spin opacity-50"></div>
+          </div>
+        )}
+      </div>
+    );
+  }
+);
+
+LazyCarouselImage.displayName = "LazyCarouselImage";
 
 /**
  * Interface for individual carousel image
  */
 interface CarouselImage {
   id: string;
-  src: string;
+  src: string | StaticImageData;
   alt: string;
   name: string;
 }
@@ -51,13 +153,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-1",
-          src: "/assets/our-project/benefit-section/carousel-images/no-poverty.jpg",
+          src: NoPovertyImage,
           alt: "SDG 1: No Poverty",
           name: "no-poverty",
         },
         {
           id: "sdg-2",
-          src: "/assets/our-project/benefit-section/carousel-images/zero-hunger.jpg",
+          src: ZeroHungerImage,
           alt: "SDG 2: Zero Hunger",
           name: "zero-hunger",
         },
@@ -68,13 +170,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-3",
-          src: "/assets/our-project/benefit-section/carousel-images/good-health.jpg",
+          src: GoodHealthImage,
           alt: "SDG 3: Good Health and Well-being",
           name: "good-health",
         },
         {
           id: "sdg-4",
-          src: "/assets/our-project/benefit-section/carousel-images/quality-education.jpg",
+          src: QualityEducationImage,
           alt: "SDG 4: Quality Education",
           name: "quality-education",
         },
@@ -85,13 +187,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-5",
-          src: "/assets/our-project/benefit-section/carousel-images/gender-equaliaty.jpg",
+          src: GenderEqualityImage,
           alt: "SDG 5: Gender Equality",
           name: "gender-equaliaty",
         },
         {
           id: "sdg-6",
-          src: "/assets/our-project/benefit-section/carousel-images/clean-water.jpg",
+          src: CleanWaterImage,
           alt: "SDG 6: Clean Water and Sanitation",
           name: "clean-water",
         },
@@ -102,13 +204,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-7",
-          src: "/assets/our-project/benefit-section/carousel-images/affordable.jpg",
+          src: AffordableEnergyImage,
           alt: "SDG 7: Affordable and Clean Energy",
           name: "affordable",
         },
         {
           id: "sdg-8",
-          src: "/assets/our-project/benefit-section/carousel-images/decent-work.jpg",
+          src: DecentWorkImage,
           alt: "SDG 8: Decent Work and Economic Growth",
           name: "decent-work",
         },
@@ -119,13 +221,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-9",
-          src: "/assets/our-project/benefit-section/carousel-images/industry.jpg",
+          src: IndustryImage,
           alt: "SDG 9: Industry, Innovation and Infrastructure",
           name: "industry",
         },
         {
           id: "sdg-10",
-          src: "/assets/our-project/benefit-section/carousel-images/reduced.jpg",
+          src: ReducedInequalitiesImage,
           alt: "SDG 10: Reduced Inequalities",
           name: "reduced",
         },
@@ -136,13 +238,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-11",
-          src: "/assets/our-project/benefit-section/carousel-images/sustainable.jpg",
+          src: SustainableCitiesImage,
           alt: "SDG 11: Sustainable Cities and Communities",
           name: "sustainable",
         },
         {
           id: "sdg-12",
-          src: "/assets/our-project/benefit-section/carousel-images/responsible.jpg",
+          src: ResponsibleConsumptionImage,
           alt: "SDG 12: Responsible Consumption and Production",
           name: "responsible",
         },
@@ -153,13 +255,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-13",
-          src: "/assets/our-project/benefit-section/carousel-images/climate-action.jpg",
+          src: ClimateActionImage,
           alt: "SDG 13: Climate Action",
           name: "climate-action",
         },
         {
           id: "sdg-14",
-          src: "/assets/our-project/benefit-section/carousel-images/life-below-water.jpg",
+          src: LifeBelowWaterImage,
           alt: "SDG 14: Life Below Water",
           name: "life-below-water",
         },
@@ -170,13 +272,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-15",
-          src: "/assets/our-project/benefit-section/carousel-images/life-on-land.jpg",
+          src: LifeOnLandImage,
           alt: "SDG 15: Life on Land",
           name: "life-on-land",
         },
         {
           id: "sdg-16",
-          src: "/assets/our-project/benefit-section/carousel-images/peace.jpg",
+          src: PeaceJusticeImage,
           alt: "SDG 16: Peace, Justice and Strong Institutions",
           name: "peace",
         },
@@ -187,7 +289,7 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-17",
-          src: "/assets/our-project/benefit-section/carousel-images/partnership.jpg",
+          src: PartnershipImage,
           alt: "SDG 17: Partnerships for the Goals",
           name: "partnership",
         },
@@ -212,58 +314,6 @@ const OurProjectBenefitSection: React.FC = () => {
 
   const handleNextPair = () => {
     setCurrentPairIndex((prev) => (prev + 1) % carouselPairs.length);
-  };
-
-  const BenefitLogo = () => (
-    <div className="relative w-[106px] h-[118px] flex-shrink-0 mx-auto">
-      <Image
-        src="/assets/our-project/benefit-section/benefit-logo.svg"
-        alt="Co-Benefits & Safeguards logo"
-        fill
-        className="object-contain"
-        loading="lazy"
-        sizes="106px"
-      />
-    </div>
-  );
-
-  // Lazy loading component for carousel images
-  const LazyCarouselImage: React.FC<{
-    image: CarouselImage;
-    pairIndex: number;
-    imageIndex: number;
-  }> = ({ image, pairIndex, imageIndex }) => {
-    const shouldLoad = useShouldLoadPair(
-      pairIndex,
-      currentPairIndex,
-      carouselPairs.length
-    );
-    const isVisible = carouselInView && shouldLoad;
-
-    return (
-      <div
-        className="w-[124px] h-[124px] relative flex-shrink-0 rounded-[2px] overflow-hidden transform transition-all duration-500 ease-in-out bg-gray-200"
-        style={{
-          transitionDelay: `${imageIndex * 100}ms`,
-        }}
-      >
-        {isVisible ? (
-          <Image
-            src={image.src}
-            alt={image.alt}
-            fill
-            className="object-cover transition-transform duration-300 hover:scale-105"
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 animate-pulse flex items-center justify-center">
-            <div className="w-8 h-8 border-2 border-gray-500 border-t-transparent rounded-full animate-spin opacity-50"></div>
-          </div>
-        )}
-      </div>
-    );
   };
 
   return (
@@ -324,25 +374,23 @@ const OurProjectBenefitSection: React.FC = () => {
             <div className="flex justify-center items-center gap-[5px] mb-[26px] px-[9px]">
               <div className="w-[155px] h-[39px] relative">
                 <Image
-                  src="/assets/our-project/benefit-section/left-logo.png"
+                  src={LeftLogo}
                   alt="Left certification logo"
                   fill
                   className="object-contain"
                   loading="lazy"
                   placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   sizes="155px"
                 />
               </div>
               <div className="w-[147px] h-[36px] relative">
                 <Image
-                  src="/assets/our-project/benefit-section/right-logo.png"
+                  src={RightLogo}
                   alt="Right certification logo"
                   fill
                   className="object-contain"
                   loading="lazy"
                   placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   sizes="147px"
                 />
               </div>
@@ -358,6 +406,9 @@ const OurProjectBenefitSection: React.FC = () => {
                     image={image}
                     pairIndex={currentPairIndex}
                     imageIndex={index}
+                    currentPairIndex={currentPairIndex}
+                    carouselInView={carouselInView}
+                    totalPairs={carouselPairs.length}
                   />
                 ))}
               </div>
@@ -369,7 +420,7 @@ const OurProjectBenefitSection: React.FC = () => {
                 aria-label="Previous pair"
               >
                 <Image
-                  src="/assets/about-us/our-project-section/arrow-left-circle.svg"
+                  src={ArrowLeftCircle}
                   alt="Previous"
                   width={24}
                   height={24}
@@ -385,7 +436,7 @@ const OurProjectBenefitSection: React.FC = () => {
                 aria-label="Next pair"
               >
                 <Image
-                  src="/assets/about-us/our-project-section/arrow-right-circle.svg"
+                  src={ArrowRightCircle}
                   alt="Next"
                   width={24}
                   height={24}
