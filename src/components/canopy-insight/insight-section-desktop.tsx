@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "motion/react";
 import FadeContent from "@/src/components/animation/fade-content";
+import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 
 interface InsightSectionDesktopProps {
   title: string;
@@ -19,6 +21,8 @@ export function InsightSectionDesktop({
   titleFontSize = "28px",
   imageSrc = "/assets/desktop/canopy-insight/bayond-emission-card-1.png",
 }: InsightSectionDesktopProps) {
+  // Contact redirect hook
+  const { redirectToContact } = useContactRedirect();
   const sectionContent = (
     <FadeContent
       duration={600}
@@ -134,8 +138,23 @@ export function InsightSectionDesktop({
                 threshold={0.1}
                 easing="ease-out"
               >
-                <button className="flex items-center gap-2 transition-all duration-200 hover:opacity-80">
-                  <span
+                <motion.button
+                  onClick={redirectToContact}
+                  className="flex items-center gap-2"
+                  whileHover={{
+                    scale: 1.05,
+                    x: 5,
+                    transition: { duration: 0.2, ease: "easeOut" },
+                  }}
+                  whileTap={{
+                    scale: 0.95,
+                    transition: { duration: 0.1, ease: "easeIn" },
+                  }}
+                  initial={{ opacity: 1, scale: 1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                  <motion.span
                     style={{
                       fontFamily: "Open Sans",
                       fontWeight: 400,
@@ -143,21 +162,49 @@ export function InsightSectionDesktop({
                       lineHeight: "1.399999976158142em",
                       color: "rgba(0, 0, 0, 0.4)",
                     }}
+                    whileHover={{
+                      color: "rgba(0, 0, 0, 0.6)",
+                      transition: { duration: 0.2, ease: "easeOut" },
+                    }}
+                    whileTap={{
+                      color: "rgba(0, 0, 0, 0.8)",
+                      transition: { duration: 0.1, ease: "easeIn" },
+                    }}
                   >
                     Request Access
-                  </span>
-                  <div style={{ opacity: 0.4 }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path
+                  </motion.span>
+                  <motion.div
+                    style={{ opacity: 0.4 }}
+                    whileHover={{
+                      opacity: 0.6,
+                      x: 3,
+                      transition: { duration: 0.2, ease: "easeOut" },
+                    }}
+                  >
+                    <motion.svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      whileHover={{
+                        scale: 1.1,
+                        transition: { duration: 0.2, ease: "easeOut" },
+                      }}
+                    >
+                      <motion.path
                         d="M9 6.42L14.59 12L9 17.58"
                         stroke="#323232"
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        whileHover={{
+                          stroke: "#202020",
+                          transition: { duration: 0.2, ease: "easeOut" },
+                        }}
                       />
-                    </svg>
-                  </div>
-                </button>
+                    </motion.svg>
+                  </motion.div>
+                </motion.button>
               </FadeContent>
             </div>
           </>
@@ -199,8 +246,23 @@ export function InsightSectionDesktop({
                 threshold={0.1}
                 easing="ease-out"
               >
-                <button className="flex items-center gap-2 transition-all duration-200 hover:opacity-80">
-                  <span
+                <motion.button
+                  onClick={redirectToContact}
+                  className="flex items-center gap-2"
+                  whileHover={{
+                    scale: 1.05,
+                    x: 5,
+                    transition: { duration: 0.2, ease: "easeOut" },
+                  }}
+                  whileTap={{
+                    scale: 0.95,
+                    transition: { duration: 0.1, ease: "easeIn" },
+                  }}
+                  initial={{ opacity: 1, scale: 1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                  <motion.span
                     style={{
                       fontFamily: "Open Sans",
                       fontWeight: 400,
@@ -208,21 +270,49 @@ export function InsightSectionDesktop({
                       lineHeight: "1.399999976158142em",
                       color: "rgba(0, 0, 0, 0.4)",
                     }}
+                    whileHover={{
+                      color: "rgba(0, 0, 0, 0.6)",
+                      transition: { duration: 0.2, ease: "easeOut" },
+                    }}
+                    whileTap={{
+                      color: "rgba(0, 0, 0, 0.8)",
+                      transition: { duration: 0.1, ease: "easeIn" },
+                    }}
                   >
                     Request Access
-                  </span>
-                  <div style={{ opacity: 0.4 }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path
+                  </motion.span>
+                  <motion.div
+                    style={{ opacity: 0.4 }}
+                    whileHover={{
+                      opacity: 0.6,
+                      x: 3,
+                      transition: { duration: 0.2, ease: "easeOut" },
+                    }}
+                  >
+                    <motion.svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      whileHover={{
+                        scale: 1.1,
+                        transition: { duration: 0.2, ease: "easeOut" },
+                      }}
+                    >
+                      <motion.path
                         d="M9 6.42L14.59 12L9 17.58"
                         stroke="#323232"
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        whileHover={{
+                          stroke: "#202020",
+                          transition: { duration: 0.2, ease: "easeOut" },
+                        }}
                       />
-                    </svg>
-                  </div>
-                </button>
+                    </motion.svg>
+                  </motion.div>
+                </motion.button>
               </FadeContent>
             </div>
 

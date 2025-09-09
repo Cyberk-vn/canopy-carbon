@@ -6,6 +6,7 @@ import {
   useSimpleMotion,
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
+import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 
 interface InsightSectionProps {
   title: string;
@@ -23,6 +24,9 @@ export function InsightSection({
   images,
   showDecorators = true,
 }: InsightSectionProps) {
+  // Contact redirect hook
+  const { redirectToContact } = useContactRedirect();
+
   // Simple Motion animations
   const containerMotion = useSimpleMotion(
     `insight-section-${title.slice(0, 10)}`
@@ -99,11 +103,25 @@ export function InsightSection({
           </div>
 
           {/* Request Access Button */}
-          <button
-            className="w-full h-[32px] rounded-[2px] flex items-center justify-center transition-all duration-200 hover:bg-opacity-60 mx-auto"
+          <motion.button
+            onClick={redirectToContact}
+            className="w-full h-[32px] rounded-[2px] flex items-center justify-center mx-auto"
             style={{ backgroundColor: "rgba(125, 143, 137, 0.4)" }}
+            whileHover={{
+              scale: 1.02,
+              backgroundColor: "rgba(125, 143, 137, 0.6)",
+              transition: { duration: 0.2, ease: "easeOut" },
+            }}
+            whileTap={{
+              scale: 0.98,
+              backgroundColor: "rgba(125, 143, 137, 0.8)",
+              transition: { duration: 0.1, ease: "easeIn" },
+            }}
+            initial={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <span
+            <motion.span
               style={{
                 fontFamily: "Open Sans",
                 fontWeight: 400,
@@ -111,10 +129,18 @@ export function InsightSection({
                 lineHeight: "1.8181818181818181em",
                 color: "#717B73",
               }}
+              whileHover={{
+                color: "#5A6B5F",
+                transition: { duration: 0.2, ease: "easeOut" },
+              }}
+              whileTap={{
+                color: "#4A5A4F",
+                transition: { duration: 0.1, ease: "easeIn" },
+              }}
             >
               Request Access
-            </span>
-          </button>
+            </motion.span>
+          </motion.button>
         </motion.div>
       </div>
     </motion.div>

@@ -9,6 +9,7 @@ import {
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
 import { Container } from "../../shared";
+import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 
 // Simplified component interfaces
 interface StaticLayoutData {
@@ -47,6 +48,9 @@ export const DesktopView = memo<DesktopViewProps>(({ data = defaultData }) => {
   const { staticLayoutData = defaultData.staticLayoutData, descriptionData } =
     data;
 
+  // Contact redirect hook
+  const { redirectToContact } = useContactRedirect();
+
   // Simple Motion animations
   const containerMotion = useSimpleMotion("about-project-desktop-container");
   const desktopStaticMotion = useSimpleMotion("about-project-desktop-static");
@@ -79,7 +83,7 @@ export const DesktopView = memo<DesktopViewProps>(({ data = defaultData }) => {
               <StaticImageLayout
                 data={{
                   ...staticLayoutData,
-                  buttonAction: staticLayoutData.buttonAction || (() => {}),
+                  buttonAction: redirectToContact,
                 }}
               />
             </motion.div>
@@ -175,11 +179,23 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
         </p>
 
         {/* Request Access Button */}
-        <button
+        <motion.button
           onClick={buttonAction}
-          className="flex items-center gap-2 transition-all duration-300 hover:opacity-80"
+          className="flex items-center gap-2"
+          whileHover={{
+            scale: 1.05,
+            x: 5,
+            transition: { duration: 0.2, ease: "easeOut" },
+          }}
+          whileTap={{
+            scale: 0.95,
+            transition: { duration: 0.1, ease: "easeIn" },
+          }}
+          initial={{ opacity: 1, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         >
-          <span
+          <motion.span
             className="font-open-sans"
             style={{
               fontSize: "16px",
@@ -187,30 +203,51 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
               lineHeight: "1.4em",
               color: "rgba(0, 0, 0, 0.4)",
             }}
+            whileHover={{
+              color: "rgba(0, 0, 0, 0.6)",
+              transition: { duration: 0.2, ease: "easeOut" },
+            }}
+            whileTap={{
+              color: "rgba(0, 0, 0, 0.8)",
+              transition: { duration: 0.1, ease: "easeIn" },
+            }}
           >
             {buttonText}
-          </span>
-          <div
+          </motion.span>
+          <motion.div
             className="w-6 h-6 flex items-center justify-center"
             style={{ opacity: 0.4 }}
+            whileHover={{
+              opacity: 0.6,
+              x: 3,
+              transition: { duration: 0.2, ease: "easeOut" },
+            }}
           >
-            <svg
+            <motion.svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.2, ease: "easeOut" },
+              }}
             >
-              <path
+              <motion.path
                 d="M9 6.42L14.58 12L9 17.58"
                 stroke="#323232"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                whileHover={{
+                  stroke: "#202020",
+                  transition: { duration: 0.2, ease: "easeOut" },
+                }}
               />
-            </svg>
-          </div>
-        </button>
+            </motion.svg>
+          </motion.div>
+        </motion.button>
       </div>
     </>
   );
