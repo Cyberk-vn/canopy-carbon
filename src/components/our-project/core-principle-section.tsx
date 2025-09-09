@@ -135,7 +135,7 @@ const CorePrincipleSection: React.FC = () => {
           className="mx-auto"
         >
           <div className="flex flex-col items-center gap-4 mb-[46px]">
-            <p className="font-open-sans font-normal text-[13px] leading-[1.538em] text-[#949494] text-left w-full">
+            <p className="font-open-sans font-normal text-[13px] xxs:text-[14px] xs:text-[15px] leading-[1.538em] text-[#949494] text-left w-full">
               Developed and published in 2023 by the Integrity Council for the
               Voluntary Carbon Market (ICVCM), the CCP was formulated in
               response to growing concerns over integrity in global carbon

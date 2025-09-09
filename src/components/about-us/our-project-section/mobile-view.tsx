@@ -562,9 +562,8 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
 
         <div className="flex flex-col w-full gap-[15px]">
           <p
-            className="font-open-sans"
+            className="font-open-sans text-[13px] xxs:text-[14px] xs:text-[15px]"
             style={{
-              fontSize: "13px",
               fontWeight: 300,
               lineHeight: "20px",
               color: "#2E2F2D",
@@ -577,15 +576,14 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
           {/* Request Access Button */}
           <button
             onClick={buttonAction}
-            className="w-full h-8 rounded-[2px] transition-all duration-300 hover:opacity-80"
+            className="w-full h-8 rounded-[2px] transition-all duration-300 hover:opacity-80 justify-center flex items-center"
             style={{
               backgroundColor: "rgba(87, 81, 81, 0.1)",
             }}
           >
             <span
-              className="font-open-sans"
+              className="font-open-sans text-[9px] xxs:text-[10px] xs:text-[11px]"
               style={{
-                fontSize: "9px",
                 fontWeight: 400,
                 lineHeight: "2.2222222222222223em",
                 color: "rgba(0, 0, 0, 0.4)",
@@ -667,11 +665,10 @@ const DescriptionSectionInline = ({
       <div className="absolute bottom-0 z-10 flex flex-col justify-end h-full md:px-8 pb-6 ml-4">
         <div className="flex-1" />
 
-        <div className="w-full max-w-[354px]">
+        <div className="w-full max-w-[354px] xxs:max-w-[364px] xs:max-w-[390px]">
           <p
-            className="font-open-sans"
+            className="font-open-sans text-[13px] xxs:text-[13.5px] xs:text-[14.3px]"
             style={{
-              fontSize: "13px",
               fontWeight: 300,
               lineHeight: "1.5384615384615385em",
               textAlign: "left",

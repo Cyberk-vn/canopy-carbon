@@ -186,7 +186,7 @@ const MapSection = () => {
               transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             >
               <motion.h3
-                className="text-[9px] font-open-sans leading-[18px] text-start text-[#3B464F] tracking-[-0.02em] mb-[12px]"
+                className="text-[9px] xxs:text-[10px] xs:text-[11px] font-open-sans leading-[18px] text-start text-[#3B464F] tracking-[-0.02em] mb-[12px]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
@@ -199,7 +199,7 @@ const MapSection = () => {
                 Scroll right to see more of our presence.
               </motion.h3>
               <motion.h2
-                className="text-[14px] font-light leading-[20px] text-start text-[#3B464F] tracking-[-0.02em]"
+                className="text-[14px] xxs:text-[15px] xs:text-[16px] font-light leading-[20px] text-start text-[#3B464F] tracking-[-0.02em]"
                 style={{
                   fontFamily: "Open Sans",
                   fontStyle: "normal",

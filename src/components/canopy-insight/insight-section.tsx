@@ -47,11 +47,10 @@ export function InsightSection({
           {...SIMPLE_ANIMATIONS.fadeInLeft}
           {...titleMotion}
           transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-          className="w-full mb-3 text-left px-5"
+          className="w-full mb-3 text-left px-5 text-[19px] xxs:text-[20px] xs:text-[21px]"
           style={{
             fontFamily: "Inter",
             fontWeight: 700,
-            fontSize: "19px",
             lineHeight: "26px",
             color: "#6A7D8E",
           }}
@@ -64,13 +63,12 @@ export function InsightSection({
           {...SIMPLE_ANIMATIONS.fadeInLeft}
           {...descriptionMotion}
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-          className="w-full mb-[23px] text-left px-5"
+          className="w-full mb-[23px] text-left px-5 text-[13px] xxs:text-[14px] xs:text-[15px]"
           style={{
             fontFamily: "Open Sans",
             fontWeight: 400,
-            fontSize: "13px",
             lineHeight: "18px",
-            letterSpacing: "-2%",
+            letterSpacing: "-0.02px",
             color: "#6C7173CC",
           }}
         >

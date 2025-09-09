@@ -4,7 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --breakpoint-xs: 27.5rem;
+  --breakpoint-xxs: 25rem;
+  --breakpoint-xs: 26.875rem;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -411,10 +412,10 @@
   font-weight: inherit;
   line-height: inherit;
   letter-spacing: inherit;
-  
+
   /* Ensure no background interference */
   background: transparent;
-  
+
   /* Maintain proper text flow */
   white-space: inherit;
   word-break: inherit;

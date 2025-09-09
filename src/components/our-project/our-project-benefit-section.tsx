@@ -331,7 +331,7 @@ const OurProjectBenefitSection: React.FC = () => {
             initial={{ opacity: 0.7, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-            className="font-open-sans font-semibold text-[20px] leading-[1.5em] text-[#CCCCCC] text-start max-w-[342px] items-start justify-start"
+            className="font-open-sans font-semibold text-[20px] xxs:text-[21px] xs:text-[22px] leading-[1.5em] text-[#CCCCCC] text-start max-w-[342px] items-start justify-start"
           >
             Our Co-Benefits & Safeguards Strategy
           </motion.h2>
@@ -350,7 +350,7 @@ const OurProjectBenefitSection: React.FC = () => {
             initial={{ opacity: 0.6, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-            className="font-open-sans font-normal text-[13px] leading-[1.538em] text-[#949494] text-left max-w-[342px]"
+            className="font-open-sans font-normal text-[13px] xxs:text-[14px] xs:text-[15px] leading-[1.538em] text-[#949494] text-left max-w-[342px] xxs:max-w-[360px] xs:max-w-[390px]"
           >
             Every Canopy project is built to deliver both carbon and broader
             benefits—supporting ecosystems, communities, and climate goals. We

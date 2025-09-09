@@ -186,9 +186,8 @@ export function AboutUsBanner({
                 {/* Mission Section */}
                 <div className="flex flex-col gap-2">
                   <h2
-                    className="font-open-sans font-bold text-white"
+                    className="font-open-sans font-bold text-white text-[21px] xxs:text-[22px] xs:text-[23px]"
                     style={{
-                      fontSize: "21px",
                       lineHeight: "30px",
                       fontWeight: 700,
                     }}
@@ -196,9 +195,8 @@ export function AboutUsBanner({
                     Mission
                   </h2>
                   <p
-                    className="font-open-sans font-normal text-white"
+                    className="font-open-sans font-normal text-white text-[12px] xxs:text-[13px] xs:text-[14px]"
                     style={{
-                      fontSize: "12px",
                       lineHeight: "20px",
                       fontWeight: 400,
                     }}
@@ -212,9 +210,8 @@ export function AboutUsBanner({
                 {/* Vision Section */}
                 <div className="flex flex-col gap-2">
                   <h2
-                    className="font-open-sans font-bold text-white"
+                    className="font-open-sans font-bold text-white text-[21px] xxs:text-[22px] xs:text-[23px]"
                     style={{
-                      fontSize: "21px",
                       lineHeight: "30px",
                       fontWeight: 700,
                     }}
@@ -222,9 +219,8 @@ export function AboutUsBanner({
                     Vision
                   </h2>
                   <p
-                    className="font-open-sans font-normal text-white"
+                    className="font-open-sans font-normal text-white text-[12px] xxs:text-[13px] xs:text-[14px]"
                     style={{
-                      fontSize: "12px",
                       lineHeight: "20px",
                       fontWeight: 400,
                     }}
@@ -286,9 +282,8 @@ export function AboutUsBanner({
                 {/* Thesis Text */}
                 <div className="flex-1">
                   <p
-                    className="font-open-sans font-bold text-[#DDE2E6] text-left"
+                    className="font-open-sans font-bold text-[#DDE2E6] text-left text-[13px] xxs:text-[14px] xs:text-[15px]"
                     style={{
-                      fontSize: "13px",
                       lineHeight: "20px",
                       fontWeight: 700,
                     }}
@@ -304,9 +299,8 @@ export function AboutUsBanner({
               {/* Our Thesis Statement Label */}
               <div className="text-right w-full mt-[3px]">
                 <h3
-                  className="font-open-sans font-light text-[#D8DBD6]"
+                  className="font-open-sans font-light text-[#D8DBD6] text-[12px] xxs:text-[13px] xs:text-[14px]"
                   style={{
-                    fontSize: "12px",
                     lineHeight: "10px",
                     fontWeight: 300,
                   }}
@@ -359,9 +353,8 @@ export function AboutUsBanner({
                       {/* Statistics Number */}
                       <motion.div
                         key={`number-${currentStatistic.id}`}
-                        className="font-avenir font-extrabold text-[#9DAE83] text-center w-full flex-shrink-0"
+                        className="font-avenir font-extrabold text-[#9DAE83] text-center w-full flex-shrink-0 text-[48px] xxs:text-[49px] xs:text-[50px]"
                         style={{
-                          fontSize: "48px",
                           lineHeight: "44px",
                           letterSpacing: "-2%",
                         }}
@@ -375,9 +368,8 @@ export function AboutUsBanner({
                         {/* Statistics Title */}
                         <motion.h4
                           key={`title-${currentStatistic.id}`}
-                          className="font-open-sans font-bold text-[#9DAE83] text-center w-full flex-shrink-0"
+                          className="font-open-sans font-bold text-[#9DAE83] text-center w-full flex-shrink-0 text-[17px] xxs:text-[18px] xs:text-[19px]"
                           style={{
-                            fontSize: "17px",
                             lineHeight: "24px",
                           }}
                           {...STATISTICS_ANIMATIONS.progressiveTitleFade}
@@ -388,9 +380,8 @@ export function AboutUsBanner({
                         {/* Statistics Description */}
                         <motion.p
                           key={`description-${currentStatistic.id}`}
-                          className="font-open-sans font-normal text-white text-center w-full flex-1 flex"
+                          className="font-open-sans font-normal text-white text-center w-full flex-1 flex text-[13px] xxs:text-[14px] xs:text-[15px]"
                           style={{
-                            fontSize: "13px",
                             lineHeight: "20px",
                           }}
                           {...STATISTICS_ANIMATIONS.progressiveDescriptionFade}
@@ -431,6 +422,22 @@ export function AboutUsBanner({
           .decorative-card {
             max-width: 152px;
             height: 236px;
+          }
+        }
+
+        /* XXS breakpoint (400px+) */
+        @media (min-width: 25rem) {
+          .decorative-card {
+            max-width: 160px;
+            height: 248px;
+          }
+        }
+
+        /* XS breakpoint (430px+) */
+        @media (min-width: 26.875rem) {
+          .decorative-card {
+            max-width: 170px;
+            height: 260px;
           }
         }
 
