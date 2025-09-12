@@ -6,6 +6,9 @@
 @theme inline {
   --breakpoint-xxs: 25rem;
   --breakpoint-xs: 26.875rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-xlg: 78.125rem;
+  --breakpoint-xxl: 90rem;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);

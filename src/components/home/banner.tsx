@@ -77,7 +77,7 @@ function DesktopServiceCard({
         delay: index * 0.15 + 0.7,
         ease: "easeOut",
       }}
-      className="bg-[#EEF0F2] w-[371px] p-6 flex-shrink-0"
+      className="bg-[#EEF0F2] w-full max-w-[280px] lg:max-w-[300px] xl:max-w-[340px] xxl:max-w-[371px] xxl:w-[371px] p-4 lg:p-5 xxl:p-6 flex-shrink-0"
     >
       <div className="w-full h-full flex flex-col gap-1">
         {/* Header - Icon */}
@@ -98,7 +98,7 @@ function DesktopServiceCard({
             }}
           >
             <h2
-              className="font-semibold text-[16px] leading-[24px] text-[#1D2E27]"
+              className="font-semibold text-[14px] lg:text-[15px] xxl:text-[16px] leading-[20px] lg:leading-[22px] xxl:leading-[24px] text-[#1D2E27]"
               style={{
                 fontFamily: "Open Sans",
                 fontWeight: "600",
@@ -120,7 +120,7 @@ function DesktopServiceCard({
             }}
           >
             <h3
-              className="font-semibold text-[14px] leading-[20px] text-[#5B5F58] text-center"
+              className="font-semibold text-[13px] lg:text-[13px] xxl:text-[14px] leading-[18px] lg:leading-[19px] xxl:leading-[20px] text-[#5B5F58] text-center"
               style={{
                 fontFamily: "Open Sans",
                 fontWeight: "600",
@@ -142,7 +142,7 @@ function DesktopServiceCard({
             }}
           >
             <p
-              className="font-normal text-[12px] leading-[18px] text-[#5B5F58] text-center"
+              className="font-normal text-[11px] lg:text-[11px] xxl:text-[12px] leading-[16px] lg:leading-[17px] xxl:leading-[18px] text-[#5B5F58] text-center"
               style={{
                 fontFamily: "Open Sans",
                 fontWeight: "400",
@@ -255,7 +255,8 @@ export function Banner({
             <div
               className="grid h-full"
               style={{
-                gridTemplateColumns: "68px 460px 78px 1fr",
+                gridTemplateColumns:
+                  "clamp(40px, 5vw, 68px) clamp(320px, 32vw, 460px) clamp(40px, 5.5vw, 78px) 1fr",
                 gridTemplateRows: "111px auto 80px",
               }}
             >
@@ -272,14 +273,14 @@ export function Banner({
                     alt="Canopy Carbon decorator icon"
                     width={460}
                     height={460}
-                    className="object-contain"
+                    className="object-contain w-full h-auto max-w-[320px] lg:max-w-[350px] xl:max-w-[420px] xxl:max-w-[460px]"
                     priority
                   />
                 </motion.div>
               </div>
 
               {/* Main Content */}
-              <div className="col-start-4 row-start-2 flex flex-col gap-2 justify-center mt-[195px]">
+              <div className="col-start-4 row-start-2 flex flex-col gap-2 justify-center mt-[120px] lg:mt-[140px] xl:mt-[170px] xxl:mt-[195px] mr-[68px] xxl:mr-0">
                 {/* Main Title */}
                 <motion.h1
                   initial={{ opacity: 0, x: -50 }}
@@ -289,7 +290,7 @@ export function Banner({
                     ease: [0.175, 0.885, 0.32, 1.275],
                     delay: 0.2,
                   }}
-                  className="font-bold text-[64px] leading-[68px] text-[#1E2E26]"
+                  className="font-bold text-[48px] lg:text-[52px] xl:text-[58px] xxl:text-[64px] leading-[1.1] lg:leading-[56px] xl:leading-[62px] xxl:leading-[68px] text-[#1E2E26]"
                   style={{
                     fontFamily: "Open Sans",
                     fontWeight: "700",
@@ -318,7 +319,7 @@ export function Banner({
 
                 {/* Service Cards */}
                 {services && (
-                  <div className="flex items-end mt-[72px]">
+                  <div className="flex items-end mt-[48px] lg:mt-[56px] xl:mt-[64px] xxl:mt-[72px]">
                     <motion.div
                       {...SIMPLE_ANIMATIONS.fadeInUp}
                       transition={{
@@ -326,11 +327,9 @@ export function Banner({
                         delay: 0.7,
                         ease: "easeOut",
                       }}
-                      className="grid grid-cols-2 grid-rows-2"
+                      className="grid grid-cols-2 grid-rows-2 w-full max-w-[580px] lg:max-w-[620px] xl:max-w-[700px] xxl:w-[766px] gap-4 xxl:gap-6"
                       style={{
-                        width: "766px",
-                        gap: "24px",
-                        gridTemplateColumns: "371px 371px",
+                        gridTemplateColumns: "1fr 1fr",
                         gridTemplateRows: "auto auto",
                       }}
                     >
@@ -355,7 +354,7 @@ export function Banner({
                 ease: [0.175, 0.885, 0.32, 1.275],
                 delay: 0.5,
               }}
-              className="font-open-sans font-bold text-[#9CA3AF] text-[24px] text-start max-w-[782px] ml-[68px]"
+              className="font-open-sans font-bold text-[#9CA3AF] text-[18px] lg:text-[20px] xl:text-[22px] xxl:text-[24px] text-start max-w-[600px] lg:max-w-[680px] xl:max-w-[730px] xxl:max-w-[782px] ml-[40px] lg:ml-[50px] xl:ml-[60px] xxl:ml-[68px]"
               style={{
                 lineHeight: "34px",
                 fontFamily: "Open Sans",

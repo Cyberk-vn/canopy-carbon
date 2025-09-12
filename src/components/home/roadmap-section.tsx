@@ -83,9 +83,9 @@ const RoadmapSection = () => {
             <div
               className="grid w-full"
               style={{
-                gridTemplateColumns: "68px 1fr 60px 359px 68px",
+                gridTemplateColumns: "clamp(40px, 4.7vw, 68px) 1fr clamp(40px, 4.2vw, 60px) clamp(280px, 25vw, 359px) clamp(40px, 4.7vw, 68px)",
                 gridTemplateRows: "97px auto auto 1fr",
-                minHeight: "818px",
+                minHeight: "clamp(650px, 56.8vw, 818px)",
               }}
             >
               {/* Tree Image + Background Decoration Group */}
@@ -94,8 +94,9 @@ const RoadmapSection = () => {
                 style={{
                   gridColumn: "4",
                   gridRow: "2 / 4",
-                  width: "359px",
-                  height: "625px",
+                  width: "100%",
+                  maxWidth: "359px",
+                  height: "clamp(500px, 43.4vw, 625px)",
                 }}
                 {...SIMPLE_ANIMATIONS.fadeInRight}
                 {...rightSideMotion}
@@ -104,10 +105,10 @@ const RoadmapSection = () => {
                 <div
                   className="absolute bg-[#1D1F1F]"
                   style={{
-                    left: "151px",
+                    left: "clamp(120px, 42%, 151px)",
                     top: "0px",
-                    width: "208px",
-                    height: "625px",
+                    width: "clamp(160px, 57%, 208px)",
+                    height: "clamp(500px, 43.4vw, 625px)",
                   }}
                 ></div>
 
@@ -125,7 +126,7 @@ const RoadmapSection = () => {
                       alt="Decorative tree image representing sustainable forest management"
                       width={302}
                       height={547}
-                      className="w-[302px] h-[547px] object-cover"
+                      className="w-full h-auto max-w-[240px] lg:max-w-[260px] xl:max-w-[280px] xxl:max-w-[302px] object-cover"
                       priority
                     />
                   </div>
@@ -142,7 +143,7 @@ const RoadmapSection = () => {
                 {...SIMPLE_ANIMATIONS.fadeInLeft}
                 {...leftSideMotion}
               >
-                <div className="w-full">
+                <div className="w-full max-w-[700px] lg:max-w-[750px] xl:max-w-[820px] xxl:max-w-[885px]">
                   <Image
                     src={RoadMapImage}
                     alt="Canopy Carbon Project Development Roadmap - Complete visual showing the 8-step process from origination to credit issuance"
@@ -160,13 +161,13 @@ const RoadmapSection = () => {
                 style={{
                   gridColumn: "2",
                   gridRow: "3",
-                  marginTop: "79px", // 79px spacing from Roadmap Image
+                  marginTop: "clamp(48px, 5.5vw, 79px)", // Responsive spacing from Roadmap Image
                 }}
                 {...SIMPLE_ANIMATIONS.fadeInLeft}
                 {...leftSideMotion}
               >
                 <motion.h2
-                  className="text-[32px] font-light leading-[43.6px] text-[#0D1117] max-w-[335px]"
+                  className="text-[24px] lg:text-[28px] xl:text-[30px] xxl:text-[32px] font-light leading-[1.36] lg:leading-[38px] xl:leading-[41px] xxl:leading-[43.6px] text-[#0D1117] max-w-[280px] lg:max-w-[300px] xl:max-w-[320px] xxl:max-w-[335px]"
                   style={{
                     fontFamily: "Open Sans",
                     fontWeight: "300",
@@ -183,9 +184,9 @@ const RoadmapSection = () => {
                 </motion.h2>
 
                 <motion.p
-                  className="font-semibold text-[#7D8F89] text-[24px] text-start max-w-[751px]"
+                  className="font-semibold text-[#7D8F89] text-[18px] lg:text-[20px] xl:text-[22px] xxl:text-[24px] text-start max-w-[580px] lg:max-w-[650px] xl:max-w-[700px] xxl:max-w-[751px]"
                   style={{
-                    lineHeight: "34px",
+                    lineHeight: "clamp(26px, 2.36vw, 34px)",
                     fontFamily: "Open Sans",
                     fontWeight: "600",
                     letterSpacing: "2%",

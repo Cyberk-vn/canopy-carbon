@@ -97,7 +97,8 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
 
   return (
     <Container maxWidth="default">
-      <div className="w-[1440px] max-w-[1440px] overflow-hidden">
+      {/* Desktop Layout ≥1440px - Keep exactly as-is */}
+      <div className="hidden xxl:block w-[1440px] max-w-[1440px] overflow-hidden">
         {/* Two Column Layout */}
         <div className="flex w-[1440px]">
           {/* Left Column: Title, Description, and Cards */}
@@ -300,6 +301,439 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
               height={359}
               className="w-[357px] h-[359px] object-contain"
             />
+          </div>
+        </div>
+      </div>
+
+      {/* Responsive Layout 768px-1439px - Proportionally scaled implementations */}
+      <div className="hidden md:block xxl:hidden w-full">
+        {/* Tablet Layout 768px-1249px - Proportionally scaled from 1440px (ratio: 0.711) */}
+        <div className="hidden md:block xlg:hidden w-full overflow-hidden">
+          {/* Development Section - Tablet */}
+          <div className="flex w-full">
+            {/* Left Column: Title, Description, and Cards */}
+            <div
+              className="flex-1"
+              style={{
+                marginLeft: "48px",
+                marginTop: "56px",
+                marginBottom: "66px",
+                marginRight: "80px",
+              }}
+            >
+              {/* Header Section */}
+              <div style={{ marginBottom: "66px" }}>
+                <h2 className="font-open-sans font-bold text-[26px] leading-[1.4] text-[#475850] mb-[24px]">
+                  {data.sectionTitle}
+                </h2>
+                <p
+                  className="font-open-sans font-semibold text-[16px] leading-[1.4] text-[#91A69E] max-w-[560px]"
+                  style={{ letterSpacing: "-3%" }}
+                >
+                  {data.sectionSubtitle}
+                </p>
+              </div>
+
+              {/* Development Cards Grid - 2x3 Layout */}
+              <div
+                className="grid grid-cols-2 grid-rows-3"
+                style={{ gap: "20px" }}
+              >
+                {developmentCards.map((card) => (
+                  <div key={card.id} className="w-full" style={{ height: "162px" }}>
+                    {/* Multi-layer Background System */}
+                    <div className="relative w-full h-full rounded-[5px] overflow-hidden">
+                      {/* Background Image Layer */}
+                      <div
+                        className="absolute inset-0 w-full h-full"
+                        style={{
+                          backgroundImage: `url('/assets/desktop/about-us/background-image-development-content-card.svg')`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                      />
+
+                      {/* Gradient Overlay */}
+                      <div
+                        className="absolute inset-0 w-full h-full"
+                        style={{
+                          background:
+                            "linear-gradient(180deg, rgba(255, 255, 255, 1) 15%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 94%)",
+                        }}
+                      />
+
+                      {/* Color Overlay */}
+                      <div
+                        className="absolute inset-0 w-full h-full rounded-[5px]"
+                        style={{ backgroundColor: "rgba(47, 58, 53, 0.4)" }}
+                      />
+
+                      {/* Content Container */}
+                      <div className="relative z-10 w-full h-full p-3 flex flex-col gap-[11px]">
+                        {/* Card Title */}
+                        <div className="h-[19px] flex items-center">
+                          <h4 className="font-roboto font-black text-[14px] leading-[1.25] text-white">
+                            {card.title}
+                          </h4>
+                        </div>
+
+                        {/* Description Frame */}
+                        <div
+                          className="flex-1 p-2 rounded-[8px] flex flex-col gap-2"
+                          style={{ backgroundColor: "#989D9B" }}
+                        >
+                          {/* Description Text */}
+                          <div className="flex-1">
+                            <p
+                              className="font-roboto font-normal text-[11px] leading-[1.5] text-white"
+                              style={{ letterSpacing: "-1%" }}
+                            >
+                              {card.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Column: Full Height Decorator Image */}
+            <div
+              className="flex-shrink-0"
+              style={{ marginBottom: "66px", marginRight: "46px" }}
+            >
+              <div className="h-full flex items-stretch">
+                <Image
+                  src="/assets/desktop/about-us/development-decorator-image.svg"
+                  alt="Development sequence decorative element"
+                  width={205}
+                  height={555}
+                  className="h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Climate Action Section - Tablet */}
+          <div className="flex w-full">
+            {/* Left Column: Title, Description, and Cards */}
+            <div
+              className="flex-1"
+              style={{
+                marginLeft: "40px",
+                marginTop: "85px",
+                marginBottom: "66px",
+                marginRight: "40px",
+              }}
+            >
+              {/* Header Section */}
+              <div className="mb-[43px] text-center">
+                <p
+                  className="font-open-sans font-semibold text-[22px] leading-[1.4] text-[#91A69E] max-w-[597px] mx-auto mb-[43px]"
+                  style={{ letterSpacing: "-3%" }}
+                >
+                  {data.contentSectionDescription}
+                </p>
+                <h2
+                  className="font-open-sans font-bold text-[19px] leading-[1] text-[#475850]"
+                  style={{ letterSpacing: "-3%" }}
+                >
+                  {data.contentSectionTitle}
+                </h2>
+              </div>
+
+              {/* Climate Cards Grid - Row Layout */}
+              <div className="flex flex-col" style={{ gap: "8px" }}>
+                {climateActionCards.map((card) => (
+                  <div key={card.id} className="w-full" style={{ height: "92px" }}>
+                    {/* Card Background */}
+                    <div className="relative w-full h-full">
+                      {/* Background Rectangle */}
+                      <div
+                        className="absolute rounded-[5px] inset-0"
+                        style={{
+                          backgroundColor: "rgba(207, 213, 219, 0.4)",
+                        }}
+                      />
+
+                      {/* Card Title */}
+                      <div
+                        className="absolute flex items-center justify-start"
+                        style={{
+                          width: "135px",
+                          height: "40px",
+                          left: "21px",
+                          top: "24px",
+                        }}
+                      >
+                        <h4
+                          className="font-roboto font-black text-[15px] leading-[1.5555555556] text-left"
+                          style={{ color: "rgba(46, 47, 45, 0.7)" }}
+                        >
+                          {card.title}
+                        </h4>
+                      </div>
+
+                      {/* Description Frame */}
+                      <div
+                        className="absolute flex items-center justify-center gap-2 p-4 rounded-[8px]"
+                        style={{
+                          backgroundColor: "#F3F5F6",
+                          left: "168px",
+                          top: "17px",
+                          right: "20px",
+                          height: "58px",
+                        }}
+                      >
+                        <p
+                          className="font-roboto font-normal text-[11px] leading-[1.5] text-[#909FAC] text-left"
+                          style={{ letterSpacing: "-1%" }}
+                        >
+                          {card.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Column: Climate Decorator Image */}
+            <div
+              style={{
+                width: "254px",
+                height: "255px",
+                marginRight: "23px",
+                marginTop: "0px",
+              }}
+            >
+              <Image
+                src="/assets/desktop/about-us/climate-background-image-decorator.svg"
+                alt="Climate action decorative element"
+                width={254}
+                height={255}
+                className="object-contain"
+                style={{ width: "254px", height: "255px" }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Large Tablet Layout 1250px-1439px - Proportionally scaled from 1440px (ratio: 0.889) */}
+        <div className="hidden xlg:block xxl:hidden w-full overflow-hidden">
+          {/* Development Section - Large Tablet */}
+          <div className="flex w-full">
+            {/* Left Column: Title, Description, and Cards */}
+            <div
+              className="flex-1"
+              style={{
+                marginLeft: "60px",
+                marginTop: "70px",
+                marginBottom: "83px",
+                marginRight: "120px",
+              }}
+            >
+              {/* Header Section */}
+              <div style={{ marginBottom: "83px" }}>
+                <h2 className="font-open-sans font-bold text-[29px] leading-[1.4] text-[#475850] mb-[24px]">
+                  {data.sectionTitle}
+                </h2>
+                <p
+                  className="font-open-sans font-semibold text-[18px] leading-[1.4] text-[#91A69E] max-w-[701px]"
+                  style={{ letterSpacing: "-3%" }}
+                >
+                  {data.sectionSubtitle}
+                </p>
+              </div>
+
+              {/* Development Cards Grid - 3x2 Layout */}
+              <div
+                className="grid grid-cols-3 grid-rows-2"
+                style={{ gap: "22px" }}
+              >
+                {developmentCards.map((card) => (
+                  <div key={card.id} className="w-full" style={{ height: "203px" }}>
+                    {/* Multi-layer Background System */}
+                    <div className="relative w-full h-full rounded-[5px] overflow-hidden">
+                      {/* Background Image Layer */}
+                      <div
+                        className="absolute inset-0 w-full h-full"
+                        style={{
+                          backgroundImage: `url('/assets/desktop/about-us/background-image-development-content-card.svg')`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                      />
+
+                      {/* Gradient Overlay */}
+                      <div
+                        className="absolute inset-0 w-full h-full"
+                        style={{
+                          background:
+                            "linear-gradient(180deg, rgba(255, 255, 255, 1) 15%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 94%)",
+                        }}
+                      />
+
+                      {/* Color Overlay */}
+                      <div
+                        className="absolute inset-0 w-full h-full rounded-[5px]"
+                        style={{ backgroundColor: "rgba(47, 58, 53, 0.4)" }}
+                      />
+
+                      {/* Content Container */}
+                      <div className="relative z-10 w-full h-full p-4 flex flex-col gap-[13px]">
+                        {/* Card Title */}
+                        <div className="h-[24px] flex items-center">
+                          <h4 className="font-roboto font-black text-[15px] leading-[1.25] text-white">
+                            {card.title}
+                          </h4>
+                        </div>
+
+                        {/* Description Frame */}
+                        <div
+                          className="flex-1 p-3 rounded-[8px] flex flex-col gap-2"
+                          style={{ backgroundColor: "#989D9B" }}
+                        >
+                          {/* Description Text */}
+                          <div className="flex-1">
+                            <p
+                              className="font-roboto font-normal text-[11px] leading-[1.6] text-white"
+                              style={{ letterSpacing: "-1%" }}
+                            >
+                              {card.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Column: Full Height Decorator Image */}
+            <div
+              className="flex-shrink-0"
+              style={{ marginBottom: "83px", marginRight: "58px" }}
+            >
+              <div className="h-full flex items-stretch">
+                <Image
+                  src="/assets/desktop/about-us/development-decorator-image.svg"
+                  alt="Development sequence decorative element"
+                  width={256}
+                  height={694}
+                  className="h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Climate Action Section - Large Tablet */}
+          <div className="flex w-full">
+            {/* Left Column: Title, Description, and Cards */}
+            <div
+              className="flex-1"
+              style={{
+                marginLeft: "50px",
+                marginTop: "107px",
+                marginBottom: "83px",
+                marginRight: "50px",
+              }}
+            >
+              {/* Header Section */}
+              <div className="mb-[53px] text-center">
+                <p
+                  className="font-open-sans font-semibold text-[25px] leading-[1.4] text-[#91A69E] max-w-[747px] mx-auto mb-[53px]"
+                  style={{ letterSpacing: "-3%" }}
+                >
+                  {data.contentSectionDescription}
+                </p>
+                <h2
+                  className="font-open-sans font-bold text-[22px] leading-[1] text-[#475850]"
+                  style={{ letterSpacing: "-3%" }}
+                >
+                  {data.contentSectionTitle}
+                </h2>
+              </div>
+
+              {/* Climate Cards Grid - Row Layout */}
+              <div className="flex flex-col" style={{ gap: "10px" }}>
+                {climateActionCards.map((card) => (
+                  <div key={card.id} className="w-full" style={{ height: "116px" }}>
+                    {/* Card Background */}
+                    <div className="relative w-full h-full">
+                      {/* Background Rectangle */}
+                      <div
+                        className="absolute rounded-[5px] inset-0"
+                        style={{
+                          backgroundColor: "rgba(207, 213, 219, 0.4)",
+                        }}
+                      />
+
+                      {/* Card Title */}
+                      <div
+                        className="absolute flex items-center justify-start"
+                        style={{
+                          width: "169px",
+                          height: "50px",
+                          left: "27px",
+                          top: "31px",
+                        }}
+                      >
+                        <h4
+                          className="font-roboto font-black text-[17px] leading-[1.5555555556] text-left"
+                          style={{ color: "rgba(46, 47, 45, 0.7)" }}
+                        >
+                          {card.title}
+                        </h4>
+                      </div>
+
+                      {/* Description Frame */}
+                      <div
+                        className="absolute flex items-center justify-center gap-2 p-4 rounded-[8px]"
+                        style={{
+                          backgroundColor: "#F3F5F6",
+                          left: "211px",
+                          top: "22px",
+                          right: "25px",
+                          height: "72px",
+                        }}
+                      >
+                        <p
+                          className="font-roboto font-normal text-[11px] leading-[1.6] text-[#909FAC] text-left"
+                          style={{ letterSpacing: "-1%" }}
+                        >
+                          {card.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Column: Climate Decorator Image */}
+            <div
+              style={{
+                width: "317px",
+                height: "319px",
+                marginRight: "28px",
+                marginTop: "0px",
+              }}
+            >
+              <Image
+                src="/assets/desktop/about-us/climate-background-image-decorator.svg"
+                alt="Climate action decorative element"
+                width={317}
+                height={319}
+                className="object-contain"
+                style={{ width: "317px", height: "319px" }}
+              />
+            </div>
           </div>
         </div>
       </div>
