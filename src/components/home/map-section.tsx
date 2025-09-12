@@ -33,11 +33,13 @@ const MapSection = () => {
     >
       {/* Desktop Layout */}
       <div className="hidden lg:block w-full">
-        <Container maxWidth="default" className="pl-[68px]">
+        <Container
+          maxWidth="default"
+          className="pl-[40px] xl:pl-[50px] xxl:pl-[68px] xxl:overflow-x-hidden"
+        >
           <div
-            className="grid w-full overflow-hidden"
+            className="grid w-full overflow-hidden grid-cols-[700px_1fr] xl:grid-cols-[850px_1fr] xxl:grid-cols-[994px_1fr]"
             style={{
-              gridTemplateColumns: "994px 1fr",
               gridTemplateRows: "90px auto 48px auto 1fr",
               minHeight: "816px",
             }}
@@ -52,14 +54,16 @@ const MapSection = () => {
               {...SIMPLE_ANIMATIONS.scaleIn}
               {...mapImageMotion}
             >
-              <Image
-                src={MapDesktop}
-                alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
-                width={972}
-                height={495}
-                className="w-full h-auto object-contain lg:bg-white"
-                priority
-              />
+              <div className="w-full max-w-[680px] xl:max-w-[820px] xxl:max-w-[972px]">
+                <Image
+                  src={MapDesktop}
+                  alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
+                  width={972}
+                  height={495}
+                  className="w-full h-auto object-contain lg:bg-white"
+                  priority
+                />
+              </div>
             </motion.div>
 
             {/* Title */}
@@ -74,15 +78,15 @@ const MapSection = () => {
             >
               {/* Title Text with Hidden to Show Animation */}
               <motion.div
-                className="flex-1 max-w-[664px]"
+                className="flex-1 max-w-[520px] xl:max-w-[580px] xxl:max-w-[664px]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
               >
                 <h2
-                  className="font-open-sans font-bold text-[#9CA3AF] text-[20px] text-start max-w-[664px]"
+                  className="font-open-sans font-bold text-[#9CA3AF] text-[16px] xl:text-[18px] xxl:text-[20px] text-start"
                   style={{
-                    lineHeight: "1.5em",
+                    lineHeight: "clamp(1.4em, 1.45em, 1.5em)",
                     fontFamily: "Open Sans",
                   }}
                 >
@@ -142,7 +146,7 @@ const MapSection = () => {
                   </motion.svg>
                 </motion.div>
                 <motion.span
-                  className="text-[16px] font-normal text-[#2A2E35]"
+                  className="text-[14px] xl:text-[15px] xxl:text-[16px] font-normal text-[#2A2E35]"
                   style={{
                     fontFamily: "Open Sans",
                     lineHeight: "1.5em",
@@ -162,7 +166,7 @@ const MapSection = () => {
             </motion.div>
             {/* Decorator Icon */}
             <motion.div
-              className="z-10 flex items-start justify-center"
+              className="z-10 flex items-start justify-start xl:justify-center xxl:justify-start"
               style={{
                 gridColumn: "2",
                 gridRow: "1 / 5",
@@ -170,13 +174,13 @@ const MapSection = () => {
               {...SIMPLE_ANIMATIONS.fadeInRight}
               {...rightSectionMotion}
             >
-              <div className="w-[425px] h-[425px] flex items-center justify-center">
+              <div className="w-full max-w-[280px] xl:max-w-[380px] xxl:w-[340px] xxl:h-[425px] xxl:overflow-hidden flex items-center justify-start">
                 <Image
                   src={DecoratorIcon}
                   alt="Decorative icon representing our global carbon initiatives"
                   width={425}
                   height={425}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full max-w-[280px] xl:max-w-[380px] xxl:w-[425px] xxl:h-[425px] object-contain"
                   priority
                 />
               </div>

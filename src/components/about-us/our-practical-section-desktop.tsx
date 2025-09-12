@@ -60,15 +60,34 @@ const practicalCards: PracticalCard[] = [
   },
 ];
 
+// Responsive card positions - Tablet (768px-1249px) - Scale ratio: 0.711
+const tabletCardPositions = [
+  { x: 281, y: 0 },
+  { x: 237, y: 119 },
+  { x: 199, y: 233 },
+  { x: 110, y:337 },
+  { x: 0, y: 452 },
+];
+
+// Responsive card positions - Large Tablet (1250px-1439px) - Scale ratio: 0.889
+const largeTabletCardPositions = [
+  { x: 351, y: 0 },
+  { x: 297, y: 148 },
+  { x: 249, y: 291 },
+  { x: 137, y: 421 },
+  { x: 0, y: 565 },
+];
+
 export const OurPracticalSectionDesktop = () => {
   const containerMotion = useSimpleMotion("practical-container");
 
   return (
     <Container maxWidth="default" className="max-w-[1440px]">
+      {/* Desktop Layout ≥1440px - Keep exactly as-is */}
       <motion.div
         {...SIMPLE_ANIMATIONS.fadeInUp}
         {...containerMotion}
-        className="relative min-h-[879px] pt-[120px] w-[1440px]"
+        className="hidden xxl:block relative min-h-[879px] pt-[120px] w-[1440px]"
       >
         {/* Logo Decorator */}
         <div
@@ -139,6 +158,163 @@ export const OurPracticalSectionDesktop = () => {
           ))}
         </div>
       </motion.div>
+
+      {/* Responsive Layout 768px-1439px - Proportionally scaled implementations */}
+      <div className="hidden md:block xxl:hidden w-full">
+        {/* Tablet Layout 768px-1249px - Proportionally scaled from 1440px (ratio: 0.711) */}
+        <motion.div
+          {...SIMPLE_ANIMATIONS.fadeInUp}
+          {...containerMotion}
+          className="hidden md:block xlg:hidden relative w-full"
+          style={{ minHeight: "625px", paddingTop: "85px" }}
+        >
+          {/* Logo Decorator - Scaled */}
+          <div
+            className="absolute z-10"
+            style={{
+              left: "32px",
+              top: "57px",
+              width: "300px",
+              height: "292px",
+            }}
+          >
+            <Image
+              src={LogoDecorator}
+              alt="Logo decorator"
+              width={300}
+              height={292}
+            />
+          </div>
+
+          {/* Curve Content Group - Scaled */}
+          <div
+            className="absolute z-20"
+            style={{
+              left: "155px",
+              top: "57px",
+              width: "679px",
+              height: "514px",
+            }}
+          >
+            {practicalCards.map((card, index) => (
+              <FadeContent
+                key={`tablet-${index}`}
+                duration={800}
+                easing="ease-out"
+                delay={index * 150}
+                threshold={0.1}
+                initialOpacity={0}
+                className="absolute transition-all duration-300 hover:transform hover:scale-105"
+                style={{
+                  left: `${tabletCardPositions[index].x}px`,
+                  top: `${tabletCardPositions[index].y}px`,
+                  backdropFilter: "blur(10px)",
+                  width: "398px",
+                }}
+              >
+                {/* Card Title - Responsive */}
+                <h3
+                  className="font-open-sans font-light text-black text-left mb-3"
+                  style={{
+                    fontSize: "16px",
+                    lineHeight: "1.4em",
+                  }}
+                >
+                  {card.title}
+                </h3>
+
+                {/* Card Description - Responsive */}
+                <p
+                  className="font-open-sans font-semibold text-[#798C9B] text-left"
+                  style={{
+                    fontSize: "14px",
+                    lineHeight: "1.4em",
+                  }}
+                >
+                  {card.description}
+                </p>
+              </FadeContent>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Large Tablet Layout 1250px-1439px - Proportionally scaled from 1440px (ratio: 0.889) */}
+        <motion.div
+          {...SIMPLE_ANIMATIONS.fadeInUp}
+          {...containerMotion}
+          className="hidden xlg:block xxl:hidden relative w-full"
+          style={{ minHeight: "782px", paddingTop: "107px" }}
+        >
+          {/* Logo Decorator - Scaled */}
+          <div
+            className="absolute z-10"
+            style={{
+              left: "40px",
+              top: "72px",
+              width: "375px",
+              height: "365px",
+            }}
+          >
+            <Image
+              src={LogoDecorator}
+              alt="Logo decorator"
+              width={375}
+              height={365}
+            />
+          </div>
+
+          {/* Curve Content Group - Scaled */}
+          <div
+            className="absolute z-20"
+            style={{
+              left: "194px",
+              top: "72px",
+              width: "849px",
+              height: "644px",
+            }}
+          >
+            {practicalCards.map((card, index) => (
+              <FadeContent
+                key={`large-tablet-${index}`}
+                duration={800}
+                easing="ease-out"
+                delay={index * 150}
+                threshold={0.1}
+                initialOpacity={0}
+                className="absolute transition-all duration-300 hover:transform hover:scale-105"
+                style={{
+                  left: `${largeTabletCardPositions[index].x}px`,
+                  top: `${largeTabletCardPositions[index].y}px`,
+                  backdropFilter: "blur(10px)",
+                  width: "498px",
+                }}
+              >
+                {/* Card Title - Responsive */}
+                <h3
+                  className="font-open-sans font-light text-black text-left mb-3"
+                  style={{
+                    fontSize: "18px",
+                    lineHeight: "1.4em",
+                  }}
+                >
+                  {card.title}
+                </h3>
+
+                {/* Card Description - Responsive */}
+                <p
+                  className="font-open-sans font-semibold text-[#798C9B] text-left"
+                  style={{
+                    fontSize: "15px",
+                    lineHeight: "1.4em",
+                  }}
+                >
+                  {card.description}
+                </p>
+              </FadeContent>
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </Container>
   );
 };
