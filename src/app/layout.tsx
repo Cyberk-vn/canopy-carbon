@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto, Open_Sans, Inter } from "next/font/google";
 import "./globals.css";
+import { isDevelopmentMode } from "../lib/utils";
+import { ComingSoon } from "../components/ui/ComingSoon";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +34,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Canopy Carbon - Climate Infrastructure Company",
-  description: "A Climate Infrastructure Company Specialising in Nature-Based Solutions.",
+  description:
+    "A Climate Infrastructure Company Specialising in Nature-Based Solutions.",
 };
 
 export default function RootLayout({
@@ -40,12 +43,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const showComingSoon = !isDevelopmentMode();
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} ${openSans.variable} ${inter.variable} antialiased`}
       >
-        {children}
+        {showComingSoon ? <ComingSoon /> : children}
       </body>
     </html>
   );
