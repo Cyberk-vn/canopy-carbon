@@ -6,5 +6,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function isDevelopmentMode(): boolean {
-  return false;
+  return true;
 }
