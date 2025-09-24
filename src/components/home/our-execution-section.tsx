@@ -268,55 +268,46 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
 
         {/* Desktop Layout - 4 Cards Grid */}
         <div className="hidden lg:block">
-          <Container maxWidth="default" padding="none">
-            <div>
-              <div className="grid grid-cols-4 gap-6 w-full">
+          <Container maxWidth="default" padding="none" className="max-w-none">
+            <div className="w-full flex justify-center">
+              <div
+                className="flex items-start justify-center gap-[var(--card-gap)]"
+                style={{
+                  width: "90.55%",
+                  ["--card-gap" as any]: "clamp(12px, 1.2vw, 28px)",
+                }}
+              >
                 {desktopExecutionItems.map((item, index) => (
                   <motion.div
                     key={item.id}
                     className="flex flex-col items-center"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={
-                      isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
-                    }
-                    transition={{
-                      duration: 0.6,
-                      delay: index * 0.15,
-                      ease: "easeOut",
+                    style={{
+                      flex: "0 0 calc(21.38vw - (var(--card-gap) * 0.75))",
+                      maxWidth: "540px",
+                      minWidth: "220px",
                     }}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                    transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
                   >
-                    {/* Image Container */}
-                    <div className="relative mb-[31px]">
+                    <div className="relative mb-[31px] w-full aspect-[337/577]">
                       <Image
                         src={item.imageSrc}
                         alt={item.altText}
-                        width={337}
-                        height={577}
-                        className="object-cover shadow-lg w-full h-auto aspect-[337/577]"
+                        fill
+                        className="object-cover shadow-lg"
                         priority={index < 2}
+                        sizes="(min-width: 1024px) 21.38vw, 100vw"
                       />
                     </div>
 
-                    {/* Title */}
                     {item.title && (
                       <motion.h3
-                        className="text-center text-[20px] font-medium text-[#000000] leading-tight"
-                        style={{
-                          fontFamily: "Open Sans",
-                          fontWeight: 600,
-                          lineHeight: "30px",
-                        }}
+                        className="text-center text-[20px] font-medium text-[#000000] leading-tight lg:text-[18px] xl:text-[20px]"
+                        style={{ fontFamily: "Open Sans", fontWeight: 600, lineHeight: "30px" }}
                         initial={{ opacity: 0, y: 15 }}
-                        animate={
-                          isInView
-                            ? { opacity: 1, y: 0 }
-                            : { opacity: 0, y: 15 }
-                        }
-                        transition={{
-                          duration: 0.95,
-                          ease: [0.25, 0.46, 0.45, 0.94],
-                          delay: index * 0.1 + 0.8,
-                        }}
+                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+                        transition={{ duration: 0.95, ease: [0.25, 0.46, 0.45, 0.94], delay: index * 0.1 + 0.8 }}
                       >
                         {item.title}
                       </motion.h3>
@@ -328,17 +319,19 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
           </Container>
         </div>
 
+
+
         {/* Mobile/Tablet Layout - Fixed 3-Card Layout with Fade Transitions */}
         <div className="block lg:hidden">
           {/* Auto-switch status indicator for screen readers */}
           <div className="sr-only" aria-live="polite">
             {autoSwitchState.enabled &&
-            autoSwitchState.isRunning &&
-            !autoSwitchState.isPaused
+              autoSwitchState.isRunning &&
+              !autoSwitchState.isPaused
               ? "Auto-switching cards every 3 seconds. Hover or focus to pause."
               : autoSwitchState.isPaused
-              ? "Auto-switching paused"
-              : "Auto-switching disabled"}
+                ? "Auto-switching paused"
+                : "Auto-switching disabled"}
           </div>
 
           <div
