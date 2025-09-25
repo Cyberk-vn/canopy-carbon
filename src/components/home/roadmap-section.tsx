@@ -11,7 +11,7 @@ import { Container } from "@/src/components/shared";
 import MobileRoadmap from "./mobile-roadmap";
 
 // Image imports
-import TreeImage from "../../../public/assets/desktop/home/tree.jpg";
+import TreeImage from "../../../public/assets/desktop/home/tree.png";
 import RoadMapImage from "../../../public/assets/desktop/home/road-map.svg";
 
 const RoadmapSection = () => {
@@ -32,7 +32,6 @@ const RoadmapSection = () => {
 
         .decorative-card {
           width: 100%;
-          max-width: 423px;
           position: relative;
         }
 
@@ -51,11 +50,20 @@ const RoadmapSection = () => {
             height: 236px;
           }
         }
+
+        /* Desktop specific - ensure no constraints */
+        @media (min-width: 1440px) {
+          .decorative-card {
+            max-width: none;
+            height: auto;
+            width: 100%;
+          }
+        }
       `}</style>
 
-      <section className="w-full py-0">
+      <section className="w-full py-0 xxl:-mt-10">
         {/* Mobile Layout - Keep existing mobile design */}
-        <div className="lg:hidden flex flex-col w-full gap-[40px] mx-auto px-6">
+        <div className="md:hidden flex flex-col w-full gap-[40px] mx-auto px-6">
           {/* Section Title */}
           <motion.h2
             className="text-[20px] font-light leading-[30px] text-start text-[#2E2F2D] flex items-start justify-start max-w-[90%]"
@@ -76,39 +84,147 @@ const RoadmapSection = () => {
           </motion.div>
         </div>
 
-        {/* Desktop Layout */}
-        <div className="hidden lg:block w-full bg-white">
-          <Container maxWidth="default" padding="none">
-            {/* CSS Grid Layout */}
+        {/* Tablet Layout */}
+        <div className="hidden md:block xxl:hidden w-full bg-white">
+          <Container maxWidth="full" padding="none">
             <div
-              className="grid w-full"
+              className="mx-auto px-[24px]"
               style={{
-                gridTemplateColumns: "clamp(40px, 4.7vw, 68px) 1fr clamp(40px, 4.2vw, 60px) clamp(280px, 25vw, 359px) clamp(40px, 4.7vw, 68px)",
-                gridTemplateRows: "97px auto auto 1fr",
-                minHeight: "clamp(650px, 56.8vw, 818px)",
+                maxWidth: "clamp(741px, 90vw, 1440px)",
               }}
             >
+              {/* Title + Description Section */}
+              <motion.div
+                className="flex flex-col"
+                style={{
+                  gap: "clamp(24px, 3vw, 32px)",
+                  marginBottom: "clamp(32px, 4vw, 48px)",
+                }}
+                {...SIMPLE_ANIMATIONS.fadeInUp}
+                {...titleMotion}
+              >
+                {/* Title */}
+                <div
+                  className="flex flex-col gap-1"
+                  style={{
+                    maxWidth: "clamp(335px, 45vw, 500px)",
+                  }}
+                >
+                  <motion.h2
+                    className="font-normal text-[#0D1117]"
+                    style={{
+                      fontFamily: "Open Sans",
+                      fontWeight: "400",
+                      fontSize: "clamp(28px, 3.5vw, 36px)",
+                      lineHeight: "1.36",
+                    }}
+                    initial={{ opacity: 0, y: 35 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 1.35,
+                      ease: [0.175, 0.885, 0.32, 1.275],
+                      delay: 0.2,
+                    }}
+                  >
+                    Full-Cycle Project
+                  </motion.h2>
+                  <motion.h2
+                    className="font-normal text-[#0D1117]"
+                    style={{
+                      fontFamily: "Open Sans",
+                      fontWeight: "400",
+                      fontSize: "clamp(28px, 3.5vw, 36px)",
+                      lineHeight: "1.36",
+                    }}
+                    initial={{ opacity: 0, y: 35 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 1.35,
+                      ease: [0.175, 0.885, 0.32, 1.275],
+                      delay: 0.3,
+                    }}
+                  >
+                    Development Expertise
+                  </motion.h2>
+                </div>
+
+                {/* Description */}
+                <motion.p
+                  className="font-bold text-[#A3ADB8]"
+                  style={{
+                    fontFamily: "Open Sans",
+                    fontWeight: "700",
+                    fontSize: "clamp(16px, 2vw, 20px)",
+                    lineHeight: "1.3",
+                    letterSpacing: "0.02em",
+                    maxWidth: "clamp(624px, 80vw, 900px)",
+                  }}
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.95,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    delay: 0.5,
+                  }}
+                >
+                  Every Canopy project follows a rigorous development sequence,
+                  from origination to issuance.
+                </motion.p>
+              </motion.div>
+
+              {/* Roadmap Image */}
+              <motion.div
+                className="w-full flex justify-center"
+                {...SIMPLE_ANIMATIONS.fadeInUp}
+                {...imageMotion}
+                transition={{
+                  duration: 1.2,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  delay: 0.7,
+                }}
+              >
+                <div
+                  className="max-w-full"
+                  style={{
+                    width: "clamp(696px, 85vw, 1440px)",
+                    aspectRatio: "696/285",
+                  }}
+                >
+                  <Image
+                    src={RoadMapImage}
+                    alt="Canopy Carbon Project Development Roadmap - Complete visual showing the 8-step process from origination to credit issuance"
+                    width={696}
+                    height={285}
+                    className="w-full h-full object-contain"
+                    priority
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </Container>
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden xxl:block w-full bg-white">
+          <Container maxWidth="full" padding="none">
+            {/* CSS Grid Layout */}
+            <div className="max-w-[1800px] mx-auto grid w-full h-[818px] xxl:h-[818px] 2xl:h-[920px] 3xl:h-[1023px] 4xl:h-[1125px] grid-rows-[97px_auto_auto_1fr] xxl:grid-rows-[97px_auto_auto_1fr] 2xl:grid-rows-[109px_auto_auto_1fr] 3xl:grid-rows-[121px_auto_auto_1fr] 4xl:grid-rows-[133px_auto_auto_1fr] grid-cols-[68px_1fr_60px_375px_68px] xxl:grid-cols-[68px_1fr_1px_422px_68px] 2xl:grid-cols-[77px_1fr_68px_422px_77px] 3xl:grid-cols-[85px_1fr_75px_469px_85px] 4xl:grid-cols-[94px_1fr_83px_516px_94px]">
               {/* Tree Image + Background Decoration Group */}
               <motion.div
-                className="relative z-10"
+                className="relative z-10 -mt-40 h-[751px] xxl:h-[751px] 2xl:h-[845px] 3xl:h-[939px] 4xl:h-[1033px]"
                 style={{
                   gridColumn: "4",
-                  gridRow: "2 / 4",
+                  gridRow: "1 / 4",
                   width: "100%",
-                  maxWidth: "359px",
-                  height: "clamp(500px, 43.4vw, 625px)",
                 }}
                 {...SIMPLE_ANIMATIONS.fadeInRight}
                 {...rightSideMotion}
               >
                 {/* Background decoration */}
                 <div
-                  className="absolute bg-[#1D1F1F]"
+                  className="absolute bg-[#1D1F1F] left-[106px] xxl:left-[146px] 2xl:left-[119px] 3xl:left-[133px] 4xl:left-[146px] w-[269px] xxl:w-[269px] 2xl:w-[303px] 3xl:w-[336px] 4xl:w-[370px] h-[770px]"
                   style={{
-                    left: "clamp(120px, 42%, 151px)",
                     top: "0px",
-                    width: "clamp(160px, 57%, 208px)",
-                    height: "clamp(500px, 43.4vw, 625px)",
                   }}
                 ></div>
 
@@ -117,16 +233,24 @@ const RoadmapSection = () => {
                   className="absolute"
                   style={{
                     left: "0px",
-                    top: "54px",
+                    top: "70px",
+                    width: "375px",
                   }}
                 >
-                  <div className="decorative-card card-effect">
+                  <div
+                    className="card-effect"
+                    style={{ width: "375px", position: "relative" }}
+                  >
                     <Image
                       src={TreeImage}
                       alt="Decorative tree image representing sustainable forest management"
-                      width={302}
-                      height={547}
-                      className="w-full h-auto max-w-[240px] lg:max-w-[260px] xl:max-w-[280px] xxl:max-w-[302px] object-cover"
+                      width={375}
+                      height={657}
+                      style={{
+                        width: "375px",
+                        height: "auto",
+                        objectFit: "cover",
+                      }}
                       priority
                     />
                   </div>
@@ -135,15 +259,15 @@ const RoadmapSection = () => {
 
               {/* Roadmap Image */}
               <motion.div
-                className="z-10"
+                className="z-10 -mt-10"
                 style={{
                   gridColumn: "2",
-                  gridRow: "2",
+                  gridRow: "1/4",
                 }}
                 {...SIMPLE_ANIMATIONS.fadeInLeft}
                 {...leftSideMotion}
               >
-                <div className="w-full max-w-[700px] lg:max-w-[750px] xl:max-w-[820px] xxl:max-w-[885px]">
+                <div className="w-full max-w-[885px] xxl:max-w-[885px] 2xl:max-w-[1106px] 4xl:max-w-[1217px]">
                   <Image
                     src={RoadMapImage}
                     alt="Canopy Carbon Project Development Roadmap - Complete visual showing the 8-step process from origination to credit issuance"
@@ -157,17 +281,16 @@ const RoadmapSection = () => {
 
               {/* Title and Description */}
               <motion.div
-                className="z-10 flex flex-col space-y-6"
+                className="z-10 flex flex-col space-y-6 -mt-10"
                 style={{
                   gridColumn: "2",
                   gridRow: "3",
-                  marginTop: "clamp(48px, 5.5vw, 79px)", // Responsive spacing from Roadmap Image
                 }}
                 {...SIMPLE_ANIMATIONS.fadeInLeft}
                 {...leftSideMotion}
               >
                 <motion.h2
-                  className="text-[24px] lg:text-[28px] xl:text-[30px] xxl:text-[32px] font-light leading-[1.36] lg:leading-[38px] xl:leading-[41px] xxl:leading-[43.6px] text-[#0D1117] max-w-[280px] lg:max-w-[300px] xl:max-w-[320px] xxl:max-w-[335px]"
+                  className="text-[32px] xxl:text-[32px] 2xl:text-[36px] 3xl:text-[40px] 4xl:text-[44px] font-light leading-[43.6px] xxl:leading-[43.6px] 2xl:leading-[49px] 3xl:leading-[54px] 4xl:leading-[60px] text-[#0D1117] max-w-[335px] xxl:max-w-[335px] 2xl:max-w-[377px] 3xl:max-w-[419px] 4xl:max-w-[461px]"
                   style={{
                     fontFamily: "Open Sans",
                     fontWeight: "300",
@@ -184,9 +307,8 @@ const RoadmapSection = () => {
                 </motion.h2>
 
                 <motion.p
-                  className="font-semibold text-[#7D8F89] text-[18px] lg:text-[20px] xl:text-[22px] xxl:text-[24px] text-start max-w-[580px] lg:max-w-[650px] xl:max-w-[700px] xxl:max-w-[751px]"
+                  className="font-semibold text-[#7D8F89] text-[24px] xxl:text-[24px] 2xl:text-[27px] 3xl:text-[30px] 4xl:text-[33px] leading-[34px] xxl:leading-[34px] 2xl:leading-[38px] 3xl:leading-[42px] 4xl:leading-[46px] text-start max-w-[751px] xxl:max-w-[751px] 2xl:max-w-[845px] 3xl:max-w-[939px] 4xl:max-w-[1033px]"
                   style={{
-                    lineHeight: "clamp(26px, 2.36vw, 34px)",
                     fontFamily: "Open Sans",
                     fontWeight: "600",
                     letterSpacing: "2%",

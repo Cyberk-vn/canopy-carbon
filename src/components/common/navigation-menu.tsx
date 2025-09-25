@@ -19,7 +19,6 @@ interface NavigationMenuProps {
   activeItem?: string;
   useWhiteMenuIcon?: boolean;
   desktopTextColor?: string;
-  desktopMargin?: string;
   removePadding?: boolean;
 }
 
@@ -31,13 +30,12 @@ export function NavigationMenu({
   activeItem,
   useWhiteMenuIcon = false,
   desktopTextColor,
-  desktopMargin,
   removePadding = false,
 }: NavigationMenuProps) {
   // Color constants for desktop navigation
   const NAVIGATION_COLORS = {
     active: "#00A5FF",
-    default: desktopTextColor || "#1A1A1A",
+    default: desktopTextColor || "#6B7280",
   } as const;
 
   // Default mobile menu styles (for backward compatibility)
@@ -52,152 +50,150 @@ export function NavigationMenu({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
-    (e.target as HTMLElement).style.color = NAVIGATION_COLORS.active;
+    const element = e.target as HTMLElement;
+    element.style.color = NAVIGATION_COLORS.active;
+    element.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
   };
 
   const handleMouseLeave = (
     e: React.MouseEvent<HTMLElement>,
     isActive: boolean
   ) => {
-    (e.target as HTMLElement).style.color = isActive
+    const element = e.target as HTMLElement;
+    element.style.color = isActive
       ? NAVIGATION_COLORS.active
       : NAVIGATION_COLORS.default;
+    element.style.backgroundColor = isActive
+      ? "rgba(255, 255, 255, 0.05)"
+      : "transparent";
   };
 
   const handleFocus = (e: React.FocusEvent<HTMLElement>) => {
-    (e.target as HTMLElement).style.color = NAVIGATION_COLORS.active;
+    const element = e.target as HTMLElement;
+    element.style.color = NAVIGATION_COLORS.active;
+    element.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLElement>, isActive: boolean) => {
-    (e.target as HTMLElement).style.color = isActive
+    const element = e.target as HTMLElement;
+    element.style.color = isActive
       ? NAVIGATION_COLORS.active
       : NAVIGATION_COLORS.default;
+    element.style.backgroundColor = isActive
+      ? "rgba(255, 255, 255, 0.05)"
+      : "transparent";
   };
 
   return (
     <>
       {/* Navigation Menu */}
       <nav className={removePadding ? "" : "pt-8"} style={{ zIndex: 9999 }}>
-        <Container maxWidth="default" padding="default">
-          {/* Mobile Menu - with logo and border */}
-          <div className="md:hidden mx-6">
-            <div
-              className="flex items-stretch backdrop-blur-[1px]"
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0)",
-                border: "0.75px solid rgba(140, 140, 140, 0.3)",
-              }}
-            >
-              <div className="h-12 flex items-center pl-3">
-                <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
-                  <Image
-                    src={logoUrl}
-                    alt="Canopy Carbon Logo"
-                    width={32}
-                    height={32}
-                    z-index={1}
-                    className="object-fill"
-                  />
+        {/* Mobile Menu - with logo and border */}
+        <div className="md:hidden">
+          <Container maxWidth="default" padding="default">
+            <div className="mx-6">
+              <div
+                className="flex items-stretch backdrop-blur-[1px]"
+                style={{
+                  backgroundColor: "rgba(255, 255, 255, 0)",
+                  border: "0.75px solid rgba(140, 140, 140, 0.3)",
+                }}
+              >
+                <div className="h-12 flex items-center pl-3">
+                  <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
+                    <Image
+                      src={logoUrl}
+                      alt="Canopy Carbon Logo"
+                      width={32}
+                      height={32}
+                      z-index={1}
+                      className="object-fill"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex-1 flex items-center justify-end gap-4 pr-4">
+                  {/* Mobile Menu Button */}
+                  <button
+                    className="hover:text-white p-2 transition-colors duration-200"
+                    style={{ color: mobileMenuIconColor }}
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  >
+                    {isMobileMenuOpen ? (
+                      <svg
+                        className="w-7 h-7 transition-transform duration-200"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    ) : (
+                      <Image
+                        src={
+                          useWhiteMenuIcon
+                            ? "/assets/icon/menu-icon-white.png"
+                            : "/assets/icon/menu-icon.png"
+                        }
+                        alt="Menu"
+                        width={24}
+                        height={16}
+                        className="transition-transform duration-200 w-[24px] h-[16px]"
+                      />
+                    )}
+                  </button>
                 </div>
               </div>
+            </div>
+          </Container>
+        </div>
 
-              <div className="flex-1 flex items-center justify-end gap-4 pr-4">
-                {/* Mobile Menu Button */}
-                <button
-                  className="hover:text-white p-2 transition-colors duration-200"
-                  style={{ color: mobileMenuIconColor }}
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        {/* Desktop Menu - Full Width, No Logo, No Border */}
+        <div
+          className="hidden md:flex w-full h-12"
+          style={{
+            zIndex: 9999,
+          }}
+        >
+          {/* Navigation Links - Full Width */}
+          <div className="flex items-stretch w-full gap-4">
+            {menuItems.map((item, index) => {
+              const isActive = activeItem === item.text;
+              return (
+                <Link
+                  key={index}
+                  href={item.url}
+                  className="flex items-center justify-center px-1.5 py-1 text-center transition-colors duration-200 flex-1"
+                  style={{
+                    fontStyle: "normal",
+                    textTransform: "uppercase",
+                    fontSize: "12px",
+                    fontWeight: 400,
+                    lineHeight: "2em",
+                    fontFamily: "Work Sans, sans-serif",
+                    color: isActive
+                      ? NAVIGATION_COLORS.active
+                      : NAVIGATION_COLORS.default,
+                    backgroundColor: isActive
+                      ? "rgba(255, 255, 255, 0.05)"
+                      : "transparent",
+                  }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={(e) => handleMouseLeave(e, isActive)}
+                  onFocus={handleFocus}
+                  onBlur={(e) => handleBlur(e, isActive)}
                 >
-                  {isMobileMenuOpen ? (
-                    <svg
-                      className="w-7 h-7 transition-transform duration-200"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  ) : (
-                    <Image
-                      src={
-                        useWhiteMenuIcon
-                          ? "/assets/icon/menu-icon-white.png"
-                          : "/assets/icon/menu-icon.png"
-                      }
-                      alt="Menu"
-                      width={24}
-                      height={16}
-                      className="transition-transform duration-200 w-[24px] h-[16px]"
-                    />
-                  )}
-                </button>
-              </div>
-            </div>
+                  {item.text}
+                </Link>
+              );
+            })}
           </div>
-
-          {/* Desktop Menu - with logo and border */}
-          <div
-            className={`hidden md:flex justify-between items-center h-12 backdrop-blur-[1px] ${
-              desktopMargin || "mx-[120px]"
-            }`}
-            style={{
-              backgroundColor: "rgba(255, 255, 255, 0)",
-              border: "0.75px solid rgba(140, 140, 140, 0.3)",
-              zIndex: 9999,
-            }}
-          >
-            {/* Logo Section */}
-            <div className="flex items-center pl-3">
-              <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
-                <Image
-                  src={logoUrl}
-                  alt="Canopy Carbon Logo"
-                  width={32}
-                  height={32}
-                  className="object-fill"
-                />
-              </div>
-            </div>
-
-            {/* Navigation Links */}
-            <div className="flex items-center gap-4 pr-4">
-              {menuItems.map((item, index) => {
-                const isActive = activeItem === item.text;
-                return (
-                  <Link
-                    key={index}
-                    href={item.url}
-                    className="flex items-center justify-center px-6 py-1 text-center transition-colors duration-200"
-                    style={{
-                      fontStyle: "normal",
-                      textTransform: "none",
-                      letterSpacing: "0.05em",
-                      fontSize: "16px",
-                      fontWeight: 400,
-                      lineHeight: "24px",
-                      fontFamily:
-                        "Open Sans, var(--font-open-sans), sans-serif",
-                      color: isActive
-                        ? NAVIGATION_COLORS.active
-                        : NAVIGATION_COLORS.default,
-                    }}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={(e) => handleMouseLeave(e, isActive)}
-                    onFocus={handleFocus}
-                    onBlur={(e) => handleBlur(e, isActive)}
-                  >
-                    {item.text}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </Container>
+        </div>
       </nav>
 
       {/* Mobile Menu Dropdown - Absolute positioned over banner */}

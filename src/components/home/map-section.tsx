@@ -32,21 +32,22 @@ const MapSection = () => {
       aria-label="Our Operations Map"
     >
       {/* Desktop Layout */}
-      <div className="hidden lg:block w-full">
+      <div className="hidden xxl:block w-full mt-10">
         <Container
-          maxWidth="default"
-          className="pl-[40px] xl:pl-[50px] xxl:pl-[68px] xxl:overflow-x-hidden"
+          maxWidth="full"
+          className="px-[40px] xl:px-[50px] xxl:px-[68px] 2xl:px-[80px] 3xl:px-[100px] 4xl:px-[120px] overflow-hidden"
         >
           <div
-            className="grid w-full overflow-hidden grid-cols-[700px_1fr] xl:grid-cols-[850px_1fr] xxl:grid-cols-[994px_1fr]"
+            className="max-w-[1440px] 2xl:max-w-[1600px] 3xl:max-w-[1920px] 4xl:max-w-[2560px] mx-auto grid w-full overflow-hidden"
             style={{
-              gridTemplateRows: "90px auto 48px auto 1fr",
-              minHeight: "816px",
+              gridTemplateColumns: "minmax(0, 0.69fr) minmax(0, 0.31fr)",
+              gridTemplateRows: "90px var(--grid-row-2, 630px) 48px auto 1fr",
+              minHeight: "1100px",
             }}
           >
             {/* Map Image */}
             <motion.div
-              className="z-10"
+              className="z-10 flex items-end justify-end w-full"
               style={{
                 gridColumn: "1",
                 gridRow: "2",
@@ -54,7 +55,7 @@ const MapSection = () => {
               {...SIMPLE_ANIMATIONS.scaleIn}
               {...mapImageMotion}
             >
-              <div className="w-full max-w-[680px] xl:max-w-[820px] xxl:max-w-[972px]">
+              <div className="w-full max-w-none">
                 <Image
                   src={MapDesktop}
                   alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
@@ -68,7 +69,7 @@ const MapSection = () => {
 
             {/* Title */}
             <motion.div
-              className="z-10 flex flex-row items-start justify-start w-full"
+              className="z-10 flex flex-row items-start justify-start w-full max-w-[900px]"
               style={{
                 gridColumn: "1",
                 gridRow: "4",
@@ -78,13 +79,13 @@ const MapSection = () => {
             >
               {/* Title Text with Hidden to Show Animation */}
               <motion.div
-                className="flex-1 max-w-[520px] xl:max-w-[580px] xxl:max-w-[664px]"
+                className="flex-1 max-w-none pr-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
               >
                 <h2
-                  className="font-open-sans font-bold text-[#9CA3AF] text-[16px] xl:text-[18px] xxl:text-[20px] text-start"
+                  className="font-open-sans font-bold text-[#9CA3AF] text-[16px] xl:text-[18px] xxl:text-[20px] 2xl:text-[22px] 3xl:text-[24px] 4xl:text-[28px] text-start"
                   style={{
                     lineHeight: "clamp(1.4em, 1.45em, 1.5em)",
                     fontFamily: "Open Sans",
@@ -146,7 +147,7 @@ const MapSection = () => {
                   </motion.svg>
                 </motion.div>
                 <motion.span
-                  className="text-[14px] xl:text-[15px] xxl:text-[16px] font-normal text-[#2A2E35]"
+                  className="text-[14px] xl:text-[15px] xxl:text-[16px] 2xl:text-[17px] 3xl:text-[18px] 4xl:text-[20px] font-normal text-[#2A2E35]"
                   style={{
                     fontFamily: "Open Sans",
                     lineHeight: "1.5em",
@@ -166,7 +167,7 @@ const MapSection = () => {
             </motion.div>
             {/* Decorator Icon */}
             <motion.div
-              className="z-10 flex items-start justify-start xl:justify-center xxl:justify-start"
+              className="z-10 flex items-start justify-start overflow-hidden"
               style={{
                 gridColumn: "2",
                 gridRow: "1 / 5",
@@ -174,23 +175,102 @@ const MapSection = () => {
               {...SIMPLE_ANIMATIONS.fadeInRight}
               {...rightSectionMotion}
             >
-              <div className="w-full max-w-[280px] xl:max-w-[380px] xxl:w-[340px] xxl:h-[425px] xxl:overflow-hidden flex items-center justify-start">
-                <Image
-                  src={DecoratorIcon}
-                  alt="Decorative icon representing our global carbon initiatives"
-                  width={425}
-                  height={425}
-                  className="w-full h-full max-w-[280px] xl:max-w-[380px] xxl:w-[425px] xxl:h-[425px] object-contain"
-                  priority
-                />
+              <div
+                className="flex items-center justify-start overflow-hidden"
+                style={{
+                  width: "calc(521px * var(--decorator-scale, 1))",
+                  height: "calc(521px * var(--decorator-scale, 1))",
+                }}
+              >
+                <div
+                  className="relative overflow-hidden"
+                  style={{
+                    width: "calc(744px * var(--decorator-scale, 1))", // 521px / 0.7 scaled
+                    height: "calc(521px * var(--decorator-scale, 1))",
+                    marginRight: "calc(-223px * var(--decorator-scale, 1))", // Hide 30% on the right scaled
+                  }}
+                >
+                  <Image
+                    src={DecoratorIcon}
+                    alt="Decorative icon representing our global carbon initiatives"
+                    width={744}
+                    height={744}
+                    className="w-full h-full object-contain"
+                    priority
+                  />
+                </div>
               </div>
             </motion.div>
           </div>
         </Container>
       </div>
 
+      {/* Tablet Layout */}
+      <div className="hidden md:block xxl:hidden w-full">
+        <Container maxWidth="full" padding="none">
+          <div
+            className="mx-auto px-6 py-8"
+            style={{
+              maxWidth: "clamp(768px, 90vw, 1280px)",
+            }}
+          >
+            {/* Map Image */}
+            <motion.div
+              className="w-full flex justify-center"
+              style={{
+                marginBottom: "clamp(24px, 3vw, 40px)",
+              }}
+              {...SIMPLE_ANIMATIONS.scaleIn}
+              {...mapImageMotion}
+            >
+              <div
+                className="max-w-full"
+                style={{
+                  width: "clamp(600px, 80vw, 972px)",
+                  aspectRatio: "972/495",
+                }}
+              >
+                <Image
+                  src={MapDesktop}
+                  alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
+                  width={972}
+                  height={495}
+                  className="w-full h-full object-contain"
+                  priority
+                />
+              </div>
+            </motion.div>
+
+            {/* Title Text */}
+            <motion.div
+              className="flex justify-start"
+              {...SIMPLE_ANIMATIONS.fadeInUp}
+              {...titleMotion}
+            >
+              <motion.h2
+                className="font-open-sans font-bold text-[#9CA3AF] text-start"
+                style={{
+                  fontFamily: "Open Sans",
+                  fontWeight: 700,
+                  fontSize: "clamp(16px, 2vw, 20px)",
+                  lineHeight: "1.875em",
+                  maxWidth: "clamp(500px, 70vw, 800px)",
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+              >
+                Our current efforts are centered in Indonesia, prioritising
+                tight oversight, execution quality, and the development of
+                robust operational foundations for scale.
+              </motion.h2>
+            </motion.div>
+          </div>
+        </Container>
+      </div>
+
       {/* Mobile Layout */}
-      <div className="lg:hidden">
+      <div className="md:hidden">
         {/* Mobile: Horizontal scrollable image */}
         <div className="w-full">
           <div
@@ -273,6 +353,40 @@ const MapSection = () => {
         @supports (-webkit-touch-callout: none) {
           .scrollbar-hide {
             -webkit-overflow-scrolling: touch;
+          }
+        }
+
+        /* Grid row and decorator icon scaling for different viewports */
+        :global(.xxl\\:block) {
+          --decorator-scale: 1;
+          --grid-row-2: 1418px; /* Base size at 1440px (945px * 1.5) */
+        }
+
+        @media (min-width: 1600px) {
+          :global(.xxl\\:block) {
+            --decorator-scale: 1.11; /* 1600/1440 */
+            --grid-row-2: 1575px; /* 1050px * 1.5 */
+          }
+        }
+
+        @media (min-width: 1920px) {
+          :global(.xxl\\:block) {
+            --decorator-scale: 1.33; /* 1920/1440 */
+            --grid-row-2: 1886px; /* 1257px * 1.5 */
+          }
+        }
+
+        @media (min-width: 2560px) {
+          :global(.xxl\\:block) {
+            --decorator-scale: 1.78; /* 2560/1440 */
+            --grid-row-2: 2523px; /* 1682px * 1.5 */
+          }
+        }
+
+        @media (min-width: 3440px) {
+          :global(.xxl\\:block) {
+            --decorator-scale: 2.39; /* 3440/1440 */
+            --grid-row-2: 3389px; /* 2259px * 1.5 */
           }
         }
       `}</style>

@@ -49,7 +49,6 @@ export function OurProjectBannerDesktop({
               activeItem="Our Projects"
               useWhiteMenuIcon={true}
               desktopTextColor="#F1F5F9"
-              desktopMargin="mx-[68px]"
               removePadding={true}
             />
           </div>

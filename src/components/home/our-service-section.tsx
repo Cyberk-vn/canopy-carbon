@@ -58,7 +58,7 @@ export function OurServiceSection({ title, services }: OurServiceSectionProps) {
         aria-label="Our Services"
       >
         {/* Mobile Layout - Refactored with new MobileServiceTitle */}
-        <div className="lg:hidden block w-full px-6 py-0">
+        <div className="md:hidden block w-full px-6 py-0">
           {/* Mobile Title */}
           <div className="mb-8 w-full">
             <MobileServiceTitleOverlay title={title} className="w-full" />

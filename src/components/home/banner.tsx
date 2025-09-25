@@ -270,9 +270,9 @@ export function Banner({
   const mobileDecoratorMotion = useSimpleMotion("mobile-banner-decorator");
 
   return (
-    <div className="relative w-full h-[832px] md:h-[900px] lg:h-[1600px] overflow-hidden flex flex-col lg:mb-[40px]">
+    <div className="relative w-full h-[832px] md:h-[1100px] xxl:h-[1600px] overflow-hidden flex flex-col lg:mb-[40px]">
       {/* Mobile Background - Keep existing mobile layout */}
-      <div className="lg:hidden absolute inset-0 z-0">
+      <div className="md:hidden absolute inset-0 z-0">
         <Image
           src={BannerBgMobile}
           alt="Canopy Carbon mobile background"
@@ -344,22 +344,24 @@ export function Banner({
       </div>
 
       {/* White Background Overlay - First 604px from top */}
-      <div className="hidden lg:block absolute lg:top-[600px] xl:top-[650px] 2xl:top-[803px] left-0 right-0 h-[920px] bg-[#FCFCFC] z-0"></div>
+      <div className="hidden xxl:block absolute lg:top-[600px] xl:top-[650px] 2xl:top-[803px] left-0 right-0 h-[920px] bg-[#FCFCFC] z-0"></div>
 
       {/* Tablet/Medium Desktop Layout - 768px to 1440px */}
-      <div className="hidden md:block xxl:hidden absolute inset-0 z-10 bg-[#FCFCFC]">
+      <div className="hidden md:block xxl:hidden absolute inset-0 z-10 bg-[#FCFCFC] h-full">
         <Container maxWidth="full" padding="default" className="h-full">
           <div
-            className="mx-auto h-full flex flex-col justify-center py-6 md:py-8"
+            className="mx-auto h-full flex flex-col py-6 md:py-8 mt-10"
             style={{ maxWidth: "clamp(768px, 95vw, 1440px)" }}
           >
             {/* Main Content Container - Flex with 2-column grid inside */}
             <div className="flex flex-col gap-6 md:gap-8">
               {/* Top Section - Decorator + Title/Description */}
-              <div className="grid gap-6 md:gap-8 lg:gap-12 items-start bg-white px-6 md:px-8 lg:px-12 py-8 md:py-10 lg:py-12 rounded-lg"
+              <div
+                className="grid gap-6 items-center bg-white px-6 py-8 md:py-10 lg:py-12"
                 style={{
-                  gridTemplateColumns: "clamp(184px, 15vw, 300px) 1fr"
-                }}>
+                  gridTemplateColumns: "clamp(184px, 15vw, 300px) 1fr",
+                }}
+              >
                 {/* Decorator Image */}
                 <motion.div
                   {...SIMPLE_ANIMATIONS.scaleIn}
@@ -382,7 +384,7 @@ export function Banner({
                 </motion.div>
 
                 {/* Title + Description */}
-                <div className="flex flex-col gap-3 md:gap-4">
+                <div className="flex flex-col gap-3 md:gap-4 justify-center">
                   {/* Main Title */}
                   <motion.h1
                     {...SIMPLE_ANIMATIONS.fadeInLeft}
@@ -392,7 +394,7 @@ export function Banner({
                     style={{
                       fontFamily: "Open Sans",
                       fontWeight: "700",
-                      fontSize: "clamp(28px, 4vw, 48px)",
+                      fontSize: "clamp(28px, 4vw, 38px)",
                     }}
                   >
                     {title}
@@ -407,7 +409,7 @@ export function Banner({
                     style={{
                       fontFamily: "Open Sans",
                       fontWeight: "400",
-                      fontSize: "clamp(16px, 2.2vw, 24px)",
+                      fontSize: "clamp(16px, 2.2vw, 20px)",
                       maxWidth: "clamp(481px, 70vw, 800px)",
                     }}
                   >
@@ -425,7 +427,7 @@ export function Banner({
                   delay: 0.5,
                   ease: "easeOut",
                 }}
-                className="font-bold leading-[1.5] text-[#94A4B1] px-6 md:px-8 lg:px-12"
+                className="font-bold leading-[1.5] text-[#94A4B1] px-6"
                 style={{
                   fontFamily: "Open Sans",
                   fontWeight: "700",
@@ -440,7 +442,7 @@ export function Banner({
 
               {/* Service Cards - 2x2 Grid */}
               {services && (
-                <div className="px-6 md:px-8 lg:px-12">
+                <div className="px-6">
                   <motion.div
                     {...SIMPLE_ANIMATIONS.fadeInUp}
                     transition={{
@@ -448,7 +450,7 @@ export function Banner({
                       delay: 0.7,
                       ease: "easeOut",
                     }}
-                    className="grid grid-cols-2 grid-rows-2 gap-6 md:gap-8 lg:gap-12"
+                    className="grid grid-cols-2 grid-rows-2 gap-6"
                     style={{
                       maxWidth: "clamp(695px, 90vw, 1200px)",
                     }}
@@ -569,7 +571,7 @@ export function Banner({
               </div>
             </div>
 
-            <div className="max-w-[1800px] mx-auto absolute bottom-[143px] left-0 right-0">
+            <div className="max-w-[1800px] mx-auto absolute bottom-[200px] left-0 right-0">
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}

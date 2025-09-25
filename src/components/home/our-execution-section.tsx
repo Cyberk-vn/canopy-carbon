@@ -268,70 +268,89 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
 
         {/* Desktop Layout - 4 Cards Grid */}
         <div className="hidden lg:block">
-          <Container maxWidth="default" padding="none" className="max-w-none">
-            <div className="w-full flex justify-center">
-              <div
-                className="flex items-start justify-center gap-[var(--card-gap)]"
-                style={{
-                  width: "90.55%",
-                  ["--card-gap" as any]: "clamp(12px, 1.2vw, 28px)",
-                }}
-              >
-                {desktopExecutionItems.map((item, index) => (
-                  <motion.div
-                    key={item.id}
-                    className="flex flex-col items-center"
-                    style={{
-                      flex: "0 0 calc(21.38vw - (var(--card-gap) * 0.75))",
-                      maxWidth: "540px",
-                      minWidth: "220px",
-                    }}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                    transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
-                  >
-                    <div className="relative mb-[31px] w-full aspect-[337/577]">
-                      <Image
-                        src={item.imageSrc}
-                        alt={item.altText}
-                        fill
-                        className="object-cover shadow-lg"
-                        priority={index < 2}
-                        sizes="(min-width: 1024px) 21.38vw, 100vw"
-                      />
-                    </div>
+          <div className="w-full flex justify-center">
+            <div
+              className="flex items-start justify-center gap-[var(--card-gap)]"
+              style={
+                {
+                  maxWidth: "1800px",
+                  width: "100%",
+                  "--card-gap": "clamp(12px, 1.2vw, 28px)",
+                } as React.CSSProperties & {
+                  "--card-gap": string;
+                }
+              }
+            >
+              {desktopExecutionItems.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  className="flex flex-col items-center"
+                  style={{
+                    flex: "0 0 calc(25% - (var(--card-gap) * 0.75))",
+                    maxWidth: "400px",
+                    minWidth: "280px",
+                  }}
+                  initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                  animate={
+                    isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.95 }
+                  }
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.15,
+                    ease: "easeOut",
+                  }}
+                >
+                  <div className="relative mb-[31px] w-full aspect-[337/577]">
+                    <Image
+                      src={item.imageSrc}
+                      alt={item.altText}
+                      fill
+                      className="object-cover shadow-lg"
+                      priority={index < 2}
+                      sizes="(min-width: 1800px) 400px, (min-width: 1024px) calc(25vw - 28px), 100vw"
+                    />
+                  </div>
 
-                    {item.title && (
-                      <motion.h3
-                        className="text-center text-[20px] font-medium text-[#000000] leading-tight lg:text-[18px] xl:text-[20px]"
-                        style={{ fontFamily: "Open Sans", fontWeight: 600, lineHeight: "30px" }}
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-                        transition={{ duration: 0.95, ease: [0.25, 0.46, 0.45, 0.94], delay: index * 0.1 + 0.8 }}
-                      >
-                        {item.title}
-                      </motion.h3>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
+                  {item.title && (
+                    <motion.h3
+                      className="text-center text-[20px] font-medium text-[#000000] leading-tight lg:text-[18px] xl:text-[20px]"
+                      style={{
+                        fontFamily: "Open Sans",
+                        fontWeight: 600,
+                        lineHeight: "30px",
+                      }}
+                      initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                      animate={
+                        isInView
+                          ? { opacity: 1, y: 0, scale: 1 }
+                          : { opacity: 0, y: 15, scale: 0.98 }
+                      }
+                      transition={{
+                        duration: 0.95,
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                        delay: index * 0.1 + 0.8,
+                      }}
+                    >
+                      {item.title}
+                    </motion.h3>
+                  )}
+                </motion.div>
+              ))}
             </div>
-          </Container>
+          </div>
         </div>
-
-
 
         {/* Mobile/Tablet Layout - Fixed 3-Card Layout with Fade Transitions */}
         <div className="block lg:hidden">
           {/* Auto-switch status indicator for screen readers */}
           <div className="sr-only" aria-live="polite">
             {autoSwitchState.enabled &&
-              autoSwitchState.isRunning &&
-              !autoSwitchState.isPaused
+            autoSwitchState.isRunning &&
+            !autoSwitchState.isPaused
               ? "Auto-switching cards every 3 seconds. Hover or focus to pause."
               : autoSwitchState.isPaused
-                ? "Auto-switching paused"
-                : "Auto-switching disabled"}
+              ? "Auto-switching paused"
+              : "Auto-switching disabled"}
           </div>
 
           <div
