@@ -9,6 +9,7 @@ import {
 } from "@/src/hooks/responsive/use-simple-motion";
 import { Container } from "@/src/components/shared";
 import MobileRoadmap from "./mobile-roadmap";
+import { cn } from "@/src/lib/utils/cn";
 
 // Image imports
 import TreeImage from "../../../public/assets/desktop/home/tree.png";
@@ -85,12 +86,14 @@ const RoadmapSection = () => {
         </div>
 
         {/* Tablet Layout */}
-        <div className="hidden md:block xxl:hidden w-full bg-white">
+        <div className="hidden md:block lg:hidden w-full bg-white md:pt-12">
           <Container maxWidth="full" padding="none">
             <div
-              className="mx-auto px-[24px]"
+              className="mx-auto w-full"
               style={{
-                maxWidth: "clamp(741px, 90vw, 1440px)",
+                maxWidth: "100%",
+                paddingLeft: "24px",
+                paddingRight: "24px",
               }}
             >
               {/* Title + Description Section */}
@@ -98,7 +101,7 @@ const RoadmapSection = () => {
                 className="flex flex-col"
                 style={{
                   gap: "clamp(24px, 3vw, 32px)",
-                  marginBottom: "clamp(32px, 4vw, 48px)",
+                  marginBottom: "40px",
                 }}
                 {...SIMPLE_ANIMATIONS.fadeInUp}
                 {...titleMotion}
@@ -174,7 +177,7 @@ const RoadmapSection = () => {
 
               {/* Roadmap Image */}
               <motion.div
-                className="w-full flex justify-center"
+                className="w-full"
                 {...SIMPLE_ANIMATIONS.fadeInUp}
                 {...imageMotion}
                 transition={{
@@ -184,9 +187,8 @@ const RoadmapSection = () => {
                 }}
               >
                 <div
-                  className="max-w-full"
+                  className="w-full"
                   style={{
-                    width: "clamp(696px, 85vw, 1440px)",
                     aspectRatio: "696/285",
                   }}
                 >
@@ -205,15 +207,27 @@ const RoadmapSection = () => {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden xxl:block w-full bg-white">
+        <div className="hidden lg:block w-full bg-white">
           <Container maxWidth="full" padding="none">
             {/* CSS Grid Layout */}
-            <div className="max-w-[1800px] mx-auto grid w-full h-[818px] xxl:h-[818px] 2xl:h-[920px] 3xl:h-[1023px] 4xl:h-[1125px] grid-rows-[97px_auto_auto_1fr] xxl:grid-rows-[97px_auto_auto_1fr] 2xl:grid-rows-[109px_auto_auto_1fr] 3xl:grid-rows-[121px_auto_auto_1fr] 4xl:grid-rows-[133px_auto_auto_1fr] grid-cols-[68px_1fr_60px_375px_68px] xxl:grid-cols-[68px_1fr_1px_422px_68px] 2xl:grid-cols-[77px_1fr_68px_422px_77px] 3xl:grid-cols-[85px_1fr_75px_469px_85px] 4xl:grid-cols-[94px_1fr_83px_516px_94px]">
+            <div
+              className={cn(
+                "max-w-[2200px] mx-auto grid w-full",
+                "h-[700px] xl:h-[760px] xxl:h-[818px] 2xl:h-[920px] 3xl:h-[1023px]",
+                "grid-rows-[97px_auto_256px] xl:grid-rows-[97px_auto_auto_1fr] xxl:grid-rows-[97px_auto_auto_1fr]",
+                "2xl:grid-rows-[109px_auto_auto_1fr] 3xl:grid-rows-[121px_auto_auto_1fr]",
+                "grid-cols-[68px_1fr_40px] xl:grid-cols-[68px_1fr_40px_375px_40px] xxl:grid-cols-[68px_1fr_40px_422px_40px]",
+                "2xl:grid-cols-[68px_1fr_40px_422px_40px] 3xl:grid-cols-[68px_1fr_40px_469px_40px]"
+              )}
+            >
               {/* Tree Image + Background Decoration Group */}
               <motion.div
-                className="relative z-10 -mt-40 h-[751px] xxl:h-[751px] 2xl:h-[845px] 3xl:h-[939px] 4xl:h-[1033px]"
+                className={cn(
+                  "relative z-10 -mt-40 lg:hidden xl:block",
+                  "xl:h-[700px] xxl:h-[751px] 2xl:h-[845px] 3xl:h-[939px]"
+                )}
                 style={{
-                  gridColumn: "4",
+                  gridColumn: "4 / 5",
                   gridRow: "1 / 4",
                   width: "100%",
                 }}
@@ -222,7 +236,11 @@ const RoadmapSection = () => {
               >
                 {/* Background decoration */}
                 <div
-                  className="absolute bg-[#1D1F1F] left-[106px] xxl:left-[146px] 2xl:left-[119px] 3xl:left-[133px] 4xl:left-[146px] w-[269px] xxl:w-[269px] 2xl:w-[303px] 3xl:w-[336px] 4xl:w-[370px] h-[770px]"
+                  className={cn(
+                    "absolute bg-[#1D1F1F] xl:h-[660px] xxl:h-[770px]",
+                    "xl:left-[160px] xxl:left-[146px] 2xl:left-[119px] 3xl:left-[133px]",
+                    "xl:w-[215px] xxl:w-[269px] 2xl:w-[303px] 3xl:w-[336px]"
+                  )}
                   style={{
                     top: "0px",
                   }}
@@ -230,101 +248,110 @@ const RoadmapSection = () => {
 
                 {/* Tree Image */}
                 <div
-                  className="absolute"
+                  className={cn("absolute xl:w-[320px] xxl:w-[375px]")}
                   style={{
                     left: "0px",
                     top: "70px",
-                    width: "375px",
                   }}
                 >
                   <div
-                    className="card-effect"
-                    style={{ width: "375px", position: "relative" }}
+                    className={cn("card-effect xl:w-[320px] xxl:w-[375px]")}
+                    style={{ position: "relative" }}
                   >
                     <Image
                       src={TreeImage}
                       alt="Decorative tree image representing sustainable forest management"
                       width={375}
                       height={657}
-                      style={{
-                        width: "375px",
-                        height: "auto",
-                        objectFit: "cover",
-                      }}
+                      className={cn(
+                        "xl:w-[320px] xxl:w-[375px] w-auto h-auto object-cover"
+                      )}
                       priority
                     />
                   </div>
                 </div>
               </motion.div>
 
-              {/* Roadmap Image */}
-              <motion.div
-                className="z-10 -mt-10"
+              <div
+                className={cn(
+                  "z-10 -mt-10 flex flex-col",
+                  "gap-[60px] xl:gap-[90px]"
+                )}
                 style={{
                   gridColumn: "2",
                   gridRow: "1/4",
                 }}
-                {...SIMPLE_ANIMATIONS.fadeInLeft}
-                {...leftSideMotion}
               >
-                <div className="w-full max-w-[885px] xxl:max-w-[885px] 2xl:max-w-[1106px] 4xl:max-w-[1217px]">
-                  <Image
-                    src={RoadMapImage}
-                    alt="Canopy Carbon Project Development Roadmap - Complete visual showing the 8-step process from origination to credit issuance"
-                    width={885}
-                    height={363}
-                    className="w-full h-auto object-contain"
-                    priority
-                  />
-                </div>
-              </motion.div>
-
-              {/* Title and Description */}
-              <motion.div
-                className="z-10 flex flex-col space-y-6 -mt-10"
-                style={{
-                  gridColumn: "2",
-                  gridRow: "3",
-                }}
-                {...SIMPLE_ANIMATIONS.fadeInLeft}
-                {...leftSideMotion}
-              >
-                <motion.h2
-                  className="text-[32px] xxl:text-[32px] 2xl:text-[36px] 3xl:text-[40px] 4xl:text-[44px] font-light leading-[43.6px] xxl:leading-[43.6px] 2xl:leading-[49px] 3xl:leading-[54px] 4xl:leading-[60px] text-[#0D1117] max-w-[335px] xxl:max-w-[335px] 2xl:max-w-[377px] 3xl:max-w-[419px] 4xl:max-w-[461px]"
-                  style={{
-                    fontFamily: "Open Sans",
-                    fontWeight: "300",
-                  }}
-                  initial={{ opacity: 0, y: 35 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 1.35,
-                    ease: [0.175, 0.885, 0.32, 1.275],
-                    delay: 0.4,
-                  }}
+                {/* Roadmap Image */}
+                <motion.div
+                  {...SIMPLE_ANIMATIONS.fadeInLeft}
+                  {...leftSideMotion}
                 >
-                  Full-Cycle Project Development Expertise
-                </motion.h2>
+                  <div className={cn("w-full")}>
+                    <Image
+                      src={RoadMapImage}
+                      alt="Canopy Carbon Project Development Roadmap - Complete visual showing the 8-step process from origination to credit issuance"
+                      width={885}
+                      height={363}
+                      className={cn("w-full h-auto object-contain")}
+                      priority
+                    />
+                  </div>
+                </motion.div>
 
-                <motion.p
-                  className="font-semibold text-[#7D8F89] text-[24px] xxl:text-[24px] 2xl:text-[27px] 3xl:text-[30px] 4xl:text-[33px] leading-[34px] xxl:leading-[34px] 2xl:leading-[38px] 3xl:leading-[42px] 4xl:leading-[46px] text-start max-w-[751px] xxl:max-w-[751px] 2xl:max-w-[845px] 3xl:max-w-[939px] 4xl:max-w-[1033px]"
-                  style={{
-                    fontFamily: "Open Sans",
-                    fontWeight: "600",
-                    letterSpacing: "2%",
-                  }}
-                  initial={{ opacity: 0, y: 25 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.95,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                    delay: 0.7,
-                  }}
+                {/* Title and Description */}
+                <motion.div
+                  className={cn("z-10 flex flex-col space-y-6")}
+                  {...SIMPLE_ANIMATIONS.fadeInLeft}
+                  {...leftSideMotion}
                 >
-                  Every Canopy project follows a rigorous development sequence,
-                  from origination to issuance.
-                </motion.p>
-              </motion.div>
+                  <motion.h2
+                    className={cn(
+                      "font-light text-[#0D1117]",
+                      "text-[28px] xl:text-[32px] xxl:text-[32px] 2xl:text-[36px] 3xl:text-[40px]",
+                      "leading-[38px] xl:leading-[43.6px] xxl:leading-[43.6px] 2xl:leading-[49px] 3xl:leading-[54px]",
+                      "max-w-[300px] xl:max-w-[335px] xxl:max-w-[335px] 2xl:max-w-[377px] 3xl:max-w-[419px]"
+                    )}
+                    style={{
+                      fontFamily: "Open Sans",
+                      fontWeight: "300",
+                    }}
+                    initial={{ opacity: 0, y: 35 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 1.35,
+                      ease: [0.175, 0.885, 0.32, 1.275],
+                      delay: 0.4,
+                    }}
+                  >
+                    Full-Cycle Project Development Expertise
+                  </motion.h2>
+
+                  <motion.p
+                    className={cn(
+                      "font-semibold text-[#7D8F89] text-start",
+                      "text-[20px] xl:text-[24px] xxl:text-[24px] 2xl:text-[27px] 3xl:text-[30px]",
+                      "leading-[28px] xl:leading-[34px] xxl:leading-[34px] 2xl:leading-[38px] 3xl:leading-[42px]",
+                      "max-w-[700px] xl:max-w-[751px] xxl:max-w-[751px] 2xl:max-w-[845px] 3xl:max-w-[939px]"
+                    )}
+                    style={{
+                      fontFamily: "Open Sans",
+                      fontWeight: "600",
+                      letterSpacing: "2%",
+                    }}
+                    initial={{ opacity: 0, y: 25 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.95,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                      delay: 0.7,
+                    }}
+                  >
+                    Every Canopy project follows a rigorous development
+                    sequence, from origination to issuance.
+                  </motion.p>
+                </motion.div>
+              </div>
             </div>
           </Container>
         </div>

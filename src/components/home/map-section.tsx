@@ -32,162 +32,152 @@ const MapSection = () => {
       aria-label="Our Operations Map"
     >
       {/* Desktop Layout */}
-      <div className="hidden xxl:block w-full mt-10">
-        <Container
-          maxWidth="full"
-          className="px-[40px] xl:px-[50px] xxl:px-[68px] 2xl:px-[80px] 3xl:px-[100px] 4xl:px-[120px] overflow-hidden"
-        >
-          <div
-            className="max-w-[1440px] 2xl:max-w-[1600px] 3xl:max-w-[1920px] 4xl:max-w-[2560px] mx-auto grid w-full overflow-hidden"
-            style={{
-              gridTemplateColumns: "minmax(0, 0.69fr) minmax(0, 0.31fr)",
-              gridTemplateRows: "90px var(--grid-row-2, 630px) 48px auto 1fr",
-              minHeight: "1100px",
-            }}
-          >
-            {/* Map Image */}
-            <motion.div
-              className="z-10 flex items-end justify-end w-full"
+      <div className="hidden xl:block w-full mt-10">
+        <Container maxWidth="full" className="pl-[68px] overflow-hidden">
+          <div className="max-w-[2200px] mx-auto flex w-full overflow-hidden">
+            {/* Content Section (69%) - Map + Title */}
+            <div
+              className="flex flex-col"
               style={{
-                gridColumn: "1",
-                gridRow: "2",
+                width: "69%",
+                gap: "50px",
               }}
-              {...SIMPLE_ANIMATIONS.scaleIn}
-              {...mapImageMotion}
             >
-              <div className="w-full max-w-none">
-                <Image
-                  src={MapDesktop}
-                  alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
-                  width={972}
-                  height={495}
-                  className="w-full h-auto object-contain lg:bg-white"
-                  priority
-                />
-              </div>
-            </motion.div>
-
-            {/* Title */}
-            <motion.div
-              className="z-10 flex flex-row items-start justify-start w-full max-w-[900px]"
-              style={{
-                gridColumn: "1",
-                gridRow: "4",
-              }}
-              {...SIMPLE_ANIMATIONS.fadeInUp}
-              {...titleMotion}
-            >
-              {/* Title Text with Hidden to Show Animation */}
+              {/* Map Image */}
               <motion.div
-                className="flex-1 max-w-none pr-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                className="z-10 flex items-end justify-end w-full"
+                {...SIMPLE_ANIMATIONS.scaleIn}
+                {...mapImageMotion}
               >
-                <h2
-                  className="font-open-sans font-bold text-[#9CA3AF] text-[16px] xl:text-[18px] xxl:text-[20px] 2xl:text-[22px] 3xl:text-[24px] 4xl:text-[28px] text-start"
-                  style={{
-                    lineHeight: "clamp(1.4em, 1.45em, 1.5em)",
-                    fontFamily: "Open Sans",
-                  }}
-                >
-                  Our current efforts are centered in Indonesia, prioritising
-                  tight oversight, execution quality, and the development of
-                  robust operational foundations for scale.
-                </h2>
+                <div className="w-full max-w-none">
+                  <Image
+                    src={MapDesktop}
+                    alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
+                    width={972}
+                    height={495}
+                    className="w-full h-auto object-contain lg:bg-white"
+                    priority
+                  />
+                </div>
               </motion.div>
 
-              {/* Read More Component */}
+              {/* Title */}
               <motion.div
-                onClick={redirectToContact}
-                className="flex items-end justify-end gap-[6px] ml-4 h-full cursor-pointer"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-                whileHover={{
-                  scale: 1.05,
-                  x: 5,
-                  transition: { duration: 0.2, ease: "easeOut" },
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  transition: { duration: 0.1, ease: "easeIn" },
-                }}
+                className="z-10 flex flex-row items-start justify-start w-full max-w-[900px]"
+                {...SIMPLE_ANIMATIONS.fadeInUp}
+                {...titleMotion}
               >
-                {/* Arrow Icon */}
+                {/* Title Text with Hidden to Show Animation */}
                 <motion.div
-                  className="w-5 h-5 flex items-center justify-center"
-                  whileHover={{
-                    x: 3,
-                    transition: { duration: 0.2, ease: "easeOut" },
-                  }}
+                  className="flex-1 max-w-none pr-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                 >
-                  <motion.svg
-                    width="5"
-                    height="10"
-                    viewBox="0 0 5 10"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    whileHover={{
-                      scale: 1.1,
-                      transition: { duration: 0.2, ease: "easeOut" },
+                  <h2
+                    className="font-open-sans font-bold text-[#9CA3AF] text-[16px] xl:text-[18px] xxl:text-[20px] 2xl:text-[22px] 3xl:text-[24px] 4xl:text-[28px] text-start"
+                    style={{
+                      lineHeight: "clamp(1.4em, 1.45em, 1.5em)",
+                      fontFamily: "Open Sans",
                     }}
                   >
-                    <motion.path
-                      d="M0.5 0.5L4 5L0.5 9.5"
-                      stroke="#9DAE83"
-                      strokeWidth="1.25"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      whileHover={{
-                        stroke: "#7D9563",
-                        transition: { duration: 0.2, ease: "easeOut" },
-                      }}
-                    />
-                  </motion.svg>
+                    Our current efforts are centered in Indonesia, prioritising
+                    tight oversight, execution quality, and the development of
+                    robust operational foundations for scale.
+                  </h2>
                 </motion.div>
-                <motion.span
-                  className="text-[14px] xl:text-[15px] xxl:text-[16px] 2xl:text-[17px] 3xl:text-[18px] 4xl:text-[20px] font-normal text-[#2A2E35]"
-                  style={{
-                    fontFamily: "Open Sans",
-                    lineHeight: "1.5em",
-                  }}
+
+                {/* Read More Component */}
+                <motion.div
+                  onClick={redirectToContact}
+                  className="flex items-end justify-end gap-[6px] ml-4 h-full cursor-pointer"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
                   whileHover={{
-                    color: "#1A1E25",
+                    scale: 1.05,
+                    x: 5,
                     transition: { duration: 0.2, ease: "easeOut" },
                   }}
                   whileTap={{
-                    color: "#0A0E15",
+                    scale: 0.95,
                     transition: { duration: 0.1, ease: "easeIn" },
                   }}
                 >
-                  Read More
-                </motion.span>
+                  {/* Arrow Icon */}
+                  <motion.div
+                    className="w-5 h-5 flex items-center justify-center"
+                    whileHover={{
+                      x: 3,
+                      transition: { duration: 0.2, ease: "easeOut" },
+                    }}
+                  >
+                    <motion.svg
+                      width="5"
+                      height="10"
+                      viewBox="0 0 5 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      whileHover={{
+                        scale: 1.1,
+                        transition: { duration: 0.2, ease: "easeOut" },
+                      }}
+                    >
+                      <motion.path
+                        d="M0.5 0.5L4 5L0.5 9.5"
+                        stroke="#9DAE83"
+                        strokeWidth="1.25"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        whileHover={{
+                          stroke: "#7D9563",
+                          transition: { duration: 0.2, ease: "easeOut" },
+                        }}
+                      />
+                    </motion.svg>
+                  </motion.div>
+                  <motion.span
+                    className="text-[14px] xl:text-[15px] xxl:text-[16px] 2xl:text-[17px] 3xl:text-[18px] 4xl:text-[20px] font-normal text-[#2A2E35]"
+                    style={{
+                      fontFamily: "Open Sans",
+                      lineHeight: "1.5em",
+                    }}
+                    whileHover={{
+                      color: "#1A1E25",
+                      transition: { duration: 0.2, ease: "easeOut" },
+                    }}
+                    whileTap={{
+                      color: "#0A0E15",
+                      transition: { duration: 0.1, ease: "easeIn" },
+                    }}
+                  >
+                    Read More
+                  </motion.span>
+                </motion.div>
               </motion.div>
-            </motion.div>
-            {/* Decorator Icon */}
+            </div>
+
+            {/* Decorator Icon Sidebar (31%) */}
             <motion.div
               className="z-10 flex items-start justify-start overflow-hidden"
               style={{
-                gridColumn: "2",
-                gridRow: "1 / 5",
+                width: "31%",
               }}
               {...SIMPLE_ANIMATIONS.fadeInRight}
               {...rightSectionMotion}
             >
               <div
-                className="flex items-center justify-start overflow-hidden"
+                className="flex items-center justify-start overflow-hidden w-full"
                 style={{
-                  width: "calc(521px * var(--decorator-scale, 1))",
                   height: "calc(521px * var(--decorator-scale, 1))",
                 }}
               >
                 <div
                   className="relative overflow-hidden"
                   style={{
-                    width: "calc(744px * var(--decorator-scale, 1))", // 521px / 0.7 scaled
+                    width: "calc(744px * var(--decorator-scale, 1))",
                     height: "calc(521px * var(--decorator-scale, 1))",
-                    marginRight: "calc(-223px * var(--decorator-scale, 1))", // Hide 30% on the right scaled
+                    marginRight: "calc(-160px * var(--decorator-scale, 1))",
                   }}
                 >
                   <Image
@@ -206,7 +196,7 @@ const MapSection = () => {
       </div>
 
       {/* Tablet Layout */}
-      <div className="hidden md:block xxl:hidden w-full">
+      <div className="hidden md:block xl:hidden w-full">
         <Container maxWidth="full" padding="none">
           <div
             className="mx-auto px-6 py-8"
@@ -226,7 +216,6 @@ const MapSection = () => {
               <div
                 className="max-w-full"
                 style={{
-                  width: "clamp(600px, 80vw, 972px)",
                   aspectRatio: "972/495",
                 }}
               >

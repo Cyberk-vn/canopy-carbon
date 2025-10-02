@@ -81,7 +81,6 @@ function TabletServiceCard({
       }}
       className="bg-[#EEF0F2] w-full flex flex-col gap-4"
       style={{
-        maxWidth: "clamp(335px, 45vw, 550px)",
         padding: "clamp(24px, 3vw, 40px)",
       }}
     >
@@ -270,7 +269,7 @@ export function Banner({
   const mobileDecoratorMotion = useSimpleMotion("mobile-banner-decorator");
 
   return (
-    <div className="relative w-full h-[832px] md:h-[1100px] xxl:h-[1600px] overflow-hidden flex flex-col lg:mb-[40px]">
+    <div className="relative w-full h-[832px] md:h-[1050px] lg:h-[1200px] xl:h-[1300px] xxl:h-[1440px] overflow-hidden flex flex-col lg:mb-[40px]">
       {/* Mobile Background - Keep existing mobile layout */}
       <div className="md:hidden absolute inset-0 z-0">
         <Image
@@ -346,18 +345,24 @@ export function Banner({
       {/* White Background Overlay - First 604px from top */}
       <div className="hidden xxl:block absolute lg:top-[600px] xl:top-[650px] 2xl:top-[803px] left-0 right-0 h-[920px] bg-[#FCFCFC] z-0"></div>
 
-      {/* Tablet/Medium Desktop Layout - 768px to 1440px */}
-      <div className="hidden md:block xxl:hidden absolute inset-0 z-10 bg-[#FCFCFC] h-full">
-        <Container maxWidth="full" padding="default" className="h-full">
+      {/* Tablet/Medium Desktop Layout - 768px to 1024px */}
+      <div className="hidden md:block lg:hidden absolute inset-0 z-10 bg-[#FCFCFC] h-full">
+        <Container maxWidth="full" padding="none" className="h-full">
           <div
-            className="mx-auto h-full flex flex-col py-6 md:py-8 mt-10"
-            style={{ maxWidth: "clamp(768px, 95vw, 1440px)" }}
+            className="mx-auto w-full h-full flex flex-col mt-10"
+            style={{
+              maxWidth: "100%",
+              paddingLeft: "clamp(16px, 2vw, 24px)",
+              paddingRight: "clamp(16px, 2vw, 24px)",
+              paddingTop: "clamp(24px, 3vw, 32px)",
+              paddingBottom: "clamp(24px, 3vw, 32px)",
+            }}
           >
             {/* Main Content Container - Flex with 2-column grid inside */}
             <div className="flex flex-col gap-6 md:gap-8">
               {/* Top Section - Decorator + Title/Description */}
               <div
-                className="grid gap-6 items-center bg-white px-6 py-8 md:py-10 lg:py-12"
+                className="grid gap-6 items-center bg-white py-8 md:py-10 lg:py-12"
                 style={{
                   gridTemplateColumns: "clamp(184px, 15vw, 300px) 1fr",
                 }}
@@ -427,12 +432,12 @@ export function Banner({
                   delay: 0.5,
                   ease: "easeOut",
                 }}
-                className="font-bold leading-[1.5] text-[#94A4B1] px-6"
+                className="font-bold leading-[1.5] text-[#94A4B1]"
                 style={{
                   fontFamily: "Open Sans",
                   fontWeight: "700",
                   fontSize: "clamp(16px, 2.5vw, 22px)",
-                  maxWidth: "clamp(514px, 70vw, 900px)",
+                  maxWidth: "clamp(514px, 90vw, 720px)",
                 }}
               >
                 We originate and deliver large-scale nature-based carbon offset
@@ -442,28 +447,26 @@ export function Banner({
 
               {/* Service Cards - 2x2 Grid */}
               {services && (
-                <div className="px-6">
-                  <motion.div
-                    {...SIMPLE_ANIMATIONS.fadeInUp}
-                    transition={{
-                      duration: 0.6,
-                      delay: 0.7,
-                      ease: "easeOut",
-                    }}
-                    className="grid grid-cols-2 grid-rows-2 gap-6"
-                    style={{
-                      maxWidth: "clamp(695px, 90vw, 1200px)",
-                    }}
-                  >
-                    {services.map((service, index) => (
-                      <TabletServiceCard
-                        key={service.id}
-                        service={service}
-                        index={index}
-                      />
-                    ))}
-                  </motion.div>
-                </div>
+                <motion.div
+                  {...SIMPLE_ANIMATIONS.fadeInUp}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.7,
+                    ease: "easeOut",
+                  }}
+                  className="grid grid-cols-2 grid-rows-2 gap-6 w-full"
+                  style={{
+                    maxWidth: "100%",
+                  }}
+                >
+                  {services.map((service, index) => (
+                    <TabletServiceCard
+                      key={service.id}
+                      service={service}
+                      index={index}
+                    />
+                  ))}
+                </motion.div>
               )}
             </div>
           </div>
@@ -471,39 +474,39 @@ export function Banner({
       </div>
 
       {/* Desktop Layout - Grid Based */}
-      <div className="hidden xxl:block absolute inset-0 z-10">
+      <div className="hidden lg:block absolute inset-0 z-10">
         <Container maxWidth="full" padding="default" className="h-full">
-          <div className="max-w-[1800px] mx-auto h-full">
+          <div className="max-w-[2200px] mx-auto h-full">
             <div
               className="grid h-full 3xl:grid-cols-[120px_600px_120px_1fr]"
               style={{
                 gridTemplateColumns:
-                  "clamp(40px, 4vw, 120px) clamp(320px, 24vw, 600px) clamp(40px, 4vw, 120px) 1fr",
+                  "clamp(40px, 4vw, 120px) clamp(320px, 32vw, 600px) clamp(40px, 4vw, 120px) minmax(auto, 1100px)",
                 gridTemplateRows:
-                  "clamp(220px, 8vh, 150px) auto clamp(60px, 6vh, 120px)",
+                  "clamp(220px, 8vh, 150px) auto clamp(60px, 6vh, 120px) auto",
               }}
             >
               {/* Logo Decorator */}
-              <div className="col-start-2 row-start-2">
+              <div className="col-start-2 row-start-2 lg:h-[350px] xl:h-[420px] xxl:h-[460px] 2xl:h-[520px] 3xl:h-[600px]">
                 <motion.div
                   {...SIMPLE_ANIMATIONS.fadeInLeft}
                   {...decoratorMotion}
                   transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-                  className="relative"
+                  className="flex justify-end items-end h-full"
                 >
                   <Image
                     src={DesktopDecoratorIcon}
                     alt="Canopy Carbon decorator icon"
                     width={460}
                     height={460}
-                    className="object-contain w-full max-w-[320px] lg:max-w-[350px] xl:max-w-[420px] xxl:max-w-[460px] 2xl:max-w-[520px] h-auto decorator-3xl-size"
+                    className="object-contain w-full max-w-[320px] lg:max-w-[350px] xl:max-w-[420px] xxl:max-w-[460px] 2xl:max-w-[520px] 3xl:max-w-[600px] h-auto"
                     priority
                   />
                 </motion.div>
               </div>
 
               {/* Main Content */}
-              <div className="col-start-4 row-start-2 flex flex-col justify-start mr-[68px] xxl:mr-0 gap-[260px]">
+              <div className="col-start-4 row-start-2 lg:mr-[32px] xl:mr-[68px] xxl:mr-0 gap-[260px]">
                 <div className="gap-2 flex flex-col justify-start">
                   {/* Main Title */}
                   <motion.h1
@@ -544,7 +547,7 @@ export function Banner({
 
                 {/* Service Cards */}
                 {services && (
-                  <div className="flex items-end mt-[48px] lg:mt-[56px] xl:mt-[64px] xxl:mt-[72px] 2xl:mt-[80px] 3xl:mt-[88px]">
+                  <div className="flex items-end mt-[48px] lg:mt-[200px] xl:mt-[230px] xxl:mt-[277px] 2xl:mt-[277px] 3xl:mt-[300px]">
                     <motion.div
                       {...SIMPLE_ANIMATIONS.fadeInUp}
                       transition={{
@@ -569,28 +572,29 @@ export function Banner({
                   </div>
                 )}
               </div>
-            </div>
 
-            <div className="max-w-[1800px] mx-auto absolute bottom-[200px] left-0 right-0">
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 1.35,
-                  ease: [0.175, 0.885, 0.32, 1.275],
-                  delay: 0.5,
-                }}
-                className="font-work-sans font-semibold text-[18px] lg:text-[20px] xl:text-[22px] xxl:text-[24px] 2xl:text-[26px] 3xl:text-[28px] leading-[28px] lg:leading-[30px] xl:leading-[32px] xxl:leading-[34px] 2xl:leading-[36px] 3xl:leading-[38px] text-start max-w-[600px] lg:max-w-[680px] xl:max-w-[700px] xxl:max-w-[745px] 2xl:max-w-[800px] 3xl:max-w-[850px] ml-[194px] lg:ml-[209px] xl:ml-[224px] xxl:ml-[239px] 2xl:ml-[254px] 3xl:ml-[269px] relative z-20"
-                style={{
-                  color: "#A1AEB9",
-                  verticalAlign: "middle",
-                  letterSpacing: "0%",
-                }}
-              >
-                We originate and deliver large-scale nature-based carbon offset
-                projects, engineered for long-term impact and
-                institutional-grade integrity.
-              </motion.p>
+              {/* Bottom Description */}
+              <div className="col-start-2 col-span-3 row-start-4 lg:ml-[165px] xxl:ml-[195px]">
+                <motion.p
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 1.35,
+                    ease: [0.175, 0.885, 0.32, 1.275],
+                    delay: 0.5,
+                  }}
+                  className="font-work-sans font-semibold text-[18px] lg:text-[20px] xl:text-[22px] xxl:text-[24px] 2xl:text-[26px] 3xl:text-[28px] leading-[28px] lg:leading-[30px] xl:leading-[32px] xxl:leading-[34px] 2xl:leading-[36px] 3xl:leading-[38px] text-start max-w-[600px] lg:max-w-[540px] xl:max-w-[630px] xxl:max-w-[680px] 2xl:max-w-[710px] 3xl:max-w-[730px]"
+                  style={{
+                    color: "#A1AEB9",
+                    verticalAlign: "middle",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  We originate and deliver large-scale nature-based carbon
+                  offset projects, engineered for long-term impact and
+                  institutional-grade integrity.
+                </motion.p>
+              </div>
             </div>
           </div>
         </Container>

@@ -37,8 +37,8 @@ const FooterDesktop = ({
 }: FooterDesktopProps) => {
   return (
     <section className="w-full hidden md:block bg-white">
-      <Container maxWidth="full" padding="none" className="hidden xxl:block">
-        <div className="max-w-[1800px] mx-auto px-[100px] py-[80px]">
+      <Container maxWidth="full" padding="none" className="hidden xl:block">
+        <div className="max-w-[2200px] mx-auto px-[68px] py-[80px]">
           {/* Desktop Layout - Responsive Gap */}
           <div className="flex flex-row items-start gap-[204px] xxl:gap-[204px] 2xl:gap-[250px] 3xl:gap-[300px] 4xl:gap-[400px]">
             {/* Left Side - Contact Information (responsive) */}
@@ -304,7 +304,7 @@ const FooterDesktop = ({
       <Container
         maxWidth="full"
         padding="none"
-        className="hidden md:block xxl:hidden"
+        className="hidden md:block xl:hidden"
       >
         <div
           className="mx-auto px-6 py-12"
