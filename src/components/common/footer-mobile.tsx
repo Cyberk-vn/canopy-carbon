@@ -105,7 +105,7 @@ const FooterMobile = ({
   onSubmit,
 }: FooterMobileProps) => {
   return (
-    <section className="w-full lg:hidden bg-[FCFCFC]">
+    <section className="w-full md:hidden bg-[FCFCFC]">
       <div className="max-w-[1200px] mx-auto px-6 bg-[FCFCFC]">
         <div className="py-[67px] bg-[FCFCFC]">
           {/* Header Title */}

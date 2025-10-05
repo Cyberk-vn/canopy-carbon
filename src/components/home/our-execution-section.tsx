@@ -246,10 +246,10 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
       onFocus={handleFocus}
       onBlur={handleBlur}
     >
-      <Container maxWidth="default" className="mt-6 px-[68px]">
+      <Container maxWidth="full" className="mt-6 lg:px-0">
         {/* Section Title */}
         <motion.div
-          className="text-center lg:mb-[64px]"
+          className="text-center md:hidden"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{
@@ -266,70 +266,93 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
           </h2>
         </motion.div>
 
+        {/* Section Title Tablet/Desktop */}
+        <motion.div
+          className="text-center mb-[32px] hidden md:block"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{
+            duration: 1.35,
+            ease: [0.175, 0.885, 0.32, 1.275],
+            delay: 0.3,
+          }}
+        >
+          <h2
+            className="md:text-[32px] text-[#2E2F2D]"
+            style={{
+              fontFamily: "Open Sans",
+              lineHeight: "30px",
+              fontWeight: 400,
+            }}
+          >
+            Our Execution Ethos
+          </h2>
+        </motion.div>
+
         {/* Desktop Layout - 4 Cards Grid */}
-        <div className="hidden lg:block">
-          <Container maxWidth="default" padding="none">
-            <div>
-              <div className="grid grid-cols-4 gap-6 w-full">
-                {desktopExecutionItems.map((item, index) => (
-                  <motion.div
-                    key={item.id}
-                    className="flex flex-col items-center"
-                    initial={{ opacity: 0, y: 50 }}
+        <div className="hidden md:block w-full">
+          <div className="flex gap-[24px] w-full justify-center items-center max-w-[2200px] mx-auto md:px-[24px] lg:px-[68px]">
+            {desktopExecutionItems.map((item, index) => (
+              <motion.div
+                key={item.id}
+                className="flex flex-col items-center"
+                style={{
+                  flex: "1 1 0",
+                  minWidth: 0,
+                }}
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={
+                  isInView
+                    ? { opacity: 1, y: 0, scale: 1 }
+                    : { opacity: 0, y: 50, scale: 0.95 }
+                }
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.15,
+                  ease: "easeOut",
+                }}
+              >
+                <div className="relative md:mb-[21px] lg:mb-[31px] w-full aspect-[337/577]">
+                  <Image
+                    src={item.imageSrc}
+                    alt={item.altText}
+                    fill
+                    className="object-cover shadow-lg"
+                    priority={index < 2}
+                    sizes="(min-width: 1024px) calc(25vw - 20px), 100vw"
+                  />
+                </div>
+
+                {item.title && (
+                  <motion.h3
+                    className="text-center text-[14px] font-medium text-[#000000] leading-tight lg:text-[18px] xl:text-[20px] 2xl:text-[24px]"
+                    style={{
+                      fontFamily: "Open Sans",
+                      fontWeight: 600,
+                      lineHeight: "30px",
+                    }}
+                    initial={{ opacity: 0, y: 15, scale: 0.98 }}
                     animate={
-                      isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+                      isInView
+                        ? { opacity: 1, y: 0, scale: 1 }
+                        : { opacity: 0, y: 15, scale: 0.98 }
                     }
                     transition={{
-                      duration: 0.6,
-                      delay: index * 0.15,
-                      ease: "easeOut",
+                      duration: 0.95,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                      delay: index * 0.1 + 0.8,
                     }}
                   >
-                    {/* Image Container */}
-                    <div className="relative mb-[31px]">
-                      <Image
-                        src={item.imageSrc}
-                        alt={item.altText}
-                        width={337}
-                        height={577}
-                        className="object-cover shadow-lg w-full h-auto aspect-[337/577]"
-                        priority={index < 2}
-                      />
-                    </div>
-
-                    {/* Title */}
-                    {item.title && (
-                      <motion.h3
-                        className="text-center text-[20px] font-medium text-[#000000] leading-tight"
-                        style={{
-                          fontFamily: "Open Sans",
-                          fontWeight: 600,
-                          lineHeight: "30px",
-                        }}
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={
-                          isInView
-                            ? { opacity: 1, y: 0 }
-                            : { opacity: 0, y: 15 }
-                        }
-                        transition={{
-                          duration: 0.95,
-                          ease: [0.25, 0.46, 0.45, 0.94],
-                          delay: index * 0.1 + 0.8,
-                        }}
-                      >
-                        {item.title}
-                      </motion.h3>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </Container>
+                    {item.title}
+                  </motion.h3>
+                )}
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        {/* Mobile/Tablet Layout - Fixed 3-Card Layout with Fade Transitions */}
-        <div className="block lg:hidden">
+        {/* Mobile- Fixed 3-Card Layout with Fade Transitions */}
+        <div className="block md:hidden">
           {/* Auto-switch status indicator for screen readers */}
           <div className="sr-only" aria-live="polite">
             {autoSwitchState.enabled &&

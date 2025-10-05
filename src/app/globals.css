@@ -9,6 +9,7 @@
   --breakpoint-xl: 80rem;
   --breakpoint-xlg: 78.125rem;
   --breakpoint-xxl: 90rem;
+  --breakpoint-3xl: 120rem;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -450,5 +451,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+  }
+}
+
+/* Decorator Image Sizing */
+@media (min-width: 2560px) {
+  .decorator-3xl-size {
+    width: 580px !important;
+    height: 580px !important;
+    max-width: 580px !important;
+    max-height: 580px !important;
   }
 }
