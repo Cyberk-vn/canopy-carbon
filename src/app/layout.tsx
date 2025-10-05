@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto, Open_Sans, Inter } from "next/font/google";
 import "./globals.css";
-import { isDevelopmentMode } from "../lib/utils";
-import { ComingSoon } from "../components/ui/ComingSoon";
+import { ProductionGate } from "../components/ui/ProductionGate";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,14 +42,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const showComingSoon = !isDevelopmentMode();
-
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} ${openSans.variable} ${inter.variable} antialiased`}
       >
-        {showComingSoon ? <ComingSoon /> : children}
+        <ProductionGate>{children}</ProductionGate>
       </body>
     </html>
   );
