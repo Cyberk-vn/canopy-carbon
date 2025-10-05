@@ -6,5 +6,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function isDevelopmentMode(): boolean {
-  return true;
+  if (typeof window === "undefined") {
+    return process.env.NODE_ENV === "development";
+  }
+
+  const url = window.location.href;
+  return url.includes("canopy-carbon.vercel.app") || url.includes("localhost");
 }
