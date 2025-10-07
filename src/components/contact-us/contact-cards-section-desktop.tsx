@@ -45,7 +45,7 @@ const ConnectWithUsForm = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="mb-6 font-sans text-base font-bold uppercase leading-6 text-[#121C17]"
+        className="mb-6 2xl:mb-12 text-base font-bold uppercase 2xl:text-2xl text-[#121C17]"
       >
         CONNECT WITH US
       </motion.h2>
@@ -61,7 +61,7 @@ const ConnectWithUsForm = () => {
             <div className="flex flex-1 flex-col gap-1">
               <Label
                 htmlFor="firstName"
-                className="font-sans text-xs font-normal text-[#0D1117]"
+                className="text-xs 2xl:text-sm text-[#0D1117]"
               >
                 First name*
               </Label>
@@ -78,7 +78,7 @@ const ConnectWithUsForm = () => {
             <div className="flex flex-1 flex-col gap-1">
               <Label
                 htmlFor="lastName"
-                className="font-sans text-xs font-normal text-[#0D1117]"
+                className="text-xs 2xl:text-sm text-[#0D1117]"
               >
                 Last name*
               </Label>
@@ -96,7 +96,7 @@ const ConnectWithUsForm = () => {
           <div className="flex flex-col gap-1">
             <Label
               htmlFor="companyName"
-              className="font-sans text-xs font-normal text-[#0D1117]"
+              className="text-xs 2xl:text-sm text-[#0D1117]"
             >
               Company name
             </Label>
@@ -112,7 +112,7 @@ const ConnectWithUsForm = () => {
           <div className="flex flex-col gap-1">
             <Label
               htmlFor="email"
-              className="font-sans text-xs font-normal text-[#0D1117]"
+              className="text-xs 2xl:text-sm text-[#0D1117]"
             >
               Email*
             </Label>
@@ -129,7 +129,7 @@ const ConnectWithUsForm = () => {
           <div className="flex flex-col gap-2">
             <Label
               htmlFor="message"
-              className="font-sans text-xs font-normal text-[#0D1117]"
+              className="text-xs 2xl:text-sm text-[#0D1117]"
             >
               Message
             </Label>
@@ -168,10 +168,10 @@ const CardGroup = ({ cards }: { cards: ContactCardsProps["cards"] }) => (
         className="h-[245px] bg-[#FAFAFA99] p-4"
       >
         <div className="flex h-full w-full flex-col items-center bg-[#00000003] p-4">
-          <h3 className="mb-4 text-center font-sans text-base font-bold leading-tight text-black">
+          <h3 className="mb-4 text-center font-sans text-base 2xl:text-lg font-bold leading-tight text-black">
             {card.title}
           </h3>
-          <p className="text-center font-sans text-xs leading-[20px] text-[#6C6C6C]">
+          <p className="text-center font-sans text-xs 2xl:text-sm leading-[20px] text-[#6C6C6C]">
             {card.description}
           </p>
         </div>

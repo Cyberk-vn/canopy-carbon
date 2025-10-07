@@ -100,7 +100,7 @@ export function InsightSectionDesktop({
           easing="ease-out"
           className="mb-10"
         >
-          <h2 className="font-sans text-[28px] font-bold leading-tight text-[#6A7D8E]">
+          <h2 className="font-sans text-[28px] font-bold leading-tight text-[#6A7D8E] lg:ml-15">
             {title}
           </h2>
         </FadeContent>
