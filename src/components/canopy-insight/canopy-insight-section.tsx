@@ -14,13 +14,20 @@ export function CanopyInsightSection() {
   const mobileMenuStyles = getMobileMenuStyles("canopy-insight");
 
   return (
-    <div className="relative lg:h-[700px] h-[927px] mx-auto">
+    <div className="relative lg:h-[700px] h-[927px] 2xl:h-[1089px] mx-auto">
       <Image
         src="/assets/desktop/canopy-insight/canopy-banner-background-image.png"
         alt="Canopy Insight Banner"
         fill
         priority
-        className="object-cover hidden lg:block"
+        className="object-cover hidden lg:block 2xl:hidden"
+      />
+      <Image
+        src="/assets/canopy-insight/canopy-banner-2k-bg-image.png"
+        alt="Canopy Insight Banner"
+        fill
+        priority
+        className="object-cover hidden 2xl:block"
       />
       <Image
         src="/assets/desktop/canopy-insight/canopy-bg-tablet.png"
@@ -54,7 +61,7 @@ export function CanopyInsightSection() {
           />
         </div>
 
-        <div className="relative flex flex-1 flex-col items-center pt-25 lg:pt-0 lg:justify-center gap-11 lg:flex-row lg:container lg:mx-auto 2xl:mx-0 px-6 lg:px-0">
+        <div className="relative flex flex-1 flex-col items-center pt-25 lg:pt-0 lg:justify-center 2xl:justify-start gap-11 2xl:gap-[72px] lg:flex-row lg:container lg:mx-auto px-6 lg:px-0">
           <FadeContent
             duration={500}
             delay={100}
@@ -67,10 +74,10 @@ export function CanopyInsightSection() {
               alt="Canopy Insight Bird"
               width={356}
               height={447}
-              className="object-cover lg:w-[356px] lg:h-[447px] md:w-[228px] md:h-[286px] w-[206px] h-[259px]"
+              className="object-cover lg:w-[356px] lg:h-[447px] md:w-[228px] md:h-[286px] w-[206px] h-[259px] 2xl:w-[462px] 2xl:h-[598px]"
             />
           </FadeContent>
-          <div className="lg:w-[705px] lg:mb-25">
+          <div className="lg:w-[705px] lg:mb-25 2xl:mb-90">
             <FadeContent
               duration={600}
               delay={200}
@@ -79,7 +86,7 @@ export function CanopyInsightSection() {
               initialOpacity={0}
               className="canopy-fade-up-content"
             >
-              <div className="mb-3 md:mb-8 lg:mb-14 text-4xl font-work-sans text-[#2A4035] font-semibold md:text-[36px] lg:text-[45px] xl:text-[64px]">
+              <div className="mb-3 md:mb-8 lg:mb-14 text-4xl font-work-sans text-[#2A4035] font-semibold md:text-[36px] lg:text-[45px] 2xl:text-[64px]">
                 Canopy Insights
               </div>
 
