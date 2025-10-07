@@ -129,7 +129,7 @@ export const OurPracticalSection = () => {
                       }`}
                     >
                       <h3
-                        className="font-open-sans font-light text-black text-[16px] xs:text-[18px]"
+                        className=" font-light text-black text-[16px] xs:text-[18px]"
                         style={{
                           lineHeight: "20px",
                         }}
@@ -155,7 +155,7 @@ export const OurPracticalSection = () => {
                       }}
                     >
                       <p
-                        className={`font-open-sans font-semibold text-[#798C9B] w-full text-[12px] xs:text-[14px] xxs:text-[13px] ${
+                        className={` font-semibold text-[#798C9B] w-full text-[12px] xs:text-[14px] xxs:text-[13px] ${
                           isRightAligned
                             ? "text-right ml-[36px]"
                             : "text-left ml-[44px]"

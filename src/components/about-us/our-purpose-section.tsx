@@ -78,7 +78,7 @@ export const OurPurposeSection = () => {
             <div className="flex flex-col gap-[14px] mb-8">
               {/* Main Purpose Text - Figma styling */}
               <p
-                className="font-open-sans text-[#95A4B0]"
+                className=" text-[#95A4B0]"
                 style={{
                   fontSize: "14px",
                   fontWeight: 600,
@@ -93,7 +93,7 @@ export const OurPurposeSection = () => {
 
               {/* Our Purpose Label - Figma styling */}
               <p
-                className="font-open-sans"
+                className=""
                 style={{
                   fontSize: "10px",
                   fontWeight: 300,
@@ -142,7 +142,7 @@ export const OurPurposeSection = () => {
               <div className="flex flex-col gap-[40px] max-w-[714px]">
                 {/* Main Purpose Text */}
                 <p
-                  className="font-open-sans text-[#95A4B0]"
+                  className=" text-[#95A4B0]"
                   style={{
                     fontSize: "24px",
                     fontWeight: 600,
@@ -156,7 +156,7 @@ export const OurPurposeSection = () => {
 
                 {/* Our Purpose Label */}
                 <p
-                  className="font-open-sans text-[rgba(139,147,140,0.8)]"
+                  className=" text-[rgba(139,147,140,0.8)]"
                   style={{
                     fontSize: "16px",
                     fontWeight: 400,

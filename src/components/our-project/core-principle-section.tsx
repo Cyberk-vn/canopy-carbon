@@ -93,7 +93,7 @@ const CorePrincipleSection: React.FC = () => {
         padding: card.padding,
       }}
     >
-      <span className="font-open-sans font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
+      <span className=" font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
         {card.text}
       </span>
     </motion.div>
@@ -107,7 +107,7 @@ const CorePrincipleSection: React.FC = () => {
           initial={{ opacity: 0.8, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-open-sans font-semibold text-xl leading-[1.5em] text-[#9C9C9C] mb-[24px]"
+          className=" font-semibold text-xl leading-[1.5em] text-[#9C9C9C] mb-[24px]"
         >
           The Core Carbon Principles
         </motion.h2>
@@ -135,7 +135,7 @@ const CorePrincipleSection: React.FC = () => {
           className="mx-auto"
         >
           <div className="flex flex-col items-center gap-4 mb-[46px]">
-            <p className="font-open-sans font-normal text-[13px] xxs:text-[14px] xs:text-[15px] leading-[1.538em] text-[#949494] text-left w-full">
+            <p className=" font-normal text-[13px] xxs:text-[14px] xs:text-[15px] leading-[1.538em] text-[#949494] text-left w-full">
               Developed and published in 2023 by the Integrity Council for the
               Voluntary Carbon Market (ICVCM), the CCP was formulated in
               response to growing concerns over integrity in global carbon

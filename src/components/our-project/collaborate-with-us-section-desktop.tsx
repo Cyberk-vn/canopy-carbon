@@ -17,7 +17,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
               initial={{ opacity: 0.7, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-              className="text-[#1E2E26] font-bold text-[32px] leading-[1.36181640625em] text-left font-open-sans"
+              className="text-[#1E2E26] font-bold text-[32px] leading-[1.36181640625em] text-left "
             >
               Collaborate With Us
             </motion.h2>
@@ -34,7 +34,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                 initial={{ opacity: 0.6, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="text-[#9E9E9E] text-[16px] leading-[1.36181640625em] tracking-[-0.02em] text-left font-open-sans whitespace-pre-line"
+                className="text-[#9E9E9E] text-[16px] leading-[1.36181640625em] tracking-[-0.02em] text-left  whitespace-pre-line"
               >
                 We believe meaningful climate solutions are built through
                 partnership. At Canopy, we welcome collaboration with project
@@ -60,7 +60,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   transition={{ duration: 0.3, delay: 0.5, ease: "easeOut" }}
                   className="flex-1 flex items-center justify-center bg-[#E9E9E9] p-[16px] w-[195px]"
                 >
-                  <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center font-open-sans">
+                  <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center ">
                     Co-Develop
                   </span>
                 </motion.div>
@@ -70,7 +70,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   transition={{ duration: 0.3, delay: 0.6, ease: "easeOut" }}
                   className="flex-1 flex items-center justify-center bg-[#E9E9E9] p-[16px] w-[195px]"
                 >
-                  <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center font-open-sans">
+                  <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center ">
                     Purchase Credits
                   </span>
                 </motion.div>
@@ -80,7 +80,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   transition={{ duration: 0.3, delay: 0.7, ease: "easeOut" }}
                   className="flex-1 flex items-center justify-center bg-[#E9E9E9] p-[16px] w-[195px]"
                 >
-                  <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center font-open-sans">
+                  <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center ">
                     Fund Pipeline
                   </span>
                 </motion.div>
@@ -90,7 +90,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   transition={{ duration: 0.3, delay: 0.8, ease: "easeOut" }}
                   className="flex-1 flex items-center justify-center bg-[#E9E9E9] p-[16px] w-[195px]"
                 >
-                  <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center font-open-sans">
+                  <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center ">
                     Co-Innovate
                   </span>
                 </motion.div>

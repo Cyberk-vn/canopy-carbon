@@ -214,7 +214,7 @@ export function NavigationMenu({
                 <Link
                   key={index}
                   href={item.url}
-                  className="flex items-center gap-[10px] px-4 py-3 font-open-sans text-base font-normal leading-[1.5] hover:text-[#00A5FF] active:text-[#00A5FF] focus:text-[#00A5FF] hover:bg-white/10 active:bg-white/10 focus:bg-white/10 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-105"
+                  className="flex items-center gap-[10px] px-4 py-3  text-base font-normal leading-[1.5] hover:text-[#00A5FF] active:text-[#00A5FF] focus:text-[#00A5FF] hover:bg-white/10 active:bg-white/10 focus:bg-white/10 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-105"
                   onClick={() => setIsMobileMenuOpen(false)}
                   style={{
                     color: currentMobileMenuStyles.textColor,

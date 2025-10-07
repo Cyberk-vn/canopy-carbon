@@ -113,11 +113,11 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
           >
             {/* Header Section */}
             <div className="mb-[93px]">
-              <h2 className="font-open-sans font-bold text-[32px] leading-[1.4] text-[#475850] mb-[24px]">
+              <h2 className=" font-bold text-[32px] leading-[1.4] text-[#475850] mb-[24px]">
                 {data.sectionTitle}
               </h2>
               <p
-                className="font-open-sans font-semibold text-[20px] leading-[1.4] text-[#91A69E] max-w-[788px]"
+                className=" font-semibold text-[20px] leading-[1.4] text-[#91A69E] max-w-[788px]"
                 style={{ letterSpacing: "-3%" }}
               >
                 {data.sectionSubtitle}
@@ -222,13 +222,13 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
             {/* Header Section */}
             <div className="mb-[60px] text-center">
               <p
-                className="font-open-sans font-semibold text-[28px] leading-[1.4] text-[#91A69E] max-w-[840px] mx-auto mb-[60px]"
+                className=" font-semibold text-[28px] leading-[1.4] text-[#91A69E] max-w-[840px] mx-auto mb-[60px]"
                 style={{ letterSpacing: "-3%" }}
               >
                 {data.contentSectionDescription}
               </p>
               <h2
-                className="font-open-sans font-bold text-[24px] leading-[1] text-[#475850]"
+                className=" font-bold text-[24px] leading-[1] text-[#475850]"
                 style={{ letterSpacing: "-3%" }}
               >
                 {data.contentSectionTitle}
@@ -323,11 +323,11 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
             >
               {/* Header Section */}
               <div style={{ marginBottom: "66px" }}>
-                <h2 className="font-open-sans font-bold text-[26px] leading-[1.4] text-[#475850] mb-[24px]">
+                <h2 className=" font-bold text-[26px] leading-[1.4] text-[#475850] mb-[24px]">
                   {data.sectionTitle}
                 </h2>
                 <p
-                  className="font-open-sans font-semibold text-[16px] leading-[1.4] text-[#91A69E] max-w-[560px]"
+                  className=" font-semibold text-[16px] leading-[1.4] text-[#91A69E] max-w-[560px]"
                   style={{ letterSpacing: "-3%" }}
                 >
                   {data.sectionSubtitle}
@@ -432,13 +432,13 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
               {/* Header Section */}
               <div className="mb-[43px] text-center">
                 <p
-                  className="font-open-sans font-semibold text-[22px] leading-[1.4] text-[#91A69E] max-w-[597px] mx-auto mb-[43px]"
+                  className=" font-semibold text-[22px] leading-[1.4] text-[#91A69E] max-w-[597px] mx-auto mb-[43px]"
                   style={{ letterSpacing: "-3%" }}
                 >
                   {data.contentSectionDescription}
                 </p>
                 <h2
-                  className="font-open-sans font-bold text-[19px] leading-[1] text-[#475850]"
+                  className=" font-bold text-[19px] leading-[1] text-[#475850]"
                   style={{ letterSpacing: "-3%" }}
                 >
                   {data.contentSectionTitle}
@@ -538,11 +538,11 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
             >
               {/* Header Section */}
               <div style={{ marginBottom: "83px" }}>
-                <h2 className="font-open-sans font-bold text-[29px] leading-[1.4] text-[#475850] mb-[24px]">
+                <h2 className=" font-bold text-[29px] leading-[1.4] text-[#475850] mb-[24px]">
                   {data.sectionTitle}
                 </h2>
                 <p
-                  className="font-open-sans font-semibold text-[18px] leading-[1.4] text-[#91A69E] max-w-[701px]"
+                  className=" font-semibold text-[18px] leading-[1.4] text-[#91A69E] max-w-[701px]"
                   style={{ letterSpacing: "-3%" }}
                 >
                   {data.sectionSubtitle}
@@ -647,13 +647,13 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
               {/* Header Section */}
               <div className="mb-[53px] text-center">
                 <p
-                  className="font-open-sans font-semibold text-[25px] leading-[1.4] text-[#91A69E] max-w-[747px] mx-auto mb-[53px]"
+                  className=" font-semibold text-[25px] leading-[1.4] text-[#91A69E] max-w-[747px] mx-auto mb-[53px]"
                   style={{ letterSpacing: "-3%" }}
                 >
                   {data.contentSectionDescription}
                 </p>
                 <h2
-                  className="font-open-sans font-bold text-[22px] leading-[1] text-[#475850]"
+                  className=" font-bold text-[22px] leading-[1] text-[#475850]"
                   style={{ letterSpacing: "-3%" }}
                 >
                   {data.contentSectionTitle}

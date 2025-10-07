@@ -1,17 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto, Open_Sans, Inter } from "next/font/google";
+import { Roboto, Open_Sans, Inter, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { ProductionGate } from "../components/ui/ProductionGate";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const roboto = Roboto({
   weight: ["400", "500", "700", "900"],
@@ -31,6 +21,12 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const workSans = Work_Sans({
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-work-sans",
+});
+
 export const metadata: Metadata = {
   title: "Canopy Carbon - Climate Infrastructure Company",
   description:
@@ -45,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} ${openSans.variable} ${inter.variable} antialiased`}
+        className={`${roboto.variable} ${openSans.variable} ${inter.variable} ${workSans.variable} antialiased`}
       >
         <ProductionGate>{children}</ProductionGate>
       </body>

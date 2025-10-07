@@ -146,7 +146,7 @@ const ConnectWithUsForm = () => {
           </div>
           <Button
             type="submit"
-            className="h-9 w-full rounded-none bg-[#EAE7DF] font-sans text-base font-semibold text-[#3B464F] transition-colors duration-200 hover:bg-[#E0DDD5]"
+            className="h-9 w-full cursor-pointer rounded-none bg-[#EAE7DF] font-sans text-base font-semibold text-[#3B464F] transition-colors duration-200 hover:bg-[#E0DDD5]"
           >
             Send
           </Button>
@@ -195,7 +195,14 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
         src="/assets/desktop/contact-us/contact-us-background-image.png"
         alt="Contact us background"
         fill
-        className="object-cover"
+        className="hidden object-cover xl:block"
+        priority
+      />
+      <Image
+        src="/assets/desktop/contact-us/contact-us-bg-tablet.png"
+        alt="Contact us background tablet"
+        fill
+        className="object-cover xl:hidden h-full"
         priority
       />
 

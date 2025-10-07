@@ -135,7 +135,7 @@ export const OurPracticalSectionDesktop = () => {
             >
               {/* Card Title */}
               <h3
-                className="font-open-sans font-light text-black text-left mb-4"
+                className=" font-light text-black text-left mb-4"
                 style={{
                   fontSize: "20px",
                   lineHeight: "1.4em",
@@ -146,7 +146,7 @@ export const OurPracticalSectionDesktop = () => {
 
               {/* Card Description */}
               <p
-                className="font-open-sans font-semibold text-[#798C9B] text-left"
+                className=" font-semibold text-[#798C9B] text-left"
                 style={{
                   fontSize: "16px",
                   lineHeight: "1.399999976158142em",
@@ -214,7 +214,7 @@ export const OurPracticalSectionDesktop = () => {
               >
                 {/* Card Title - Responsive */}
                 <h3
-                  className="font-open-sans font-light text-black text-left mb-3"
+                  className=" font-light text-black text-left mb-3"
                   style={{
                     fontSize: "16px",
                     lineHeight: "1.4em",
@@ -225,7 +225,7 @@ export const OurPracticalSectionDesktop = () => {
 
                 {/* Card Description - Responsive */}
                 <p
-                  className="font-open-sans font-semibold text-[#798C9B] text-left"
+                  className=" font-semibold text-[#798C9B] text-left"
                   style={{
                     fontSize: "14px",
                     lineHeight: "1.4em",
@@ -291,7 +291,7 @@ export const OurPracticalSectionDesktop = () => {
               >
                 {/* Card Title - Responsive */}
                 <h3
-                  className="font-open-sans font-light text-black text-left mb-3"
+                  className=" font-light text-black text-left mb-3"
                   style={{
                     fontSize: "18px",
                     lineHeight: "1.4em",
@@ -302,7 +302,7 @@ export const OurPracticalSectionDesktop = () => {
 
                 {/* Card Description - Responsive */}
                 <p
-                  className="font-open-sans font-semibold text-[#798C9B] text-left"
+                  className=" font-semibold text-[#798C9B] text-left"
                   style={{
                     fontSize: "15px",
                     lineHeight: "1.4em",

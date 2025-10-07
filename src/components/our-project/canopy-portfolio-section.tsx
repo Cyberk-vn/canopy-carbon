@@ -163,7 +163,7 @@ const CanopyPortfolioSection: React.FC = () => {
               initial={{ opacity: 0.6, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
-              className="font-open-sans font-light text-[12px] leading-[1.417em] text-[#F0F0F0] mb-[11px] max-w-[280px]"
+              className=" font-light text-[12px] leading-[1.417em] text-[#F0F0F0] mb-[11px] max-w-[280px]"
             >
               We execute our projects alongside key partners globally recognised
               for their domain expertise.
@@ -261,7 +261,7 @@ const CanopyPortfolioSection: React.FC = () => {
                       delay={200}
                       threshold={0.1}
                     >
-                      <p className="font-open-sans font-light text-[12px] leading-[2.333em] text-white text-center mb-[4px]">
+                      <p className=" font-light text-[12px] leading-[2.333em] text-white text-center mb-[4px]">
                         {currentProject.location}
                       </p>
                     </FadeContent>
@@ -298,7 +298,7 @@ const CanopyPortfolioSection: React.FC = () => {
                     >
                       <button
                         onClick={redirectToContact}
-                        className="font-open-sans font-normal text-[12px] leading-[1.5em] text-[#7D8F89] hover:text-[#9CA9A3] hover:scale-105 transition-all duration-300"
+                        className=" font-normal text-[12px] leading-[1.5em] text-[#7D8F89] hover:text-[#9CA9A3] hover:scale-105 transition-all duration-300"
                       >
                         Read More →
                       </button>

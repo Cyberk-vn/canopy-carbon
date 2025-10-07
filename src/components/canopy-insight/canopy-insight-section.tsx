@@ -79,7 +79,7 @@ export function CanopyInsightSection() {
               initialOpacity={0}
               className="canopy-fade-up-content"
             >
-              <div className="mb-3 md:mb-8 lg:mb-14 text-4xl text-[#2A4035] font-semibold md:text-[36px] lg:text-[45px]">
+              <div className="mb-3 md:mb-8 lg:mb-14 text-4xl font-work-sans text-[#2A4035] font-semibold md:text-[36px] lg:text-[45px]">
                 Canopy Insights
               </div>
 

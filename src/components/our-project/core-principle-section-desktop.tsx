@@ -31,7 +31,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
               initial={{ opacity: 0.8, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="font-open-sans font-semibold text-[32px] leading-[0.9375em] text-[#9C9C9C] h-[30px] flex items-center"
+              className=" font-semibold text-[32px] leading-[0.9375em] text-[#9C9C9C] h-[30px] flex items-center"
             >
               The Core Carbon Principles
             </motion.h2>
@@ -47,7 +47,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 className="flex flex-col justify-center items-center gap-[10px] bg-[#232A26] px-[34px] py-[19px]"
               >
-                <span className="font-open-sans font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
+                <span className=" font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
                   Effective Governance
                 </span>
               </motion.div>
@@ -60,7 +60,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 className="flex flex-col justify-center items-center gap-[10px] bg-[#272F2A] px-[28px] py-[28px]"
               >
-                <span className="font-open-sans font-semibold text-[15px] leading-[1.6em] text-[#9C9C9C] text-center">
+                <span className=" font-semibold text-[15px] leading-[1.6em] text-[#9C9C9C] text-center">
                   Transparency
                 </span>
               </motion.div>
@@ -73,7 +73,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 className="flex flex-col justify-center items-center gap-[10px] bg-[#2B332F] px-[31px] py-[28px]"
               >
-                <span className="font-open-sans font-semibold text-[15px] leading-[1.6em] text-[#9C9C9C] text-center">
+                <span className=" font-semibold text-[15px] leading-[1.6em] text-[#9C9C9C] text-center">
                   Additionality
                 </span>
               </motion.div>
@@ -86,7 +86,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 className="flex flex-col justify-center items-center gap-[10px] bg-[#2F3833] px-[25px] py-[19px]"
               >
-                <span className="font-open-sans font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
+                <span className=" font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
                   Robust Quantification
                 </span>
               </motion.div>
@@ -99,7 +99,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 className="flex flex-col justify-center items-center gap-[10px] bg-[#333D37] px-[27px] py-[19px]"
               >
-                <span className="font-open-sans font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
+                <span className=" font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
                   Safeguards & Benefits
                 </span>
               </motion.div>
@@ -113,7 +113,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 className="flex flex-col justify-center items-center gap-[10px] bg-[#232A26] px-[48px] py-[28px]"
               >
-                <span className="font-open-sans font-semibold text-[15px] leading-[1.6em] text-[#9C9C9C] text-center">
+                <span className=" font-semibold text-[15px] leading-[1.6em] text-[#9C9C9C] text-center">
                   Tracking
                 </span>
               </motion.div>
@@ -126,7 +126,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 className="flex flex-col justify-center items-center gap-[10px] bg-[#272F2A] px-[29px] py-[19px]"
               >
-                <span className="font-open-sans font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
+                <span className=" font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
                   Independent Audit
                 </span>
               </motion.div>
@@ -139,7 +139,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 className="flex flex-col justify-center items-center gap-[10px] bg-[#2B332F] px-[32px] py-[28px]"
               >
-                <span className="font-open-sans font-semibold text-[15px] leading-[1.6em] text-[#9C9C9C] text-center">
+                <span className=" font-semibold text-[15px] leading-[1.6em] text-[#9C9C9C] text-center">
                   Permanence
                 </span>
               </motion.div>
@@ -152,7 +152,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 className="flex flex-col justify-center items-center gap-[10px] bg-[#2F3833] px-[38px] py-[19px]"
               >
-                <span className="font-open-sans font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
+                <span className=" font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
                   No Double Counting
                 </span>
               </motion.div>
@@ -165,7 +165,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 className="flex flex-col justify-center items-center gap-[10px] bg-[#333D37] px-[29px] py-[19px]"
               >
-                <span className="font-open-sans font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
+                <span className=" font-semibold text-[15px] leading-[1.4em] text-[#9C9C9C] text-center whitespace-pre-line">
                   Contribution to Net Zero
                 </span>
               </motion.div>
@@ -178,7 +178,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
               transition={{ duration: 0.4, delay: 1.0, ease: "easeOut" }}
               className="w-full max-w-[888.52px]"
             >
-              <p className="font-open-sans font-normal text-[16px] leading-[1.36181640625em] tracking-[-0.02em] text-[#949494] text-left">
+              <p className=" font-normal text-[16px] leading-[1.36181640625em] tracking-[-0.02em] text-[#949494] text-left">
                 Developed and published in 2023 by the Integrity Council for the
                 Voluntary Carbon Market (ICVCM), the CCP was formulated in
                 response to growing concerns over integrity in global carbon

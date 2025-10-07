@@ -115,7 +115,7 @@ export function AboutUsBannerDesktop({
                 {/* Mission Section */}
                 <div className="flex flex-col gap-[24px]">
                   <h2
-                    className="font-open-sans font-bold text-white"
+                    className=" font-bold text-white"
                     style={{
                       fontSize: "36px",
                       lineHeight: "44px",
@@ -125,7 +125,7 @@ export function AboutUsBannerDesktop({
                     Mission
                   </h2>
                   <p
-                    className="font-open-sans font-normal text-white"
+                    className=" font-normal text-white"
                     style={{
                       fontSize: "16px",
                       lineHeight: "24px",
@@ -141,7 +141,7 @@ export function AboutUsBannerDesktop({
                 {/* Vision Section */}
                 <div className="flex flex-col gap-[24px]">
                   <h2
-                    className="font-open-sans font-bold text-white"
+                    className=" font-bold text-white"
                     style={{
                       fontSize: "36px",
                       lineHeight: "44px",
@@ -151,7 +151,7 @@ export function AboutUsBannerDesktop({
                     Vision
                   </h2>
                   <p
-                    className="font-open-sans font-normal text-white"
+                    className=" font-normal text-white"
                     style={{
                       fontSize: "16px",
                       lineHeight: "24px",
@@ -208,7 +208,7 @@ export function AboutUsBannerDesktop({
 
                 <div className="flex flex-col gap-[20px] flex-1">
                   <p
-                    className="font-open-sans font-bold text-[#DDE2E6]"
+                    className=" font-bold text-[#DDE2E6]"
                     style={{
                       fontSize: "24px",
                       lineHeight: "33.6px",
@@ -222,7 +222,7 @@ export function AboutUsBannerDesktop({
                     budget.
                   </p>
                   <p
-                    className="font-open-sans font-normal text-[#D8DBD6]"
+                    className=" font-normal text-[#D8DBD6]"
                     style={{
                       fontSize: "16px",
                       lineHeight: "24px",
@@ -264,7 +264,7 @@ export function AboutUsBannerDesktop({
                     <div className="flex flex-col items-center gap-[6px] w-full">
                       {/* Statistics Title */}
                       <h4
-                        className="font-open-sans font-bold text-[#9DAE83] text-center"
+                        className=" font-bold text-[#9DAE83] text-center"
                         style={{
                           fontSize: "17px",
                           lineHeight: "24px",
@@ -276,7 +276,7 @@ export function AboutUsBannerDesktop({
 
                       {/* Statistics Description */}
                       <p
-                        className="font-open-sans font-normal text-white text-center"
+                        className=" font-normal text-white text-center"
                         style={{
                           fontSize: "12px",
                           lineHeight: "20px",
@@ -316,7 +316,7 @@ export function AboutUsBannerDesktop({
                     <div className="flex flex-col items-center gap-[6px] w-full">
                       {/* Statistics Title */}
                       <h4
-                        className="font-open-sans font-bold text-[#9DAE83] text-center"
+                        className=" font-bold text-[#9DAE83] text-center"
                         style={{
                           fontSize: "17px",
                           lineHeight: "24px",
@@ -328,7 +328,7 @@ export function AboutUsBannerDesktop({
 
                       {/* Statistics Description */}
                       <p
-                        className="font-open-sans font-normal text-white text-center"
+                        className=" font-normal text-white text-center"
                         style={{
                           fontSize: "12px",
                           lineHeight: "20px",
@@ -368,7 +368,7 @@ export function AboutUsBannerDesktop({
                     <div className="flex flex-col items-center gap-[6px] w-full">
                       {/* Statistics Title */}
                       <h4
-                        className="font-open-sans font-bold text-[#9DAE83] text-center"
+                        className=" font-bold text-[#9DAE83] text-center"
                         style={{
                           fontSize: "17px",
                           lineHeight: "24px",
@@ -380,7 +380,7 @@ export function AboutUsBannerDesktop({
 
                       {/* Statistics Description */}
                       <p
-                        className="font-open-sans font-normal text-white text-center"
+                        className=" font-normal text-white text-center"
                         style={{
                           fontSize: "12px",
                           lineHeight: "20px",
@@ -420,7 +420,7 @@ export function AboutUsBannerDesktop({
                     <div className="flex flex-col items-center gap-[6px] w-full">
                       {/* Statistics Title */}
                       <h4
-                        className="font-open-sans font-bold text-[#9DAE83] text-center"
+                        className=" font-bold text-[#9DAE83] text-center"
                         style={{
                           fontSize: "17px",
                           lineHeight: "24px",
@@ -434,7 +434,7 @@ export function AboutUsBannerDesktop({
 
                       {/* Statistics Description */}
                       <p
-                        className="font-open-sans font-normal text-white text-center"
+                        className=" font-normal text-white text-center"
                         style={{
                           fontSize: "12px",
                           lineHeight: "20px",
@@ -578,7 +578,7 @@ export function AboutUsBannerDesktop({
                   {/* Mission Section */}
                   <div className="flex flex-col" style={{ gap: "17px" }}>
                     <h2
-                      className="font-open-sans font-bold text-white"
+                      className=" font-bold text-white"
                       style={{
                         fontSize: "32px",
                         lineHeight: "38px",
@@ -588,7 +588,7 @@ export function AboutUsBannerDesktop({
                       Mission
                     </h2>
                     <p
-                      className="font-open-sans font-normal text-white"
+                      className=" font-normal text-white"
                       style={{
                         fontSize: "15px",
                         lineHeight: "22px",
@@ -604,7 +604,7 @@ export function AboutUsBannerDesktop({
                   {/* Vision Section */}
                   <div className="flex flex-col" style={{ gap: "17px" }}>
                     <h2
-                      className="font-open-sans font-bold text-white"
+                      className=" font-bold text-white"
                       style={{
                         fontSize: "32px",
                         lineHeight: "38px",
@@ -614,7 +614,7 @@ export function AboutUsBannerDesktop({
                       Vision
                     </h2>
                     <p
-                      className="font-open-sans font-normal text-white"
+                      className=" font-normal text-white"
                       style={{
                         fontSize: "15px",
                         lineHeight: "22px",
@@ -703,7 +703,7 @@ export function AboutUsBannerDesktop({
 
                   <div className="flex flex-col flex-1" style={{ gap: "14px" }}>
                     <p
-                      className="font-open-sans font-bold text-[#DDE2E6]"
+                      className=" font-bold text-[#DDE2E6]"
                       style={{
                         fontSize: "18px",
                         lineHeight: "25px",
@@ -717,7 +717,7 @@ export function AboutUsBannerDesktop({
                       budget.
                     </p>
                     <p
-                      className="font-open-sans font-normal text-[#D8DBD6]"
+                      className=" font-normal text-[#D8DBD6]"
                       style={{
                         fontSize: "12px",
                         lineHeight: "18px",
@@ -772,7 +772,7 @@ export function AboutUsBannerDesktop({
                       >
                         {/* Statistics Title (enhanced: 14px → 15px) */}
                         <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
+                          className=" font-bold text-[#9DAE83] text-center"
                           style={{
                             fontSize: "15px",
                             lineHeight: "21px",
@@ -784,7 +784,7 @@ export function AboutUsBannerDesktop({
 
                         {/* Statistics Description (enhanced: 11px → 12px) */}
                         <p
-                          className="font-open-sans font-normal text-white text-center"
+                          className=" font-normal text-white text-center"
                           style={{
                             fontSize: "12px",
                             lineHeight: "18px",
@@ -835,7 +835,7 @@ export function AboutUsBannerDesktop({
                         style={{ gap: "4px" }}
                       >
                         <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
+                          className=" font-bold text-[#9DAE83] text-center"
                           style={{
                             fontSize: "15px",
                             lineHeight: "21px",
@@ -846,7 +846,7 @@ export function AboutUsBannerDesktop({
                         </h4>
 
                         <p
-                          className="font-open-sans font-normal text-white text-center"
+                          className=" font-normal text-white text-center"
                           style={{
                             fontSize: "12px",
                             lineHeight: "18px",
@@ -897,7 +897,7 @@ export function AboutUsBannerDesktop({
                         style={{ gap: "4px" }}
                       >
                         <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
+                          className=" font-bold text-[#9DAE83] text-center"
                           style={{
                             fontSize: "15px",
                             lineHeight: "21px",
@@ -908,7 +908,7 @@ export function AboutUsBannerDesktop({
                         </h4>
 
                         <p
-                          className="font-open-sans font-normal text-white text-center"
+                          className=" font-normal text-white text-center"
                           style={{
                             fontSize: "12px",
                             lineHeight: "18px",
@@ -959,7 +959,7 @@ export function AboutUsBannerDesktop({
                         style={{ gap: "4px" }}
                       >
                         <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
+                          className=" font-bold text-[#9DAE83] text-center"
                           style={{
                             fontSize: "15px",
                             lineHeight: "21px",
@@ -970,7 +970,7 @@ export function AboutUsBannerDesktop({
                         </h4>
 
                         <p
-                          className="font-open-sans font-normal text-white text-center"
+                          className=" font-normal text-white text-center"
                           style={{
                             fontSize: "12px",
                             lineHeight: "18px",
@@ -1120,7 +1120,7 @@ export function AboutUsBannerDesktop({
                   {/* Mission Section */}
                   <div className="flex flex-col" style={{ gap: "21px" }}>
                     <h2
-                      className="font-open-sans font-bold text-white"
+                      className=" font-bold text-white"
                       style={{
                         fontSize: "32px",
                         lineHeight: "39px",
@@ -1130,7 +1130,7 @@ export function AboutUsBannerDesktop({
                       Mission
                     </h2>
                     <p
-                      className="font-open-sans font-normal text-white"
+                      className=" font-normal text-white"
                       style={{
                         fontSize: "14px",
                         lineHeight: "21px",
@@ -1146,7 +1146,7 @@ export function AboutUsBannerDesktop({
                   {/* Vision Section */}
                   <div className="flex flex-col" style={{ gap: "21px" }}>
                     <h2
-                      className="font-open-sans font-bold text-white"
+                      className=" font-bold text-white"
                       style={{
                         fontSize: "32px",
                         lineHeight: "39px",
@@ -1156,7 +1156,7 @@ export function AboutUsBannerDesktop({
                       Vision
                     </h2>
                     <p
-                      className="font-open-sans font-normal text-white"
+                      className=" font-normal text-white"
                       style={{
                         fontSize: "14px",
                         lineHeight: "21px",
@@ -1241,7 +1241,7 @@ export function AboutUsBannerDesktop({
 
                   <div className="flex flex-col flex-1" style={{ gap: "18px" }}>
                     <p
-                      className="font-open-sans font-bold text-[#DDE2E6]"
+                      className=" font-bold text-[#DDE2E6]"
                       style={{
                         fontSize: "21px",
                         lineHeight: "30px",
@@ -1255,7 +1255,7 @@ export function AboutUsBannerDesktop({
                       budget.
                     </p>
                     <p
-                      className="font-open-sans font-normal text-[#D8DBD6]"
+                      className=" font-normal text-[#D8DBD6]"
                       style={{
                         fontSize: "14px",
                         lineHeight: "21px",
@@ -1311,7 +1311,7 @@ export function AboutUsBannerDesktop({
                       >
                         {/* Statistics Title (scaled: 17px → 15px) */}
                         <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
+                          className=" font-bold text-[#9DAE83] text-center"
                           style={{
                             fontSize: "15px",
                             lineHeight: "21px",
@@ -1323,7 +1323,7 @@ export function AboutUsBannerDesktop({
 
                         {/* Statistics Description (scaled: 12px → 11px) */}
                         <p
-                          className="font-open-sans font-normal text-white text-center"
+                          className=" font-normal text-white text-center"
                           style={{
                             fontSize: "11px",
                             lineHeight: "18px",
@@ -1374,7 +1374,7 @@ export function AboutUsBannerDesktop({
                         style={{ gap: "5px" }}
                       >
                         <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
+                          className=" font-bold text-[#9DAE83] text-center"
                           style={{
                             fontSize: "15px",
                             lineHeight: "21px",
@@ -1385,7 +1385,7 @@ export function AboutUsBannerDesktop({
                         </h4>
 
                         <p
-                          className="font-open-sans font-normal text-white text-center"
+                          className=" font-normal text-white text-center"
                           style={{
                             fontSize: "11px",
                             lineHeight: "18px",
@@ -1436,7 +1436,7 @@ export function AboutUsBannerDesktop({
                         style={{ gap: "5px" }}
                       >
                         <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
+                          className=" font-bold text-[#9DAE83] text-center"
                           style={{
                             fontSize: "15px",
                             lineHeight: "21px",
@@ -1447,7 +1447,7 @@ export function AboutUsBannerDesktop({
                         </h4>
 
                         <p
-                          className="font-open-sans font-normal text-white text-center"
+                          className=" font-normal text-white text-center"
                           style={{
                             fontSize: "11px",
                             lineHeight: "18px",
@@ -1498,7 +1498,7 @@ export function AboutUsBannerDesktop({
                         style={{ gap: "5px" }}
                       >
                         <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
+                          className=" font-bold text-[#9DAE83] text-center"
                           style={{
                             fontSize: "15px",
                             lineHeight: "21px",
@@ -1511,7 +1511,7 @@ export function AboutUsBannerDesktop({
                         </h4>
 
                         <p
-                          className="font-open-sans font-normal text-white text-center"
+                          className=" font-normal text-white text-center"
                           style={{
                             fontSize: "11px",
                             lineHeight: "18px",

@@ -105,13 +105,10 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "monospace"],
+        sans: ["var(--font-open-sans)", "sans-serif"],
         roboto: ["var(--font-roboto)", "sans-serif"],
-        "open-sans": ["var(--font-open-sans)", "sans-serif"],
         inter: ["var(--font-inter)", "sans-serif"],
-        avenir: ["Avenir", "system-ui", "sans-serif"],
-        "work-sans": ["Work Sans", "sans-serif"],
+        "work-sans": ["var(--font-work-sans)", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

@@ -69,7 +69,7 @@ export function OurProjectBannerDesktop({
                 {...SIMPLE_ANIMATIONS.fadeInUp}
                 {...titleMotion}
                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                className="font-open-sans font-semibold text-[28px] leading-[38px] text-[#DDDDDD]"
+                className=" font-semibold text-[28px] leading-[38px] text-[#DDDDDD]"
               >
                 Our portfolio is anchored in forest-based nature solutions that
                 deliver measurable climate impact through protection and
@@ -80,7 +80,7 @@ export function OurProjectBannerDesktop({
                 {...SIMPLE_ANIMATIONS.fadeInUp}
                 {...subtitleMotion}
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-                className="font-open-sans font-normal text-[20px] leading-[27px] tracking-[-0.02em] text-[#949494] max-w-[790px]"
+                className=" font-normal text-[20px] leading-[27px] tracking-[-0.02em] text-[#949494] max-w-[790px]"
               >
                 Each one developed in accordance with standards and
                 methodologies recognized by the ICVCM as compliant with the Core

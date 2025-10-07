@@ -52,7 +52,7 @@ export function CanopyInsightBanner() {
           {/* Title and Description Container */}
           <div className=" mb-[39px] mx-6">
             <h1
-              className="font-open-sans font-semibold text-[#2A4035] text-[30px] leading-[38px] mb-[13px] max-w-[342px] w-[342px]"
+              className=" font-semibold text-[#2A4035] text-[30px] leading-[38px] mb-[13px] max-w-[342px] w-[342px]"
               style={{
                 fontWeight: 600,
                 lineHeight: "38px",
@@ -61,7 +61,7 @@ export function CanopyInsightBanner() {
               Canopy Insights
             </h1>
             <p
-              className="font-open-sans text-[#777777] text-[13px] leading-[19px] max-w-[342px] w-[342px]"
+              className=" text-[#777777] text-[13px] leading-[19px] max-w-[342px] w-[342px]"
               style={{
                 fontWeight: 400,
                 lineHeight: "19px",

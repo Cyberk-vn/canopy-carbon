@@ -260,7 +260,7 @@ const StaticImageLayoutTablet = ({ data }: { data: StaticLayoutData }) => {
         }}
       >
         <p
-          className="font-open-sans text-center"
+          className=" text-center"
           style={{
             fontSize: "17px", // 24px × 0.711
             fontWeight: 300,
@@ -290,7 +290,7 @@ const StaticImageLayoutTablet = ({ data }: { data: StaticLayoutData }) => {
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <motion.span
-            className="font-open-sans"
+            className=""
             style={{
               fontSize: "11px", // 16px × 0.711
               fontWeight: 400,
@@ -404,7 +404,7 @@ const StaticImageLayoutLargeTablet = ({ data }: { data: StaticLayoutData }) => {
         }}
       >
         <p
-          className="font-open-sans text-center"
+          className=" text-center"
           style={{
             fontSize: "21px", // 24px × 0.889
             fontWeight: 300,
@@ -434,7 +434,7 @@ const StaticImageLayoutLargeTablet = ({ data }: { data: StaticLayoutData }) => {
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <motion.span
-            className="font-open-sans"
+            className=""
             style={{
               fontSize: "14px", // 16px × 0.889
               fontWeight: 400,
@@ -548,7 +548,7 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
         }}
       >
         <p
-          className="font-open-sans text-center"
+          className=" text-center"
           style={{
             fontSize: "24px",
             fontWeight: 300,
@@ -578,7 +578,7 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
           <motion.span
-            className="font-open-sans"
+            className=""
             style={{
               fontSize: "16px",
               fontWeight: 400,
@@ -697,7 +697,7 @@ const DescriptionSectionInlineTablet = ({
             style={{ left: 0, top: "99px", width: "488px", height: "128px" }} // Scaled from 139px/686px/180px
           >
             <p
-              className="font-open-sans"
+              className=""
               style={{
                 fontSize: "20px", // 28px × 0.711
                 fontWeight: 300,
@@ -806,7 +806,7 @@ const DescriptionSectionInlineLargeTablet = ({
             style={{ left: 0, top: "124px", width: "610px", height: "160px" }} // Scaled from 139px/686px/180px
           >
             <p
-              className="font-open-sans"
+              className=""
               style={{
                 fontSize: "25px", // 28px × 0.889
                 fontWeight: 300,
@@ -915,7 +915,7 @@ const DescriptionSectionInline = ({
             style={{ left: 0, top: "139px", width: "686px", height: "180px" }}
           >
             <p
-              className="font-open-sans"
+              className=""
               style={{
                 fontSize: "28px",
                 fontWeight: 300,

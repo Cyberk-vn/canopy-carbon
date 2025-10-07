@@ -197,7 +197,7 @@ const AnimatedTextContent = memo(
           animate="center"
           exit="exit"
           transition={transitionConfig}
-          className="font-open-sans font-bold text-[#5B5F58] text-center text-[12px] xxs:text-[13px] xs:text-[14px] md:text-[16px]"
+          className=" font-bold text-[#5B5F58] text-center text-[12px] xxs:text-[13px] xs:text-[14px] md:text-[16px]"
           style={{
             lineHeight: "20px",
             letterSpacing: "0.03",
@@ -213,7 +213,7 @@ const AnimatedTextContent = memo(
           animate="center"
           exit="exit"
           transition={transitionConfig}
-          className="font-open-sans font-normal text-[#5B5F58] text-center text-[11.5px] xxs:text-[12px] xs:text-[13px] md:text-[14px]"
+          className=" font-normal text-[#5B5F58] text-center text-[11.5px] xxs:text-[12px] xs:text-[13px] md:text-[14px]"
           style={{
             lineHeight: "15px",
           }}
