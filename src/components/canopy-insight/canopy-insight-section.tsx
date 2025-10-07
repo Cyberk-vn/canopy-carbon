@@ -54,7 +54,7 @@ export function CanopyInsightSection() {
           />
         </div>
 
-        <div className="relative flex flex-1 flex-col items-center pt-25 lg:pt-0 lg:justify-center gap-11 lg:flex-row lg:container lg:mx-auto px-6 lg:px-0">
+        <div className="relative flex flex-1 flex-col items-center pt-25 lg:pt-0 lg:justify-center gap-11 lg:flex-row lg:container lg:mx-auto 2xl:mx-0 px-6 lg:px-0">
           <FadeContent
             duration={500}
             delay={100}
@@ -79,11 +79,11 @@ export function CanopyInsightSection() {
               initialOpacity={0}
               className="canopy-fade-up-content"
             >
-              <div className="mb-3 md:mb-8 lg:mb-14 text-4xl font-work-sans text-[#2A4035] font-semibold md:text-[36px] lg:text-[45px]">
+              <div className="mb-3 md:mb-8 lg:mb-14 text-4xl font-work-sans text-[#2A4035] font-semibold md:text-[36px] lg:text-[45px] xl:text-[64px]">
                 Canopy Insights
               </div>
 
-              <div className="text-sm lg:text-sm md:text-base leading-[24px] text-[#777777] lg:max-w-[622px]">
+              <div className="text-sm lg:text-sm md:text-base xl:text-base leading-[24px] text-[#777777] lg:max-w-[622px]">
                 <p className="hidden sm:block">
                   At Canopy, every strategic decision is grounded in rigorous
                   analysis. Canopy Insights is our dedicated platform for

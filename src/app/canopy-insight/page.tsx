@@ -33,6 +33,7 @@ const CanopyInsightPage = () => {
         <InsightSectionDesktop
           title="Beyond Emissions Reduction: The Strategic Case for Carbon Offsets"
           description="This paper reframes carbon offsets not just as a compensatory tool, but as a strategic enabler in global decarbonisation. It shows how offsets support hard-to-abate sectors, channel finance to climate-positive projects, and bridge the gap while emissions reductions align with net zero. When designed with integrity, carbon offsets are not a concession—but a climate necessity."
+          imageSrcLarge="/assets/desktop/canopy-insight/bayond-emission-card-1-big-screen.png"
         />
       </div>
 

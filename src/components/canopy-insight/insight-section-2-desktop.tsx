@@ -9,6 +9,8 @@ export function InsightSection2Desktop() {
       "This paper traces the Voluntary Carbon Market’s evolution through phases of growth, collapse, and reform. It examines the early boom in activity, the credibility crises that followed, and current efforts to rebuild trust through ICVCM and VCMI. Today’s recalibration phase is viewed as critical to the VCM’s long-term maturity and credibility.",
     imagePosition: "left" as const,
     imageSrc: "/assets/desktop/canopy-insight/bayond-emission-card-2.png",
+    imageSrcLarge:
+      "/assets/desktop/canopy-insight/bayond-emission-card-2-big-screen.png",
   };
 
   return <InsightSectionDesktop {...sectionData} />;

@@ -11,6 +11,7 @@ interface InsightSectionDesktopProps {
   description: string;
   imagePosition?: "left" | "right";
   imageSrc?: string;
+  imageSrcLarge?: string;
 }
 
 export function InsightSectionDesktop({
@@ -18,11 +19,12 @@ export function InsightSectionDesktop({
   description,
   imagePosition = "right",
   imageSrc = "/assets/desktop/canopy-insight/bayond-emission-card-1.png",
+  imageSrcLarge,
 }: InsightSectionDesktopProps) {
   const { redirectToContact } = useContactRedirect();
 
   const textContent = (
-    <div className="flex flex-col justify-between gap-6 bg-white p-6 shadow-[0px_4px_4px_0px_#00000026] lg:max-w-[648px] lg:grow">
+    <div className="flex flex-col justify-between gap-6 bg-white p-6 shadow-[0px_4px_4px_0px_#00000026] lg:max-w-[648px] lg:grow xl:max-w-none 2xl:h-[414px]">
       <FadeContent
         duration={500}
         delay={200}
@@ -30,7 +32,7 @@ export function InsightSectionDesktop({
         easing="ease-out"
         className="flex-1"
       >
-        <p className="font-sans text-xs text-[#6C7173CC] max-w-[517px]">
+        <p className="font-sans text-xs 2xl:text-base text-[#6C7173CC] max-w-[517px] xl:max-w-none">
           {description}
         </p>
       </FadeContent>
@@ -49,7 +51,7 @@ export function InsightSectionDesktop({
             transition: { duration: 0.1, ease: "easeIn" },
           }}
         >
-          <span className="text-xs font-light tracking-wide text-[#00000066] transition-colors duration-200 ease-out group-hover:text-black/60 group-active:text-black/80">
+          <span className="text-xs 2xl:text-sm font-light tracking-wide text-[#00000066] transition-colors duration-200 ease-out group-hover:text-black/60 group-active:text-black/80">
             Request Access
           </span>
           <ChevronRightIcon className="w-4 h-4 text-[#323232]" />
@@ -58,22 +60,39 @@ export function InsightSectionDesktop({
     </div>
   );
   const imageContent = (
-    <div className="relative h-[282px] flex items-center justify-center lg:max-w-[604px]">
+    <div className="relative flex h-[282px] items-center justify-center lg:max-w-[604px] lg:grow xl:max-w-none 2xl:h-[334px] 2xl:max-w-[846px]">
       <FadeContent
         duration={600}
         delay={400}
         threshold={0.1}
         easing="ease-out"
-        className="relative z-20 h-[246px] w-[530px]"
+        className="relative z-20 h-[246px] w-[530px] 2xl:w-[846px] 2xl:h-[333px]"
       >
-        <Image src={imageSrc} alt={title} fill className="object-cover" />
+        {imageSrcLarge ? (
+          <>
+            <Image
+              src={imageSrc}
+              alt={title}
+              fill
+              className="object-cover 2xl:hidden"
+            />
+            <Image
+              src={imageSrcLarge}
+              alt={title}
+              fill
+              className="object-cover hidden 2xl:block"
+            />
+          </>
+        ) : (
+          <Image src={imageSrc} alt={title} fill className="object-cover" />
+        )}
       </FadeContent>
     </div>
   );
 
   return (
     <div className="w-full md:p-12 lg:py-20">
-      <div className="relative mx-auto max-w-[1305px]">
+      <div className="relative mx-auto max-w-[1305px] xl:max-w-none">
         <FadeContent
           duration={500}
           delay={100}
@@ -89,7 +108,7 @@ export function InsightSectionDesktop({
         <div
           className={`flex flex-col gap-8 bg-[#F7F7F7] p-6 md:p-8 lg:flex-row ${
             imagePosition === "left" ? "lg:flex-row-reverse" : ""
-          }`}
+          } 2xl:items-center 2xl:gap-20 2xl:p-7`}
         >
           {textContent}
           {imageContent}
