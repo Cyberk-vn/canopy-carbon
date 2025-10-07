@@ -175,14 +175,8 @@ export function NavigationMenu({
                   <Link
                     key={index}
                     href={item.url}
-                    className="nav-link-default flex items-center justify-center px-1.5 py-1 text-center transition-colors duration-200 flex-1"
+                    className="nav-link-default font-work-sans text-xs uppercase 2xl:text-base flex items-center justify-center px-1.5 py-1 text-center transition-colors duration-200 flex-1"
                     style={{
-                      fontStyle: "normal",
-                      textTransform: "uppercase",
-                      fontSize: "12px",
-                      fontWeight: 400,
-                      lineHeight: "2em",
-                      fontFamily: "Work Sans, sans-serif",
                       color: isActive
                         ? NAVIGATION_COLORS.active
                         : NAVIGATION_COLORS.default,
