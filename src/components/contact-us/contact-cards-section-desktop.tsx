@@ -192,10 +192,17 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
   return (
     <div className="relative w-full">
       <Image
+        src="/assets/desktop/contact-us/contact-us-bg-big-screen.png"
+        alt="Contact us background big screen"
+        fill
+        className="hidden 2xl:block"
+        priority
+      />
+      <Image
         src="/assets/desktop/contact-us/contact-us-background-image.png"
         alt="Contact us background"
         fill
-        className="hidden xl:block object-contain 2xl:object-cover"
+        className="hidden lg:block 2xl:hidden"
         priority
       />
       <Image
@@ -215,11 +222,11 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
         />
 
         <main className="flex-grow md:pt-10 md:pb-50 md:px-18">
-          <div className="flex flex-col-reverse items-center gap-14 xl:flex-row xl:items-start xl:justify-center xl:gap-11">
-            <div className="w-full xl:w-[620px] xl:pt-15">
+          <div className="flex flex-col-reverse items-center gap-14 xl:flex-row xl:items-start xl:justify-center lg:gap-11 2xl:gap-[130px]">
+            <div className="w-full xl:w-[620px] 2xl:w-[794px] xl:pt-15">
               <ConnectWithUsForm />
             </div>
-            <div className="w-full xl:w-[667px] xl:pt-20">
+            <div className="w-full xl:w-[667px] 2xl:w-[800px] xl:pt-20">
               <CardGroup cards={cards} />
             </div>
           </div>
