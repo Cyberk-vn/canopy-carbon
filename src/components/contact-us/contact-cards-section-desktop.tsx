@@ -171,7 +171,7 @@ const CardGroup = ({ cards }: { cards: ContactCardsProps["cards"] }) => (
           <h3 className="mb-4 text-center font-sans text-base font-bold leading-tight text-black">
             {card.title}
           </h3>
-          <p className="text-center font-sans text-xs leading-tight text-[#6C6C6C]">
+          <p className="text-center font-sans text-xs leading-[20px] text-[#6C6C6C]">
             {card.description}
           </p>
         </div>
@@ -195,14 +195,14 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
         src="/assets/desktop/contact-us/contact-us-background-image.png"
         alt="Contact us background"
         fill
-        className="hidden object-cover xl:block"
+        className="hidden xl:block object-contain 2xl:object-cover"
         priority
       />
       <Image
         src="/assets/desktop/contact-us/contact-us-bg-tablet.png"
         alt="Contact us background tablet"
         fill
-        className="object-cover xl:hidden h-full"
+        className="xl:hidden h-full"
         priority
       />
 
