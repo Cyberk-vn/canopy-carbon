@@ -22,7 +22,7 @@ export function InsightSectionDesktop({
   const { redirectToContact } = useContactRedirect();
 
   const textContent = (
-    <div className="flex flex-col justify-between gap-6 bg-white p-6 lg:max-w-[604px] lg:grow">
+    <div className="flex flex-col justify-between gap-6 bg-white p-6 shadow-[0px_4px_4px_0px_#00000026] lg:max-w-[648px] lg:grow">
       <FadeContent
         duration={500}
         delay={200}
@@ -30,7 +30,7 @@ export function InsightSectionDesktop({
         easing="ease-out"
         className="flex-1"
       >
-        <p className="font-sans text-sm font-normal leading-tight -tracking-tighter text-[#6C7173]/80">
+        <p className="font-sans text-xs text-[#6C7173CC] max-w-[517px]">
           {description}
         </p>
       </FadeContent>
@@ -49,24 +49,22 @@ export function InsightSectionDesktop({
             transition: { duration: 0.1, ease: "easeIn" },
           }}
         >
-          <span className="font-sans text-base font-normal leading-tight text-black/40 transition-colors duration-200 ease-out group-hover:text-black/60 group-active:text-black/80">
+          <span className="text-xs font-light tracking-wide text-[#00000066] transition-colors duration-200 ease-out group-hover:text-black/60 group-active:text-black/80">
             Request Access
           </span>
-          <ChevronRightIcon />
+          <ChevronRightIcon className="w-4 h-4 text-[#323232]" />
         </motion.button>
       </FadeContent>
     </div>
   );
-
   const imageContent = (
-    <div className="relative h-[282px] w-full lg:max-w-[604px] lg:grow">
-      <div className="absolute inset-0 z-10 shadow-[0_4px_16px_rgba(1,27,13,0.3)]" />
+    <div className="relative h-[282px] flex items-center justify-center lg:max-w-[604px]">
       <FadeContent
         duration={600}
         delay={400}
         threshold={0.1}
         easing="ease-out"
-        className="relative z-20 h-full w-full"
+        className="relative z-20 h-[246px] w-[530px]"
       >
         <Image src={imageSrc} alt={title} fill className="object-cover" />
       </FadeContent>
@@ -75,7 +73,7 @@ export function InsightSectionDesktop({
 
   return (
     <div className="w-full md:p-12 lg:py-20">
-      <div className="mx-auto max-w-[1305px]">
+      <div className="relative mx-auto max-w-[1305px]">
         <FadeContent
           duration={500}
           delay={100}
@@ -96,6 +94,7 @@ export function InsightSectionDesktop({
           {textContent}
           {imageContent}
         </div>
+        <div className="absolute -bottom-10 right-0 h-0 w-[636.11px] border-t border-[#DFE2E5]" />
       </div>
     </div>
   );
