@@ -1,6 +1,4 @@
 import {
-  CanopyInsightBanner,
-  CanopyInsightBannerDesktop,
   CanopyPortfolioSection,
   CanopyPortfolioSectionDesktop,
   InsightSection,
@@ -10,20 +8,14 @@ import {
   InsightSection3,
   InsightSection3Desktop,
 } from "@/src/components/canopy-insight";
+import CanopyInsightSection from "@/src/components/canopy-insight/canopy-insight-section";
 import { FooterSection } from "@/src/components/common";
 
 const CanopyInsightPage = () => {
   return (
     <div className="min-h-screen bg-white">
-      {/* Render both banners and use CSS to show/hide - prevents flash */}
-      <div className="block md:hidden">
-        <CanopyInsightBanner />
-      </div>
-      <div className="hidden md:block">
-        <CanopyInsightBannerDesktop />
-      </div>
+      <CanopyInsightSection />
 
-      {/* Responsive Insight Section 1 - Overlapping banner by 241px */}
       <div className="block md:hidden relative -mt-[221px] z-20">
         <InsightSection
           title="Beyond Emissions Reduction: The Strategic Case for Carbon Offsets"
@@ -41,11 +33,9 @@ const CanopyInsightPage = () => {
         <InsightSectionDesktop
           title="Beyond Emissions Reduction: The Strategic Case for Carbon Offsets"
           description="This paper reframes carbon offsets not just as a compensatory tool, but as a strategic enabler in global decarbonisation. It shows how offsets support hard-to-abate sectors, channel finance to climate-positive projects, and bridge the gap while emissions reductions align with net zero. When designed with integrity, carbon offsets are not a concession—but a climate necessity."
-          showDecorators={true}
         />
       </div>
 
-      {/* Responsive Insight Section 2 */}
       <div className="block md:hidden">
         <InsightSection2 />
       </div>
@@ -53,7 +43,6 @@ const CanopyInsightPage = () => {
         <InsightSection2Desktop />
       </div>
 
-      {/* Responsive Insight Section 3 */}
       <div className="block md:hidden">
         <InsightSection3 />
       </div>
@@ -61,7 +50,6 @@ const CanopyInsightPage = () => {
         <InsightSection3Desktop />
       </div>
 
-      {/* Responsive Portfolio Section */}
       <div className="block md:hidden">
         <CanopyPortfolioSection />
       </div>

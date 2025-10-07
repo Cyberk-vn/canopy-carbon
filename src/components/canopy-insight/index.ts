@@ -1,5 +1,4 @@
-export { default as CanopyInsightBanner } from "./canopy-insight-banner"
-export { default as CanopyInsightBannerDesktop } from "./canopy-insight-banner-desktop"
+export { default as CanopyInsightBannerDesktop } from "./canopy-insight-section"
 export { default as InsightSection } from "./insight-section"
 export { default as InsightSectionDesktop } from "./insight-section-desktop"
 export { default as InsightSection2 } from "./insight-section-2"
