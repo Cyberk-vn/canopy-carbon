@@ -8,6 +8,7 @@ import {
   useSimpleMotion,
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
+import { Container } from "../../shared";
 import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 
 // Static image imports - Group 1
@@ -27,6 +28,9 @@ import ArrOperatingImg from "../../../../public/assets/desktop/about-us/our-proj
 import ReddOperatingImg from "../../../../public/assets/desktop/about-us/our-project/redd-operating-img.png";
 import CommunityImg from "../../../../public/assets/desktop/about-us/our-project/community-img.png";
 
+// Background image
+import Side2BackgroundImage from "../../../../public/assets/desktop/about-us/side-2-background-image.svg";
+
 // Logo and decorative elements
 import CanopyLogo from "../../../../public/assets/desktop/about-us/canopy-development-logo.svg";
 import DotDecorator from "../../../../public/assets/desktop/about-us/dot-decorater-img.svg";
@@ -43,28 +47,21 @@ interface InlineDescriptionData {
   backgroundImage: string | StaticImageData;
 }
 
-interface DesktopViewProps {
+interface TabletViewProps {
   data?: OurProjectSectionProps["data"];
 }
 
-// Helper function to create responsive value for desktop with 3 breakpoints
-// 1280px-1440px-2200px: Smooth scaling across the range
-const createResponsiveValue = (
-  value1280: number,
-  value1440: number,
-  value2200: number
-): string => {
+// Helper function to create responsive value for tablet with 2 breakpoints
+// 768px-1280px: Smooth scaling across the range
+const createResponsiveValue = (value768: number, value1280: number): string => {
   return `clamp(
-    ${value1280}px,
-    min(
-      calc(${value1280}px + (${value1440} - ${value1280}) * ((100vw - 1280px) / 160)),
-      calc(${value1440}px + (${value2200} - ${value1440}) * ((100vw - 1440px) / 760))
-    ),
-    ${value2200}px
+    ${value768}px,
+    calc(${value768}px + (${value1280} - ${value768}) * ((100vw - 768px) / 512)),
+    ${value1280}px
   )`;
 };
 
-// Default data for the desktop view
+// Default data for the tablet view
 const defaultData = {
   staticLayoutData: {
     description:
@@ -77,11 +74,11 @@ const defaultData = {
   descriptionData: {
     mainText:
       "At Canopy, we're institutionalizing the NBS carbon project model—bringing executional discipline, radical transparency, and long-term vision to deliver large-scale, high-integrity projects that anchor the emergence of carbon as a legitimate asset class.",
-    backgroundImage: "/assets/desktop/about-us/side-2-background-image.svg",
+    backgroundImage: Side2BackgroundImage,
   },
 };
 
-export const DesktopView = memo<DesktopViewProps>(({ data = defaultData }) => {
+export const TabletView = memo<TabletViewProps>(({ data = defaultData }) => {
   const { staticLayoutData = defaultData.staticLayoutData, descriptionData } =
     data;
 
@@ -89,121 +86,112 @@ export const DesktopView = memo<DesktopViewProps>(({ data = defaultData }) => {
   const { redirectToContact } = useContactRedirect();
 
   // Simple Motion animations
-  const containerMotion = useSimpleMotion("about-project-desktop-container");
-  const desktopStaticMotion = useSimpleMotion("about-project-desktop-static");
-  const desktopDescriptionMotion = useSimpleMotion(
-    "about-project-desktop-description"
+  const containerMotion = useSimpleMotion("about-project-tablet-container");
+  const tabletDescriptionMotion = useSimpleMotion(
+    "about-project-tablet-description"
   );
 
   return (
-    <div
-      className="mx-auto"
-      style={{
-        maxWidth: "2200px",
-        paddingLeft: "25px",
-        paddingRight: "25px",
-        marginTop: createResponsiveValue(77, 86, 131),
-      }}
-    >
-      {/* Desktop Layout ≥1280px - Max width 2200px with 25px horizontal padding */}
+    <Container maxWidth="full" className="mx-auto">
+      {/* Responsive Layout 768px-1280px - Smooth scaling */}
       <motion.section
         {...SIMPLE_ANIMATIONS.fadeInUp}
         {...containerMotion}
-        className="hidden xl:block h-full"
+        className="hidden md:block xl:hidden h-full"
+        style={{
+          paddingLeft: "25px",
+          paddingRight: "25px",
+          marginTop: createResponsiveValue(46, 77),
+        }}
       >
         <div className="w-full">
-          {/* Desktop Layout - Row (Vertical Stack) */}
+          {/* Tablet Layout - Vertical Stack */}
           <div
-            className="flex flex-col items-start"
-            style={{ gap: createResponsiveValue(9, 10, 15) }}
+            className="flex flex-col items-start w-full"
+            style={{ gap: createResponsiveValue(5, 9) }}
           >
-            {/* Side 1 */}
-            <motion.div
-              {...SIMPLE_ANIMATIONS.fadeInUp}
-              {...desktopStaticMotion}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="w-full relative z-[2] flex flex-col items-end"
+            {/* Side 1 - Static Image Layout (Tablet) */}
+            <div
+              className="w-full relative z-[2] flex flex-col items-center"
               style={{
-                height: createResponsiveValue(637, 716, 1094),
+                height: createResponsiveValue(381, 637),
                 backgroundColor: "rgba(250, 250, 250, 0.6)",
-                borderRadius: createResponsiveValue(18, 20, 31),
+                borderRadius: createResponsiveValue(11, 18),
                 padding: `${createResponsiveValue(
-                  71,
-                  80,
-                  122
-                )}px ${createResponsiveValue(107, 120, 183)}px`,
-                gap: createResponsiveValue(57, 64, 98),
+                  43,
+                  71
+                )}px ${createResponsiveValue(64, 107)}px`,
+                gap: createResponsiveValue(34, 57),
               }}
             >
-              <StaticImageLayout
+              <StaticImageLayoutTablet
                 data={{
                   ...staticLayoutData,
                   buttonAction: redirectToContact,
                 }}
               />
-            </motion.div>
+            </div>
 
-            {/* Side 2 - Description */}
-            <motion.div
-              {...SIMPLE_ANIMATIONS.fadeInUp}
-              {...desktopDescriptionMotion}
-              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-              className="w-full relative z-[1] flex flex-col mt-[68px] 3xl:mb-[111px]"
+            {/* Side 2 - Description (Tablet) */}
+            <div
+              className="w-full relative z-[1] flex flex-col mt-[100px]"
               style={{
-                gap: createResponsiveValue(9, 10, 15),
+                gap: createResponsiveValue(5, 9),
               }}
             >
-              <DescriptionSectionInline data={descriptionData} />
-            </motion.div>
+              <DescriptionSectionInlineTablet data={descriptionData} />
+            </div>
           </div>
         </div>
       </motion.section>
-    </div>
+    </Container>
   );
 });
 
-DesktopView.displayName = "DesktopView";
+TabletView.displayName = "TabletView";
 
-// Static Image Layout Component (Desktop)
-const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
+// Static Image Layout Component (Tablet) - Proportionally scaled with clamp
+const StaticImageLayoutTablet = ({ data }: { data: StaticLayoutData }) => {
   const { description, buttonText, buttonAction } = data;
 
-  // Image stack configuration for Group 1 (5 images)
-  const imageStackGroup1 = [
+  // Image stack configuration for Group 1
+  // Image 1 (root) is fully visible on top, subsequent images stack behind from left to right
+  // Rear images are positioned HIGHER (smaller top offset) than front images
+  const imageStack = [
     {
       src: ProjectScreeningImg,
       alt: "Project Screening",
-      zIndex: 5,
-      topOffset: 20,
-      leftMultiplier: 0,
+      zIndex: 5, // Front-most, fully visible on top
+      topOffset: 20, // Front image is LOWER (larger offset)
+      leftMultiplier: 0, // Base position (leftmost)
     },
     {
       src: PreFeasibilityImg,
       alt: "Pre-Feasibility",
-      zIndex: 4,
-      topOffset: 15,
-      leftMultiplier: 0.3,
+      zIndex: 4, // Behind Image 1
+      topOffset: 15, // 5px HIGHER than Image 1
+      leftMultiplier: 0.3, // 30% to the right (70% covered by Image 1)
     },
     {
       src: FeasibilityImg,
       alt: "Feasibility",
-      zIndex: 3,
-      topOffset: 10,
-      leftMultiplier: 0.6,
+      zIndex: 3, // Behind Image 2
+      topOffset: 10, // 5px HIGHER than Image 2
+      leftMultiplier: 0.6, // 60% to the right (70% covered by Image 2)
     },
     {
       src: CreditSaleImg,
       alt: "Credit Sale",
-      zIndex: 2,
-      topOffset: 5,
-      leftMultiplier: 0.9,
+      zIndex: 2, // Behind Image 3
+      topOffset: 5, // 5px HIGHER than Image 3
+      leftMultiplier: 0.9, // 90% to the right (70% covered by Image 3)
     },
     {
       src: ValidationImg,
       alt: "Validation",
-      zIndex: 1,
-      topOffset: 0,
-      leftMultiplier: 1.2,
+      zIndex: 1, // Back-most
+      topOffset: 0, // Back image is HIGHEST (smallest offset)
+      leftMultiplier: 1.2, // 120% to the right (70% covered by Image 4)
     },
   ];
 
@@ -212,21 +200,21 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
       {/* Image Group Content - Horizontal Layout filling width */}
       <div
         className="flex items-center justify-between w-full"
-        style={{
-          gap: createResponsiveValue(35, 40, 61),
-          paddingLeft: createResponsiveValue(0, 148, 200.22),
-        }}
+        style={{ gap: createResponsiveValue(20, 35) }}
       >
-        {/* Group 1 - Nested Image Stack with Animation (5 images) */}
-        <div className="flex-1 flex items-center justify-center">
+        {/* Group 1 - Nested Image Stack with Animation */}
+        <div className="flex-1 relative flex items-center justify-center">
           <div
             className="relative"
             style={{
-              width: createResponsiveValue(364, 407, 622), // 185*2.2 for 5 images with 70% overlap
-              height: createResponsiveValue(278, 313, 478), // 258 + 20px offset
+              width: createResponsiveValue(244, 407), // 111*2.2 to 185*2.2 (enough for 5 images with 70% overlap)
+              height: createResponsiveValue(175, 278), // 155 + 20px offset
             }}
           >
-            {imageStackGroup1.map((image, index) => {
+            {imageStack.map((image, index) => {
+              // "Card Dealing" Animation Effect:
+              // Image 1 (root): Quick fade-in with slight downward movement, finishes first
+              // Images 2-5: Slide up sequentially from bottom, creating stacking effect
               const isRootImage = index === 0;
 
               return (
@@ -234,23 +222,31 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                   key={index}
                   className="absolute"
                   style={{
-                    left: `calc(${createResponsiveValue(165, 185, 283)} * ${
+                    left: `calc(${createResponsiveValue(111, 185)} * ${
                       image.leftMultiplier
                     })`,
                     top: `${image.topOffset}px`,
                     zIndex: image.zIndex,
                   }}
-                  initial={isRootImage ? { opacity: 0, y: -10 } : { y: 60 }}
-                  animate={isRootImage ? { opacity: 1, y: 0 } : { y: 0 }}
+                  initial={
+                    isRootImage
+                      ? { opacity: 0, y: -10 } // Root: fade in with slight downward movement
+                      : { y: 60 } // Others: start below, slide up (no fade)
+                  }
+                  animate={
+                    isRootImage
+                      ? { opacity: 1, y: 0 } // Root: fade and settle into position
+                      : { y: 0 } // Others: slide to final position
+                  }
                   transition={
                     isRootImage
                       ? {
-                          duration: 0.3,
+                          duration: 0.3, // Quick fade for root
                           ease: "easeOut",
                         }
                       : {
-                          duration: 0.4,
-                          delay: 0.3 + (index - 1) * 0.08,
+                          duration: 0.4, // Smooth slide for others
+                          delay: 0.3 + (index - 1) * 0.08, // Start after root, staggered
                           ease: "easeOut",
                         }
                   }
@@ -263,13 +259,13 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                   <Image
                     src={image.src}
                     alt={image.alt}
-                    width={185}
-                    height={258}
+                    width={111}
+                    height={155}
                     className="object-contain"
                     priority
                     style={{
-                      width: createResponsiveValue(165, 185, 283),
-                      height: createResponsiveValue(230, 258, 394),
+                      width: createResponsiveValue(111, 185),
+                      height: createResponsiveValue(155, 258),
                       filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))",
                     }}
                   />
@@ -284,8 +280,8 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
           <div
             className="relative"
             style={{
-              width: createResponsiveValue(264, 296, 453), // 185*1.6 for 3 images
-              height: createResponsiveValue(238, 268, 409),
+              width: createResponsiveValue(178, 296), // 111*1.6 to 185*1.6 (enough for 3 images with 70% overlap)
+              height: createResponsiveValue(165, 268), // 155 + 10px offset
             }}
           >
             {[
@@ -318,7 +314,7 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                   key={index}
                   className="absolute"
                   style={{
-                    left: `calc(${createResponsiveValue(165, 185, 283)} * ${
+                    left: `calc(${createResponsiveValue(111, 185)} * ${
                       image.leftMultiplier
                     })`,
                     top: `${image.topOffset}px`,
@@ -347,13 +343,13 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                   <Image
                     src={image.src}
                     alt={image.alt}
-                    width={185}
-                    height={258}
+                    width={111}
+                    height={155}
                     className="object-contain"
                     priority
                     style={{
-                      width: createResponsiveValue(165, 185, 283),
-                      height: createResponsiveValue(230, 258, 394),
+                      width: createResponsiveValue(111, 185),
+                      height: createResponsiveValue(155, 258),
                       filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))",
                     }}
                   />
@@ -368,8 +364,8 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
           <div
             className="relative"
             style={{
-              width: createResponsiveValue(264, 296, 453),
-              height: createResponsiveValue(238, 268, 409),
+              width: createResponsiveValue(178, 296), // 111*1.6 to 185*1.6 (enough for 3 images with 70% overlap)
+              height: createResponsiveValue(165, 268), // 155 + 10px offset
             }}
           >
             {[
@@ -402,7 +398,7 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                   key={index}
                   className="absolute"
                   style={{
-                    left: `calc(${createResponsiveValue(165, 185, 283)} * ${
+                    left: `calc(${createResponsiveValue(111, 185)} * ${
                       image.leftMultiplier
                     })`,
                     top: `${image.topOffset}px`,
@@ -431,13 +427,13 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                   <Image
                     src={image.src}
                     alt={image.alt}
-                    width={185}
-                    height={258}
+                    width={111}
+                    height={155}
                     className="object-contain"
                     priority
                     style={{
-                      width: createResponsiveValue(165, 185, 283),
-                      height: createResponsiveValue(230, 258, 394),
+                      width: createResponsiveValue(111, 185),
+                      height: createResponsiveValue(155, 258),
                       filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))",
                     }}
                   />
@@ -452,20 +448,20 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
       <div
         className="flex flex-col items-center rounded-lg mx-auto"
         style={{
-          width: createResponsiveValue(1043, 1170, 1788), // Figma: 1170px at 1440px
+          width: createResponsiveValue(702, 1170), // Figma: 702px at 768px → 1170px at 1280px
           backgroundColor: "#F7F7F7",
-          padding: "25px 20px", // Fixed padding
-          gap: createResponsiveValue(36, 40, 61), // Figma: 40px gap at 1440px
+          padding: "25px 20px", // Fixed padding: 25px vertical, 20px horizontal
+          gap: createResponsiveValue(24, 40), // Figma: 24px gap
         }}
       >
         <p
-          className=" text-center"
+          className="font-open-sans text-center"
           style={{
-            fontSize: createResponsiveValue(27, 30, 46), // Figma: 30px at 1440px
+            fontSize: createResponsiveValue(18, 30), // Figma: 18px at 768px
             fontWeight: 600, // Figma: Semi Bold (600)
             lineHeight: "1.4em", // Figma: 1.4em
             color: "#C4CCD3", // Figma: #C4CCD3
-            width: createResponsiveValue(985, 1105, 1689), // Figma: 1105px at 1440px
+            width: createResponsiveValue(663, 1105), // Figma: 663.09px at 768px
           }}
         >
           {description}
@@ -476,7 +472,7 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
           onClick={buttonAction}
           className="flex items-center"
           style={{
-            gap: createResponsiveValue(12, 13, 20), // Figma: 13px gap at 1440px
+            gap: createResponsiveValue(8, 13), // Figma: 8px gap
           }}
           whileHover={{
             scale: 1.05,
@@ -494,7 +490,7 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
           <motion.span
             className="font-open-sans text-center"
             style={{
-              fontSize: createResponsiveValue(24, 27, 41), // Figma: 27px at 1440px
+              fontSize: createResponsiveValue(16, 27), // Figma: 16px at 768px
               fontWeight: 400, // Figma: Regular (400)
               lineHeight: "1.4em", // Figma: 1.4em
               color: "rgba(0, 0, 0, 0.4)", // Figma: rgba(0, 0, 0, 0.4)
@@ -514,8 +510,8 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
             className="flex items-center justify-center"
             style={{
               opacity: 0.4, // Figma: 0.4 opacity
-              width: createResponsiveValue(36, 40, 61), // Figma: 40px at 1440px
-              height: createResponsiveValue(36, 40, 61),
+              width: createResponsiveValue(24, 40), // Figma: 24px at 768px
+              height: createResponsiveValue(24, 40),
             }}
             whileHover={{
               opacity: 0.6,
@@ -528,8 +524,8 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               style={{
-                width: createResponsiveValue(36, 40, 61),
-                height: createResponsiveValue(36, 40, 61),
+                width: createResponsiveValue(24, 40),
+                height: createResponsiveValue(24, 40),
               }}
               whileHover={{
                 scale: 1.1,
@@ -555,10 +551,9 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
   );
 };
 
-// Inline Description Component (Desktop)
-// Inline Description Component (Desktop) - Redesigned based on Figma
-// Scaled from 1440px base to 1280px-2200px range (ratios: 0.889 - 1.528)
-const DescriptionSectionInline = ({
+// Inline Description Component (Tablet) - Redesigned based on Figma
+// Scaled from 1440px base to 768px-1280px range (ratios: 0.533 - 0.889)
+const DescriptionSectionInlineTablet = ({
   data,
 }: {
   data: InlineDescriptionData;
@@ -569,7 +564,7 @@ const DescriptionSectionInline = ({
     <div
       className="w-full relative overflow-hidden"
       style={{
-        height: createResponsiveValue(484, 545, 833), // Figma: 545px at 1440px
+        height: createResponsiveValue(290, 484), // Figma: 545px at 1440px
       }}
     >
       {/* Background Gradient Layer */}
@@ -577,9 +572,9 @@ const DescriptionSectionInline = ({
         className="absolute"
         style={{
           left: 0,
-          top: createResponsiveValue(-0.21, -0.24, -0.37), // Figma: -0.24px at 1440px
+          top: createResponsiveValue(-0.13, -0.21), // Figma: -0.24px at 1440px
           width: "100%",
-          height: createResponsiveValue(634, 713, 1090), // Figma: 713.42px at 1440px
+          height: createResponsiveValue(380, 634), // Figma: 713.42px at 1440px
           background:
             "linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.7) 28%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 100%)",
         }}
@@ -588,24 +583,24 @@ const DescriptionSectionInline = ({
         transition={{ duration: 0.6, ease: "easeOut" }}
       />
 
-      {/* Vertical Background Card - Grows from height 0 to max height */}
+      {/* Vertical Background Card - Grows from height 0 to max height AFTER parent animation ends */}
       <motion.div
         className="absolute z-[5]"
         style={{
-          left: createResponsiveValue(92, 103, 157), // Figma: 103px at 1440px
-          bottom: createResponsiveValue(33, 37, 56), // Position from bottom
-          width: createResponsiveValue(211, 237, 362), // Figma: 237px at 1440px
+          left: createResponsiveValue(55, 92), // Figma: 103px at 1440px
+          bottom: createResponsiveValue(20, 33), // Position from bottom to grow upward
+          width: createResponsiveValue(126, 211), // Figma: 237px at 1440px
           backgroundColor: "#F9F9F9",
-          transformOrigin: "bottom",
+          transformOrigin: "bottom", // Grow from bottom to top
         }}
         initial={{ height: 0, opacity: 0 }}
         animate={{
-          height: createResponsiveValue(446, 502, 767), // Figma: 502px at 1440px
+          height: createResponsiveValue(268, 446), // Figma: 502px at 1440px
           opacity: 1,
         }}
         transition={{
           duration: 0.8,
-          delay: 1.0,
+          delay: 1.0, // Start after parent animation ends (0.4s delay + 0.6s duration = 1.0s)
           ease: "easeOut",
         }}
       />
@@ -614,16 +609,16 @@ const DescriptionSectionInline = ({
       <motion.div
         className="absolute z-10"
         style={{
-          left: createResponsiveValue(100, 112, 171), // Figma: 112px at 1440px
-          top: createResponsiveValue(59, 66, 101), // Figma: 65.98px at 1440px
-          width: createResponsiveValue(195, 219, 335), // Figma: 219px at 1440px
-          height: createResponsiveValue(135, 152, 232), // Figma: 152px at 1440px
+          left: createResponsiveValue(60, 100), // Figma: 112px at 1440px
+          top: createResponsiveValue(35, 59), // Figma: 65.98px at 1440px
+          width: createResponsiveValue(117, 195), // Figma: 219px at 1440px
+          height: createResponsiveValue(81, 135), // Figma: 152px at 1440px
         }}
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{
           duration: 0.6,
-          delay: 1.3,
+          delay: 1.3, // Appear shortly after Vertical Card starts
           ease: "easeOut",
         }}
       >
@@ -641,15 +636,15 @@ const DescriptionSectionInline = ({
         className="absolute z-10"
         style={{
           left: 0,
-          top: createResponsiveValue(254, 286, 437), // Figma: 285.98px at 1440px
-          width: createResponsiveValue(89, 100, 153), // Figma: 100px at 1440px
-          height: createResponsiveValue(148, 166, 254), // Figma: 166px at 1440px
+          top: createResponsiveValue(152, 254), // Figma: 285.98px at 1440px
+          width: createResponsiveValue(53, 89), // Figma: 100px at 1440px
+          height: createResponsiveValue(88, 148), // Figma: 166px at 1440px
         }}
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{
           duration: 0.6,
-          delay: 1.4,
+          delay: 1.4, // Appear after logo
           ease: "easeOut",
         }}
       >
@@ -666,23 +661,23 @@ const DescriptionSectionInline = ({
       <motion.div
         className="absolute z-20"
         style={{
-          left: createResponsiveValue(387, 435, 665), // Figma: 435px at 1440px
-          top: createResponsiveValue(96, 108, 165), // Figma: 107.98px at 1440px
-          width: createResponsiveValue(654, 736, 1125), // Figma: 736px at 1440px
-          height: createResponsiveValue(207, 233, 356), // Figma: 233px at 1440px
+          left: createResponsiveValue(232, 387), // Figma: 435px at 1440px
+          top: createResponsiveValue(58, 96), // Figma: 107.98px at 1440px
+          width: createResponsiveValue(392, 654), // Figma: 736px at 1440px
+          height: createResponsiveValue(124, 207), // Figma: 233px at 1440px
         }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: 0.7,
-          delay: 1.5,
+          delay: 1.5, // Appear after decorative elements
           ease: "easeOut",
         }}
       >
         <p
           className="font-work-sans"
           style={{
-            fontSize: createResponsiveValue(21, 24, 37), // Figma: 24px at 1440px
+            fontSize: createResponsiveValue(13, 21), // Figma: 24px at 1440px (scaled down)
             fontWeight: 600, // Figma: Semi Bold
             lineHeight: "1.4em", // Figma: 1.4em
             letterSpacing: "-1%", // Figma: -1%
@@ -694,25 +689,24 @@ const DescriptionSectionInline = ({
         </p>
       </motion.div>
 
-      {/* Horizontal Background Card - Grows from width 0 to max width (constrained to container) */}
+      {/* Horizontal Background Card - Grows from width 0 to max width AFTER parent animation ends */}
       <motion.div
         className="absolute z-[1]"
         style={{
           left: 0,
-          top: createResponsiveValue(355, 399, 610), // Figma: 398.98px at 1440px
-          height: createResponsiveValue(130, 146, 223), // Figma: 146px at 1440px
+          top: createResponsiveValue(213, 355), // Figma: 398.98px at 1440px
+          height: createResponsiveValue(78, 130), // Figma: 146px at 1440px
           backgroundColor: "#91A69E",
-          transformOrigin: "left",
-          maxWidth: "100%", // Ensure it doesn't overflow the container
+          transformOrigin: "left", // Grow from left to right
         }}
         initial={{ width: 0, opacity: 0 }}
         animate={{
-          width: `min(${createResponsiveValue(1175, 1322, 2020)}, 100%)`, // Max 2020px but constrained to container
+          width: createResponsiveValue(705, 1175), // Figma: 1322px at 1440px
           opacity: 1,
         }}
         transition={{
           duration: 0.8,
-          delay: 1.2,
+          delay: 1.2, // Start slightly after Vertical Card starts (1.0s + 0.2s stagger)
           ease: "easeOut",
         }}
       />

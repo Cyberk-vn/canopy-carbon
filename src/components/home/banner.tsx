@@ -346,7 +346,7 @@ export function Banner({
       <div className="hidden xxl:block absolute lg:top-[600px] xl:top-[650px] 2xl:top-[803px] left-0 right-0 h-[920px] bg-[#FCFCFC] z-0"></div>
 
       {/* Tablet/Medium Desktop Layout - 768px to 1024px */}
-      <div className="hidden md:block lg:hidden absolute inset-0 z-10 bg-[#FCFCFC] h-full">
+      <div className="hidden md:block lg:hidden absolute inset-0 z-10 bg-[#FCFCFC] h-full" style={{ pointerEvents: 'none' }}>
         <Container maxWidth="full" padding="none" className="h-full">
           <div
             className="mx-auto w-full h-full flex flex-col mt-10"
@@ -474,7 +474,7 @@ export function Banner({
       </div>
 
       {/* Desktop Layout - Grid Based */}
-      <div className="hidden lg:block absolute inset-0 z-10">
+      <div className="hidden lg:block absolute inset-0 z-10" style={{ pointerEvents: 'none' }}>
         <Container maxWidth="full" padding="default" className="h-full">
           <div className="max-w-[2200px] mx-auto h-full">
             <div

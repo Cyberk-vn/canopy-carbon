@@ -7,315 +7,348 @@ import {
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
 import FadeContent from "@/src/components/animation/fade-content";
-import { Container } from "../shared";
 
 // Image imports
-import LogoDecorator from "../../../public/assets/desktop/about-us/logo-decorator.svg";
+import LogoDecorator from "../../../public/assets/banner-shared-component/circle.png";
+import CanopyLogo from "../../../public/assets/desktop/about-us/canopy-development-logo.svg";
 
 interface PracticalCard {
   title: string;
   description: string;
-  backgroundColor: string;
-  position: {
-    x: number;
-    y: number;
-  };
+}
+
+interface CardPosition {
+  left1280: number;
+  top1280: number;
+  width1280: number;
+  left1440: number;
+  top1440: number;
+  width1440: number;
+  left2200: number;
+  top2200: number;
+  width2200: number;
 }
 
 const practicalCards: PracticalCard[] = [
   {
     title: "In Line with Global Best Practices",
     description:
-      "We align our projects with globally recognized standards like the ICVCM Core Carbon Principles to ensure top-tier environmental and market integrity.",
-    backgroundColor: "rgba(250, 250, 250, 0.8)",
-    position: { x: 395, y: 0 },
-  },
-  {
-    title: "Co-Benefits at the Core",
-    description:
-      "Beyond carbon, we pursue SDG outcomes and adopt co-benefit labels like CCB to create real impact across environmental and social dimensions.",
-    backgroundColor: "#FCFCFC",
-    position: { x: 334, y: 167 },
-  },
-  {
-    title: "Community-Integrated Design",
-    description:
-      "We place community consultation at the heart of development to ensure local relevance and contextual appropriateness.",
-    backgroundColor: "#FCFCFC",
-    position: { x: 280, y: 327 },
+      "We develop our projects in accordance with globally recognized standards that adhere to rigorous frameworks like the ICVCM Core Carbon Principles—ensuring alignment with the highest levels of environmental and market integrity.",
   },
   {
     title: "Systematic Operational Frameworks",
     description:
-      "Each ARR and forest protection activity follows a structured in-house rollout, shaped by field experience and supported by practical tech and team expertise.",
-    backgroundColor: "#FCFCFC",
-    position: { x: 154, y: 473.72 },
+      "Each ARR and avoided deforestation activity follows a structured in-house rollout strategy, refined through field experience. We also assess practical tech applications and leverage our in-house team to build solutions where relevant.",
+  },
+  {
+    title: "Community-Integrated Design",
+    description:
+      "We embed community consultation and feedback at the core of our development model, ensuring that all activities are contextually appropriate and locally supported.",
+  },
+  {
+    title: "Co-Benefits at the Core",
+    description:
+      "Our strategy goes beyond carbon—pursuing SDG-aligned outcomes and adopting co-benefit labels like CCB to drive real-world impact across environmental, social, and economic dimensions.",
   },
   {
     title: "Market-Aligned Agility",
     description:
-      "We adapt to evolving market and regulatory shifts, aligning flexibly with new methodologies and frameworks like Article 6 and CORSIA.",
-    backgroundColor: "#FFFFFF",
-    position: { x: 0, y: 635.43 },
+      "Our development strategies are built to evolve with shifting regulatory and voluntary market dynamics, enabling flexible alignment with updated methodologies and emerging frameworks such as Article 6 and CORSIA.",
   },
 ];
 
-// Responsive card positions - Tablet (768px-1249px) - Scale ratio: 0.711
-const tabletCardPositions = [
-  { x: 281, y: 0 },
-  { x: 237, y: 119 },
-  { x: 199, y: 233 },
-  { x: 110, y:337 },
-  { x: 0, y: 452 },
+// Desktop: 1280px-2200px with synchronized vertical gaps
+// Card 1: 90px margin-top (constant)
+// Card heights: ~100px (1280px), ~120px (1440px), ~150px (2200px)
+// Vertical gap: 40px between cards (constant across all sizes)
+// Horizontal: Leftward curve scaling proportionally
+const cardPositions: CardPosition[] = [
+  {
+    // Card 1: 90px margin-top, furthest right
+    left1280: 548.49, // Scales from 1440px
+    top1280: 90, // margin (90)
+    width1280: 525.78,
+    left1440: 616.69,
+    top1440: 90, // margin (90)
+    width1440: 591,
+    left2200: 942.31,
+    top2200: 90, // margin (90) - FURTHEST RIGHT
+    width2200: 903.05,
+  },
+  {
+    // Card 2: 40px gap from Card 1
+    left1280: 487.63, // Scales proportionally
+    top1280: 230, // 90 + 100 (height) + 40 (gap)
+    width1280: 521.16,
+    left1440: 548.21,
+    top1440: 250, // 90 + 120 (height) + 40 (gap)
+    width1440: 585.95,
+    left2200: 837.67,
+    top2200: 280, // 90 + 150 (height) + 40 (gap)
+    width2200: 895.41,
+  },
+  {
+    // Card 3: 40px gap from Card 2
+    left1280: 442.28, // Scales proportionally
+    top1280: 370, // 230 + 100 + 40
+    width1280: 498.22,
+    left1440: 497.19,
+    top1440: 410, // 250 + 120 + 40
+    width1440: 560,
+    left2200: 759.67,
+    top2200: 470, // 280 + 150 + 40
+    width2200: 855.68,
+  },
+  {
+    // Card 4: 40px gap from Card 3
+    left1280: 330.06, // Scales proportionally
+    top1280: 510, // 370 + 100 + 40
+    width1280: 498.22,
+    left1440: 371.19,
+    top1440: 570, // 410 + 120 + 40
+    width1440: 560,
+    left2200: 567.34,
+    top2200: 660, // 470 + 150 + 40
+    width2200: 855.68,
+  },
+  {
+    // Card 5: 40px gap from Card 4, furthest left
+    left1280: 193.17, // Scales proportionally
+    top1280: 650, // 510 + 100 + 40
+    width1280: 498.22,
+    left1440: 217.19,
+    top1440: 730, // 570 + 120 + 40
+    width1440: 560,
+    left2200: 331.95,
+    top2200: 850, // 660 + 150 + 40
+    width2200: 855.68,
+  },
 ];
 
-// Responsive card positions - Large Tablet (1250px-1439px) - Scale ratio: 0.889
-const largeTabletCardPositions = [
-  { x: 351, y: 0 },
-  { x: 297, y: 148 },
-  { x: 249, y: 291 },
-  { x: 137, y: 421 },
-  { x: 0, y: 565 },
-];
+// Helper function to create responsive value for desktop with 3 breakpoints
+// 1280px-1440px-2200px: Smooth scaling across all sizes
+const createResponsiveValue = (
+  value1280: number,
+  value1440: number,
+  value2200: number
+): string => {
+  // Two-stage interpolation:
+  // 1280px-1440px: interpolate first section
+  // 1440px-2200px: interpolate second section
+  return `clamp(
+    ${value1280}px,
+    min(
+      calc(${value1280}px + (${value1440} - ${value1280}) * ((100vw - 1280px) / 160)),
+      calc(${value1440}px + (${value2200} - ${value1440}) * ((100vw - 1440px) / 760))
+    ),
+    ${value2200}px
+  )`;
+};
 
 export const OurPracticalSectionDesktop = () => {
   const containerMotion = useSimpleMotion("practical-container");
 
   return (
-    <Container maxWidth="default" className="max-w-[1440px]">
-      {/* Desktop Layout ≥1440px - Keep exactly as-is */}
-      <motion.div
-        {...SIMPLE_ANIMATIONS.fadeInUp}
-        {...containerMotion}
-        className="hidden xxl:block relative min-h-[879px] pt-[120px] w-[1440px]"
-      >
-        {/* Logo Decorator */}
-        <div
-          className="absolute z-10"
+    <div className="w-full bg-[#FFFFFF]">
+      <div className="max-w-[2200px] mx-auto">
+        <motion.div
+          {...SIMPLE_ANIMATIONS.fadeInUp}
+          {...containerMotion}
+          className="relative bg-[#FFFFFF] hidden xl:block overflow-hidden"
           style={{
-            left: "45.03px",
-            top: "80.5px",
-            width: "421.7px",
-            height: "410.12px",
+            minHeight: createResponsiveValue(850, 970, 1140),
           }}
         >
-          <Image
-            src={LogoDecorator}
-            alt="Logo decorator"
-            width={421.7}
-            height={410.12}
+          {/* Gradient Background Overlay - fills to right edge */}
+          <div
+            className="absolute z-0 pointer-events-none"
+            style={{
+              left: createResponsiveValue(534, 600, 916.8),
+              right: 0,
+              top: createResponsiveValue(-0.02, -0.02, -0.03),
+              bottom: 0,
+              background:
+                "linear-gradient(142deg, rgba(249, 249, 249, 0) 0%, rgba(249, 249, 249, 1) 100%)",
+            }}
           />
-        </div>
 
-        {/* Curve Content Group */}
-        <div
-          className="absolute z-20"
-          style={{
-            left: "218.19px",
-            top: "80.5px",
-            width: "955px",
-            height: "723.43px",
-          }}
-        >
-          {practicalCards.map((card, index) => (
-            <FadeContent
-              key={index}
-              duration={800}
-              easing="ease-out"
-              delay={index * 150}
-              threshold={0.1}
-              initialOpacity={0}
-              className="absolute transition-all duration-300 hover:transform hover:scale-105"
-              style={{
-                left: `${card.position.x}px`,
-                top: `${card.position.y}px`,
-                backdropFilter: "blur(10px)",
-                width: "560px",
-              }}
-            >
-              {/* Card Title */}
-              <h3
-                className=" font-light text-black text-left mb-4"
-                style={{
-                  fontSize: "20px",
-                  lineHeight: "1.4em",
-                }}
-              >
-                {card.title}
-              </h3>
-
-              {/* Card Description */}
-              <p
-                className=" font-semibold text-[#798C9B] text-left"
-                style={{
-                  fontSize: "16px",
-                  lineHeight: "1.399999976158142em",
-                }}
-              >
-                {card.description}
-              </p>
-            </FadeContent>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Responsive Layout 768px-1439px - Proportionally scaled implementations */}
-      <div className="hidden md:block xxl:hidden w-full">
-        {/* Tablet Layout 768px-1249px - Proportionally scaled from 1440px (ratio: 0.711) */}
-        <motion.div
-          {...SIMPLE_ANIMATIONS.fadeInUp}
-          {...containerMotion}
-          className="hidden md:block xlg:hidden relative w-full"
-          style={{ minHeight: "625px", paddingTop: "85px" }}
-        >
-          {/* Logo Decorator - Scaled */}
+          {/* Logo Decorator - Sizes: 1280px(524x510), 1440px(589x573), 2200px(697x595) */}
           <div
-            className="absolute z-10"
+            className="absolute z-10 pointer-events-none opacity-60 overflow-hidden"
             style={{
-              left: "32px",
-              top: "57px",
-              width: "300px",
-              height: "292px",
+              left: createResponsiveValue(-98.16, -110.31, -50.59),
+              top: createResponsiveValue(-62.22, -70, -80),
+              width: createResponsiveValue(524, 589, 697),
+              height: createResponsiveValue(510, 573, 595),
             }}
           >
             <Image
               src={LogoDecorator}
               alt="Logo decorator"
-              width={300}
-              height={292}
+              fill
+              className="object-contain"
             />
           </div>
 
-          {/* Curve Content Group - Scaled */}
+          {/* Canopy Logo centered inside decorator - full opacity */}
           <div
-            className="absolute z-20"
+            className="absolute z-10 pointer-events-none"
             style={{
-              left: "155px",
-              top: "57px",
-              width: "679px",
-              height: "514px",
-            }}
-          >
-            {practicalCards.map((card, index) => (
-              <FadeContent
-                key={`tablet-${index}`}
-                duration={800}
-                easing="ease-out"
-                delay={index * 150}
-                threshold={0.1}
-                initialOpacity={0}
-                className="absolute transition-all duration-300 hover:transform hover:scale-105"
-                style={{
-                  left: `${tabletCardPositions[index].x}px`,
-                  top: `${tabletCardPositions[index].y}px`,
-                  backdropFilter: "blur(10px)",
-                  width: "398px",
-                }}
-              >
-                {/* Card Title - Responsive */}
-                <h3
-                  className=" font-light text-black text-left mb-3"
-                  style={{
-                    fontSize: "16px",
-                    lineHeight: "1.4em",
-                  }}
-                >
-                  {card.title}
-                </h3>
-
-                {/* Card Description - Responsive */}
-                <p
-                  className=" font-semibold text-[#798C9B] text-left"
-                  style={{
-                    fontSize: "14px",
-                    lineHeight: "1.4em",
-                  }}
-                >
-                  {card.description}
-                </p>
-              </FadeContent>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Large Tablet Layout 1250px-1439px - Proportionally scaled from 1440px (ratio: 0.889) */}
-        <motion.div
-          {...SIMPLE_ANIMATIONS.fadeInUp}
-          {...containerMotion}
-          className="hidden xlg:block xxl:hidden relative w-full"
-          style={{ minHeight: "782px", paddingTop: "107px" }}
-        >
-          {/* Logo Decorator - Scaled */}
-          <div
-            className="absolute z-10"
-            style={{
-              left: "40px",
-              top: "72px",
-              width: "375px",
-              height: "365px",
+              left: `calc(${createResponsiveValue(
+                -98.16,
+                -110.31,
+                -50.59
+              )} + ${createResponsiveValue(524, 589, 697)} / 2 - 50px)`,
+              top: `calc(${createResponsiveValue(
+                -62.22,
+                -70,
+                -80
+              )} + ${createResponsiveValue(510, 573, 595)} / 2)`,
+              transform: "translate(-50%, -50%)",
+              width: createResponsiveValue(200, 220, 260),
+              height: createResponsiveValue(174, 191, 226),
             }}
           >
             <Image
-              src={LogoDecorator}
-              alt="Logo decorator"
-              width={375}
-              height={365}
+              src={CanopyLogo}
+              alt="Canopy Development"
+              fill
+              className="object-contain"
             />
           </div>
 
-          {/* Curve Content Group - Scaled */}
-          <div
-            className="absolute z-20"
-            style={{
-              left: "194px",
-              top: "72px",
-              width: "849px",
-              height: "644px",
-            }}
-          >
-            {practicalCards.map((card, index) => (
+          {/* Cards - Absolute positioning with exact Figma coordinates */}
+          {practicalCards.map((card, index) => {
+            const position = cardPositions[index];
+
+            return (
               <FadeContent
-                key={`large-tablet-${index}`}
+                key={index}
                 duration={800}
                 easing="ease-out"
                 delay={index * 150}
                 threshold={0.1}
                 initialOpacity={0}
-                className="absolute transition-all duration-300 hover:transform hover:scale-105"
+                className="absolute z-20 transition-all duration-300 hover:transform hover:scale-105"
                 style={{
-                  left: `${largeTabletCardPositions[index].x}px`,
-                  top: `${largeTabletCardPositions[index].y}px`,
+                  left: createResponsiveValue(
+                    position.left1280,
+                    position.left1440,
+                    position.left2200
+                  ),
+                  top: createResponsiveValue(
+                    position.top1280,
+                    position.top1440,
+                    position.top2200
+                  ),
+                  width: createResponsiveValue(
+                    position.width1280,
+                    position.width1440,
+                    position.width2200
+                  ),
                   backdropFilter: "blur(10px)",
-                  width: "498px",
                 }}
               >
-                {/* Card Title - Responsive */}
+                {/* Card Title */}
                 <h3
-                  className=" font-light text-black text-left mb-3"
+                  className="font-['Work_Sans'] font-semibold text-[#506159] text-left leading-[1.4em]"
                   style={{
-                    fontSize: "18px",
-                    lineHeight: "1.4em",
+                    fontSize: createResponsiveValue(17.78, 20, 28.56),
+                    marginBottom: createResponsiveValue(8, 9, 13.75),
                   }}
                 >
                   {card.title}
                 </h3>
 
-                {/* Card Description - Responsive */}
+                {/* Card Description */}
                 <p
-                  className=" font-semibold text-[#798C9B] text-left"
+                  className="font-['Work_Sans'] font-normal text-[#798C9B] text-left leading-[1.5em]"
                   style={{
-                    fontSize: "15px",
-                    lineHeight: "1.4em",
+                    fontSize: createResponsiveValue(13.33, 15, 19.92),
                   }}
                 >
                   {card.description}
                 </p>
               </FadeContent>
-            ))}
+            );
+          })}
+
+          {/* Line Decorators */}
+          {/* Bottom horizontal line */}
+          <div
+            className="absolute z-10 bg-[#EEF0F2]"
+            style={{
+              left: createResponsiveValue(92.71, 104.3, 159.37),
+              top: createResponsiveValue(835, 955, 1125),
+              width: createResponsiveValue(1119.4, 1258.32, 1922.71),
+              height: "1px",
+            }}
+          />
+
+          {/* Bottom right diagonal line */}
+          <div
+            className="absolute z-10 bg-[#EEF0F2]"
+            style={{
+              left: createResponsiveValue(965.33, 1086, 1659.41),
+              top: createResponsiveValue(842, 962, 1132),
+              width: createResponsiveValue(213.33, 240, 366.72),
+              height: "1px",
+            }}
+          />
+
+          {/* Bottom left rectangle */}
+          <div
+            className="absolute z-10 bg-[#EEF0F2]"
+            style={{
+              left: createResponsiveValue(92.44, 104, 158.91),
+              top: createResponsiveValue(830, 950, 1120),
+              width: createResponsiveValue(280, 315, 481.32),
+              height: createResponsiveValue(3.56, 4, 6.11),
+            }}
+          />
+
+          {/* Left vertical line */}
+          <div
+            className="absolute z-10 bg-[#EEF0F2]"
+            style={{
+              left: createResponsiveValue(102.87, 115.73, 176.84),
+              top: createResponsiveValue(510, 570, 660),
+              width: createResponsiveValue(1.78, 2, 3.06),
+              height: createResponsiveValue(258, 290, 370),
+            }}
+          />
+
+          {/* Bottom right rectangle */}
+          <div
+            className="absolute z-10 bg-[#EEF0F2]"
+            style={{
+              left: createResponsiveValue(931.56, 1048, 1601.34),
+              top: createResponsiveValue(834, 954, 1124),
+              width: createResponsiveValue(280, 315, 481.32),
+              height: createResponsiveValue(3.56, 4, 6.11),
+            }}
+          />
+
+          {/* Canopy Development Logo - positioned at bottom right */}
+          <div
+            className="absolute z-10"
+            style={{
+              right: createResponsiveValue(0, 0, 0),
+              bottom: createResponsiveValue(0, 0, 0),
+              width: 200,
+              height: 174,
+            }}
+          >
+            <Image
+              src={CanopyLogo}
+              alt="Canopy Development"
+              fill
+              className="object-contain"
+            />
           </div>
         </motion.div>
       </div>
-    </Container>
+    </div>
   );
 };
 
