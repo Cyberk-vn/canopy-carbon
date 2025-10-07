@@ -26,7 +26,7 @@ const practicalCards: PracticalCard[] = [
   {
     title: "In Line with Global Best Practices",
     description:
-      "We align our projects with globally recognized standards like the ICVCM Core Carbon Principles to ensure top-tier environmental and market integrity.",
+      "We develop our projects in accordance with globally recognized standards that adhere to rigorous frameworks like the ICVCM Core Carbon Principles—ensuring alignment with the highest levels of environmental and market integrity.",
     titleAlignment: "left",
     backgroundColor: "rgba(250, 250, 250, 0.8)",
     textAlignment: "left",
@@ -35,7 +35,7 @@ const practicalCards: PracticalCard[] = [
   {
     title: "Systematic Operational Frameworks",
     description:
-      "Each ARR and forest protection activity follows a structured in-house rollout, shaped by field experience and supported by practical tech and team expertise.",
+      "Each ARR and avoided deforestation activity follows a structured in-house rollout strategy, refined through field experience. We also assess practical tech applications and leverage our in-house team to build solutions where relevant.",
     titleAlignment: "right",
     backgroundColor: "#FCFCFC",
     textAlignment: "right",
@@ -44,7 +44,7 @@ const practicalCards: PracticalCard[] = [
   {
     title: "Community-Integrated Design",
     description:
-      "We place community consultation at the heart of development to ensure local relevance and contextual appropriateness.",
+      "We embed community consultation and feedback at the core of our development model, ensuring that all activities are contextually appropriate and locally supported.",
     titleAlignment: "left",
     backgroundColor: "#FCFCFC",
     textAlignment: "left",
@@ -53,7 +53,7 @@ const practicalCards: PracticalCard[] = [
   {
     title: "Co-Benefits at the Core",
     description:
-      "Beyond carbon, we pursue SDG outcomes and adopt co-benefit labels like CCB to create real impact across environmental and social dimensions.",
+      "Our strategy goes beyond carbon—pursuing SDG-aligned outcomes and adopting co-benefit labels like CCB to drive real-world impact across environmental, social, and economic dimensions.",
     titleAlignment: "right",
     backgroundColor: "#FCFCFC",
     textAlignment: "right",
@@ -62,7 +62,7 @@ const practicalCards: PracticalCard[] = [
   {
     title: "Market-Aligned Agility",
     description:
-      "We adapt to evolving market and regulatory shifts, aligning flexibly with new methodologies and frameworks like Article 6 and CORSIA.",
+      "Our development strategies are built to evolve with shifting regulatory and voluntary market dynamics, enabling flexible alignment with updated methodologies and emerging frameworks such as Article 6 and CORSIA.",
     titleAlignment: "left",
     backgroundColor: "#FFFFFF",
     textAlignment: "left",

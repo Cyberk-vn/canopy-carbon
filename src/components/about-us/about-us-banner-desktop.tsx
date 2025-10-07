@@ -7,7 +7,7 @@ import { Container } from "../shared";
 import FadeContent from "../animation/fade-content";
 
 // Image imports
-import AboutUsBannerBgDesktop from "../../../public/assets/desktop/about-us/contact-us-banner-bg-image.svg";
+import AboutUsBannerBgDesktop from "../../../public/assets/desktop/about-us/contact-us-banner-bg-image.png";
 import BannerChildImage from "../../../public/assets/about-us/banner-child-image.png";
 import AboutUsBannerSecondBgDesktop from "../../../public/assets/desktop/about-us/contact-us-banner-second-bg.svg";
 
@@ -17,13 +17,23 @@ export function AboutUsBannerDesktop({
   mobileMenuStyles,
 }: AboutUsBannerProps) {
   return (
-    <Container maxWidth="default" className="max-w-[1440px]">
-      {/* Desktop Layout ≥1440px - Keep exactly as-is */}
-      <div className="hidden xxl:block relative w-[1440px]">
-        {/* Main Banner Section */}
-        <div className="relative min-h-[840px] w-full overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0">
+    <Container maxWidth="full">
+      <div className="hidden md:block relative">
+        {/* Main Banner Section with Flex Layout - scales 768px: 607px → 1440px: 925px (522px+85px → 840px+85px) */}
+        <div
+          className="relative w-full overflow-hidden bg-[#121212]"
+          style={{
+            minHeight: "clamp(607px, calc(243px + 47.32vw), 925px)",
+          }}
+        >
+          {/* Background Image - scales 768px: 958x581px → 1440px: 1440x840px → full screen width */}
+          <div
+            className="absolute left-0 right-0 overflow-hidden"
+            style={{
+              top: "85px",
+              height: "clamp(581px, calc(285px + 38.54vw), 1350px)",
+            }}
+          >
             <Image
               src={AboutUsBannerBgDesktop}
               alt="About Us Banner Background"
@@ -31,146 +41,169 @@ export function AboutUsBannerDesktop({
               className="object-cover"
               priority
             />
+            {/* Gradient overlay - left to right */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(92.27deg, #000000 28.03%, rgba(0, 0, 0, 0) 94.19%)",
+              }}
+            />
           </div>
 
-          {/* Gradient Overlay */}
-          <div
-            className="absolute inset-0 z-10"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.2) 28.85%, rgba(0, 0, 0, 0.37) 53.37%, #000000 100%)",
-            }}
-          />
-
-          {/* Unified Grid Layout - Navigation + Content */}
-          <div
-            className="relative z-20"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "120px 340px 151px 714px 1fr",
-              gridTemplateRows: "auto 50px auto",
-              minHeight: "100%",
-            }}
-          >
-            {/* Navigation Menu - Grid Row 1, spans all columns */}
-            <div
-              style={{
-                gridColumn: "1 / -1",
-                gridRow: "1",
-              }}
-            >
+          {/* Navigation + Content Layout */}
+          <div className="relative z-20 flex flex-col gap-0">
+            {/* Header - Navigation Menu - Full Width */}
+            <div className="w-full h-[85px]">
               <NavigationMenu
                 menuItems={menuItems}
                 logoUrl={logoUrl}
                 mobileMenuIconColor="#8C8C8C"
                 mobileMenuStyles={mobileMenuStyles}
                 activeItem="About Us"
+                useAboutUsDesign={true}
               />
             </div>
 
-            {/* Spacing row */}
-            <div style={{ gridColumn: "1 / -1", gridRow: "2" }}></div>
+            {/* Content with Max Width */}
+            <div className="max-w-[2200px] mx-auto w-full">
+              {/* Spacing between Navigation and Content - 62px */}
+              <div className="w-full h-[62px]"></div>
 
-            {/* Left padding */}
-            <div style={{ gridColumn: "1", gridRow: "3" }}></div>
-            {/* Decorative Image - Card Effect */}
-            <FadeContent
-              duration={600}
-              delay={200}
-              className="ml-[76px]"
-              style={{ gridColumn: "1/2", gridRow: "3" }}
-            >
-              <div className="relative w-[384px] h-[540px]">
-                {/* Background decorator */}
-                <div
-                  className="absolute w-[340px] h-[500px] top-[40px] left-0"
-                  style={{
-                    background: "rgba(175, 175, 175, 0.3)",
-                  }}
-                />
-                {/* Image */}
-                <div className="absolute w-[340px] h-[500px] top-0 left-[44px] overflow-hidden">
-                  <Image
-                    src={BannerChildImage}
-                    alt="Decorative Banner Element"
-                    width={340}
-                    height={500}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
+              {/* Flex Container - Sidebar and Content side by side with 42px gap */}
+              <div
+                className="w-full flex gap-[42px]"
+                style={{
+                  paddingLeft: "clamp(27px, 3.54vw, 58px)",
+                  paddingRight: "clamp(60px, 8.33vw, 120px)",
+                }}
+              >
+              {/* Sidebar - Decorative Image Card Effect - Container encompasses image + decorator bounds */}
+              <div
+                style={{
+                  flexShrink: 0,
+                  width: "clamp(250px, 26.808vw, 462px)",
+                  height: "clamp(368px, calc(34px + 36.6vw), 634px)",
+                  position: "relative",
+                }}
+              >
+                <FadeContent duration={600} delay={200}>
+                  <div className="relative w-full h-full">
+                    {/* Background decorator - 768px: 219px→1440px: 350px→max: 393x427px, top: 124px→188px, extends left from image, always 34px below image */}
+                    <div
+                      className="absolute"
+                      style={{
+                        top: "clamp(124px, calc(51px + 9.52vw), 207px)",
+                        left: "calc(clamp(60px, 1.7vw, 100px) - clamp(37px, 3.958vw, 87px))",
+                        width: "clamp(219px, 24.31vw, 393px)",
+                        height: "clamp(244px, calc(27.08vw - 17px), 427px)",
+                        background: "rgba(175, 175, 175, 0.3)",
+                      }}
+                    />
+                    {/* Image - scales proportionally: 768px (213x334px) → 1440px (329x527px) → max (375x600px) */}
+                    <div
+                      className="absolute top-0 overflow-hidden"
+                      style={{
+                        width: "clamp(213px, 22.85vw, 375px)",
+                        height: "clamp(334px, 36.6vw, 600px)",
+                        left: "clamp(60px, 1.7vw, 100px)",
+                      }}
+                    >
+                      <Image
+                        src={BannerChildImage}
+                        alt="Decorative Banner Element"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                </FadeContent>
               </div>
-            </FadeContent>
 
-            {/* Mission and Vision Content */}
-            <FadeContent
-              duration={800}
-              delay={400}
-              style={{
-                gridColumn: "4",
-                gridRow: "3",
-                marginTop: "67px", // 117px total - 50px spacing row = 67px
-              }}
-            >
-              <div className="flex flex-col gap-[40px] w-full">
-                {/* Mission Section */}
-                <div className="flex flex-col gap-[24px]">
-                  <h2
-                    className="font-open-sans font-bold text-white"
-                    style={{
-                      fontSize: "36px",
-                      lineHeight: "44px",
-                      fontWeight: 700,
-                    }}
-                  >
-                    Mission
-                  </h2>
-                  <p
-                    className="font-open-sans font-normal text-white"
-                    style={{
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      fontWeight: 400,
-                    }}
-                  >
-                    To expand the global supply of high-quality carbon offsets
-                    through disciplined project execution and deep capital
-                    market expertise, with technology as a supporting enabler.
-                  </p>
-                </div>
+              {/* Content - Mission and Vision */}
+              <div
+                className="flex-1"
+                style={{
+                  minWidth: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
+                  paddingBottom: "71px",
+                }}
+              >
+                <FadeContent duration={800} delay={400}>
+                  <div className="flex flex-col gap-[32px] w-full max-w-[714px]">
+                    {/* Mission Section - scales 768px→1440px→2200px */}
+                    <div className="flex flex-col gap-[6px]">
+                      <h2
+                        className="font-open-sans font-bold text-white"
+                        style={{
+                          fontSize:
+                            "clamp(18px, calc(24.43px - 0.446vw), 21px)",
+                          lineHeight:
+                            "clamp(18px, calc(43.71px - 1.786vw), 30px)",
+                          fontWeight: 700,
+                        }}
+                      >
+                        Mission
+                      </h2>
+                      <p
+                        className="font-open-sans font-normal text-white"
+                        style={{
+                          fontSize:
+                            "clamp(12px, calc(9.714px + 0.298vw), 16px)",
+                          lineHeight:
+                            "clamp(20px, calc(14.057px + 0.774vw), 31px)",
+                          fontWeight: 400,
+                        }}
+                      >
+                        To expand the global supply of high-quality carbon
+                        offsets through disciplined project execution and deep
+                        capital market expertise, with technology as a
+                        supporting enabler.
+                      </p>
+                    </div>
 
-                {/* Vision Section */}
-                <div className="flex flex-col gap-[24px]">
-                  <h2
-                    className="font-open-sans font-bold text-white"
-                    style={{
-                      fontSize: "36px",
-                      lineHeight: "44px",
-                      fontWeight: 700,
-                    }}
-                  >
-                    Vision
-                  </h2>
-                  <p
-                    className="font-open-sans font-normal text-white"
-                    style={{
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      fontWeight: 400,
-                    }}
-                  >
-                    To become Southeast Asia&apos;s leading nature-based
-                    solutions specialist, trusted globally for investing in,
-                    developing, operating, and delivering premium carbon offsets
-                    to both voluntary and compliance markets.
-                  </p>
-                </div>
+                    {/* Vision Section - scales 768px→1440px→2200px */}
+                    <div className="flex flex-col gap-[6px]">
+                      <h2
+                        className="font-open-sans font-bold text-white"
+                        style={{
+                          fontSize:
+                            "clamp(18px, calc(24.43px - 0.446vw), 21px)",
+                          lineHeight:
+                            "clamp(18px, calc(43.71px - 1.786vw), 30px)",
+                          fontWeight: 700,
+                        }}
+                      >
+                        Vision
+                      </h2>
+                      <p
+                        className="font-open-sans font-normal text-white"
+                        style={{
+                          fontSize:
+                            "clamp(12px, calc(9.714px + 0.298vw), 16px)",
+                          lineHeight:
+                            "clamp(20px, calc(14.057px + 0.774vw), 31px)",
+                          fontWeight: 400,
+                        }}
+                      >
+                        To become Southeast Asia&apos;s leading nature-based
+                        solutions specialist, trusted globally for investing in,
+                        developing, operating, and delivering premium carbon
+                        offsets to both voluntary and compliance markets.
+                      </p>
+                    </div>
+                  </div>
+                </FadeContent>
               </div>
-            </FadeContent>
+            </div>
+            </div>
           </div>
         </div>
 
-        {/* Secondary Banner Section with Smooth Transition */}
-        <div className="relative h-[800px] w-full z-10 -mt-10">
+        {/* Secondary Banner Section with Smooth Transition - 768-1280px: 877px → 1280px+: 744px fixed */}
+        <div className="relative w-full z-10 -mt-10 mx-auto justify-center items-center flex md:h-[877px] xl:h-[744px]">
           {/* Background Image */}
           <div className="absolute inset-0">
             <Image
@@ -191,61 +224,68 @@ export function AboutUsBannerDesktop({
             }}
           />
 
-          {/* Content */}
+          {/* Content - 768-1280px: fixed, 1280-1440px: scales */}
           <div
-            className="relative z-30 h-[640px] flex justify-center mx-[67px] pt-[56px] pb-[116px]"
-            style={{ background: "#0000004D" }}
+            className="relative z-30 flex justify-center max-w-[2200px] mx-auto w-full xl:mb-[111px]"
+            style={{
+              background: "#0000004D",
+              marginLeft: "clamp(35px, calc(-221px + 20vw), 67px)",
+              marginRight: "clamp(35px, calc(-221px + 20vw), 67px)",
+              height: "clamp(640px, calc(1972px - 92.5vw), 788px)",
+              paddingTop: "clamp(44px, calc(-52px + 7.5vw), 56px)",
+              paddingBottom: "clamp(44px, calc(-532px + 45vw), 116px)",
+            }}
           >
-            <div className="w-[1217px] flex flex-col gap-[60px] pr-[40px] pt-[43px] pb-[51px]">
-              {/* Thesis Section */}
+            <div className="flex flex-col gap-[32px] xl:gap-[60px] w-full">
+              {/* Thesis Section - md: 768px-1280px fixed 0px → xl: 1280px-2200px scales 102px-175px */}
               <FadeContent
                 duration={1000}
                 delay={600}
-                className="flex items-center justify-center gap-[24px] w-[1200px] mx-auto"
+                className="flex items-center justify-start gap-[24px] pr-0 pl-0 pt-0 xl:pt-[43px] pb-0"
+                style={{
+                  paddingLeft: "clamp(0px, calc(-1305.6px + 110.156vw), 175px)",
+                }}
               >
                 {/* Decorative Line */}
-                <div className="w-0 h-[180px] border-l-4 border-[#CFD5DB] flex-shrink-0" />
+                <div className="w-0 h-[180px] border-l-4 border-[#CFD5DB] xl:border-[#B4BEC7] flex-shrink-0" />
 
-                <div className="flex flex-col gap-[20px] flex-1">
+                <div className="flex flex-col gap-[20px] max-w-[744px]">
                   <p
-                    className="font-open-sans font-bold text-[#DDE2E6]"
+                    className="font-open-sans xl:font-work-sans text-[#DDE2E6] xl:text-[#B4BEC7]"
                     style={{
-                      fontSize: "24px",
-                      lineHeight: "33.6px",
-                      fontWeight: 700,
+                      fontSize: "clamp(16px, calc(4.86px + 1.19vw), 24px)",
+                      lineHeight: "140%",
                     }}
                   >
-                    The urgency of climate change has outpaced the global
-                    capacity to decarbonize. Without a dramatic scale-up in
-                    high-quality carbon offsets, there is little chance of
-                    meeting net-zero ambitions before breaching the carbon
-                    budget.
+                    <span className="font-bold xl:font-semibold">
+                      The urgency of climate change has outpaced the global
+                      capacity to decarbonize. Without a dramatic scale-up in
+                      high-quality carbon offsets, there is little chance of
+                      meeting net-zero ambitions before breaching the carbon
+                      budget.
+                    </span>
                   </p>
-                  <p
-                    className="font-open-sans font-normal text-[#D8DBD6]"
-                    style={{
-                      fontSize: "16px",
-                      lineHeight: "24px",
-                      fontWeight: 400,
-                    }}
-                  >
+                  <p className="font-open-sans text-[#D8DBD6] text-[16px] leading-[24px] font-normal xl:text-[14px] xl:leading-[171.4%] xl:font-light">
                     - Our Thesis Statement
                   </p>
                 </div>
               </FadeContent>
 
-              {/* Statistics Cards Grid */}
+              {/* Statistics Cards Grid - 2x2 on 768px-1280px, 4 cols on 1440px+ */}
               <FadeContent
                 duration={1200}
                 delay={800}
-                className="grid grid-cols-4 gap-[24px] w-full"
+                className="grid grid-cols-2 xl:grid-cols-4 gap-[24px] w-full justify-items-center"
               >
-                {/* Statistics Card 1 */}
+                {/* Statistics Card 1 - 768-1280px: 324x264px → 1440px: 286x306px */}
                 <FadeContent
                   duration={300}
                   delay={1000}
                   className="flex flex-col items-center gap-[10px] px-[16px] py-[36px]"
-                  style={{ width: "286px", height: "306px" }}
+                  style={{
+                    width: "clamp(286px, calc(628px - 23.75vw), 324px)",
+                    height: "clamp(264px, calc(-72px + 26.25vw), 306px)",
+                  }}
                 >
                   <div className="flex flex-col items-center gap-[16px] w-full">
                     {/* Statistics Number */}
@@ -292,12 +332,15 @@ export function AboutUsBannerDesktop({
                   </div>
                 </FadeContent>
 
-                {/* Statistics Card 2 */}
+                {/* Statistics Card 2 - 768-1280px: 324x264px → 1440px: 286x306px */}
                 <FadeContent
                   duration={300}
                   delay={1100}
                   className="flex flex-col items-center gap-[10px] px-[16px] py-[36px]"
-                  style={{ width: "286px", height: "306px" }}
+                  style={{
+                    width: "clamp(286px, calc(628px - 23.75vw), 324px)",
+                    height: "clamp(264px, calc(-72px + 26.25vw), 306px)",
+                  }}
                 >
                   <div className="flex flex-col items-center gap-[16px] w-full">
                     {/* Statistics Number */}
@@ -344,12 +387,15 @@ export function AboutUsBannerDesktop({
                   </div>
                 </FadeContent>
 
-                {/* Statistics Card 3 */}
+                {/* Statistics Card 3 - 768-1280px: 324x264px → 1440px: 286x306px */}
                 <FadeContent
                   duration={300}
                   delay={1200}
                   className="flex flex-col items-center gap-[10px] px-[16px] py-[36px]"
-                  style={{ width: "286px", height: "306px" }}
+                  style={{
+                    width: "clamp(286px, calc(628px - 23.75vw), 324px)",
+                    height: "clamp(264px, calc(-72px + 26.25vw), 306px)",
+                  }}
                 >
                   <div className="flex flex-col items-center gap-[16px] w-full">
                     {/* Statistics Number */}
@@ -396,12 +442,15 @@ export function AboutUsBannerDesktop({
                   </div>
                 </FadeContent>
 
-                {/* Statistics Card 4 */}
+                {/* Statistics Card 4 - 768-1280px: 324x264px → 1440px: 286x306px */}
                 <FadeContent
                   duration={300}
                   delay={1300}
                   className="flex flex-col items-center gap-[10px] px-[16px] py-[36px]"
-                  style={{ width: "286px", height: "306px" }}
+                  style={{
+                    width: "clamp(286px, calc(628px - 23.75vw), 324px)",
+                    height: "clamp(264px, calc(-72px + 26.25vw), 306px)",
+                  }}
                 >
                   <div className="flex flex-col items-center gap-[16px] w-full">
                     {/* Statistics Number */}
@@ -449,1084 +498,6 @@ export function AboutUsBannerDesktop({
                   </div>
                 </FadeContent>
               </FadeContent>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Responsive Layout 768px-1439px - Proportionally scaled implementations */}
-      <div className="hidden md:block xxl:hidden w-full">
-        {/* Tablet Layout 768px-1249px - Proportionally scaled from 1440px (ratio: 0.711) */}
-        <div className="hidden md:block xlg:hidden">
-          <div
-            className="relative w-full overflow-hidden"
-            style={{ minHeight: "680px" }}
-          >
-            {/* Background Image */}
-            <div className="absolute inset-0">
-              <Image
-                src={AboutUsBannerBgDesktop}
-                alt="About Us Banner Background"
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 1250px) 100vw"
-              />
-            </div>
-
-            {/* Gradient Overlay */}
-            <div
-              className="absolute inset-0 z-10"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.2) 28.85%, rgba(0, 0, 0, 0.37) 53.37%, #000000 100%)",
-              }}
-            />
-
-            {/* Proportional Grid Layout - Tablet scaled */}
-            <div
-              className="relative z-20"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "85px 242px 107px 508px 1fr",
-                gridTemplateRows: "auto 36px auto",
-                minHeight: "100%",
-              }}
-            >
-              {/* Navigation Menu - Grid Row 1, spans all columns */}
-              <div
-                style={{
-                  gridColumn: "1 / -1",
-                  gridRow: "1",
-                }}
-              >
-                <NavigationMenu
-                  menuItems={menuItems}
-                  logoUrl={logoUrl}
-                  mobileMenuIconColor="#8C8C8C"
-                  mobileMenuStyles={mobileMenuStyles}
-                  activeItem="About Us"
-                />
-              </div>
-
-              {/* Spacing row */}
-              <div style={{ gridColumn: "1 / -1", gridRow: "2" }}></div>
-
-              {/* Left padding */}
-              <div style={{ gridColumn: "1", gridRow: "3" }}></div>
-
-              {/* Decorative Image - Card Effect (scaled: 0.711) */}
-              <FadeContent
-                duration={600}
-                delay={200}
-                style={{
-                  gridColumn: "1/2",
-                  gridRow: "3",
-                  marginLeft: "54px",
-                }}
-              >
-                <div
-                  className="relative"
-                  style={{
-                    width: "273px",
-                    height: "384px",
-                  }}
-                >
-                  {/* Background decorator (scaled) */}
-                  <div
-                    className="absolute"
-                    style={{
-                      width: "242px",
-                      height: "355px",
-                      top: "28px",
-                      left: "0",
-                      background: "rgba(175, 175, 175, 0.3)",
-                    }}
-                  />
-                  {/* Image (scaled) */}
-                  <div
-                    className="absolute overflow-hidden"
-                    style={{
-                      width: "242px",
-                      height: "355px",
-                      top: "0",
-                      left: "31px",
-                    }}
-                  >
-                    <Image
-                      src={BannerChildImage}
-                      alt="Decorative Banner Element"
-                      width={242}
-                      height={355}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                </div>
-              </FadeContent>
-
-              {/* Mission and Vision Content (scaled positioning) */}
-              <FadeContent
-                duration={800}
-                delay={400}
-                style={{
-                  gridColumn: "4",
-                  gridRow: "3",
-                  marginTop: "48px",
-                }}
-              >
-                <div className="flex flex-col w-full" style={{ gap: "28px" }}>
-                  {/* Mission Section */}
-                  <div className="flex flex-col" style={{ gap: "17px" }}>
-                    <h2
-                      className="font-open-sans font-bold text-white"
-                      style={{
-                        fontSize: "32px",
-                        lineHeight: "38px",
-                        fontWeight: 700,
-                      }}
-                    >
-                      Mission
-                    </h2>
-                    <p
-                      className="font-open-sans font-normal text-white"
-                      style={{
-                        fontSize: "15px",
-                        lineHeight: "22px",
-                        fontWeight: 400,
-                      }}
-                    >
-                      To expand the global supply of high-quality carbon offsets
-                      through disciplined project execution and deep capital
-                      market expertise, with technology as a supporting enabler.
-                    </p>
-                  </div>
-
-                  {/* Vision Section */}
-                  <div className="flex flex-col" style={{ gap: "17px" }}>
-                    <h2
-                      className="font-open-sans font-bold text-white"
-                      style={{
-                        fontSize: "32px",
-                        lineHeight: "38px",
-                        fontWeight: 700,
-                      }}
-                    >
-                      Vision
-                    </h2>
-                    <p
-                      className="font-open-sans font-normal text-white"
-                      style={{
-                        fontSize: "15px",
-                        lineHeight: "22px",
-                        fontWeight: 400,
-                      }}
-                    >
-                      To become Southeast Asia&apos;s leading nature-based
-                      solutions specialist, trusted globally for investing in,
-                      developing, operating, and delivering premium carbon
-                      offsets to both voluntary and compliance markets.
-                    </p>
-                  </div>
-                </div>
-              </FadeContent>
-            </div>
-          </div>
-
-          {/* Tablet Secondary Section (proportionally scaled) */}
-          <div
-            className="relative w-full z-10"
-            style={{
-              height: "850px",
-              marginTop: "-7px",
-            }}
-          >
-            <div className="absolute inset-0">
-              <Image
-                src={AboutUsBannerSecondBgDesktop}
-                alt="Secondary Banner Background"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1250px) 100vw"
-              />
-            </div>
-
-            <div
-              className="absolute top-0 left-0 right-0 z-20"
-              style={{
-                height: "142px",
-                background:
-                  "linear-gradient(180deg, #000000 31.25%, rgba(0, 0, 0, 0) 100%)",
-              }}
-            />
-
-            <div
-              className="relative z-30 flex justify-center"
-              style={{
-                background: "#0000004D",
-                height: "708px",
-                marginLeft: "48px",
-                marginRight: "48px",
-                paddingTop: "40px",
-                paddingBottom: "82px",
-              }}
-            >
-              <div
-                className="flex flex-col"
-                style={{
-                  width: "865px",
-                  gap: "43px",
-                  paddingRight: "28px",
-                  paddingTop: "31px",
-                  paddingBottom: "36px",
-                }}
-              >
-                {/* Thesis Section (scaled) */}
-                <FadeContent
-                  duration={1000}
-                  delay={600}
-                  className="flex items-center justify-center"
-                  style={{ 
-                    gap: "17px", 
-                    marginLeft: "49px",
-                    marginRight: "49px"
-                  }}
-                >
-                  {/* Decorative Line (scaled) */}
-                  <div
-                    className="border-[#CFD5DB] flex-shrink-0"
-                    style={{
-                      width: "0",
-                      height: "128px",
-                      borderLeftWidth: "3px",
-                    }}
-                  />
-
-                  <div className="flex flex-col flex-1" style={{ gap: "14px" }}>
-                    <p
-                      className="font-open-sans font-bold text-[#DDE2E6]"
-                      style={{
-                        fontSize: "18px",
-                        lineHeight: "25px",
-                        fontWeight: 700,
-                      }}
-                    >
-                      The urgency of climate change has outpaced the global
-                      capacity to decarbonize. Without a dramatic scale-up in
-                      high-quality carbon offsets, there is little chance of
-                      meeting net-zero ambitions before breaching the carbon
-                      budget.
-                    </p>
-                    <p
-                      className="font-open-sans font-normal text-[#D8DBD6]"
-                      style={{
-                        fontSize: "12px",
-                        lineHeight: "18px",
-                        fontWeight: 400,
-                      }}
-                    >
-                      - Our Thesis Statement
-                    </p>
-                  </div>
-                </FadeContent>
-
-                {/* Statistics Grid - Tablet 2x2 layout (scaled cards) */}
-                <FadeContent
-                  duration={1200}
-                  delay={800}
-                  className="grid grid-cols-2 w-full max-w-4xl mx-auto"
-                  style={{ gap: "20px" }}
-                >
-                  {/* Statistics Card 1 (scaled: 286px × 306px → 203px × 218px) */}
-                  <FadeContent
-                    duration={300}
-                    delay={1000}
-                    className="flex flex-col items-center gap-[7px] w-full"
-                    style={{
-                      height: "240px",
-                      paddingLeft: "11px",
-                      paddingRight: "11px",
-                      paddingTop: "26px",
-                      paddingBottom: "26px",
-                    }}
-                  >
-                    <div
-                      className="flex flex-col items-center w-full"
-                      style={{ gap: "11px" }}
-                    >
-                      {/* Statistics Number (enhanced: 34px → 42px) */}
-                      <div
-                        className="font-avenir text-[#9DAE83] text-center"
-                        style={{
-                          fontSize: "42px",
-                          lineHeight: "38px",
-                          letterSpacing: "-2%",
-                          fontWeight: 800,
-                        }}
-                      >
-                        &gt; 70%
-                      </div>
-
-                      <div
-                        className="flex flex-col items-center w-full"
-                        style={{ gap: "4px" }}
-                      >
-                        {/* Statistics Title (enhanced: 14px → 15px) */}
-                        <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
-                          style={{
-                            fontSize: "15px",
-                            lineHeight: "21px",
-                            fontWeight: 700,
-                          }}
-                        >
-                          Global Carbon Budget Utilised
-                        </h4>
-
-                        {/* Statistics Description (enhanced: 11px → 12px) */}
-                        <p
-                          className="font-open-sans font-normal text-white text-center"
-                          style={{
-                            fontSize: "12px",
-                            lineHeight: "18px",
-                            fontWeight: 400,
-                            paddingLeft: "32px",
-                            paddingRight: "32px",
-                          }}
-                        >
-                          Over 70% of our global CO₂ budget has already been
-                          used as of 2024 — around 2.65 trillion tonnes out of
-                          the 3.67 trillion tCO₂e budget.
-                        </p>
-                      </div>
-                    </div>
-                  </FadeContent>
-
-                  {/* Statistics Card 2 */}
-                  <FadeContent
-                    duration={300}
-                    delay={1100}
-                    className="flex flex-col items-center gap-[7px] w-full"
-                    style={{
-                      height: "240px",
-                      paddingLeft: "11px",
-                      paddingRight: "11px",
-                      paddingTop: "26px",
-                      paddingBottom: "26px",
-                    }}
-                  >
-                    <div
-                      className="flex flex-col items-center w-full"
-                      style={{ gap: "11px" }}
-                    >
-                      <div
-                        className="font-avenir text-[#9DAE83] text-center"
-                        style={{
-                          fontSize: "42px",
-                          lineHeight: "38px",
-                          letterSpacing: "-2%",
-                          fontWeight: 800,
-                        }}
-                      >
-                        42%
-                      </div>
-
-                      <div
-                        className="flex flex-col items-center w-full"
-                        style={{ gap: "4px" }}
-                      >
-                        <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
-                          style={{
-                            fontSize: "15px",
-                            lineHeight: "21px",
-                            fontWeight: 700,
-                          }}
-                        >
-                          Emissions Rate Reduction Needed
-                        </h4>
-
-                        <p
-                          className="font-open-sans font-normal text-white text-center"
-                          style={{
-                            fontSize: "12px",
-                            lineHeight: "18px",
-                            fontWeight: 400,
-                            paddingLeft: "32px",
-                            paddingRight: "32px",
-                          }}
-                        >
-                          To achieve 1.5°C targets, the IPCC recommends that
-                          global GHG emissions must fall by at least 42% from
-                          2019 levels by 2030.
-                        </p>
-                      </div>
-                    </div>
-                  </FadeContent>
-
-                  {/* Statistics Card 3 */}
-                  <FadeContent
-                    duration={300}
-                    delay={1200}
-                    className="flex flex-col items-center gap-[7px] w-full"
-                    style={{
-                      height: "240px",
-                      paddingLeft: "11px",
-                      paddingRight: "11px",
-                      paddingTop: "26px",
-                      paddingBottom: "26px",
-                    }}
-                  >
-                    <div
-                      className="flex flex-col items-center w-full"
-                      style={{ gap: "11px" }}
-                    >
-                      <div
-                        className="font-avenir text-[#9DAE83] text-center"
-                        style={{
-                          fontSize: "42px",
-                          lineHeight: "38px",
-                          letterSpacing: "-2%",
-                          fontWeight: 800,
-                        }}
-                      >
-                        5-10x
-                      </div>
-
-                      <div
-                        className="flex flex-col items-center w-full"
-                        style={{ gap: "4px" }}
-                      >
-                        <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
-                          style={{
-                            fontSize: "15px",
-                            lineHeight: "21px",
-                            fontWeight: 700,
-                          }}
-                        >
-                          Scale Up in Human-Led Removals
-                        </h4>
-
-                        <p
-                          className="font-open-sans font-normal text-white text-center"
-                          style={{
-                            fontSize: "12px",
-                            lineHeight: "18px",
-                            fontWeight: 400,
-                            paddingLeft: "32px",
-                            paddingRight: "32px",
-                          }}
-                        >
-                          Anthropogenic CO₂ removals amount to ~ 2 GtCO₂ per
-                          year today. A multifold scale-up is needed this
-                          century to meet climate targets.
-                        </p>
-                      </div>
-                    </div>
-                  </FadeContent>
-
-                  {/* Statistics Card 4 */}
-                  <FadeContent
-                    duration={300}
-                    delay={1300}
-                    className="flex flex-col items-center gap-[7px] w-full"
-                    style={{
-                      height: "240px",
-                      paddingLeft: "11px",
-                      paddingRight: "11px",
-                      paddingTop: "26px",
-                      paddingBottom: "26px",
-                    }}
-                  >
-                    <div
-                      className="flex flex-col items-center w-full"
-                      style={{ gap: "11px" }}
-                    >
-                      <div
-                        className="font-avenir text-[#9DAE83] text-center"
-                        style={{
-                          fontSize: "42px",
-                          lineHeight: "38px",
-                          letterSpacing: "-2%",
-                          fontWeight: 800,
-                        }}
-                      >
-                        2042-45
-                      </div>
-
-                      <div
-                        className="flex flex-col items-center w-full"
-                        style={{ gap: "4px" }}
-                      >
-                        <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
-                          style={{
-                            fontSize: "15px",
-                            lineHeight: "21px",
-                            fontWeight: 700,
-                          }}
-                        >
-                          Complete Budget Depletion
-                        </h4>
-
-                        <p
-                          className="font-open-sans font-normal text-white text-center"
-                          style={{
-                            fontSize: "12px",
-                            lineHeight: "18px",
-                            fontWeight: 400,
-                            paddingLeft: "32px",
-                            paddingRight: "32px",
-                          }}
-                        >
-                          At current rates, the global CO₂ budget could be fully
-                          depleted by 2042, unless urgent action is taken to
-                          scale removals and cut emissions dramatically.
-                        </p>
-                      </div>
-                    </div>
-                  </FadeContent>
-                </FadeContent>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Large Tablet Layout 1250px-1439px - Proportionally scaled from 1440px (ratio: 0.889) */}
-        <div className="hidden xlg:block xxl:hidden">
-          <div
-            className="relative w-full overflow-hidden"
-            style={{ minHeight: "747px" }}
-          >
-            {/* Background Image */}
-            <div className="absolute inset-0">
-              <Image
-                src={AboutUsBannerBgDesktop}
-                alt="About Us Banner Background"
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 1440px) 100vw"
-              />
-            </div>
-
-            {/* Gradient Overlay */}
-            <div
-              className="absolute inset-0 z-10"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.2) 28.85%, rgba(0, 0, 0, 0.37) 53.37%, #000000 100%)",
-              }}
-            />
-
-            {/* Proportional Grid Layout - Large Tablet scaled */}
-            <div
-              className="relative z-20"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "107px 302px 134px 635px 1fr",
-                gridTemplateRows: "auto 44px auto",
-                minHeight: "100%",
-              }}
-            >
-              {/* Navigation Menu - Grid Row 1, spans all columns */}
-              <div
-                style={{
-                  gridColumn: "1 / -1",
-                  gridRow: "1",
-                }}
-              >
-                <NavigationMenu
-                  menuItems={menuItems}
-                  logoUrl={logoUrl}
-                  mobileMenuIconColor="#8C8C8C"
-                  mobileMenuStyles={mobileMenuStyles}
-                  activeItem="About Us"
-                />
-              </div>
-
-              {/* Spacing row */}
-              <div style={{ gridColumn: "1 / -1", gridRow: "2" }}></div>
-
-              {/* Left padding */}
-              <div style={{ gridColumn: "1", gridRow: "3" }}></div>
-
-              {/* Decorative Image - Card Effect (scaled: 0.889) */}
-              <FadeContent
-                duration={600}
-                delay={200}
-                style={{
-                  gridColumn: "1/2",
-                  gridRow: "3",
-                  marginLeft: "68px",
-                }}
-              >
-                <div
-                  className="relative"
-                  style={{
-                    width: "341px",
-                    height: "480px",
-                  }}
-                >
-                  {/* Background decorator (scaled) */}
-                  <div
-                    className="absolute"
-                    style={{
-                      width: "302px",
-                      height: "445px",
-                      top: "36px",
-                      left: "0",
-                      background: "rgba(175, 175, 175, 0.3)",
-                    }}
-                  />
-                  {/* Image (scaled) */}
-                  <div
-                    className="absolute overflow-hidden"
-                    style={{
-                      width: "302px",
-                      height: "445px",
-                      top: "0",
-                      left: "39px",
-                    }}
-                  >
-                    <Image
-                      src={BannerChildImage}
-                      alt="Decorative Banner Element"
-                      width={302}
-                      height={445}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                </div>
-              </FadeContent>
-
-              {/* Mission and Vision Content (scaled positioning) */}
-              <FadeContent
-                duration={800}
-                delay={400}
-                style={{
-                  gridColumn: "4",
-                  gridRow: "3",
-                  marginTop: "60px",
-                }}
-              >
-                <div
-                  className="flex flex-col w-full"
-                  style={{
-                    gap: "36px",
-                    paddingRight: "36px",
-                  }}
-                >
-                  {/* Mission Section */}
-                  <div className="flex flex-col" style={{ gap: "21px" }}>
-                    <h2
-                      className="font-open-sans font-bold text-white"
-                      style={{
-                        fontSize: "32px",
-                        lineHeight: "39px",
-                        fontWeight: 700,
-                      }}
-                    >
-                      Mission
-                    </h2>
-                    <p
-                      className="font-open-sans font-normal text-white"
-                      style={{
-                        fontSize: "14px",
-                        lineHeight: "21px",
-                        fontWeight: 400,
-                      }}
-                    >
-                      To expand the global supply of high-quality carbon offsets
-                      through disciplined project execution and deep capital
-                      market expertise, with technology as a supporting enabler.
-                    </p>
-                  </div>
-
-                  {/* Vision Section */}
-                  <div className="flex flex-col" style={{ gap: "21px" }}>
-                    <h2
-                      className="font-open-sans font-bold text-white"
-                      style={{
-                        fontSize: "32px",
-                        lineHeight: "39px",
-                        fontWeight: 700,
-                      }}
-                    >
-                      Vision
-                    </h2>
-                    <p
-                      className="font-open-sans font-normal text-white"
-                      style={{
-                        fontSize: "14px",
-                        lineHeight: "21px",
-                        fontWeight: 400,
-                      }}
-                    >
-                      To become Southeast Asia&apos;s leading nature-based
-                      solutions specialist, trusted globally for investing in,
-                      developing, operating, and delivering premium carbon
-                      offsets to both voluntary and compliance markets.
-                    </p>
-                  </div>
-                </div>
-              </FadeContent>
-            </div>
-          </div>
-
-          {/* Large Tablet Secondary Section (proportionally scaled) */}
-          <div
-            className="relative w-full z-10"
-            style={{
-              height: "711px",
-              marginTop: "-9px",
-            }}
-          >
-            <div className="absolute inset-0">
-              <Image
-                src={AboutUsBannerSecondBgDesktop}
-                alt="Secondary Banner Background"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1440px) 100vw"
-              />
-            </div>
-
-            <div
-              className="absolute top-0 left-0 right-0 z-20"
-              style={{
-                height: "178px",
-                background:
-                  "linear-gradient(180deg, #000000 31.25%, rgba(0, 0, 0, 0) 100%)",
-              }}
-            />
-
-            <div
-              className="relative z-30 flex justify-center"
-              style={{
-                background: "#0000004D",
-                height: "569px",
-                marginLeft: "60px",
-                marginRight: "60px",
-                paddingTop: "50px",
-                paddingBottom: "103px",
-              }}
-            >
-              <div
-                className="flex flex-col"
-                style={{
-                  width: "1082px",
-                  gap: "53px",
-                  paddingRight: "36px",
-                  paddingTop: "38px",
-                  paddingBottom: "45px",
-                }}
-              >
-                {/* Thesis Section (scaled) */}
-                <FadeContent
-                  duration={1000}
-                  delay={600}
-                  className="flex items-center justify-center"
-                  style={{ gap: "21px", width: "1067px", margin: "0 auto" }}
-                >
-                  {/* Decorative Line (scaled) */}
-                  <div
-                    className="border-[#CFD5DB] flex-shrink-0"
-                    style={{
-                      width: "0",
-                      height: "160px",
-                      borderLeftWidth: "4px",
-                    }}
-                  />
-
-                  <div className="flex flex-col flex-1" style={{ gap: "18px" }}>
-                    <p
-                      className="font-open-sans font-bold text-[#DDE2E6]"
-                      style={{
-                        fontSize: "21px",
-                        lineHeight: "30px",
-                        fontWeight: 700,
-                      }}
-                    >
-                      The urgency of climate change has outpaced the global
-                      capacity to decarbonize. Without a dramatic scale-up in
-                      high-quality carbon offsets, there is little chance of
-                      meeting net-zero ambitions before breaching the carbon
-                      budget.
-                    </p>
-                    <p
-                      className="font-open-sans font-normal text-[#D8DBD6]"
-                      style={{
-                        fontSize: "14px",
-                        lineHeight: "21px",
-                        fontWeight: 400,
-                      }}
-                    >
-                      - Our Thesis Statement
-                    </p>
-                  </div>
-                </FadeContent>
-
-                {/* Statistics Grid - Large Tablet 4x1 layout (scaled cards) */}
-                <FadeContent
-                  duration={1200}
-                  delay={800}
-                  className="grid grid-cols-4 w-full"
-                  style={{ gap: "21px" }}
-                >
-                  {/* Statistics Card 1 (scaled: 286px × 306px → 254px × 272px) */}
-                  <FadeContent
-                    duration={300}
-                    delay={1000}
-                    className="flex flex-col items-center gap-[9px]"
-                    style={{
-                      width: "254px",
-                      height: "272px",
-                      paddingLeft: "14px",
-                      paddingRight: "14px",
-                      paddingTop: "32px",
-                      paddingBottom: "32px",
-                    }}
-                  >
-                    <div
-                      className="flex flex-col items-center w-full"
-                      style={{ gap: "14px" }}
-                    >
-                      {/* Statistics Number (scaled: 48px → 43px) */}
-                      <div
-                        className="font-avenir text-[#9DAE83] text-center"
-                        style={{
-                          fontSize: "43px",
-                          lineHeight: "39px",
-                          letterSpacing: "-2%",
-                          fontWeight: 800,
-                        }}
-                      >
-                        &gt; 70%
-                      </div>
-
-                      <div
-                        className="flex flex-col items-center w-full"
-                        style={{ gap: "5px" }}
-                      >
-                        {/* Statistics Title (scaled: 17px → 15px) */}
-                        <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
-                          style={{
-                            fontSize: "15px",
-                            lineHeight: "21px",
-                            fontWeight: 700,
-                          }}
-                        >
-                          Global Carbon Budget Utilised
-                        </h4>
-
-                        {/* Statistics Description (scaled: 12px → 11px) */}
-                        <p
-                          className="font-open-sans font-normal text-white text-center"
-                          style={{
-                            fontSize: "11px",
-                            lineHeight: "18px",
-                            fontWeight: 400,
-                          }}
-                        >
-                          Over 70% of our global CO₂ budget has already been
-                          used as of 2024 — around 2.65 trillion tonnes out of
-                          the 3.67 trillion tCO₂e budget believed to limit
-                          warming to safer thresholds.
-                        </p>
-                      </div>
-                    </div>
-                  </FadeContent>
-
-                  {/* Statistics Card 2 */}
-                  <FadeContent
-                    duration={300}
-                    delay={1100}
-                    className="flex flex-col items-center gap-[9px]"
-                    style={{
-                      width: "254px",
-                      height: "272px",
-                      paddingLeft: "14px",
-                      paddingRight: "14px",
-                      paddingTop: "32px",
-                      paddingBottom: "32px",
-                    }}
-                  >
-                    <div
-                      className="flex flex-col items-center w-full"
-                      style={{ gap: "14px" }}
-                    >
-                      <div
-                        className="font-avenir text-[#9DAE83] text-center"
-                        style={{
-                          fontSize: "43px",
-                          lineHeight: "39px",
-                          letterSpacing: "-2%",
-                          fontWeight: 800,
-                        }}
-                      >
-                        42%
-                      </div>
-
-                      <div
-                        className="flex flex-col items-center w-full"
-                        style={{ gap: "5px" }}
-                      >
-                        <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
-                          style={{
-                            fontSize: "15px",
-                            lineHeight: "21px",
-                            fontWeight: 700,
-                          }}
-                        >
-                          Emissions Rate Reduction Needed
-                        </h4>
-
-                        <p
-                          className="font-open-sans font-normal text-white text-center"
-                          style={{
-                            fontSize: "11px",
-                            lineHeight: "18px",
-                            fontWeight: 400,
-                          }}
-                        >
-                          To achieve 1.5°C targets, the IPCC recommends that
-                          global GHG emissions must fall by at least 42% from
-                          2019 levels by 2030. Instead, global annual emissions
-                          were ~3.6% higher in 2024.
-                        </p>
-                      </div>
-                    </div>
-                  </FadeContent>
-
-                  {/* Statistics Card 3 */}
-                  <FadeContent
-                    duration={300}
-                    delay={1200}
-                    className="flex flex-col items-center gap-[9px]"
-                    style={{
-                      width: "254px",
-                      height: "272px",
-                      paddingLeft: "14px",
-                      paddingRight: "14px",
-                      paddingTop: "32px",
-                      paddingBottom: "32px",
-                    }}
-                  >
-                    <div
-                      className="flex flex-col items-center w-full"
-                      style={{ gap: "14px" }}
-                    >
-                      <div
-                        className="font-avenir text-[#9DAE83] text-center"
-                        style={{
-                          fontSize: "43px",
-                          lineHeight: "39px",
-                          letterSpacing: "-2%",
-                          fontWeight: 800,
-                        }}
-                      >
-                        5-10x
-                      </div>
-
-                      <div
-                        className="flex flex-col items-center w-full"
-                        style={{ gap: "5px" }}
-                      >
-                        <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
-                          style={{
-                            fontSize: "15px",
-                            lineHeight: "21px",
-                            fontWeight: 700,
-                          }}
-                        >
-                          Scale Up in Human-Led Removals
-                        </h4>
-
-                        <p
-                          className="font-open-sans font-normal text-white text-center"
-                          style={{
-                            fontSize: "11px",
-                            lineHeight: "18px",
-                            fontWeight: 400,
-                          }}
-                        >
-                          Anthropogenic CO₂ removals amount to ~ 2 GtCO₂ per
-                          year today. A multifold scale-up is needed this
-                          century to meet climate targets and balance residual
-                          emissions.
-                        </p>
-                      </div>
-                    </div>
-                  </FadeContent>
-
-                  {/* Statistics Card 4 */}
-                  <FadeContent
-                    duration={300}
-                    delay={1300}
-                    className="flex flex-col items-center gap-[9px]"
-                    style={{
-                      width: "254px",
-                      height: "272px",
-                      paddingLeft: "14px",
-                      paddingRight: "14px",
-                      paddingTop: "32px",
-                      paddingBottom: "32px",
-                    }}
-                  >
-                    <div
-                      className="flex flex-col items-center w-full"
-                      style={{ gap: "14px" }}
-                    >
-                      <div
-                        className="font-avenir text-[#9DAE83] text-center"
-                        style={{
-                          fontSize: "43px",
-                          lineHeight: "39px",
-                          letterSpacing: "-2%",
-                          fontWeight: 800,
-                        }}
-                      >
-                        2042-45
-                      </div>
-
-                      <div
-                        className="flex flex-col items-center w-full"
-                        style={{ gap: "5px" }}
-                      >
-                        <h4
-                          className="font-open-sans font-bold text-[#9DAE83] text-center"
-                          style={{
-                            fontSize: "15px",
-                            lineHeight: "21px",
-                            fontWeight: 700,
-                          }}
-                        >
-                          Complete Budget
-                          <br />
-                          Depletion
-                        </h4>
-
-                        <p
-                          className="font-open-sans font-normal text-white text-center"
-                          style={{
-                            fontSize: "11px",
-                            lineHeight: "18px",
-                            fontWeight: 400,
-                          }}
-                        >
-                          At current rates, the global CO₂ budget could be fully
-                          depleted by 2042, unless urgent action is taken to
-                          scale removals and cut emissions dramatically.
-                        </p>
-                      </div>
-                    </div>
-                  </FadeContent>
-                </FadeContent>
-              </div>
             </div>
           </div>
         </div>

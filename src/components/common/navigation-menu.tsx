@@ -20,6 +20,7 @@ interface NavigationMenuProps {
   useWhiteMenuIcon?: boolean;
   desktopTextColor?: string;
   removePadding?: boolean;
+  useAboutUsDesign?: boolean;
 }
 
 export function NavigationMenu({
@@ -31,6 +32,7 @@ export function NavigationMenu({
   useWhiteMenuIcon = false,
   desktopTextColor,
   removePadding = false,
+  useAboutUsDesign = false,
 }: NavigationMenuProps) {
   // Color constants for desktop navigation
   const NAVIGATION_COLORS = {
@@ -49,47 +51,12 @@ export function NavigationMenu({
   const currentMobileMenuStyles = mobileMenuStyles || defaultMobileMenuStyles;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
-    const element = e.target as HTMLElement;
-    element.style.color = NAVIGATION_COLORS.active;
-    element.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
-  };
-
-  const handleMouseLeave = (
-    e: React.MouseEvent<HTMLElement>,
-    isActive: boolean
-  ) => {
-    const element = e.target as HTMLElement;
-    element.style.color = isActive
-      ? NAVIGATION_COLORS.active
-      : NAVIGATION_COLORS.default;
-    element.style.backgroundColor = isActive
-      ? "rgba(255, 255, 255, 0.05)"
-      : "transparent";
-  };
-
-  const handleFocus = (e: React.FocusEvent<HTMLElement>) => {
-    const element = e.target as HTMLElement;
-    element.style.color = NAVIGATION_COLORS.active;
-    element.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
-  };
-
-  const handleBlur = (e: React.FocusEvent<HTMLElement>, isActive: boolean) => {
-    const element = e.target as HTMLElement;
-    element.style.color = isActive
-      ? NAVIGATION_COLORS.active
-      : NAVIGATION_COLORS.default;
-    element.style.backgroundColor = isActive
-      ? "rgba(255, 255, 255, 0.05)"
-      : "transparent";
-  };
-
   return (
     <>
       {/* Navigation Menu */}
-      <nav className={removePadding ? "" : "pt-8"} style={{ zIndex: 9999 }}>
+      <nav className={removePadding ? "" : "pt-10"}>
         {/* Mobile Menu - with logo and border */}
-        <div className="md:hidden">
+        <div className="md:hidden z-9999">
           <Container maxWidth="default" padding="default">
             <div className="mx-6">
               <div
@@ -155,44 +122,81 @@ export function NavigationMenu({
 
         {/* Desktop Menu - Full Width, No Logo, No Border */}
         <div
-          className="hidden md:flex w-full h-12"
+          className="hidden md:flex w-full h-8"
           style={{
             zIndex: 9999,
           }}
         >
-          {/* Navigation Links - Full Width */}
-          <div className="flex items-stretch w-full gap-4">
-            {menuItems.map((item, index) => {
-              const isActive = activeItem === item.text;
-              return (
-                <Link
-                  key={index}
-                  href={item.url}
-                  className="flex items-center justify-center px-1.5 py-1 text-center transition-colors duration-200 flex-1"
-                  style={{
-                    fontStyle: "normal",
-                    textTransform: "uppercase",
-                    fontSize: "12px",
-                    fontWeight: 400,
-                    lineHeight: "2em",
-                    fontFamily: "Work Sans, sans-serif",
-                    color: isActive
-                      ? NAVIGATION_COLORS.active
-                      : NAVIGATION_COLORS.default,
-                    backgroundColor: isActive
-                      ? "rgba(255, 255, 255, 0.05)"
-                      : "transparent",
-                  }}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={(e) => handleMouseLeave(e, isActive)}
-                  onFocus={handleFocus}
-                  onBlur={(e) => handleBlur(e, isActive)}
-                >
-                  {item.text}
-                </Link>
-              );
-            })}
-          </div>
+          {useAboutUsDesign ? (
+            /* About Us Design - All items with background, scales from 768px to large screens */
+            <div
+              className="flex items-stretch w-full mx-[30px] max-h-[32px] h-full"
+              style={{
+                gap: "6px",
+                maxWidth: "100%",
+              }}
+            >
+              {menuItems.map((item, index) => {
+                const isActive = activeItem === item.text;
+                return (
+                  <Link
+                    key={index}
+                    href={item.url}
+                    className="nav-link-about-us flex items-center justify-center text-center transition-colors duration-200 flex-1"
+                    style={{
+                      padding: "4px 6px",
+                      fontStyle: "normal",
+                      textTransform: "uppercase",
+                      fontSize: "clamp(10px, 0.83vw, 12px)",
+                      fontWeight: 400,
+                      lineHeight: "2em",
+                      fontFamily: "Work Sans, sans-serif",
+                      color: isActive
+                        ? NAVIGATION_COLORS.active
+                        : NAVIGATION_COLORS.default,
+                      backgroundColor: "rgba(255, 255, 255, 0.05)",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      maxHeight: "32px",
+                    }}
+                  >
+                    {item.text}
+                  </Link>
+                );
+              })}
+            </div>
+          ) : (
+            /* Default Design - Original layout */
+            <div className="flex items-stretch w-full gap-4">
+              {menuItems.map((item, index) => {
+                const isActive = activeItem === item.text;
+                return (
+                  <Link
+                    key={index}
+                    href={item.url}
+                    className="nav-link-default flex items-center justify-center px-1.5 py-1 text-center transition-colors duration-200 flex-1"
+                    style={{
+                      fontStyle: "normal",
+                      textTransform: "uppercase",
+                      fontSize: "12px",
+                      fontWeight: 400,
+                      lineHeight: "2em",
+                      fontFamily: "Work Sans, sans-serif",
+                      color: isActive
+                        ? NAVIGATION_COLORS.active
+                        : NAVIGATION_COLORS.default,
+                      backgroundColor: isActive
+                        ? "rgba(255, 255, 255, 0.05)"
+                        : "transparent",
+                    }}
+                  >
+                    {item.text}
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
       </nav>
 
@@ -232,6 +236,17 @@ export function NavigationMenu({
       )}
 
       <style jsx>{`
+        :global(.nav-link-about-us:hover),
+        :global(.nav-link-about-us:focus) {
+          color: #00a5ff !important;
+        }
+
+        :global(.nav-link-default:hover),
+        :global(.nav-link-default:focus) {
+          color: #00a5ff !important;
+          background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
         @keyframes slideDown {
           from {
             opacity: 0;

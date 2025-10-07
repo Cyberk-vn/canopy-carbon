@@ -10,6 +10,7 @@ import {
 } from "@/src/components/about-us";
 import { AboutUsBannerDesktop } from "@/src/components/about-us/about-us-banner-desktop";
 import { OurPracticalSectionDesktop } from "@/src/components/about-us/our-practical-section-desktop";
+import { OurPracticalSectionTablet } from "@/src/components/about-us/our-practical-section-tablet";
 import { FooterSection } from "@/src/components/common";
 import {
   getMenuItems,
@@ -26,7 +27,7 @@ const AboutUsPage = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const isMobile = window.innerWidth < 768;
-      
+
       // Critical images to preload on mobile (above-the-fold content)
       const criticalImages = [
         "/assets/about-us/contact-us-banner-bg-image.png", // Main banner
@@ -34,10 +35,12 @@ const AboutUsPage = () => {
       ];
 
       // Secondary images to preload after critical images (mobile-first)
-      const secondaryImages = isMobile ? [
-        "/assets/about-us/our-purpose-main-image.png", // Purpose section
-        "/assets/about-us/our-pratical-bg-mobile-image.png", // Practical section bg
-      ] : [];
+      const secondaryImages = isMobile
+        ? [
+            "/assets/about-us/our-purpose-main-image.png", // Purpose section
+            "/assets/about-us/our-pratical-bg-mobile-image.png", // Practical section bg
+          ]
+        : [];
 
       // Preload critical images immediately
       criticalImages.forEach((src) => {
@@ -119,9 +122,8 @@ const AboutUsPage = () => {
       <div className="block md:hidden">
         <OurPracticalSection />
       </div>
-      <div className="hidden md:block">
-        <OurPracticalSectionDesktop />
-      </div>
+      <OurPracticalSectionTablet />
+      <OurPracticalSectionDesktop />
 
       {/* Common sections - always visible */}
       <DevelopmentSequenceSection data={developmentSequenceData} />
