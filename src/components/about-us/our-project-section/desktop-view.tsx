@@ -459,7 +459,7 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
         }}
       >
         <p
-          className="font-open-sans text-center"
+          className=" text-center"
           style={{
             fontSize: createResponsiveValue(27, 30, 46), // Figma: 30px at 1440px
             fontWeight: 600, // Figma: Semi Bold (600)

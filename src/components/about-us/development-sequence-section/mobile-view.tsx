@@ -253,12 +253,12 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
         <div className="grid grid-cols-[1fr_136px] justify-around items-end pl-[29px]">
           {/* Text Content */}
           <div className="flex flex-col gap-[6px]">
-            <h2 className="font-open-sans font-bold text-[18px] xxs:text-[19px] xs:text-[20px] leading-[28px] text-[#475850] text-left">
+            <h2 className=" font-bold text-[18px] xxs:text-[19px] xs:text-[20px] leading-[28px] text-[#475850] text-left">
               {data.sectionTitle}
             </h2>
 
             <p
-              className="font-open-sans font-semibold text-[13px] xs:text-[13.5px] leading-[1.5384615384615385] text-[#91A69E] text-left max-w-[234px]"
+              className=" font-semibold text-[13px] xs:text-[13.5px] leading-[1.5384615384615385] text-[#91A69E] text-left max-w-[234px]"
               style={{ letterSpacing: "-3%" }}
             >
               {data.sectionSubtitle}
@@ -406,7 +406,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
 
           {/* Description Text */}
           <p
-            className="font-open-sans font-semibold text-[14px] xxs:text-[15px] xs:text-[16px] leading-[20px] text-[#91A69E] text-center mb-3 w-full justify-center"
+            className=" font-semibold text-[14px] xxs:text-[15px] xs:text-[16px] leading-[20px] text-[#91A69E] text-center mb-3 w-full justify-center"
             style={{ letterSpacing: "-3%" }}
           >
             {data.contentSectionDescription}
@@ -414,7 +414,7 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
 
           {/* Title */}
           <h3
-            className="font-open-sans font-bold text-[12px] xxs:text-[13px] xs:text-[14px] leading-[1.6666666666666667] text-[#475850] text-center w-full"
+            className=" font-bold text-[12px] xxs:text-[13px] xs:text-[14px] leading-[1.6666666666666667] text-[#475850] text-center w-full"
             style={{ letterSpacing: "-3%" }}
           >
             {data.contentSectionTitle}

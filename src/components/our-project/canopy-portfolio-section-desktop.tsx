@@ -156,7 +156,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                 initial={{ opacity: 0.7, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-                className="font-open-sans font-extrabold text-[32px] leading-[1.36181640625em] text-[#EDEDED] text-center h-[30px] flex items-center"
+                className=" font-extrabold text-[32px] leading-[1.36181640625em] text-[#EDEDED] text-center h-[30px] flex items-center"
               >
                 The Canopy Portfolio
               </motion.h2>
@@ -166,7 +166,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                 initial={{ opacity: 0.6, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
-                className="font-open-sans font-light text-[19px] leading-[1.0526315789473684em] text-[#F0F0F0] text-center"
+                className=" font-light text-[19px] leading-[1.0526315789473684em] text-[#F0F0F0] text-center"
               >
                 We execute our projects alongside key partners globally
                 recognised for their domain expertise.
@@ -217,7 +217,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                     </h3>
 
                     {/* Project Location */}
-                    <p className="font-open-sans font-light text-[12px] leading-[2.3333333333333335em] text-white text-center mb-[4px] h-[27.36px] flex items-center justify-center">
+                    <p className=" font-light text-[12px] leading-[2.3333333333333335em] text-white text-center mb-[4px] h-[27.36px] flex items-center justify-center">
                       {project.location}
                     </p>
 
@@ -238,7 +238,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
 
                         {/* Read More Button */}
                         <div className="text-center h-[48px] flex items-center justify-center">
-                          <button className="font-open-sans font-normal text-[12px] leading-[1.5em] text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300">
+                          <button className=" font-normal text-[12px] leading-[1.5em] text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300">
                             Read More →
                           </button>
                         </div>

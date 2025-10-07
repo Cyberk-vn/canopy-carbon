@@ -5,6 +5,10 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { NavigationMenu } from "../common";
 import type { ContactCardsProps } from "@/src/types/contact-us";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 interface ContactFormData {
   firstName: string;
@@ -14,7 +18,6 @@ interface ContactFormData {
   message: string;
 }
 
-// Connect With Us Form Component
 const ConnectWithUsForm = () => {
   const [formData, setFormData] = useState<ContactFormData>({
     firstName: "",
@@ -28,10 +31,7 @@ const ConnectWithUsForm = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -40,189 +40,147 @@ const ConnectWithUsForm = () => {
   };
 
   return (
-    <div id="contact-desktop-form" className="w-[510px] flex flex-col gap-6">
-      {/* Title */}
+    <div className="w-full">
       <motion.h2
-        initial={{ opacity: 0.8, y: 10 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="text-base font-bold leading-6 text-[#121C17] font-open-sans text-left"
+        className="mb-6 font-sans text-base font-bold uppercase leading-6 text-[#121C17]"
       >
         CONNECT WITH US
       </motion.h2>
 
-      {/* Form Background */}
       <motion.div
-        initial={{ opacity: 0.7, y: 20 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-        className="p-4"
-        style={{ background: "rgba(226, 226, 226, 0.8)" }}
+        className="bg-[#0000001A] p-4"
       >
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          {/* Name Fields Row - First name* & Last name* */}
-          <div className="flex gap-4">
-            <div className="flex-1 flex flex-col gap-1">
-              <label
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <div className="flex flex-1 flex-col gap-1">
+              <Label
                 htmlFor="firstName"
-                className="text-xs font-normal text-[#0D1117]"
-                style={{
-                  fontFamily: "Open Sans",
-                  lineHeight: "1.6666666666666667em",
-                }}
+                className="font-sans text-xs font-normal text-[#0D1117]"
               >
                 First name*
-              </label>
-              <input
+              </Label>
+              <Input
                 type="text"
                 name="firstName"
-                placeholder="Text"
+                id="firstName"
                 value={formData.firstName}
                 onChange={handleInputChange}
-                className="w-full py-[7px] px-2 bg-white border-[0.3px] border-contact-input-border text-xs font-normal leading-5 placeholder:text-contact-placeholder focus:outline-none focus:ring-1 focus:ring-[#121C17] font-open-sans"
+                className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
                 required
               />
             </div>
-            <div className="flex-1 flex flex-col gap-1">
-              <label
+            <div className="flex flex-1 flex-col gap-1">
+              <Label
                 htmlFor="lastName"
-                className="text-xs font-normal text-[#0D1117]"
-                style={{
-                  fontFamily: "Open Sans",
-                  lineHeight: "1.6666666666666667em",
-                }}
+                className="font-sans text-xs font-normal text-[#0D1117]"
               >
                 Last name*
-              </label>
-              <input
+              </Label>
+              <Input
                 type="text"
                 name="lastName"
-                placeholder="Text"
+                id="lastName"
                 value={formData.lastName}
                 onChange={handleInputChange}
-                className="w-full py-[7px] px-4 bg-white border-[0.3px] border-contact-input-border text-xs font-normal leading-5 placeholder:text-contact-placeholder focus:outline-none focus:ring-1 focus:ring-[#121C17] font-open-sans"
+                className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
                 required
               />
             </div>
           </div>
-
-          {/* Company Name Field */}
           <div className="flex flex-col gap-1">
-            <label
+            <Label
               htmlFor="companyName"
-              className="text-xs font-normal text-[#0D1117]"
-              style={{
-                fontFamily: "Open Sans",
-                lineHeight: "1.6666666666666667em",
-              }}
+              className="font-sans text-xs font-normal text-[#0D1117]"
             >
               Company name
-            </label>
-            <input
+            </Label>
+            <Input
               type="text"
               name="companyName"
-              placeholder="Text"
+              id="companyName"
               value={formData.companyName}
               onChange={handleInputChange}
-              className="w-full py-[7px] px-4 bg-white border-[0.3px] border-contact-input-border text-xs font-normal leading-5 placeholder:text-contact-placeholder focus:outline-none focus:ring-1 focus:ring-[#121C17] font-open-sans"
+              className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
             />
           </div>
-
-          {/* Email Field */}
           <div className="flex flex-col gap-1">
-            <label
+            <Label
               htmlFor="email"
-              className="text-xs font-normal text-[#0D1117]"
-              style={{
-                fontFamily: "Open Sans",
-                lineHeight: "1.6666666666666667em",
-              }}
+              className="font-sans text-xs font-normal text-[#0D1117]"
             >
-              Email
-            </label>
-            <input
+              Email*
+            </Label>
+            <Input
               type="email"
               name="email"
-              placeholder="Text"
+              id="email"
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full py-[7px] px-4 bg-white border-[0.3px] border-contact-input-border text-xs font-normal leading-5 placeholder:text-contact-placeholder focus:outline-none focus:ring-1 focus:ring-[#121C17] font-open-sans"
+              className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
               required
             />
           </div>
-
-          {/* Message Field with 8px gap */}
           <div className="flex flex-col gap-2">
-            <label
+            <Label
               htmlFor="message"
-              className="text-xs font-normal text-[#0D1117]"
-              style={{
-                fontFamily: "Open Sans",
-                lineHeight: "1.6666666666666667em",
-              }}
+              className="font-sans text-xs font-normal text-[#0D1117]"
             >
               Message
-            </label>
-            <textarea
+            </Label>
+            <Textarea
               name="message"
+              id="message"
               placeholder="Type your message-whether its a business proposal, question or comment"
               value={formData.message}
               onChange={handleInputChange}
               rows={3}
-              className="w-full py-2 px-4 bg-white border-[0.3px] border-contact-input-border text-xs font-normal leading-5 placeholder:text-contact-placeholder focus:outline-none focus:ring-1 focus:ring-[#121C17] resize-vertical font-open-sans"
+              className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
               required
             />
           </div>
-
-          {/* Send Button - 44px height */}
-          <button
+          <Button
             type="submit"
-            className="w-full h-11 bg-[#EAE7DF] text-[#3B464F] text-base font-normal leading-6 hover:bg-[#E0DDD5] transition-colors duration-200 font-open-sans text-center"
+            className="h-9 w-full cursor-pointer rounded-none bg-[#EAE7DF] font-sans text-base font-semibold text-[#3B464F] transition-colors duration-200 hover:bg-[#E0DDD5]"
           >
             Send
-          </button>
+          </Button>
         </form>
       </motion.div>
     </div>
   );
 };
 
-// Card Group Component
-const CardGroup = ({ cards }: { cards: ContactCardsProps["cards"] }) => {
-  return (
-    <div className="flex flex-wrap gap-6">
-      {cards.map((card, index) => (
-        <motion.div
-          key={card.id || index}
-          initial={{ opacity: 0.8, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
-          whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-          className="w-[291px] p-4 space-y-4"
-          style={{ background: "rgba(250, 250, 250, 0.6)" }}
-        >
-          <div className="p-4" style={{ background: "rgba(0, 0, 0, 0.01)" }}>
-            <h3
-              className="text-base font-bold leading-6 text-center text-[#121C17] mb-4"
-              style={{ fontFamily: "Open Sans" }}
-            >
-              {card.title}
-            </h3>
-            <p
-              className="text-xs font-normal leading-5 text-justify text-[#6C6C6C]"
-              style={{ fontFamily: "Open Sans" }}
-            >
-              {card.description}
-            </p>
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
-};
+const CardGroup = ({ cards }: { cards: ContactCardsProps["cards"] }) => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    {cards.map((card, index) => (
+      <motion.div
+        key={card.id || index}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
+        whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+        className="h-[245px] bg-[#FAFAFA99] p-4"
+      >
+        <div className="flex h-full w-full flex-col items-center bg-[#00000003] p-4">
+          <h3 className="mb-4 text-center font-sans text-base font-bold leading-tight text-black">
+            {card.title}
+          </h3>
+          <p className="text-center font-sans text-xs leading-tight text-[#6C6C6C]">
+            {card.description}
+          </p>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+);
 
 export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
-  // Menu items data - following the same pattern as other pages
   const menuItems = [
     { text: "Home", url: "/" },
     { text: "About Us", url: "/about-us" },
@@ -232,81 +190,48 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
   ];
 
   return (
-    <div className="relative w-full min-h-[987px] max-w-[1440px] mx-auto">
-      {/* Background System with 4-layer overlay */}
-      <div className="absolute inset-0">
-        {/* Main background image */}
-        <div className="absolute inset-0 top-[137px]">
-          <Image
-            src="/assets/desktop/contact-us/contact-us-background-image.png"
-            alt=""
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
+    <div className="relative w-full">
+      <Image
+        src="/assets/desktop/contact-us/contact-us-background-image.png"
+        alt="Contact us background"
+        fill
+        className="hidden object-cover xl:block"
+        priority
+      />
+      <Image
+        src="/assets/desktop/contact-us/contact-us-bg-tablet.png"
+        alt="Contact us background tablet"
+        fill
+        className="object-cover xl:hidden h-full"
+        priority
+      />
 
-        {/* Background gradient overlay - Figma Rectangle 70 */}
-        <div
-          className="absolute inset-0 z-1"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(24, 24, 24, 0) 82%, rgba(24, 24, 24, 0.9) 100%)",
-          }}
-        />
-
-        {/* Primary overlay - Figma "first background overlay" with exact height and positioning */}
-        <div
-          className="absolute z-2"
-          style={{
-            left: 0,
-            top: -1.5,
-            width: 1440,
-            height: 609.5,
-            background:
-              "linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0) 100%)",
-          }}
-        />
-      </div>
-
-      {/* Navigation */}
-      <div className="relative z-50">
+      <div className="relative z-20 flex min-h-screen flex-col">
         <NavigationMenu
           menuItems={menuItems}
           logoUrl="/assets/banner-shared-component/logo.png"
           mobileMenuIconColor="#EDEDED"
           activeItem="Contact"
         />
-      </div>
 
-      {/* Content Layout with Flexbox */}
-      <div className="relative z-20 w-full max-w-[1440px] mx-auto px-[108px]">
-        <div className="flex gap-[89px] items-start">
-          {/* Left side - Connect with us form */}
-          <div className="w-[510px] flex-shrink-0 pt-[93px]">
-            <ConnectWithUsForm />
+        <main className="flex-grow md:pt-10 md:pb-50 md:px-18">
+          <div className="flex flex-col-reverse items-center gap-14 xl:flex-row xl:items-start xl:justify-center xl:gap-11">
+            <div className="w-full xl:w-[620px] xl:pt-15">
+              <ConnectWithUsForm />
+            </div>
+            <div className="w-full xl:w-[667px] xl:pt-20">
+              <CardGroup cards={cards} />
+            </div>
           </div>
+        </main>
 
-          {/* Right side - Card group */}
-          <div className="w-[612px] flex-shrink-0 -mt-2 pt-[85px]">
-            <CardGroup cards={cards} />
+        <footer className="w-full bg-white py-4">
+          <div className="container mx-auto">
+            <p className="text-center font-sans text-sm font-normal text-[#6C6C6C]">
+              © 2024 Canopy Carbon. All rights reserved.
+            </p>
           </div>
-        </div>
-      </div>
-
-      {/* Footer Section - Full Width */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 w-screen max-h-[53px] bg-white backdrop-blur-sm max-w-[1440px] mx-auto">
-        <div className="flex items-center justify-center py-4">
-          <motion.p
-            initial={{ opacity: 0.7 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="text-sm font-normal text-[#6C6C6C]"
-            style={{ fontFamily: "Open Sans" }}
-          >
-            © 2024 Canopy Carbon. All rights reserved.
-          </motion.p>
-        </div>
+        </footer>
       </div>
     </div>
   );

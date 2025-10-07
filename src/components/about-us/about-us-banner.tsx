@@ -186,7 +186,7 @@ export function AboutUsBanner({
                 {/* Mission Section */}
                 <div className="flex flex-col gap-2">
                   <h2
-                    className="font-open-sans font-bold text-white text-[21px] xxs:text-[22px] xs:text-[23px]"
+                    className=" font-bold text-white text-[21px] xxs:text-[22px] xs:text-[23px]"
                     style={{
                       lineHeight: "30px",
                       fontWeight: 700,
@@ -195,7 +195,7 @@ export function AboutUsBanner({
                     Mission
                   </h2>
                   <p
-                    className="font-open-sans font-normal text-white text-[12px] xxs:text-[13px] xs:text-[14px]"
+                    className=" font-normal text-white text-[12px] xxs:text-[13px] xs:text-[14px]"
                     style={{
                       lineHeight: "20px",
                       fontWeight: 400,
@@ -210,7 +210,7 @@ export function AboutUsBanner({
                 {/* Vision Section */}
                 <div className="flex flex-col gap-2">
                   <h2
-                    className="font-open-sans font-bold text-white text-[21px] xxs:text-[22px] xs:text-[23px]"
+                    className=" font-bold text-white text-[21px] xxs:text-[22px] xs:text-[23px]"
                     style={{
                       lineHeight: "30px",
                       fontWeight: 700,
@@ -219,7 +219,7 @@ export function AboutUsBanner({
                     Vision
                   </h2>
                   <p
-                    className="font-open-sans font-normal text-white text-[12px] xxs:text-[13px] xs:text-[14px]"
+                    className=" font-normal text-white text-[12px] xxs:text-[13px] xs:text-[14px]"
                     style={{
                       lineHeight: "20px",
                       fontWeight: 400,
@@ -282,7 +282,7 @@ export function AboutUsBanner({
                 {/* Thesis Text */}
                 <div className="flex-1">
                   <p
-                    className="font-open-sans font-bold text-[#DDE2E6] text-left text-[13px] xxs:text-[14px] xs:text-[15px]"
+                    className=" font-bold text-[#DDE2E6] text-left text-[13px] xxs:text-[14px] xs:text-[15px]"
                     style={{
                       lineHeight: "20px",
                       fontWeight: 700,
@@ -299,7 +299,7 @@ export function AboutUsBanner({
               {/* Our Thesis Statement Label */}
               <div className="text-right w-full mt-[3px]">
                 <h3
-                  className="font-open-sans font-light text-[#D8DBD6] text-[12px] xxs:text-[13px] xs:text-[14px]"
+                  className=" font-light text-[#D8DBD6] text-[12px] xxs:text-[13px] xs:text-[14px]"
                   style={{
                     lineHeight: "10px",
                     fontWeight: 300,
@@ -368,7 +368,7 @@ export function AboutUsBanner({
                         {/* Statistics Title */}
                         <motion.h4
                           key={`title-${currentStatistic.id}`}
-                          className="font-open-sans font-bold text-[#9DAE83] text-center w-full flex-shrink-0 text-[17px] xxs:text-[18px] xs:text-[19px]"
+                          className=" font-bold text-[#9DAE83] text-center w-full flex-shrink-0 text-[17px] xxs:text-[18px] xs:text-[19px]"
                           style={{
                             lineHeight: "24px",
                           }}
@@ -380,7 +380,7 @@ export function AboutUsBanner({
                         {/* Statistics Description */}
                         <motion.p
                           key={`description-${currentStatistic.id}`}
-                          className="font-open-sans font-normal text-white text-center w-full flex-1 flex text-[13px] xxs:text-[14px] xs:text-[15px]"
+                          className=" font-normal text-white text-center w-full flex-1 flex text-[13px] xxs:text-[14px] xs:text-[15px]"
                           style={{
                             lineHeight: "20px",
                           }}

@@ -75,7 +75,7 @@ const MapSection = () => {
                   transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                 >
                   <h2
-                    className="font-open-sans font-bold text-[#9CA3AF] text-[16px] xl:text-[18px] xxl:text-[20px] 2xl:text-[22px] 3xl:text-[24px] 4xl:text-[28px] text-start"
+                    className=" font-bold text-[#9CA3AF] text-[16px] xl:text-[18px] xxl:text-[20px] 2xl:text-[22px] 3xl:text-[24px] 4xl:text-[28px] text-start"
                     style={{
                       lineHeight: "clamp(1.4em, 1.45em, 1.5em)",
                       fontFamily: "Open Sans",
@@ -237,7 +237,7 @@ const MapSection = () => {
               {...titleMotion}
             >
               <motion.h2
-                className="font-open-sans font-bold text-[#9CA3AF] text-start"
+                className=" font-bold text-[#9CA3AF] text-start"
                 style={{
                   fontFamily: "Open Sans",
                   fontWeight: 700,
@@ -295,7 +295,7 @@ const MapSection = () => {
               transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             >
               <motion.h3
-                className="text-[9px] xxs:text-[10px] xs:text-[11px] font-open-sans leading-[18px] text-start text-[#3B464F] tracking-[-0.02em] mb-[12px]"
+                className="text-[9px] xxs:text-[10px] xs:text-[11px]  leading-[18px] text-start text-[#3B464F] tracking-[-0.02em] mb-[12px]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}

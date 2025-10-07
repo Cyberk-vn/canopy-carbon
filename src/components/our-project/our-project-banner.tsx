@@ -36,7 +36,7 @@ export function OurProjectBanner({
               {...SIMPLE_ANIMATIONS.fadeInUp}
               {...titleMotion}
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="font-open-sans font-semibold text-xl xxs:text-[21px] xs:text-[22px] leading-[30px] text-[#DDDDDD]"
+              className=" font-semibold text-xl xxs:text-[21px] xs:text-[22px] leading-[30px] text-[#DDDDDD]"
             >
               Our portfolio is anchored in forest-based nature solutions that
               deliver measurable climate impact <br /> through protection and{" "}
@@ -48,7 +48,7 @@ export function OurProjectBanner({
               {...SIMPLE_ANIMATIONS.fadeInUp}
               {...subtitleMotion}
               transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-              className="font-open-sans font-normal text-sm xxs:text-[15px] xs:text-[16px] text-[#949494]"
+              className=" font-normal text-sm xxs:text-[15px] xs:text-[16px] text-[#949494]"
               style={{ lineHeight: "20px" }}
             >
               Each one developed in accordance with standards and methodologies

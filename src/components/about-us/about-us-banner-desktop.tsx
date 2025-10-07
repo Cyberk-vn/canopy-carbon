@@ -304,7 +304,7 @@ export function AboutUsBannerDesktop({
                     <div className="flex flex-col items-center gap-[6px] w-full">
                       {/* Statistics Title */}
                       <h4
-                        className="font-open-sans font-bold text-[#9DAE83] text-center"
+                        className=" font-bold text-[#9DAE83] text-center"
                         style={{
                           fontSize: "17px",
                           lineHeight: "24px",
@@ -316,7 +316,7 @@ export function AboutUsBannerDesktop({
 
                       {/* Statistics Description */}
                       <p
-                        className="font-open-sans font-normal text-white text-center"
+                        className=" font-normal text-white text-center"
                         style={{
                           fontSize: "12px",
                           lineHeight: "20px",
@@ -359,7 +359,7 @@ export function AboutUsBannerDesktop({
                     <div className="flex flex-col items-center gap-[6px] w-full">
                       {/* Statistics Title */}
                       <h4
-                        className="font-open-sans font-bold text-[#9DAE83] text-center"
+                        className=" font-bold text-[#9DAE83] text-center"
                         style={{
                           fontSize: "17px",
                           lineHeight: "24px",
@@ -371,7 +371,7 @@ export function AboutUsBannerDesktop({
 
                       {/* Statistics Description */}
                       <p
-                        className="font-open-sans font-normal text-white text-center"
+                        className=" font-normal text-white text-center"
                         style={{
                           fontSize: "12px",
                           lineHeight: "20px",
@@ -414,7 +414,7 @@ export function AboutUsBannerDesktop({
                     <div className="flex flex-col items-center gap-[6px] w-full">
                       {/* Statistics Title */}
                       <h4
-                        className="font-open-sans font-bold text-[#9DAE83] text-center"
+                        className=" font-bold text-[#9DAE83] text-center"
                         style={{
                           fontSize: "17px",
                           lineHeight: "24px",
@@ -426,7 +426,7 @@ export function AboutUsBannerDesktop({
 
                       {/* Statistics Description */}
                       <p
-                        className="font-open-sans font-normal text-white text-center"
+                        className=" font-normal text-white text-center"
                         style={{
                           fontSize: "12px",
                           lineHeight: "20px",
@@ -469,7 +469,7 @@ export function AboutUsBannerDesktop({
                     <div className="flex flex-col items-center gap-[6px] w-full">
                       {/* Statistics Title */}
                       <h4
-                        className="font-open-sans font-bold text-[#9DAE83] text-center"
+                        className=" font-bold text-[#9DAE83] text-center"
                         style={{
                           fontSize: "17px",
                           lineHeight: "24px",
@@ -483,7 +483,7 @@ export function AboutUsBannerDesktop({
 
                       {/* Statistics Description */}
                       <p
-                        className="font-open-sans font-normal text-white text-center"
+                        className=" font-normal text-white text-center"
                         style={{
                           fontSize: "12px",
                           lineHeight: "20px",

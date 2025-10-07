@@ -38,13 +38,13 @@ const ContactCard = ({
           <div className="flex flex-col items-center gap-4 text-center">
             {/* Title */}
             <div className="w-full">
-              <h3 className="font-open-sans font-bold text-base leading-6 text-[#121C17] md:text-lg">
+              <h3 className=" font-bold text-base leading-6 text-[#121C17] md:text-lg">
                 {title}
               </h3>
             </div>
 
             {/* Description */}
-            <p className="max-w-[280px] md:max-w-none font-open-sans font-normal text-xs md:text-sm leading-5 text-center text-[#6C6C6C]">
+            <p className="w-[280px] md:max-w-none  font-normal text-xs md:text-sm leading-5 text-center text-[#6C6C6C]">
               {description}
             </p>
           </div>
@@ -107,6 +107,7 @@ export function ContactHeroSection({ cards }: ContactCardsProps) {
           logoUrl="/assets/banner-shared-component/logo.png"
           mobileMenuIconColor="#EDEDED"
           activeItem="Contact"
+          useWhiteMenuIcon={true}
         />
       </div>
 

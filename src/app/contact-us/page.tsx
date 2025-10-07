@@ -62,7 +62,6 @@ const ContactUsPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Render both hero sections and use CSS to show/hide - prevents flash */}
       <div className="block md:hidden">
         <ContactHeroSection cards={contactUsCards} />
       </div>
@@ -70,7 +69,6 @@ const ContactUsPage = () => {
         <ContactHeroSectionDesktop cards={contactUsCards} />
       </div>
 
-      {/* Responsive Footer Section */}
       <div className="block md:hidden">
         <ContactFooterSection />
       </div>

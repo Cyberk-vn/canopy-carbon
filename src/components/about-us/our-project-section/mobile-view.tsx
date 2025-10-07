@@ -566,7 +566,7 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
 
         <div className="flex flex-col w-full gap-[15px]">
           <p
-            className="font-open-sans text-[13px] xxs:text-[14px] xs:text-[15px]"
+            className=" text-[13px] xxs:text-[14px] xs:text-[15px]"
             style={{
               fontWeight: 300,
               lineHeight: "20px",
@@ -600,7 +600,7 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <motion.span
-              className="font-open-sans text-[9px] xxs:text-[10px] xs:text-[11px]"
+              className=" text-[9px] xxs:text-[10px] xs:text-[11px]"
               style={{
                 fontWeight: 400,
                 lineHeight: "2.2222222222222223em",
@@ -693,7 +693,7 @@ const DescriptionSectionInline = ({
 
         <div className="w-full max-w-[354px] xxs:max-w-[364px] xs:max-w-[390px]">
           <p
-            className="font-open-sans text-[13px] xxs:text-[13.5px] xs:text-[14.3px]"
+            className=" text-[13px] xxs:text-[13.5px] xs:text-[14.3px]"
             style={{
               fontWeight: 300,
               lineHeight: "1.5384615384615385em",

@@ -25,7 +25,7 @@ const OurProjectBenefitSectionDesktop: React.FC = () => {
               initial={{ opacity: 0.7, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-              className="font-open-sans font-bold text-[32px] leading-[1em] text-center max-w-[1199px]"
+              className=" font-bold text-[32px] leading-[1em] text-center max-w-[1199px]"
               style={{ color: "rgba(204, 204, 204, 0.8)" }}
             >
               Our Co-Benefits & Safeguards Strategy
@@ -36,7 +36,7 @@ const OurProjectBenefitSectionDesktop: React.FC = () => {
               initial={{ opacity: 0.6, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-              className="font-open-sans font-normal text-[16px] text-center max-w-[720px] text-[#949494] w-[720px] items-center"
+              className=" font-normal text-[16px] text-center max-w-[720px] text-[#949494] w-[720px] items-center"
               style={{ letterSpacing: "-2%", lineHeight: "22px" }}
             >
               Developed and published in 2023 by the Integrity Council for the

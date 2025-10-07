@@ -55,7 +55,7 @@ export function CanopyPortfolioSection() {
             delay={100}
             threshold={0.1}
             easing="ease-out"
-            className="font-open-sans font-semibold text-[#1E2E26] text-[20px] xxs:text-[21px] xs:text-[22px]"
+            className=" font-semibold text-[#1E2E26] text-[20px] xxs:text-[21px] xs:text-[22px]"
             style={{
               lineHeight: "1.5em",
               textAlign: "center",
@@ -70,7 +70,7 @@ export function CanopyPortfolioSection() {
             delay={200}
             threshold={0.1}
             easing="ease-out"
-            className="font-open-sans font-normal text-[#37423B] text-[13px] xxs:text-[14px] xs:text-[15px]"
+            className=" font-normal text-[#37423B] text-[13px] xxs:text-[14px] xs:text-[15px]"
             style={{
               lineHeight: "1.5384615384615385em",
               textAlign: "center",
@@ -88,7 +88,7 @@ export function CanopyPortfolioSection() {
           >
             <motion.div
               onClick={redirectToContact}
-              className="font-open-sans font-normal text-[#7D8F89] cursor-pointer text-[11px] xxs:text-[12px] xs:text-[13px]"
+              className=" font-normal text-[#7D8F89] cursor-pointer text-[11px] xxs:text-[12px] xs:text-[13px]"
               style={{
                 lineHeight: "1.6363636363636365em",
                 textAlign: "center",
