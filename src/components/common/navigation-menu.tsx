@@ -56,13 +56,9 @@ export function NavigationMenu({
   return (
     <>
       {/* Navigation Menu */}
-      <nav
-        className={`absolute top-0 left-0 w-full z-[9999] ${
-          removePadding ? "" : "pt-10"
-        }`}
-      >
+      <nav className={removePadding ? "" : "pt-10"}>
         {/* Mobile Menu - with logo and border */}
-        <div className="md:hidden">
+        <div className="md:hidden z-9999">
           <Container maxWidth="default" padding="default">
             <div className="mx-6">
               <div
