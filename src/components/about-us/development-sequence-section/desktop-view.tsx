@@ -323,15 +323,11 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
                     padding: createResponsiveValue(14.89, 21, 32.11),
                   }}
                 >
-                  {/* Left: Card Title - Fixed width */}
+                  {/* Left: Card Title - Fixed width (same for all cards) */}
                   <div
-                    className="flex items-center"
+                    className="flex items-center flex-shrink-0"
                     style={{
-                      width: createResponsiveValue(
-                        index === 1 ? 125.22 : 134.56,
-                        index === 1 ? 176.7 : 189.84,
-                        index === 1 ? 270.06 : 300
-                      ),
+                      width: createResponsiveValue(150, 212, 324),
                       paddingRight: createResponsiveValue(20, 28, 40),
                     }}
                   >
