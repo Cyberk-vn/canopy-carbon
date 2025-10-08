@@ -92,26 +92,30 @@ export function InsightSectionDesktop({
 
   return (
     <div className="w-full md:p-12 lg:py-20 xl:px-7">
-      <div className="relative mx-auto max-w-[1305px] 2xl:max-w-[1864px]">
-        <FadeContent
-          duration={500}
-          delay={100}
-          threshold={0.1}
-          easing="ease-out"
-          className="mb-10"
-        >
-          <h2 className="font-sans text-[28px] font-bold leading-tight text-[#6A7D8E] lg:ml-15">
-            {title}
-          </h2>
-        </FadeContent>
+      <div className="relative mx-auto max-w-[1250px] 2xl:max-w-none">
+        <div className="mx-auto w-full 2xl:max-w-[1737px]">
+          <FadeContent
+            duration={500}
+            delay={100}
+            threshold={0.1}
+            easing="ease-out"
+            className="mb-10"
+          >
+            <h2 className="font-sans text-[28px] font-bold leading-tight text-[#6A7D8E] lg:ml-15">
+              {title}
+            </h2>
+          </FadeContent>
+        </div>
 
-        <div
-          className={`flex flex-col gap-8 bg-[#F7F7F7] p-6 md:p-8 lg:flex-row ${
-            imagePosition === "left" ? "lg:flex-row-reverse" : ""
-          } 2xl:items-center 2xl:gap-20 2xl:p-7`}
-        >
-          {textContent}
-          {imageContent}
+        <div className="bg-[#F7F7F7] p-6 md:p-8 2xl:p-7">
+          <div
+            className={`mx-auto flex w-full flex-col gap-8 lg:flex-row ${
+              imagePosition === "left" ? "lg:flex-row-reverse" : ""
+            } 2xl:max-w-[1737px] 2xl:items-center 2xl:gap-20`}
+          >
+            {textContent}
+            {imageContent}
+          </div>
         </div>
         <div className="absolute -bottom-10 right-0 h-0 w-[636.11px] border-t border-[#DFE2E5]" />
       </div>
