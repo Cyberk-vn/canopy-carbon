@@ -181,9 +181,9 @@ export function OurProjectBannerDesktop({
                 style={{
                   fontFamily: "Work Sans",
                   fontWeight: 600,
-                  fontSize: createResponsiveValueDesktop(20, 28, 43),
+                  fontSize: createResponsiveValueDesktop(20, 28, 36),
                   lineHeight: "1.173em",
-                  maxWidth: createResponsiveValueDesktop(803, 1126, 1721),
+                  maxWidth: createResponsiveValueDesktop(803, 1126, 1248),
                 }}
               >
                 Our portfolio is anchored in forest-based nature solutions that
@@ -199,10 +199,10 @@ export function OurProjectBannerDesktop({
                 style={{
                   fontFamily: "Open Sans",
                   fontWeight: 400,
-                  fontSize: createResponsiveValueDesktop(13, 18, 28),
+                  fontSize: createResponsiveValueDesktop(13, 18, 22),
                   lineHeight: "1.362em",
                   letterSpacing: "-0.02em",
-                  maxWidth: createResponsiveValueDesktop(563, 790, 1208),
+                  maxWidth: createResponsiveValueDesktop(563, 790, 790),
                 }}
               >
                 Each one developed in accordance with standards and

@@ -18,12 +18,19 @@ import BannerDecoratorMobile from "../../../public/assets/banner-decorator-mobil
 import DesktopDecoratorIcon from "../../../public/assets/desktop/home/decorator-icon.png";
 
 // Icon imports for service cards
-import ArrIcon from "../../../public/assets/icon/arr-icon.png";
-import ReddIcon from "../../../public/assets/icon/redd-icon.png";
-import WrcIcon from "../../../public/assets/icon/wrc-icon.png";
-import BiocharIcon from "../../../public/assets/icon/blochar-icon.png";
+// Mobile icons (PNG)
+import MobileArrIcon from "../../../public/assets/icon/arr-icon.png";
+import MobileReddIcon from "../../../public/assets/icon/redd-icon.png";
+import MobileWrcIcon from "../../../public/assets/icon/wrc-icon.png";
+import MobileBiocharIcon from "../../../public/assets/icon/blochar-icon.png";
 
-// Desktop Service Card Icon Component
+// Desktop/Tablet icons (SVG)
+import DesktopArrIcon from "../../../public/assets/desktop/icon/arr-icon.svg";
+import DesktopReddIcon from "../../../public/assets/desktop/icon/redd-icon.svg";
+import DesktopWrcIcon from "../../../public/assets/desktop/icon/wrc-icon.svg";
+import DesktopBiocharIcon from "../../../public/assets/desktop/icon/blochar-icon.svg";
+
+// Desktop Service Card Icon Component (uses SVG icons)
 function DesktopServiceCardIcon({
   iconType,
 }: {
@@ -32,13 +39,13 @@ function DesktopServiceCardIcon({
   const getIconSrc = () => {
     switch (iconType) {
       case "arr":
-        return ArrIcon;
+        return DesktopArrIcon;
       case "redd":
-        return ReddIcon;
+        return DesktopReddIcon;
       case "wrc":
-        return WrcIcon;
+        return DesktopWrcIcon;
       case "biochar":
-        return BiocharIcon;
+        return DesktopBiocharIcon;
       default:
         return null;
     }
@@ -58,7 +65,43 @@ function DesktopServiceCardIcon({
   );
 }
 
-// Tablet Service Card Component
+// Mobile Service Card Icon Component (uses PNG icons)
+function MobileServiceCardIcon({
+  iconType,
+}: {
+  iconType: ServiceCardData["iconType"];
+}) {
+  const getIconSrc = () => {
+    switch (iconType) {
+      case "arr":
+        return MobileArrIcon;
+      case "redd":
+        return MobileReddIcon;
+      case "wrc":
+        return MobileWrcIcon;
+      case "biochar":
+        return MobileBiocharIcon;
+      default:
+        return null;
+    }
+  };
+
+  const iconSrc = getIconSrc();
+  if (!iconSrc) return null;
+
+  return (
+    <Image
+      src={iconSrc}
+      alt={`${iconType} icon`}
+      width={24}
+      height={24}
+      className="shrink-0"
+    />
+  );
+}
+
+// Tablet Service Card Component (768px - 1024px)
+// Using exact 768px Figma specifications
 function TabletServiceCard({
   service,
   index,
@@ -79,19 +122,20 @@ function TabletServiceCard({
         delay: index * 0.15 + 0.7,
         ease: "easeOut",
       }}
-      className="bg-[#EEF0F2] w-full flex flex-col gap-4"
+      className="bg-[#EEF0F2] w-full flex flex-col items-center"
       style={{
-        padding: "clamp(24px, 3vw, 40px)",
+        padding: "24px",
+        gap: "16px",
       }}
     >
       {/* Header with Icon and Title */}
-      <div className="flex flex-col items-center gap-3">
+      <div className="flex flex-col items-center" style={{ gap: "12px" }}>
         {/* Icon */}
         <div className="flex items-center justify-center">
           <DesktopServiceCardIcon iconType={service.iconType} />
         </div>
 
-        {/* Title - Abbreviation */}
+        {/* Title - Abbreviation (768px: OS 600 16px 1.5em #1D2E27) */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -100,11 +144,11 @@ function TabletServiceCard({
             ease: "easeOut",
             delay: 0.1,
           }}
-          className="font-semibold leading-[1.5] text-[#1D2E27] text-center"
+          className="font-['Open_Sans'] text-[#1D2E27] text-center"
           style={{
-            fontFamily: "Open Sans",
-            fontWeight: "600",
-            fontSize: "clamp(16px, 2.2vw, 24px)",
+            fontWeight: 600,
+            fontSize: "16px",
+            lineHeight: "1.5em",
           }}
         >
           {service.abbreviation}
@@ -112,8 +156,8 @@ function TabletServiceCard({
       </div>
 
       {/* Content */}
-      <div className="flex flex-col gap-1 text-center">
-        {/* Subtitle - Full Title */}
+      <div className="flex flex-col items-center w-full" style={{ gap: "4px" }}>
+        {/* Subtitle - Full Title (768px: OS 600 14px 1.4286em #5B5F58) */}
         <motion.h3
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -122,17 +166,17 @@ function TabletServiceCard({
             ease: "easeOut",
             delay: 0.2,
           }}
-          className="font-semibold leading-[1.4] text-[#5B5F58] text-center"
+          className="font-['Open_Sans'] text-[#5B5F58] text-center"
           style={{
-            fontFamily: "Open Sans",
-            fontWeight: "600",
-            fontSize: "clamp(14px, 2vw, 20px)",
+            fontWeight: 600,
+            fontSize: "14px",
+            lineHeight: "1.4285714285714286em",
           }}
         >
           {service.fullTitle}
         </motion.h3>
 
-        {/* Description */}
+        {/* Description (768px: OS 400 12px 1.5em #5B5F58) */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -141,11 +185,11 @@ function TabletServiceCard({
             ease: "easeOut",
             delay: 0.3,
           }}
-          className="font-normal leading-[1.5] text-[#5B5F58] text-center"
+          className="font-['Open_Sans'] text-[#5B5F58] text-center"
           style={{
-            fontFamily: "Open Sans",
-            fontWeight: "400",
-            fontSize: "clamp(12px, 1.8vw, 16px)",
+            fontWeight: 400,
+            fontSize: "12px",
+            lineHeight: "1.5em",
           }}
         >
           {service.description}
@@ -183,7 +227,8 @@ function DesktopServiceCard({
         </div>
 
         <div className="flex flex-col gap-1 mt-3">
-          {/* Title - Abbreviation */}
+          {/* Title - Abbreviation (ARR, REDD, etc.)
+              768px: OS 600 16px 1.5em → 1440px: Roboto 800 15px 1.6em → 1920px: OS 700 14px 1.7143em */}
           <motion.div
             className="text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -195,17 +240,21 @@ function DesktopServiceCard({
             }}
           >
             <h2
-              className="font-semibold text-[14px] lg:text-[15px] xl:text-[16px] xxl:text-[17px] 2xl:text-[18px] 3xl:text-[20px] leading-[20px] lg:leading-[22px] xl:leading-[24px] xxl:leading-[26px] 2xl:leading-[28px] 3xl:leading-[30px] text-[#1D2E27]"
+              className="md:font-['Open_Sans'] xl:font-['Roboto'] 2xl:font-['Open_Sans'] text-[#1D2E27]"
               style={{
-                fontFamily: "Open Sans",
-                fontWeight: "600",
+                fontWeight:
+                  "clamp(700, min(calc(600 + 200 * (100vw - 768px) / 672), calc(800 - 100 * (100vw - 1440px) / 480)), 800)",
+                fontSize: "clamp(14px, calc(16px - 2 * (100vw - 768px) / 1152), 16px)",
+                lineHeight:
+                  "clamp(1.5em, calc(1.5em + 0.2142857 * (100vw - 768px) / 1152), 1.7142857em)",
               }}
             >
               {service.abbreviation}
             </h2>
           </motion.div>
 
-          {/* Subtitle - Full Title */}
+          {/* Subtitle - Full Title
+              768px: OS 600 14px 1.4286em → 1440px: OS 600 11px 1.8182em → 1920px: OS 600 12px 1.6667em */}
           <motion.div
             className="text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -217,17 +266,21 @@ function DesktopServiceCard({
             }}
           >
             <h3
-              className="font-semibold text-[13px] lg:text-[13px] xl:text-[14px] xxl:text-[15px] 2xl:text-[16px] 3xl:text-[17px] leading-[18px] lg:leading-[19px] xl:leading-[20px] xxl:leading-[21px] 2xl:leading-[22px] 3xl:leading-[24px] text-[#5B5F58] text-center"
+              className="font-['Open_Sans'] text-[#5B5F58] text-center"
               style={{
-                fontFamily: "Open Sans",
-                fontWeight: "600",
+                fontWeight: 600,
+                fontSize:
+                  "clamp(11px, max(calc(14px - 3 * (100vw - 768px) / 672), calc(11px + 1 * (100vw - 1440px) / 480)), 14px)",
+                lineHeight:
+                  "clamp(1.4285714em, max(calc(1.4285714em + 0.3896104 * (100vw - 768px) / 672), calc(1.8181818em - 0.1515151 * (100vw - 1440px) / 480)), 1.8181818em)",
               }}
             >
               {service.fullTitle}
             </h3>
           </motion.div>
 
-          {/* Description */}
+          {/* Description
+              768px: OS 400 12px 1.5em → 1440px: OS 400 11px 1.6364em → 1920px: OS 400 14px 1.2857em */}
           <motion.div
             className="flex-1 flex items-start justify-center"
             initial={{ opacity: 0, y: 20 }}
@@ -239,10 +292,13 @@ function DesktopServiceCard({
             }}
           >
             <p
-              className="font-normal text-[11px] lg:text-[11px] xl:text-[12px] xxl:text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-[16px] lg:leading-[17px] xl:leading-[18px] xxl:leading-[19px] 2xl:leading-[20px] 3xl:leading-[22px] text-[#5B5F58] text-center"
+              className="font-['Open_Sans'] text-[#5B5F58] text-center"
               style={{
-                fontFamily: "Open Sans",
-                fontWeight: "400",
+                fontWeight: 400,
+                fontSize:
+                  "clamp(11px, max(calc(12px - 1 * (100vw - 768px) / 672), calc(11px + 3 * (100vw - 1440px) / 480)), 14px)",
+                lineHeight:
+                  "clamp(1.2857143em, max(calc(1.5em + 0.1363636 * (100vw - 768px) / 672), calc(1.6363636em - 0.3506493 * (100vw - 1440px) / 480)), 1.6363636em)",
               }}
             >
               {service.description}

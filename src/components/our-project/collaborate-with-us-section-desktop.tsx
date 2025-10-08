@@ -193,7 +193,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
 
         {/* Decorator Image - Absolute on tablet, relative on desktop */}
         <div
-          className="md:absolute md:right-0 md:top-0 xl:relative xl:flex items-start justify-start"
+          className="md:hidden md:right-0 md:top-0 xl:relative xl:flex items-start justify-start"
           style={{ paddingTop: createResponsiveValue(14, 62) }}
         >
           <motion.div
