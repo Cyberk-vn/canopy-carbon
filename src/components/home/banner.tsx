@@ -240,10 +240,8 @@ function DesktopServiceCard({
             }}
           >
             <h2
-              className="md:font-['Open_Sans'] xl:font-['Roboto'] 2xl:font-['Open_Sans'] text-[#1D2E27]"
+              className="md:font-['Open_Sans'] md:font-semibold xl:font-['Roboto'] xl:font-extrabold 2xl:font-['Open_Sans'] 2xl:font-bold text-[#1D2E27]"
               style={{
-                fontWeight:
-                  "clamp(700, min(calc(600 + 200 * (100vw - 768px) / 672), calc(800 - 100 * (100vw - 1440px) / 480)), 800)",
                 fontSize: "clamp(14px, calc(16px - 2 * (100vw - 768px) / 1152), 16px)",
                 lineHeight:
                   "clamp(1.5em, calc(1.5em + 0.2142857 * (100vw - 768px) / 1152), 1.7142857em)",
