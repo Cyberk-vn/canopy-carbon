@@ -186,22 +186,26 @@ export const OurPracticalSectionTablet = () => {
                   backdropFilter: "blur(10px)",
                 }}
               >
-                {/* Card Title */}
+                {/* Card Title - 768px: OS 600 16px → 1280px: WS 600 17.78px */}
                 <h3
-                  className="font-['Work_Sans'] font-semibold text-[#506159] text-left leading-[1.4em]"
+                  className="md:font-['Open_Sans'] lg:font-['Work_Sans'] font-semibold text-[#506159] text-left"
                   style={{
                     fontSize: createResponsiveValue(16, 17.78),
+                    lineHeight: "140%",
+                    letterSpacing: "0%",
                     marginBottom: createResponsiveValue(16, 8),
                   }}
                 >
                   {card.title}
                 </h3>
 
-                {/* Card Description */}
+                {/* Card Description - 768px: OS 600 14px → 1280px: WS 400 13.33px */}
                 <p
-                  className="font-['Work_Sans'] font-normal text-[#798C9B] text-left leading-[1.5em]"
+                  className="md:font-['Open_Sans'] md:font-semibold lg:font-['Work_Sans'] lg:font-normal text-[#798C9B] text-left"
                   style={{
                     fontSize: createResponsiveValue(14, 13.33),
+                    lineHeight: "150%",
+                    letterSpacing: "0%",
                   }}
                 >
                   {card.description}

@@ -124,7 +124,7 @@ export const DesktopView = memo<DesktopViewProps>(({ data = defaultData }) => {
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
               className="w-full relative z-[2] flex flex-col items-end"
               style={{
-                height: createResponsiveValue(637, 716, 1094),
+                height: createResponsiveValue(637, 716, 960),
                 backgroundColor: "rgba(250, 250, 250, 0.6)",
                 borderRadius: createResponsiveValue(18, 20, 31),
                 padding: `${createResponsiveValue(
@@ -455,17 +455,17 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
           width: createResponsiveValue(1043, 1170, 1788), // Figma: 1170px at 1440px
           backgroundColor: "#F7F7F7",
           padding: "25px 20px", // Fixed padding
-          gap: createResponsiveValue(36, 40, 61), // Figma: 40px gap at 1440px
+          gap: 24, // Figma: 40px gap at 1440px
         }}
       >
         <p
           className=" text-center"
           style={{
-            fontSize: createResponsiveValue(27, 30, 46), // Figma: 30px at 1440px
+            fontSize: createResponsiveValue(18, 24, 32), // Figma: 30px at 1440px
             fontWeight: 600, // Figma: Semi Bold (600)
             lineHeight: "1.4em", // Figma: 1.4em
             color: "#C4CCD3", // Figma: #C4CCD3
-            width: createResponsiveValue(985, 1105, 1689), // Figma: 1105px at 1440px
+            width: createResponsiveValue(985, 1105, 1136), // Figma: 1105px at 1440px
           }}
         >
           {description}
@@ -494,7 +494,7 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
           <motion.span
             className="font-open-sans text-center"
             style={{
-              fontSize: createResponsiveValue(24, 27, 41), // Figma: 27px at 1440px
+              fontSize: createResponsiveValue(16, 12, 16), // Figma: 27px at 1440px
               fontWeight: 400, // Figma: Regular (400)
               lineHeight: "1.4em", // Figma: 1.4em
               color: "rgba(0, 0, 0, 0.4)", // Figma: rgba(0, 0, 0, 0.4)
@@ -511,11 +511,9 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
             {buttonText}
           </motion.span>
           <motion.div
-            className="flex items-center justify-center"
+            className="flex items-center justify-center w-6 h-6"
             style={{
               opacity: 0.4, // Figma: 0.4 opacity
-              width: createResponsiveValue(36, 40, 61), // Figma: 40px at 1440px
-              height: createResponsiveValue(36, 40, 61),
             }}
             whileHover={{
               opacity: 0.6,
@@ -527,10 +525,6 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              style={{
-                width: createResponsiveValue(36, 40, 61),
-                height: createResponsiveValue(36, 40, 61),
-              }}
               whileHover={{
                 scale: 1.1,
                 transition: { duration: 0.2, ease: "easeOut" },
@@ -682,7 +676,7 @@ const DescriptionSectionInline = ({
         <p
           className="font-work-sans"
           style={{
-            fontSize: createResponsiveValue(21, 24, 37), // Figma: 24px at 1440px
+            fontSize: createResponsiveValue(21, 24, 32), // Figma: 24px at 1440px
             fontWeight: 600, // Figma: Semi Bold
             lineHeight: "1.4em", // Figma: 1.4em
             letterSpacing: "-1%", // Figma: -1%

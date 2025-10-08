@@ -149,35 +149,35 @@ export const OurPracticalSectionDesktop = () => {
   const containerMotion = useSimpleMotion("practical-container");
 
   return (
-    <div className="w-full bg-[#FFFFFF]">
-      <div className="max-w-[2200px] mx-auto">
+    <div className="w-full bg-[#FFFFFF] relative">
+      {/* Gradient Background Overlay - fills full screen width */}
+      <div
+        className="absolute z-0 pointer-events-none hidden xl:block"
+        style={{
+          left: 0,
+          right: 0,
+          top: 0,
+          bottom: 0,
+          background:
+            "linear-gradient(142deg, rgba(249, 249, 249, 0) 0%, rgba(249, 249, 249, 1) 100%)",
+        }}
+      />
+
+      <div className="max-w-[2200px] mx-auto relative">
         <motion.div
           {...SIMPLE_ANIMATIONS.fadeInUp}
           {...containerMotion}
-          className="relative bg-[#FFFFFF] hidden xl:block overflow-hidden"
+          className="relative hidden xl:block overflow-hidden"
           style={{
             minHeight: createResponsiveValue(850, 970, 1140),
           }}
         >
-          {/* Gradient Background Overlay - fills to right edge */}
-          <div
-            className="absolute z-0 pointer-events-none"
-            style={{
-              left: createResponsiveValue(534, 600, 916.8),
-              right: 0,
-              top: createResponsiveValue(-0.02, -0.02, -0.03),
-              bottom: 0,
-              background:
-                "linear-gradient(142deg, rgba(249, 249, 249, 0) 0%, rgba(249, 249, 249, 1) 100%)",
-            }}
-          />
-
-          {/* Logo Decorator - Sizes: 1280px(524x510), 1440px(589x573), 2200px(697x595) */}
+          {/* Logo Decorator - Sizes: 1280px(-98.16), 1440px(-110.31), 2200px(0) - left position */}
           <div
             className="absolute z-10 pointer-events-none opacity-60 overflow-hidden"
             style={{
-              left: createResponsiveValue(-98.16, -110.31, -50.59),
-              top: createResponsiveValue(-62.22, -70, -80),
+              left: "clamp(-110.31px, max(calc(-98.16px + (-110.31 - -98.16) * ((100vw - 1280px) / 160)), calc(-110.31px + (0 - -110.31) * ((100vw - 1440px) / 760))), 0px)",
+              top: createResponsiveValue(-100, -70, -80),
               width: createResponsiveValue(524, 589, 697),
               height: createResponsiveValue(510, 573, 595),
             }}
@@ -190,20 +190,20 @@ export const OurPracticalSectionDesktop = () => {
             />
           </div>
 
-          {/* Canopy Logo centered inside decorator - full opacity */}
+          {/* Canopy Logo centered inside decorator - full opacity, offset 10px down and 10px left */}
           <div
             className="absolute z-10 pointer-events-none"
             style={{
-              left: `calc(${createResponsiveValue(
-                -98.16,
-                -110.31,
-                -50.59
-              )} + ${createResponsiveValue(524, 589, 697)} / 2 - 50px)`,
+              left: `calc(clamp(-110.31px, max(calc(-98.16px + (-110.31 - -98.16) * ((100vw - 1280px) / 160)), calc(-110.31px + (0 - -110.31) * ((100vw - 1440px) / 760))), 0px) + ${createResponsiveValue(
+                524,
+                589,
+                697
+              )} / 2 - 50px)`,
               top: `calc(${createResponsiveValue(
-                -62.22,
+                -100,
                 -70,
                 -80
-              )} + ${createResponsiveValue(510, 573, 595)} / 2)`,
+              )} + ${createResponsiveValue(510, 573, 595)} / 2 + 50px)`,
               transform: "translate(-50%, -50%)",
               width: createResponsiveValue(200, 220, 260),
               height: createResponsiveValue(174, 191, 226),
@@ -249,22 +249,26 @@ export const OurPracticalSectionDesktop = () => {
                   backdropFilter: "blur(10px)",
                 }}
               >
-                {/* Card Title */}
+                {/* Card Title - 1280px: 17.78px → 1440px: WS 600 20px → 1920px: WS 600 22px */}
                 <h3
-                  className="font-['Work_Sans'] font-semibold text-[#506159] text-left leading-[1.4em]"
+                  className="font-['Work_Sans'] font-semibold text-[#506159] text-left"
                   style={{
-                    fontSize: createResponsiveValue(17.78, 20, 28.56),
-                    marginBottom: createResponsiveValue(8, 9, 13.75),
+                    fontSize: createResponsiveValue(17.78, 20, 22),
+                    lineHeight: "140%",
+                    letterSpacing: "0%",
+                    marginBottom: createResponsiveValue(8, 9, 10),
                   }}
                 >
                   {card.title}
                 </h3>
 
-                {/* Card Description */}
+                {/* Card Description - 1280px: 13.33px → 1440px: WS 400 15px → 1920px: WS 400 18px */}
                 <p
-                  className="font-['Work_Sans'] font-normal text-[#798C9B] text-left leading-[1.5em]"
+                  className="font-['Work_Sans'] font-normal text-[#798C9B] text-left"
                   style={{
-                    fontSize: createResponsiveValue(13.33, 15, 19.92),
+                    fontSize: createResponsiveValue(13.33, 15, 18),
+                    lineHeight: "150%",
+                    letterSpacing: "0%",
                   }}
                 >
                   {card.description}

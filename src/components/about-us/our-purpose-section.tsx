@@ -23,7 +23,7 @@ export const OurPurposeSection = () => {
     <motion.div
       {...SIMPLE_ANIMATIONS.fadeInUp}
       {...containerMotion}
-      className="relative w-full px-0 mb-[62px]"
+      className="relative w-full px-0"
     >
       {/* Main Container - Mobile First */}
       <div className="relative w-full md:max-w-none">
@@ -123,57 +123,65 @@ export const OurPurposeSection = () => {
         </div>
 
         {/* Desktop Layout - 768px-1024px → 1024px-2200px responsive */}
-        <div className="hidden md:flex flex-col w-full bg-[#FCFCFC] max-w-[2200px] mx-auto">
-          {/* Content Container */}
-          <motion.div
-            {...SIMPLE_ANIMATIONS.fadeInRight}
-            {...desktopContentMotion}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            className="flex flex-col md:max-w-[694px] lg:max-w-[754px]"
-            style={{
-              marginLeft: "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
-              marginRight: "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
-              marginTop: "clamp(70px, calc(-121.41px + 24.95vw), 118.96px)",
-              gap: "clamp(22px, calc(90.25px - 8.91vw), 40px)",
-            }}
-          >
-            {/* Main Purpose Text */}
-            <p
-              className="font-open-sans text-[#95A4B0]"
+        <div className="hidden md:flex flex-col w-full bg-[#FCFCFC] pb-[62px]">
+          <div className="flex flex-col w-full max-w-[2200px] mx-auto">
+            {/* Content Container */}
+            <motion.div
+              {...SIMPLE_ANIMATIONS.fadeInRight}
+              {...desktopContentMotion}
+              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+              className="flex flex-col md:max-w-[694px] lg:max-w-[754px] 3xl:max-w-[987px]"
               style={{
-                fontSize: "clamp(20px, calc(4.69px + 2vw), 24px)",
-                fontWeight: 600,
-                lineHeight: "1.4em",
+                marginLeft:
+                  "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
+                marginRight:
+                  "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
+                marginTop: "clamp(70px, calc(-121.41px + 24.95vw), 118.96px)",
+                gap: "clamp(22px, calc(90.25px - 8.91vw), 40px)",
               }}
             >
-              Canopy Carbon was founded to address this structural supply
-              shortfall -{" "}
-              <span className="text-[#C4CCD3]">
-                by delivering nature-based projects with uncompromising
-                execution and long-term credibility.
-              </span>
-            </p>
+              {/* Main Purpose Text - 768px: OS 20px → 1440px: OS 24px → 1920px: WS 32px */}
+              <p
+                className="md:font-open-sans xl:font-work-sans text-[#95A4B0]"
+                style={{
+                  fontSize:
+                    "clamp(20px, calc(20px + 4 * min(672px, max(0px, 100vw - 768px)) / 672 + 8 * max(0px, 100vw - 1440px) / 480), 32px)",
+                  fontWeight: 600,
+                  lineHeight: "140%",
+                  letterSpacing: "0%",
+                }}
+              >
+                Canopy Carbon was founded to address this structural supply
+                shortfall -{" "}
+                <span className="text-[#C4CCD3]">
+                  by delivering nature-based projects with uncompromising
+                  execution and long-term credibility.
+                </span>
+              </p>
 
-            {/* Our Purpose Label */}
-            <p
-              className="font-open-sans text-[rgba(139,147,140,0.8)] h-[18px] font-normal lg:font-light"
+              {/* Our Purpose Label */}
+              <p
+                className="font-open-sans text-[rgba(139,147,140,0.8)] h-[18px] font-normal lg:font-light"
+                style={{
+                  fontSize: "clamp(12px, calc(28.13px - 2.11vw), 16px)",
+                  lineHeight: "clamp(2em, calc(0.91em + 0.14vw), 1.5em)",
+                }}
+              >
+                - Our Purpose
+              </p>
+            </motion.div>
+
+            {/* Bottom Decorative Line */}
+            <div
+              className="border-b-2 border-[#E5E5E5] md:mt-[67px] lg:mt-[18px] md:max-w-[694px] lg:max-w-[827px] 3xl:max-w-[1127px]"
               style={{
-                fontSize: "clamp(12px, calc(28.13px - 2.11vw), 16px)",
-                lineHeight: "clamp(2em, calc(0.91em + 0.14vw), 1.5em)",
+                marginLeft:
+                  "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
+                marginRight:
+                  "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
               }}
-            >
-              - Our Purpose
-            </p>
-          </motion.div>
-
-          {/* Bottom Decorative Line */}
-          <div
-            className="border-b-2 border-[#E5E5E5] md:mt-[67px] lg:mt-[18px] md:max-w-[694px] lg:max-w-[827px]"
-            style={{
-              marginLeft: "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
-              marginRight: "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
-            }}
-          />
+            />
+          </div>
         </div>
       </div>
 
