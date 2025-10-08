@@ -92,7 +92,7 @@ export function InsightSectionDesktop({
 
   return (
     <div className="w-full md:p-12 lg:py-20 xl:px-7">
-      <div className="relative mx-auto max-w-[1305px] xl:max-w-none">
+      <div className="relative mx-auto max-w-[1305px] 2xl:max-w-[1864px]">
         <FadeContent
           duration={500}
           delay={100}
