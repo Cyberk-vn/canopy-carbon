@@ -23,6 +23,9 @@ export function CanopyPortfolioSectionDesktop() {
         priority
       />
 
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,#FFFFFF_0%,rgba(255,255,255,0)_42.89%)]" />
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(0deg,#FFFFFF_0%,rgba(255,255,255,0)_42.89%)]" />
+
       <div className="relative z-20 flex flex-col text-center max-w-[493px] gap-5 pb-75">
         <FadeContent
           duration={500}
