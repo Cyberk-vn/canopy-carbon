@@ -8,6 +8,35 @@ import {
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
 
+// Responsive scaling helper for 768px-1024px (tablet)
+const createResponsiveValueTablet = (
+  value768: number,
+  value1024: number
+): string => {
+  return `clamp(
+    ${value768}px,
+    calc(${value768}px + (${value1024} - ${value768}) * ((100vw - 768px) / 256)),
+    ${value1024}px
+  )`;
+};
+
+// Responsive scaling helper for 1024px-2200px (desktop)
+// Using 1440px as base from Figma
+const createResponsiveValueDesktop = (
+  value1024: number,
+  value1440: number,
+  value2200: number
+): string => {
+  return `clamp(
+    ${value1024}px,
+    min(
+      calc(${value1024}px + (${value1440} - ${value1024}) * ((100vw - 1024px) / 416)),
+      calc(${value1440}px + (${value2200} - ${value1440}) * ((100vw - 1440px) / 760))
+    ),
+    ${value2200}px
+  )`;
+};
+
 export function OurProjectBannerDesktop({
   menuItems,
   logoUrl,
@@ -18,29 +47,15 @@ export function OurProjectBannerDesktop({
   const subtitleMotion = useSimpleMotion("our-project-desktop-subtitle");
 
   return (
-    <div className="relative w-full max-w-[1440px] mx-auto">
-      {/* Main Banner Section */}
-      <div className="relative min-h-[438px] w-full overflow-hidden bg-[#232A26]">
-        {/* Unified Grid Layout - Navigation + Content */}
-        <div
-          className="relative z-20"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "68px 1fr 68px",
-            gridTemplateRows: "32px auto 80px auto",
-            minHeight: "100%",
-          }}
-        >
-          {/* Top spacing */}
-          <div style={{ gridColumn: "1 / -1", gridRow: "1" }}></div>
+    <div className="relative w-full">
+      {/* Tablet Layout - 768px to 1024px */}
+      <div className="hidden md:block lg:hidden relative w-full overflow-hidden bg-[#232A26]">
+        <div className="relative z-20 flex flex-col">
+          {/* Top spacing - 32px fixed */}
+          <div className="w-full h-[32px]"></div>
 
-          {/* Navigation Menu - Grid Row 2, spans all columns */}
-          <div
-            style={{
-              gridColumn: "1 / -1",
-              gridRow: "2",
-            }}
-          >
+          {/* Navigation Menu - Full Width */}
+          <div className="w-full">
             <NavigationMenu
               menuItems={menuItems}
               logoUrl={logoUrl}
@@ -50,26 +65,41 @@ export function OurProjectBannerDesktop({
               useWhiteMenuIcon={true}
               desktopTextColor="#F1F5F9"
               removePadding={true}
+              useOurProjectDesign={true}
             />
           </div>
 
-          {/* Spacing row */}
-          <div style={{ gridColumn: "1 / -1", gridRow: "3" }}></div>
+          {/* Content Wrapper with Max Width */}
+          <div className="max-w-[2200px] mx-auto w-full">
+            {/* Spacing between Navigation and Content */}
+            <div
+              style={{
+                height: createResponsiveValueTablet(28, 38),
+              }}
+            ></div>
 
-          {/* Main Content Section */}
-          <div
-            className="flex flex-col justify-center"
-            style={{
-              gridColumn: "2",
-              gridRow: "4",
-            }}
-          >
-            <div className="flex flex-col gap-6">
+            {/* Main Content Section */}
+            <div
+              className="flex flex-col"
+              style={{
+                paddingLeft: createResponsiveValueTablet(21.5, 29),
+                paddingRight: createResponsiveValueTablet(21.5, 29),
+                paddingBottom: createResponsiveValueTablet(80, 107),
+                gap: createResponsiveValueTablet(24, 32),
+              }}
+            >
               <motion.h1
                 {...SIMPLE_ANIMATIONS.fadeInUp}
                 {...titleMotion}
                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                className=" font-semibold text-[28px] leading-[38px] text-[#DDDDDD]"
+                className="text-[#DDDDDD]"
+                style={{
+                  fontFamily: "Open Sans",
+                  fontWeight: 600,
+                  fontSize: createResponsiveValueTablet(20, 27),
+                  lineHeight: "1.362em",
+                  maxWidth: createResponsiveValueTablet(694, 925),
+                }}
               >
                 Our portfolio is anchored in forest-based nature solutions that
                 deliver measurable climate impact through protection and
@@ -80,7 +110,100 @@ export function OurProjectBannerDesktop({
                 {...SIMPLE_ANIMATIONS.fadeInUp}
                 {...subtitleMotion}
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-                className=" font-normal text-[20px] leading-[27px] tracking-[-0.02em] text-[#949494] max-w-[790px]"
+                className="text-[#949494]"
+                style={{
+                  fontFamily: "Open Sans",
+                  fontWeight: 400,
+                  fontSize: createResponsiveValueTablet(20, 27),
+                  lineHeight: "1.362em",
+                  letterSpacing: "-0.02em",
+                  maxWidth: createResponsiveValueTablet(680, 907),
+                }}
+              >
+                Each one developed in accordance with standards and
+                methodologies recognized by the ICVCM as compliant with the Core
+                Carbon Principles (CCP).
+              </motion.p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Layout - 1024px to 2200px */}
+      <div className="hidden lg:block relative w-full overflow-hidden bg-[#232A26]">
+        <div className="relative z-20 flex flex-col">
+          {/* Top spacing */}
+          <div
+            style={{
+              height: createResponsiveValueDesktop(32, 32, 32),
+            }}
+          ></div>
+
+          {/* Navigation Menu - Full Width */}
+          <div className="w-full">
+            <NavigationMenu
+              menuItems={menuItems}
+              logoUrl={logoUrl}
+              mobileMenuIconColor="#F1F5F9"
+              mobileMenuStyles={mobileMenuStyles}
+              activeItem="Our Projects"
+              useWhiteMenuIcon={true}
+              desktopTextColor="#F1F5F9"
+              removePadding={true}
+              useOurProjectDesign={true}
+            />
+          </div>
+
+          {/* Content Wrapper with Max Width */}
+          <div className="max-w-[2200px] mx-auto w-full">
+            {/* Spacing between Navigation and Content */}
+            <div
+              style={{
+                height: createResponsiveValueDesktop(73, 80, 122),
+              }}
+            ></div>
+
+            {/* Main Content Section */}
+            <div
+              className="flex flex-col"
+              style={{
+                paddingLeft: createResponsiveValueDesktop(102, 143, 219),
+                paddingRight: createResponsiveValueDesktop(49, 68, 104),
+                paddingBottom: createResponsiveValueDesktop(57, 80, 122),
+                gap: createResponsiveValueDesktop(15, 21, 32),
+              }}
+            >
+              <motion.h1
+                {...SIMPLE_ANIMATIONS.fadeInUp}
+                {...titleMotion}
+                transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                className="text-[#DDDDDD]"
+                style={{
+                  fontFamily: "Work Sans",
+                  fontWeight: 600,
+                  fontSize: createResponsiveValueDesktop(20, 28, 43),
+                  lineHeight: "1.173em",
+                  maxWidth: createResponsiveValueDesktop(803, 1126, 1721),
+                }}
+              >
+                Our portfolio is anchored in forest-based nature solutions that
+                deliver measurable climate impact through protection and
+                restoration.
+              </motion.h1>
+
+              <motion.p
+                {...SIMPLE_ANIMATIONS.fadeInUp}
+                {...subtitleMotion}
+                transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+                className="text-[#949494]"
+                style={{
+                  fontFamily: "Open Sans",
+                  fontWeight: 400,
+                  fontSize: createResponsiveValueDesktop(13, 18, 28),
+                  lineHeight: "1.362em",
+                  letterSpacing: "-0.02em",
+                  maxWidth: createResponsiveValueDesktop(563, 790, 1208),
+                }}
               >
                 Each one developed in accordance with standards and
                 methodologies recognized by the ICVCM as compliant with the Core

@@ -21,6 +21,7 @@ interface NavigationMenuProps {
   desktopTextColor?: string;
   removePadding?: boolean;
   useAboutUsDesign?: boolean;
+  useOurProjectDesign?: boolean;
 }
 
 export function NavigationMenu({
@@ -33,6 +34,7 @@ export function NavigationMenu({
   desktopTextColor,
   removePadding = false,
   useAboutUsDesign = false,
+  useOurProjectDesign = false,
 }: NavigationMenuProps) {
   // Color constants for desktop navigation
   const NAVIGATION_COLORS = {
@@ -127,7 +129,45 @@ export function NavigationMenu({
             zIndex: 9999,
           }}
         >
-          {useAboutUsDesign ? (
+          {useOurProjectDesign ? (
+            /* Our Project Design - All items with background, scales from 768px to 2200px */
+            <div
+              className="flex items-stretch w-full mx-[30px] max-h-[32px] h-full"
+              style={{
+                gap: "6px",
+              }}
+            >
+              {menuItems.map((item, index) => {
+                const isActive = activeItem === item.text;
+                return (
+                  <Link
+                    key={index}
+                    href={item.url}
+                    className="nav-link-our-project flex items-center justify-center text-center transition-colors duration-200 flex-1"
+                    style={{
+                      padding: "4px 6px",
+                      fontStyle: "normal",
+                      textTransform: "uppercase",
+                      fontSize: "12px",
+                      fontWeight: 400,
+                      lineHeight: "2em",
+                      fontFamily: "Work Sans, sans-serif",
+                      color: isActive
+                        ? NAVIGATION_COLORS.active
+                        : NAVIGATION_COLORS.default,
+                      backgroundColor: "rgba(255, 255, 255, 0.05)",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      maxHeight: "32px",
+                    }}
+                  >
+                    {item.text}
+                  </Link>
+                );
+              })}
+            </div>
+          ) : useAboutUsDesign ? (
             /* About Us Design - All items with background, scales from 768px to large screens */
             <div
               className="flex items-stretch w-full mx-[30px] max-h-[32px] h-full"
@@ -230,6 +270,11 @@ export function NavigationMenu({
       )}
 
       <style jsx>{`
+        :global(.nav-link-our-project:hover),
+        :global(.nav-link-our-project:focus) {
+          color: #00a5ff !important;
+        }
+
         :global(.nav-link-about-us:hover),
         :global(.nav-link-about-us:focus) {
           color: #00a5ff !important;
