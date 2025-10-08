@@ -18,20 +18,20 @@ export function AboutUsBannerDesktop({
 }: AboutUsBannerProps) {
   return (
     <Container maxWidth="full">
-      <div className="hidden md:block relative">
-        {/* Main Banner Section with Flex Layout - scales 768px: 607px → 1440px: 925px (522px+85px → 840px+85px) */}
+      <div className="hidden md:block relative overflow-hidden">
+        {/* Main Banner Section with Flex Layout - scales 768px: 622px → 1440px: 840px → 1920px: 1079px */}
         <div
           className="relative w-full overflow-hidden bg-[#121212]"
           style={{
-            minHeight: "clamp(607px, calc(243px + 47.32vw), 925px)",
+            minHeight: "clamp(622px, calc(317.333px + 39.670vw), 1079px)",
           }}
         >
-          {/* Background Image - scales 768px: 958x581px → 1440px: 1440x840px → full screen width */}
+          {/* Background Image - scales 768px: 958x681px → 1440px: 1440x820px → 1920px: 1920x1080px → centered with overflow hidden */}
           <div
             className="absolute left-0 right-0 overflow-hidden"
             style={{
               top: "85px",
-              height: "clamp(581px, calc(285px + 38.54vw), 1350px)",
+              height: "clamp(537px, calc(232.333px + 39.670vw), 994px)",
             }}
           >
             <Image
@@ -41,10 +41,20 @@ export function AboutUsBannerDesktop({
               className="object-cover"
               priority
             />
-            {/* Gradient overlay - left to right */}
+            {/* Gradient overlay - bottom to top - full screen */}
             <div
               className="absolute inset-0"
               style={{
+                background:
+                  "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.06) 28.85%, rgba(0, 0, 0, 0.111) 53.37%, rgba(0, 0, 0, 0.3) 100%)",
+              }}
+            />
+            {/* Gradient overlay - left to right - scales 768px: 670px → 1440px: 670px → 1920px: 893px */}
+            <div
+              className="absolute top-0 left-0 bottom-0"
+              style={{
+                width:
+                  "clamp(670.03515625px, calc(670.03515625px + (893px - 670.03515625px) * ((100vw - 1440px) / (1920px - 1440px))), 893px)",
                 background:
                   "linear-gradient(92.27deg, #000000 28.03%, rgba(0, 0, 0, 0) 94.19%)",
               }}
@@ -78,132 +88,141 @@ export function AboutUsBannerDesktop({
                   paddingRight: "clamp(60px, 8.33vw, 120px)",
                 }}
               >
-              {/* Sidebar - Decorative Image Card Effect - Container encompasses image + decorator bounds */}
-              <div
-                style={{
-                  flexShrink: 0,
-                  width: "clamp(250px, 26.808vw, 462px)",
-                  height: "clamp(368px, calc(34px + 36.6vw), 634px)",
-                  position: "relative",
-                }}
-              >
-                <FadeContent duration={600} delay={200}>
-                  <div className="relative w-full h-full">
-                    {/* Background decorator - 768px: 219px→1440px: 350px→max: 393x427px, top: 124px→188px, extends left from image, always 34px below image */}
-                    <div
-                      className="absolute"
-                      style={{
-                        top: "clamp(124px, calc(51px + 9.52vw), 207px)",
-                        left: "calc(clamp(60px, 1.7vw, 100px) - clamp(37px, 3.958vw, 87px))",
-                        width: "clamp(219px, 24.31vw, 393px)",
-                        height: "clamp(244px, calc(27.08vw - 17px), 427px)",
-                        background: "rgba(175, 175, 175, 0.3)",
-                      }}
-                    />
-                    {/* Image - scales proportionally: 768px (213x334px) → 1440px (329x527px) → max (375x600px) */}
-                    <div
-                      className="absolute top-0 overflow-hidden"
-                      style={{
-                        width: "clamp(213px, 22.85vw, 375px)",
-                        height: "clamp(334px, 36.6vw, 600px)",
-                        left: "clamp(60px, 1.7vw, 100px)",
-                      }}
-                    >
-                      <Image
-                        src={BannerChildImage}
-                        alt="Decorative Banner Element"
-                        fill
-                        className="object-cover"
+                {/* Sidebar - Decorative Image Card Effect - Container encompasses image + decorator bounds */}
+                <div
+                  style={{
+                    flexShrink: 0,
+                    width: "clamp(250px, 26.808vw, 462px)",
+                    height: "clamp(368px, calc(34px + 36.6vw), 634px)",
+                    position: "relative",
+                  }}
+                >
+                  <FadeContent duration={600} delay={200}>
+                    <div className="relative w-full h-full">
+                      {/* Background decorator - 768px: 219px→1440px: 350px→max: 393x427px, top: 124px→188px, extends left from image, always 34px below image */}
+                      <div
+                        className="absolute"
+                        style={{
+                          top: "clamp(124px, calc(51px + 9.52vw), 207px)",
+                          left: "calc(clamp(60px, 1.7vw, 100px) - clamp(37px, 3.958vw, 87px))",
+                          width: "clamp(219px, 24.31vw, 393px)",
+                          height: "clamp(244px, calc(27.08vw - 17px), 427px)",
+                          background: "rgba(175, 175, 175, 0.2)",
+                        }}
                       />
+                      {/* Image - scales proportionally: 768px (213x334px) → 1440px (329x527px) → max (375x600px) */}
+                      <div
+                        className="absolute top-0 overflow-hidden"
+                        style={{
+                          width: "clamp(213px, 22.85vw, 375px)",
+                          height: "clamp(334px, 36.6vw, 600px)",
+                          left: "clamp(60px, 1.7vw, 100px)",
+                        }}
+                      >
+                        <Image
+                          src={BannerChildImage}
+                          alt="Decorative Banner Element"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
                     </div>
-                  </div>
-                </FadeContent>
-              </div>
+                  </FadeContent>
+                </div>
 
-              {/* Content - Mission and Vision */}
-              <div
-                className="flex-1"
-                style={{
-                  minWidth: 0,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-end",
-                  paddingBottom: "71px",
-                }}
-              >
-                <FadeContent duration={800} delay={400}>
-                  <div className="flex flex-col gap-[32px] w-full max-w-[714px]">
-                    {/* Mission Section - scales 768px→1440px→2200px */}
-                    <div className="flex flex-col gap-[6px]">
-                      <h2
-                        className="font-open-sans font-bold text-white"
-                        style={{
-                          fontSize:
-                            "clamp(18px, calc(24.43px - 0.446vw), 21px)",
-                          lineHeight:
-                            "clamp(18px, calc(43.71px - 1.786vw), 30px)",
-                          fontWeight: 700,
-                        }}
-                      >
-                        Mission
-                      </h2>
-                      <p
-                        className="font-open-sans font-normal text-white"
-                        style={{
-                          fontSize:
-                            "clamp(12px, calc(9.714px + 0.298vw), 16px)",
-                          lineHeight:
-                            "clamp(20px, calc(14.057px + 0.774vw), 31px)",
-                          fontWeight: 400,
-                        }}
-                      >
-                        To expand the global supply of high-quality carbon
-                        offsets through disciplined project execution and deep
-                        capital market expertise, with technology as a
-                        supporting enabler.
-                      </p>
-                    </div>
+                {/* Content - Mission and Vision */}
+                <div
+                  className="flex-1"
+                  style={{
+                    minWidth: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-end",
+                    paddingBottom: "71px",
+                  }}
+                >
+                  <FadeContent duration={800} delay={400}>
+                    <div className="flex flex-col gap-[32px] w-full max-w-[714px]">
+                      {/* Mission Section - scales 768px: 21px/30px → 1440px: 18px/100% → 1920px: 20px/100% */}
+                      <div className="flex flex-col md:gap-[6px] xxl:gap-[14px] 3xl:gap-[18px]">
+                        <h2
+                          className="text-white md:font-open-sans xl:font-work-sans"
+                          style={{
+                            fontSize:
+                              "clamp(18px, calc(21px + (20px - 21px) * ((100vw - 768px) / (1920px - 768px))), 21px)",
+                            lineHeight:
+                              "clamp(100%, calc(30px + (100% - 30px) * ((100vw - 768px) / (1440px - 768px))), 30px)",
+                            fontWeight:
+                              "clamp(600, calc(700 + (600 - 700) * ((100vw - 768px) / (1440px - 768px))), 700)",
+                          }}
+                        >
+                          Mission
+                        </h2>
+                        <p
+                          className="font-open-sans font-normal text-[#C4CCD3]"
+                          style={{
+                            fontSize:
+                              "clamp(12px, calc(12px + (16px - 12px) * ((100vw - 768px) / (1920px - 768px))), 16px)",
+                            lineHeight:
+                              "clamp(20px, calc(20px + (180% - 20px) * ((100vw - 768px) / (1440px - 768px))), 180%)",
+                            fontWeight: 400,
+                          }}
+                        >
+                          To expand the global supply of high-quality carbon
+                          offsets through disciplined project execution and deep
+                          capital market expertise, with technology as a
+                          supporting enabler.
+                        </p>
+                      </div>
 
-                    {/* Vision Section - scales 768px→1440px→2200px */}
-                    <div className="flex flex-col gap-[6px]">
-                      <h2
-                        className="font-open-sans font-bold text-white"
-                        style={{
-                          fontSize:
-                            "clamp(18px, calc(24.43px - 0.446vw), 21px)",
-                          lineHeight:
-                            "clamp(18px, calc(43.71px - 1.786vw), 30px)",
-                          fontWeight: 700,
-                        }}
-                      >
-                        Vision
-                      </h2>
-                      <p
-                        className="font-open-sans font-normal text-white"
-                        style={{
-                          fontSize:
-                            "clamp(12px, calc(9.714px + 0.298vw), 16px)",
-                          lineHeight:
-                            "clamp(20px, calc(14.057px + 0.774vw), 31px)",
-                          fontWeight: 400,
-                        }}
-                      >
-                        To become Southeast Asia&apos;s leading nature-based
-                        solutions specialist, trusted globally for investing in,
-                        developing, operating, and delivering premium carbon
-                        offsets to both voluntary and compliance markets.
-                      </p>
+                      {/* Vision Section - scales 768px: 21px/30px → 1440px: 18px/100% → 1920px: 20px/100% */}
+                      <div className="flex flex-col md:gap-[6px] xxl:gap-[14px] 3xl:gap-[18px]">
+                        <h2
+                          className="text-white md:font-open-sans xl:font-work-sans"
+                          style={{
+                            fontSize:
+                              "clamp(18px, calc(21px + (20px - 21px) * ((100vw - 768px) / (1920px - 768px))), 21px)",
+                            lineHeight:
+                              "clamp(100%, calc(30px + (100% - 30px) * ((100vw - 768px) / (1440px - 768px))), 30px)",
+                            fontWeight:
+                              "clamp(600, calc(700 + (600 - 700) * ((100vw - 768px) / (1440px - 768px))), 700)",
+                          }}
+                        >
+                          Vision
+                        </h2>
+                        <p
+                          className="font-open-sans font-normal text-[#C4CCD3]"
+                          style={{
+                            fontSize:
+                              "clamp(12px, calc(12px + (16px - 12px) * ((100vw - 768px) / (1920px - 768px))), 16px)",
+                            lineHeight:
+                              "clamp(20px, calc(20px + (180% - 20px) * ((100vw - 768px) / (1440px - 768px))), 180%)",
+                            fontWeight: 400,
+                          }}
+                        >
+                          To become Southeast Asia&apos;s leading nature-based
+                          solutions specialist, trusted globally for investing
+                          in, developing, operating, and delivering premium
+                          carbon offsets to both voluntary and compliance
+                          markets.
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </FadeContent>
+                  </FadeContent>
+                </div>
               </div>
-            </div>
             </div>
           </div>
         </div>
 
-        {/* Secondary Banner Section with Smooth Transition - 768-1280px: 877px → 1280px+: 744px fixed */}
-        <div className="relative w-full z-10 -mt-10 mx-auto justify-center items-center flex md:h-[877px] xl:h-[744px]">
+        {/* Secondary Banner Section with Smooth Transition - scales 768px: 877px → 1268px: 877px → 1440px: 744px → 1920px: 992px */}
+        <div
+          className="relative w-full z-10 mx-auto justify-center items-center flex"
+          style={{
+            height:
+              "clamp(744px, max(min(877px, calc(877px - 133 * (100vw - 1268px) / 172)), calc(744px + 248 * (100vw - 1440px) / 480)), 992px)",
+          }}
+        >
           {/* Background Image */}
           <div className="absolute inset-0">
             <Image
@@ -224,14 +243,14 @@ export function AboutUsBannerDesktop({
             }}
           />
 
-          {/* Content - 768-1280px: fixed, 1280-1440px: scales */}
+          {/* Content - scales 768px: 674x788px → 1280px: 788px → 1440px: 1306x689px → 1920px: 1835x815px */}
           <div
-            className="relative z-30 flex justify-center max-w-[2200px] mx-auto w-full xl:mb-[111px]"
+            className="relative z-30 flex justify-center mx-auto xxl:mb-[111px]"
             style={{
               background: "#0000004D",
-              marginLeft: "clamp(35px, calc(-221px + 20vw), 67px)",
-              marginRight: "clamp(35px, calc(-221px + 20vw), 67px)",
-              height: "clamp(640px, calc(1972px - 92.5vw), 788px)",
+              width: "clamp(674px, calc(-100px + 100.78125vw), 1835px)",
+              height:
+                "clamp(689px, max(min(788px, calc(788px - 99 * (100vw - 1280px) / 160)), calc(689px + 126 * (100vw - 1440px) / 480)), 815px)",
               paddingTop: "clamp(44px, calc(-52px + 7.5vw), 56px)",
               paddingBottom: "clamp(44px, calc(-532px + 45vw), 116px)",
             }}
@@ -247,17 +266,22 @@ export function AboutUsBannerDesktop({
                 }}
               >
                 {/* Decorative Line */}
-                <div className="w-0 h-[180px] border-l-4 border-[#CFD5DB] xl:border-[#B4BEC7] flex-shrink-0" />
+                <div className="w-0 h-[180px] 3xl:h-[250px] border-l-4 border-[#CFD5DB] xl:border-[#B4BEC7] flex-shrink-0" />
 
-                <div className="flex flex-col gap-[20px] max-w-[744px]">
+                <div className="flex flex-col gap-[20px] md:max-w-[616px] xxl:max-w-[744px] 3xl:max-w-[960px]">
+                  {/* Thesis Statement - 768px: OS 700 16px 1.4em #DDE2E6 → 1440px: WS 600 24px 1.4em #B4BEC7 → 1920px: WS 600 32px 1.3125em #B4BEC7 */}
                   <p
-                    className="font-open-sans xl:font-work-sans text-[#DDE2E6] xl:text-[#B4BEC7]"
+                    className="md:font-open-sans xl:font-work-sans md:text-[#DDE2E6] xl:text-[#B4BEC7]"
                     style={{
-                      fontSize: "clamp(16px, calc(4.86px + 1.19vw), 24px)",
-                      lineHeight: "140%",
+                      fontWeight:
+                        "clamp(600, calc(700 - 100 * max(0px, 100vw - 1280px) / 160), 700)",
+                      fontSize:
+                        "clamp(16px, calc(16px + 16 * max(0px, 100vw - 1440px) / 480), 32px)",
+                      lineHeight:
+                        "clamp(1.3125em, calc(1.4em - 0.0875em * max(0px, 100vw - 1440px) / 480), 1.4em)",
                     }}
                   >
-                    <span className="font-bold xl:font-semibold">
+                    <span className="md:font-bold xl:font-semibold">
                       The urgency of climate change has outpaced the global
                       capacity to decarbonize. Without a dramatic scale-up in
                       high-quality carbon offsets, there is little chance of
@@ -265,7 +289,18 @@ export function AboutUsBannerDesktop({
                       budget.
                     </span>
                   </p>
-                  <p className="font-open-sans text-[#D8DBD6] text-[16px] leading-[24px] font-normal xl:text-[14px] xl:leading-[171.4%] xl:font-light">
+                  {/* Attribution - 768px: OS 400 16px 1.5em → 1440px: OS 300 14px 1.7143em → 1920px: OS 300 16px 1.5em */}
+                  <p
+                    className="font-open-sans text-[#D8DBD6]"
+                    style={{
+                      fontWeight:
+                        "clamp(300, calc(400 - 100 * max(0px, 100vw - 1280px) / 160), 400)",
+                      fontSize:
+                        "clamp(14px, calc(16px - 2 * min(160px, max(0px, 100vw - 1280px)) / 160 + 2 * max(0px, 100vw - 1440px) / 480), 16px)",
+                      lineHeight:
+                        "clamp(1.5em, calc(1.5em + 0.2143em * min(160px, max(0px, 100vw - 1280px)) / 160 - 0.2143em * max(0px, 100vw - 1440px) / 480), 1.7143em)",
+                    }}
+                  >
                     - Our Thesis Statement
                   </p>
                 </div>
@@ -277,49 +312,58 @@ export function AboutUsBannerDesktop({
                 delay={800}
                 className="grid grid-cols-2 xl:grid-cols-4 gap-[24px] w-full justify-items-center"
               >
-                {/* Statistics Card 1 - 768-1280px: 324x264px → 1440px: 286x306px */}
+                {/* Statistics Card 1 - 768px: 324x264px → 1440px: 286x306px → 1920px: 342x306px */}
                 <FadeContent
                   duration={300}
                   delay={1000}
                   className="flex flex-col items-center gap-[10px] px-[16px] py-[36px]"
                   style={{
-                    width: "clamp(286px, calc(628px - 23.75vw), 324px)",
-                    height: "clamp(264px, calc(-72px + 26.25vw), 306px)",
+                    width:
+                      "clamp(286px, max(min(324px, calc(324px - 38 * (100vw - 1280px) / 160)), calc(286px + 56 * (100vw - 1440px) / 480)), 342px)",
+                    height:
+                      "clamp(264px, calc(264px + 42 * min(160px, max(0px, 100vw - 1280px)) / 160), 306px)",
                   }}
                 >
-                  <div className="flex flex-col items-center gap-[16px] w-full">
-                    {/* Statistics Number */}
+                  <div className="flex flex-col items-center gap-[16px] xl:gap-[20px] w-full">
+                    {/* Statistics Number - 768px: Avenir 800 48px 0.9167em → 1440px: OS 700 48px 0.9167em → 1920px: OS 700 60px 1.3618em */}
                     <div
-                      className="font-avenir text-[#9DAE83] text-center"
+                      className="md:font-avenir xl:font-open-sans text-[#9DAE83] text-center"
                       style={{
-                        fontSize: "48px",
-                        lineHeight: "44px",
+                        fontWeight:
+                          "clamp(700, calc(800 - 100 * max(0px, 100vw - 1280px) / 160), 800)",
+                        fontSize:
+                          "clamp(48px, calc(48px + 12 * max(0px, 100vw - 1440px) / 480), 60px)",
+                        lineHeight:
+                          "clamp(0.9167em, calc(0.9167em + 0.4451em * max(0px, 100vw - 1440px) / 480), 1.3618em)",
                         letterSpacing: "-2%",
-                        fontWeight: 800,
                       }}
                     >
                       &gt; 70%
                     </div>
 
                     <div className="flex flex-col items-center gap-[6px] w-full">
-                      {/* Statistics Title */}
+                      {/* Statistics Title - 768px: OS 700 17px 1.4118em → 1440px: OS 700 13px 1.8462em → 1920px: OS 700 18px 1.3333em */}
                       <h4
-                        className=" font-bold text-[#9DAE83] text-center"
+                        className="font-open-sans font-bold text-[#9DAE83] text-center"
                         style={{
-                          fontSize: "17px",
-                          lineHeight: "24px",
+                          fontSize:
+                            "clamp(13px, calc(17px - 4 * min(160px, max(0px, 100vw - 1280px)) / 160 + 5 * max(0px, 100vw - 1440px) / 480), 18px)",
+                          lineHeight:
+                            "clamp(1.3333em, calc(1.4118em + 0.4344em * min(160px, max(0px, 100vw - 1280px)) / 160 - 0.5129em * max(0px, 100vw - 1440px) / 480), 1.8462em)",
                           fontWeight: 700,
                         }}
                       >
                         Global Carbon Budget Utilised
                       </h4>
 
-                      {/* Statistics Description */}
+                      {/* Statistics Description - 768px: OS 400 12px 1.6667em → 1440px: OS 400 13px 1.5385em → 1920px: OS 400 18px 1.3618em */}
                       <p
-                        className=" font-normal text-white text-center"
+                        className="font-open-sans font-normal text-white text-center"
                         style={{
-                          fontSize: "12px",
-                          lineHeight: "20px",
+                          fontSize:
+                            "clamp(12px, calc(12px + 1 * min(160px, max(0px, 100vw - 1280px)) / 160 + 5 * max(0px, 100vw - 1440px) / 480), 18px)",
+                          lineHeight:
+                            "clamp(1.3618em, calc(1.6667em - 0.1282em * min(160px, max(0px, 100vw - 1280px)) / 160 - 0.1767em * max(0px, 100vw - 1440px) / 480), 1.6667em)",
                           fontWeight: 400,
                         }}
                       >
@@ -332,49 +376,58 @@ export function AboutUsBannerDesktop({
                   </div>
                 </FadeContent>
 
-                {/* Statistics Card 2 - 768-1280px: 324x264px → 1440px: 286x306px */}
+                {/* Statistics Card 2 - 768px: 324x264px → 1440px: 286x306px → 1920px: 342x306px */}
                 <FadeContent
                   duration={300}
                   delay={1100}
                   className="flex flex-col items-center gap-[10px] px-[16px] py-[36px]"
                   style={{
-                    width: "clamp(286px, calc(628px - 23.75vw), 324px)",
-                    height: "clamp(264px, calc(-72px + 26.25vw), 306px)",
+                    width:
+                      "clamp(286px, max(min(324px, calc(324px - 38 * (100vw - 1280px) / 160)), calc(286px + 56 * (100vw - 1440px) / 480)), 342px)",
+                    height:
+                      "clamp(264px, calc(264px + 42 * min(160px, max(0px, 100vw - 1280px)) / 160), 306px)",
                   }}
                 >
-                  <div className="flex flex-col items-center gap-[16px] w-full">
-                    {/* Statistics Number */}
+                  <div className="flex flex-col items-center gap-[16px] xl:gap-[20px] w-full">
+                    {/* Statistics Number - 768px: Avenir 800 48px 0.9167em → 1440px: OS 700 48px 0.9167em → 1920px: OS 700 60px 1.3618em */}
                     <div
-                      className="font-avenir text-[#9DAE83] text-center"
+                      className="md:font-avenir xl:font-open-sans text-[#9DAE83] text-center"
                       style={{
-                        fontSize: "48px",
-                        lineHeight: "44px",
+                        fontWeight:
+                          "clamp(700, calc(800 - 100 * max(0px, 100vw - 1280px) / 160), 800)",
+                        fontSize:
+                          "clamp(48px, calc(48px + 12 * max(0px, 100vw - 1440px) / 480), 60px)",
+                        lineHeight:
+                          "clamp(0.9167em, calc(0.9167em + 0.4451em * max(0px, 100vw - 1440px) / 480), 1.3618em)",
                         letterSpacing: "-2%",
-                        fontWeight: 800,
                       }}
                     >
                       42%
                     </div>
 
                     <div className="flex flex-col items-center gap-[6px] w-full">
-                      {/* Statistics Title */}
+                      {/* Statistics Title - 768px: OS 700 17px 1.4118em → 1440px: OS 700 13px 1.8462em → 1920px: OS 700 18px 1.3333em */}
                       <h4
-                        className=" font-bold text-[#9DAE83] text-center"
+                        className="font-open-sans font-bold text-[#9DAE83] text-center"
                         style={{
-                          fontSize: "17px",
-                          lineHeight: "24px",
+                          fontSize:
+                            "clamp(13px, calc(17px - 4 * min(160px, max(0px, 100vw - 1280px)) / 160 + 5 * max(0px, 100vw - 1440px) / 480), 18px)",
+                          lineHeight:
+                            "clamp(1.3333em, calc(1.4118em + 0.4344em * min(160px, max(0px, 100vw - 1280px)) / 160 - 0.5129em * max(0px, 100vw - 1440px) / 480), 1.8462em)",
                           fontWeight: 700,
                         }}
                       >
                         Emissions Rate Reduction Needed
                       </h4>
 
-                      {/* Statistics Description */}
+                      {/* Statistics Description - 768px: OS 400 12px 1.6667em → 1440px: OS 400 13px 1.5385em → 1920px: OS 400 18px 1.3618em */}
                       <p
-                        className=" font-normal text-white text-center"
+                        className="font-open-sans font-normal text-white text-center"
                         style={{
-                          fontSize: "12px",
-                          lineHeight: "20px",
+                          fontSize:
+                            "clamp(12px, calc(12px + 1 * min(160px, max(0px, 100vw - 1280px)) / 160 + 5 * max(0px, 100vw - 1440px) / 480), 18px)",
+                          lineHeight:
+                            "clamp(1.3618em, calc(1.6667em - 0.1282em * min(160px, max(0px, 100vw - 1280px)) / 160 - 0.1767em * max(0px, 100vw - 1440px) / 480), 1.6667em)",
                           fontWeight: 400,
                         }}
                       >
@@ -387,49 +440,58 @@ export function AboutUsBannerDesktop({
                   </div>
                 </FadeContent>
 
-                {/* Statistics Card 3 - 768-1280px: 324x264px → 1440px: 286x306px */}
+                {/* Statistics Card 3 - 768px: 324x264px → 1440px: 286x306px → 1920px: 342x306px */}
                 <FadeContent
                   duration={300}
                   delay={1200}
                   className="flex flex-col items-center gap-[10px] px-[16px] py-[36px]"
                   style={{
-                    width: "clamp(286px, calc(628px - 23.75vw), 324px)",
-                    height: "clamp(264px, calc(-72px + 26.25vw), 306px)",
+                    width:
+                      "clamp(286px, max(min(324px, calc(324px - 38 * (100vw - 1280px) / 160)), calc(286px + 56 * (100vw - 1440px) / 480)), 342px)",
+                    height:
+                      "clamp(264px, calc(264px + 42 * min(160px, max(0px, 100vw - 1280px)) / 160), 306px)",
                   }}
                 >
-                  <div className="flex flex-col items-center gap-[16px] w-full">
-                    {/* Statistics Number */}
+                  <div className="flex flex-col items-center gap-[16px] xl:gap-[20px] w-full">
+                    {/* Statistics Number - 768px: Avenir 800 48px 0.9167em → 1440px: OS 700 48px 0.9167em → 1920px: OS 700 60px 1.3618em */}
                     <div
-                      className="font-avenir text-[#9DAE83] text-center"
+                      className="md:font-avenir xl:font-open-sans text-[#9DAE83] text-center"
                       style={{
-                        fontSize: "48px",
-                        lineHeight: "44px",
+                        fontWeight:
+                          "clamp(700, calc(800 - 100 * max(0px, 100vw - 1280px) / 160), 800)",
+                        fontSize:
+                          "clamp(48px, calc(48px + 12 * max(0px, 100vw - 1440px) / 480), 60px)",
+                        lineHeight:
+                          "clamp(0.9167em, calc(0.9167em + 0.4451em * max(0px, 100vw - 1440px) / 480), 1.3618em)",
                         letterSpacing: "-2%",
-                        fontWeight: 800,
                       }}
                     >
                       5-10x
                     </div>
 
                     <div className="flex flex-col items-center gap-[6px] w-full">
-                      {/* Statistics Title */}
+                      {/* Statistics Title - 768px: OS 700 17px 1.4118em → 1440px: OS 700 13px 1.8462em → 1920px: OS 700 18px 1.3333em */}
                       <h4
-                        className=" font-bold text-[#9DAE83] text-center"
+                        className="font-open-sans font-bold text-[#9DAE83] text-center"
                         style={{
-                          fontSize: "17px",
-                          lineHeight: "24px",
+                          fontSize:
+                            "clamp(13px, calc(17px - 4 * min(160px, max(0px, 100vw - 1280px)) / 160 + 5 * max(0px, 100vw - 1440px) / 480), 18px)",
+                          lineHeight:
+                            "clamp(1.3333em, calc(1.4118em + 0.4344em * min(160px, max(0px, 100vw - 1280px)) / 160 - 0.5129em * max(0px, 100vw - 1440px) / 480), 1.8462em)",
                           fontWeight: 700,
                         }}
                       >
                         Scale Up in Human-Led Removals
                       </h4>
 
-                      {/* Statistics Description */}
+                      {/* Statistics Description - 768px: OS 400 12px 1.6667em → 1440px: OS 400 13px 1.5385em → 1920px: OS 400 18px 1.3618em */}
                       <p
-                        className=" font-normal text-white text-center"
+                        className="font-open-sans font-normal text-white text-center"
                         style={{
-                          fontSize: "12px",
-                          lineHeight: "20px",
+                          fontSize:
+                            "clamp(12px, calc(12px + 1 * min(160px, max(0px, 100vw - 1280px)) / 160 + 5 * max(0px, 100vw - 1440px) / 480), 18px)",
+                          lineHeight:
+                            "clamp(1.3618em, calc(1.6667em - 0.1282em * min(160px, max(0px, 100vw - 1280px)) / 160 - 0.1767em * max(0px, 100vw - 1440px) / 480), 1.6667em)",
                           fontWeight: 400,
                         }}
                       >
@@ -442,51 +504,58 @@ export function AboutUsBannerDesktop({
                   </div>
                 </FadeContent>
 
-                {/* Statistics Card 4 - 768-1280px: 324x264px → 1440px: 286x306px */}
+                {/* Statistics Card 4 - 768px: 324x264px → 1440px: 286x306px → 1920px: 342x306px */}
                 <FadeContent
                   duration={300}
                   delay={1300}
                   className="flex flex-col items-center gap-[10px] px-[16px] py-[36px]"
                   style={{
-                    width: "clamp(286px, calc(628px - 23.75vw), 324px)",
-                    height: "clamp(264px, calc(-72px + 26.25vw), 306px)",
+                    width:
+                      "clamp(286px, max(min(324px, calc(324px - 38 * (100vw - 1280px) / 160)), calc(286px + 56 * (100vw - 1440px) / 480)), 342px)",
+                    height:
+                      "clamp(264px, calc(264px + 42 * min(160px, max(0px, 100vw - 1280px)) / 160), 306px)",
                   }}
                 >
-                  <div className="flex flex-col items-center gap-[16px] w-full">
-                    {/* Statistics Number */}
+                  <div className="flex flex-col items-center gap-[16px] xl:gap-[20px] w-full">
+                    {/* Statistics Number - 768px: Avenir 800 48px 0.9167em → 1440px: OS 700 48px 0.9167em → 1920px: OS 700 60px 1.3618em */}
                     <div
-                      className="font-avenir text-[#9DAE83] text-center"
+                      className="md:font-avenir xl:font-open-sans text-[#9DAE83] text-center"
                       style={{
-                        fontSize: "48px",
-                        lineHeight: "44px",
+                        fontWeight:
+                          "clamp(700, calc(800 - 100 * max(0px, 100vw - 1280px) / 160), 800)",
+                        fontSize:
+                          "clamp(48px, calc(48px + 12 * max(0px, 100vw - 1440px) / 480), 60px)",
+                        lineHeight:
+                          "clamp(0.9167em, calc(0.9167em + 0.4451em * max(0px, 100vw - 1440px) / 480), 1.3618em)",
                         letterSpacing: "-2%",
-                        fontWeight: 800,
                       }}
                     >
                       2042-45
                     </div>
 
                     <div className="flex flex-col items-center gap-[6px] w-full">
-                      {/* Statistics Title */}
+                      {/* Statistics Title - 768px: OS 700 17px 1.4118em → 1440px: OS 700 13px 1.8462em → 1920px: OS 700 18px 1.3333em */}
                       <h4
-                        className=" font-bold text-[#9DAE83] text-center"
+                        className="font-open-sans font-bold text-[#9DAE83] text-center"
                         style={{
-                          fontSize: "17px",
-                          lineHeight: "24px",
+                          fontSize:
+                            "clamp(13px, calc(17px - 4 * min(160px, max(0px, 100vw - 1280px)) / 160 + 5 * max(0px, 100vw - 1440px) / 480), 18px)",
+                          lineHeight:
+                            "clamp(1.3333em, calc(1.4118em + 0.4344em * min(160px, max(0px, 100vw - 1280px)) / 160 - 0.5129em * max(0px, 100vw - 1440px) / 480), 1.8462em)",
                           fontWeight: 700,
                         }}
                       >
-                        Complete Budget
-                        <br />
-                        Depletion
+                        Complete Budget Depletion
                       </h4>
 
-                      {/* Statistics Description */}
+                      {/* Statistics Description - 768px: OS 400 12px 1.6667em → 1440px: OS 400 13px 1.5385em → 1920px: OS 400 18px 1.3618em */}
                       <p
-                        className=" font-normal text-white text-center"
+                        className="font-open-sans font-normal text-white text-center"
                         style={{
-                          fontSize: "12px",
-                          lineHeight: "20px",
+                          fontSize:
+                            "clamp(12px, calc(12px + 1 * min(160px, max(0px, 100vw - 1280px)) / 160 + 5 * max(0px, 100vw - 1440px) / 480), 18px)",
+                          lineHeight:
+                            "clamp(1.3618em, calc(1.6667em - 0.1282em * min(160px, max(0px, 100vw - 1280px)) / 160 - 0.1767em * max(0px, 100vw - 1440px) / 480), 1.6667em)",
                           fontWeight: 400,
                         }}
                       >

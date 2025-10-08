@@ -87,7 +87,7 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
       id: 2,
       title: "Community Development Programs",
       description:
-        "Habitat conservation, species monitoring, and threat mitigation strategies to uphold ecological integrity beyond carbon metrics.",
+        "Ongoing FPIC, livelihoods support, participatory planning, and equitable benefit-sharing — designed to ensure long-term community alignment.",
       learnMoreUrl: "#",
     },
     {
@@ -316,93 +316,53 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
               {climateActionCards.map((card, index) => (
                 <div
                   key={card.id}
-                  className="relative"
+                  className="flex items-stretch rounded-[5px]"
                   style={{
                     width: createResponsiveValue(636.22, 898, 1371.78),
-                    height:
-                      index === 0
-                        ? createResponsiveValue(103.44, 146, 223.11)
-                        : createResponsiveValue(92.11, 130, 198.56),
+                    backgroundColor: "rgba(207, 213, 219, 0.4)",
+                    padding: createResponsiveValue(14.89, 21, 32.11),
                   }}
                 >
-                  {/* Background Rectangle */}
+                  {/* Left: Card Title - Fixed width */}
                   <div
-                    className="absolute inset-0 rounded-[5px]"
+                    className="flex items-center"
                     style={{
-                      backgroundColor: "rgba(207, 213, 219, 0.4)",
-                    }}
-                  />
-
-                  {/* Card Title */}
-                  <div
-                    className="absolute flex items-center"
-                    style={{
-                      left: createResponsiveValue(
-                        index === 0 ? 17.71 : 21.18,
-                        index === 0 ? 25 : 29.88,
-                        index === 0 ? 38.19 : 45.65
-                      ),
-                      top:
-                        index === 0
-                          ? createResponsiveValue(15.22, 21.48, 32.83)
-                          : index === 1
-                          ? createResponsiveValue(14.52, 20.5, 31.33)
-                          : createResponsiveValue(24.44, 34.5, 52.72),
                       width: createResponsiveValue(
                         index === 1 ? 125.22 : 134.56,
                         index === 1 ? 176.7 : 189.84,
-                        index === 1 ? 270.06 : 290.06
+                        index === 1 ? 270.06 : 300
                       ),
-                      height:
-                        index === 0
-                          ? createResponsiveValue(34.02, 48, 73.33)
-                          : index === 1 || index === 2
-                          ? createResponsiveValue(59.54, 84, 128.33)
-                          : createResponsiveValue(39.69, 56, 85.56),
+                      paddingRight: createResponsiveValue(20, 28, 40),
                     }}
                   >
                     <h4
-                      className="font-['Work_Sans'] font-medium text-left"
+                      className="xl:font-['Roboto'] xl:text-[#2E2F2DB2] 2xl:font-['Work_Sans'] 2xl:text-[#3B464F] text-left xxl:font-[600]"
                       style={{
-                        color: "rgba(46, 47, 45, 0.7)",
-                        fontSize: createResponsiveValue(12.76, 18, 27.5),
-                        lineHeight: index === 0 ? "1.33em" : "1.56em",
+                        fontSize:
+                          "clamp(18px, calc(18px + 6 * ((100vw - 1440px) / 480)), 24px)",
+                        lineHeight: "100%",
+                        letterSpacing: "1%",
                       }}
                     >
                       {card.title}
                     </h4>
                   </div>
 
-                  {/* Description Frame */}
+                  {/* Right: Description - Fills remaining space */}
                   <div
-                    className="absolute rounded-[8px]"
+                    className="flex-1 rounded-[8px] flex items-center"
                     style={{
                       backgroundColor: "#F3F5F6",
-                      left: createResponsiveValue(167.85, 236.84, 361.95),
-                      top:
-                        index === 0
-                          ? createResponsiveValue(12.76, 18, 27.5)
-                          : createResponsiveValue(17.36, 24.5, 37.42),
-                      width: createResponsiveValue(405.34, 571.89, 874.31),
-                      padding:
-                        index === 0
-                          ? `${createResponsiveValue(
-                              10.63,
-                              15,
-                              22.92
-                            )} ${createResponsiveValue(
-                              14.17,
-                              20,
-                              30.56
-                            )} ${createResponsiveValue(21.26, 30, 45.83)}`
-                          : createResponsiveValue(14.17, 20, 30.56),
+                      padding: createResponsiveValue(14.17, 20, 30.56),
                     }}
                   >
                     <p
-                      className="font-['Work_Sans'] font-normal text-[#909FAC] text-left"
+                      className="xl:font-['Roboto'] xl:text-[#909FAC] 2xl:font-['Work_Sans'] 2xl:text-[#9CA3AF] font-normal text-left"
                       style={{
-                        fontSize: createResponsiveValue(9.92, 14, 21.39),
-                        lineHeight: "1.43em",
+                        fontSize:
+                          "clamp(12px, calc(12px + 4 * ((100vw - 1440px) / 480)), 16px)",
+                        lineHeight:
+                          "clamp(20px, calc(20px + 4 * ((100vw - 1440px) / 480)), 24px)",
                         letterSpacing: "-1%",
                       }}
                     >

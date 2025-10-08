@@ -12,10 +12,10 @@ import { useExecutionSwipe } from "@/src/hooks/execution/use-execution-swipe";
 import { Container } from "@/src/components/shared";
 
 // Image imports
-import ExecutionImage1 from "../../../public/assets/desktop/home/our-execution-image-1.jpg";
-import ExecutionImage2 from "../../../public/assets/desktop/home/our-execution-image-2.jpg";
-import ExecutionImage3 from "../../../public/assets/desktop/home/our-execution-image-3.jpg";
-import ExecutionImage4 from "../../../public/assets/desktop/home/our-execution-image-4.jpg";
+import ExecutionImage1 from "../../../public/assets/desktop/home/our-execution-image-1.avif";
+import ExecutionImage2 from "../../../public/assets/desktop/home/our-execution-image-2.avif";
+import ExecutionImage3 from "../../../public/assets/desktop/home/our-execution-image-3.avif";
+import ExecutionImage4 from "../../../public/assets/desktop/home/our-execution-image-4.avif";
 
 // Desktop execution items (new grid layout images)
 const desktopExecutionItems: ExecutionItem[] = [
