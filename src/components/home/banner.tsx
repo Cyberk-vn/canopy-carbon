@@ -251,7 +251,7 @@ export function Banner({
   const mobileDecoratorMotion = useSimpleMotion("mobile-banner-decorator");
 
   return (
-    <div className="relative w-full h-[832px] md:h-[1050px] lg:h-[1200px] xl:h-[1300px] xxl:h-[1440px] overflow-hidden flex flex-col lg:mb-[40px]">
+    <div className="relative w-full h-[832px] md:h-[1050px] lg:h-[1200px] xl:h-[1300px] xxl:h-[1440px] overflow-hidden flex flex-col lg:mb-[40px] 2xl:mb-[345px]">
       {/* Mobile Background - Keep existing mobile layout */}
       <div className="md:hidden absolute inset-0 z-0">
         <Image

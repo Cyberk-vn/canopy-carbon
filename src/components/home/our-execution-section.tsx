@@ -275,7 +275,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
 
         {/* Desktop Layout - 4 Cards Grid */}
         <div className="hidden md:block w-full">
-          <div className="mx-auto flex xl:max-w-[1304px] 2xl:max-w-[1514px] items-center justify-center gap-6 2xl:gap-[54px] container">
+          <div className="flex gap-[24px] w-full justify-center items-center max-w-[2200px] mx-auto md:px-[24px] lg:px-[68px]">
             {desktopExecutionItems.map((item, index) => (
               <motion.div
                 key={item.id}
@@ -309,7 +309,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
 
                 {item.title && (
                   <motion.h3
-                    className="text-center text-[14px] font-semibold text-black leading-[30px] lg:text-lg"
+                    className="text-center text-[14px] font-semibold text-black leading-[30px] lg:text-lg 2xl:text-2xl"
                     initial={{ opacity: 0, y: 15, scale: 0.98 }}
                     animate={
                       isInView
