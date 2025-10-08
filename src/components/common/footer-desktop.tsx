@@ -136,14 +136,7 @@ const FooterDesktop = ({
                 <div className="flex flex-row gap-4 xxl:gap-4 2xl:gap-5 3xl:gap-6 4xl:gap-8">
                   {/* Name Input Field */}
                   <div className="flex flex-col gap-2 xxl:gap-2 2xl:gap-3 3xl:gap-4 4xl:gap-5 flex-1">
-                    <label
-                      className="text-[16px] xxl:text-[16px] 2xl:text-[19px] 3xl:text-[22px] 4xl:text-[28px] font-bold text-[#6B7280]"
-                      style={{
-                        fontFamily: "Open Sans",
-                        lineHeight: "1.25em",
-                        fontWeight: 700,
-                      }}
-                    >
+                    <label className="text-base font-bold text-[#6B7280]">
                       Name
                     </label>
                     <input
@@ -153,10 +146,6 @@ const FooterDesktop = ({
                       onChange={onInputChange}
                       className="w-full px-4 xxl:px-4 2xl:px-5 3xl:px-6 4xl:px-8 py-3 xxl:py-3 2xl:py-4 3xl:py-5 4xl:py-6 bg-[#F7F7F7] focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent"
                       style={{
-                        fontFamily: "Open Sans",
-                        fontWeight: 400,
-                        fontSize: "16px",
-                        lineHeight: "1.25em",
                         borderBottom: "2px solid #E0E4E8",
                       }}
                       required
@@ -165,14 +154,7 @@ const FooterDesktop = ({
 
                   {/* Subject Input Field */}
                   <div className="flex flex-col gap-2 xxl:gap-2 2xl:gap-3 3xl:gap-4 4xl:gap-5 flex-1">
-                    <label
-                      className="text-[16px] xxl:text-[16px] 2xl:text-[19px] 3xl:text-[22px] 4xl:text-[28px] font-bold text-[#6B7280]"
-                      style={{
-                        fontFamily: "Open Sans",
-                        lineHeight: "1.25em",
-                        fontWeight: 700,
-                      }}
-                    >
+                    <label className="text-base font-bold text-[#6B7280]">
                       Subject
                     </label>
                     <input
@@ -182,10 +164,6 @@ const FooterDesktop = ({
                       onChange={onInputChange}
                       className="w-full px-4 xxl:px-4 2xl:px-5 3xl:px-6 4xl:px-8 py-3 xxl:py-3 2xl:py-4 3xl:py-5 4xl:py-6 bg-[#F7F7F7] focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent"
                       style={{
-                        fontFamily: "Open Sans",
-                        fontWeight: 400,
-                        fontSize: "16px",
-                        lineHeight: "1.25em",
                         borderBottom: "2px solid #E0E4E8",
                       }}
                       required
@@ -195,14 +173,7 @@ const FooterDesktop = ({
 
                 {/* Email Input Field */}
                 <div className="flex flex-col gap-2 xxl:gap-2 2xl:gap-3 3xl:gap-4 4xl:gap-5">
-                  <label
-                    className="text-[16px] xxl:text-[16px] 2xl:text-[19px] 3xl:text-[22px] 4xl:text-[28px] font-bold text-[#6B7280]"
-                    style={{
-                      fontFamily: "Open Sans",
-                      lineHeight: "1.25em",
-                      fontWeight: 700,
-                    }}
-                  >
+                  <label className="text-base font-bold text-[#6B7280]">
                     Email
                   </label>
                   <input
@@ -212,10 +183,6 @@ const FooterDesktop = ({
                     onChange={onInputChange}
                     className="w-full px-4 xxl:px-4 2xl:px-5 3xl:px-6 4xl:px-8 py-3 xxl:py-3 2xl:py-4 3xl:py-5 4xl:py-6 bg-[#F7F7F7] focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent"
                     style={{
-                      fontFamily: "Open Sans",
-                      fontWeight: 400,
-                      fontSize: "16px",
-                      lineHeight: "1.25em",
                       borderBottom: "2px solid #E0E4E8",
                     }}
                     required
@@ -224,14 +191,7 @@ const FooterDesktop = ({
 
                 {/* Message Input Field */}
                 <div className="flex flex-col gap-2 xxl:gap-2 2xl:gap-3 3xl:gap-4 4xl:gap-5">
-                  <label
-                    className="text-[16px] xxl:text-[16px] 2xl:text-[19px] 3xl:text-[22px] 4xl:text-[28px] font-bold text-[#6B7280]"
-                    style={{
-                      fontFamily: "Open Sans",
-                      lineHeight: "1.25em",
-                      fontWeight: 700,
-                    }}
-                  >
+                  <label className="text-base font-bold text-[#6B7280]">
                     Message
                   </label>
                   <textarea
@@ -241,10 +201,6 @@ const FooterDesktop = ({
                     rows={4}
                     className="w-full px-4 xxl:px-4 2xl:px-5 3xl:px-6 4xl:px-8 py-3 xxl:py-3 2xl:py-4 3xl:py-5 4xl:py-6 bg-[#F7F7F7] focus:outline-none focus:ring-2 focus:ring-[#7D8F89] focus:border-transparent resize-none"
                     style={{
-                      fontFamily: "Open Sans",
-                      fontWeight: 400,
-                      fontSize: "16px",
-                      lineHeight: "1.25em",
                       borderBottom: "2px solid #E0E4E8",
                     }}
                     required
@@ -253,13 +209,7 @@ const FooterDesktop = ({
 
                 <button
                   type="submit"
-                  className="bg-[#E0E4E8] text-[#3B464F] w-full h-[44px] xxl:h-[44px] 2xl:h-[54px] 3xl:h-[64px] 4xl:h-[84px] hover:bg-[#D0D4D8] transition-colors duration-200 flex items-center justify-center"
-                  style={{
-                    fontFamily: "Open Sans",
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "1.5em",
-                  }}
+                  className="bg-[#E0E4E8] cursor-pointer text-[#3B464F] lg:h-11 hover:bg-[#D0D4D8] transition-colors duration-200 flex items-center justify-center"
                 >
                   Send
                 </button>

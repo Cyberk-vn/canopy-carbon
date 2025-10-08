@@ -63,18 +63,18 @@ const MapSection = () => {
 
               {/* Title */}
               <motion.div
-                className="z-10 flex flex-row items-start justify-start w-full max-w-[900px]"
+                className="z-10 flex flex-row items-end w-full max-w-[810px] 2xl:max-w-[1150px]"
                 {...SIMPLE_ANIMATIONS.fadeInUp}
                 {...titleMotion}
               >
                 {/* Title Text with Hidden to Show Animation */}
                 <motion.div
-                  className="flex-1 max-w-none pr-4"
+                  className="flex-1 max-w-none"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                 >
-                  <h2 className=" font-bold text-[#9CA3AF] text-[16px] xl:text-[18px] xxl:text-[20px] 2xl:text-[22px] 3xl:text-[24px] 4xl:text-[28px] text-start leading-tight">
+                  <h2 className=" font-semibold font-work-sans text-[#9CA3AF] text-[22px] 2xl:text-[32px]">
                     Our current efforts are centered in Indonesia, prioritising
                     tight oversight, execution quality, and the development of
                     robust operational foundations for scale.
