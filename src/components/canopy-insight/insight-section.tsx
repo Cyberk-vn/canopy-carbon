@@ -45,7 +45,7 @@ export function InsightSection({
       style={{ backgroundColor: "#FCFCFC" }}
     >
       {/* Content Container using flexbox */}
-      <div className="flex flex-col pt-[22px] pb-[40px]">
+      <div className="flex flex-col pt-[22px] pb-9">
         {/* Title */}
         <motion.div
           {...SIMPLE_ANIMATIONS.fadeInLeft}

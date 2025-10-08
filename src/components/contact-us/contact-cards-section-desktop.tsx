@@ -190,13 +190,20 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
   ];
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full overflow-hidden">
       <Image
         src="/assets/desktop/contact-us/contact-us-bg-big-screen.png"
-        alt="Contact us background big screen"
+        alt="Contact us background big screen1"
         fill
         className="hidden 2xl:block"
         priority
+      />
+      <Image
+        src="/assets/desktop/contact-us/cnr-circle.png"
+        alt="CNR Circle"
+        width={500}
+        height={500}
+        className="absolute -bottom-18 -left-19 z-0 hidden 2xl:block"
       />
       <Image
         src="/assets/desktop/contact-us/contact-us-background-image.png"

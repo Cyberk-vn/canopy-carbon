@@ -41,7 +41,7 @@ export function CanopyPortfolioSection() {
       />
 
       {/* Content Container */}
-      <div className="relative z-20 h-full px-6 py-[114px] md:px-[120px] flex flex-col items-center">
+      <div className="relative z-20 h-full px-6 py-[106px] md:px-[120px] flex flex-col items-center">
         <div
           className="flex flex-col gap-3 max-w-[342px] text-center"
           style={{
@@ -96,12 +96,12 @@ export function CanopyPortfolioSection() {
               whileHover={{
                 scale: 1.05,
                 color: "#5A6B63",
-                transition: { duration: 0.2, ease: "easeOut" }
+                transition: { duration: 0.2, ease: "easeOut" },
               }}
               whileTap={{
                 scale: 0.95,
                 color: "#4A5A53",
-                transition: { duration: 0.1, ease: "easeIn" }
+                transition: { duration: 0.1, ease: "easeIn" },
               }}
               initial={{ opacity: 1, scale: 1 }}
               animate={{ opacity: 1, scale: 1 }}

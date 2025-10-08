@@ -61,7 +61,7 @@ export function CanopyInsightSection() {
           />
         </div>
 
-        <div className="relative flex flex-1 flex-col items-center pt-25 lg:pt-0 lg:justify-center 2xl:justify-start gap-11 2xl:gap-[72px] lg:flex-row lg:container lg:mx-auto px-6 lg:px-0">
+        <div className="relative flex flex-1 flex-col items-center pt-25 lg:pt-0 lg:justify-center 2xl:justify-start gap-11 2xl:gap-[72px] lg:flex-row lg:container lg:mx-auto px-6 lg:px-0 xl:px-7">
           <FadeContent
             duration={500}
             delay={100}
@@ -77,7 +77,7 @@ export function CanopyInsightSection() {
               className="object-cover lg:w-[356px] lg:h-[447px] md:w-[228px] md:h-[286px] w-[206px] h-[259px] 2xl:w-[462px] 2xl:h-[598px]"
             />
           </FadeContent>
-          <div className="lg:w-[705px] lg:mb-25 2xl:mb-90">
+          <div className="relative lg:w-[705px] lg:mb-25 2xl:mb-68">
             <FadeContent
               duration={600}
               delay={200}
@@ -90,7 +90,8 @@ export function CanopyInsightSection() {
                 Canopy Insights
               </div>
 
-              <div className="text-sm lg:text-sm md:text-base xl:text-base leading-[24px] text-[#777777] lg:max-w-[622px]">
+              <div className="relative text-sm lg:text-sm md:text-base xl:text-base leading-[24px] text-[#777777] lg:max-w-[622px] xl:max-w-[715px]">
+                <div className="absolute hidden lg:block bg-[#FFFFFF4D] -z-10 top-[-24px] bottom-[-24px] left-[-45px] 2xl:left-[-75px] right-[-24px] 2xl:right-[-64px]" />
                 <p className="hidden sm:block">
                   At Canopy, every strategic decision is grounded in rigorous
                   analysis. Canopy Insights is our dedicated platform for
