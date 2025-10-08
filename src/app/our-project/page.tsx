@@ -29,7 +29,7 @@ const OurProjectPage = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const isMobile = window.innerWidth < 768;
-      
+
       // Critical images to preload on mobile (above-the-fold content)
       const criticalImages = [
         "/assets/our-project/canopy-portfolio-section/canopy-portfolio-bg-381140.png", // Portfolio header
@@ -37,12 +37,14 @@ const OurProjectPage = () => {
       ];
 
       // Secondary images to preload after critical images (mobile-first)
-      const secondaryImages = isMobile ? [
-        "/assets/our-project/portfolio/carousel-images/portfolio-image-1.png", // First portfolio image
-        "/assets/our-project/canopy-portfolio-section/canopy-blue-print-bg.png", // Blueprint bg
-        "/assets/our-project/benefit-section/left-logo.png", // Left cert logo
-        "/assets/our-project/benefit-section/right-logo.png", // Right cert logo
-      ] : [];
+      const secondaryImages = isMobile
+        ? [
+            "/assets/our-project/portfolio/carousel-images/portfolio-image-1.png", // First portfolio image
+            "/assets/our-project/canopy-portfolio-section/canopy-blue-print-bg.png", // Blueprint bg
+            "/assets/our-project/benefit-section/left-logo.png", // Left cert logo
+            "/assets/our-project/benefit-section/right-logo.png", // Right cert logo
+          ]
+        : [];
 
       // Preload critical images immediately
       criticalImages.forEach((src) => {

@@ -3,7 +3,7 @@
 import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion } from "motion/react";
-import { Container } from "../shared";
+import { useSimpleMotion } from "@/src/hooks/responsive/use-simple-motion";
 
 // Image imports
 import PortfolioBackground1 from "../../../public/assets/desktop/our-projects/portfolio-background-1-536692.png";
@@ -24,7 +24,26 @@ interface PortfolioProject {
   isComingSoon?: boolean;
 }
 
+// Responsive scaling helper for tablet range (768px → 1280px)
+const createResponsiveValueTablet = (
+  value768: number,
+  value1280: number
+): string => {
+  return `clamp(${value768}px, calc(${value768}px + (${value1280} - ${value768}) * ((100vw - 768px) / 512)), ${value1280}px)`;
+};
+
+// Responsive scaling helper for desktop range (1440px → 1920px)
+const createResponsiveValueDesktop = (
+  value1440: number,
+  value1920: number
+): string => {
+  return `clamp(${value1440}px, calc(${value1440}px + (${value1920} - ${value1440}) * ((100vw - 1440px) / 480)), ${value1920}px)`;
+};
+
 const CanopyPortfolioSectionDesktop: React.FC = () => {
+  const titleMotion = useSimpleMotion("portfolio-title");
+  const cardsMotion = useSimpleMotion("portfolio-cards");
+
   const portfolioProjects: PortfolioProject[] = [
     {
       id: "project-1",
@@ -73,17 +92,23 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
   ];
 
   return (
-    <Container>
+    <>
+      {/* TABLET LAYOUT (768px - 1280px) */}
       <section
-        className="w-full relative mx-auto"
-        style={{ maxWidth: "1440px", height: "1516px" }}
+        className="hidden md:block xl:hidden w-full relative bg-[#232A26] overflow-hidden"
+        style={{
+          height: "2040px",
+        }}
       >
-        {/* Top Background Section - portfolio-background-1 with gradient */}
+        {/* Top Background Section */}
         <div
-          className="absolute"
-          style={{ width: "100%", height: "625px", top: "0", left: "0" }}
+          className="absolute left-0 right-0 overflow-hidden"
+          style={{
+            width: "100%",
+            height: "411.96px",
+            top: "0",
+          }}
         >
-          {/* Background Image 1 */}
           <div
             className="absolute inset-0"
             style={{
@@ -93,23 +118,33 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
               backgroundRepeat: "no-repeat",
             }}
           />
-
-          {/* Top Gradient Overlay */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.2) 7%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 1) 87%)",
+                "radial-gradient(60.99% 60.99% at 50% 39.01%, #000000 0%, rgba(0, 0, 0, 0.2) 6.73%, rgba(0, 0, 0, 0.2) 29.81%, #000000 86.54%)",
+            }}
+          />
+          {/* Top Edge Fade - Smooth transition from black */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 5%, rgba(0, 0, 0, 0) 15%)",
             }}
           />
         </div>
 
-        {/* Bottom Background Section - portfolio-background-2 with gradient - NO GAP */}
+        {/* Bottom Background Section */}
         <div
-          className="absolute"
-          style={{ width: "100%", height: "891px", top: "625px", left: "0" }}
+          className="absolute overflow-hidden"
+          style={{
+            width: "100%",
+            height: "1753.71px",
+            top: "292.04px",
+            left: "0",
+          }}
         >
-          {/* Background Image 2 with white overlay */}
           <div
             className="absolute inset-0"
             style={{
@@ -121,8 +156,261 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
               backgroundBlendMode: "normal",
             }}
           />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0.4) 57%, rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, 1) 98%)",
+            }}
+          />
+        </div>
 
-          {/* Bottom Gradient Overlay */}
+        {/* Content Container */}
+        <div className="relative z-20 mx-auto pt-[121px] px-[63px]">
+          {/* Title and Description Section */}
+          <motion.div
+            {...titleMotion}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="flex flex-col items-center mx-auto"
+            style={{
+              gap: createResponsiveValueTablet(24, 32),
+              maxWidth: "616px",
+            }}
+          >
+            <div
+              className="flex flex-col w-full"
+              style={{ gap: createResponsiveValueTablet(24, 32) }}
+            >
+              {/* Title */}
+              <h2
+                className="font-semibold text-[#EDEDED] text-left"
+                style={{
+                  fontSize: "36px",
+                  lineHeight: "1.173em",
+                  fontFamily: "'Work Sans', sans-serif",
+                }}
+              >
+                The Canopy Portfolio
+              </h2>
+
+              {/* Description */}
+              <p
+                className="text-[#F0F0F0] text-left"
+                style={{
+                  fontSize: "19px",
+                  lineHeight: "1.111em",
+                  fontFamily: "'Open Sans', sans-serif",
+                  fontWeight: 300,
+                }}
+              >
+                We execute our projects alongside key partners globally
+                recognised for their domain expertise.
+              </p>
+
+              {/* Decorative Line */}
+              <div
+                style={{
+                  width: "100%",
+                  height: "2px",
+                  backgroundColor: "#FFFFFF",
+                }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Project Cards Grid - Flex row wrap */}
+          <motion.div
+            {...cardsMotion}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+            className="flex flex-row flex-wrap justify-center mx-auto"
+            style={{
+              gap: "24px",
+              marginTop: 150,
+              maxWidth: "616px",
+            }}
+          >
+            {portfolioProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.4 + index * 0.1,
+                  ease: "easeOut",
+                }}
+                className="flex flex-col overflow-hidden rounded-[5px] shadow-lg"
+                style={{
+                  width: "296px",
+                  height: "512px",
+                }}
+              >
+                {/* Project Image */}
+                <div
+                  className="flex-shrink-0 rounded-t-[5px] overflow-hidden"
+                  style={{
+                    width: "296px",
+                    height: "350.12px",
+                  }}
+                >
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.title}
+                    width={296}
+                    height={350}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Project Content */}
+                <div
+                  className={`flex flex-col flex-shrink-0 rounded-b-[5px] ${
+                    project.isComingSoon
+                      ? "bg-[rgba(22,34,28,0.65)]"
+                      : "bg-[#16221C]"
+                  }`}
+                  style={{
+                    width: "296px",
+                    height: "160.92px",
+                    padding: "15px",
+                  }}
+                >
+                  {/* Project Title */}
+                  <h3
+                    className="text-white text-left"
+                    style={{
+                      fontFamily: "'Roboto', sans-serif",
+                      fontWeight: 900,
+                      fontSize: "18px",
+                      lineHeight: "1.667em",
+                      marginBottom: "2px",
+                    }}
+                  >
+                    {project.title}
+                  </h3>
+
+                  {/* Project Location */}
+                  <p
+                    className="text-white text-left"
+                    style={{
+                      fontFamily: "'Open Sans', sans-serif",
+                      fontWeight: 300,
+                      fontSize: "12px",
+                      lineHeight: "1.667em",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    {project.location}
+                  </p>
+
+                  {/* Project Description - Only show if not Coming Soon */}
+                  {!project.isComingSoon && (
+                    <>
+                      <div className="flex-grow overflow-hidden">
+                        <p
+                          className="text-left"
+                          style={{
+                            fontFamily: "'Roboto', sans-serif",
+                            fontWeight: 400,
+                            fontSize: "10px",
+                            lineHeight: "1.4em",
+                            letterSpacing: "-4%",
+                            color: "#69726D",
+                          }}
+                        >
+                          {project.description}
+                        </p>
+                      </div>
+
+                      {/* Read More Button */}
+                      <div className="text-left flex items-center mt-2">
+                        <button
+                          className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
+                          style={{
+                            fontFamily: "'Open Sans', sans-serif",
+                            fontWeight: 400,
+                            fontSize: "12px",
+                            lineHeight: "1.5em",
+                          }}
+                        >
+                          Read More →
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* DESKTOP LAYOUT (1440px - 1920px) */}
+      <section
+        className="hidden xl:block w-full relative bg-[#232A26]"
+        style={{
+          height: createResponsiveValueDesktop(1548, 2372),
+        }}
+      >
+        {/* Top Background Section - Full Width */}
+        <div
+          className="absolute left-0 right-0"
+          style={{
+            width: "100%",
+            height: createResponsiveValueDesktop(432.13, 606),
+            top: "85px",
+          }}
+        >
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${PortfolioBackground1.src})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(60.99% 60.99% at 50% 39.01%, #000000 0%, rgba(0, 0, 0, 0.2) 6.73%, rgba(0, 0, 0, 0.2) 29.81%, #000000 86.54%)",
+            }}
+          />
+          {/* Top Edge Fade - Smooth transition from black */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 5%, rgba(0, 0, 0, 0) 15%)",
+            }}
+          />
+        </div>
+
+        {/* Bottom Background Section - Full Width */}
+        <div
+          className="absolute left-0 right-0"
+          style={{
+            width: "100%",
+            height: createResponsiveValueDesktop(1160, 1766),
+            top: createResponsiveValueDesktop(438, 690),
+          }}
+        >
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              backgroundImage: `url(${PortfolioBackground2.src})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundBlendMode: "normal",
+            }}
+          />
           <div
             className="absolute inset-0"
             style={{
@@ -132,104 +420,194 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
           />
         </div>
 
-        {/* Content Container - positioned with exact spacing: top 81px, left/right 120px, bottom 83px */}
+        {/* Content Container - Max width 2200px, centered */}
         <div
-          className="absolute z-20 flex flex-col items-center"
+          className="relative z-20 mx-auto"
           style={{
-            top: "81px",
-            left: "120px",
-            right: "120px",
-            bottom: "83px",
-            width: "1200px",
+            maxWidth: "2200px",
+            paddingLeft: createResponsiveValueDesktop(120, 203),
+            paddingRight: createResponsiveValueDesktop(120, 203),
           }}
         >
-          <div className="w-[1200px] flex flex-col items-center gap-14">
-            {/* Title and Description Section */}
-            <motion.div
-              initial={{ opacity: 0.8, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="flex flex-col items-center gap-6"
+          {/* Title and Description Section - Positioned on Top Background */}
+          <motion.div
+            {...titleMotion}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="flex flex-col items-center mx-auto"
+            style={{
+              paddingTop: createResponsiveValueDesktop(175, 220),
+              gap: createResponsiveValueDesktop(24, 32),
+              maxWidth: createResponsiveValueDesktop(1199, 1599),
+            }}
+          >
+            <div
+              className="flex flex-col"
+              style={{
+                width: createResponsiveValueDesktop(803, 1070),
+                gap: createResponsiveValueDesktop(24, 32),
+              }}
             >
               {/* Title */}
-              <motion.h2
-                initial={{ opacity: 0.7, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-                className=" font-extrabold text-[32px] leading-[1.36181640625em] text-[#EDEDED] text-center h-[30px] flex items-center"
+              <h2
+                className="font-semibold text-[#EDEDED] text-left"
+                style={{
+                  fontSize: createResponsiveValueDesktop(36, 48),
+                  lineHeight: "1.173em",
+                  fontFamily: "'Work Sans', sans-serif",
+                }}
               >
                 The Canopy Portfolio
-              </motion.h2>
+              </h2>
 
               {/* Description */}
-              <motion.p
-                initial={{ opacity: 0.6, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
-                className=" font-light text-[19px] leading-[1.0526315789473684em] text-[#F0F0F0] text-center"
+              <p
+                className="text-[#F0F0F0] text-left"
+                style={{
+                  fontSize: createResponsiveValueDesktop(18, 24),
+                  lineHeight: "1.111em",
+                  fontFamily: "'Open Sans', sans-serif",
+                  fontWeight: 300,
+                  width: createResponsiveValueDesktop(807, 1076),
+                }}
               >
                 We execute our projects alongside key partners globally
                 recognised for their domain expertise.
-              </motion.p>
-            </motion.div>
+              </p>
 
-            {/* Project Cards Grid - 2 rows x 3 columns */}
-            <motion.div
-              initial={{ opacity: 0.8, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-              className="w-[989px] h-[1222px] grid grid-cols-3 grid-rows-2 gap-[28px]"
+              {/* Decorative Line */}
+              <div
+                style={{
+                  width: createResponsiveValueDesktop(948.13, 1264),
+                  height: "2px",
+                  backgroundColor: "#FFFFFF",
+                }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Project Cards - Staggered Layout - Positioned on Bottom Background */}
+          <motion.div
+            {...cardsMotion}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+            className="flex flex-col items-center w-full"
+            style={{
+              marginTop: createResponsiveValueDesktop(170, 282),
+              gap: createResponsiveValueDesktop(89.5, 120),
+            }}
+          >
+            {/* First Row - 3 Cards */}
+            <div
+              className="flex justify-center"
+              style={{
+                gap: createResponsiveValueDesktop(118, 160),
+              }}
             >
-              {portfolioProjects.map((project, index) => (
+              {portfolioProjects.slice(0, 3).map((project, index) => (
                 <motion.div
                   key={project.id}
-                  initial={{ opacity: 0.7, y: 20, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{
                     duration: 0.5,
-                    delay: 0.7 + index * 0.1,
+                    delay: 0.4 + index * 0.1,
                     ease: "easeOut",
                   }}
-                  className="w-[311px] h-[596px] flex flex-col overflow-hidden rounded-[5px] shadow-lg"
+                  className="flex flex-col overflow-hidden rounded-[5px] shadow-lg"
+                  style={{
+                    width: createResponsiveValueDesktop(296, 398),
+                    height: createResponsiveValueDesktop(512, 681),
+                  }}
                 >
                   {/* Project Image */}
-                  <div className="w-full h-[384px] flex-shrink-0 rounded-t-[5px] overflow-hidden">
+                  <div
+                    className="flex-shrink-0 rounded-t-[5px] overflow-hidden"
+                    style={{
+                      width: "100%",
+                      height: createResponsiveValueDesktop(350.12, 464),
+                    }}
+                  >
                     <Image
                       src={project.imageUrl}
                       alt={project.title}
-                      width={311}
-                      height={384}
+                      width={398}
+                      height={464}
                       className="w-full h-full object-cover"
                     />
                   </div>
 
                   {/* Project Content */}
                   <div
-                    className={`w-full h-[212px] px-[15px] pt-[24px] rounded-b-[5px] flex flex-col flex-shrink-0 ${
+                    className={`flex flex-col flex-shrink-0 rounded-b-[5px] ${
                       project.isComingSoon
                         ? "bg-[rgba(22,34,28,0.65)]"
                         : "bg-[#16221C]"
                     }`}
+                    style={{
+                      width: "100%",
+                      height: createResponsiveValueDesktop(160.92, 217),
+                      padding: createResponsiveValueDesktop(15, 20),
+                    }}
                   >
                     {/* Project Title */}
-                    <h3 className="font-roboto font-black text-[21px] leading-[1.4285714285714286em] text-white text-center mb-[2px] h-[29.31px] flex items-center justify-center">
+                    <h3
+                      className="text-white text-center"
+                      style={{
+                        fontFamily:
+                          createResponsiveValueDesktop(1440, 1920) ===
+                          createResponsiveValueDesktop(1440, 1440)
+                            ? "'Roboto', sans-serif"
+                            : "'Open Sans', sans-serif",
+                        fontWeight:
+                          createResponsiveValueDesktop(1440, 1920) ===
+                          createResponsiveValueDesktop(1440, 1440)
+                            ? 900
+                            : 700,
+                        fontSize: createResponsiveValueDesktop(18, 24),
+                        lineHeight: "1.4em",
+                        marginBottom: "2px",
+                      }}
+                    >
                       {project.title}
                     </h3>
 
                     {/* Project Location */}
-                    <p className=" font-light text-[12px] leading-[2.3333333333333335em] text-white text-center mb-[4px] h-[27.36px] flex items-center justify-center">
+                    <p
+                      className="text-white text-center"
+                      style={{
+                        fontFamily: "'Open Sans', sans-serif",
+                        fontWeight:
+                          createResponsiveValueDesktop(1440, 1920) ===
+                          createResponsiveValueDesktop(1440, 1440)
+                            ? 300
+                            : 600,
+                        fontSize: createResponsiveValueDesktop(12, 16),
+                        lineHeight: "2.3em",
+                        marginBottom: "4px",
+                      }}
+                    >
                       {project.location}
                     </p>
 
                     {/* Project Description - Only show if not Coming Soon */}
                     {!project.isComingSoon && (
                       <>
-                        <div className="flex-grow flex items-center justify-center overflow-hidden h-[67px]">
+                        <div className="flex-grow flex items-center justify-center overflow-hidden">
                           <p
-                            className="font-roboto font-normal text-center text-[12px] leading-[17px] text-white"
+                            className="text-center text-white"
                             style={{
-                              letterSpacing: "-0.04px",
+                              fontFamily:
+                                createResponsiveValueDesktop(1440, 1920) ===
+                                createResponsiveValueDesktop(1440, 1440)
+                                  ? "'Roboto', sans-serif"
+                                  : "'Open Sans', sans-serif",
                               fontWeight: 400,
+                              fontSize: createResponsiveValueDesktop(10, 12),
+                              lineHeight: "1.4em",
+                              letterSpacing: "-0.04px",
                             }}
                           >
                             {project.description}
@@ -237,8 +615,16 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                         </div>
 
                         {/* Read More Button */}
-                        <div className="text-center h-[48px] flex items-center justify-center">
-                          <button className=" font-normal text-[12px] leading-[1.5em] text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300">
+                        <div className="text-center flex items-center justify-center mt-2">
+                          <button
+                            className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
+                            style={{
+                              fontFamily: "'Open Sans', sans-serif",
+                              fontWeight: 400,
+                              fontSize: createResponsiveValueDesktop(12, 14),
+                              lineHeight: "1.5em",
+                            }}
+                          >
                             Read More →
                           </button>
                         </div>
@@ -247,11 +633,147 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
-          </div>
+            </div>
+
+            {/* Second Row - 2 Cards */}
+            <div
+              className="flex justify-center"
+              style={{
+                gap: createResponsiveValueDesktop(118, 160),
+              }}
+            >
+              {portfolioProjects.slice(3, 5).map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.7 + index * 0.1,
+                    ease: "easeOut",
+                  }}
+                  className="flex flex-col overflow-hidden rounded-[5px] shadow-lg"
+                  style={{
+                    width: createResponsiveValueDesktop(296, 398),
+                    height: createResponsiveValueDesktop(512, 681),
+                  }}
+                >
+                  {/* Project Image */}
+                  <div
+                    className="flex-shrink-0 rounded-t-[5px] overflow-hidden"
+                    style={{
+                      width: "100%",
+                      height: createResponsiveValueDesktop(350.12, 464),
+                    }}
+                  >
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      width={398}
+                      height={464}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Project Content */}
+                  <div
+                    className={`flex flex-col flex-shrink-0 rounded-b-[5px] ${
+                      project.isComingSoon
+                        ? "bg-[rgba(22,34,28,0.65)]"
+                        : "bg-[#16221C]"
+                    }`}
+                    style={{
+                      width: "100%",
+                      height: createResponsiveValueDesktop(160.92, 217),
+                      padding: createResponsiveValueDesktop(15, 20),
+                    }}
+                  >
+                    {/* Project Title */}
+                    <h3
+                      className="text-white text-center"
+                      style={{
+                        fontFamily:
+                          createResponsiveValueDesktop(1440, 1920) ===
+                          createResponsiveValueDesktop(1440, 1440)
+                            ? "'Roboto', sans-serif"
+                            : "'Open Sans', sans-serif",
+                        fontWeight:
+                          createResponsiveValueDesktop(1440, 1920) ===
+                          createResponsiveValueDesktop(1440, 1440)
+                            ? 900
+                            : 700,
+                        fontSize: createResponsiveValueDesktop(18, 24),
+                        lineHeight: "1.4em",
+                        marginBottom: "2px",
+                      }}
+                    >
+                      {project.title}
+                    </h3>
+
+                    {/* Project Location */}
+                    <p
+                      className="text-white text-center"
+                      style={{
+                        fontFamily: "'Open Sans', sans-serif",
+                        fontWeight:
+                          createResponsiveValueDesktop(1440, 1920) ===
+                          createResponsiveValueDesktop(1440, 1440)
+                            ? 300
+                            : 600,
+                        fontSize: createResponsiveValueDesktop(12, 16),
+                        lineHeight: "2.3em",
+                        marginBottom: "4px",
+                      }}
+                    >
+                      {project.location}
+                    </p>
+
+                    {/* Project Description - Only show if not Coming Soon */}
+                    {!project.isComingSoon && (
+                      <>
+                        <div className="flex-grow flex items-center justify-center overflow-hidden">
+                          <p
+                            className="text-center text-white"
+                            style={{
+                              fontFamily:
+                                createResponsiveValueDesktop(1440, 1920) ===
+                                createResponsiveValueDesktop(1440, 1440)
+                                  ? "'Roboto', sans-serif"
+                                  : "'Open Sans', sans-serif",
+                              fontWeight: 400,
+                              fontSize: createResponsiveValueDesktop(10, 12),
+                              lineHeight: "1.4em",
+                              letterSpacing: "-0.04px",
+                            }}
+                          >
+                            {project.description}
+                          </p>
+                        </div>
+
+                        {/* Read More Button */}
+                        <div className="text-center flex items-center justify-center mt-2">
+                          <button
+                            className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
+                            style={{
+                              fontFamily: "'Open Sans', sans-serif",
+                              fontWeight: 400,
+                              fontSize: createResponsiveValueDesktop(12, 14),
+                              lineHeight: "1.5em",
+                            }}
+                          >
+                            Read More →
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
-    </Container>
+    </>
   );
 };
 

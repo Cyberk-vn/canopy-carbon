@@ -3,21 +3,57 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
+import LogoDecorator from "../../../public/assets/banner-shared-component/circle.png";
+
+// Responsive scaling helper for desktop range (1440px → 1920px)
+const createResponsiveValue = (
+  value1440: number,
+  value1920: number
+): string => {
+  return `clamp(${value1440}px, calc(${value1440}px + (${value1920} - ${value1440}) * ((100vw - 1440px) / 480)), ${value1920}px)`;
+};
 
 const CollaborateWithUsSectionDesktop: React.FC = () => {
   return (
-    <section className="bg-white w-full py-[80px] px-[68px] overflow-hidden">
+    <section
+      className="hidden md:block bg-white w-full overflow-hidden md:py-[48px] md:px-[48px] md:mt-[48px]"
+      style={{
+        paddingTop: createResponsiveValue(80, 107),
+        paddingBottom: createResponsiveValue(80, 107),
+        paddingLeft: createResponsiveValue(68, 90),
+        paddingRight: createResponsiveValue(68, 90),
+        marginTop: createResponsiveValue(80, 107),
+      }}
+    >
       {/* Main Layout Container - Flexbox Layout */}
-      <div className="flex max-w-[1440px] mx-auto">
-        {/* Main Content Container - Fixed width 957px */}
-        <div className="w-[957px] mr-[44px] bg-[#F9F9F9] px-[64px] py-[32px] h-fit">
-          <div className="flex flex-col gap-[32px]">
+      <div className="flex justify-center items-center max-w-[2200px] mx-auto">
+        {/* Main Content Container - Responsive width */}
+        <div
+          className="bg-[#F9F9F9] h-fit relative md:w-full md:p-[32px] md:mr-0 xl:mr-0"
+          style={{
+            width: createResponsiveValue(957, 1276),
+            marginRight: createResponsiveValue(44, 59),
+            paddingLeft: createResponsiveValue(64, 85),
+            paddingRight: createResponsiveValue(64, 85),
+            paddingTop: createResponsiveValue(32, 43),
+            paddingBottom: createResponsiveValue(32, 43),
+          }}
+        >
+          <div
+            className="flex flex-col md:gap-[32px]"
+            style={{ gap: createResponsiveValue(32, 80) }}
+          >
             {/* Title */}
             <motion.h2
               initial={{ opacity: 0.7, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-              className="text-[#1E2E26] font-bold text-[32px] leading-[1.36181640625em] text-left "
+              className="text-[#1E2E26] text-left md:text-[24px] md:font-bold xl:font-semibold"
+              style={{
+                fontSize: createResponsiveValue(32, 38),
+                lineHeight: "1.362em",
+                fontFamily: "'Open Sans', sans-serif",
+              }}
             >
               Collaborate With Us
             </motion.h2>
@@ -27,14 +63,22 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
               initial={{ opacity: 0.8, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="flex flex-col gap-[24px]"
+              className="flex flex-col md:gap-[24px]"
+              style={{ gap: createResponsiveValue(24, 64) }}
             >
               {/* Description */}
               <motion.p
                 initial={{ opacity: 0.6, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="text-[#9E9E9E] text-[16px] leading-[1.36181640625em] tracking-[-0.02em] text-left  whitespace-pre-line"
+                className="text-[#9E9E9E] text-left whitespace-pre-line md:text-[16px] md:max-w-none"
+                style={{
+                  fontSize: createResponsiveValue(16, 18),
+                  lineHeight: "1.362em",
+                  letterSpacing: "-0.02em",
+                  fontFamily: "'Open Sans', sans-serif",
+                  maxWidth: createResponsiveValue(651, 869),
+                }}
               >
                 We believe meaningful climate solutions are built through
                 partnership. At Canopy, we welcome collaboration with project
@@ -47,20 +91,32 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                 scale impact where it matters most.
               </motion.p>
 
-              {/* Button Cards - Single Row */}
+              {/* Button Cards - Responsive Grid */}
               <motion.div
                 initial={{ opacity: 0.6, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-                className="flex justify-stretch items-stretch gap-[16px]"
+                className="flex justify-stretch items-stretch gap-[16px] md:flex-wrap xl:flex-nowrap"
               >
                 <motion.div
                   initial={{ opacity: 0.7, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.5, ease: "easeOut" }}
-                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] p-[16px] w-[195px]"
+                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] md:basis-[calc(50%-8px)]"
+                  style={{
+                    width: createResponsiveValue(195, 254),
+                    height: createResponsiveValue(39, 52),
+                    padding: "16px",
+                  }}
                 >
-                  <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center ">
+                  <span
+                    className="text-[#4B5563] font-semibold text-center md:text-[14px] md:font-bold"
+                    style={{
+                      fontSize: createResponsiveValue(14, 20),
+                      lineHeight: "1.714em",
+                      fontFamily: "'Open Sans', sans-serif",
+                    }}
+                  >
                     Co-Develop
                   </span>
                 </motion.div>
@@ -68,9 +124,21 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   initial={{ opacity: 0.7, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.6, ease: "easeOut" }}
-                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] p-[16px] w-[195px]"
+                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] md:basis-[calc(50%-8px)]"
+                  style={{
+                    width: createResponsiveValue(195, 254),
+                    height: createResponsiveValue(39, 52),
+                    padding: "16px",
+                  }}
                 >
-                  <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center ">
+                  <span
+                    className="text-[#4B5563] font-semibold text-center md:text-[14px] md:font-bold"
+                    style={{
+                      fontSize: createResponsiveValue(14, 20),
+                      lineHeight: "1.714em",
+                      fontFamily: "'Open Sans', sans-serif",
+                    }}
+                  >
                     Purchase Credits
                   </span>
                 </motion.div>
@@ -78,9 +146,21 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   initial={{ opacity: 0.7, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.7, ease: "easeOut" }}
-                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] p-[16px] w-[195px]"
+                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] md:basis-[calc(50%-8px)]"
+                  style={{
+                    width: createResponsiveValue(195, 254),
+                    height: createResponsiveValue(39, 52),
+                    padding: "16px",
+                  }}
                 >
-                  <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center ">
+                  <span
+                    className="text-[#4B5563] font-semibold text-center md:text-[14px] md:font-bold"
+                    style={{
+                      fontSize: createResponsiveValue(14, 20),
+                      lineHeight: "1.714em",
+                      fontFamily: "'Open Sans', sans-serif",
+                    }}
+                  >
                     Fund Pipeline
                   </span>
                 </motion.div>
@@ -88,9 +168,21 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   initial={{ opacity: 0.7, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.8, ease: "easeOut" }}
-                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] p-[16px] w-[195px]"
+                  className="flex-1 flex items-center justify-center bg-[#E9E9E9] md:basis-[calc(50%-8px)]"
+                  style={{
+                    width: createResponsiveValue(195, 254),
+                    height: createResponsiveValue(39, 52),
+                    padding: "16px",
+                  }}
                 >
-                  <span className="text-[#4B5563] font-bold text-[14px] leading-[1.7142857142857142em] text-center ">
+                  <span
+                    className="text-[#4B5563] font-semibold text-center md:text-[14px] md:font-bold"
+                    style={{
+                      fontSize: createResponsiveValue(14, 20),
+                      lineHeight: "1.714em",
+                      fontFamily: "'Open Sans', sans-serif",
+                    }}
+                  >
                     Co-Innovate
                   </span>
                 </motion.div>
@@ -99,20 +191,27 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
           </div>
         </div>
 
-        {/* Decorator Image - Fixed width layout */}
-        <div className="flex items-start justify-start pt-[14px]">
+        {/* Decorator Image - Absolute on tablet, relative on desktop */}
+        <div
+          className="md:absolute md:right-0 md:top-0 xl:relative xl:flex items-start justify-start"
+          style={{ paddingTop: createResponsiveValue(14, 62) }}
+        >
           <motion.div
-            initial={{ opacity: 0.8, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0.64, x: 20 }}
+            animate={{ opacity: 0.8, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            className="w-[300px] h-[302px]"
+            className="md:w-[300px] md:h-[302px]"
+            style={{
+              width: createResponsiveValue(300, 369),
+              height: createResponsiveValue(302, 369),
+            }}
           >
             <Image
-              src="/assets/desktop/our-projects/collaborate-decorator-right-side.svg"
+              src={LogoDecorator}
               alt="Collaborate decoration"
-              width={300}
-              height={302}
-              className="object-contain"
+              width={369}
+              height={369}
+              className="object-contain w-full h-full opacity-80"
             />
           </motion.div>
         </div>
