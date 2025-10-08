@@ -194,7 +194,13 @@ function DesktopServiceCard({
               delay: 0.1,
             }}
           >
-            <h2 className="text-[14px] font-bold leading-[20px] lg:leading-[22px] xl:leading-[24px] xxl:leading-[26px] 2xl:leading-[28px] 3xl:leading-[30px] text-[#1D2E27]">
+            <h2
+              className="font-semibold text-[14px] lg:text-[15px] xl:text-[16px] xxl:text-[17px] 2xl:text-[18px] 3xl:text-[20px] leading-[20px] lg:leading-[22px] xl:leading-[24px] xxl:leading-[26px] 2xl:leading-[28px] 3xl:leading-[30px] text-[#1D2E27]"
+              style={{
+                fontFamily: "Open Sans",
+                fontWeight: "600",
+              }}
+            >
               {service.abbreviation}
             </h2>
           </motion.div>
@@ -210,7 +216,13 @@ function DesktopServiceCard({
               delay: 0.2,
             }}
           >
-            <h3 className="text-xs font-semibold leading-[20px] text-[#5B5F58] text-center">
+            <h3
+              className="font-semibold text-[13px] lg:text-[13px] xl:text-[14px] xxl:text-[15px] 2xl:text-[16px] 3xl:text-[17px] leading-[18px] lg:leading-[19px] xl:leading-[20px] xxl:leading-[21px] 2xl:leading-[22px] 3xl:leading-[24px] text-[#5B5F58] text-center"
+              style={{
+                fontFamily: "Open Sans",
+                fontWeight: "600",
+              }}
+            >
               {service.fullTitle}
             </h3>
           </motion.div>
@@ -226,7 +238,13 @@ function DesktopServiceCard({
               delay: 0.3,
             }}
           >
-            <p className="text-sm max-w-[370px] leading-[18px] text-[#5B5F58] text-center">
+            <p
+              className="font-normal text-[11px] lg:text-[11px] xl:text-[12px] xxl:text-[13px] 2xl:text-[14px] 3xl:text-[15px] leading-[16px] lg:leading-[17px] xl:leading-[18px] xxl:leading-[19px] 2xl:leading-[20px] 3xl:leading-[22px] text-[#5B5F58] text-center"
+              style={{
+                fontFamily: "Open Sans",
+                fontWeight: "400",
+              }}
+            >
               {service.description}
             </p>
           </motion.div>
@@ -251,7 +269,7 @@ export function Banner({
   const mobileDecoratorMotion = useSimpleMotion("mobile-banner-decorator");
 
   return (
-    <div className="relative w-full h-[832px] md:h-[1050px] lg:h-[1200px] xl:h-[1300px] xxl:h-[1440px] overflow-hidden flex flex-col lg:mb-[40px] 2xl:mb-[345px]">
+    <div className="relative w-full h-[832px] md:h-[1050px] lg:h-[1200px] xl:h-[1440px] xxl:h-[1600px] overflow-hidden flex flex-col lg:mb-[40px]">
       {/* Mobile Background - Keep existing mobile layout */}
       <div className="md:hidden absolute inset-0 z-0">
         <Image
@@ -459,113 +477,133 @@ export function Banner({
       </div>
 
       {/* Desktop Layout - Grid Based */}
-      <div className="hidden lg:block absolute inset-0 z-10">
-        <div
-          className="grid h-full"
-          style={{
-            gridTemplateColumns:
-              "clamp(40px, 4vw, 120px) clamp(320px, 32vw, 600px) clamp(40px, 4vw, 120px) minmax(auto, 1100px)",
-            gridTemplateRows:
-              "clamp(220px, 8vh, 150px) auto clamp(60px, 6vh, 120px) auto",
-          }}
-        >
-          {/* Logo Decorator */}
-          <div className="col-start-2 row-start-2 lg:h-[350px] xl:h-[420px] xxl:h-[460px] 2xl:h-[520px] 3xl:h-[600px]">
-            <motion.div
-              {...SIMPLE_ANIMATIONS.fadeInLeft}
-              {...decoratorMotion}
-              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-              className="flex justify-end items-end h-full"
+      <div
+        className="hidden lg:block absolute inset-0 z-10"
+        style={{ pointerEvents: "none" }}
+      >
+        <Container maxWidth="full" padding="default" className="h-full">
+          <div className="max-w-[2200px] mx-auto h-full">
+            <div
+              className="grid h-full 3xl:grid-cols-[120px_600px_120px_1fr]"
+              style={{
+                gridTemplateColumns:
+                  "clamp(40px, 4vw, 120px) clamp(320px, 32vw, 600px) clamp(40px, 4vw, 120px) minmax(auto, 1100px)",
+                gridTemplateRows:
+                  "clamp(220px, 8vh, 150px) auto clamp(60px, 6vh, 120px) auto",
+              }}
             >
-              <Image
-                src={DesktopDecoratorIcon}
-                alt="Canopy Carbon decorator icon"
-                width={460}
-                height={460}
-                className="object-contain w-full max-w-[320px] lg:max-w-[350px] xl:max-w-[420px] xxl:max-w-[460px] 2xl:max-w-[520px] 3xl:max-w-[600px] h-auto"
-                priority
-              />
-            </motion.div>
-          </div>
-
-          {/* Main Content */}
-          <div className="col-start-4 row-start-2 lg:mr-[32px] xl:mr-[68px] xxl:mr-0 gap-[260px]">
-            <div className="gap-2 flex flex-col justify-start">
-              {/* Main Title */}
-              <motion.h1
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                  duration: 1.35,
-                  ease: [0.175, 0.885, 0.32, 1.275],
-                  delay: 0.2,
-                }}
-                className="font-semibold text-[48px] xl:text-[64px] 2xl:text-[88px] leading-[1.1] lg:leading-[56px] xl:leading-[62px] xxl:leading-[68px] 2xl:leading-[76px] 3xl:leading-[84px] text-[#1E2E26]"
-              >
-                {title}
-              </motion.h1>
-
-              {/* Description */}
-              <motion.p
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                  duration: 1.35,
-                  ease: [0.175, 0.885, 0.32, 1.275],
-                  delay: 0.4,
-                }}
-                className="text-base 2xl:text-xl leading-[40px] text-[#B7C0C9]"
-              >
-                {subtitle}
-              </motion.p>
-            </div>
-
-            {/* Service Cards */}
-            {services && (
-              <div className="flex items-end lg:mt-[277px] 2xl:mt-[385px]">
+              {/* Logo Decorator */}
+              <div className="col-start-2 row-start-2 lg:h-[350px] xl:h-[420px] xxl:h-[460px] 2xl:h-[520px] 3xl:h-[600px]">
                 <motion.div
-                  {...SIMPLE_ANIMATIONS.fadeInUp}
-                  transition={{
-                    duration: 0.6,
-                    delay: 0.7,
-                    ease: "easeOut",
-                  }}
-                  className="grid grid-cols-2 grid-rows-2 w-full max-w-[580px] lg:max-w-[620px] xl:max-w-[700px] xxl:max-w-[800px] 2xl:max-w-[900px] 3xl:max-w-[1000px] gap-4 xl:gap-5 xxl:gap-6 2xl:gap-7 3xl:gap-8"
-                  style={{
-                    gridTemplateColumns: "1fr 1fr",
-                    gridTemplateRows: "auto auto",
-                  }}
+                  {...SIMPLE_ANIMATIONS.fadeInLeft}
+                  {...decoratorMotion}
+                  transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+                  className="flex justify-end items-end h-full"
                 >
-                  {services.map((service, index) => (
-                    <DesktopServiceCard
-                      key={service.id}
-                      service={service}
-                      index={index}
-                    />
-                  ))}
+                  <Image
+                    src={DesktopDecoratorIcon}
+                    alt="Canopy Carbon decorator icon"
+                    width={460}
+                    height={460}
+                    className="object-contain w-full max-w-[320px] lg:max-w-[350px] xl:max-w-[420px] xxl:max-w-[460px] 2xl:max-w-[520px] 3xl:max-w-[600px] h-auto"
+                    priority
+                  />
                 </motion.div>
               </div>
-            )}
-          </div>
 
-          {/* Bottom Description */}
-          <div className="col-start-2 col-span-3 row-start-4">
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1.35,
-                ease: [0.175, 0.885, 0.32, 1.275],
-                delay: 0.5,
-              }}
-              className="text-[#9CA3AF] lg:ml-[155px] 2xl:ml-[195px] font-work-sans font-semibold 2xl:text-[32px] lg:text-[24px] leading-tight 2xl:max-w-[988px] lg:max-w-[745px]"
-            >
-              We originate and deliver large-scale nature-based carbon offset
-              projects, engineered for long-term impact and institutional-grade
-              integrity.
-            </motion.p>
+              {/* Main Content */}
+              <div className="col-start-4 row-start-2 lg:mr-[32px] xl:mr-[68px] xxl:mr-0 gap-[260px]">
+                <div className="gap-2 flex flex-col justify-start">
+                  {/* Main Title */}
+                  <motion.h1
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 1.35,
+                      ease: [0.175, 0.885, 0.32, 1.275],
+                      delay: 0.2,
+                    }}
+                    className="font-bold text-[48px] lg:text-[52px] xl:text-[58px] xxl:text-[64px] 2xl:text-[72px] 3xl:text-[80px] leading-[1.1] lg:leading-[56px] xl:leading-[62px] xxl:leading-[68px] 2xl:leading-[76px] 3xl:leading-[84px] text-[#1E2E26]"
+                    style={{
+                      fontFamily: "Open Sans",
+                      fontWeight: "700",
+                    }}
+                  >
+                    {title}
+                  </motion.h1>
+
+                  {/* Description */}
+                  <motion.p
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 1.35,
+                      ease: [0.175, 0.885, 0.32, 1.275],
+                      delay: 0.4,
+                    }}
+                    className="text-[16px] lg:text-[17px] xl:text-[18px] xxl:text-[19px] 2xl:text-[20px] 3xl:text-[22px] leading-[40px] lg:leading-[42px] xl:leading-[44px] xxl:leading-[46px] 2xl:leading-[48px] 3xl:leading-[52px] font-normal text-[#B7C0C9] max-w-[618px] xl:max-w-[680px] xxl:max-w-[740px] 2xl:max-w-[800px] 3xl:max-w-[900px]"
+                    style={{
+                      fontFamily: "Open Sans",
+                      fontWeight: "400",
+                    }}
+                  >
+                    {subtitle}
+                  </motion.p>
+                </div>
+
+                {/* Service Cards */}
+                {services && (
+                  <div className="flex items-end mt-[48px] lg:mt-[200px] xl:mt-[230px] xxl:mt-[277px] 2xl:mt-[277px] 3xl:mt-[300px]">
+                    <motion.div
+                      {...SIMPLE_ANIMATIONS.fadeInUp}
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.7,
+                        ease: "easeOut",
+                      }}
+                      className="grid grid-cols-2 grid-rows-2 w-full max-w-[580px] lg:max-w-[620px] xl:max-w-[700px] xxl:max-w-[800px] 2xl:max-w-[900px] 3xl:max-w-[1000px] gap-4 xl:gap-5 xxl:gap-6 2xl:gap-7 3xl:gap-8"
+                      style={{
+                        gridTemplateColumns: "1fr 1fr",
+                        gridTemplateRows: "auto auto",
+                      }}
+                    >
+                      {services.map((service, index) => (
+                        <DesktopServiceCard
+                          key={service.id}
+                          service={service}
+                          index={index}
+                        />
+                      ))}
+                    </motion.div>
+                  </div>
+                )}
+              </div>
+
+              {/* Bottom Description */}
+              <div className="col-start-2 col-span-3 row-start-4 lg:ml-[165px] xxl:ml-[195px]">
+                <motion.p
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 1.35,
+                    ease: [0.175, 0.885, 0.32, 1.275],
+                    delay: 0.5,
+                  }}
+                  className="font-work-sans font-semibold text-[18px] lg:text-[20px] xl:text-[22px] xxl:text-[24px] 2xl:text-[26px] 3xl:text-[32px] leading-[28px] lg:leading-[30px] xl:leading-[32px] xxl:leading-[34px] 2xl:leading-[36px] 3xl:leading-[38px] text-start max-w-[600px] lg:max-w-[540px] xl:max-w-[630px] xxl:max-w-[680px] 2xl:max-w-[710px] 3xl:max-w-[800px]"
+                  style={{
+                    color: "#A1AEB9",
+                    verticalAlign: "middle",
+                    letterSpacing: "0%",
+                  }}
+                >
+                  We originate and deliver large-scale nature-based carbon
+                  offset projects, engineered for long-term impact and
+                  institutional-grade integrity.
+                </motion.p>
+              </div>
+            </div>
           </div>
-        </div>
+        </Container>
       </div>
 
       <NavigationMenu

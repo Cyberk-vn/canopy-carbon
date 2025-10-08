@@ -34,10 +34,10 @@ const MapSection = () => {
       {/* Desktop Layout */}
       <div className="hidden xl:block w-full mt-10">
         <Container maxWidth="full" className="pl-[68px] overflow-hidden">
-          <div className="relative w-full">
+          <div className="max-w-[1800px] mx-auto flex w-full overflow-hidden">
             {/* Content Section (69%) - Map + Title */}
             <div
-              className="flex flex-col"
+              className="flex flex-col 3xl:mt-[130px] xl:mt-[145px]"
               style={{
                 width: "69%",
                 gap: "50px",
@@ -49,7 +49,7 @@ const MapSection = () => {
                 {...SIMPLE_ANIMATIONS.scaleIn}
                 {...mapImageMotion}
               >
-                <div className="w-full lg:pt-[130px]">
+                <div className="w-full max-w-none">
                   <Image
                     src={MapDesktop}
                     alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
@@ -74,7 +74,13 @@ const MapSection = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                 >
-                  <h2 className=" font-bold text-[#9CA3AF] text-[16px] xl:text-[18px] xxl:text-[20px] 2xl:text-[22px] 3xl:text-[24px] 4xl:text-[28px] text-start leading-tight">
+                  <h2
+                    className=" font-bold text-[#9CA3AF] text-[16px] xl:text-[18px] xxl:text-[20px] 2xl:text-[22px] 3xl:text-[24px] 4xl:text-[28px] text-start"
+                    style={{
+                      lineHeight: "clamp(1.4em, 1.45em, 1.5em)",
+                      fontFamily: "Open Sans",
+                    }}
+                  >
                     Our current efforts are centered in Indonesia, prioritising
                     tight oversight, execution quality, and the development of
                     robust operational foundations for scale.
@@ -131,7 +137,11 @@ const MapSection = () => {
                     </motion.svg>
                   </motion.div>
                   <motion.span
-                    className="text-[14px] xl:text-[15px] xxl:text-[16px] 2xl:text-[17px] 3xl:text-[18px] 4xl:text-[20px] font-normal text-[#2A2E35] leading-normal"
+                    className="text-[14px] xl:text-[15px] xxl:text-[16px] 2xl:text-[17px] 3xl:text-[18px] 4xl:text-[20px] font-normal text-[#2A2E35]"
+                    style={{
+                      fontFamily: "Open Sans",
+                      lineHeight: "1.5em",
+                    }}
                     whileHover={{
                       color: "#1A1E25",
                       transition: { duration: 0.2, ease: "easeOut" },
@@ -147,20 +157,39 @@ const MapSection = () => {
               </motion.div>
             </div>
 
-            {/* Decorator Icon Sidebar */}
+            {/* Decorator Icon Sidebar (31%) */}
             <motion.div
-              className="absolute top-0 z-10 overflow-hidden h-[calc(521px_*_var(--decorator-scale,1))] w-[calc(744px_*_var(--decorator-scale,1))] -right-[240px]"
+              className="z-10 flex items-start justify-start overflow-hidden"
+              style={{
+                width: "31%",
+              }}
               {...SIMPLE_ANIMATIONS.fadeInRight}
               {...rightSectionMotion}
             >
-              <Image
-                src={DecoratorIcon}
-                alt="Decorative icon representing our global carbon initiatives"
-                width={744}
-                height={744}
-                className="w-full h-full object-contain"
-                priority
-              />
+              <div
+                className="flex items-center justify-start overflow-hidden w-full"
+                style={{
+                  height: "calc(521px * var(--decorator-scale, 1))",
+                }}
+              >
+                <div
+                  className="relative overflow-hidden"
+                  style={{
+                    width: "calc(600 * var(--decorator-scale, 1))",
+                    height: "calc(521px * var(--decorator-scale, 1))",
+                    marginRight: "calc(-160px * var(--decorator-scale, 1))",
+                  }}
+                >
+                  <Image
+                    src={DecoratorIcon}
+                    alt="Decorative icon representing our global carbon initiatives"
+                    width={744}
+                    height={744}
+                    className="w-full h-full object-contain"
+                    priority
+                  />
+                </div>
+              </div>
             </motion.div>
           </div>
         </Container>
@@ -208,8 +237,10 @@ const MapSection = () => {
               {...titleMotion}
             >
               <motion.h2
-                className="font-bold text-[#9CA3AF] text-start"
+                className=" font-bold text-[#9CA3AF] text-start"
                 style={{
+                  fontFamily: "Open Sans",
+                  fontWeight: 700,
                   fontSize: "clamp(16px, 2vw, 20px)",
                   lineHeight: "1.875em",
                   maxWidth: "clamp(500px, 70vw, 800px)",
@@ -264,15 +295,26 @@ const MapSection = () => {
               transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             >
               <motion.h3
-                className="text-[9px] xxs:text-[10px] xs:text-[11px] leading-[18px] text-start text-[#3B464F] tracking-[-0.02em] mb-[12px]"
+                className="text-[9px] xxs:text-[10px] xs:text-[11px]  leading-[18px] text-start text-[#3B464F] tracking-[-0.02em] mb-[12px]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
+                style={{
+                  fontFamily: "Open Sans",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                }}
               >
                 Scroll right to see more of our presence.
               </motion.h3>
               <motion.h2
                 className="text-[14px] xxs:text-[15px] xs:text-[16px] font-light leading-[20px] text-start text-[#3B464F] tracking-[-0.02em]"
+                style={{
+                  fontFamily: "Open Sans",
+                  fontStyle: "normal",
+                  fontWeight: 300,
+                  letterSpacing: "-2%",
+                }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
@@ -285,6 +327,58 @@ const MapSection = () => {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+          /* Enhanced mobile touch scrolling */
+          -webkit-overflow-scrolling: touch;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        /* Ensure smooth touch scrolling on iOS and Android */
+        @supports (-webkit-touch-callout: none) {
+          .scrollbar-hide {
+            -webkit-overflow-scrolling: touch;
+          }
+        }
+
+        /* Grid row and decorator icon scaling for different viewports */
+        :global(.xxl\\:block) {
+          --decorator-scale: 1;
+          --grid-row-2: 1418px; /* Base size at 1440px (945px * 1.5) */
+        }
+
+        @media (min-width: 1600px) {
+          :global(.xxl\\:block) {
+            --decorator-scale: 1.11; /* 1600/1440 */
+            --grid-row-2: 1575px; /* 1050px * 1.5 */
+          }
+        }
+
+        @media (min-width: 1920px) {
+          :global(.xxl\\:block) {
+            --decorator-scale: 1.33; /* 1920/1440 */
+            --grid-row-2: 1886px; /* 1257px * 1.5 */
+          }
+        }
+
+        @media (min-width: 2560px) {
+          :global(.xxl\\:block) {
+            --decorator-scale: 1.78; /* 2560/1440 */
+            --grid-row-2: 2523px; /* 1682px * 1.5 */
+          }
+        }
+
+        @media (min-width: 3440px) {
+          :global(.xxl\\:block) {
+            --decorator-scale: 2.39; /* 3440/1440 */
+            --grid-row-2: 3389px; /* 2259px * 1.5 */
+          }
+        }
+      `}</style>
     </section>
   );
 };

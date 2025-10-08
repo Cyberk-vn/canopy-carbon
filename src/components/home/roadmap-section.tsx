@@ -212,8 +212,8 @@ const RoadmapSection = () => {
             {/* CSS Grid Layout */}
             <div
               className={cn(
-                "max-w-[2200px] mx-auto grid w-full",
-                "h-[700px] xl:h-[760px] xxl:h-[818px] 2xl:h-[920px] 3xl:h-[1023px]",
+                "max-w-[1800px] mx-auto grid w-full",
+                "h-[700px] xl:h-[760px] xxl:h-[818px] 3xl:h-[979px]",
                 "grid-rows-[97px_auto_256px] xl:grid-rows-[97px_auto_auto_1fr] xxl:grid-rows-[97px_auto_auto_1fr]",
                 "2xl:grid-rows-[109px_auto_auto_1fr] 3xl:grid-rows-[121px_auto_auto_1fr]",
                 "grid-cols-[68px_1fr_40px] xl:grid-cols-[68px_1fr_40px_375px_40px] xxl:grid-cols-[68px_1fr_40px_422px_40px]",
@@ -223,7 +223,7 @@ const RoadmapSection = () => {
               {/* Tree Image + Background Decoration Group */}
               <motion.div
                 className={cn(
-                  "relative z-10 -mt-40 2xl:-mt-100 lg:hidden xl:block",
+                  "relative z-10 -mt-40 lg:hidden xl:block",
                   "xl:h-[700px] xxl:h-[751px] 2xl:h-[845px] 3xl:h-[939px]"
                 )}
                 style={{
@@ -308,7 +308,7 @@ const RoadmapSection = () => {
                   <motion.h2
                     className={cn(
                       "font-light text-[#0D1117]",
-                      "text-[28px] xl:text-[32px] xxl:text-[32px] 2xl:text-[36px] 3xl:text-[40px]",
+                      "text-[28px] xl:text-[32px] xxl:text-[32px] 3xl:text-[35px]",
                       "leading-[38px] xl:leading-[43.6px] xxl:leading-[43.6px] 2xl:leading-[49px] 3xl:leading-[54px]",
                       "max-w-[300px] xl:max-w-[335px] xxl:max-w-[335px] 2xl:max-w-[377px] 3xl:max-w-[419px]"
                     )}
@@ -330,7 +330,7 @@ const RoadmapSection = () => {
                   <motion.p
                     className={cn(
                       "font-semibold text-[#7D8F89] text-start",
-                      "text-[20px] xl:text-[24px] xxl:text-[24px] 2xl:text-[27px] 3xl:text-[30px]",
+                      "text-[20px] xl:text-[24px] xxl:text-[24px] 3xl:text-[32px]",
                       "leading-[28px] xl:leading-[34px] xxl:leading-[34px] 2xl:leading-[38px] 3xl:leading-[42px]",
                       "max-w-[700px] xl:max-w-[751px] xxl:max-w-[751px] 2xl:max-w-[845px] 3xl:max-w-[939px]"
                     )}
