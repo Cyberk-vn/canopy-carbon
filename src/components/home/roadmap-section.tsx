@@ -223,7 +223,7 @@ const RoadmapSection = () => {
               {/* Tree Image + Background Decoration Group */}
               <motion.div
                 className={cn(
-                  "relative z-10 -mt-40 lg:hidden xl:block",
+                  "relative z-10 -mt-40 2xl:-mt-100 lg:hidden xl:block",
                   "xl:h-[700px] xxl:h-[751px] 2xl:h-[845px] 3xl:h-[939px]"
                 )}
                 style={{

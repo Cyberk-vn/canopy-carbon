@@ -218,13 +218,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
               width: item.cardWidth + 4,
             }}
           >
-            <h3
-              className="text-black font-semibold text-[15px] leading-[1.6] text-center"
-              style={{
-                fontFamily: "Open Sans",
-                fontWeight: 600,
-              }}
-            >
+            <h3 className="text-black font-semibold text-[15px] leading-[1.6] text-center">
               {allPrinciples.find((p) => p.id === principleId)?.title ||
                 item.title}
             </h3>
@@ -258,17 +252,14 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
             delay: 0.3,
           }}
         >
-          <h2
-            className="text-[20px] font-light text-[#2E2F2D]"
-            style={{ fontFamily: "Open Sans", lineHeight: "30px" }}
-          >
+          <h2 className="text-[20px] font-light text-[#2E2F2D] leading-[30px]">
             Our Execution Ethos
           </h2>
         </motion.div>
 
         {/* Section Title Tablet/Desktop */}
         <motion.div
-          className="text-center mb-[32px] hidden md:block"
+          className="text-center mb-[32px] lg:mb-[64px] 2xl:mb-[75px] hidden md:block"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{
@@ -277,16 +268,9 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
             delay: 0.3,
           }}
         >
-          <h2
-            className="md:text-[32px] text-[#2E2F2D]"
-            style={{
-              fontFamily: "Open Sans",
-              lineHeight: "30px",
-              fontWeight: 400,
-            }}
-          >
+          <span className="lg:text-[32px] 2xl:text-[36px] font-normal text-[#2E2F2D]">
             Our Execution Ethos
-          </h2>
+          </span>
         </motion.div>
 
         {/* Desktop Layout - 4 Cards Grid */}
@@ -325,12 +309,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
 
                 {item.title && (
                   <motion.h3
-                    className="text-center text-[14px] font-medium text-[#000000] leading-tight lg:text-[18px] xl:text-[20px] 2xl:text-[24px]"
-                    style={{
-                      fontFamily: "Open Sans",
-                      fontWeight: 600,
-                      lineHeight: "30px",
-                    }}
+                    className="text-center text-[14px] font-semibold text-black leading-[30px] lg:text-lg 2xl:text-2xl"
                     initial={{ opacity: 0, y: 15, scale: 0.98 }}
                     animate={
                       isInView

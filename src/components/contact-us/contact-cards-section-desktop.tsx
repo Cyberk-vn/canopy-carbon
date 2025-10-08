@@ -193,7 +193,7 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
     <div className="relative w-full overflow-hidden">
       <Image
         src="/assets/desktop/contact-us/contact-us-bg-big-screen.png"
-        alt="Contact us background big screen1"
+        alt="Contact us background big screen"
         fill
         className="hidden 2xl:block"
         priority
@@ -204,6 +204,13 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
         width={500}
         height={500}
         className="absolute -bottom-18 -left-19 z-0 hidden 2xl:block"
+      />
+      <Image
+        src="/assets/desktop/contact-us/cnr-circle.png"
+        alt="CNR Circle"
+        width={300}
+        height={300}
+        className="absolute -bottom-5 -left-12 z-10 hidden lg:block 2xl:hidden"
       />
       <Image
         src="/assets/desktop/contact-us/contact-us-background-image.png"

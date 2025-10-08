@@ -48,58 +48,27 @@ const FooterDesktop = ({
               {...SIMPLE_ANIMATIONS.fadeInLeft}
             >
               {/* Header Title */}
-              <h2
-                className="text-[28px] xxl:text-[28px] 2xl:text-[34px] 3xl:text-[40px] 4xl:text-[52px] font-bold text-[#3B464F] mb-8 xxl:mb-8 2xl:mb-10 3xl:mb-12 4xl:mb-16 text-left"
-                style={{
-                  fontFamily: "Open Sans",
-                  lineHeight: "1.36181640625em",
-                  fontWeight: 700,
-                }}
-              >
+              <h2 className="text-[28px] lg:text-[28px] 2xl:text-[30px] font-bold text-[#3B464F] mb-8">
                 Get in Touch
               </h2>
               {/* Contact Information */}
               <div className="flex flex-col gap-[24px] xxl:gap-[24px] 2xl:gap-[30px] 3xl:gap-[36px] 4xl:gap-[48px] mb-8 xxl:mb-8 2xl:mb-10 3xl:mb-12 4xl:mb-16">
                 {/* Address */}
-                <div className="flex flex-col gap-[8px] xxl:gap-[8px] 2xl:gap-[10px] 3xl:gap-[12px] 4xl:gap-[16px]">
-                  <p
-                    className="text-[14px] xxl:text-[14px] 2xl:text-[17px] 3xl:text-[20px] 4xl:text-[26px] font-normal text-[#3B464F]"
-                    style={{
-                      fontFamily: "Open Sans",
-                      lineHeight: "1.4285714285714286em",
-                    }}
-                  >
+                <div className="flex flex-col gap-2">
+                  <p className="text-[14px] lg:text-base text-[#3B464F]">
                     400 Orchard Road, #21-07A
                   </p>
-                  <p
-                    className="text-[14px] xxl:text-[14px] 2xl:text-[17px] 3xl:text-[20px] 4xl:text-[26px] font-normal text-[#3B464F]"
-                    style={{
-                      fontFamily: "Open Sans",
-                      lineHeight: "1.4285714285714286em",
-                    }}
-                  >
+                  <p className="text-[14px] lg:text-base text-[#3B464F]">
                     Singapore, SG238875
                   </p>
                 </div>
 
                 {/* Contact Details */}
-                <div className="flex flex-col gap-[8px] xxl:gap-[8px] 2xl:gap-[10px] 3xl:gap-[12px] 4xl:gap-[16px]">
-                  <p
-                    className="text-[14px] xxl:text-[14px] 2xl:text-[17px] 3xl:text-[20px] 4xl:text-[26px] font-normal text-[#3B464F]"
-                    style={{
-                      fontFamily: "Open Sans",
-                      lineHeight: "1.4285714285714286em",
-                    }}
-                  >
+                <div className="flex flex-col gap-2">
+                  <p className="text-[14px] lg:text-base text-[#3B464F]">
                     +65 6887 5522
                   </p>
-                  <p
-                    className="text-[14px] xxl:text-[14px] 2xl:text-[17px] 3xl:text-[20px] 4xl:text-[26px] font-normal text-[#3B464F]"
-                    style={{
-                      fontFamily: "Open Sans",
-                      lineHeight: "1.4285714285714286em",
-                    }}
-                  >
+                  <p className="text-[14px] lg:text-base text-[#3B464F]">
                     admin@canopyresearch.org
                   </p>
                 </div>

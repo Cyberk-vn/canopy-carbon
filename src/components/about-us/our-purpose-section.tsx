@@ -6,7 +6,6 @@ import {
   useSimpleMotion,
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
-import { Container } from "@/src/components/shared/container";
 
 // Image imports
 import OurPurposeMainImage from "../../../public/assets/about-us/our-purpose-main-image.png";

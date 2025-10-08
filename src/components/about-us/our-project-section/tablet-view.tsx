@@ -87,9 +87,6 @@ export const TabletView = memo<TabletViewProps>(({ data = defaultData }) => {
 
   // Simple Motion animations
   const containerMotion = useSimpleMotion("about-project-tablet-container");
-  const tabletDescriptionMotion = useSimpleMotion(
-    "about-project-tablet-description"
-  );
 
   return (
     <Container maxWidth="full" className="mx-auto">
