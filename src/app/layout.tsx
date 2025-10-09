@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto, Open_Sans, Inter, Work_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ProductionGate } from "../components/ui/ProductionGate";
 
@@ -27,6 +28,13 @@ const workSans = Work_Sans({
   variable: "--font-work-sans",
 });
 
+const avenirHeavy = localFont({
+  src: "../../public/fonts/avenir/avenir-lt-std-85-heavy.otf",
+  variable: "--font-avenir-heavy",
+  weight: "850",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Canopy Carbon - Climate Infrastructure Company",
   description:
@@ -41,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${openSans.variable} ${roboto.variable} ${inter.variable} ${workSans.variable} antialiased font-open-sans`}
+        className={`${openSans.variable} ${roboto.variable} ${inter.variable} ${workSans.variable} ${avenirHeavy.variable} antialiased font-open-sans`}
       >
         <ProductionGate>{children}</ProductionGate>
       </body>

@@ -39,7 +39,7 @@ export function NavigationMenu({
   // Color constants for desktop navigation
   const NAVIGATION_COLORS = {
     active: "#00A5FF",
-    default: desktopTextColor || "#6B7280",
+    default: desktopTextColor || "#C4C9C6",
   } as const;
 
   // Default mobile menu styles (for backward compatibility)
@@ -124,7 +124,7 @@ export function NavigationMenu({
 
         {/* Desktop Menu - Full Width, No Logo, No Border */}
         <div
-          className="hidden md:flex w-full h-8"
+          className="hidden md:flex w-full h-8 3xl:h-[123px] 3xl:pt-[69px] 3xl:pb-[14px]"
           style={{
             zIndex: 9999,
           }}
@@ -148,10 +148,10 @@ export function NavigationMenu({
                       padding: "4px 6px",
                       fontStyle: "normal",
                       textTransform: "uppercase",
-                      fontSize: "clamp(12px, 1vw, 16px)",
+                      fontSize: "16px",
                       fontWeight: 400,
                       lineHeight: "2em",
-                      fontFamily: "Work Sans, sans-serif",
+                      fontFamily: "work-sans-v2, sans-serif",
                       color: isActive
                         ? NAVIGATION_COLORS.active
                         : NAVIGATION_COLORS.default,
@@ -187,10 +187,10 @@ export function NavigationMenu({
                       padding: "4px 6px",
                       fontStyle: "normal",
                       textTransform: "uppercase",
-                      fontSize: "clamp(12px, 1vw, 16px)",
+                      fontSize: "16px",
                       fontWeight: 400,
                       lineHeight: "2em",
-                      fontFamily: "Work Sans, sans-serif",
+                      fontFamily: "work-sans-v2, sans-serif",
                       color: isActive
                         ? NAVIGATION_COLORS.active
                         : NAVIGATION_COLORS.default,
@@ -208,15 +208,18 @@ export function NavigationMenu({
             </div>
           ) : (
             /* Default Design - Original layout */
-            <div className="flex items-stretch w-full gap-4">
+            <div className="flex items-stretch w-full gap-4 3xl:gap-[13px] 3xl:px-[120px]">
               {menuItems.map((item, index) => {
                 const isActive = activeItem === item.text;
                 return (
                   <Link
                     key={index}
                     href={item.url}
-                    className="nav-link-default font-work-sans text-xs uppercase 2xl:text-base flex items-center justify-center px-1.5 py-1 text-center transition-colors duration-200 flex-1"
+                    className="nav-link-default uppercase flex items-center justify-center px-1.5 py-1 text-center transition-colors duration-200 flex-1 3xl:h-[40px]"
                     style={{
+                      fontFamily: "work-sans-v2, sans-serif",
+                      fontStyle: "normal",
+                      fontSize: "16px",
                       color: isActive
                         ? NAVIGATION_COLORS.active
                         : NAVIGATION_COLORS.default,
