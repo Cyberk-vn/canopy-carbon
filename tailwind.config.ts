@@ -109,6 +109,7 @@ const config: Config = {
         roboto: ["var(--font-roboto)", "sans-serif"],
         inter: ["var(--font-inter)", "sans-serif"],
         "work-sans": ["var(--font-work-sans)", "sans-serif"],
+        "avenir-heavy": ["var(--font-avenir-heavy)", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

@@ -16,6 +16,7 @@
   --font-open-sans: var(--font-open-sans);
   --font-inter: var(--font-inter);
   --font-work-sans: var(--font-work-sans);
+  --font-avenir-heavy: 'Avenir LT W01 85 Heavy', sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -118,6 +119,15 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* Avenir Font */
+@font-face {
+  font-family: 'Avenir LT W01 85 Heavy';
+  src: url('/fonts/avenir/avenir-lt-std-85-heavy.otf') format('opentype');
+  font-weight: 850;
+  font-style: normal;
+  font-display: swap;
 }
 
 @layer base {
