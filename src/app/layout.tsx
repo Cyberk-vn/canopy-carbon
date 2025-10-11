@@ -35,6 +35,13 @@ const avenirHeavy = localFont({
   display: "swap",
 });
 
+const helveticaLight = localFont({
+  src: "../../public/fonts/helvetica/helvetica-w01-light.otf",
+  variable: "--font-helvetica-light",
+  weight: "300",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Canopy Carbon - Climate Infrastructure Company",
   description:
@@ -49,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${openSans.variable} ${roboto.variable} ${inter.variable} ${workSans.variable} ${avenirHeavy.variable} antialiased font-open-sans`}
+        className={`${openSans.variable} ${roboto.variable} ${inter.variable} ${workSans.variable} ${avenirHeavy.variable} ${helveticaLight.variable} antialiased font-open-sans`}
       >
         <ProductionGate>{children}</ProductionGate>
       </body>
