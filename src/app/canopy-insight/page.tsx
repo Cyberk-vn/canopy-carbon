@@ -1,3 +1,5 @@
+"use client";
+
 import {
   CanopyPortfolioSection,
   CanopyPortfolioSectionDesktop,
@@ -10,53 +12,46 @@ import {
 } from "@/src/components/canopy-insight";
 import CanopyInsightSection from "@/src/components/canopy-insight/canopy-insight-section";
 import { FooterSection } from "@/src/components/common";
+import { useResponsive } from "@/src/lib/utils/use-responsive";
 
 const CanopyInsightPage = () => {
+  const { isMobile } = useResponsive();
+
   return (
     <div className="min-h-screen bg-white">
       <CanopyInsightSection />
 
-      <div className="block md:hidden relative -mt-[221px] z-20">
-        <InsightSection
-          title="Beyond Emissions Reduction: The Strategic Case for Carbon Offsets"
-          description="This paper reframes carbon offsets not just as a compensatory tool, but as a strategic enabler in global decarbonisation. It shows how offsets support hard-to-abate sectors, channel finance to climate-positive projects, and bridge the gap while emissions reductions align with net zero. When designed with integrity, carbon offsets are not a concession—but a climate necessity."
-          images={[
-            {
-              src: "/assets/canopy-insight/bayond-emission-card-mobile-1.png",
-              alt: "Beyond Emissions Card Mobile",
-            },
-          ]}
-          showDecorators={true}
-        />
-      </div>
-      <div className="hidden md:block">
+      {isMobile && (
+        <div className="relative -mt-[221px] z-20">
+          <InsightSection
+            title="Beyond Emissions Reduction: The Strategic Case for Carbon Offsets"
+            description="This paper reframes carbon offsets not just as a compensatory tool, but as a strategic enabler in global decarbonisation. It shows how offsets support hard-to-abate sectors, channel finance to climate-positive projects, and bridge the gap while emissions reductions align with net zero. When designed with integrity, carbon offsets are not a concession—but a climate necessity."
+            images={[
+              {
+                src: "/assets/canopy-insight/bayond-emission-card-mobile-1.png",
+                alt: "Beyond Emissions Card Mobile",
+              },
+            ]}
+            showDecorators={true}
+          />
+        </div>
+      )}
+      {!isMobile && (
         <InsightSectionDesktop
           title="Beyond Emissions Reduction: The Strategic Case for Carbon Offsets"
-          description="This paper reframes carbon offsets not just as a compensatory tool, but as a strategic enabler in global decarbonisation. It shows how offsets support hard-to-abate sectors, channel finance to climate-positive projects, and bridge the gap while emissions reductions align with net zero. When designed with integrity, carbon offsets are not a concession—but a climate necessity."
+          description="This paper reframes carbon offsets not merely as a compensatory tool, but as a strategic enabler within global decarbonisation pathways. It explores how offsets support hard-to-abate sectors, accelerate finance towards climate-positive projects, and serve as an essential bridge while systemic emissions reductions catch up to net zero targets. The paper makes the case that when designed with integrity, carbon offsets are not a concession—but a climate necessity."
           imageSrcLarge="/assets/desktop/canopy-insight/bayond-emission-card-1-big-screen.png"
         />
-      </div>
+      )}
 
-      <div className="block md:hidden">
-        <InsightSection2 />
-      </div>
-      <div className="hidden md:block">
-        <InsightSection2Desktop />
-      </div>
+      {isMobile && <InsightSection2 />}
+      {!isMobile && <InsightSection2Desktop />}
 
-      <div className="block md:hidden">
-        <InsightSection3 />
-      </div>
-      <div className="hidden md:block">
-        <InsightSection3Desktop />
-      </div>
+      {isMobile && <InsightSection3 />}
+      {!isMobile && <InsightSection3Desktop />}
 
-      <div className="block md:hidden">
-        <CanopyPortfolioSection />
-      </div>
-      <div className="hidden md:block">
-        <CanopyPortfolioSectionDesktop />
-      </div>
+      {isMobile && <CanopyPortfolioSection />}
+      {!isMobile && <CanopyPortfolioSectionDesktop />}
       <FooterSection />
     </div>
   );

@@ -8,49 +8,82 @@ import {
   getMobileMenuStyles,
 } from "@/src/lib/navigation";
 import FadeContent from "@/src/components/animation/fade-content";
+import { cn } from "@/src/lib/utils";
+
+// Static image imports
+import canopyBannerBg from "@/public/assets/desktop/canopy-insight/canopy-banner-background-image.png";
+import canopyBanner2k from "@/public/assets/canopy-insight/canopy-banner-2k-bg-image.png";
+import canopyBgTablet from "@/public/assets/desktop/canopy-insight/canopy-bg-tablet.png";
+import canopyBgMobile from "@/public/assets/desktop/canopy-insight/canopy-bg-mobile.png";
+import canopyInsightBird from "@/public/assets/desktop/canopy-insight/canopy-insight-image.png";
+import canopyInsightBird2k from "@/public/assets/desktop/canopy-insight/canopy-insight-2k-image.png";
 
 export function CanopyInsightSection() {
   const menuItems = getMenuItems();
   const mobileMenuStyles = getMobileMenuStyles("canopy-insight");
 
   return (
-    <div className="relative lg:h-[700px] h-[927px] 2xl:h-[1089px] mx-auto">
+    <div
+      className={cn(
+        "relative xl:h-[700px] h-[927px] 2xl:h-[1089px] 3xl:h-[1198px] mx-auto"
+      )}
+    >
       <Image
-        src="/assets/desktop/canopy-insight/canopy-banner-background-image.png"
+        src={canopyBannerBg}
         alt="Canopy Insight Banner"
         fill
         priority
-        className="object-cover hidden lg:block 2xl:hidden"
+        className={cn("object-cover hidden lg:block 2xl:hidden")}
       />
       <Image
-        src="/assets/canopy-insight/canopy-banner-2k-bg-image.png"
+        src={canopyBanner2k}
         alt="Canopy Insight Banner"
         fill
         priority
-        className="object-cover hidden 2xl:block"
+        className={cn("object-cover hidden 2xl:block pt-[50px]")}
       />
       <Image
-        src="/assets/desktop/canopy-insight/canopy-bg-tablet.png"
+        src={canopyBgTablet}
         alt="Canopy Insight Banner"
         fill
         priority
-        className="object-cover hidden md:block lg:hidden"
+        className={cn("object-cover hidden md:block lg:hidden")}
       />
       <Image
-        src="/assets/desktop/canopy-insight/canopy-bg-mobile.png"
+        src={canopyBgMobile}
         alt="Canopy Insight Banner"
         fill
         priority
-        className="object-cover block md:hidden"
+        className={cn("object-cover block md:hidden")}
       />
+      {/* Top gradient overlay - only for 2xl screens (1920px+) */}
       <div
-        className="absolute bottom-0 left-0 right-0 lg:h-[444px] z-10"
+        className={cn(
+          "absolute top-0 left-0 right-0 z-10",
+          "hidden 2xl:block 2xl:h-[600px]"
+        )}
         style={{
           background:
-            "linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 42.89%)",
+            "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
         }}
       />
-      <div className="relative z-20 flex h-full flex-col">
+      {/* Bottom gradient overlay */}
+      <div
+        className={cn(
+          "absolute bottom-0 left-0 right-0 z-10",
+          "lg:h-[444px] 2xl:h-[400px] 3xl:h-[1089px]"
+        )}
+        style={{
+          background:
+            "linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 25.89%)",
+        }}
+      />
+      <div
+        className={cn(
+          "relative z-20 flex h-full flex-col",
+          "md:pt-[37px] 3xl:pt-0"
+        )}
+      >
         <div>
           <NavigationMenu
             menuItems={menuItems}
@@ -61,38 +94,82 @@ export function CanopyInsightSection() {
           />
         </div>
 
-        <div className="relative flex flex-1 flex-col items-center pt-25 lg:pt-0 lg:justify-center 2xl:justify-start gap-11 2xl:gap-[72px] lg:flex-row lg:container lg:mx-auto px-6 lg:px-0 xl:px-7">
+        <div
+          className={cn(
+            "relative flex flex-1 flex-col",
+            "pt-25 xxl:pt-[87px] 3xl:pt-[128px]",
+            "gap-11 2xl:gap-[72px]",
+            "lg:justify-center 2xl:justify-start",
+            "xl:flex-row",
+            "w-full max-w-[1920px] mx-auto",
+            "px-6 md:px-[30px] xl:px-7"
+          )}
+        >
           <FadeContent
             duration={500}
             delay={100}
             threshold={0.1}
+            className="flex items-center justify-center xl:items-start xl:justify-start"
             easing="cubic-bezier(0.25, 0.46, 0.45, 0.94)"
             initialOpacity={0}
           >
+            {/* Regular bird image - shown up to 2xl */}
             <Image
-              src="/assets/desktop/canopy-insight/canopy-insight-image.png"
+              src={canopyInsightBird}
               alt="Canopy Insight Bird"
               width={356}
               height={447}
-              className="object-cover lg:w-[356px] lg:h-[447px] md:w-[228px] md:h-[286px] w-[206px] h-[259px] 2xl:w-[462px] 2xl:h-[598px]"
+              className={cn(
+                "object-cover lg:w-[356px] lg:h-[447px] md:w-[228px] md:h-[286px] w-[206px] h-[259px] 2xl:w-[462px] 2xl:h-[598px]",
+                "3xl:hidden"
+              )}
+            />
+            {/* 2K bird image - shown only at 3xl */}
+            <Image
+              src={canopyInsightBird2k}
+              alt="Canopy Insight Bird"
+              width={526}
+              height={648}
+              className={cn(
+                "object-cover hidden 3xl:block",
+                "3xl:w-[526px] 3xl:h-[648px]"
+              )}
             />
           </FadeContent>
-          <div className="relative lg:w-[705px] lg:mb-25 2xl:mb-68">
+          <div
+            className={cn(
+              "relative lg:w-[705px] lg:mb-25 2xl:mt-[65px] 3xl:mt-[37px]"
+            )}
+          >
             <FadeContent
               duration={600}
               delay={200}
               threshold={0.1}
               easing="ease-out"
               initialOpacity={0}
-              className="canopy-fade-up-content"
+              className={cn("canopy-fade-up-content")}
             >
-              <div className="mb-3 md:mb-8 lg:mb-14 text-4xl font-work-sans text-[#2A4035] font-semibold md:text-[36px] lg:text-[45px] 2xl:text-[64px]">
+              <div
+                className={cn(
+                  "mb-3 md:mb-8 lg:mb-14 text-4xl font-work-sans text-[#2A4035] font-semibold md:text-[36px] lg:text-[45px] 2xl:text-[64px]",
+                  "3xl:font-avenir-heavy 3xl:font-normal 3xl:text-[65px] 3xl:leading-[91px]"
+                )}
+              >
                 Canopy Insights
               </div>
 
-              <div className="relative text-sm lg:text-sm md:text-base xl:text-base leading-[24px] text-[#777777] lg:max-w-[622px] xl:max-w-[715px]">
-                <div className="absolute hidden lg:block bg-[#FFFFFF4D] -z-10 top-[-24px] bottom-[-24px] left-[-45px] 2xl:left-[-75px] right-[-24px] 2xl:right-[-64px]" />
-                <p className="hidden sm:block">
+              <div
+                className={cn(
+                  "relative text-sm lg:text-sm md:text-base xl:text-base leading-[24px] text-[#6C7173] lg:max-w-[622px] xl:max-w-[715px]",
+                  "3xl:font-open-sans 3xl:font-normal 3xl:text-[16px] 3xl:leading-[28px]"
+                )}
+              >
+                <div
+                  className={cn(
+                    "absolute hidden lg:block bg-[#FFFFFF4D] -z-10 top-[-24px] bottom-[-40px] left-[-45px] 2xl:left-[-75px] right-[-24px] 2xl:right-[-64px]"
+                  )}
+                />
+                <p className={cn("hidden sm:block")}>
                   At Canopy, every strategic decision is grounded in rigorous
                   analysis. Canopy Insights is our dedicated platform for
                   publishing thought leadership, field research, and market
@@ -101,7 +178,7 @@ export function CanopyInsightSection() {
                   excellence begins with clarity, and that deep understanding is
                   a cornerstone of lasting credibility and meaningful impact.
                 </p>
-                <p className="block sm:hidden">
+                <p className={cn("block sm:hidden")}>
                   At Canopy, every strategic decision is grounded in rigorous
                   analysis. Canopy Insights is our dedicated platform for
                   publishing thought leadership, field research, and market

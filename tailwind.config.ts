@@ -17,14 +17,14 @@ const config: Config = {
       },
     },
     screens: {
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      'xxl': '1440px',
-      '2xl': '1600px',
-      '3xl': '1920px',
-      '4xl': '2560px',
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      xxl: "1440px",
+      "2xl": "1600px",
+      "3xl": "1920px",
+      "4xl": "2560px",
     },
     extend: {
       colors: {
@@ -80,7 +80,7 @@ const config: Config = {
         },
         // Banner component specific colors
         "light-gray-1": "#F0F0F0",
-        "light-gray-2": "#B7C0C9", 
+        "light-gray-2": "#B7C0C9",
         "light-gray-3": "#F1F5F9",
         "banner-border": "rgba(140, 140, 140, 0.3)",
         // Contact Us Banner colors
@@ -110,6 +110,7 @@ const config: Config = {
         inter: ["var(--font-inter)", "sans-serif"],
         "work-sans": ["var(--font-work-sans)", "sans-serif"],
         "avenir-heavy": ["var(--font-avenir-heavy)", "sans-serif"],
+        "helvetica-light": ["var(--font-helvetica-light)", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

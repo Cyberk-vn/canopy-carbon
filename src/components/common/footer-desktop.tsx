@@ -8,6 +8,7 @@ import {
 } from "@/src/hooks/responsive/use-simple-motion";
 import { Container } from "@/src/components/shared";
 import Image from "next/image";
+import { cn } from "@/src/lib/utils";
 
 // Social media icon imports
 import FacebookIcon from "../../../public/assets/desktop/icon/facebook.svg";
@@ -36,11 +37,11 @@ const FooterDesktop = ({
   onSubmit,
 }: FooterDesktopProps) => {
   return (
-    <section className="w-full hidden md:block bg-white">
-      <Container maxWidth="full" padding="none" className="hidden xl:block">
-        <div className="max-w-[2200px] mx-auto px-[68px] py-[80px]">
+    <section className={cn("w-full hidden md:block bg-white")}>
+      <Container maxWidth="full" padding="none" className={cn("hidden xl:block")}>
+        <div className={cn("max-w-[2200px] mx-auto px-[68px] py-[80px]")}>
           {/* Desktop Layout - Responsive Gap */}
-          <div className="flex flex-row items-start gap-[204px] xxl:gap-[204px] 2xl:gap-[250px] 3xl:gap-[300px] 4xl:gap-[400px]">
+          <div className={cn("flex flex-row items-start gap-[204px] xxl:gap-[204px] 2xl:gap-[250px] 3xl:gap-[300px] 4xl:gap-[400px]")}>
             {/* Left Side - Contact Information (responsive) */}
             <motion.div
               className="w-[486px] xxl:w-[486px] 2xl:w-[600px] 3xl:w-[720px] 4xl:w-[960px] flex flex-col justify-start items-start"
