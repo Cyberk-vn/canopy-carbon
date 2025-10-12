@@ -429,7 +429,7 @@ export function Banner({
       {(!mounted || isXxlScreen) && (
         <div
           className={cn(
-            "absolute lg:top-[600px] xl:top-[650px] 2xl:top-[803px] 3xl:top-[1012px] 3xl:h-[870px] left-0 right-0 h-[920px] bg-[#FCFCFC] z-0",
+            "absolute lg:top-[600px] xl:top-[680px] 2xl:top-[750px] 3xl:top-[1012px] 3xl:h-[870px] left-0 right-0 h-[920px] bg-[#FCFCFC] z-0",
             !mounted && "hidden xxl:block"
           )}
         ></div>
