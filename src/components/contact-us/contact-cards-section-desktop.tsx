@@ -251,8 +251,8 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
           activeItem="Contact"
         />
 
-        <main className="flex-grow md:pt-10 md:pb-50 2xl:pb-100 md:px-18">
-          <div className="flex flex-col-reverse items-center gap-14 xl:flex-row xl:items-start xl:justify-center lg:gap-11 2xl:gap-[130px]">
+        <main className="flex-grow md:pt-10 lg:pt-0 md:pb-50 2xl:pb-100 md:px-18">
+          <div className="flex flex-col-reverse items-center gap-14 xl:flex-row xl:items-start xl:justify-center lg:gap-11 2xl:gap-[92px]">
             <div className="w-full xl:w-[620px] 2xl:w-[794px] xl:pt-25">
               <ConnectWithUsForm />
             </div>
