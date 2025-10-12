@@ -171,7 +171,7 @@ const CardGroup = ({ cards }: { cards: ContactCardsProps["cards"] }) => (
           <h3 className="mb-4 text-center font-sans text-base 2xl:text-lg font-bold leading-tight text-black">
             {card.title}
           </h3>
-          <p className="text-center 2xl:text-left text-xs 2xl:text-sm leading-[20px] 2xl:leading-[24px] text-[#6C6C6C]">
+          <p className="text-justify text-xs 2xl:text-sm leading-[20px] 2xl:leading-[24px] text-[#6C6C6C]">
             {card.description}
           </p>
         </div>
