@@ -281,6 +281,8 @@ const RoadmapSection = () => {
                   style={{
                     left: "0px",
                     top: "0px",
+                    width: "497px",
+                    height: "881px",
                   }}
                 >
                   <Image
@@ -288,7 +290,7 @@ const RoadmapSection = () => {
                     alt="Decorative forest canopy image representing sustainable forest management"
                     width={497}
                     height={881}
-                    className={cn("w-auto h-auto object-cover")}
+                    className={cn("w-full h-full object-cover")}
                     priority
                   />
                 </div>

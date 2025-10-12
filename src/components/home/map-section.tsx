@@ -40,7 +40,7 @@ const MapSection = () => {
           <div className="max-w-[1920px] mx-auto flex w-full overflow-hidden">
             {/* Content Section (69%) - Map + Title */}
             <div
-              className="flex flex-col 3xl:mt-[260px] xl:mt-[145px]"
+              className="flex flex-col 3xl:mt-[240px] xl:mt-[145px]"
               style={{
                 width: "68%",
                 gap: "12px",
@@ -352,20 +352,20 @@ const MapSection = () => {
 
         /* Grid row and decorator icon scaling for different viewports */
         /* Decorator icon scales up to 600x600px max at 1920px (3xl) and stays fixed beyond that */
-        :global(.xxl\\:block) {
+        :root {
           --decorator-scale: 1;
           --grid-row-2: 1418px; /* Base size at 1440px (945px * 1.5) */
         }
 
         @media (min-width: 1600px) {
-          :global(.xxl\\:block) {
+          :root {
             --decorator-scale: 1.11; /* 1600/1440 */
             --grid-row-2: 1575px; /* 1050px * 1.5 */
           }
         }
 
         @media (min-width: 1920px) {
-          :global(.xxl\\:block) {
+          :root {
             --decorator-scale: 1; /* Capped at 1x to maintain 600x600px max size */
             --grid-row-2: 1886px; /* 1257px * 1.5 */
           }
@@ -373,14 +373,14 @@ const MapSection = () => {
 
         /* Removed larger viewport scales to maintain 600x600px max size */
         @media (min-width: 2560px) {
-          :global(.xxl\\:block) {
+          :root {
             --decorator-scale: 1; /* Keep 600x600px */
             --grid-row-2: 2523px;
           }
         }
 
         @media (min-width: 3440px) {
-          :global(.xxl\\:block) {
+          :root {
             --decorator-scale: 1; /* Keep 600x600px */
             --grid-row-2: 3389px;
           }
