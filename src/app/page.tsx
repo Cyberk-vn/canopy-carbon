@@ -54,7 +54,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col gap-10 bg-[#FCFCFC] lg:bg-white">
+      <div className="min-h-screen flex flex-col gap-10 bg-[#FCFCFC] lg:bg-white xxl:gap-0">
         <Banner
           title="Canopy Carbon"
           subtitle="A Climate Infrastructure Company Specialising in Nature-Based Solutions."

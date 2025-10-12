@@ -13,6 +13,7 @@ import { cn } from "@/src/lib/utils/cn";
 
 // Image imports
 import TreeImage from "../../../public/assets/desktop/home/tree.png";
+import TreeDecoratorImage from "../../../public/assets/desktop/home/tree-decorator-img.png";
 import RoadMapImage from "../../../public/assets/desktop/home/road-map.svg";
 
 const RoadmapSection = () => {
@@ -212,12 +213,12 @@ const RoadmapSection = () => {
             {/* CSS Grid Layout */}
             <div
               className={cn(
-                "max-w-[1800px] mx-auto grid w-full",
+                "max-w-[1680px] mx-auto grid w-full",
                 "h-[700px] xl:h-[760px] xxl:h-[818px] 3xl:h-[979px]",
                 "grid-rows-[97px_auto_256px] xl:grid-rows-[97px_auto_auto_1fr] xxl:grid-rows-[97px_auto_auto_1fr]",
-                "2xl:grid-rows-[109px_auto_auto_1fr] 3xl:grid-rows-[121px_auto_auto_1fr]",
+                "2xl:grid-rows-[109px_auto_auto_1fr] 3xl:grid-rows-[146px_auto_auto_1fr]",
                 "grid-cols-[68px_1fr_40px] xl:grid-cols-[68px_1fr_40px_375px_40px] xxl:grid-cols-[68px_1fr_40px_422px_40px]",
-                "2xl:grid-cols-[68px_1fr_40px_422px_40px] 3xl:grid-cols-[68px_1fr_40px_469px_40px]"
+                "2xl:grid-cols-[68px_1fr_40px_422px_40px] 3xl:grid-cols-[68px_1fr_40px_500px_40px]"
               )}
             >
               {/* Tree Image + Background Decoration Group */}
@@ -239,7 +240,8 @@ const RoadmapSection = () => {
                   className={cn(
                     "absolute bg-[#1D1F1F] xl:h-[660px] xxl:h-[770px]",
                     "xl:left-[160px] xxl:left-[146px] 2xl:left-[119px] 3xl:left-[133px]",
-                    "xl:w-[215px] xxl:w-[269px] 2xl:w-[303px] 3xl:w-[336px]"
+                    "xl:w-[215px] xxl:w-[269px] 2xl:w-[303px] 3xl:w-[336px]",
+                    "3xl:hidden"
                   )}
                   style={{
                     top: "0px",
@@ -248,7 +250,9 @@ const RoadmapSection = () => {
 
                 {/* Tree Image */}
                 <div
-                  className={cn("absolute xl:w-[320px] xxl:w-[375px]")}
+                  className={cn(
+                    "absolute xl:w-[320px] xxl:w-[375px] 3xl:hidden"
+                  )}
                   style={{
                     left: "0px",
                     top: "70px",
@@ -270,12 +274,30 @@ const RoadmapSection = () => {
                     />
                   </div>
                 </div>
+
+                {/* Tree Decorator Image - 3xl breakpoint only */}
+                <div
+                  className={cn("hidden 3xl:block absolute")}
+                  style={{
+                    left: "0px",
+                    top: "0px",
+                  }}
+                >
+                  <Image
+                    src={TreeDecoratorImage}
+                    alt="Decorative forest canopy image representing sustainable forest management"
+                    width={497}
+                    height={881}
+                    className={cn("w-auto h-auto object-cover")}
+                    priority
+                  />
+                </div>
               </motion.div>
 
               <div
                 className={cn(
-                  "z-10 -mt-10 flex flex-col",
-                  "gap-[60px] xl:gap-[90px]"
+                  "z-10 flex flex-col",
+                  "gap-[60px] xl:gap-[90px] 3xl:mt-[100px] 3xl:gap-[115px]"
                 )}
                 style={{
                   gridColumn: "2",
@@ -301,21 +323,17 @@ const RoadmapSection = () => {
 
                 {/* Title and Description */}
                 <motion.div
-                  className={cn("z-10 flex flex-col space-y-6")}
+                  className={cn("z-10 flex flex-col space-y-6 pl-[20px]")}
                   {...SIMPLE_ANIMATIONS.fadeInLeft}
                   {...leftSideMotion}
                 >
                   <motion.h2
                     className={cn(
-                      "font-light text-[#0D1117]",
+                      "font-normal text-[#3A3A3A] font-open-sans",
                       "text-[28px] xl:text-[32px] xxl:text-[32px] 3xl:text-[35px]",
-                      "leading-[38px] xl:leading-[43.6px] xxl:leading-[43.6px] 2xl:leading-[49px] 3xl:leading-[54px]",
+                      "leading-[38px] xl:leading-[43.6px] xxl:leading-[43.6px] 2xl:leading-[49px] 3xl:leading-normal",
                       "max-w-[300px] xl:max-w-[335px] xxl:max-w-[335px] 2xl:max-w-[377px] 3xl:max-w-[419px]"
                     )}
-                    style={{
-                      fontFamily: "Open Sans",
-                      fontWeight: "300",
-                    }}
                     initial={{ opacity: 0, y: 35 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
@@ -329,16 +347,11 @@ const RoadmapSection = () => {
 
                   <motion.p
                     className={cn(
-                      "font-semibold text-[#7D8F89] text-start",
-                      "text-[20px] xl:text-[24px] xxl:text-[24px] 3xl:text-[32px]",
+                      "font-semibold text-[#A1AEB9] text-start font-avenir-heavy",
+                      "text-[20px] xl:text-[24px] xxl:text-[24px] 3xl:text-[33px] 3xl:font-normal",
                       "leading-[28px] xl:leading-[34px] xxl:leading-[34px] 2xl:leading-[38px] 3xl:leading-[42px]",
                       "max-w-[700px] xl:max-w-[751px] xxl:max-w-[751px] 2xl:max-w-[845px] 3xl:max-w-[939px]"
                     )}
-                    style={{
-                      fontFamily: "Open Sans",
-                      fontWeight: "600",
-                      letterSpacing: "2%",
-                    }}
                     initial={{ opacity: 0, y: 25 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{

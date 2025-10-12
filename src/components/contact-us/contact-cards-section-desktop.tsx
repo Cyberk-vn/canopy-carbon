@@ -256,7 +256,7 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
   }, []);
 
   return (
-    <div className={cn("relative w-full overflow-hidden")}>
+    <div className={cn("relative w-full min-h-screen")}>
       {/* Desktop/Large Screen Background - 1440px+ (scales from 1440 to 1920 and beyond) */}
       {mounted && isXxlScreen && (
         <>
@@ -331,10 +331,10 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
       {/* White Gradient Overlay (Top) - 1440px to 1920px (609px to 844px height) */}
       {mounted && isXxlScreen && (
         <div
-          className={cn("fixed top-0 left-0 right-0 z-10", "hidden xxl:block")}
+          className={cn("absolute top-0 left-0 right-0 z-10", "hidden xxl:block")}
           style={{
             height:
-              "clamp(609px, calc(609px + 235 * (100vw - 1440px) / 480), 630px)",
+              "clamp(609px, calc(609px + 235 * (100vw - 1440px) / 480), 844px)",
             background:
               "linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 80.29%, rgba(255, 255, 255, 0) 100%)",
           }}
@@ -345,8 +345,8 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
       {mounted && isXxlScreen && (
         <div
           className={cn(
-            "fixed bottom-0 left-0 right-0 z-10",
-            "hidden 4xl:block"
+            "absolute bottom-0 left-0 right-0 z-10",
+            "hidden xxl:block"
           )}
           style={{
             height: "400px",
@@ -358,8 +358,7 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
 
       <div
         className={cn(
-          "relative z-20 flex flex-col",
-          "xxl:min-h-[981] 3xl:min-h-screen"
+          "relative z-20 flex flex-col min-h-screen"
         )}
       >
         <NavigationMenu
@@ -418,7 +417,7 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
 
       <footer
         className={cn(
-          "absolute bottom-0 left-0 right-0 z-20 w-full bg-white py-4"
+          "relative z-20 w-full bg-white py-4 mt-auto"
         )}
       >
         <div className={cn("container mx-auto")}>

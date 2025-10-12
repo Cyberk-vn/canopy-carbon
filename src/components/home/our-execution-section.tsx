@@ -10,6 +10,7 @@ import {
 } from "@/src/types/execution";
 import { useExecutionSwipe } from "@/src/hooks/execution/use-execution-swipe";
 import { Container } from "@/src/components/shared";
+import { useResponsive } from "@/src/lib/utils/use-responsive";
 
 // Image imports
 import ExecutionImage1 from "../../../public/assets/desktop/home/our-execution-image-1.avif";
@@ -48,6 +49,9 @@ const desktopExecutionItems: ExecutionItem[] = [
 const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
+  // Responsive hook for conditional rendering
+  const { isMobile } = useResponsive();
 
   // Use Zustand store for state management (now consolidated)
   const {
@@ -247,207 +251,211 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
       onBlur={handleBlur}
     >
       <Container maxWidth="full" className="mt-6 lg:px-0">
-        {/* Section Title */}
-        <motion.div
-          className="text-center md:hidden"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{
-            duration: 1.35,
-            ease: [0.175, 0.885, 0.32, 1.275],
-            delay: 0.3,
-          }}
-        >
-          <h2
-            className="text-[20px] font-light text-[#2E2F2D]"
-            style={{ fontFamily: "Open Sans", lineHeight: "30px" }}
-          >
-            Our Execution Ethos
-          </h2>
-        </motion.div>
-
-        {/* Section Title Tablet/Desktop */}
-        <motion.div
-          className="text-center mb-[32px] hidden md:block"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{
-            duration: 1.35,
-            ease: [0.175, 0.885, 0.32, 1.275],
-            delay: 0.3,
-          }}
-        >
-          <h2
-            className="md:text-[32px] text-[#2E2F2D]"
-            style={{
-              fontFamily: "Open Sans",
-              lineHeight: "30px",
-              fontWeight: 400,
+        {/* Section Title - Mobile */}
+        {isMobile && (
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{
+              duration: 1.35,
+              ease: [0.175, 0.885, 0.32, 1.275],
+              delay: 0.3,
             }}
           >
-            Our Execution Ethos
-          </h2>
-        </motion.div>
+            <h2
+              className="text-[20px] font-light text-[#2E2F2D]"
+              style={{ fontFamily: "Open Sans", lineHeight: "30px" }}
+            >
+              Our Execution Ethos
+            </h2>
+          </motion.div>
+        )}
+
+        {/* Section Title - Tablet/Desktop */}
+        {!isMobile && (
+          <motion.div
+            className="text-center mb-[75px]"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{
+              duration: 1.35,
+              ease: [0.175, 0.885, 0.32, 1.275],
+              delay: 0.3,
+            }}
+          >
+            <h2
+              className="md:text-[35px] text-[#2E2F2D]"
+              style={{
+                fontFamily: "Open Sans",
+                lineHeight: "49px",
+                fontWeight: 400,
+              }}
+            >
+              Our Execution Ethos
+            </h2>
+          </motion.div>
+        )}
 
         {/* Desktop Layout - 4 Cards Grid */}
-        <div className="hidden md:block w-full">
-          <div className="flex gap-[24px] w-full justify-center items-center max-w-[1800px] mx-auto md:px-[24px] lg:px-[68px]">
-            {desktopExecutionItems.map((item, index) => (
-              <motion.div
-                key={item.id}
-                className="flex flex-col items-center"
-                style={{
-                  flex: "1 1 0",
-                  minWidth: 0,
-                }}
-                initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                animate={
-                  isInView
-                    ? { opacity: 1, y: 0, scale: 1 }
-                    : { opacity: 0, y: 50, scale: 0.95 }
-                }
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.15,
-                  ease: "easeOut",
-                }}
-              >
-                <div className="relative md:mb-[21px] lg:mb-[31px] w-full aspect-[337/577]">
-                  <Image
-                    src={item.imageSrc}
-                    alt={item.altText}
-                    fill
-                    className="object-cover shadow-lg"
-                    priority={index < 2}
-                    sizes="(min-width: 1024px) calc(25vw - 20px), 100vw"
-                  />
-                </div>
+        {!isMobile && (
+          <div className="w-full">
+            <div className="flex gap-[24px] 3xl:gap-[54px] w-full justify-center items-center max-w-[1680px] mx-auto md:px-[24px] lg:px-[68px]">
+              {desktopExecutionItems.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  className="flex flex-col items-center"
+                  style={{
+                    flex: "1 1 337px",
+                    minWidth: 0,
+                    maxWidth: "337px",
+                  }}
+                  initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                  animate={
+                    isInView
+                      ? { opacity: 1, y: 0, scale: 1 }
+                      : { opacity: 0, y: 50, scale: 0.95 }
+                  }
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.15,
+                    ease: "easeOut",
+                  }}
+                >
+                  <div className="relative md:mb-[21px] lg:mb-[31px] w-full max-w-[337px] aspect-[337/577]">
+                    <Image
+                      src={item.imageSrc}
+                      alt={item.altText}
+                      fill
+                      className="object-cover shadow-lg"
+                      priority={index < 2}
+                      sizes="(min-width: 1600px) 337px, (min-width: 1024px) calc(25vw - 20px), 100vw"
+                    />
+                  </div>
 
-                {item.title && (
-                  <motion.h3
-                    className="text-center text-[14px] font-medium text-[#000000] leading-tight lg:text-[18px] xl:text-[20px] 2xl:text-[24px]"
-                    style={{
-                      fontFamily: "Open Sans",
-                      fontWeight: 600,
-                      lineHeight: "30px",
-                    }}
-                    initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                    animate={
-                      isInView
-                        ? { opacity: 1, y: 0, scale: 1 }
-                        : { opacity: 0, y: 15, scale: 0.98 }
-                    }
-                    transition={{
-                      duration: 0.95,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                      delay: index * 0.1 + 0.8,
-                    }}
-                  >
-                    {item.title}
-                  </motion.h3>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile- Fixed 3-Card Layout with Fade Transitions */}
-        <div className="block md:hidden">
-          {/* Auto-switch status indicator for screen readers */}
-          <div className="sr-only" aria-live="polite">
-            {autoSwitchState.enabled &&
-            autoSwitchState.isRunning &&
-            !autoSwitchState.isPaused
-              ? "Auto-switching cards every 3 seconds. Hover or focus to pause."
-              : autoSwitchState.isPaused
-              ? "Auto-switching paused"
-              : "Auto-switching disabled"}
-          </div>
-
-          <div
-            className="relative w-full overflow-visible cursor-grab active:cursor-grabbing"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            onPointerDown={handlePointerDown}
-            onPointerUp={handlePointerUp}
-            aria-label="Execution principles carousel"
-            style={{
-              touchAction: "pan-y pinch-zoom",
-              userSelect: "none",
-            }}
-          >
-            {/* Fixed 3-Card Container */}
-            <div
-              className="flex items-center justify-center gap-4 px-6 py-[30px] min-h-[326px]"
-              style={{
-                willChange: "contents",
-                transform: "translate3d(0, 0, 0)",
-              }}
-              role="group"
-              aria-label="Execution principle cards"
-            >
-              <AnimatePresence mode="wait">
-                {mobileExecutionItems.map((item, index) => {
-                  const isCenter = index === 1;
-
-                  return (
-                    <motion.div
-                      key={`slide-${selectedPrincipleId}-${currentImageOffset}-${index}`}
-                      className={`flex-shrink-0 ${isCenter ? "z-10" : ""}`}
-                      style={{
-                        marginLeft: index > 0 ? "-2px" : "0",
-                        marginRight: index < 2 ? "-2px" : "0",
-                        willChange: "transform",
-                      }}
-                      initial={{
-                        x: 10,
-                        opacity: 0,
-                        scale: isCenter ? 0.95 : 0.9,
-                        y: isCenter ? 0 : 10,
-                      }}
-                      animate={{
-                        x: 0,
-                        opacity: isCenter ? 1 : 1,
-                        scale: isCenter ? 1.02 : 0.98,
-                        y: 0,
-                      }}
-                      exit={{
-                        x: -10,
-                        opacity: 0,
-                        scale: isCenter ? 0.95 : 0.9,
-                        y: isCenter ? 0 : -10,
-                      }}
+                  {item.title && (
+                    <motion.h3
+                      className="text-center text-[14px] text-[#1E2E26] lg:text-[18px] xl:text-[20px] font-open-sans font-[700] leading-[28px]"
+                      initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                      animate={
+                        isInView
+                          ? { opacity: 1, y: 0, scale: 1 }
+                          : { opacity: 0, y: 15, scale: 0.98 }
+                      }
                       transition={{
-                        duration: 0.2,
-                        ease: "easeInOut",
+                        duration: 0.95,
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                        delay: index * 0.1 + 0.8,
                       }}
                     >
-                      <div
-                        style={{
-                          boxShadow: isCenter
-                            ? "0px 8px 24px 0px rgba(1, 12, 27, 0.15), 0px 2px 6px 0px rgba(255, 255, 255, 0.1)"
-                            : "0px 2px 8px 0px rgba(1, 12, 27, 0.05)",
-                          filter: isCenter
-                            ? "brightness(1) saturate(1.05)"
-                            : "brightness(0.92) saturate(0.95)",
-                          borderRadius: "8px",
-                          overflow: "hidden",
-                        }}
-                      >
-                        <ExecutionCard
-                          item={item}
-                          principleId={selectedPrincipleId}
-                        />
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </AnimatePresence>
+                      {item.title}
+                    </motion.h3>
+                  )}
+                </motion.div>
+              ))}
             </div>
           </div>
-        </div>
+        )}
+
+        {/* Mobile - Fixed 3-Card Layout with Fade Transitions */}
+        {isMobile && (
+          <div>
+            {/* Auto-switch status indicator for screen readers */}
+            <div className="sr-only" aria-live="polite">
+              {autoSwitchState.enabled &&
+              autoSwitchState.isRunning &&
+              !autoSwitchState.isPaused
+                ? "Auto-switching cards every 3 seconds. Hover or focus to pause."
+                : autoSwitchState.isPaused
+                ? "Auto-switching paused"
+                : "Auto-switching disabled"}
+            </div>
+
+            <div
+              className="relative w-full overflow-visible cursor-grab active:cursor-grabbing"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              onPointerDown={handlePointerDown}
+              onPointerUp={handlePointerUp}
+              aria-label="Execution principles carousel"
+              style={{
+                touchAction: "pan-y pinch-zoom",
+                userSelect: "none",
+              }}
+            >
+              {/* Fixed 3-Card Container */}
+              <div
+                className="flex items-center justify-center gap-4 px-6 py-[30px] min-h-[326px]"
+                style={{
+                  willChange: "contents",
+                  transform: "translate3d(0, 0, 0)",
+                }}
+                role="group"
+                aria-label="Execution principle cards"
+              >
+                <AnimatePresence mode="wait">
+                  {mobileExecutionItems.map((item, index) => {
+                    const isCenter = index === 1;
+
+                    return (
+                      <motion.div
+                        key={`slide-${selectedPrincipleId}-${currentImageOffset}-${index}`}
+                        className={`flex-shrink-0 ${isCenter ? "z-10" : ""}`}
+                        style={{
+                          marginLeft: index > 0 ? "-2px" : "0",
+                          marginRight: index < 2 ? "-2px" : "0",
+                          willChange: "transform",
+                        }}
+                        initial={{
+                          x: 10,
+                          opacity: 0,
+                          scale: isCenter ? 0.95 : 0.9,
+                          y: isCenter ? 0 : 10,
+                        }}
+                        animate={{
+                          x: 0,
+                          opacity: isCenter ? 1 : 1,
+                          scale: isCenter ? 1.02 : 0.98,
+                          y: 0,
+                        }}
+                        exit={{
+                          x: -10,
+                          opacity: 0,
+                          scale: isCenter ? 0.95 : 0.9,
+                          y: isCenter ? 0 : -10,
+                        }}
+                        transition={{
+                          duration: 0.2,
+                          ease: "easeInOut",
+                        }}
+                      >
+                        <div
+                          style={{
+                            boxShadow: isCenter
+                              ? "0px 8px 24px 0px rgba(1, 12, 27, 0.15), 0px 2px 6px 0px rgba(255, 255, 255, 0.1)"
+                              : "0px 2px 8px 0px rgba(1, 12, 27, 0.05)",
+                            filter: isCenter
+                              ? "brightness(1) saturate(1.05)"
+                              : "brightness(0.92) saturate(0.95)",
+                            borderRadius: "8px",
+                            overflow: "hidden",
+                          }}
+                        >
+                          <ExecutionCard
+                            item={item}
+                            principleId={selectedPrincipleId}
+                          />
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        )}
       </Container>
     </section>
   );

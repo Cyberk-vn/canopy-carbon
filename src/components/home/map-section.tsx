@@ -32,15 +32,18 @@ const MapSection = () => {
       aria-label="Our Operations Map"
     >
       {/* Desktop Layout */}
-      <div className="hidden xl:block w-full mt-10">
-        <Container maxWidth="full" className="pl-[68px] overflow-hidden">
-          <div className="max-w-[1800px] mx-auto flex w-full overflow-hidden">
+      <div className="hidden xl:block w-full mt-[221px]">
+        <Container
+          maxWidth="full"
+          className="map-section-container overflow-hidden"
+        >
+          <div className="max-w-[1920px] mx-auto flex w-full overflow-hidden">
             {/* Content Section (69%) - Map + Title */}
             <div
-              className="flex flex-col 3xl:mt-[130px] xl:mt-[145px]"
+              className="flex flex-col 3xl:mt-[260px] xl:mt-[145px]"
               style={{
-                width: "69%",
-                gap: "50px",
+                width: "68%",
+                gap: "12px",
               }}
             >
               {/* Map Image */}
@@ -63,7 +66,7 @@ const MapSection = () => {
 
               {/* Title */}
               <motion.div
-                className="z-10 flex flex-row items-start justify-start w-full max-w-[900px]"
+                className="z-10 flex flex-row items-start justify-start w-full max-w-[900px] 3xl:max-w-[1129px]"
                 {...SIMPLE_ANIMATIONS.fadeInUp}
                 {...titleMotion}
               >
@@ -74,13 +77,7 @@ const MapSection = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                 >
-                  <h2
-                    className=" font-bold text-[#9CA3AF] text-[16px] xl:text-[18px] xxl:text-[20px] 2xl:text-[22px] 3xl:text-[24px] 4xl:text-[28px] text-start"
-                    style={{
-                      lineHeight: "clamp(1.4em, 1.45em, 1.5em)",
-                      fontFamily: "Open Sans",
-                    }}
-                  >
+                  <h2 className="font-avenir-heavy font-normal text-[#A1AEB9] text-[16px] xl:text-[18px] xxl:text-[20px] 2xl:text-[22px] 3xl:text-[33px] text-start">
                     Our current efforts are centered in Indonesia, prioritising
                     tight oversight, execution quality, and the development of
                     robust operational foundations for scale.
@@ -104,44 +101,23 @@ const MapSection = () => {
                     transition: { duration: 0.1, ease: "easeIn" },
                   }}
                 >
-                  {/* Arrow Icon */}
                   <motion.div
-                    className="w-5 h-5 flex items-center justify-center"
+                    className="w-6 h-6 flex items-center justify-center"
                     whileHover={{
                       x: 3,
                       transition: { duration: 0.2, ease: "easeOut" },
                     }}
                   >
-                    <motion.svg
-                      width="5"
-                      height="10"
-                      viewBox="0 0 5 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      whileHover={{
-                        scale: 1.1,
-                        transition: { duration: 0.2, ease: "easeOut" },
-                      }}
-                    >
-                      <motion.path
-                        d="M0.5 0.5L4 5L0.5 9.5"
-                        stroke="#9DAE83"
-                        strokeWidth="1.25"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        whileHover={{
-                          stroke: "#7D9563",
-                          transition: { duration: 0.2, ease: "easeOut" },
-                        }}
-                      />
-                    </motion.svg>
+                    <Image
+                      src="/assets/icon/arrow-right.png"
+                      alt="Arrow icon"
+                      width={30}
+                      height={30}
+                      className="w-8 h-8 object-contain"
+                    />
                   </motion.div>
                   <motion.span
-                    className="text-[14px] xl:text-[15px] xxl:text-[16px] 2xl:text-[17px] 3xl:text-[18px] 4xl:text-[20px] font-normal text-[#2A2E35]"
-                    style={{
-                      fontFamily: "Open Sans",
-                      lineHeight: "1.5em",
-                    }}
+                    className="text-[13px] font-normal text-[#282626] font-open-sans leading-normal"
                     whileHover={{
                       color: "#1A1E25",
                       transition: { duration: 0.2, ease: "easeOut" },
@@ -161,7 +137,7 @@ const MapSection = () => {
             <motion.div
               className="z-10 flex items-start justify-start overflow-hidden"
               style={{
-                width: "31%",
+                width: "32%",
               }}
               {...SIMPLE_ANIMATIONS.fadeInRight}
               {...rightSectionMotion}
@@ -169,15 +145,14 @@ const MapSection = () => {
               <div
                 className="flex items-center justify-start overflow-hidden w-full"
                 style={{
-                  height: "calc(521px * var(--decorator-scale, 1))",
+                  height: "calc(600 * var(--decorator-scale, 1))",
                 }}
               >
                 <div
                   className="relative overflow-hidden"
                   style={{
                     width: "calc(600 * var(--decorator-scale, 1))",
-                    height: "calc(521px * var(--decorator-scale, 1))",
-                    marginRight: "calc(-160px * var(--decorator-scale, 1))",
+                    height: "calc(600 * var(--decorator-scale, 1))",
                   }}
                 >
                   <Image
@@ -345,7 +320,38 @@ const MapSection = () => {
           }
         }
 
+        /* Fluid padding-left for map section container */
+        /* Smoothly scales from 68px at 1280px to 130px at 1440px to 300px at 1920px */
+        :global(.map-section-container) {
+          padding-left: clamp(
+            68px,
+            calc(
+              68px + (130 - 68) * ((100vw - 1280px) / (1440 - 1280)) +
+                max(0px, (300 - 130) * ((100vw - 1440px) / (1920 - 1440)))
+            ),
+            300px
+          );
+        }
+
+        /* Fallback for browsers that don't support clamp() */
+        @supports not (padding-left: clamp(68px, 100px, 300px)) {
+          :global(.map-section-container) {
+            padding-left: 68px;
+          }
+          @media (min-width: 1440px) {
+            :global(.map-section-container) {
+              padding-left: 130px;
+            }
+          }
+          @media (min-width: 1920px) {
+            :global(.map-section-container) {
+              padding-left: 300px;
+            }
+          }
+        }
+
         /* Grid row and decorator icon scaling for different viewports */
+        /* Decorator icon scales up to 600x600px max at 1920px (3xl) and stays fixed beyond that */
         :global(.xxl\\:block) {
           --decorator-scale: 1;
           --grid-row-2: 1418px; /* Base size at 1440px (945px * 1.5) */
@@ -360,22 +366,23 @@ const MapSection = () => {
 
         @media (min-width: 1920px) {
           :global(.xxl\\:block) {
-            --decorator-scale: 1.33; /* 1920/1440 */
+            --decorator-scale: 1; /* Capped at 1x to maintain 600x600px max size */
             --grid-row-2: 1886px; /* 1257px * 1.5 */
           }
         }
 
+        /* Removed larger viewport scales to maintain 600x600px max size */
         @media (min-width: 2560px) {
           :global(.xxl\\:block) {
-            --decorator-scale: 1.78; /* 2560/1440 */
-            --grid-row-2: 2523px; /* 1682px * 1.5 */
+            --decorator-scale: 1; /* Keep 600x600px */
+            --grid-row-2: 2523px;
           }
         }
 
         @media (min-width: 3440px) {
           :global(.xxl\\:block) {
-            --decorator-scale: 2.39; /* 3440/1440 */
-            --grid-row-2: 3389px; /* 2259px * 1.5 */
+            --decorator-scale: 1; /* Keep 600x600px */
+            --grid-row-2: 3389px;
           }
         }
       `}</style>
