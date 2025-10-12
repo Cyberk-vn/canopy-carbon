@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { NavigationMenu } from "../common";
@@ -9,15 +9,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/src/lib/utils";
-import { useResponsive } from "@/src/lib/utils/use-responsive";
-
-// Image imports
-import ContactBg from "../../../public/assets/desktop/contact-us/contact-bg.png";
-import ContactBg1440 from "../../../public/assets/desktop/contact-us/contact-bg-1440.png";
-import ContactBg1920 from "../../../public/assets/desktop/contact-us/contact-bg-1920.png";
-import CnrCircle from "../../../public/assets/desktop/contact-us/cnr-circle.png";
-import ContactBgTablet from "../../../public/assets/desktop/contact-us/contact-us-bg-tablet.png";
 
 interface ContactFormData {
   firstName: string;
@@ -49,16 +40,12 @@ const ConnectWithUsForm = () => {
   };
 
   return (
-    <div className={cn("w-full")}>
+    <div className="w-full">
       <motion.h2
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className={cn(
-          "mb-6 text-base font-bold uppercase text-[#121212]",
-          "2xl:mb-12 2xl:text-2xl",
-          "3xl:font-avenir-heavy 3xl:text-[24px] 3xl:font-normal 3xl:ml-2"
-        )}
+        className="mb-6 2xl:mb-12 text-base font-semibold uppercase 2xl:text-2xl text-[#121C17]"
       >
         CONNECT WITH US
       </motion.h2>
@@ -67,14 +54,14 @@ const ConnectWithUsForm = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-        className={cn("bg-[#0000001A] p-4")}
+        className="bg-[#0000001A] p-4"
       >
-        <form onSubmit={handleSubmit} className={cn("flex flex-col gap-4")}>
-          <div className={cn("flex flex-col gap-4 sm:flex-row")}>
-            <div className={cn("flex flex-1 flex-col gap-1")}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <div className="flex flex-1 flex-col gap-1">
               <Label
                 htmlFor="firstName"
-                className={cn("text-xs text-[#0D1117]", "2xl:text-sm")}
+                className="text-xs 2xl:text-sm text-[#0D1117]"
               >
                 First name*
               </Label>
@@ -84,17 +71,14 @@ const ConnectWithUsForm = () => {
                 id="firstName"
                 value={formData.firstName}
                 onChange={handleInputChange}
-                className={cn(
-                  "rounded-none border-[#6B728066] bg-white",
-                  "placeholder:text-[#D1D5DBCC] 3xl:h-10 h-9"
-                )}
+                className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
                 required
               />
             </div>
-            <div className={cn("flex flex-1 flex-col gap-1")}>
+            <div className="flex flex-1 flex-col gap-1">
               <Label
                 htmlFor="lastName"
-                className={cn("text-xs text-[#0D1117]", "2xl:text-sm")}
+                className="text-xs 2xl:text-sm text-[#0D1117]"
               >
                 Last name*
               </Label>
@@ -104,18 +88,15 @@ const ConnectWithUsForm = () => {
                 id="lastName"
                 value={formData.lastName}
                 onChange={handleInputChange}
-                className={cn(
-                  "rounded-none border-[#6B728066] bg-white",
-                  "placeholder:text-[#D1D5DBCC] 3xl:h-10 h-9"
-                )}
+                className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
                 required
               />
             </div>
           </div>
-          <div className={cn("flex flex-col gap-1")}>
+          <div className="flex flex-col gap-1">
             <Label
               htmlFor="companyName"
-              className={cn("text-xs text-[#0D1117]", "2xl:text-sm")}
+              className="text-xs 2xl:text-sm text-[#0D1117]"
             >
               Company name
             </Label>
@@ -125,16 +106,13 @@ const ConnectWithUsForm = () => {
               id="companyName"
               value={formData.companyName}
               onChange={handleInputChange}
-              className={cn(
-                "rounded-none border-[rgba(107,114,128,0.4)] bg-white",
-                "placeholder:text-[#D1D5DBCC] 3xl:h-10 h-9"
-              )}
+              className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
             />
           </div>
-          <div className={cn("flex flex-col gap-1")}>
+          <div className="flex flex-col gap-1">
             <Label
               htmlFor="email"
-              className={cn("text-xs text-[#0D1117]", "2xl:text-sm")}
+              className="text-xs 2xl:text-sm text-[#0D1117]"
             >
               Email*
             </Label>
@@ -144,17 +122,14 @@ const ConnectWithUsForm = () => {
               id="email"
               value={formData.email}
               onChange={handleInputChange}
-              className={cn(
-                "rounded-none border-[#6B728066] bg-white",
-                "placeholder:text-[#D1D5DBCC] 3xl:h-10 h-9"
-              )}
+              className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
               required
             />
           </div>
-          <div className={cn("flex flex-col gap-2")}>
+          <div className="flex flex-col gap-2">
             <Label
               htmlFor="message"
-              className={cn("text-xs text-[#0D1117]", "2xl:text-sm")}
+              className="text-xs 2xl:text-sm text-[#0D1117]"
             >
               Message
             </Label>
@@ -165,20 +140,13 @@ const ConnectWithUsForm = () => {
               value={formData.message}
               onChange={handleInputChange}
               rows={3}
-              className={cn(
-                "rounded-none border-[#6B728066] bg-white",
-                "placeholder:text-[#D1D5DBCC] h-20 3xl:h-23"
-              )}
+              className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
               required
             />
           </div>
           <Button
             type="submit"
-            className={cn(
-              "h-9 w-full cursor-pointer rounded-none",
-              "bg-[#EAE7DF] font-sans text-base font-semibold text-[#3B464F]",
-              "transition-colors duration-200 hover:bg-[#E0DDD5]"
-            )}
+            className="h-9 w-full cursor-pointer rounded-none bg-[#EAE7DF] font-sans text-base font-semibold text-[#3B464F] transition-colors duration-200 hover:bg-[#E0DDD5]"
           >
             Send
           </Button>
@@ -189,7 +157,7 @@ const ConnectWithUsForm = () => {
 };
 
 const CardGroup = ({ cards }: { cards: ContactCardsProps["cards"] }) => (
-  <div className={cn("grid grid-cols-1 gap-5 3xl:gap-6", "md:grid-cols-2")}>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
     {cards.map((card, index) => (
       <motion.div
         key={card.id || index}
@@ -197,37 +165,13 @@ const CardGroup = ({ cards }: { cards: ContactCardsProps["cards"] }) => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
         whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-        className={cn(
-          "h-[245px] bg-[#F6F6F680] p-4",
-          "3xl:h-[303px] ",
-          "3xl:px-6 3xl:py-7"
-        )}
+        className="h-[245px] xl:h-[303px] bg-[#FAFAFA99] p-4 xl:p-6"
       >
-        <div
-          className={cn(
-            "flex h-full w-full flex-col items-center",
-            "bg-[#F7F7F798] p-4 3xl:px-[28px] 3xl:py-[28px]"
-          )}
-        >
-          <h3
-            className={cn(
-              "mb-4 text-center font-sans text-base font-bold leading-tight text-[#121C17]",
-              "2xl:text-lg"
-            )}
-          >
+        <div className="flex h-full w-full flex-col items-center bg-[#00000003] p-4 xl:p-6">
+          <h3 className="mb-4 text-center font-sans text-base 2xl:text-lg font-bold leading-tight text-black">
             {card.title}
           </h3>
-          <p
-            className={cn(
-              "text-start font-sans font-normal text-[#6C6C6C]",
-              "text-xs leading-[20px]",
-              "2xl:text-sm",
-              "3xl:font-open-sans 3xl:text-[13px] 3xl:leading-[23px]"
-            )}
-            style={{
-              textAlign: "justify",
-            }}
-          >
+          <p className="text-left text-xs 2xl:text-sm leading-[20px] xl:leading-[24px] text-[#6C6C6C]">
             {card.description}
           </p>
         </div>
@@ -237,12 +181,6 @@ const CardGroup = ({ cards }: { cards: ContactCardsProps["cards"] }) => (
 );
 
 export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
-  // Prevent hydration mismatch
-  const [mounted, setMounted] = useState(false);
-
-  // Responsive breakpoints
-  const { isXxlScreen } = useResponsive();
-
   const menuItems = [
     { text: "Home", url: "/" },
     { text: "About Us", url: "/about-us" },
@@ -251,115 +189,61 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
     { text: "Contact", url: "/contact-us" },
   ];
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
-    <div className={cn("relative w-full min-h-screen overflow-y-hidden")}>
-      {/* Desktop/Large Screen Background - 1440px+ (scales from 1440 to 1920 and beyond) */}
-      {mounted && isXxlScreen && (
-        <>
-          {/* 1440px screen - contact-bg-1440.png */}
-          <div
-            className={cn(
-              "absolute left-0 top-[131px] right-0 min-h-screen",
-              "xxl:block 3xl:hidden"
-            )}
-          >
-            <Image
-              src={ContactBg1440}
-              alt="Contact us background 1440px"
-              width={1440}
-              height={980}
-              className={cn(
-                "w-full h-auto object-contain xxl:block 3xl:hidden"
-              )}
-              priority
-            />
-          </div>
+    <div className="relative w-full overflow-hidden">
+      <Image
+        src="/assets/desktop/contact-us/contact-bg.png"
+        alt="Contact us background big screen"
+        fill
+        className="hidden 2xl:block z-0"
+        priority
+      />
+      <Image
+        src="/assets/desktop/contact-us/cnr-circle.png"
+        alt="CNR Circle"
+        width={380}
+        height={380}
+        className="absolute -bottom-0 -left-16 4xl:left-50 4xl:bottom-4 z-[1] hidden 2xl:block"
+      />
+      <Image
+        src="/assets/desktop/contact-us/cnr-circle.png"
+        alt="CNR Circle"
+        width={300}
+        height={300}
+        className="absolute -bottom-5 -left-12 z-[1] hidden lg:block 2xl:hidden"
+      />
+      <Image
+        src="/assets/desktop/contact-us/contact-bg-1440.png"
+        alt="Contact us background"
+        fill
+        className="hidden lg:block 2xl:hidden z-0"
+        priority
+      />
+      <Image
+        src="/assets/desktop/contact-us/contact-us-bg-tablet.png"
+        alt="Contact us background tablet"
+        fill
+        className="xl:hidden h-full z-0"
+        priority
+      />
 
-          {/* 1920px screen - contact-bg-1920.png */}
-          <div
-            className={cn(
-              "absolute left-0 right-0 min-h-screen",
-              "hidden 3xl:block 4xl:hidden"
-            )}
-          >
-            <Image
-              src={ContactBg1920}
-              alt="Contact us background 1920px"
-              width={1920}
-              height={1280}
-              className={cn(
-                "w-full h-auto object-contain hidden 3xl:block 4xl:hidden"
-              )}
-              priority
-            />
-          </div>
+      <div
+        className="absolute top-0 left-0 right-0 h-[600px] z-[2]"
+        style={{
+          background:
+            "linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 80.29%, rgba(255, 255, 255, 0) 100%)",
+        }}
+      />
 
-          {/* 2560px+ screen - contact-bg.png */}
-          <div
-            className={cn(
-              "absolute top-[100px] left-0 right-0",
-              "hidden 4xl:block"
-            )}
-          >
-            <Image
-              src={ContactBg}
-              alt="Contact us background 2560px+"
-              width={2560}
-              height={1507}
-              className={cn("w-full h-auto object-contain hidden 4xl:block")}
-              priority
-            />
-          </div>
-        </>
-      )}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-[400px] z-[2]"
+        style={{
+          background:
+            "linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 38.39%, rgba(0, 0, 0, 0) 100%)",
+        }}
+      />
 
-      {/* Tablet Background - Up to 1440px */}
-      {(!mounted || !isXxlScreen) && (
-        <Image
-          src={ContactBgTablet}
-          alt="Contact us background tablet"
-          fill
-          className={cn("h-full object-cover object-center", "xxl:hidden")}
-          priority
-        />
-      )}
-
-      {/* White Gradient Overlay (Top) - 1440px to 1920px (609px to 844px height) */}
-      {mounted && isXxlScreen && (
-        <div
-          className={cn(
-            "absolute top-0 left-0 right-0 z-10",
-            "hidden xxl:block"
-          )}
-          style={{
-            height:
-              "clamp(609px, calc(609px + 235 * (100vw - 1440px) / 480), 844px)",
-            background:
-              "linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 80.29%, rgba(255, 255, 255, 0) 100%)",
-          }}
-        />
-      )}
-
-      {/* Dark Gradient Overlay (Bottom) - 400px height, bottom to top */}
-      {mounted && isXxlScreen && (
-        <div
-          className={cn(
-            "absolute bottom-0 left-0 right-0 z-10",
-            "hidden xxl:block"
-          )}
-          style={{
-            height: "400px",
-            background:
-              "linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.549904) 38.39%, rgba(0, 0, 0, 0) 100%)",
-          }}
-        />
-      )}
-
-      <div className={cn("relative z-20 flex flex-col min-h-screen")}>
+      <div className="relative z-10 flex min-h-screen flex-col pt-10 3xl:pt-0">
         <NavigationMenu
           menuItems={menuItems}
           logoUrl="/assets/banner-shared-component/logo.png"
@@ -367,64 +251,25 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
           activeItem="Contact"
         />
 
-        <main
-          className={cn(
-            "flex-grow max-w-[1920px] mx-auto",
-            "md:pt-10 md:pb-50 xxl:pb-0 md:px-18 xxl:pl-[77px] xxl:pr-[30px] 3xl:pt-[152px] 3xl:pl-[120px] 3xl:pr-[58px]"
-          )}
-        >
-          <div
-            className={cn(
-              "flex flex-col-reverse items-center gap-14",
-              "xl:flex-row xl:items-start xl:justify-center",
-              "lg:gap-11 xxl:gap-[46px] 3xl:gap-[100px]"
-            )}
-          >
-            <div
-              className={cn(
-                "w-full",
-                "xxl:w-[620px] xl:pt-15 3xl:pt-0",
-                "3xl:w-[794px]"
-              )}
-            >
+        <main className="flex-grow md:pt-10 md:pb-50 md:px-18">
+          <div className="flex flex-col-reverse items-center gap-14 xl:flex-row xl:items-start xl:justify-center lg:gap-11 2xl:gap-[130px]">
+            <div className="w-full xl:w-[620px] 2xl:w-[794px] xl:pt-25">
               <ConnectWithUsForm />
             </div>
-            <div
-              className={cn("w-full", " xl:pt-20 3xl:pt-0", "2xl:w-[800px]")}
-            >
+            <div className="w-full xl:w-[667px] 2xl:w-[800px] xl:pt-20">
               <CardGroup cards={cards} />
             </div>
           </div>
         </main>
+
+        <footer className="w-full bg-white py-4">
+          <div className="container mx-auto">
+            <p className="text-center font-sans text-sm font-normal text-[#6C6C6C]">
+              © 2024 Canopy Carbon. All rights reserved.
+            </p>
+          </div>
+        </footer>
       </div>
-
-      {/* CNR Circle for Desktop/Large Screens - 1440px+ */}
-      {mounted && isXxlScreen && (
-        <Image
-          src={CnrCircle}
-          alt="CNR Circle"
-          width={400}
-          height={400}
-          className={cn(
-            "absolute z-10",
-            "xxl:left-[120px] xxl:w-[300px] xxl:h-[300px] xxl:-bottom-12",
-            "3xl:left-[180px] 3xl:w-[350px] 3xl:h-[350px] 3xl:-bottom-14",
-            "4xl:left-[252px] 4xl:w-[400px] 4xl:h-[400px] 4xl:-bottom-16"
-          )}
-        />
-      )}
-
-      <footer className={cn("relative z-20 w-full bg-white py-4 mt-auto")}>
-        <div className={cn("container mx-auto")}>
-          <p
-            className={cn(
-              "text-center font-sans text-sm font-normal text-[#6C6C6C]"
-            )}
-          >
-            © 2024 Canopy Carbon. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
