@@ -143,7 +143,7 @@ export function InsightSectionDesktop({
             delay={100}
             threshold={0.1}
             easing="ease-out"
-            className={cn("mb-2")}
+            className={cn("mb-4")}
           >
             <h2
               className={cn(
