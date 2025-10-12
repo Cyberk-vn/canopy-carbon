@@ -104,7 +104,7 @@ export function InsightSectionDesktop({
         className={cn(
           "relative z-20",
           "h-[246px] w-[530px]",
-          "2xl:w-[846px] 2xl:h-[333px]"
+          "2xl:w-[846px] 2xl:h-[336px]"
         )}
       >
         {imageSrcLarge ? (
