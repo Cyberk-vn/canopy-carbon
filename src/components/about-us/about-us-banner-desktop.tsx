@@ -30,7 +30,7 @@ export function AboutUsBannerDesktop({
           <div
             className="absolute left-0 right-0 overflow-hidden"
             style={{
-              top: "85px",
+              top: "123px",
               height: "clamp(537px, calc(232.333px + 39.670vw), 994px)",
             }}
           >
@@ -64,7 +64,7 @@ export function AboutUsBannerDesktop({
           {/* Navigation + Content Layout */}
           <div className="relative z-20 flex flex-col gap-0">
             {/* Header - Navigation Menu - Full Width */}
-            <div className="w-full h-[85px]">
+            <div className="w-full h-[123px]">
               <NavigationMenu
                 menuItems={menuItems}
                 logoUrl={logoUrl}
@@ -76,13 +76,13 @@ export function AboutUsBannerDesktop({
             </div>
 
             {/* Content with Max Width */}
-            <div className="max-w-[2200px] mx-auto w-full">
+            <div className="max-w-[1920px] mx-auto w-full">
               {/* Spacing between Navigation and Content - 62px */}
-              <div className="w-full h-[62px]"></div>
+              <div className="w-full h-[116px]"></div>
 
               {/* Flex Container - Sidebar and Content side by side with 42px gap */}
               <div
-                className="w-full flex gap-[42px]"
+                className="w-full flex gap-[40px] justify-end items-end"
                 style={{
                   paddingLeft: "clamp(27px, 3.54vw, 58px)",
                   paddingRight: "clamp(60px, 8.33vw, 120px)",

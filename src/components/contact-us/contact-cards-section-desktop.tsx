@@ -256,7 +256,7 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
   }, []);
 
   return (
-    <div className={cn("relative w-full min-h-screen")}>
+    <div className={cn("relative w-full min-h-screen overflow-y-hidden")}>
       {/* Desktop/Large Screen Background - 1440px+ (scales from 1440 to 1920 and beyond) */}
       {mounted && isXxlScreen && (
         <>
@@ -331,7 +331,10 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
       {/* White Gradient Overlay (Top) - 1440px to 1920px (609px to 844px height) */}
       {mounted && isXxlScreen && (
         <div
-          className={cn("absolute top-0 left-0 right-0 z-10", "hidden xxl:block")}
+          className={cn(
+            "absolute top-0 left-0 right-0 z-10",
+            "hidden xxl:block"
+          )}
           style={{
             height:
               "clamp(609px, calc(609px + 235 * (100vw - 1440px) / 480), 844px)",
@@ -356,11 +359,7 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
         />
       )}
 
-      <div
-        className={cn(
-          "relative z-20 flex flex-col min-h-screen"
-        )}
-      >
+      <div className={cn("relative z-20 flex flex-col min-h-screen")}>
         <NavigationMenu
           menuItems={menuItems}
           logoUrl="/assets/banner-shared-component/logo.png"
@@ -415,11 +414,7 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
         />
       )}
 
-      <footer
-        className={cn(
-          "relative z-20 w-full bg-white py-4 mt-auto"
-        )}
-      >
+      <footer className={cn("relative z-20 w-full bg-white py-4 mt-auto")}>
         <div className={cn("container mx-auto")}>
           <p
             className={cn(
