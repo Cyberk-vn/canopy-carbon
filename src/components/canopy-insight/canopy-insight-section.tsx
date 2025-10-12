@@ -56,26 +56,11 @@ export function CanopyInsightSection() {
         priority
         className={cn("object-cover block md:hidden")}
       />
-      {/* Top gradient overlay - only for 2xl screens (1920px+) */}
       <div
-        className={cn(
-          "absolute top-0 left-0 right-0 z-10",
-          "hidden 2xl:block 2xl:h-[600px]"
-        )}
+        className="absolute inset-0 z-10"
         style={{
           background:
-            "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
-        }}
-      />
-      {/* Bottom gradient overlay */}
-      <div
-        className={cn(
-          "absolute bottom-0 left-0 right-0 z-10",
-          "lg:h-[444px] 2xl:h-[400px] 3xl:h-[1089px]"
-        )}
-        style={{
-          background:
-            "linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 25.89%)",
+            "linear-gradient(180deg, #FCFCFC 27%, rgba(0, 0, 0, 0.14) 60.00000133849027%, rgba(255, 255, 255, 0.8) 86.6666693436472%, #FCFCFC 100%)",
         }}
       />
       <div
@@ -97,7 +82,7 @@ export function CanopyInsightSection() {
         <div
           className={cn(
             "relative flex flex-1 flex-col",
-            "pt-25 xxl:pt-[87px] 3xl:pt-[128px]",
+            "pt-25 xxl:pt-[87px] 3xl:pt-[200px]",
             "gap-11 2xl:gap-[72px]",
             "lg:justify-center 2xl:justify-start",
             "xl:flex-row",
@@ -138,7 +123,7 @@ export function CanopyInsightSection() {
           </FadeContent>
           <div
             className={cn(
-              "relative lg:w-[705px] lg:mb-25 2xl:mt-[65px] 3xl:mt-[37px]"
+              "relative lg:w-[705px] lg:mb-25 2xl:mt-[65px] 3xl:mt-15"
             )}
           >
             <FadeContent
@@ -166,7 +151,7 @@ export function CanopyInsightSection() {
               >
                 <div
                   className={cn(
-                    "absolute hidden lg:block bg-[#FFFFFF4D] -z-10 top-[-24px] bottom-[-40px] left-[-45px] 2xl:left-[-75px] right-[-24px] 2xl:right-[-64px]"
+                    "absolute hidden lg:block bg-[#FFFFFF4D] -z-10 top-[-24px] bottom-[-46px] left-[-45px] 2xl:left-[-75px] right-[-24px] 2xl:right-[-90px]"
                   )}
                 />
                 <p className={cn("hidden sm:block")}>
