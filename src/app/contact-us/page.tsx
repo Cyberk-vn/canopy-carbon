@@ -61,7 +61,7 @@ const ContactUsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="bg-white">
       <div className="block md:hidden">
         <ContactHeroSection cards={contactUsCards} />
       </div>

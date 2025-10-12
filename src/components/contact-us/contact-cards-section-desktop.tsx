@@ -54,7 +54,7 @@ const ConnectWithUsForm = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-        className="bg-[#0000001A] p-4"
+        className="bg-[#0000001A] py-2 px-3"
       >
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-4 sm:flex-row">
@@ -71,7 +71,7 @@ const ConnectWithUsForm = () => {
                 id="firstName"
                 value={formData.firstName}
                 onChange={handleInputChange}
-                className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
+                className="rounded-none h-10 border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
                 required
               />
             </div>
@@ -88,7 +88,7 @@ const ConnectWithUsForm = () => {
                 id="lastName"
                 value={formData.lastName}
                 onChange={handleInputChange}
-                className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
+                className="rounded-none h-10 border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
                 required
               />
             </div>
@@ -106,7 +106,7 @@ const ConnectWithUsForm = () => {
               id="companyName"
               value={formData.companyName}
               onChange={handleInputChange}
-              className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
+              className="rounded-none h-10 border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -122,7 +122,7 @@ const ConnectWithUsForm = () => {
               id="email"
               value={formData.email}
               onChange={handleInputChange}
-              className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
+              className="rounded-none h-10 border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
               required
             />
           </div>
@@ -140,13 +140,13 @@ const ConnectWithUsForm = () => {
               value={formData.message}
               onChange={handleInputChange}
               rows={3}
-              className="rounded-none border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
+              className="rounded-none h-[92px] border-[#6B728066] bg-white placeholder:text-[#D1D5DBCC]"
               required
             />
           </div>
           <Button
             type="submit"
-            className="h-9 w-full cursor-pointer rounded-none bg-[#EAE7DF] font-sans text-base font-semibold text-[#3B464F] transition-colors duration-200 hover:bg-[#E0DDD5]"
+            className="h-10 w-full cursor-pointer rounded-none bg-[#EAE7DF] font-sans text-base font-semibold text-[#3B464F] transition-colors duration-200 hover:bg-[#E0DDD5]"
           >
             Send
           </Button>
@@ -251,7 +251,7 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
           activeItem="Contact"
         />
 
-        <main className="flex-grow md:pt-10 md:pb-50 md:px-18">
+        <main className="flex-grow md:pt-10 md:pb-50 2xl:pb-100 md:px-18">
           <div className="flex flex-col-reverse items-center gap-14 xl:flex-row xl:items-start xl:justify-center lg:gap-11 2xl:gap-[130px]">
             <div className="w-full xl:w-[620px] 2xl:w-[794px] xl:pt-25">
               <ConnectWithUsForm />
