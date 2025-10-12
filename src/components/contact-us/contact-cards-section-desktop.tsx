@@ -165,13 +165,13 @@ const CardGroup = ({ cards }: { cards: ContactCardsProps["cards"] }) => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
         whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-        className="h-[245px] xl:h-[303px] bg-[#FAFAFA99] p-4 xl:p-6"
+        className="h-[245px] 2xl:h-[303px] bg-[#FAFAFA99] p-4 2xl:p-6"
       >
-        <div className="flex h-full w-full flex-col items-center bg-[#00000003] p-4 xl:p-6">
+        <div className="flex h-full w-full flex-col items-center bg-[#00000003] p-4 2xl:p-6">
           <h3 className="mb-4 text-center font-sans text-base 2xl:text-lg font-bold leading-tight text-black">
             {card.title}
           </h3>
-          <p className="text-left text-xs 2xl:text-sm leading-[20px] xl:leading-[24px] text-[#6C6C6C]">
+          <p className="text-center 2xl:text-left text-xs 2xl:text-sm leading-[20px] 2xl:leading-[24px] text-[#6C6C6C]">
             {card.description}
           </p>
         </div>
