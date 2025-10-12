@@ -131,12 +131,7 @@ export function NavigationMenu({
         >
           {useOurProjectDesign ? (
             /* Our Project Design - All items with background, scales from 768px to 2200px */
-            <div
-              className="flex items-stretch w-full mx-[30px] max-h-[32px] h-full"
-              style={{
-                gap: "6px",
-              }}
-            >
+            <div className="flex items-stretch w-full mx-[30px] max-h-[40px] h-full gap-[8px]">
               {menuItems.map((item, index) => {
                 const isActive = activeItem === item.text;
                 return (
@@ -169,13 +164,7 @@ export function NavigationMenu({
             </div>
           ) : useAboutUsDesign ? (
             /* About Us Design - All items with background, scales from 768px to large screens */
-            <div
-              className="flex items-stretch w-full mx-[30px] max-h-[32px] h-full"
-              style={{
-                gap: "6px",
-                maxWidth: "100%",
-              }}
-            >
+            <div className="flex items-stretch w-full mx-[134px] max-h-[40px] h-full max-w-full gap-[8px]">
               {menuItems.map((item, index) => {
                 const isActive = activeItem === item.text;
                 return (
@@ -184,7 +173,7 @@ export function NavigationMenu({
                     href={item.url}
                     className="nav-link-about-us flex items-center justify-center text-center transition-colors duration-200 flex-1"
                     style={{
-                      padding: "4px 6px",
+                      padding: "6px 6px",
                       fontStyle: "normal",
                       textTransform: "uppercase",
                       fontSize: "16px",
@@ -198,7 +187,7 @@ export function NavigationMenu({
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      maxHeight: "32px",
+                      maxHeight: "40px",
                     }}
                   >
                     {item.text}
