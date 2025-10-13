@@ -210,7 +210,7 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
         alt="CNR Circle"
         width={300}
         height={300}
-        className="absolute -bottom-5 -left-12 z-[1] hidden lg:block 2xl:hidden"
+        className="absolute -bottom-5 -left-12 z-[1] hidden xl:block 2xl:hidden"
       />
       <Image
         src="/assets/desktop/contact-us/contact-bg-1440.png"
@@ -239,7 +239,7 @@ export function ContactHeroSectionDesktop({ cards }: ContactCardsProps) {
         className="absolute bottom-0 left-0 right-0 h-[400px] z-[2]"
         style={{
           background:
-            "linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 38.39%, rgba(0, 0, 0, 0) 100%)",
+            "linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%)",
         }}
       />
 
