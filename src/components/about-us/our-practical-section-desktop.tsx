@@ -9,7 +9,7 @@ import {
 import FadeContent from "@/src/components/animation/fade-content";
 
 // Image imports
-import LogoDecorator from "../../../public/assets/banner-shared-component/circle.png";
+import LogoDecorator from "../../../public/assets/banner-shared-component/circle-large.avif";
 import CanopyLogo from "../../../public/assets/desktop/about-us/canopy-development-logo.svg";
 
 interface PracticalCard {
@@ -60,67 +60,67 @@ const practicalCards: PracticalCard[] = [
 // Desktop: 1280px-2200px with synchronized vertical gaps
 // Card 1: 90px margin-top (constant)
 // Card heights: ~100px (1280px), ~120px (1440px), ~150px (2200px)
-// Vertical gap: 40px between cards (constant across all sizes)
+// Vertical gap: 60px between cards (increased from 40px)
 // Horizontal: Leftward curve scaling proportionally
 const cardPositions: CardPosition[] = [
   {
-    // Card 1: 90px margin-top, furthest right
-    left1280: 548.49, // Scales from 1440px
-    top1280: 90, // margin (90)
+    // Card 1: 90px margin-top, furthest right (shifted right +120px, then left -140px at 2200px, shifted down +80px)
+    left1280: 668.49, // 548.49 + 120
+    top1280: 170, // 90 + 80 (shifted down)
     width1280: 525.78,
-    left1440: 616.69,
-    top1440: 90, // margin (90)
+    left1440: 736.69, // 616.69 + 120
+    top1440: 170, // 90 + 80 (shifted down)
     width1440: 591,
-    left2200: 942.31,
-    top2200: 90, // margin (90) - FURTHEST RIGHT
+    left2200: 922.31, // 1062.31 - 140 (adjusted left for 2200px)
+    top2200: 170, // 90 + 80 (shifted down) - FURTHEST RIGHT
     width2200: 903.05,
   },
   {
-    // Card 2: 40px gap from Card 1
-    left1280: 487.63, // Scales proportionally
-    top1280: 230, // 90 + 100 (height) + 40 (gap)
+    // Card 2: 60px gap from Card 1 (shifted right +120px, then left -140px at 2200px, shifted down +80px)
+    left1280: 607.63, // 487.63 + 120
+    top1280: 330, // 170 + 100 (height) + 60 (gap)
     width1280: 521.16,
-    left1440: 548.21,
-    top1440: 250, // 90 + 120 (height) + 40 (gap)
+    left1440: 668.21, // 548.21 + 120
+    top1440: 350, // 170 + 120 (height) + 60 (gap)
     width1440: 585.95,
-    left2200: 837.67,
-    top2200: 280, // 90 + 150 (height) + 40 (gap)
+    left2200: 817.67, // 957.67 - 140 (adjusted left for 2200px)
+    top2200: 380, // 170 + 150 (height) + 60 (gap)
     width2200: 895.41,
   },
   {
-    // Card 3: 40px gap from Card 2
-    left1280: 442.28, // Scales proportionally
-    top1280: 370, // 230 + 100 + 40
+    // Card 3: 60px gap from Card 2 (shifted right +120px, then left -140px at 2200px, shifted down +80px)
+    left1280: 562.28, // 442.28 + 120
+    top1280: 490, // 330 + 100 + 60
     width1280: 498.22,
-    left1440: 497.19,
-    top1440: 410, // 250 + 120 + 40
+    left1440: 617.19, // 497.19 + 120
+    top1440: 530, // 350 + 120 + 60
     width1440: 560,
-    left2200: 759.67,
-    top2200: 470, // 280 + 150 + 40
+    left2200: 739.67, // 879.67 - 140 (adjusted left for 2200px)
+    top2200: 590, // 380 + 150 + 60
     width2200: 855.68,
   },
   {
-    // Card 4: 40px gap from Card 3
-    left1280: 330.06, // Scales proportionally
-    top1280: 510, // 370 + 100 + 40
+    // Card 4: 60px gap from Card 3 (shifted right +120px, then left -80px at 2200px, shifted down +80px)
+    left1280: 450.06, // 330.06 + 120
+    top1280: 650, // 490 + 100 + 60
     width1280: 498.22,
-    left1440: 371.19,
-    top1440: 570, // 410 + 120 + 40
+    left1440: 491.19, // 371.19 + 120
+    top1440: 710, // 530 + 120 + 60
     width1440: 560,
-    left2200: 567.34,
-    top2200: 660, // 470 + 150 + 40
+    left2200: 607.34, // 687.34 - 80 (adjusted left for 2200px)
+    top2200: 800, // 590 + 150 + 60
     width2200: 855.68,
   },
   {
-    // Card 5: 40px gap from Card 4, furthest left
-    left1280: 193.17, // Scales proportionally
-    top1280: 650, // 510 + 100 + 40
+    // Card 5: 60px gap from Card 4, furthest left (shifted right +120px, then left -80px at 2200px, shifted down +80px)
+    left1280: 313.17, // 193.17 + 120
+    top1280: 810, // 650 + 100 + 60
     width1280: 498.22,
-    left1440: 217.19,
-    top1440: 730, // 570 + 120 + 40
+    left1440: 337.19, // 217.19 + 120
+    top1440: 890, // 710 + 120 + 60
     width1440: 560,
-    left2200: 331.95,
-    top2200: 850, // 660 + 150 + 40
+    left2200: 371.95, // 451.95 - 80 (adjusted left for 2200px)
+    top2200: 1010, // 800 + 150 + 60
     width2200: 855.68,
   },
 ];
@@ -163,35 +163,37 @@ export const OurPracticalSectionDesktop = () => {
         }}
       />
 
-      <div className="max-w-[2200px] mx-auto relative">
+      <div className="max-w-[1920px] mx-auto relative">
         <motion.div
           {...SIMPLE_ANIMATIONS.fadeInUp}
           {...containerMotion}
           className="relative hidden xl:block overflow-hidden"
           style={{
-            minHeight: createResponsiveValue(850, 970, 1140),
+            minHeight: createResponsiveValue(1100, 1200, 1268),
           }}
         >
           {/* Logo Decorator - Sizes: 1280px(-98.16), 1440px(-110.31), 2200px(0) - left position */}
           <div
-            className="absolute z-10 pointer-events-none opacity-60 overflow-hidden"
+            className="absolute z-10 pointer-events-none"
             style={{
               left: "clamp(-110.31px, max(calc(-98.16px + (-110.31 - -98.16) * ((100vw - 1280px) / 160)), calc(-110.31px + (0 - -110.31) * ((100vw - 1440px) / 760))), 0px)",
-              top: createResponsiveValue(-100, -70, -80),
-              width: createResponsiveValue(524, 589, 697),
-              height: createResponsiveValue(510, 573, 595),
             }}
           >
             <Image
               src={LogoDecorator}
               alt="Logo decorator"
-              fill
+              width={697}
+              height={595}
               className="object-contain"
+              style={{
+                width: createResponsiveValue(524, 589, 697),
+                height: createResponsiveValue(510, 573, 595),
+              }}
             />
           </div>
 
           {/* Canopy Logo centered inside decorator - full opacity, offset 10px down and 10px left */}
-          <div
+          {/* <div
             className="absolute z-10 pointer-events-none"
             style={{
               left: `calc(clamp(-110.31px, max(calc(-98.16px + (-110.31 - -98.16) * ((100vw - 1280px) / 160)), calc(-110.31px + (0 - -110.31) * ((100vw - 1440px) / 760))), 0px) + ${createResponsiveValue(
@@ -205,17 +207,20 @@ export const OurPracticalSectionDesktop = () => {
                 -80
               )} + ${createResponsiveValue(510, 573, 595)} / 2 + 50px)`,
               transform: "translate(-50%, -50%)",
-              width: createResponsiveValue(200, 220, 260),
-              height: createResponsiveValue(174, 191, 226),
             }}
           >
             <Image
               src={CanopyLogo}
               alt="Canopy Development"
-              fill
+              width={260}
+              height={226}
               className="object-contain"
+              style={{
+                width: createResponsiveValue(200, 220, 260),
+                height: createResponsiveValue(174, 191, 226),
+              }}
             />
-          </div>
+          </div> */}
 
           {/* Cards - Absolute positioning with exact Figma coordinates */}
           {practicalCards.map((card, index) => {
@@ -264,10 +269,9 @@ export const OurPracticalSectionDesktop = () => {
 
                 {/* Card Description - 1280px: 13.33px → 1440px: WS 400 15px → 1920px: WS 400 18px */}
                 <p
-                  className="font-['Work_Sans'] font-normal text-[#798C9B] text-left"
+                  className="font-['Work_Sans'] font-normal text-[#798C9B] text-left leading-[32px] max-w-[760px]"
                   style={{
                     fontSize: createResponsiveValue(13.33, 15, 18),
-                    lineHeight: "150%",
                     letterSpacing: "0%",
                   }}
                 >
@@ -278,64 +282,64 @@ export const OurPracticalSectionDesktop = () => {
           })}
 
           {/* Line Decorators */}
-          {/* Bottom horizontal line */}
+          {/* Bottom horizontal line (1280px: shifted down +250px, shifted left -80px) */}
           <div
             className="absolute z-10 bg-[#EEF0F2]"
             style={{
-              left: createResponsiveValue(92.71, 104.3, 159.37),
-              top: createResponsiveValue(835, 955, 1125),
+              left: createResponsiveValue(132.71, 224.3, 279.37), // 1280px: 212.71 - 80, others unchanged
+              top: createResponsiveValue(1085, 1185, 1253), // 1280px: 835 + 250, others unchanged
               width: createResponsiveValue(1119.4, 1258.32, 1922.71),
               height: "1px",
             }}
           />
 
-          {/* Bottom right diagonal line */}
+          {/* Bottom right diagonal line (1280px: shifted down +250px, shifted left -80px) */}
           <div
             className="absolute z-10 bg-[#EEF0F2]"
             style={{
-              left: createResponsiveValue(965.33, 1086, 1659.41),
-              top: createResponsiveValue(842, 962, 1132),
+              left: createResponsiveValue(1005.33, 1206, 1779.41), // 1280px: 1085.33 - 80, others unchanged
+              top: createResponsiveValue(1092, 1192, 1260), // 1280px: 842 + 250, others unchanged
               width: createResponsiveValue(213.33, 240, 366.72),
               height: "1px",
             }}
           />
 
-          {/* Bottom left rectangle */}
+          {/* Bottom left rectangle (1280px: shifted down +250px, shifted left -80px) */}
           <div
             className="absolute z-10 bg-[#EEF0F2]"
             style={{
-              left: createResponsiveValue(92.44, 104, 158.91),
-              top: createResponsiveValue(830, 950, 1120),
+              left: createResponsiveValue(132.44, 224, 278.91), // 1280px: 212.44 - 80, others unchanged
+              top: createResponsiveValue(1080, 1180, 1248), // 1280px: 830 + 250, others unchanged
               width: createResponsiveValue(280, 315, 481.32),
               height: createResponsiveValue(3.56, 4, 6.11),
             }}
           />
 
-          {/* Left vertical line */}
+          {/* Left vertical line (1280px: shifted down +250px, shifted left -80px) */}
           <div
             className="absolute z-10 bg-[#EEF0F2]"
             style={{
-              left: createResponsiveValue(102.87, 115.73, 176.84),
-              top: createResponsiveValue(510, 570, 660),
+              left: createResponsiveValue(142.87, 235.73, 296.84), // 1280px: 222.87 - 80, others unchanged
+              top: createResponsiveValue(760, 800, 788), // 1280px: 510 + 250, others unchanged
               width: createResponsiveValue(1.78, 2, 3.06),
               height: createResponsiveValue(258, 290, 370),
             }}
           />
 
-          {/* Bottom right rectangle */}
+          {/* Bottom right rectangle (1280px: shifted down +250px, shifted left -80px) */}
           <div
             className="absolute z-10 bg-[#EEF0F2]"
             style={{
-              left: createResponsiveValue(931.56, 1048, 1601.34),
-              top: createResponsiveValue(834, 954, 1124),
-              width: createResponsiveValue(280, 315, 481.32),
+              left: createResponsiveValue(971.56, 1168, 1440), // 1280px: 1051.56 - 80, others unchanged
+              top: createResponsiveValue(1084, 1184, 1252), // 1280px: 834 + 250, others unchanged
+              width: createResponsiveValue(280, 315, 315),
               height: createResponsiveValue(3.56, 4, 6.11),
             }}
           />
 
           {/* Canopy Development Logo - positioned at bottom right */}
           <div
-            className="absolute z-10"
+            className="absolute z-10 mb-[120px] mr-[220px]"
             style={{
               right: createResponsiveValue(0, 0, 0),
               bottom: createResponsiveValue(0, 0, 0),

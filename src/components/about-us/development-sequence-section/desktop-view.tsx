@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { DevelopmentSequenceSectionProps } from "@/src/types/development-sequence";
 import { memo } from "react";
+import { motion } from "motion/react";
 import { Container } from "../../shared";
 import LogoDecorator from "../../../../public/assets/banner-shared-component/circle.png";
 
@@ -78,35 +79,55 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
   const climateActionCards = [
     {
       id: 1,
-      title: "Climate Action Implementation",
+      title: (
+        <>
+          Climate Action <br /> Implementation
+        </>
+      ),
       description:
         "Execution of core interventions including forest protection, ARR, and enrichment—carried out in line with validated project design and ecological conditions.",
       learnMoreUrl: "#",
     },
     {
       id: 2,
-      title: "Community Development Programs",
+      title: (
+        <>
+          Community <br /> Development <br /> Programs
+        </>
+      ),
       description:
         "Ongoing FPIC, livelihoods support, participatory planning, and equitable benefit-sharing — designed to ensure long-term community alignment.",
       learnMoreUrl: "#",
     },
     {
       id: 3,
-      title: "Biodiversity & Ecosystem Protection",
+      title: (
+        <>
+          Biodiversity & <br /> Ecosystem <br /> Protection
+        </>
+      ),
       description:
         "Habitat conservation, species monitoring, and threat mitigation strategies to uphold ecological integrity beyond carbon metrics.",
       learnMoreUrl: "#",
     },
     {
       id: 4,
-      title: "SDG & Co-Benefit Delivery",
+      title: (
+        <>
+          SDG & Co-Benefit <br /> Delivery
+        </>
+      ),
       description:
         "Structured implementation of SDG-aligned activities and preparation for verification under CCB or similar co-benefit standards.",
       learnMoreUrl: "#",
     },
     {
       id: 5,
-      title: "Monitoring, Reporting & Verification",
+      title: (
+        <>
+          Monitoring, <br /> Reporting & <br /> Verification
+        </>
+      ),
       description:
         "Continuous data collection via patrols, satellite imagery, biomass tracking, and preparation for future audits and credit issuances.",
       learnMoreUrl: "#",
@@ -116,41 +137,47 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
   return (
     <Container maxWidth="full">
       {/* Desktop Layout ≥1280px - Keep exactly as-is */}
-      <div className="hidden xl:block overflow-hidden max-w-[2200px] mx-auto mt-[40px]">
+      <div className="hidden xxl:block overflow-hidden max-w-[1920] mx-auto mt-[40px] pl-[68px]">
         {/* Two Column Layout */}
-        <div className="flex">
+        <div className="flex gap-[167px] xxl:gap-[167px] 3xl:gap-[250px]">
           {/* Left Column: Title, Description, and Cards */}
           <div
             className="flex-1"
             style={{
+              maxWidth: "1022px",
               marginLeft: "68px",
               marginTop: "79px",
               marginBottom: "93px",
-              marginRight: "230px",
             }}
           >
             {/* Header Section */}
-            <div className="mb-[93px] ml-[68px]">
-              <h2 className="font-open-sans font-bold text-[32px] leading-[1.4] text-[#5A6F65] mb-[24px]">
+            <div className="mb-[93px] ml-[20px]">
+              <h2 className="font-open-sans xxl:font-avenir-heavy xxl:font-normal font-bold xxl:text-[24px] 3xl:text-[30px] leading-[1.4] text-[#596E64] mb-[24px]">
                 Canopy Project <br /> Development Roadmap
               </h2>
-              <p
-                className="font-open-sans font-semibold text-[20px] leading-[1.4] text-[#BCC9C4] max-w-[788px]"
-                style={{ letterSpacing: "-3%" }}
-              >
-                Our nature-based projects follow a structured development
-                pathway, segmented into six distinct phases.
+              <p className="font-open-sans xxl:font-avenir-heavy font-semibold xxl:font-normal xxl:text-[24px] 3xl:text-[33px] leading-normal text-[#BCC9C4] max-w-[788px] xxl:max-w-[970px]">
+                Our nature projects progress through structured development
+                phases, guided by disciplined decision-making at every step.
               </p>
             </div>
 
             {/* Development Cards Flex - 3 columns, 2 rows */}
-            <div className="flex gap-[20px] flex-wrap">
-              {developmentCards.map((card) => (
-                <div
+            <div className="flex gap-[40px] flex-wrap">
+              {developmentCards.map((card, index) => (
+                <motion.div
                   key={card.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.15,
+                    ease: "easeOut",
+                  }}
+                  whileHover={{ scale: 1.05 }}
                   style={{
-                    width: "calc((100% - 40px) / 3)",
-                    height: "228px",
+                    width: "314px",
+                    height: "273px",
                   }}
                 >
                   {/* Multi-layer Background System following Figma */}
@@ -193,7 +220,7 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
                       style={{
                         width: "100%",
                         height: "227px",
-                        padding: "24px",
+                        padding: "36px 40px",
                         gap: "15px",
                         marginTop: "1px",
                       }}
@@ -206,10 +233,9 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
                         }}
                       >
                         <h4
-                          className="font-roboto font-black"
+                          className="font-roboto font-black xxl:font-avenir-heavy xxl:font-normal text-[#7D8F89]"
                           style={{
-                            color: "#7D8F89",
-                            fontSize: createResponsiveValue(14.22, 16, 24.44),
+                            fontSize: createResponsiveValue(14.22, 16, 20),
                             lineHeight: createResponsiveValue(17.78, 20, 30.56),
                           }}
                         >
@@ -220,12 +246,9 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
                       {/* Description Text - scales from 1280px to 2200px */}
                       <div className="flex-1">
                         <p
-                          className="font-roboto font-normal"
+                          className="font-roboto font-normal xxl:font-open-sans xxl:font-normal text-[#E0E4E8]"
                           style={{
-                            color: "#E9E7DF",
-                            letterSpacing: "-1%",
-                            fontSize: createResponsiveValue(10.67, 12, 18.33),
-                            lineHeight: createResponsiveValue(17.78, 20, 30.56),
+                            fontSize: createResponsiveValue(10.67, 12, 13),
                           }}
                         >
                           {card.description}
@@ -233,23 +256,20 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
 
           {/* Right Column: Full Height Decorator Image */}
-          <div
-            className="flex-shrink-0"
-            style={{ marginBottom: "93px", marginRight: "65px" }}
-          >
+          <div className="flex-shrink-0 mb-[93px] xxl:pr-[68px] 4xl:pr-0">
             <div className="h-full flex items-stretch">
               <Image
                 src="/assets/desktop/about-us/development-decorator-image.svg"
                 alt="Development sequence decorative element"
-                width={354}
-                height={948}
-                className="h-full object-cover"
+                width={398}
+                height={1097}
+                className="h-full object-cover xxl:w-[354px] xxl:h-[948px] 3xl:w-[398px] 3xl:h-[1097px]"
               />
             </div>
           </div>
@@ -258,7 +278,7 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
 
       {/* Climate Action Section - Side by Side Layout */}
       <div
-        className="hidden xl:block overflow-hidden max-w-[2200px] mx-auto"
+        className="hidden xl:block overflow-hidden max-w-[1920] mx-auto"
         style={{
           paddingTop: createResponsiveValue(21.33, 30, 45.83),
           paddingBottom: createResponsiveValue(21.33, 30, 45.83),
@@ -267,37 +287,22 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
         <div className="flex" style={{ position: "relative" }}>
           {/* Left Column: Title, Description, and Cards */}
           <div
+            className="ml-[136px]"
             style={{
-              marginLeft: createResponsiveValue(104.89, 148, 226.22),
               marginTop: createResponsiveValue(48.22, 68, 103.89),
             }}
           >
             {/* Header Section */}
-            <div
-              style={{
-                marginBottom: 65,
-              }}
-            >
+            <div className="ml-[20px] mb-[65px]">
               {/* Title */}
-              <h2
-                className="font-['Work_Sans'] font-bold text-[#596E64]"
-                style={{
-                  fontSize: createResponsiveValue(17.01, 24, 36.67),
-                  lineHeight: "1em",
-                  letterSpacing: "-3%",
-                  marginBottom: 27,
-                }}
-              >
+              <h2 className="font-open-sans xxl:font-avenir-heavy xxl:font-normal font-bold xxl:text-[24px] 3xl:text-[30px] leading-[1.4] text-[#596E64] mb-[24px]">
                 Ongoing Project Workstreams
               </h2>
 
               {/* Description */}
               <p
-                className="font-['Work_Sans'] font-semibold text-[#BCC9C4]"
+                className="font-open-sans xxl:font-avenir-heavy font-semibold xxl:font-normal xxl:text-[24px] 3xl:text-[33px] leading-normal text-[#BCC9C4] max-w-[788px] xxl:max-w-[970px]"
                 style={{
-                  fontSize: createResponsiveValue(17.01, 24, 36.67),
-                  lineHeight: "1.4em",
-                  letterSpacing: "-3%",
                   maxWidth: createResponsiveValue(456.59, 644.43, 984.39),
                 }}
               >
@@ -314,18 +319,55 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
               }}
             >
               {climateActionCards.map((card, index) => (
-                <div
+                <motion.div
                   key={card.id}
-                  className="flex items-stretch rounded-[5px]"
+                  className="flex items-start rounded-[5px]"
+                  initial={{
+                    opacity: 0,
+                    x: -50,
+                    rotateY: -15,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    x: 0,
+                    rotateY: 0,
+                  }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: index * 0.15,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    x: {
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 15,
+                    },
+                    rotateY: {
+                      type: "spring",
+                      stiffness: 80,
+                      damping: 12,
+                    },
+                  }}
+                  whileHover={{
+                    rotateY: 2,
+                    x: 5,
+                    transition: {
+                      duration: 0.3,
+                      ease: "easeInOut",
+                    },
+                  }}
                   style={{
-                    width: createResponsiveValue(636.22, 898, 1371.78),
+                    width: createResponsiveValue(636.22, 898, 1100),
+                    height: "175px",
                     backgroundColor: "rgba(207, 213, 219, 0.4)",
                     padding: createResponsiveValue(14.89, 21, 32.11),
+                    transformStyle: "preserve-3d",
+                    perspective: "1000px",
                   }}
                 >
                   {/* Left: Card Title - Fixed width (same for all cards) */}
                   <div
-                    className="flex items-center flex-shrink-0"
+                    className="flex items-start flex-shrink-0"
                     style={{
                       width: createResponsiveValue(150, 212, 324),
                       paddingRight: createResponsiveValue(20, 28, 40),
@@ -336,8 +378,12 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
                       style={{
                         fontSize:
                           "clamp(18px, calc(18px + 6 * ((100vw - 1440px) / 480)), 24px)",
-                        lineHeight: "100%",
+                        lineHeight: index === 0 ? "120%" : "140%",
                         letterSpacing: "1%",
+                        display: "-webkit-box",
+                        WebkitLineClamp: index === 0 ? 2 : 3,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
                       }}
                     >
                       {card.title}
@@ -346,10 +392,13 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
 
                   {/* Right: Description - Fills remaining space */}
                   <div
-                    className="flex-1 rounded-[8px] flex items-center"
+                    className="flex-1 rounded-[8px] flex items-start"
                     style={{
                       backgroundColor: "#F3F5F6",
-                      padding: createResponsiveValue(14.17, 20, 30.56),
+                      paddingTop: createResponsiveValue(10, 14, 20),
+                      paddingBottom: createResponsiveValue(14.17, 20, 30.56),
+                      paddingLeft: createResponsiveValue(14.17, 20, 30.56),
+                      paddingRight: createResponsiveValue(14.17, 20, 30.56),
                     }}
                   >
                     <p
@@ -365,7 +414,7 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
                       {card.description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -374,7 +423,7 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
           <div
             className="absolute overflow-hidden"
             style={{
-              right: createResponsiveValue(60, 10.78, 95.56),
+              right: createResponsiveValue(10, 10.78, 0),
               top: createResponsiveValue(-28.19, -39.78, -53),
               width: `min(${createResponsiveValue(374.27, 390, 560)}, 560px)`,
               height: `min(${createResponsiveValue(315.56, 325, 478)}, 478px)`,

@@ -45,7 +45,7 @@ const FooterDesktop = ({
       >
         <div
           className={cn(
-            "max-w-[2200px] mx-auto px-[172px] py-[110px] mt-[250px]"
+            "max-w-[2200px] mx-auto 3xl:px-[172px] 3xl:py-[110px] px-[68px] py-[80px]"
           )}
         >
           {/* Desktop Layout - Fixed Gap per Figma */}

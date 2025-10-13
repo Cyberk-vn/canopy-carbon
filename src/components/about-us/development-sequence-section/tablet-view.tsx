@@ -106,11 +106,9 @@ export const TabletView = memo<TabletViewProps>(({ data }) => {
   return (
     <div className="w-full bg-[#FCFCFC]">
       <div
-        className="hidden md:block xl:hidden"
+        className="hidden md:block xxl:hidden px-[26px] xl:px-[68px] xl:ml-[68px]"
         style={{
           paddingTop: "79px",
-          paddingLeft: "26px",
-          paddingRight: "26px",
           paddingBottom: createResponsiveValue(80, 93),
         }}
       >

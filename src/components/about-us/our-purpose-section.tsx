@@ -123,7 +123,7 @@ export const OurPurposeSection = () => {
 
         {/* Desktop Layout - 768px-1024px → 1024px-2200px responsive */}
         <div className="hidden md:flex flex-col w-full bg-[#FCFCFC] pb-[62px]">
-          <div className="flex flex-col w-full max-w-[2200px] mx-auto">
+          <div className="flex flex-col w-full max-w-[1920px] mx-auto">
             {/* Content Container */}
             <motion.div
               {...SIMPLE_ANIMATIONS.fadeInRight}
@@ -135,7 +135,7 @@ export const OurPurposeSection = () => {
                   "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
                 marginRight:
                   "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
-                marginTop: "clamp(70px, calc(-121.41px + 24.95vw), 118.96px)",
+                marginTop: "clamp(70px, calc(-121.41px + 24.95vw), 134px)",
                 gap: "clamp(22px, calc(90.25px - 8.91vw), 40px)",
               }}
             >
