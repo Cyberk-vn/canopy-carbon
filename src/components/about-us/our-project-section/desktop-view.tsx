@@ -26,6 +26,7 @@ import BiocharImg from "../../../../public/assets/desktop/about-us/our-project/b
 import ArrOperatingImg from "../../../../public/assets/desktop/about-us/our-project/arr-operating-img.png";
 import ReddOperatingImg from "../../../../public/assets/desktop/about-us/our-project/redd-operating-img.png";
 import CommunityImg from "../../../../public/assets/desktop/about-us/our-project/community-img.png";
+import BiodiversityImg from "../../../../public/assets/desktop/about-us/our-project/biodiversity-img.png";
 
 // Logo and decorative elements
 import CanopyLogo from "../../../../public/assets/desktop/about-us/canopy-development-logo.svg";
@@ -90,18 +91,11 @@ export const DesktopView = memo<DesktopViewProps>(({ data = defaultData }) => {
 
   // Simple Motion animations
   const containerMotion = useSimpleMotion("about-project-desktop-container");
-  const desktopStaticMotion = useSimpleMotion("about-project-desktop-static");
-  const desktopDescriptionMotion = useSimpleMotion(
-    "about-project-desktop-description"
-  );
 
   return (
     <div
-      className="mx-auto"
+      className="mx-auto max-w-[1920px]"
       style={{
-        maxWidth: "2200px",
-        paddingLeft: "25px",
-        paddingRight: "25px",
         marginTop: createResponsiveValue(77, 86, 131),
       }}
     >
@@ -118,20 +112,11 @@ export const DesktopView = memo<DesktopViewProps>(({ data = defaultData }) => {
             style={{ gap: createResponsiveValue(9, 10, 15) }}
           >
             {/* Side 1 */}
-            <motion.div
-              {...SIMPLE_ANIMATIONS.fadeInUp}
-              {...desktopStaticMotion}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="w-full relative z-[2] flex flex-col items-end"
+            <div
+              className="w-full relative z-[2] flex flex-col items-end py-[80px]"
               style={{
-                height: createResponsiveValue(637, 716, 960),
+                height: createResponsiveValue(637, 716, 880),
                 backgroundColor: "rgba(250, 250, 250, 0.6)",
-                borderRadius: createResponsiveValue(18, 20, 31),
-                padding: `${createResponsiveValue(
-                  71,
-                  80,
-                  122
-                )}px ${createResponsiveValue(107, 120, 183)}px`,
                 gap: createResponsiveValue(57, 64, 98),
               }}
             >
@@ -141,20 +126,17 @@ export const DesktopView = memo<DesktopViewProps>(({ data = defaultData }) => {
                   buttonAction: redirectToContact,
                 }}
               />
-            </motion.div>
+            </div>
 
             {/* Side 2 - Description */}
-            <motion.div
-              {...SIMPLE_ANIMATIONS.fadeInUp}
-              {...desktopDescriptionMotion}
-              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+            <div
               className="w-full relative z-[1] flex flex-col mt-[68px] 3xl:mb-[111px]"
               style={{
                 gap: createResponsiveValue(9, 10, 15),
               }}
             >
               <DescriptionSectionInline data={descriptionData} />
-            </motion.div>
+            </div>
           </div>
         </div>
       </motion.section>
@@ -209,21 +191,20 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
 
   return (
     <>
-      {/* Image Group Content - Horizontal Layout filling width */}
+      {/* Image Group Content - Horizontal Layout */}
       <div
-        className="flex items-center justify-between w-full"
+        className="flex items-center justify-start w-full pl-[136px]"
         style={{
-          gap: createResponsiveValue(35, 40, 61),
-          paddingLeft: createResponsiveValue(0, 148, 200.22),
+          gap: "80px",
         }}
       >
         {/* Group 1 - Nested Image Stack with Animation (5 images) */}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex items-center justify-center">
           <div
             className="relative"
             style={{
-              width: createResponsiveValue(364, 407, 622), // 185*2.2 for 5 images with 70% overlap
-              height: createResponsiveValue(278, 313, 478), // 258 + 20px offset
+              width: createResponsiveValue(364, 407, 525), // Updated for max 239px image width
+              height: createResponsiveValue(278, 313, 354), // Updated for max 334px image height + 20px offset
             }}
           >
             {imageStackGroup1.map((image, index) => {
@@ -234,14 +215,15 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                   key={index}
                   className="absolute"
                   style={{
-                    left: `calc(${createResponsiveValue(165, 185, 283)} * ${
+                    left: `calc(${createResponsiveValue(165, 185, 239)} * ${
                       image.leftMultiplier
                     })`,
                     top: `${image.topOffset}px`,
                     zIndex: image.zIndex,
                   }}
                   initial={isRootImage ? { opacity: 0, y: -10 } : { y: 60 }}
-                  animate={isRootImage ? { opacity: 1, y: 0 } : { y: 0 }}
+                  whileInView={isRootImage ? { opacity: 1, y: 0 } : { y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
                   transition={
                     isRootImage
                       ? {
@@ -268,8 +250,8 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                     className="object-contain"
                     priority
                     style={{
-                      width: createResponsiveValue(165, 185, 283),
-                      height: createResponsiveValue(230, 258, 394),
+                      width: createResponsiveValue(165, 185, 239),
+                      height: createResponsiveValue(230, 258, 334),
                       filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))",
                     }}
                   />
@@ -280,12 +262,12 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
         </div>
 
         {/* Group 2 - Nested Image Stack with Animation (3 images) */}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex items-center justify-center">
           <div
             className="relative"
             style={{
-              width: createResponsiveValue(264, 296, 453), // 185*1.6 for 3 images
-              height: createResponsiveValue(238, 268, 409),
+              width: createResponsiveValue(264, 296, 383), // Updated for max 239px image width
+              height: createResponsiveValue(238, 268, 344), // Updated for max 334px image height + 10px offset
             }}
           >
             {[
@@ -318,14 +300,15 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                   key={index}
                   className="absolute"
                   style={{
-                    left: `calc(${createResponsiveValue(165, 185, 283)} * ${
+                    left: `calc(${createResponsiveValue(165, 185, 239)} * ${
                       image.leftMultiplier
                     })`,
                     top: `${image.topOffset}px`,
                     zIndex: image.zIndex,
                   }}
                   initial={isRootImage ? { opacity: 0, y: -10 } : { y: 60 }}
-                  animate={isRootImage ? { opacity: 1, y: 0 } : { y: 0 }}
+                  whileInView={isRootImage ? { opacity: 1, y: 0 } : { y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
                   transition={
                     isRootImage
                       ? {
@@ -352,8 +335,8 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                     className="object-contain"
                     priority
                     style={{
-                      width: createResponsiveValue(165, 185, 283),
-                      height: createResponsiveValue(230, 258, 394),
+                      width: createResponsiveValue(165, 185, 239),
+                      height: createResponsiveValue(230, 258, 334),
                       filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))",
                     }}
                   />
@@ -363,36 +346,43 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
           </div>
         </div>
 
-        {/* Group 3 - Nested Image Stack with Animation (3 images) */}
-        <div className="flex-1 flex items-center justify-center">
+        {/* Group 3 - Nested Image Stack with Animation (4 images) */}
+        <div className="flex items-center justify-center">
           <div
             className="relative"
             style={{
-              width: createResponsiveValue(264, 296, 453),
-              height: createResponsiveValue(238, 268, 409),
+              width: createResponsiveValue(314, 352, 454), // Updated for 4 images
+              height: createResponsiveValue(248, 278, 359), // Updated for 4 images with offset
             }}
           >
             {[
               {
                 src: ArrOperatingImg,
                 alt: "ARR Operating Manual",
-                zIndex: 3,
-                topOffset: 10,
+                zIndex: 4,
+                topOffset: 15,
                 leftMultiplier: 0,
               },
               {
                 src: ReddOperatingImg,
                 alt: "REDD+ Operating Manual",
-                zIndex: 2,
-                topOffset: 5,
+                zIndex: 3,
+                topOffset: 10,
                 leftMultiplier: 0.3,
               },
               {
                 src: CommunityImg,
                 alt: "Community Management Handbook",
+                zIndex: 2,
+                topOffset: 5,
+                leftMultiplier: 0.6,
+              },
+              {
+                src: BiodiversityImg,
+                alt: "Biodiversity Strategy Book",
                 zIndex: 1,
                 topOffset: 0,
-                leftMultiplier: 0.6,
+                leftMultiplier: 0.9,
               },
             ].map((image, index) => {
               const isRootImage = index === 0;
@@ -402,14 +392,15 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                   key={index}
                   className="absolute"
                   style={{
-                    left: `calc(${createResponsiveValue(165, 185, 283)} * ${
+                    left: `calc(${createResponsiveValue(165, 185, 239)} * ${
                       image.leftMultiplier
                     })`,
                     top: `${image.topOffset}px`,
                     zIndex: image.zIndex,
                   }}
                   initial={isRootImage ? { opacity: 0, y: -10 } : { y: 60 }}
-                  animate={isRootImage ? { opacity: 1, y: 0 } : { y: 0 }}
+                  whileInView={isRootImage ? { opacity: 1, y: 0 } : { y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
                   transition={
                     isRootImage
                       ? {
@@ -436,8 +427,8 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                     className="object-contain"
                     priority
                     style={{
-                      width: createResponsiveValue(165, 185, 283),
-                      height: createResponsiveValue(230, 258, 394),
+                      width: createResponsiveValue(165, 185, 239),
+                      height: createResponsiveValue(230, 258, 334),
                       filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))",
                     }}
                   />
@@ -459,13 +450,12 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
         }}
       >
         <p
-          className=" text-center"
+          className="text-center 3xl:font-avenir-heavy 3xl:font-normal text-[#C4CCD3]"
           style={{
-            fontSize: createResponsiveValue(18, 24, 32), // Figma: 30px at 1440px
-            fontWeight: 600, // Figma: Semi Bold (600)
-            lineHeight: "1.4em", // Figma: 1.4em
-            color: "#C4CCD3", // Figma: #C4CCD3
-            width: createResponsiveValue(985, 1105, 1136), // Figma: 1105px at 1440px
+            fontSize: createResponsiveValue(18, 24, 33),
+            fontWeight: 600,
+            lineHeight: "1.4em",
+            width: createResponsiveValue(985, 1050, 1100),
           }}
         >
           {description}
@@ -550,8 +540,6 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
 };
 
 // Inline Description Component (Desktop)
-// Inline Description Component (Desktop) - Redesigned based on Figma
-// Scaled from 1440px base to 1280px-2200px range (ratios: 0.889 - 1.528)
 const DescriptionSectionInline = ({
   data,
 }: {
@@ -578,25 +566,25 @@ const DescriptionSectionInline = ({
             "linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.7) 28%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 100%)",
         }}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       />
 
       {/* Vertical Background Card - Grows from height 0 to max height */}
       <motion.div
-        className="absolute z-[5]"
+        className="absolute z-[5] bottom-[20px] bg-[#F9F9F9]"
         style={{
-          left: createResponsiveValue(92, 103, 157), // Figma: 103px at 1440px
-          bottom: createResponsiveValue(33, 37, 56), // Position from bottom
-          width: createResponsiveValue(211, 237, 362), // Figma: 237px at 1440px
-          backgroundColor: "#F9F9F9",
+          left: createResponsiveValue(92, 103, 157),
+          width: createResponsiveValue(211, 237, 362),
           transformOrigin: "bottom",
         }}
         initial={{ height: 0, opacity: 0 }}
-        animate={{
-          height: createResponsiveValue(446, 502, 767), // Figma: 502px at 1440px
+        whileInView={{
+          height: createResponsiveValue(446, 502, 767),
           opacity: 1,
         }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{
           duration: 0.8,
           delay: 1.0,
@@ -614,7 +602,8 @@ const DescriptionSectionInline = ({
           height: createResponsiveValue(135, 152, 232), // Figma: 152px at 1440px
         }}
         initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{
           duration: 0.6,
           delay: 1.3,
@@ -640,7 +629,8 @@ const DescriptionSectionInline = ({
           height: createResponsiveValue(148, 166, 254), // Figma: 166px at 1440px
         }}
         initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{
           duration: 0.6,
           delay: 1.4,
@@ -660,13 +650,14 @@ const DescriptionSectionInline = ({
       <motion.div
         className="absolute z-20"
         style={{
-          left: createResponsiveValue(387, 435, 665), // Figma: 435px at 1440px
-          top: createResponsiveValue(96, 108, 165), // Figma: 107.98px at 1440px
-          width: createResponsiveValue(654, 736, 1125), // Figma: 736px at 1440px
-          height: createResponsiveValue(207, 233, 356), // Figma: 233px at 1440px
+          left: createResponsiveValue(387, 435, 665),
+          top: createResponsiveValue(96, 108, 190),
+          width: createResponsiveValue(654, 736, 972),
+          height: createResponsiveValue(207, 233, 233),
         }}
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{
           duration: 0.7,
           delay: 1.5,
@@ -674,14 +665,12 @@ const DescriptionSectionInline = ({
         }}
       >
         <p
-          className="font-work-sans"
+          className="font-avenir-heavy font-normal text-[#91A69E]"
           style={{
-            fontSize: createResponsiveValue(21, 24, 32), // Figma: 24px at 1440px
-            fontWeight: 600, // Figma: Semi Bold
-            lineHeight: "1.4em", // Figma: 1.4em
-            letterSpacing: "-1%", // Figma: -1%
-            textAlign: "left", // Figma: LEFT
-            color: "#91A69E", // Figma: #91A69E
+            fontSize: createResponsiveValue(21, 24, 33),
+            lineHeight: "1.4em",
+            letterSpacing: "-1%",
+            textAlign: "left",
           }}
         >
           {mainText}
@@ -690,20 +679,18 @@ const DescriptionSectionInline = ({
 
       {/* Horizontal Background Card - Grows from width 0 to max width (constrained to container) */}
       <motion.div
-        className="absolute z-[1]"
+        className="absolute z-[1] bg-[#919996] left-0"
         style={{
-          left: 0,
-          top: createResponsiveValue(355, 399, 610), // Figma: 398.98px at 1440px
-          height: createResponsiveValue(130, 146, 223), // Figma: 146px at 1440px
-          backgroundColor: "#91A69E",
+          top: createResponsiveValue(355, 399, 610),
+          height: createResponsiveValue(130, 146, 223),
           transformOrigin: "left",
-          maxWidth: "100%", // Ensure it doesn't overflow the container
         }}
         initial={{ width: 0, opacity: 0 }}
-        animate={{
-          width: `min(${createResponsiveValue(1175, 1322, 2020)}, 100%)`, // Max 2020px but constrained to container
+        whileInView={{
+          width: `min(${createResponsiveValue(1175, 1322, 2020)}, 100%)`,
           opacity: 1,
         }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{
           duration: 0.8,
           delay: 1.2,

@@ -32,7 +32,7 @@ const MapSection = () => {
       aria-label="Our Operations Map"
     >
       {/* Desktop Layout */}
-      <div className="hidden xl:block w-full mt-[221px]">
+      <div className="hidden xl:block w-full mt-[221px] mb-[101px]">
         <Container
           maxWidth="full"
           className="map-section-container overflow-hidden"
@@ -145,14 +145,14 @@ const MapSection = () => {
               <div
                 className="flex items-center justify-start overflow-hidden w-full"
                 style={{
-                  height: "calc(600 * var(--decorator-scale, 1))",
+                  height: "calc(600px * var(--decorator-scale, 1))",
                 }}
               >
                 <div
                   className="relative overflow-hidden"
                   style={{
-                    width: "calc(600 * var(--decorator-scale, 1))",
-                    height: "calc(600 * var(--decorator-scale, 1))",
+                    width: "calc(600px * var(--decorator-scale, 1))",
+                    height: "calc(600px * var(--decorator-scale, 1))",
                   }}
                 >
                   <Image
@@ -321,14 +321,11 @@ const MapSection = () => {
         }
 
         /* Fluid padding-left for map section container */
-        /* Smoothly scales from 68px at 1280px to 130px at 1440px to 300px at 1920px */
+        /* 68px from 1280px to 1440px, then scales to 300px at 1920px */
         :global(.map-section-container) {
           padding-left: clamp(
             68px,
-            calc(
-              68px + (130 - 68) * ((100vw - 1280px) / (1440 - 1280)) +
-                max(0px, (300 - 130) * ((100vw - 1440px) / (1920 - 1440)))
-            ),
+            calc(68px + max(0px, (300 - 68) * ((100vw - 1440px) / (1920 - 1440)))),
             300px
           );
         }

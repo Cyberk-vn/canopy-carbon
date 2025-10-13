@@ -334,7 +334,7 @@ const RoadmapSection = () => {
                       "font-normal text-[#3A3A3A] font-open-sans",
                       "text-[28px] xl:text-[32px] xxl:text-[32px] 3xl:text-[35px]",
                       "leading-[38px] xl:leading-[43.6px] xxl:leading-[43.6px] 2xl:leading-[49px] 3xl:leading-normal",
-                      "max-w-[300px] xl:max-w-[335px] xxl:max-w-[335px] 2xl:max-w-[377px] 3xl:max-w-[419px]"
+                      "max-w-[300px] xl:max-w-[335px] xxl:max-w-[377px] 3xl:max-w-[419px]"
                     )}
                     initial={{ opacity: 0, y: 35 }}
                     animate={{ opacity: 1, y: 0 }}

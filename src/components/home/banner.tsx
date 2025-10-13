@@ -743,12 +743,14 @@ export function Banner({
         </div>
       )}
 
-      <NavigationMenu
-        menuItems={menuItems}
-        logoUrl={logoUrl}
-        mobileMenuStyles={mobileMenuStyles}
-        activeItem="Home"
-      />
+      <div className="md:pt-[37px]">
+        <NavigationMenu
+          menuItems={menuItems}
+          logoUrl={logoUrl}
+          mobileMenuStyles={mobileMenuStyles}
+          activeItem="Home"
+        />
+      </div>
     </div>
   );
 }
