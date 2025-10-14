@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, useInView } from "motion/react";
 import { Container } from "../shared";
 
 // Image imports - Logos
@@ -28,29 +28,54 @@ import LifeOnLand from "../../../public/assets/our-project/benefit-section/carou
 import Peace from "../../../public/assets/our-project/benefit-section/carousel-images/peace.jpg";
 import Partnership from "../../../public/assets/our-project/benefit-section/carousel-images/partnership.jpg";
 
+// SDG Icons data array
+const sdgIcons = [
+  { src: NoPoverty, alt: "No Poverty" },
+  { src: ZeroHunger, alt: "Zero Hunger" },
+  { src: GoodHealth, alt: "Good Health and Well-being" },
+  { src: QualityEducation, alt: "Quality Education" },
+  { src: GenderEquality, alt: "Gender Equality" },
+  { src: CleanWater, alt: "Clean Water and Sanitation" },
+  { src: Affordable, alt: "Affordable and Clean Energy" },
+  { src: DecentWork, alt: "Decent Work and Economic Growth" },
+  { src: Industry, alt: "Industry, Innovation and Infrastructure" },
+  { src: Reduced, alt: "Reduced Inequalities" },
+  { src: Sustainable, alt: "Sustainable Cities and Communities" },
+  { src: Responsible, alt: "Responsible Consumption and Production" },
+  { src: ClimateAction, alt: "Climate Action" },
+  { src: LifeBelowWater, alt: "Life Below Water" },
+  { src: LifeOnLand, alt: "Life on Land" },
+  { src: Peace, alt: "Peace, Justice and Strong Institutions" },
+  { src: Partnership, alt: "Partnerships for the Goals" },
+];
+
 const OurProjectBenefitSectionDesktop: React.FC = () => {
+  const benefitTableRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(benefitTableRef, {
+    once: true,
+    amount: 0.2,
+  });
+
   return (
     <Container maxWidth="full">
       <section className="w-full bg-[#232A26] md:px-10 pt-12 pb-0 lg:px-6">
-        <div className="flex flex-col gap-[64px] justify-start items-start max-w-[2200px] mx-auto">
+        <div className="flex flex-col gap-[64px] justify-start items-start max-w-[1920px] mx-auto">
           {/* Title and Content Section */}
           <motion.div
             initial={{ opacity: 0.8, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="flex flex-col items-start gap-8 w-full xl:items-center xl:mx-auto"
+            className="flex flex-col items-start w-full xl:items-center xl:mx-auto xl:-ml-34 md:mt-12 xxl:mt-12"
           >
             {/* Title */}
             <motion.h2
               initial={{ opacity: 0.7, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-              className="font-open-sans md:font-bold 3xl:font-work-sans 3xl:font-semibold text-start max-w-[947.17px]"
+              className="font-open-sans md:font-bold 3xl:font-avenir-heavy 3xl:font-normal text-start xl:text-center w-auto text-[#DEDEDE] mr-10 mb-[18px]"
               style={{
-                color: "rgba(204, 204, 204, 0.8)",
                 fontSize:
-                  "clamp(32px, calc(32px + max(0px, (36 - 32) * ((100vw - 1440px) / 480))), 36px)",
-                lineHeight: "1em",
+                  "clamp(32px, calc(32px + max(0px, (36 - 32) * ((100vw - 1440px) / 480))), 35px)",
               }}
             >
               Our Co-Benefits & Safeguards Strategy
@@ -61,14 +86,12 @@ const OurProjectBenefitSectionDesktop: React.FC = () => {
               initial={{ opacity: 0.6, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-              className="font-open-sans font-normal text-start text-[#949494]"
+              className="font-open-sans font-normal text-start text-[#949494] leading-[28px]"
               style={{
                 width:
                   "clamp(593.55px, calc(593.55px + max(0px, (681 - 593.55) * ((100vw - 1440px) / 480))), 681px)",
                 fontSize:
                   "clamp(14px, calc(14px + max(0px, (16 - 14) * ((100vw - 1440px) / 480))), 16px)",
-                lineHeight: "1.7em",
-                letterSpacing: "-2%",
               }}
             >
               Every Canopy project is designed not just to generate carbon
@@ -86,21 +109,32 @@ const OurProjectBenefitSectionDesktop: React.FC = () => {
 
           {/* Benefit Icons Table Section */}
           <div className="w-full" style={{ position: "relative" }}>
-            {/* Dark Background Wrapper - Above gradient */}
+            {/* Dark Background Wrapper - Above gradient - Breaks out of max-w constraint */}
             <div
-              className="w-full md:bg-transparent xl:bg-[#1E2421] md:px-0 md:pt-0 md:pb-0 xl:px-[47px] xl:pt-[30px] xl:pb-[46px] 3xl:px-[34px] 3xl:pt-[34px] 3xl:pb-[69px]"
-              style={{ position: "relative", zIndex: 10 }}
+              className="md:bg-transparent xl:bg-[#1E2421] md:pt-0 md:pb-0 xl:pt-[30px] xl:pb-[46px] 3xl:pt-[34px] 3xl:pb-[69px]"
+              style={{
+                position: "relative",
+                zIndex: 10,
+                width:
+                  "calc(100vw - clamp(40px, calc(40px + max(0px, (96 - 40) * ((100vw - 1440px) / 480))), 96px))",
+                marginLeft:
+                  "calc(50% - 50vw + clamp(20px, calc(20px + max(0px, (48 - 20) * ((100vw - 1440px) / 480))), 48px))",
+                marginRight:
+                  "clamp(20px, calc(20px + max(0px, (48 - 20) * ((100vw - 1440px) / 480))), 48px)",
+              }}
             >
               <div className="w-full md:overflow-x-auto 3xl:overflow-x-visible">
                 <motion.div
+                  ref={benefitTableRef}
                   initial={{ opacity: 0.7, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
-                  className="bg-white md:mx-auto"
+                  animate={
+                    isInView ? { opacity: 1, y: 0 } : { opacity: 0.7, y: 30 }
+                  }
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="bg-white md:mx-auto max-w-[1772px] pb-[75px] pt-[20px] px-[24px]"
                   style={{
                     width:
                       "clamp(1304px, calc(1304px + max(0px, (1772 - 1304) * ((100vw - 1440px) / 480))), 1772px)",
-                    maxWidth: "1772px",
                   }}
                 >
                   {/* Benefit Icons Table */}
@@ -111,19 +145,38 @@ const OurProjectBenefitSectionDesktop: React.FC = () => {
                     className="flex flex-col"
                     style={{
                       gap: "clamp(36px, calc(36px + max(0px, (64 - 36) * ((100vw - 1440px) / 480))), 64px)",
-                      padding: "24px",
                     }}
                   >
                     {/* Logo Section */}
-                    <div
-                      className="flex items-center"
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={
+                        isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                      }
+                      transition={{
+                        duration: 0.5,
+                        delay: 0.2,
+                        ease: "easeOut",
+                      }}
+                      className="flex items-center ml-[13px]"
                       style={{
                         gap: "20px",
                       }}
                     >
                       {/* Left Logo - Multi-breakpoint scaling:
                         768px: 276.26×69.53 | 1440px: 354.76×89.28 | 1920px: 600×151 */}
-                      <div
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={
+                          isInView
+                            ? { opacity: 1, x: 0 }
+                            : { opacity: 0, x: -20 }
+                        }
+                        transition={{
+                          duration: 0.5,
+                          delay: 0.3,
+                          ease: "easeOut",
+                        }}
                         style={{
                           width:
                             "clamp(276.26px, calc(276.26px + (354.76 - 276.26) * ((100vw - 768px) / 672) + max(0px, (600 - 354.76) * ((100vw - 1440px) / 480))), 600px)",
@@ -138,10 +191,21 @@ const OurProjectBenefitSectionDesktop: React.FC = () => {
                           height={151}
                           className="w-full h-full object-contain"
                         />
-                      </div>
+                      </motion.div>
                       {/* Right Logo - Multi-breakpoint scaling:
                         768px: 283.55×69.53 | 1440px: 364.12×89.28 | 1920px: 469×115 */}
-                      <div
+                      <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={
+                          isInView
+                            ? { opacity: 1, x: 0 }
+                            : { opacity: 0, x: 20 }
+                        }
+                        transition={{
+                          duration: 0.5,
+                          delay: 0.3,
+                          ease: "easeOut",
+                        }}
                         style={{
                           width:
                             "clamp(283.55px, calc(283.55px + (364.12 - 283.55) * ((100vw - 768px) / 672) + max(0px, (469 - 364.12) * ((100vw - 1440px) / 480))), 469px)",
@@ -156,290 +220,52 @@ const OurProjectBenefitSectionDesktop: React.FC = () => {
                           height={115}
                           className="w-full h-full object-contain"
                         />
-                      </div>
-                    </div>
+                      </motion.div>
+                    </motion.div>
 
                     {/* SDG Icons Grid */}
                     {/* Icons: 768-1440px = fixed 117.9px | 1440-1920px = scale to 163px */}
-                    {/* Gap: 768-1440px = fixed 24px | 1440-1920px = scale to 32px */}
+                    {/* Column Gap: 768-1440px = fixed 24px | 1440-1920px = scale to 32px */}
+                    {/* Row Gap: Fluid 32px (1440px) to 48px (1920px+) between rows */}
                     <div
                       className="flex flex-wrap"
                       style={{
-                        gap: "clamp(24px, calc(24px + max(0px, (32 - 24) * ((100vw - 1440px) / 480))), 32px)",
+                        columnGap:
+                          "clamp(24px, calc(24px + max(0px, (32 - 24) * ((100vw - 1440px) / 480))), 32px)",
+                        rowGap:
+                          "clamp(32px, calc(32px + max(0px, (48 - 32) * ((100vw - 1440px) / 480))), 48px)",
                       }}
                     >
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={NoPoverty}
-                          alt="No Poverty"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={ZeroHunger}
-                          alt="Zero Hunger"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={GoodHealth}
-                          alt="Good Health and Well-being"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={QualityEducation}
-                          alt="Quality Education"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={GenderEquality}
-                          alt="Gender Equality"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={CleanWater}
-                          alt="Clean Water and Sanitation"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={Affordable}
-                          alt="Affordable and Clean Energy"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={DecentWork}
-                          alt="Decent Work and Economic Growth"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={Industry}
-                          alt="Industry, Innovation and Infrastructure"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={Reduced}
-                          alt="Reduced Inequalities"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={Sustainable}
-                          alt="Sustainable Cities and Communities"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={Responsible}
-                          alt="Responsible Consumption and Production"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={ClimateAction}
-                          alt="Climate Action"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={LifeBelowWater}
-                          alt="Life Below Water"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={LifeOnLand}
-                          alt="Life on Land"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={Peace}
-                          alt="Peace, Justice and Strong Institutions"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                          height:
-                            "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
-                        }}
-                      >
-                        <Image
-                          src={Partnership}
-                          alt="Partnerships for the Goals"
-                          width={163}
-                          height={163}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
+                      {sdgIcons.map((icon, index) => (
+                        <motion.div
+                          key={icon.alt}
+                          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                          animate={
+                            isInView
+                              ? { opacity: 1, scale: 1, y: 0 }
+                              : { opacity: 0, scale: 0.8, y: 20 }
+                          }
+                          transition={{
+                            duration: 0.4,
+                            delay: 0.4 + index * 0.05,
+                            ease: "easeOut",
+                          }}
+                          style={{
+                            width:
+                              "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
+                            height:
+                              "clamp(117.9px, calc(117.9px + max(0px, (163 - 117.9) * ((100vw - 1440px) / 480))), 163px)",
+                          }}
+                        >
+                          <Image
+                            src={icon.src}
+                            alt={icon.alt}
+                            width={163}
+                            height={163}
+                            className="w-full h-full object-cover"
+                          />
+                        </motion.div>
+                      ))}
                     </div>
                   </div>
                 </motion.div>

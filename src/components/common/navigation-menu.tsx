@@ -131,19 +131,18 @@ export function NavigationMenu({
         >
           {useOurProjectDesign ? (
             /* Our Project Design - All items with background, scales from 768px to 2200px */
-            <div className="flex items-stretch w-full mx-[30px] max-h-[40px] h-full gap-[8px]">
+            <div className="flex items-stretch w-full 3xl:mx-[134px] mx-[24px] max-h-[40px] h-full max-w-full gap-[8px]">
               {menuItems.map((item, index) => {
                 const isActive = activeItem === item.text;
                 return (
                   <Link
                     key={index}
                     href={item.url}
-                    className="nav-link-our-project flex items-center justify-center text-center transition-colors duration-200 flex-1"
+                    className="nav-link-our-project flex items-center justify-center text-center transition-colors duration-200 flex-1 text-[16px] md:text-[12px] xl:text-[12px] 2xl:text-[12px] 3xl:text-[16px]"
                     style={{
-                      padding: "4px 6px",
+                      padding: "6px 6px",
                       fontStyle: "normal",
                       textTransform: "uppercase",
-                      fontSize: "16px",
                       fontWeight: 400,
                       lineHeight: "2em",
                       fontFamily: "work-sans-v2, sans-serif",
@@ -154,7 +153,7 @@ export function NavigationMenu({
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      maxHeight: "32px",
+                      maxHeight: "40px",
                     }}
                   >
                     {item.text}
@@ -164,19 +163,18 @@ export function NavigationMenu({
             </div>
           ) : useAboutUsDesign ? (
             /* About Us Design - All items with background, scales from 768px to large screens */
-            <div className="flex items-stretch w-full mx-[134px] max-h-[40px] h-full max-w-full gap-[8px]">
+            <div className="flex items-stretch w-full 3xl:mx-[134px] mx-[24px] max-h-[40px] h-full max-w-full gap-[8px]">
               {menuItems.map((item, index) => {
                 const isActive = activeItem === item.text;
                 return (
                   <Link
                     key={index}
                     href={item.url}
-                    className="nav-link-about-us flex items-center justify-center text-center transition-colors duration-200 flex-1"
+                    className="nav-link-about-us flex items-center justify-center text-center transition-colors duration-200 flex-1 text-[16px] md:text-[12px] xl:text-[12px] 2xl:text-[12px] 3xl:text-[16px]"
                     style={{
                       padding: "6px 6px",
                       fontStyle: "normal",
                       textTransform: "uppercase",
-                      fontSize: "16px",
                       fontWeight: 400,
                       lineHeight: "2em",
                       fontFamily: "work-sans-v2, sans-serif",
@@ -204,11 +202,10 @@ export function NavigationMenu({
                   <Link
                     key={index}
                     href={item.url}
-                    className="nav-link-default uppercase flex items-center justify-center px-1.5 py-1 text-center transition-colors duration-200 flex-1 3xl:h-[40px]"
+                    className="nav-link-default uppercase flex items-center justify-center px-1.5 py-1 text-center transition-colors duration-200 flex-1 3xl:h-[40px] text-[16px] md:text-[12px] xl:text-[12px] 2xl:text-[12px] 3xl:text-[16px]"
                     style={{
                       fontFamily: "work-sans-v2, sans-serif",
                       fontStyle: "normal",
-                      fontSize: "16px",
                       color: isActive
                         ? NAVIGATION_COLORS.active
                         : NAVIGATION_COLORS.default,

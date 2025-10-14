@@ -16,13 +16,12 @@ const createResponsiveValue = (
 const CollaborateWithUsSectionDesktop: React.FC = () => {
   return (
     <section
-      className="hidden md:block bg-white w-full overflow-hidden md:py-[48px] md:px-[48px] md:mt-[48px]"
+      className="hidden md:block bg-white w-full overflow-hidden md:py-[48px] md:px-[48px] md:mt-[48px] 3xl:-ml-20"
       style={{
         paddingTop: createResponsiveValue(80, 107),
         paddingBottom: createResponsiveValue(80, 107),
         paddingLeft: createResponsiveValue(68, 90),
         paddingRight: createResponsiveValue(68, 90),
-        marginTop: createResponsiveValue(80, 107),
       }}
     >
       {/* Main Layout Container - Flexbox Layout */}
@@ -31,17 +30,17 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
         <div
           className="bg-[#F9F9F9] h-fit relative md:w-full md:p-[32px] md:mr-0 xl:mr-0"
           style={{
-            width: createResponsiveValue(957, 1276),
+            width: createResponsiveValue(957, 1410),
             marginRight: createResponsiveValue(44, 59),
-            paddingLeft: createResponsiveValue(64, 85),
-            paddingRight: createResponsiveValue(64, 85),
-            paddingTop: createResponsiveValue(32, 43),
-            paddingBottom: createResponsiveValue(32, 43),
+            paddingLeft: createResponsiveValue(64, 180),
+            paddingRight: createResponsiveValue(64, 160),
+            paddingTop: createResponsiveValue(32, 46),
+            paddingBottom: createResponsiveValue(32, 70),
           }}
         >
           <div
             className="flex flex-col md:gap-[32px]"
-            style={{ gap: createResponsiveValue(32, 80) }}
+            style={{ gap: createResponsiveValue(32, 60) }}
           >
             {/* Title */}
             <motion.h2
@@ -67,29 +66,47 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
               style={{ gap: createResponsiveValue(24, 64) }}
             >
               {/* Description */}
-              <motion.p
+              <motion.div
                 initial={{ opacity: 0.6, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="text-[#9E9E9E] text-left whitespace-pre-line md:text-[16px] md:max-w-none"
+                className="flex flex-col gap-[12px]"
                 style={{
-                  fontSize: createResponsiveValue(16, 18),
-                  lineHeight: "1.362em",
-                  letterSpacing: "-0.02em",
-                  fontFamily: "'Open Sans', sans-serif",
-                  maxWidth: createResponsiveValue(651, 869),
+                  maxWidth: createResponsiveValue(651, 859),
                 }}
               >
-                We believe meaningful climate solutions are built through
-                partnership. At Canopy, we welcome collaboration with project
-                proponents, financiers, corporate buyers, and technical
-                specialists who share our vision for high-integrity,
-                nature-based development.
-                {"\n\n"}Whether you&apos;re looking to co-develop a project,
-                secure long-term carbon offtake, or bring technical innovation
-                to the field, we&apos;d love to hear from you. Together, we can
-                scale impact where it matters most.
-              </motion.p>
+                <p
+                  className="text-[#808080] text-left font-normal leading-normal md:text-[16px] md:max-w-none"
+                  style={{
+                    fontSize: createResponsiveValue(16, 18),
+                    fontFamily: "'Open Sans', sans-serif",
+                  }}
+                >
+                  We believe meaningful climate solutions are built through
+                  partnership. At Canopy, we welcome collaboration with{" "}
+                  <span className="text-[#798C5C]">
+                    project proponents, financiers, corporate buyers, and
+                    technical specialists
+                  </span>{" "}
+                  who share our vision for high-integrity, nature-based
+                  development.
+                </p>
+                <p
+                  className="text-[#808080] text-left font-normal leading-normal md:text-[16px] md:max-w-none"
+                  style={{
+                    fontSize: createResponsiveValue(16, 18),
+                    fontFamily: "'Open Sans', sans-serif",
+                  }}
+                >
+                  Whether you&apos;re looking to{" "}
+                  <span className="text-[#798C5C]">
+                    co-develop a project, secure long-term carbon offtake, or
+                    bring technical innovation to the field
+                  </span>
+                  , we&apos;d love to hear from you. Together, we can scale
+                  impact where it matters most.
+                </p>
+              </motion.div>
 
               {/* Button Cards - Responsive Grid */}
               <motion.div
@@ -110,11 +127,9 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   }}
                 >
                   <span
-                    className="text-[#4B5563] font-semibold text-center md:text-[14px] md:font-bold"
+                    className="text-[#596E64] font-avenir-heavy leading-normal font-normal text-center md:text-[14px] md:font-bold"
                     style={{
                       fontSize: createResponsiveValue(14, 20),
-                      lineHeight: "1.714em",
-                      fontFamily: "'Open Sans', sans-serif",
                     }}
                   >
                     Co-Develop
@@ -132,11 +147,9 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   }}
                 >
                   <span
-                    className="text-[#4B5563] font-semibold text-center md:text-[14px] md:font-bold"
+                    className="text-[#596E64] font-avenir-heavy leading-normal font-normal text-center md:text-[14px] md:font-bold"
                     style={{
                       fontSize: createResponsiveValue(14, 20),
-                      lineHeight: "1.714em",
-                      fontFamily: "'Open Sans', sans-serif",
                     }}
                   >
                     Purchase Credits
@@ -154,11 +167,9 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   }}
                 >
                   <span
-                    className="text-[#4B5563] font-semibold text-center md:text-[14px] md:font-bold"
+                    className="text-[#596E64] font-avenir-heavy leading-normal font-normal text-center md:text-[14px] md:font-bold"
                     style={{
                       fontSize: createResponsiveValue(14, 20),
-                      lineHeight: "1.714em",
-                      fontFamily: "'Open Sans', sans-serif",
                     }}
                   >
                     Fund Pipeline
@@ -176,11 +187,9 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   }}
                 >
                   <span
-                    className="text-[#4B5563] font-semibold text-center md:text-[14px] md:font-bold"
+                    className="text-[#596E64] font-avenir-heavy leading-normal font-normal text-center md:text-[14px] md:font-bold"
                     style={{
                       fontSize: createResponsiveValue(14, 20),
-                      lineHeight: "1.714em",
-                      fontFamily: "'Open Sans', sans-serif",
                     }}
                   >
                     Co-Innovate
@@ -192,10 +201,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
         </div>
 
         {/* Decorator Image - Absolute on tablet, relative on desktop */}
-        <div
-          className="md:hidden md:right-0 md:top-0 xl:relative xl:flex items-start justify-start"
-          style={{ paddingTop: createResponsiveValue(14, 62) }}
-        >
+        <div className="md:hidden md:right-0 md:top-0 xl:relative xl:flex items-start justify-start opacity-60">
           <motion.div
             initial={{ opacity: 0.64, x: 20 }}
             animate={{ opacity: 0.8, x: 0 }}

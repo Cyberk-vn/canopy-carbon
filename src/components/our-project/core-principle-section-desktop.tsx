@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import { Container } from "../shared";
 
 // Image imports
-import PrincipleDecoratorImage from "../../../public/assets/desktop/our-projects/principle-decorator-image.svg";
+import PrincipleDecoratorImage from "../../../public/assets/desktop/our-projects/principle-decorator-image.avif";
 
 // Responsive scaling helper for 768px-1024px (tablet)
 const createResponsiveValue = (value768: number, value1024: number): string => {
@@ -31,6 +31,23 @@ const createResponsiveValueDesktop = (
       calc(${value1440}px + (${value2200} - ${value1440}) * ((100vw - 1440px) / 760))
     ),
     ${value2200}px
+  )`;
+};
+
+// Responsive scaling helper for card dimensions across breakpoints
+// lg (1024px) -> xxl (1440px) -> 3xl (1920px)
+const createResponsiveValueCard = (
+  valueLg: number,
+  valueXxl: number,
+  value3xl: number
+): string => {
+  return `clamp(
+    ${valueLg}px,
+    min(
+      calc(${valueLg}px + (${valueXxl} - ${valueLg}) * ((100vw - 1024px) / 416)),
+      calc(${valueXxl}px + (${value3xl} - ${valueXxl}) * ((100vw - 1440px) / 480))
+    ),
+    ${value3xl}px
   )`;
 };
 
@@ -73,7 +90,7 @@ const CorePrincipleSectionDesktop: React.FC = () => {
 
             {/* Principle Cards Grid - 5 columns x 2 rows */}
             <div
-              className="grid gap-2"
+              className="grid"
               style={{
                 gridTemplateColumns: "repeat(5, 1fr)",
                 gridTemplateRows: "repeat(2, 1fr)",
@@ -408,18 +425,13 @@ const CorePrincipleSectionDesktop: React.FC = () => {
 
       {/* Desktop Layout - 1024px+ - With Decorator */}
       <section className="hidden lg:block w-full bg-[#1E2421]">
-        <div
-          className="flex flex-row max-w-[2200px] mx-auto pt-[11px]"
-          style={{
-            gap: 45,
-          }}
-        >
+        <div className="flex flex-row max-w-[1920px] mx-auto py-[11px] gap-[80px]">
           {/* Decorator Image */}
           <div
             className="flex-shrink-0"
             style={{
-              width: createResponsiveValueDesktop(304, 428, 424),
-              height: createResponsiveValueDesktop(488, 686, 689),
+              width: createResponsiveValueDesktop(304, 428, 428),
+              height: createResponsiveValueDesktop(488, 686, 686),
             }}
           >
             <Image
@@ -433,10 +445,9 @@ const CorePrincipleSectionDesktop: React.FC = () => {
 
           {/* Content Section */}
           <div
-            className="flex flex-col mt-[40px]"
+            className="flex flex-col mt-[30px] gap-5"
             style={{
-              width: createResponsiveValueDesktop(693, 974, 1488),
-              gap: 19,
+              width: createResponsiveValueDesktop(654, 752, 972),
             }}
           >
             {/* Title */}
@@ -444,10 +455,8 @@ const CorePrincipleSectionDesktop: React.FC = () => {
               initial={{ opacity: 0.8, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="text-[#9C9C9C] flex items-center w-full mb-[20px]"
+              className="text-[#9C9C9C] flex items-center w-full mb-[60px] font-open-sans 3xl:font-avenir-heavy font-normal"
               style={{
-                fontFamily: "Open Sans",
-                fontWeight: 600,
                 fontSize: createResponsiveValueDesktop(17, 24, 28),
                 lineHeight: "1.25em",
                 height: createResponsiveValueDesktop(21, 30, 46),
@@ -458,12 +467,10 @@ const CorePrincipleSectionDesktop: React.FC = () => {
 
             {/* Principle Cards Grid - 5 columns x 2 rows */}
             <div
-              className="grid"
+              className="grid ml-2"
               style={{
                 gridTemplateColumns: "repeat(5, 1fr)",
                 gridTemplateRows: "repeat(2, 1fr)",
-                width: createResponsiveValueDesktop(535, 752, 1149),
-                height: createResponsiveValueDesktop(169, 237, 362),
                 gap: createResponsiveValueDesktop(6, 8, 12),
               }}
             >
@@ -474,9 +481,11 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0 * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                className="flex flex-col justify-center items-center bg-[#232A26]"
+                className="flex flex-col justify-start items-center bg-[#232A26]"
                 style={{
-                  paddingTop: "0px",
+                  width: createResponsiveValueCard(124, 144, 182),
+                  height: createResponsiveValueCard(90, 114, 145),
+                  paddingTop: createResponsiveValueDesktop(16, 24, 32),
                   paddingLeft: createResponsiveValueDesktop(11, 16, 24),
                   paddingRight: createResponsiveValueDesktop(11, 16, 24),
                   paddingBottom: createResponsiveValueDesktop(6, 8, 12),
@@ -484,10 +493,8 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 }}
               >
                 <span
-                  className="text-[#9C9C9C] text-center"
+                  className="text-[#9C9C9C] font-open-sans text-center 3xl:font-avenir-heavy 3xl:font-normal"
                   style={{
-                    fontFamily: "Open Sans",
-                    fontWeight: 600,
                     fontSize: createResponsiveValueDesktop(11, 15, 20),
                     lineHeight: "1.4em",
                   }}
@@ -503,9 +510,11 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 1 * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                className="flex flex-col justify-center items-center bg-[#272F2A]"
+                className="flex flex-col justify-start items-center bg-[#272F2A]"
                 style={{
-                  paddingTop: "0px",
+                  width: createResponsiveValueCard(124, 144, 182),
+                  height: createResponsiveValueCard(90, 114, 145),
+                  paddingTop: createResponsiveValueDesktop(16, 24, 32),
                   paddingLeft: createResponsiveValueDesktop(11, 16, 24),
                   paddingRight: createResponsiveValueDesktop(11, 16, 24),
                   paddingBottom: createResponsiveValueDesktop(6, 8, 12),
@@ -513,10 +522,8 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 }}
               >
                 <span
-                  className="text-[#9C9C9C] text-center"
+                  className="text-[#9C9C9C] font-open-sans text-center 3xl:font-avenir-heavy 3xl:font-normal"
                   style={{
-                    fontFamily: "Open Sans",
-                    fontWeight: 600,
                     fontSize: createResponsiveValueDesktop(11, 15, 20),
                     lineHeight: "1.6em",
                   }}
@@ -532,9 +539,11 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 2 * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                className="flex flex-col justify-center items-center bg-[#2B332F]"
+                className="flex flex-col justify-start items-center bg-[#2B332F]"
                 style={{
-                  paddingTop: "0px",
+                  width: createResponsiveValueCard(124, 144, 182),
+                  height: createResponsiveValueCard(90, 114, 145),
+                  paddingTop: createResponsiveValueDesktop(16, 24, 32),
                   paddingLeft: createResponsiveValueDesktop(11, 16, 24),
                   paddingRight: createResponsiveValueDesktop(11, 16, 24),
                   paddingBottom: createResponsiveValueDesktop(6, 8, 12),
@@ -542,10 +551,8 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 }}
               >
                 <span
-                  className="text-[#9C9C9C] text-center"
+                  className="text-[#9C9C9C] font-open-sans text-center 3xl:font-avenir-heavy 3xl:font-normal"
                   style={{
-                    fontFamily: "Open Sans",
-                    fontWeight: 600,
                     fontSize: createResponsiveValueDesktop(11, 15, 20),
                     lineHeight: "1.6em",
                   }}
@@ -561,9 +568,11 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 3 * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                className="flex flex-col justify-center items-center bg-[#2F3833]"
+                className="flex flex-col justify-start items-center bg-[#2F3833]"
                 style={{
-                  paddingTop: "0px",
+                  width: createResponsiveValueCard(124, 144, 182),
+                  height: createResponsiveValueCard(90, 114, 145),
+                  paddingTop: createResponsiveValueDesktop(16, 24, 32),
                   paddingLeft: createResponsiveValueDesktop(11, 16, 24),
                   paddingRight: createResponsiveValueDesktop(11, 16, 24),
                   paddingBottom: createResponsiveValueDesktop(6, 8, 12),
@@ -571,10 +580,8 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 }}
               >
                 <span
-                  className="text-[#9C9C9C] text-center"
+                  className="text-[#9C9C9C] font-open-sans text-center 3xl:font-avenir-heavy 3xl:font-normal"
                   style={{
-                    fontFamily: "Open Sans",
-                    fontWeight: 600,
                     fontSize: createResponsiveValueDesktop(11, 15, 20),
                     lineHeight: "1.4em",
                   }}
@@ -590,9 +597,11 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 4 * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                className="flex flex-col justify-center items-center bg-[#333D37]"
+                className="flex flex-col justify-start items-center bg-[#333D37]"
                 style={{
-                  paddingTop: "0px",
+                  width: createResponsiveValueCard(124, 144, 182),
+                  height: createResponsiveValueCard(90, 114, 145),
+                  paddingTop: createResponsiveValueDesktop(16, 24, 32),
                   paddingLeft: createResponsiveValueDesktop(11, 16, 24),
                   paddingRight: createResponsiveValueDesktop(11, 16, 24),
                   paddingBottom: createResponsiveValueDesktop(6, 8, 12),
@@ -600,10 +609,8 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 }}
               >
                 <span
-                  className="text-[#9C9C9C] text-center"
+                  className="text-[#9C9C9C] font-open-sans text-center 3xl:font-avenir-heavy 3xl:font-normal"
                   style={{
-                    fontFamily: "Open Sans",
-                    fontWeight: 600,
                     fontSize: createResponsiveValueDesktop(11, 15, 20),
                     lineHeight: "1.6em",
                   }}
@@ -619,9 +626,11 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 5 * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                className="flex flex-col justify-center items-center bg-[#232A26]"
+                className="flex flex-col justify-start items-center bg-[#232A26]"
                 style={{
-                  paddingTop: "0px",
+                  width: createResponsiveValueCard(124, 144, 182),
+                  height: createResponsiveValueCard(90, 114, 145),
+                  paddingTop: createResponsiveValueDesktop(16, 24, 32),
                   paddingLeft: createResponsiveValueDesktop(11, 16, 24),
                   paddingRight: createResponsiveValueDesktop(11, 16, 24),
                   paddingBottom: createResponsiveValueDesktop(6, 8, 12),
@@ -629,10 +638,8 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 }}
               >
                 <span
-                  className="text-[#9C9C9C] text-center"
+                  className="text-[#9C9C9C] font-open-sans text-center 3xl:font-avenir-heavy 3xl:font-normal"
                   style={{
-                    fontFamily: "Open Sans",
-                    fontWeight: 600,
                     fontSize: createResponsiveValueDesktop(11, 15, 20),
                     lineHeight: "1.6em",
                   }}
@@ -648,9 +655,11 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 6 * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                className="flex flex-col justify-center items-center bg-[#272F2A]"
+                className="flex flex-col justify-start items-center bg-[#272F2A]"
                 style={{
-                  paddingTop: "0px",
+                  width: createResponsiveValueCard(124, 144, 182),
+                  height: createResponsiveValueCard(90, 114, 145),
+                  paddingTop: createResponsiveValueDesktop(16, 24, 32),
                   paddingLeft: createResponsiveValueDesktop(11, 16, 24),
                   paddingRight: createResponsiveValueDesktop(11, 16, 24),
                   paddingBottom: createResponsiveValueDesktop(6, 8, 12),
@@ -658,10 +667,8 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 }}
               >
                 <span
-                  className="text-[#9C9C9C] text-center"
+                  className="text-[#9C9C9C] font-open-sans text-center 3xl:font-avenir-heavy 3xl:font-normal"
                   style={{
-                    fontFamily: "Open Sans",
-                    fontWeight: 600,
                     fontSize: createResponsiveValueDesktop(11, 15, 20),
                     lineHeight: "1.4em",
                   }}
@@ -677,9 +684,11 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 7 * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                className="flex flex-col justify-center items-center bg-[#2B332F]"
+                className="flex flex-col justify-start items-center bg-[#2B332F]"
                 style={{
-                  paddingTop: "0px",
+                  width: createResponsiveValueCard(124, 144, 182),
+                  height: createResponsiveValueCard(90, 114, 145),
+                  paddingTop: createResponsiveValueDesktop(16, 24, 32),
                   paddingLeft: createResponsiveValueDesktop(11, 16, 24),
                   paddingRight: createResponsiveValueDesktop(11, 16, 24),
                   paddingBottom: createResponsiveValueDesktop(6, 8, 12),
@@ -687,10 +696,8 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 }}
               >
                 <span
-                  className="text-[#9C9C9C] text-center"
+                  className="text-[#9C9C9C] font-open-sans text-center 3xl:font-avenir-heavy 3xl:font-normal"
                   style={{
-                    fontFamily: "Open Sans",
-                    fontWeight: 600,
                     fontSize: createResponsiveValueDesktop(11, 15, 20),
                     lineHeight: "1.6em",
                   }}
@@ -706,9 +713,11 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 8 * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                className="flex flex-col justify-center items-center bg-[#2F3833]"
+                className="flex flex-col justify-start items-center bg-[#2F3833]"
                 style={{
-                  paddingTop: "0px",
+                  width: createResponsiveValueCard(124, 144, 182),
+                  height: createResponsiveValueCard(90, 114, 145),
+                  paddingTop: createResponsiveValueDesktop(16, 24, 32),
                   paddingLeft: createResponsiveValueDesktop(11, 16, 24),
                   paddingRight: createResponsiveValueDesktop(11, 16, 24),
                   paddingBottom: createResponsiveValueDesktop(6, 8, 12),
@@ -716,10 +725,8 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 }}
               >
                 <span
-                  className="text-[#9C9C9C] text-center"
+                  className="text-[#9C9C9C] font-open-sans text-center 3xl:font-avenir-heavy 3xl:font-normal"
                   style={{
-                    fontFamily: "Open Sans",
-                    fontWeight: 600,
                     fontSize: createResponsiveValueDesktop(11, 15, 20),
                     lineHeight: "1.4em",
                   }}
@@ -735,9 +742,11 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 9 * 0.1, ease: "easeOut" }}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                className="flex flex-col justify-center items-center bg-[#333D37]"
+                className="flex flex-col justify-start items-center bg-[#333D37]"
                 style={{
-                  paddingTop: "0px",
+                  width: createResponsiveValueCard(124, 144, 182),
+                  height: createResponsiveValueCard(90, 114, 145),
+                  paddingTop: createResponsiveValueDesktop(16, 24, 32),
                   paddingLeft: createResponsiveValueDesktop(11, 16, 24),
                   paddingRight: createResponsiveValueDesktop(11, 16, 24),
                   paddingBottom: createResponsiveValueDesktop(6, 8, 12),
@@ -745,10 +754,8 @@ const CorePrincipleSectionDesktop: React.FC = () => {
                 }}
               >
                 <span
-                  className="text-[#9C9C9C] text-center"
+                  className="text-[#9C9C9C] font-open-sans text-center 3xl:font-avenir-heavy 3xl:font-normal"
                   style={{
-                    fontFamily: "Open Sans",
-                    fontWeight: 600,
                     fontSize: createResponsiveValueDesktop(11, 15, 20),
                     lineHeight: "1.4em",
                   }}
@@ -768,13 +775,9 @@ const CorePrincipleSectionDesktop: React.FC = () => {
               }}
             >
               <p
-                className="text-[#949494] text-left"
+                className="text-[#7F7F7F] text-left font-open-sans font-normal leading-normal max-w-[1042px] 3xl:mt-5"
                 style={{
-                  fontFamily: "Open Sans",
-                  fontWeight: 400,
                   fontSize: createResponsiveValueDesktop(11, 15, 18),
-                  lineHeight: "1.362em",
-                  letterSpacing: "-0.02em",
                 }}
               >
                 Developed and published in 2023 by the Integrity Council for the
