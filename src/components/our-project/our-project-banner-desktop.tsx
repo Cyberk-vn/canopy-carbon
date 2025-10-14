@@ -133,11 +133,7 @@ export function OurProjectBannerDesktop({
       <div className="hidden lg:block relative w-full overflow-hidden bg-[#232A26]">
         <div className="relative z-20 flex flex-col">
           {/* Top spacing */}
-          <div
-            style={{
-              height: createResponsiveValueDesktop(32, 32, 32),
-            }}
-          ></div>
+          <div className="h-[32px] block 3xl:hidden"></div>
 
           {/* Navigation Menu - Full Width */}
           <div className="w-full">
@@ -155,7 +151,7 @@ export function OurProjectBannerDesktop({
           </div>
 
           {/* Content Wrapper with Max Width */}
-          <div className="max-w-[2200px] mx-auto w-full">
+          <div className="max-w-[1920] mx-auto w-full">
             {/* Spacing between Navigation and Content */}
             <div
               style={{
@@ -167,21 +163,20 @@ export function OurProjectBannerDesktop({
             <div
               className="flex flex-col"
               style={{
-                paddingLeft: createResponsiveValueDesktop(102, 143, 219),
+                paddingLeft: createResponsiveValueDesktop(102, 143, 170),
                 paddingRight: createResponsiveValueDesktop(49, 68, 104),
                 paddingBottom: createResponsiveValueDesktop(57, 80, 122),
-                gap: createResponsiveValueDesktop(15, 21, 32),
+                gap: createResponsiveValueDesktop(15, 21, 24),
               }}
             >
               <motion.h1
                 {...SIMPLE_ANIMATIONS.fadeInUp}
                 {...titleMotion}
                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                className="text-[#DDDDDD]"
+                className="text-[#DEDEDE] font-work-sans 3xl:font-avenir-heavy"
                 style={{
-                  fontFamily: "Work Sans",
                   fontWeight: 600,
-                  fontSize: createResponsiveValueDesktop(20, 28, 36),
+                  fontSize: createResponsiveValueDesktop(20, 28, 35),
                   lineHeight: "1.173em",
                   maxWidth: createResponsiveValueDesktop(803, 1126, 1248),
                 }}
@@ -195,14 +190,12 @@ export function OurProjectBannerDesktop({
                 {...SIMPLE_ANIMATIONS.fadeInUp}
                 {...subtitleMotion}
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-                className="text-[#949494]"
+                className="text-[#949494] font-open-sans font-normal"
                 style={{
-                  fontFamily: "Open Sans",
-                  fontWeight: 400,
                   fontSize: createResponsiveValueDesktop(13, 18, 22),
                   lineHeight: "1.362em",
                   letterSpacing: "-0.02em",
-                  maxWidth: createResponsiveValueDesktop(563, 790, 790),
+                  maxWidth: createResponsiveValueDesktop(563, 790, 1010),
                 }}
               >
                 Each one developed in accordance with standards and

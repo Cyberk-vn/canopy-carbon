@@ -3,6 +3,7 @@
 import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion } from "motion/react";
+import { useRouter } from "next/navigation";
 import { useSimpleMotion } from "@/src/hooks/responsive/use-simple-motion";
 
 // Image imports
@@ -41,8 +42,14 @@ const createResponsiveValueDesktop = (
 };
 
 const CanopyPortfolioSectionDesktop: React.FC = () => {
+  const router = useRouter();
   const titleMotion = useSimpleMotion("portfolio-title");
   const cardsMotion = useSimpleMotion("portfolio-cards");
+  const [hoveredCard, setHoveredCard] = React.useState<string | null>(null);
+
+  const handleContactRedirect = () => {
+    router.push("/contact-us");
+  };
 
   const portfolioProjects: PortfolioProject[] = [
     {
@@ -233,102 +240,151 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
               maxWidth: "616px",
             }}
           >
-            {portfolioProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.4 + index * 0.1,
-                  ease: "easeOut",
-                }}
-                className="flex flex-col overflow-hidden rounded-[5px] shadow-lg"
-                style={{
-                  width: "296px",
-                  height: "512px",
-                }}
-              >
-                {/* Project Image */}
-                <div
-                  className="flex-shrink-0 rounded-t-[5px] overflow-hidden"
-                  style={{
-                    width: "296px",
-                    height: "350.12px",
+            {portfolioProjects.map((project, index) => {
+              const isHovered =
+                hoveredCard === project.id && !project.isComingSoon;
+              return (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  whileHover={project.isComingSoon ? {} : { scale: 1.05 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    opacity: {
+                      duration: 0.5,
+                      delay: 0.4 + index * 0.1,
+                      ease: "easeOut",
+                    },
+                    y: {
+                      duration: 0.5,
+                      delay: 0.4 + index * 0.1,
+                      ease: "easeOut",
+                    },
+                    scale: { duration: 0.3, ease: "easeOut" },
                   }}
-                >
-                  <Image
-                    src={project.imageUrl}
-                    alt={project.title}
-                    width={296}
-                    height={350}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Project Content */}
-                <div
-                  className={`flex flex-col flex-shrink-0 rounded-b-[5px] ${
-                    project.isComingSoon
-                      ? "bg-[rgba(22,34,28,0.65)]"
-                      : "bg-[#16221C]"
+                  onMouseEnter={() =>
+                    !project.isComingSoon && setHoveredCard(project.id)
+                  }
+                  onMouseLeave={() => setHoveredCard(null)}
+                  className={`flex flex-col relative rounded-[5px] shadow-lg ${
+                    !project.isComingSoon ? "cursor-pointer" : ""
                   }`}
                   style={{
                     width: "296px",
-                    height: "160.92px",
-                    padding: "15px",
+                    height: "512px",
+                    overflow: "visible",
                   }}
                 >
-                  {/* Project Title */}
-                  <h3
-                    className="text-white text-left"
+                  {/* Project Image */}
+                  <div
+                    className="flex-shrink-0 rounded-t-[5px] overflow-hidden"
                     style={{
-                      fontFamily: "'Roboto', sans-serif",
-                      fontWeight: 900,
-                      fontSize: "18px",
-                      lineHeight: "1.667em",
-                      marginBottom: "2px",
+                      width: "296px",
+                      height: "350.12px",
                     }}
                   >
-                    {project.title}
-                  </h3>
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      width={296}
+                      height={350}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
 
-                  {/* Project Location */}
-                  <p
-                    className="text-white text-left"
+                  {/* Project Content */}
+                  <div
+                    className={`flex flex-col absolute bottom-0 left-0 right-0 rounded-b-[5px] ${
+                      project.isComingSoon
+                        ? "bg-[rgba(22,34,28,0.65)]"
+                        : "bg-[#16221C]"
+                    }`}
                     style={{
-                      fontFamily: "'Open Sans', sans-serif",
-                      fontWeight: 300,
-                      fontSize: "12px",
-                      lineHeight: "1.667em",
-                      marginBottom: "8px",
+                      width: "296px",
+                      height: isHovered ? "240.92px" : "160.92px",
+                      padding: "15px",
+                      paddingTop: isHovered ? "25px" : "15px",
+                      transition:
+                        "height 0.3s ease-out, padding-top 0.3s ease-out",
                     }}
                   >
-                    {project.location}
-                  </p>
+                    {/* Project Title */}
+                    <h3
+                      className="text-white text-left"
+                      style={{
+                        fontFamily: "'Roboto', sans-serif",
+                        fontWeight: 900,
+                        fontSize: "18px",
+                        lineHeight: "1.667em",
+                        marginBottom: "2px",
+                      }}
+                    >
+                      {project.title}
+                    </h3>
 
-                  {/* Project Description - Only show if not Coming Soon */}
-                  {!project.isComingSoon && (
-                    <>
-                      <div className="flex-grow overflow-hidden">
-                        <p
-                          className="text-left"
+                    {/* Project Location */}
+                    <p
+                      className="text-white text-left"
+                      style={{
+                        fontFamily: "'Open Sans', sans-serif",
+                        fontWeight: 300,
+                        fontSize: "12px",
+                        lineHeight: "1.667em",
+                        marginBottom: "8px",
+                      }}
+                    >
+                      {project.location}
+                    </p>
+
+                    {/* Project Description - Only show if not Coming Soon */}
+                    {!project.isComingSoon ? (
+                      <>
+                        <div className="flex-grow overflow-hidden">
+                          <p
+                            className="text-left"
+                            style={{
+                              fontFamily: "'Roboto', sans-serif",
+                              fontWeight: 400,
+                              fontSize: "10px",
+                              lineHeight: "1.4em",
+                              letterSpacing: "-4%",
+                              color: "#69726D",
+                            }}
+                          >
+                            {project.description}
+                          </p>
+                        </div>
+
+                        {/* Read More Button */}
+                        <div
+                          className="text-left flex items-center mt-2"
                           style={{
-                            fontFamily: "'Roboto', sans-serif",
-                            fontWeight: 400,
-                            fontSize: "10px",
-                            lineHeight: "1.4em",
-                            letterSpacing: "-4%",
-                            color: "#69726D",
+                            opacity: isHovered ? 1 : 0,
+                            maxHeight: isHovered ? "50px" : "0",
+                            overflow: "hidden",
+                            transition:
+                              "opacity 0.3s ease-out, max-height 0.3s ease-out",
                           }}
                         >
-                          {project.description}
-                        </p>
-                      </div>
-
-                      {/* Read More Button */}
+                          <button
+                            className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
+                            style={{
+                              fontFamily: "'Open Sans', sans-serif",
+                              fontWeight: 400,
+                              fontSize: "12px",
+                              lineHeight: "1.5em",
+                            }}
+                          >
+                            Read More →
+                          </button>
+                        </div>
+                      </>
+                    ) : (
+                      /* Find out more Button for Coming Soon */
                       <div className="text-left flex items-center mt-2">
                         <button
+                          onClick={handleContactRedirect}
                           className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
                           style={{
                             fontFamily: "'Open Sans', sans-serif",
@@ -337,14 +393,14 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                             lineHeight: "1.5em",
                           }}
                         >
-                          Read More →
+                          Find out more →
                         </button>
                       </div>
-                    </>
-                  )}
-                </div>
-              </motion.div>
-            ))}
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -361,7 +417,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
           className="absolute left-0 right-0"
           style={{
             width: "100%",
-            height: createResponsiveValueDesktop(432.13, 606),
+            height: createResponsiveValueDesktop(432.13, 656),
             top: "85px",
           }}
         >
@@ -375,18 +431,22 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
             }}
           />
           <div
-            className="absolute inset-0"
+            className="absolute left-0 right-0"
             style={{
+              top: 0,
+              bottom: "50px",
               background:
                 "radial-gradient(60.99% 60.99% at 50% 39.01%, #000000 0%, rgba(0, 0, 0, 0.2) 6.73%, rgba(0, 0, 0, 0.2) 29.81%, #000000 86.54%)",
             }}
           />
           {/* Top Edge Fade - Smooth transition from black */}
           <div
-            className="absolute inset-0"
+            className="absolute left-0 right-0"
             style={{
+              top: 0,
+              bottom: "0px",
               background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 5%, rgba(0, 0, 0, 0) 15%)",
+                "linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 5%, rgba(0, 0, 0, 0.4) 25%, rgba(0, 0, 0, 0) 40%)",
             }}
           />
         </div>
@@ -415,7 +475,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(123, 123, 123, 0.8) 45%, rgba(255, 255, 255, 0) 78%, rgba(255, 255, 255, 1) 97%)",
+                "linear-gradient(180deg, rgba(0, 0, 0, 1) 2%, rgba(0, 0, 0, 0.81) 24%, rgba(0, 0, 0, 0.4) 53%, rgba(255, 255, 255, 0) 78%, rgba(255, 255, 255, 1) 97%)",
             }}
           />
         </div>
@@ -437,8 +497,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="flex flex-col items-center mx-auto"
             style={{
-              paddingTop: createResponsiveValueDesktop(175, 220),
-              gap: createResponsiveValueDesktop(24, 32),
+              paddingTop: createResponsiveValueDesktop(175, 250),
               maxWidth: createResponsiveValueDesktop(1199, 1599),
             }}
           >
@@ -446,16 +505,13 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
               className="flex flex-col"
               style={{
                 width: createResponsiveValueDesktop(803, 1070),
-                gap: createResponsiveValueDesktop(24, 32),
               }}
             >
               {/* Title */}
               <h2
-                className="font-semibold text-[#EDEDED] text-left"
+                className="font-semibold text-[#E6E6E6] text-left 3xl:font-avenir-heavy leading-normal 3xl:font-normal"
                 style={{
-                  fontSize: createResponsiveValueDesktop(36, 48),
-                  lineHeight: "1.173em",
-                  fontFamily: "'Work Sans', sans-serif",
+                  fontSize: createResponsiveValueDesktop(36, 50),
                 }}
               >
                 The Canopy Portfolio
@@ -463,12 +519,9 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
 
               {/* Description */}
               <p
-                className="text-[#F0F0F0] text-left"
+                className="text-[#999999] text-left font-open-sans leading-[36px] font-normal"
                 style={{
-                  fontSize: createResponsiveValueDesktop(18, 24),
-                  lineHeight: "1.111em",
-                  fontFamily: "'Open Sans', sans-serif",
-                  fontWeight: 300,
+                  fontSize: createResponsiveValueDesktop(18, 20),
                   width: createResponsiveValueDesktop(807, 1076),
                 }}
               >
@@ -478,10 +531,9 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
 
               {/* Decorative Line */}
               <div
+                className="h-[3px] bg-white mt-[8px] -ml-4"
                 style={{
-                  width: createResponsiveValueDesktop(948.13, 1264),
-                  height: "2px",
-                  backgroundColor: "#FFFFFF",
+                  width: createResponsiveValueDesktop(948.13, 1126),
                 }}
               />
             </div>
@@ -495,7 +547,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
             className="flex flex-col items-center w-full"
             style={{
-              marginTop: createResponsiveValueDesktop(170, 282),
+              marginTop: createResponsiveValueDesktop(170, 342),
               gap: createResponsiveValueDesktop(89.5, 120),
             }}
           >
@@ -506,117 +558,168 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                 gap: createResponsiveValueDesktop(118, 160),
               }}
             >
-              {portfolioProjects.slice(0, 3).map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.4 + index * 0.1,
-                    ease: "easeOut",
-                  }}
-                  className="flex flex-col overflow-hidden rounded-[5px] shadow-lg"
-                  style={{
-                    width: createResponsiveValueDesktop(296, 398),
-                    height: createResponsiveValueDesktop(512, 681),
-                  }}
-                >
-                  {/* Project Image */}
-                  <div
-                    className="flex-shrink-0 rounded-t-[5px] overflow-hidden"
-                    style={{
-                      width: "100%",
-                      height: createResponsiveValueDesktop(350.12, 464),
+              {portfolioProjects.slice(0, 3).map((project, index) => {
+                const isHovered =
+                  hoveredCard === project.id && !project.isComingSoon;
+                return (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    whileHover={project.isComingSoon ? {} : { scale: 1.05 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      opacity: {
+                        duration: 0.5,
+                        delay: 0.4 + index * 0.1,
+                        ease: "easeOut",
+                      },
+                      y: {
+                        duration: 0.5,
+                        delay: 0.4 + index * 0.1,
+                        ease: "easeOut",
+                      },
+                      scale: { duration: 0.3, ease: "easeOut" },
                     }}
-                  >
-                    <Image
-                      src={project.imageUrl}
-                      alt={project.title}
-                      width={398}
-                      height={464}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Project Content */}
-                  <div
-                    className={`flex flex-col flex-shrink-0 rounded-b-[5px] ${
-                      project.isComingSoon
-                        ? "bg-[rgba(22,34,28,0.65)]"
-                        : "bg-[#16221C]"
+                    onMouseEnter={() =>
+                      !project.isComingSoon && setHoveredCard(project.id)
+                    }
+                    onMouseLeave={() => setHoveredCard(null)}
+                    className={`flex flex-col relative rounded-[5px] shadow-lg ${
+                      !project.isComingSoon ? "cursor-pointer" : ""
                     }`}
                     style={{
-                      width: "100%",
-                      height: createResponsiveValueDesktop(160.92, 217),
-                      padding: createResponsiveValueDesktop(15, 20),
+                      width: createResponsiveValueDesktop(296, 398),
+                      height: createResponsiveValueDesktop(512, 681),
+                      overflow: "visible",
                     }}
                   >
-                    {/* Project Title */}
-                    <h3
-                      className="text-white text-center"
+                    {/* Project Image */}
+                    <div
+                      className="flex-shrink-0 rounded-t-[5px] overflow-hidden"
                       style={{
-                        fontFamily:
-                          createResponsiveValueDesktop(1440, 1920) ===
-                          createResponsiveValueDesktop(1440, 1440)
-                            ? "'Roboto', sans-serif"
-                            : "'Open Sans', sans-serif",
-                        fontWeight:
-                          createResponsiveValueDesktop(1440, 1920) ===
-                          createResponsiveValueDesktop(1440, 1440)
-                            ? 900
-                            : 700,
-                        fontSize: createResponsiveValueDesktop(18, 24),
-                        lineHeight: "1.4em",
-                        marginBottom: "2px",
+                        width: "100%",
+                        height: createResponsiveValueDesktop(350.12, 464),
                       }}
                     >
-                      {project.title}
-                    </h3>
+                      <Image
+                        src={project.imageUrl}
+                        alt={project.title}
+                        width={398}
+                        height={464}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
 
-                    {/* Project Location */}
-                    <p
-                      className="text-white text-center"
+                    {/* Project Content */}
+                    <div
+                      className={`flex flex-col absolute bottom-0 left-0 right-0 rounded-b-[5px] ${
+                        project.isComingSoon
+                          ? "bg-[rgba(22,34,28,0.65)]"
+                          : "bg-[#16221C]"
+                      }`}
                       style={{
-                        fontFamily: "'Open Sans', sans-serif",
-                        fontWeight:
-                          createResponsiveValueDesktop(1440, 1920) ===
-                          createResponsiveValueDesktop(1440, 1440)
-                            ? 300
-                            : 600,
-                        fontSize: createResponsiveValueDesktop(12, 16),
-                        lineHeight: "2.3em",
-                        marginBottom: "4px",
+                        width: "100%",
+                        height: isHovered
+                          ? `calc(${createResponsiveValueDesktop(
+                              160.92,
+                              217
+                            )} + 80px)`
+                          : createResponsiveValueDesktop(160.92, 217),
+                        padding: "20px",
+                        paddingTop: isHovered ? "30px" : "20px",
+                        transition:
+                          "height 0.3s ease-out, padding-top 0.3s ease-out",
                       }}
                     >
-                      {project.location}
-                    </p>
+                      {/* Project Title */}
+                      <h3
+                        className="text-white text-left leading-normal"
+                        style={{
+                          fontFamily:
+                            createResponsiveValueDesktop(1440, 1920) ===
+                            createResponsiveValueDesktop(1440, 1440)
+                              ? "'Roboto', sans-serif"
+                              : "'Open Sans', sans-serif",
+                          fontWeight:
+                            createResponsiveValueDesktop(1440, 1920) ===
+                            createResponsiveValueDesktop(1440, 1440)
+                              ? 900
+                              : 700,
+                          fontSize: createResponsiveValueDesktop(18, 23),
+                          marginBottom: "2px",
+                        }}
+                      >
+                        {project.title}
+                      </h3>
 
-                    {/* Project Description - Only show if not Coming Soon */}
-                    {!project.isComingSoon && (
-                      <>
-                        <div className="flex-grow flex items-center justify-center overflow-hidden">
-                          <p
-                            className="text-center text-white"
+                      {/* Project Location */}
+                      <p
+                        className="text-white text-left font-normal leading-normal"
+                        style={{
+                          fontFamily: "'Open Sans', sans-serif",
+                          fontWeight:
+                            createResponsiveValueDesktop(1440, 1920) ===
+                            createResponsiveValueDesktop(1440, 1440)
+                              ? 400
+                              : 600,
+                          fontSize: createResponsiveValueDesktop(12, 15),
+                          marginBottom: "4px",
+                        }}
+                      >
+                        {project.location}
+                      </p>
+
+                      {/* Project Description - Only show if not Coming Soon */}
+                      {!project.isComingSoon ? (
+                        <>
+                          <div className="flex-grow overflow-hidden">
+                            <p
+                              className="text-left text-[#C4C9C6] max-w-[340px]"
+                              style={{
+                                fontFamily:
+                                  createResponsiveValueDesktop(1440, 1920) ===
+                                  createResponsiveValueDesktop(1440, 1440)
+                                    ? "'Roboto', sans-serif"
+                                    : "'Open Sans', sans-serif",
+                                fontWeight: 400,
+                                fontSize: createResponsiveValueDesktop(10, 12),
+                                lineHeight: "17px",
+                              }}
+                            >
+                              {project.description}
+                            </p>
+                          </div>
+
+                          {/* Read More Button */}
+                          <div
+                            className="text-left flex items-center mt-2"
                             style={{
-                              fontFamily:
-                                createResponsiveValueDesktop(1440, 1920) ===
-                                createResponsiveValueDesktop(1440, 1440)
-                                  ? "'Roboto', sans-serif"
-                                  : "'Open Sans', sans-serif",
-                              fontWeight: 400,
-                              fontSize: createResponsiveValueDesktop(10, 12),
-                              lineHeight: "1.4em",
-                              letterSpacing: "-0.04px",
+                              opacity: isHovered ? 1 : 0,
+                              maxHeight: isHovered ? "50px" : "0",
+                              overflow: "hidden",
+                              transition:
+                                "opacity 0.3s ease-out, max-height 0.3s ease-out",
                             }}
                           >
-                            {project.description}
-                          </p>
-                        </div>
-
-                        {/* Read More Button */}
-                        <div className="text-center flex items-center justify-center mt-2">
+                            <button
+                              className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
+                              style={{
+                                fontFamily: "'Open Sans', sans-serif",
+                                fontWeight: 400,
+                                fontSize: createResponsiveValueDesktop(12, 14),
+                                lineHeight: "1.5em",
+                              }}
+                            >
+                              Read More →
+                            </button>
+                          </div>
+                        </>
+                      ) : (
+                        /* Find out more Button for Coming Soon */
+                        <div className="text-left flex items-center mt-2">
                           <button
+                            onClick={handleContactRedirect}
                             className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
                             style={{
                               fontFamily: "'Open Sans', sans-serif",
@@ -625,14 +728,14 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                               lineHeight: "1.5em",
                             }}
                           >
-                            Read More →
+                            Find out more →
                           </button>
                         </div>
-                      </>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
+                      )}
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
 
             {/* Second Row - 2 Cards */}
@@ -642,117 +745,171 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                 gap: createResponsiveValueDesktop(118, 160),
               }}
             >
-              {portfolioProjects.slice(3, 5).map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.7 + index * 0.1,
-                    ease: "easeOut",
-                  }}
-                  className="flex flex-col overflow-hidden rounded-[5px] shadow-lg"
-                  style={{
-                    width: createResponsiveValueDesktop(296, 398),
-                    height: createResponsiveValueDesktop(512, 681),
-                  }}
-                >
-                  {/* Project Image */}
-                  <div
-                    className="flex-shrink-0 rounded-t-[5px] overflow-hidden"
-                    style={{
-                      width: "100%",
-                      height: createResponsiveValueDesktop(350.12, 464),
+              {portfolioProjects.slice(3, 5).map((project, index) => {
+                const isHovered =
+                  hoveredCard === project.id && !project.isComingSoon;
+                return (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    whileHover={project.isComingSoon ? {} : { scale: 1.05 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      opacity: {
+                        duration: 0.5,
+                        delay: 0.7 + index * 0.1,
+                        ease: "easeOut",
+                      },
+                      y: {
+                        duration: 0.5,
+                        delay: 0.7 + index * 0.1,
+                        ease: "easeOut",
+                      },
+                      scale: { duration: 0.3, ease: "easeOut" },
                     }}
-                  >
-                    <Image
-                      src={project.imageUrl}
-                      alt={project.title}
-                      width={398}
-                      height={464}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Project Content */}
-                  <div
-                    className={`flex flex-col flex-shrink-0 rounded-b-[5px] ${
-                      project.isComingSoon
-                        ? "bg-[rgba(22,34,28,0.65)]"
-                        : "bg-[#16221C]"
+                    onMouseEnter={() =>
+                      !project.isComingSoon && setHoveredCard(project.id)
+                    }
+                    onMouseLeave={() => setHoveredCard(null)}
+                    className={`flex flex-col relative rounded-[5px] shadow-lg ${
+                      !project.isComingSoon ? "cursor-pointer" : ""
                     }`}
                     style={{
-                      width: "100%",
-                      height: createResponsiveValueDesktop(160.92, 217),
-                      padding: createResponsiveValueDesktop(15, 20),
+                      width: createResponsiveValueDesktop(296, 398),
+                      height: createResponsiveValueDesktop(512, 681),
+                      overflow: "visible",
                     }}
                   >
-                    {/* Project Title */}
-                    <h3
-                      className="text-white text-center"
+                    {/* Project Image */}
+                    <div
+                      className="flex-shrink-0 rounded-t-[5px] overflow-hidden"
                       style={{
-                        fontFamily:
-                          createResponsiveValueDesktop(1440, 1920) ===
-                          createResponsiveValueDesktop(1440, 1440)
-                            ? "'Roboto', sans-serif"
-                            : "'Open Sans', sans-serif",
-                        fontWeight:
-                          createResponsiveValueDesktop(1440, 1920) ===
-                          createResponsiveValueDesktop(1440, 1440)
-                            ? 900
-                            : 700,
-                        fontSize: createResponsiveValueDesktop(18, 24),
-                        lineHeight: "1.4em",
-                        marginBottom: "2px",
+                        width: "100%",
+                        height: createResponsiveValueDesktop(350.12, 464),
                       }}
                     >
-                      {project.title}
-                    </h3>
+                      <Image
+                        src={project.imageUrl}
+                        alt={project.title}
+                        width={398}
+                        height={464}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
 
-                    {/* Project Location */}
-                    <p
-                      className="text-white text-center"
+                    {/* Project Content */}
+                    <div
+                      className={`flex flex-col absolute bottom-0 left-0 right-0 rounded-b-[5px] ${
+                        project.isComingSoon
+                          ? "bg-[rgba(22,34,28,0.65)]"
+                          : "bg-[#16221C]"
+                      }`}
                       style={{
-                        fontFamily: "'Open Sans', sans-serif",
-                        fontWeight:
-                          createResponsiveValueDesktop(1440, 1920) ===
-                          createResponsiveValueDesktop(1440, 1440)
-                            ? 300
-                            : 600,
-                        fontSize: createResponsiveValueDesktop(12, 16),
-                        lineHeight: "2.3em",
-                        marginBottom: "4px",
+                        width: "100%",
+                        height: isHovered
+                          ? `calc(${createResponsiveValueDesktop(
+                              160.92,
+                              217
+                            )} + 80px)`
+                          : createResponsiveValueDesktop(160.92, 217),
+                        padding: "20px",
+                        paddingTop: isHovered ? "30px" : "20px",
+                        transition:
+                          "height 0.3s ease-out, padding-top 0.3s ease-out",
                       }}
                     >
-                      {project.location}
-                    </p>
+                      {/* Project Title */}
+                      <h3
+                        className="text-white text-left"
+                        style={{
+                          fontFamily:
+                            createResponsiveValueDesktop(1440, 1920) ===
+                            createResponsiveValueDesktop(1440, 1440)
+                              ? "'Roboto', sans-serif"
+                              : "'Open Sans', sans-serif",
+                          fontWeight:
+                            createResponsiveValueDesktop(1440, 1920) ===
+                            createResponsiveValueDesktop(1440, 1440)
+                              ? 900
+                              : 700,
+                          fontSize: createResponsiveValueDesktop(18, 24),
+                          lineHeight: "1.4em",
+                          marginBottom: "2px",
+                        }}
+                      >
+                        {project.title}
+                      </h3>
 
-                    {/* Project Description - Only show if not Coming Soon */}
-                    {!project.isComingSoon && (
-                      <>
-                        <div className="flex-grow flex items-center justify-center overflow-hidden">
-                          <p
-                            className="text-center text-white"
+                      {/* Project Location */}
+                      <p
+                        className="text-white text-left"
+                        style={{
+                          fontFamily: "'Open Sans', sans-serif",
+                          fontWeight:
+                            createResponsiveValueDesktop(1440, 1920) ===
+                            createResponsiveValueDesktop(1440, 1440)
+                              ? 300
+                              : 600,
+                          fontSize: createResponsiveValueDesktop(12, 16),
+                          lineHeight: "2.3em",
+                          marginBottom: "4px",
+                        }}
+                      >
+                        {project.location}
+                      </p>
+
+                      {/* Project Description - Only show if not Coming Soon */}
+                      {!project.isComingSoon ? (
+                        <>
+                          <div className="flex-grow overflow-hidden">
+                            <p
+                              className="text-left text-white"
+                              style={{
+                                fontFamily:
+                                  createResponsiveValueDesktop(1440, 1920) ===
+                                  createResponsiveValueDesktop(1440, 1440)
+                                    ? "'Roboto', sans-serif"
+                                    : "'Open Sans', sans-serif",
+                                fontWeight: 400,
+                                fontSize: createResponsiveValueDesktop(10, 12),
+                                lineHeight: "1.4em",
+                                letterSpacing: "-0.04px",
+                              }}
+                            >
+                              {project.description}
+                            </p>
+                          </div>
+
+                          {/* Read More Button */}
+                          <div
+                            className="text-left flex items-center mt-2"
                             style={{
-                              fontFamily:
-                                createResponsiveValueDesktop(1440, 1920) ===
-                                createResponsiveValueDesktop(1440, 1440)
-                                  ? "'Roboto', sans-serif"
-                                  : "'Open Sans', sans-serif",
-                              fontWeight: 400,
-                              fontSize: createResponsiveValueDesktop(10, 12),
-                              lineHeight: "1.4em",
-                              letterSpacing: "-0.04px",
+                              opacity: isHovered ? 1 : 0,
+                              maxHeight: isHovered ? "50px" : "0",
+                              overflow: "hidden",
+                              transition:
+                                "opacity 0.3s ease-out, max-height 0.3s ease-out",
                             }}
                           >
-                            {project.description}
-                          </p>
-                        </div>
-
-                        {/* Read More Button */}
-                        <div className="text-center flex items-center justify-center mt-2">
+                            <button
+                              className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
+                              style={{
+                                fontFamily: "'Open Sans', sans-serif",
+                                fontWeight: 400,
+                                fontSize: createResponsiveValueDesktop(12, 14),
+                                lineHeight: "1.5em",
+                              }}
+                            >
+                              Read More →
+                            </button>
+                          </div>
+                        </>
+                      ) : (
+                        /* Find out more Button for Coming Soon */
+                        <div className="text-left flex items-center mt-2">
                           <button
+                            onClick={handleContactRedirect}
                             className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
                             style={{
                               fontFamily: "'Open Sans', sans-serif",
@@ -761,14 +918,14 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                               lineHeight: "1.5em",
                             }}
                           >
-                            Read More →
+                            Find out more →
                           </button>
                         </div>
-                      </>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
+                      )}
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </div>
