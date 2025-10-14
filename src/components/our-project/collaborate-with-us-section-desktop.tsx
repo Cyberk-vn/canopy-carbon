@@ -16,7 +16,7 @@ const createResponsiveValue = (
 const CollaborateWithUsSectionDesktop: React.FC = () => {
   return (
     <section
-      className="hidden md:block bg-white w-full overflow-hidden md:py-[48px] md:px-[48px] md:mt-[48px]"
+      className="hidden md:block bg-white w-full overflow-hidden md:py-[48px] md:px-[48px] md:mt-[48px] 3xl:-ml-20"
       style={{
         paddingTop: createResponsiveValue(80, 107),
         paddingBottom: createResponsiveValue(80, 107),
@@ -35,12 +35,12 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
             paddingLeft: createResponsiveValue(64, 180),
             paddingRight: createResponsiveValue(64, 160),
             paddingTop: createResponsiveValue(32, 46),
-            paddingBottom: createResponsiveValue(32, 75),
+            paddingBottom: createResponsiveValue(32, 70),
           }}
         >
           <div
             className="flex flex-col md:gap-[32px]"
-            style={{ gap: createResponsiveValue(32, 80) }}
+            style={{ gap: createResponsiveValue(32, 60) }}
           >
             {/* Title */}
             <motion.h2
@@ -201,10 +201,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
         </div>
 
         {/* Decorator Image - Absolute on tablet, relative on desktop */}
-        <div
-          className="md:hidden md:right-0 md:top-0 xl:relative xl:flex items-start justify-start"
-          style={{ paddingTop: createResponsiveValue(14, 62) }}
-        >
+        <div className="md:hidden md:right-0 md:top-0 xl:relative xl:flex items-start justify-start opacity-60">
           <motion.div
             initial={{ opacity: 0.64, x: 20 }}
             animate={{ opacity: 0.8, x: 0 }}
