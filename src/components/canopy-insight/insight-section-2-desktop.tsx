@@ -4,9 +4,9 @@ import { InsightSectionDesktop } from "./insight-section-desktop";
 
 export function InsightSection2Desktop() {
   const sectionData = {
-    title: "Carbon Market Cycles: Tracing the VCM's Evolution",
+    title: "Profiling Aviation Emissions: Sector Footprint & CORSIA Framework",
     description:
-      "This paper traces the Voluntary Carbon Market’s evolution through phases of growth, collapse, and reform. It examines the early boom in activity, the credibility crises that followed, and current efforts to rebuild trust through ICVCM and VCMI. Today’s recalibration phase is viewed as critical to the VCM’s long-term maturity and credibility.",
+      "This paper begins by examining the aviation sector’s growing emissions trajectory and its designation as a hard-to-abate industry. It explores the underlying technical constraints of aircraft propulsion, highlighting why electrification remains a major technological and regulatory hurdle. The paper concludes with an overview of the Carbon Offsetting and Reduction Scheme for International Aviation (CORSIA), explaining how the framework currently serves as the primary mechanism to manage aviation-related emissions at scale.",
     imagePosition: "left" as const,
     imageSrc: "/assets/desktop/canopy-insight/bayond-emission-card-3.png",
     imageSrcLarge:

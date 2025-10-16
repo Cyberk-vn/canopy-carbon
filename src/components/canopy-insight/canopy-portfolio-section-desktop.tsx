@@ -33,7 +33,7 @@ export function CanopyPortfolioSectionDesktop() {
         className={cn("absolute inset-0 z-10")}
         style={{
           background:
-            "linear-gradient(180deg, #FFFFFF 43%, rgba(255, 255, 255, 0.3) 53.34%, rgba(255, 255, 255, 0) 107.9%, #FFFFFF 143%)",
+            "linear-gradient(180deg, #FFFFFF 43%, rgba(255, 255, 255, 0.6) 55%, rgba(255, 255, 255, 0) 90%)",
         }}
       />
       {/* Bottom to top gradient */}

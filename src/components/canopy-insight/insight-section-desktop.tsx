@@ -31,7 +31,7 @@ export function InsightSectionDesktop({
     <div
       className={cn(
         "flex flex-col justify-between gap-6 bg-[#FAFAFA] p-6",
-        "shadow-[0px_4px_4px_0px_#00000026]",
+        "shadow-[0px_2px_2px_0px_#00000026]",
         "lg:max-w-[648px] lg:grow",
         "xl:max-w-none",
         "2xl:h-[414px]",
@@ -104,7 +104,7 @@ export function InsightSectionDesktop({
         className={cn(
           "relative z-20",
           "h-[246px] w-[530px]",
-          "2xl:w-[846px] 2xl:h-[333px]"
+          "2xl:w-[846px] 2xl:h-[336px]"
         )}
       >
         {imageSrcLarge ? (
@@ -135,7 +135,7 @@ export function InsightSectionDesktop({
   );
 
   return (
-    <div className={cn("w-full md:p-12 lg:py-20 xl:px-7")}>
+    <div className={cn("w-full md:p-12 lg:py-20 xl:py-12 xl:px-7")}>
       <div className={cn("relative mx-auto max-w-[1250px] 2xl:max-w-none")}>
         <div className={cn("mx-auto w-full 2xl:max-w-[1737px]")}>
           <FadeContent
@@ -143,7 +143,7 @@ export function InsightSectionDesktop({
             delay={100}
             threshold={0.1}
             easing="ease-out"
-            className={cn("mb-2")}
+            className={cn("mb-10 2xl:mb-4")}
           >
             <h2
               className={cn(
