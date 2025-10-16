@@ -247,7 +247,7 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                     alt={image.alt}
                     width={185}
                     height={258}
-                    className="object-contain"
+                    className="object-contain rounded-[5px]"
                     priority
                     style={{
                       width: createResponsiveValue(165, 185, 239),
@@ -332,7 +332,7 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                     alt={image.alt}
                     width={185}
                     height={258}
-                    className="object-contain"
+                    className="object-contain rounded-[5px]"
                     priority
                     style={{
                       width: createResponsiveValue(165, 185, 239),
@@ -424,7 +424,7 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
                     alt={image.alt}
                     width={185}
                     height={258}
-                    className="object-contain"
+                    className="object-contain rounded-[5px]"
                     priority
                     style={{
                       width: createResponsiveValue(165, 185, 239),
@@ -441,20 +441,19 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
 
       {/* Description Section - Matching Figma Design */}
       <div
-        className="flex flex-col items-center rounded-lg mx-auto"
+        className="flex flex-col items-center mx-auto"
         style={{
           width: createResponsiveValue(1043, 1170, 1788), // Figma: 1170px at 1440px
           backgroundColor: "#F7F7F7",
-          padding: "25px 20px", // Fixed padding
+          padding: "48px 20px", // Fixed padding
           gap: 24, // Figma: 40px gap at 1440px
         }}
       >
         <p
-          className="text-center 3xl:font-avenir-heavy 3xl:font-normal text-[#C4CCD3]"
+          className="text-center 3xl:font-avenir-heavy 3xl:font-normal text-[#C4CCD3] leading-[1.2]"
           style={{
             fontSize: createResponsiveValue(18, 24, 33),
             fontWeight: 600,
-            lineHeight: "1.4em",
             width: createResponsiveValue(985, 1050, 1100),
           }}
         >
@@ -464,10 +463,7 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
         {/* Request Access Button */}
         <motion.button
           onClick={buttonAction}
-          className="flex items-center"
-          style={{
-            gap: createResponsiveValue(12, 13, 20), // Figma: 13px gap at 1440px
-          }}
+          className="flex items-center gap-1"
           whileHover={{
             scale: 1.05,
             x: 5,
@@ -573,21 +569,21 @@ const DescriptionSectionInline = ({
 
       {/* Vertical Background Card - Grows from height 0 to max height */}
       <motion.div
-        className="absolute z-[5] bottom-[20px] bg-[#F9F9F9]"
+        className="absolute z-[5] bottom-[10px] bg-[#F9F9F9]"
         style={{
           left: createResponsiveValue(92, 103, 157),
-          width: createResponsiveValue(211, 237, 362),
+          width: createResponsiveValue(211, 237, 330),
           transformOrigin: "bottom",
         }}
         initial={{ height: 0, opacity: 0 }}
         whileInView={{
-          height: createResponsiveValue(446, 502, 767),
+          height: createResponsiveValue(300, 446, 663),
           opacity: 1,
         }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{
           duration: 0.8,
-          delay: 1.0,
+          delay: 0.5,
           ease: "easeOut",
         }}
       />
@@ -596,10 +592,10 @@ const DescriptionSectionInline = ({
       <motion.div
         className="absolute z-10"
         style={{
-          left: createResponsiveValue(100, 112, 171), // Figma: 112px at 1440px
-          top: createResponsiveValue(59, 66, 101), // Figma: 65.98px at 1440px
-          width: createResponsiveValue(195, 219, 335), // Figma: 219px at 1440px
-          height: createResponsiveValue(135, 152, 232), // Figma: 152px at 1440px
+          left: createResponsiveValue(100, 112, 125), // Figma: 112px at 1440px
+          top: createResponsiveValue(100, 112, 150),
+          width: createResponsiveValue(195, 219, 470), // Figma: 219px at 1440px
+          height: createResponsiveValue(135, 152, 344), // Figma: 152px at 1440px
         }}
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -651,16 +647,16 @@ const DescriptionSectionInline = ({
         className="absolute z-20"
         style={{
           left: createResponsiveValue(387, 435, 665),
-          top: createResponsiveValue(96, 108, 190),
+          bottom: createResponsiveValue(96, 108, 243),
           width: createResponsiveValue(654, 736, 972),
-          height: createResponsiveValue(207, 233, 233),
+          height: createResponsiveValue(207, 233, 340),
         }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{
           duration: 0.7,
-          delay: 1.5,
+          delay: 1.3,
           ease: "easeOut",
         }}
       >
@@ -668,7 +664,7 @@ const DescriptionSectionInline = ({
           className="font-avenir-heavy font-normal text-[#91A69E]"
           style={{
             fontSize: createResponsiveValue(21, 24, 33),
-            lineHeight: "1.4em",
+            lineHeight: "1.2em",
             letterSpacing: "-1%",
             textAlign: "left",
           }}
@@ -687,13 +683,13 @@ const DescriptionSectionInline = ({
         }}
         initial={{ width: 0, opacity: 0 }}
         whileInView={{
-          width: `min(${createResponsiveValue(1175, 1322, 2020)}, 100%)`,
+          width: `min(${createResponsiveValue(1175, 1322, 1761)}, 100%)`,
           opacity: 1,
         }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{
           duration: 0.8,
-          delay: 1.2,
+          delay: 0.5,
           ease: "easeOut",
         }}
       />

@@ -122,7 +122,7 @@ export const OurPurposeSection = () => {
         </div>
 
         {/* Desktop Layout - 768px-1024px → 1024px-2200px responsive */}
-        <div className="hidden md:flex flex-col w-full bg-[#FCFCFC] pb-[62px]">
+        <div className="hidden md:flex flex-col w-full bg-[#FCFCFC] mb-[90px]">
           <div className="flex flex-col w-full max-w-[1920px] mx-auto">
             {/* Content Container */}
             <motion.div
@@ -135,7 +135,7 @@ export const OurPurposeSection = () => {
                   "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
                 marginRight:
                   "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
-                marginTop: "clamp(70px, calc(-121.41px + 24.95vw), 134px)",
+                marginTop: "clamp(70px, calc(-121.41px + 24.95vw), 154px)",
                 gap: "clamp(22px, calc(90.25px - 8.91vw), 40px)",
               }}
             >
@@ -159,23 +159,17 @@ export const OurPurposeSection = () => {
               </p>
 
               {/* Our Purpose Label */}
-              <p
-                className="font-open-sans text-[rgba(139,147,140,0.8)] h-[18px] font-normal lg:font-light"
-                style={{
-                  fontSize: "clamp(12px, calc(28.13px - 2.11vw), 16px)",
-                  lineHeight: "clamp(2em, calc(0.91em + 0.14vw), 1.5em)",
-                }}
-              >
+              <p className="font-open-sans text-[#95A4B0] h-[18px] font-normal lg:font-light xxl:font-normal leading-[27px] text-[12px] xxl:text-[15px]">
                 - Our Purpose
               </p>
             </motion.div>
 
             {/* Bottom Decorative Line */}
             <div
-              className="border-b-2 border-[#E5E5E5] md:mt-[67px] lg:mt-[18px] md:max-w-[694px] lg:max-w-[827px] 3xl:max-w-[1127px]"
+              className="border-b-3 border-[#E5E5E5] md:mt-[67px] lg:mt-[30px] md:max-w-[694px] lg:max-w-[827px] 3xl:max-w-[1127px]"
               style={{
                 marginLeft:
-                  "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
+                  "clamp(31.5px, calc(-184.48px + 28.12vw), 100.98px)",
                 marginRight:
                   "clamp(31.5px, calc(-184.48px + 28.12vw), 118.98px)",
               }}

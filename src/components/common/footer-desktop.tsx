@@ -43,11 +43,7 @@ const FooterDesktop = ({
         padding="none"
         className={cn("hidden xl:block")}
       >
-        <div
-          className={cn(
-            "max-w-[2200px] mx-auto 3xl:px-[172px] 3xl:py-[110px] px-[68px] py-[80px]"
-          )}
-        >
+        <div className={cn("max-w-[2200px] mx-auto 3xl:px-[172px] px-[68px]")}>
           {/* Desktop Layout - Fixed Gap per Figma */}
           <div className={cn("flex flex-row items-start justify-between")}>
             {/* Left Side - Contact Information (fixed width per Figma) */}
