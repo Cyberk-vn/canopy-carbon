@@ -6,24 +6,24 @@ import { memo } from "react";
 import { motion } from "motion/react";
 import { Container } from "../../shared";
 import LogoDecorator from "../../../../public/assets/banner-shared-component/circle.png";
+import DevelopmentDecoratorImage from "../../../../public/assets/desktop/about-us/development-decorator-image.avif";
 
 interface DesktopViewProps {
   data: DevelopmentSequenceSectionProps["data"];
 }
 
-// Helper function to create responsive value for desktop with 3 breakpoints
-// 1280px-1440px-2200px: Smooth scaling across the range
+// Helper function to create responsive value for desktop
+// 1280px-2200px: Smooth linear scaling across the entire range
+// Fixed: Removed min() constraint that was preventing proper scaling to max value
 const createResponsiveValue = (
   value1280: number,
-  value1440: number,
   value2200: number
 ): string => {
+  // Calculate linear interpolation from 1280px to 2200px viewport
+  // Formula: minValue + (maxValue - minValue) * ((100vw - minViewport) / viewportRange)
   return `clamp(
     ${value1280}px,
-    min(
-      calc(${value1280}px + (${value1440} - ${value1280}) * ((100vw - 1280px) / 160)),
-      calc(${value1440}px + (${value2200} - ${value1440}) * ((100vw - 1440px) / 760))
-    ),
+    calc(${value1280}px + (${value2200} - ${value1280}) * ((100vw - 1280px) / 920)),
     ${value2200}px
   )`;
 };
@@ -114,7 +114,9 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
       id: 4,
       title: (
         <>
-          SDG & Co-Benefit <br /> Delivery
+          SDG & Co-
+          <br />
+          Benefit <br /> Delivery
         </>
       ),
       description:
@@ -141,21 +143,13 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
         {/* Two Column Layout */}
         <div className="flex gap-[167px] xxl:gap-[167px] 3xl:gap-[250px]">
           {/* Left Column: Title, Description, and Cards */}
-          <div
-            className="flex-1"
-            style={{
-              maxWidth: "1022px",
-              marginLeft: "68px",
-              marginTop: "79px",
-              marginBottom: "93px",
-            }}
-          >
+          <div className="flex-1 max-w-[1022px] ml-[98px] mt-[79px] mb-[93px]">
             {/* Header Section */}
-            <div className="mb-[93px] ml-[20px]">
-              <h2 className="font-open-sans xxl:font-avenir-heavy xxl:font-normal font-bold xxl:text-[24px] 3xl:text-[30px] leading-[1.4] text-[#596E64] mb-[24px]">
+            <div className="mb-[150px] ml-[20px]">
+              <h2 className="font-open-sans xxl:font-avenir-heavy xxl:font-normal font-bold xxl:text-[24px] 3xl:text-[30px] leading-[1.1] text-[#596E64] mb-[24px]">
                 Canopy Project <br /> Development Roadmap
               </h2>
-              <p className="font-open-sans xxl:font-avenir-heavy font-semibold xxl:font-normal xxl:text-[24px] 3xl:text-[33px] leading-normal text-[#BCC9C4] max-w-[788px] xxl:max-w-[970px]">
+              <p className="font-open-sans xxl:font-avenir-heavy font-semibold xxl:font-normal xxl:text-[24px] 3xl:text-[33px] leading-[1.1] text-[#BCC9C4] max-w-[788px] xxl:max-w-[970px]">
                 Our nature projects progress through structured development
                 phases, guided by disciplined decision-making at every step.
               </p>
@@ -229,14 +223,14 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
                       <div
                         className="flex items-center"
                         style={{
-                          height: createResponsiveValue(17.78, 20, 30.56),
+                          height: createResponsiveValue(17.78, 30.56),
                         }}
                       >
                         <h4
                           className="font-roboto font-black xxl:font-avenir-heavy xxl:font-normal text-[#7D8F89]"
                           style={{
-                            fontSize: createResponsiveValue(14.22, 16, 20),
-                            lineHeight: createResponsiveValue(17.78, 20, 30.56),
+                            fontSize: createResponsiveValue(14.22, 20),
+                            lineHeight: createResponsiveValue(17.78, 30.56),
                           }}
                         >
                           {card.title}
@@ -248,7 +242,7 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
                         <p
                           className="font-roboto font-normal xxl:font-open-sans xxl:font-normal text-[#E0E4E8]"
                           style={{
-                            fontSize: createResponsiveValue(10.67, 12, 13),
+                            fontSize: createResponsiveValue(10.67, 13),
                           }}
                         >
                           {card.description}
@@ -265,11 +259,11 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
           <div className="flex-shrink-0 mb-[93px] xxl:pr-[68px] 4xl:pr-0">
             <div className="h-full flex items-stretch">
               <Image
-                src="/assets/desktop/about-us/development-decorator-image.svg"
+                src={DevelopmentDecoratorImage}
                 alt="Development sequence decorative element"
                 width={398}
                 height={1097}
-                className="h-full object-cover xxl:w-[354px] xxl:h-[948px] 3xl:w-[398px] 3xl:h-[1097px]"
+                className="h-full object-cover xxl:w-[354px] 3xl:w-[398px] xxl:h-[1097px]"
               />
             </div>
           </div>
@@ -278,18 +272,18 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
 
       {/* Climate Action Section - Side by Side Layout */}
       <div
-        className="hidden xl:block overflow-hidden max-w-[1920] mx-auto"
+        className="hidden xl:block overflow-hidden max-w-[1990px] mx-auto"
         style={{
-          paddingTop: createResponsiveValue(21.33, 30, 45.83),
-          paddingBottom: createResponsiveValue(21.33, 30, 45.83),
+          paddingTop: createResponsiveValue(21.33, 45.83),
+          paddingBottom: createResponsiveValue(21.33, 90.83),
         }}
       >
         <div className="flex" style={{ position: "relative" }}>
           {/* Left Column: Title, Description, and Cards */}
           <div
-            className="ml-[136px]"
+            className="ml-[166px]"
             style={{
-              marginTop: createResponsiveValue(48.22, 68, 103.89),
+              marginTop: createResponsiveValue(48.22, 103.89),
             }}
           >
             {/* Header Section */}
@@ -303,7 +297,7 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
               <p
                 className="font-open-sans xxl:font-avenir-heavy font-semibold xxl:font-normal xxl:text-[24px] 3xl:text-[33px] leading-normal text-[#BCC9C4] max-w-[788px] xxl:max-w-[970px]"
                 style={{
-                  maxWidth: createResponsiveValue(456.59, 644.43, 984.39),
+                  maxWidth: createResponsiveValue(456.59, 984.39),
                 }}
               >
                 Nature-based projects demand ongoing, multifaceted execution far
@@ -315,13 +309,13 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
             <div
               className="flex flex-col"
               style={{
-                gap: createResponsiveValue(11.33, 16, 24.44),
+                gap: createResponsiveValue(11.33, 18),
               }}
             >
               {climateActionCards.map((card, index) => (
                 <motion.div
                   key={card.id}
-                  className="flex items-start rounded-[5px]"
+                  className="flex items-start"
                   initial={{
                     opacity: 0,
                     x: -50,
@@ -357,10 +351,11 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
                     },
                   }}
                   style={{
-                    width: createResponsiveValue(636.22, 898, 1100),
+                    width: createResponsiveValue(636.22, 1310),
+                    maxWidth: "1105px",
                     height: "175px",
                     backgroundColor: "rgba(207, 213, 219, 0.4)",
-                    padding: createResponsiveValue(14.89, 21, 32.11),
+                    padding: createResponsiveValue(14.89, 32.11),
                     transformStyle: "preserve-3d",
                     perspective: "1000px",
                   }}
@@ -369,8 +364,8 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
                   <div
                     className="flex items-start flex-shrink-0"
                     style={{
-                      width: createResponsiveValue(150, 212, 324),
-                      paddingRight: createResponsiveValue(20, 28, 40),
+                      width: createResponsiveValue(150, 324),
+                      paddingRight: createResponsiveValue(20, 40),
                     }}
                   >
                     <h4
@@ -392,13 +387,13 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
 
                   {/* Right: Description - Fills remaining space */}
                   <div
-                    className="flex-1 rounded-[8px] flex items-start"
+                    className="flex-1 rounded-[8px] flex items-start -mt-3"
                     style={{
                       backgroundColor: "#F3F5F6",
-                      paddingTop: createResponsiveValue(10, 14, 20),
-                      paddingBottom: createResponsiveValue(14.17, 20, 30.56),
-                      paddingLeft: createResponsiveValue(14.17, 20, 30.56),
-                      paddingRight: createResponsiveValue(14.17, 20, 30.56),
+                      paddingTop: createResponsiveValue(10, 15),
+                      paddingBottom: createResponsiveValue(14.17, 30.56),
+                      paddingLeft: createResponsiveValue(14.17, 30.56),
+                      paddingRight: createResponsiveValue(14.17, 30.56),
                     }}
                   >
                     <p
@@ -423,10 +418,10 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
           <div
             className="absolute overflow-hidden"
             style={{
-              right: createResponsiveValue(10, 10.78, 0),
-              top: createResponsiveValue(-28.19, -39.78, -53),
-              width: `min(${createResponsiveValue(374.27, 390, 560)}, 560px)`,
-              height: `min(${createResponsiveValue(315.56, 325, 478)}, 478px)`,
+              right: createResponsiveValue(10, 0),
+              top: createResponsiveValue(-28.19, -53),
+              width: createResponsiveValue(374.27, 560),
+              height: createResponsiveValue(315.56, 478),
             }}
           >
             <Image

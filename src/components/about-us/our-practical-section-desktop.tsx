@@ -71,7 +71,7 @@ const cardPositions: CardPosition[] = [
     left1440: 736.69, // 616.69 + 120
     top1440: 170, // 90 + 80 (shifted down)
     width1440: 591,
-    left2200: 922.31, // 1062.31 - 140 (adjusted left for 2200px)
+    left2200: 1012.31, // 1062.31 - 140 (adjusted left for 2200px)
     top2200: 170, // 90 + 80 (shifted down) - FURTHEST RIGHT
     width2200: 903.05,
   },
@@ -83,7 +83,7 @@ const cardPositions: CardPosition[] = [
     left1440: 668.21, // 548.21 + 120
     top1440: 350, // 170 + 120 (height) + 60 (gap)
     width1440: 585.95,
-    left2200: 817.67, // 957.67 - 140 (adjusted left for 2200px)
+    left2200: 897.67, // 957.67 - 140 (adjusted left for 2200px)
     top2200: 380, // 170 + 150 (height) + 60 (gap)
     width2200: 895.41,
   },
@@ -95,7 +95,7 @@ const cardPositions: CardPosition[] = [
     left1440: 617.19, // 497.19 + 120
     top1440: 530, // 350 + 120 + 60
     width1440: 560,
-    left2200: 739.67, // 879.67 - 140 (adjusted left for 2200px)
+    left2200: 779.67, // 879.67 - 140 (adjusted left for 2200px)
     top2200: 590, // 380 + 150 + 60
     width2200: 855.68,
   },
@@ -108,7 +108,7 @@ const cardPositions: CardPosition[] = [
     top1440: 710, // 530 + 120 + 60
     width1440: 560,
     left2200: 607.34, // 687.34 - 80 (adjusted left for 2200px)
-    top2200: 800, // 590 + 150 + 60
+    top2200: 780, // 590 + 150 + 60
     width2200: 855.68,
   },
   {
@@ -119,7 +119,7 @@ const cardPositions: CardPosition[] = [
     left1440: 337.19, // 217.19 + 120
     top1440: 890, // 710 + 120 + 60
     width1440: 560,
-    left2200: 371.95, // 451.95 - 80 (adjusted left for 2200px)
+    left2200: 411.95, // 451.95 - 80 (adjusted left for 2200px)
     top2200: 1010, // 800 + 150 + 60
     width2200: 855.68,
   },
@@ -163,7 +163,7 @@ export const OurPracticalSectionDesktop = () => {
         }}
       />
 
-      <div className="max-w-[1920px] mx-auto relative">
+      <div className="max-w-[2150px] mx-auto relative">
         <motion.div
           {...SIMPLE_ANIMATIONS.fadeInUp}
           {...containerMotion}
@@ -256,7 +256,7 @@ export const OurPracticalSectionDesktop = () => {
               >
                 {/* Card Title - 1280px: 17.78px → 1440px: WS 600 20px → 1920px: WS 600 22px */}
                 <h3
-                  className="font-['Work_Sans'] font-semibold text-[#506159] text-left"
+                  className="font-['Work_Sans'] font-semibold text-[#506159] text-left ml-4"
                   style={{
                     fontSize: createResponsiveValue(17.78, 20, 22),
                     lineHeight: "140%",
@@ -282,28 +282,6 @@ export const OurPracticalSectionDesktop = () => {
           })}
 
           {/* Line Decorators */}
-          {/* Bottom horizontal line (1280px: shifted down +250px, shifted left -80px) */}
-          <div
-            className="absolute z-10 bg-[#EEF0F2]"
-            style={{
-              left: createResponsiveValue(132.71, 224.3, 279.37), // 1280px: 212.71 - 80, others unchanged
-              top: createResponsiveValue(1085, 1185, 1253), // 1280px: 835 + 250, others unchanged
-              width: createResponsiveValue(1119.4, 1258.32, 1922.71),
-              height: "1px",
-            }}
-          />
-
-          {/* Bottom right diagonal line (1280px: shifted down +250px, shifted left -80px) */}
-          <div
-            className="absolute z-10 bg-[#EEF0F2]"
-            style={{
-              left: createResponsiveValue(1005.33, 1206, 1779.41), // 1280px: 1085.33 - 80, others unchanged
-              top: createResponsiveValue(1092, 1192, 1260), // 1280px: 842 + 250, others unchanged
-              width: createResponsiveValue(213.33, 240, 366.72),
-              height: "1px",
-            }}
-          />
-
           {/* Bottom left rectangle (1280px: shifted down +250px, shifted left -80px) */}
           <div
             className="absolute z-10 bg-[#EEF0F2]"
@@ -326,23 +304,34 @@ export const OurPracticalSectionDesktop = () => {
             }}
           />
 
-          {/* Bottom right rectangle (1280px: shifted down +250px, shifted left -80px) */}
+          {/* Bottom right rectangle - Aligned with development-decorator-image center */}
           <div
             className="absolute z-10 bg-[#EEF0F2]"
             style={{
-              left: createResponsiveValue(971.56, 1168, 1440), // 1280px: 1051.56 - 80, others unchanged
-              top: createResponsiveValue(1084, 1184, 1252), // 1280px: 834 + 250, others unchanged
-              width: createResponsiveValue(280, 315, 315),
+              left: createResponsiveValue(800, 1050.5, 1580.5),
+              top: createResponsiveValue(1084, 1184, 1248),
+              width: createResponsiveValue(315, 315, 315),
               height: createResponsiveValue(3.56, 4, 6.11),
             }}
           />
 
-          {/* Canopy Development Logo - positioned at bottom right */}
+          {/* Shorter line below bottom right rectangle - centered */}
           <div
-            className="absolute z-10 mb-[120px] mr-[220px]"
+            className="absolute z-10 bg-[#EEF0F2]"
             style={{
-              right: createResponsiveValue(0, 0, 0),
-              bottom: createResponsiveValue(0, 0, 0),
+              left: createResponsiveValue(838, 1088.5, 1618.5), // 38px offset from parent left
+              top: createResponsiveValue(1092, 1192, 1260), // 8px below parent rectangle
+              width: createResponsiveValue(240, 240, 240),
+              height: createResponsiveValue(0.89, 1, 2), // 1px height scaled proportionally
+            }}
+          />
+
+          {/* Canopy Development Logo - Aligned with development-decorator-image center */}
+          <div
+            className="absolute z-10"
+            style={{
+              left: createResponsiveValue(800, 1100.5, 1630.5),
+              bottom: createResponsiveValue(90, 90, 90),
               width: 200,
               height: 174,
             }}

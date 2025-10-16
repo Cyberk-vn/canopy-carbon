@@ -23,7 +23,7 @@ export function AboutUsBannerDesktop({
         <div
           className="relative w-full overflow-hidden bg-[#121212]"
           style={{
-            minHeight: "clamp(622px, calc(317.333px + 39.670vw), 1079px)",
+            minHeight: "clamp(622px, calc(317.333px + 39.670vw), 1115px)",
           }}
         >
           {/* Background Image - scales 768px: 958x681px → 1440px: 1440x820px → 1920px: 1920x1080px → centered with overflow hidden */}
@@ -55,7 +55,7 @@ export function AboutUsBannerDesktop({
                 width:
                   "clamp(670.03515625px, calc(670.03515625px + (1800px - 670.03515625px) * ((100vw - 1440px) / (1920px - 1440px))), 1800px)",
                 background:
-                  "linear-gradient(92.27deg, #000000 28.03%, rgba(0, 0, 0, 0) 94.19%)",
+                  "linear-gradient(92.27deg, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0.85) 30%, rgba(0, 0, 0, 0) 94.19%)",
               }}
             />
           </div>
@@ -63,7 +63,7 @@ export function AboutUsBannerDesktop({
           {/* Navigation + Content Layout */}
           <div className="relative z-20 flex flex-col gap-0">
             {/* Header - Navigation Menu - Full Width */}
-            <div className="w-full md:h-[85px] xxl:h-[123px] md:mt-[37px] 2xl:mt-0">
+            <div className="w-full md:h-[85px] xxl:h-[123px] md:mt-[37px] 3xl:mt-0">
               <NavigationMenu
                 menuItems={menuItems}
                 logoUrl={logoUrl}
@@ -102,8 +102,8 @@ export function AboutUsBannerDesktop({
                       <div
                         className="absolute"
                         style={{
-                          top: "clamp(124px, calc(51px + 9.52vw), 207px)",
-                          left: "calc(clamp(60px, 1.7vw, 100px) - clamp(37px, 3.958vw, 60px))",
+                          top: "clamp(124px, calc(51px + 9.52vw), 212px)",
+                          left: "calc(clamp(40px, 1.7vw, 100px) - clamp(37px, 3.958vw, 60px))",
                           width: "clamp(219px, 24.31vw, 393px)",
                           height: "clamp(244px, calc(27.08vw - 17px), 427px)",
                           background: "rgba(175, 175, 175, 0.2)",
@@ -115,7 +115,7 @@ export function AboutUsBannerDesktop({
                         style={{
                           width: "clamp(213px, 22.85vw, 375px)",
                           height: "clamp(334px, 36.6vw, 600px)",
-                          left: "clamp(80px, 1.7vw, 100px)",
+                          left: "clamp(40px, 1.7vw, 100px)",
                         }}
                       >
                         <Image
@@ -219,7 +219,7 @@ export function AboutUsBannerDesktop({
           className="relative w-full z-10 mx-auto justify-center items-center flex"
           style={{
             height:
-              "clamp(744px, max(min(877px, calc(877px - 133 * (100vw - 1268px) / 172)), calc(744px + 248 * (100vw - 1440px) / 480)), 992px)",
+              "clamp(744px, max(min(877px, calc(877px - 133 * (100vw - 1268px) / 172)), calc(744px + 248 * (100vw - 1440px) / 480)), 1035px)",
           }}
         >
           {/* Background Image */}
@@ -254,26 +254,27 @@ export function AboutUsBannerDesktop({
               paddingBottom: "clamp(44px, calc(-532px + 45vw), 116px)",
             }}
           >
-            <div className="flex flex-col gap-[32px] xl:gap-[60px] w-full">
+            <div className="flex flex-col gap-[32px] xl:gap-[50px] w-full">
               {/* Thesis Section - md: 768px-1280px fixed 0px → xl: 1280px-2200px scales 102px-175px */}
               <FadeContent
                 duration={1000}
                 delay={600}
-                className="flex items-start justify-start gap-[32px] pr-0 pl-0 pt-0 xl:pt-[43px] pb-0"
+                className="flex items-start justify-start gap-[30px] pr-0 pl-0 pt-0 xl:pt-[60px] pb-0"
                 style={{
-                  paddingLeft: "clamp(0px, calc(-1305.6px + 110.156vw), 175px)",
+                  paddingLeft: "clamp(0px, calc(-1305.6px + 110.156vw), 180px)",
                 }}
               >
                 {/* Decorative Line */}
-                <div className="w-0 h-[180px] 3xl:h-[270px] border-l-4 border-[#CFD5DB] xl:border-[#B4BEC7] flex-shrink-0" />
+                <div className="w-0 h-[180px] 3xl:h-[250px] border-l-4 border-[#CFD5DB] xl:border-[#B4BEC7] flex-shrink-0" />
 
-                <div className="flex flex-col gap-[20px] md:max-w-[616px] xxl:max-w-[744px] 3xl:max-w-[960px]">
+                <div className="flex flex-col gap-[30px] md:max-w-[616px] xxl:max-w-[744px] 3xl:max-w-[960px]">
                   {/* Thesis Statement - 768px: OS 700 16px 1.4em #DDE2E6 → 1440px: WS 600 24px 1.4em #B4BEC7 → 1920px: WS 600 32px 1.3125em #B4BEC7 */}
                   <p
-                    className="md:font-open-sans xl:font-work-sans leading-normal md:text-[#DDE2E6] xl:text-[#B4BEC7] xxl:font-avenir-heavy"
+                    className="md:font-open-sans xl:font-work-sans md:text-[#DDE2E6] xl:text-[#B4BEC7] xxl:font-avenir-heavy"
                     style={{
                       fontSize:
                         "clamp(16px, calc(16px + 16 * max(0px, 100vw - 1440px) / 480), 33px)",
+                      lineHeight: "1.2em",
                     }}
                   >
                     <span className="md:font-bold xl:font-semibold xxl:font-normal">
@@ -350,12 +351,10 @@ export function AboutUsBannerDesktop({
 
                       {/* Statistics Description - 768px: OS 400 12px 1.6667em → 1440px: OS 400 13px 1.5385em → 1920px: OS 400 18px 1.3618em */}
                       <p
-                        className="font-open-sans font-normal text-[#BFBFBF] text-center"
+                        className="font-open-sans font-normal text-[#BFBFBF] text-center leadding-[25px]"
                         style={{
                           fontSize:
                             "clamp(12px, calc(12px + 1 * min(160px, max(0px, 100vw - 1280px)) / 160 + 5 * max(0px, 100vw - 1440px) / 480), 18px)",
-                          lineHeight:
-                            "clamp(1.3618em, calc(1.6667em - 0.1282em * min(160px, max(0px, 100vw - 1280px)) / 160 - 0.1767em * max(0px, 100vw - 1440px) / 480), 1.6667em)",
                         }}
                       >
                         Over 70% of our global CO₂ budget has already been used
@@ -410,12 +409,10 @@ export function AboutUsBannerDesktop({
 
                       {/* Statistics Description - 768px: OS 400 12px 1.6667em → 1440px: OS 400 13px 1.5385em → 1920px: OS 400 18px 1.3618em */}
                       <p
-                        className="font-open-sans font-normal text-[#BFBFBF] text-center"
+                        className="font-open-sans font-normal text-[#BFBFBF] text-center leading-[25px]"
                         style={{
                           fontSize:
                             "clamp(12px, calc(12px + 1 * min(160px, max(0px, 100vw - 1280px)) / 160 + 5 * max(0px, 100vw - 1440px) / 480), 18px)",
-                          lineHeight:
-                            "clamp(1.3618em, calc(1.6667em - 0.1282em * min(160px, max(0px, 100vw - 1280px)) / 160 - 0.1767em * max(0px, 100vw - 1440px) / 480), 1.6667em)",
                         }}
                       >
                         To achieve 1.5°C targets, the IPCC recommends that
@@ -470,12 +467,10 @@ export function AboutUsBannerDesktop({
 
                       {/* Statistics Description - 768px: OS 400 12px 1.6667em → 1440px: OS 400 13px 1.5385em → 1920px: OS 400 18px 1.3618em */}
                       <p
-                        className="font-open-sans font-normal text-[#BFBFBF] text-center"
+                        className="font-open-sans font-normal text-[#BFBFBF] text-center leading-[25px]"
                         style={{
                           fontSize:
                             "clamp(12px, calc(12px + 1 * min(160px, max(0px, 100vw - 1280px)) / 160 + 5 * max(0px, 100vw - 1440px) / 480), 18px)",
-                          lineHeight:
-                            "clamp(1.3618em, calc(1.6667em - 0.1282em * min(160px, max(0px, 100vw - 1280px)) / 160 - 0.1767em * max(0px, 100vw - 1440px) / 480), 1.6667em)",
                         }}
                       >
                         Anthropogenic CO₂ removals amount to ~ 2 GtCO₂ per year
@@ -530,12 +525,10 @@ export function AboutUsBannerDesktop({
 
                       {/* Statistics Description - 768px: OS 400 12px 1.6667em → 1440px: OS 400 13px 1.5385em → 1920px: OS 400 18px 1.3618em */}
                       <p
-                        className="font-open-sans font-normal text-[#BFBFBF] text-center"
+                        className="font-open-sans font-normal text-[#BFBFBF] text-center leading-[25px]"
                         style={{
                           fontSize:
                             "clamp(12px, calc(12px + 1 * min(160px, max(0px, 100vw - 1280px)) / 160 + 5 * max(0px, 100vw - 1440px) / 480), 18px)",
-                          lineHeight:
-                            "clamp(1.3618em, calc(1.6667em - 0.1282em * min(160px, max(0px, 100vw - 1280px)) / 160 - 0.1767em * max(0px, 100vw - 1440px) / 480), 1.6667em)",
                         }}
                       >
                         At current rates, the global CO₂ budget could be fully
