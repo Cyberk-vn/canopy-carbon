@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useSimpleMotion } from "@/src/hooks/responsive/use-simple-motion";
 
 // Image imports
-import PortfolioBackground1 from "../../../public/assets/desktop/our-projects/portfolio-background-1-536692.png";
+import PortfolioBackground1 from "../../../public/assets/desktop/our-projects/portfolio-background-1-536692.jpeg";
 import PortfolioBackground2 from "../../../public/assets/desktop/our-projects/portfolio-background-2-77a3ad.png";
 import PortfolioImage1 from "../../../public/assets/our-project/portfolio/carousel-images/portfolio-image-1.png";
 import PortfolioImage2 from "../../../public/assets/our-project/portfolio/carousel-images/portfolio-image-2.png";

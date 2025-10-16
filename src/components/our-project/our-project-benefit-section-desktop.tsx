@@ -9,44 +9,44 @@ import { Container } from "../shared";
 import LeftLogo from "../../../public/assets/our-project/benefit-section/left-logo.png";
 import RightLogo from "../../../public/assets/our-project/benefit-section/right-logo.png";
 
-// SDG Icons
-import NoPoverty from "../../../public/assets/our-project/benefit-section/carousel-images/no-poverty.jpg";
-import ZeroHunger from "../../../public/assets/our-project/benefit-section/carousel-images/zero-hunger.jpg";
-import GoodHealth from "../../../public/assets/our-project/benefit-section/carousel-images/good-health.jpg";
-import QualityEducation from "../../../public/assets/our-project/benefit-section/carousel-images/quality-education.jpg";
-import GenderEquality from "../../../public/assets/our-project/benefit-section/carousel-images/gender-equaliaty.jpg";
-import CleanWater from "../../../public/assets/our-project/benefit-section/carousel-images/clean-water.jpg";
-import Affordable from "../../../public/assets/our-project/benefit-section/carousel-images/affordable.jpg";
-import DecentWork from "../../../public/assets/our-project/benefit-section/carousel-images/decent-work.jpg";
-import Industry from "../../../public/assets/our-project/benefit-section/carousel-images/industry.jpg";
-import Reduced from "../../../public/assets/our-project/benefit-section/carousel-images/reduced.jpg";
-import Sustainable from "../../../public/assets/our-project/benefit-section/carousel-images/sustainable.jpg";
-import Responsible from "../../../public/assets/our-project/benefit-section/carousel-images/responsible.jpg";
-import ClimateAction from "../../../public/assets/our-project/benefit-section/carousel-images/climate-action.jpg";
-import LifeBelowWater from "../../../public/assets/our-project/benefit-section/carousel-images/life-below-water.jpg";
-import LifeOnLand from "../../../public/assets/our-project/benefit-section/carousel-images/life-on-land.jpg";
-import Peace from "../../../public/assets/our-project/benefit-section/carousel-images/peace.jpg";
-import Partnership from "../../../public/assets/our-project/benefit-section/carousel-images/partnership.jpg";
+// SDG Icons - High Quality
+import SDG01 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_01.jpg";
+import SDG02 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_02.jpg";
+import SDG03 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_03.jpg";
+import SDG04 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_04.jpg";
+import SDG05 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_05.jpg";
+import SDG06 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_06.jpg";
+import SDG07 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_07.jpg";
+import SDG08 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_08.jpg";
+import SDG09 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_09.jpg";
+import SDG10 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_10.jpg";
+import SDG11 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_11.jpg";
+import SDG12 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_12.jpg";
+import SDG13 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_13.jpg";
+import SDG14 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_14.jpg";
+import SDG15 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_15.jpg";
+import SDG16 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_16.jpg";
+import SDG17 from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_17.jpg";
 
 // SDG Icons data array
 const sdgIcons = [
-  { src: NoPoverty, alt: "No Poverty" },
-  { src: ZeroHunger, alt: "Zero Hunger" },
-  { src: GoodHealth, alt: "Good Health and Well-being" },
-  { src: QualityEducation, alt: "Quality Education" },
-  { src: GenderEquality, alt: "Gender Equality" },
-  { src: CleanWater, alt: "Clean Water and Sanitation" },
-  { src: Affordable, alt: "Affordable and Clean Energy" },
-  { src: DecentWork, alt: "Decent Work and Economic Growth" },
-  { src: Industry, alt: "Industry, Innovation and Infrastructure" },
-  { src: Reduced, alt: "Reduced Inequalities" },
-  { src: Sustainable, alt: "Sustainable Cities and Communities" },
-  { src: Responsible, alt: "Responsible Consumption and Production" },
-  { src: ClimateAction, alt: "Climate Action" },
-  { src: LifeBelowWater, alt: "Life Below Water" },
-  { src: LifeOnLand, alt: "Life on Land" },
-  { src: Peace, alt: "Peace, Justice and Strong Institutions" },
-  { src: Partnership, alt: "Partnerships for the Goals" },
+  { src: SDG01, alt: "No Poverty" },
+  { src: SDG02, alt: "Zero Hunger" },
+  { src: SDG03, alt: "Good Health and Well-being" },
+  { src: SDG04, alt: "Quality Education" },
+  { src: SDG05, alt: "Gender Equality" },
+  { src: SDG06, alt: "Clean Water and Sanitation" },
+  { src: SDG07, alt: "Affordable and Clean Energy" },
+  { src: SDG08, alt: "Decent Work and Economic Growth" },
+  { src: SDG09, alt: "Industry, Innovation and Infrastructure" },
+  { src: SDG10, alt: "Reduced Inequalities" },
+  { src: SDG11, alt: "Sustainable Cities and Communities" },
+  { src: SDG12, alt: "Responsible Consumption and Production" },
+  { src: SDG13, alt: "Climate Action" },
+  { src: SDG14, alt: "Life Below Water" },
+  { src: SDG15, alt: "Life on Land" },
+  { src: SDG16, alt: "Peace, Justice and Strong Institutions" },
+  { src: SDG17, alt: "Partnerships for the Goals" },
 ];
 
 const OurProjectBenefitSectionDesktop: React.FC = () => {
