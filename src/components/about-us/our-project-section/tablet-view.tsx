@@ -561,7 +561,7 @@ const DescriptionSectionInlineTablet = ({
     <div
       className="w-full relative overflow-hidden"
       style={{
-        height: createResponsiveValue(290, 484), // Figma: 545px at 1440px
+        height: createResponsiveValue(290, 484),
       }}
     >
       {/* Background Gradient Layer */}
@@ -582,22 +582,20 @@ const DescriptionSectionInlineTablet = ({
 
       {/* Vertical Background Card - Grows from height 0 to max height AFTER parent animation ends */}
       <motion.div
-        className="absolute z-[5]"
+        className="absolute z-[5] bg-[#F9F9F9] bottom-2"
         style={{
-          left: createResponsiveValue(55, 92), // Figma: 103px at 1440px
-          bottom: createResponsiveValue(20, 33), // Position from bottom to grow upward
-          width: createResponsiveValue(126, 211), // Figma: 237px at 1440px
-          backgroundColor: "#F9F9F9",
-          transformOrigin: "bottom", // Grow from bottom to top
+          left: createResponsiveValue(55, 92),
+          width: createResponsiveValue(126, 211),
+          transformOrigin: "bottom",
         }}
         initial={{ height: 0, opacity: 0 }}
         animate={{
-          height: createResponsiveValue(268, 446), // Figma: 502px at 1440px
+          height: createResponsiveValue(268, 420),
           opacity: 1,
         }}
         transition={{
           duration: 0.8,
-          delay: 1.0, // Start after parent animation ends (0.4s delay + 0.6s duration = 1.0s)
+          delay: 1.0,
           ease: "easeOut",
         }}
       />
@@ -658,28 +656,24 @@ const DescriptionSectionInlineTablet = ({
       <motion.div
         className="absolute z-20"
         style={{
-          left: createResponsiveValue(232, 387), // Figma: 435px at 1440px
-          top: createResponsiveValue(58, 96), // Figma: 107.98px at 1440px
-          width: createResponsiveValue(392, 654), // Figma: 736px at 1440px
-          height: createResponsiveValue(124, 207), // Figma: 233px at 1440px
+          left: createResponsiveValue(232, 387),
+          bottom: createResponsiveValue(58, 96),
+          width: createResponsiveValue(392, 654),
+          height: createResponsiveValue(154, 250),
         }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
           duration: 0.7,
-          delay: 1.5, // Appear after decorative elements
+          delay: 1.5,
           ease: "easeOut",
         }}
       >
         <p
-          className="font-work-sans"
+          className="font-work-sans font-[600] leading-[1.4] text-left text-[#91A69E]"
           style={{
-            fontSize: createResponsiveValue(13, 21), // Figma: 24px at 1440px (scaled down)
-            fontWeight: 600, // Figma: Semi Bold
-            lineHeight: "1.4em", // Figma: 1.4em
-            letterSpacing: "-1%", // Figma: -1%
-            textAlign: "left", // Figma: LEFT
-            color: "#91A69E", // Figma: #91A69E
+            fontSize: createResponsiveValue(13, 21),
+            letterSpacing: "-1%",
           }}
         >
           {mainText}
@@ -688,13 +682,11 @@ const DescriptionSectionInlineTablet = ({
 
       {/* Horizontal Background Card - Grows from width 0 to max width AFTER parent animation ends */}
       <motion.div
-        className="absolute z-[1]"
+        className="absolute z-[1] bg-[#919996] left-0"
         style={{
-          left: 0,
-          top: createResponsiveValue(213, 355), // Figma: 398.98px at 1440px
-          height: createResponsiveValue(78, 130), // Figma: 146px at 1440px
-          backgroundColor: "#91A69E",
-          transformOrigin: "left", // Grow from left to right
+          top: createResponsiveValue(213, 355),
+          height: createResponsiveValue(78, 130),
+          transformOrigin: "left",
         }}
         initial={{ width: 0, opacity: 0 }}
         animate={{

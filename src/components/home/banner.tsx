@@ -743,7 +743,7 @@ export function Banner({
         </div>
       )}
 
-      <div>
+      <div className="w-full md:h-[85px] xxl:h-[123px] md:mt-[37px] 3xl:mt-0">
         <NavigationMenu
           menuItems={menuItems}
           logoUrl={logoUrl}

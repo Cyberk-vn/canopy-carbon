@@ -445,8 +445,8 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
         style={{
           width: createResponsiveValue(1043, 1170, 1788), // Figma: 1170px at 1440px
           backgroundColor: "#F7F7F7",
-          padding: "48px 20px", // Fixed padding
-          gap: 24, // Figma: 40px gap at 1440px
+          padding: "48px 20px",
+          gap: 24,
         }}
       >
         <p
@@ -545,7 +545,7 @@ const DescriptionSectionInline = ({
 
   return (
     <div
-      className="w-full relative overflow-hidden"
+      className="w-full relative overflow-hidden xl:mb-[111px]"
       style={{
         height: createResponsiveValue(484, 545, 833), // Figma: 545px at 1440px
       }}
