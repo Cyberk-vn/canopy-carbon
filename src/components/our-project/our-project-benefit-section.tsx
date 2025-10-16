@@ -13,24 +13,24 @@ import RightLogo from "../../../public/assets/our-project/benefit-section/right-
 import ArrowLeftCircle from "../../../public/assets/about-us/our-project-section/arrow-left-circle.svg";
 import ArrowRightCircle from "../../../public/assets/about-us/our-project-section/arrow-right-circle.svg";
 
-// UN SDG carousel images imports
-import NoPovertyImage from "../../../public/assets/our-project/benefit-section/carousel-images/no-poverty.jpg";
-import ZeroHungerImage from "../../../public/assets/our-project/benefit-section/carousel-images/zero-hunger.jpg";
-import GoodHealthImage from "../../../public/assets/our-project/benefit-section/carousel-images/good-health.jpg";
-import QualityEducationImage from "../../../public/assets/our-project/benefit-section/carousel-images/quality-education.jpg";
-import GenderEqualityImage from "../../../public/assets/our-project/benefit-section/carousel-images/gender-equaliaty.jpg";
-import CleanWaterImage from "../../../public/assets/our-project/benefit-section/carousel-images/clean-water.jpg";
-import AffordableEnergyImage from "../../../public/assets/our-project/benefit-section/carousel-images/affordable.jpg";
-import DecentWorkImage from "../../../public/assets/our-project/benefit-section/carousel-images/decent-work.jpg";
-import IndustryImage from "../../../public/assets/our-project/benefit-section/carousel-images/industry.jpg";
-import ReducedInequalitiesImage from "../../../public/assets/our-project/benefit-section/carousel-images/reduced.jpg";
-import SustainableCitiesImage from "../../../public/assets/our-project/benefit-section/carousel-images/sustainable.jpg";
-import ResponsibleConsumptionImage from "../../../public/assets/our-project/benefit-section/carousel-images/responsible.jpg";
-import ClimateActionImage from "../../../public/assets/our-project/benefit-section/carousel-images/climate-action.jpg";
-import LifeBelowWaterImage from "../../../public/assets/our-project/benefit-section/carousel-images/life-below-water.jpg";
-import LifeOnLandImage from "../../../public/assets/our-project/benefit-section/carousel-images/life-on-land.jpg";
-import PeaceJusticeImage from "../../../public/assets/our-project/benefit-section/carousel-images/peace.jpg";
-import PartnershipImage from "../../../public/assets/our-project/benefit-section/carousel-images/partnership.jpg";
+// UN SDG carousel images imports - High Quality
+import SDG01Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_01.jpg";
+import SDG02Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_02.jpg";
+import SDG03Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_03.jpg";
+import SDG04Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_04.jpg";
+import SDG05Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_05.jpg";
+import SDG06Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_06.jpg";
+import SDG07Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_07.jpg";
+import SDG08Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_08.jpg";
+import SDG09Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_09.jpg";
+import SDG10Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_10.jpg";
+import SDG11Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_11.jpg";
+import SDG12Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_12.jpg";
+import SDG13Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_13.jpg";
+import SDG14Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_14.jpg";
+import SDG15Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_15.jpg";
+import SDG16Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_16.jpg";
+import SDG17Image from "../../../public/assets/our-project/benefit-section/sdg-Icons/E_PRINT_17.jpg";
 
 /**
  * BenefitLogo component - Static logo that should not re-render when carousel changes
@@ -174,13 +174,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-1",
-          src: NoPovertyImage,
+          src: SDG01Image,
           alt: "SDG 1: No Poverty",
           name: "no-poverty",
         },
         {
           id: "sdg-2",
-          src: ZeroHungerImage,
+          src: SDG02Image,
           alt: "SDG 2: Zero Hunger",
           name: "zero-hunger",
         },
@@ -191,13 +191,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-3",
-          src: GoodHealthImage,
+          src: SDG03Image,
           alt: "SDG 3: Good Health and Well-being",
           name: "good-health",
         },
         {
           id: "sdg-4",
-          src: QualityEducationImage,
+          src: SDG04Image,
           alt: "SDG 4: Quality Education",
           name: "quality-education",
         },
@@ -208,13 +208,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-5",
-          src: GenderEqualityImage,
+          src: SDG05Image,
           alt: "SDG 5: Gender Equality",
           name: "gender-equaliaty",
         },
         {
           id: "sdg-6",
-          src: CleanWaterImage,
+          src: SDG06Image,
           alt: "SDG 6: Clean Water and Sanitation",
           name: "clean-water",
         },
@@ -225,13 +225,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-7",
-          src: AffordableEnergyImage,
+          src: SDG07Image,
           alt: "SDG 7: Affordable and Clean Energy",
           name: "affordable",
         },
         {
           id: "sdg-8",
-          src: DecentWorkImage,
+          src: SDG08Image,
           alt: "SDG 8: Decent Work and Economic Growth",
           name: "decent-work",
         },
@@ -242,13 +242,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-9",
-          src: IndustryImage,
+          src: SDG09Image,
           alt: "SDG 9: Industry, Innovation and Infrastructure",
           name: "industry",
         },
         {
           id: "sdg-10",
-          src: ReducedInequalitiesImage,
+          src: SDG10Image,
           alt: "SDG 10: Reduced Inequalities",
           name: "reduced",
         },
@@ -259,13 +259,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-11",
-          src: SustainableCitiesImage,
+          src: SDG11Image,
           alt: "SDG 11: Sustainable Cities and Communities",
           name: "sustainable",
         },
         {
           id: "sdg-12",
-          src: ResponsibleConsumptionImage,
+          src: SDG12Image,
           alt: "SDG 12: Responsible Consumption and Production",
           name: "responsible",
         },
@@ -276,13 +276,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-13",
-          src: ClimateActionImage,
+          src: SDG13Image,
           alt: "SDG 13: Climate Action",
           name: "climate-action",
         },
         {
           id: "sdg-14",
-          src: LifeBelowWaterImage,
+          src: SDG14Image,
           alt: "SDG 14: Life Below Water",
           name: "life-below-water",
         },
@@ -293,13 +293,13 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-15",
-          src: LifeOnLandImage,
+          src: SDG15Image,
           alt: "SDG 15: Life on Land",
           name: "life-on-land",
         },
         {
           id: "sdg-16",
-          src: PeaceJusticeImage,
+          src: SDG16Image,
           alt: "SDG 16: Peace, Justice and Strong Institutions",
           name: "peace",
         },
@@ -310,7 +310,7 @@ const OurProjectBenefitSection: React.FC = () => {
       images: [
         {
           id: "sdg-17",
-          src: PartnershipImage,
+          src: SDG17Image,
           alt: "SDG 17: Partnerships for the Goals",
           name: "partnership",
         },
