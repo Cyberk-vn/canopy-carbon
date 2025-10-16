@@ -34,8 +34,9 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
             marginRight: createResponsiveValue(44, 59),
             paddingLeft: createResponsiveValue(64, 180),
             paddingRight: createResponsiveValue(64, 160),
-            paddingTop: createResponsiveValue(32, 46),
-            paddingBottom: createResponsiveValue(32, 70),
+            paddingTop: createResponsiveValue(32, 33),
+            paddingBottom: createResponsiveValue(32, 100),
+            maxHeight: "492px",
           }}
         >
           <div
@@ -72,11 +73,11 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
                 className="flex flex-col gap-[12px]"
                 style={{
-                  maxWidth: createResponsiveValue(651, 859),
+                  maxWidth: createResponsiveValue(651, 880),
                 }}
               >
                 <p
-                  className="text-[#808080] text-left font-normal leading-normal md:text-[16px] md:max-w-none"
+                  className="text-[#808080] text-left font-normal leading-[1.3] md:text-[16px] md:max-w-none"
                   style={{
                     fontSize: createResponsiveValue(16, 18),
                     fontFamily: "'Open Sans', sans-serif",
@@ -92,7 +93,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
                   development.
                 </p>
                 <p
-                  className="text-[#808080] text-left font-normal leading-normal md:text-[16px] md:max-w-none"
+                  className="text-[#808080] text-left font-normal leading-[1.3] md:text-[16px] md:max-w-none"
                   style={{
                     fontSize: createResponsiveValue(16, 18),
                     fontFamily: "'Open Sans', sans-serif",
