@@ -63,7 +63,7 @@ export function AboutUsBannerDesktop({
           {/* Navigation + Content Layout */}
           <div className="relative z-20 flex flex-col gap-0">
             {/* Header - Navigation Menu - Full Width */}
-            <div className="w-full md:h-[85px] xxl:h-[123px] md:mt-[37px] 2xl:mt-0">
+            <div className="w-full md:h-[85px] xxl:h-[123px] md:mt-[37px] 3xl:mt-0">
               <NavigationMenu
                 menuItems={menuItems}
                 logoUrl={logoUrl}

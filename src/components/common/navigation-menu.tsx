@@ -225,7 +225,7 @@ export function NavigationMenu({
 
       {/* Mobile Menu Dropdown - Absolute positioned over banner */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-20 left-6 right-6 z-50 flex">
+        <div className="md:hidden absolute top-21 left-6 right-6 z-50 flex">
           <div
             className="p-6 shadow-lg w-full"
             style={{
