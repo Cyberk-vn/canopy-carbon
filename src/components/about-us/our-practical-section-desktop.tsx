@@ -10,7 +10,7 @@ import FadeContent from "@/src/components/animation/fade-content";
 
 // Image imports
 import LogoDecorator from "../../../public/assets/banner-shared-component/circle-large.avif";
-import CanopyLogo from "../../../public/assets/desktop/about-us/canopy-development-logo.svg";
+import CanopyLogo from "../../../public/assets/desktop/about-us/canopy-development-logo.avif";
 
 interface PracticalCard {
   title: string;

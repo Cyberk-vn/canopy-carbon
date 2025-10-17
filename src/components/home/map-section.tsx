@@ -82,7 +82,7 @@ const MapSection = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                   >
-                    <h2 className="font-avenir-heavy font-normal text-[#A1AEB9] text-[16px] xl:text-[18px] xxl:text-[20px] 2xl:text-[22px] 3xl:text-[33px] text-start">
+                    <h2 className="font-avenir-heavy leading-[1.2] font-normal text-[#A1AEB9] text-[16px] xl:text-[18px] xxl:text-[20px] 2xl:text-[22px] 3xl:text-[33px] text-start">
                       Our current efforts are centered in Indonesia,
                       prioritising tight oversight, execution quality, and the
                       development of robust operational foundations for scale.

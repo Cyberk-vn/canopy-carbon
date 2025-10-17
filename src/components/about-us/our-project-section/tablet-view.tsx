@@ -32,7 +32,7 @@ import CommunityImg from "../../../../public/assets/desktop/about-us/our-project
 import Side2BackgroundImage from "../../../../public/assets/desktop/about-us/side-2-background-image.svg";
 
 // Logo and decorative elements
-import CanopyLogo from "../../../../public/assets/desktop/about-us/canopy-development-logo.svg";
+import CanopyLogo from "../../../../public/assets/desktop/about-us/canopy-development-logo.avif";
 import DotDecorator from "../../../../public/assets/desktop/about-us/dot-decorater-img.svg";
 
 // Simplified component interfaces

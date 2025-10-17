@@ -37,7 +37,7 @@ const FooterDesktop = ({
   onSubmit,
 }: FooterDesktopProps) => {
   return (
-    <section className={cn("w-full hidden md:block bg-white")}>
+    <section className={cn("w-full hidden md:block bg-white pb-40")}>
       <Container
         maxWidth="full"
         padding="none"

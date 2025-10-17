@@ -143,9 +143,9 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
         {/* Two Column Layout */}
         <div className="flex gap-[167px] xxl:gap-[167px] 3xl:gap-[250px]">
           {/* Left Column: Title, Description, and Cards */}
-          <div className="flex-1 max-w-[1022px] ml-[98px] mt-[79px] mb-[93px]">
+          <div className="flex-1 max-w-[1022px] ml-[98px] mt-[130px] mb-[93px]">
             {/* Header Section */}
-            <div className="mb-[150px] ml-[20px]">
+            <div className="mb-[130px] ml-[20px]">
               <h2 className="font-open-sans xxl:font-avenir-heavy xxl:font-normal font-bold xxl:text-[24px] 3xl:text-[30px] leading-[1.1] text-[#596E64] mb-[24px]">
                 Canopy Project <br /> Development Roadmap
               </h2>
@@ -274,7 +274,7 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
       <div
         className="hidden xl:block overflow-hidden max-w-[1990px] mx-auto"
         style={{
-          paddingTop: createResponsiveValue(21.33, 45.83),
+          paddingTop: createResponsiveValue(21.33, 70.83),
           paddingBottom: createResponsiveValue(21.33, 90.83),
         }}
       >

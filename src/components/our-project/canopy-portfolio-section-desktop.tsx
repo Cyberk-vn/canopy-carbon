@@ -3,7 +3,7 @@
 import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion } from "motion/react";
-import { useRouter } from "next/navigation";
+import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 import { useSimpleMotion } from "@/src/hooks/responsive/use-simple-motion";
 
 // Image imports
@@ -42,14 +42,10 @@ const createResponsiveValueDesktop = (
 };
 
 const CanopyPortfolioSectionDesktop: React.FC = () => {
-  const router = useRouter();
+  const { redirectToContact } = useContactRedirect();
   const titleMotion = useSimpleMotion("portfolio-title");
   const cardsMotion = useSimpleMotion("portfolio-cards");
   const [hoveredCard, setHoveredCard] = React.useState<string | null>(null);
-
-  const handleContactRedirect = () => {
-    router.push("/contact-us");
-  };
 
   const portfolioProjects: PortfolioProject[] = [
     {
@@ -368,6 +364,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                           }}
                         >
                           <button
+                            onClick={redirectToContact}
                             className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
                             style={{
                               fontFamily: "'Open Sans', sans-serif",
@@ -384,7 +381,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                       /* Find out more Button for Coming Soon */
                       <div className="text-left flex items-center mt-2">
                         <button
-                          onClick={handleContactRedirect}
+                          onClick={redirectToContact}
                           className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
                           style={{
                             fontFamily: "'Open Sans', sans-serif",
@@ -703,6 +700,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                             }}
                           >
                             <button
+                              onClick={redirectToContact}
                               className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
                               style={{
                                 fontFamily: "'Open Sans', sans-serif",
@@ -719,7 +717,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                         /* Find out more Button for Coming Soon */
                         <div className="text-left flex items-center mt-2">
                           <button
-                            onClick={handleContactRedirect}
+                            onClick={redirectToContact}
                             className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
                             style={{
                               fontFamily: "'Open Sans', sans-serif",
@@ -893,6 +891,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                             }}
                           >
                             <button
+                              onClick={redirectToContact}
                               className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
                               style={{
                                 fontFamily: "'Open Sans', sans-serif",
@@ -909,7 +908,7 @@ const CanopyPortfolioSectionDesktop: React.FC = () => {
                         /* Find out more Button for Coming Soon */
                         <div className="text-left flex items-center mt-2">
                           <button
-                            onClick={handleContactRedirect}
+                            onClick={redirectToContact}
                             className="text-[#7D8F89] hover:text-[#9CA9A3] transition-colors duration-300"
                             style={{
                               fontFamily: "'Open Sans', sans-serif",

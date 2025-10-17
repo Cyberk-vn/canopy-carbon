@@ -29,7 +29,7 @@ import CommunityImg from "../../../../public/assets/desktop/about-us/our-project
 import BiodiversityImg from "../../../../public/assets/desktop/about-us/our-project/biodiversity-img.png";
 
 // Logo and decorative elements
-import CanopyLogo from "../../../../public/assets/desktop/about-us/canopy-development-logo.svg";
+import CanopyLogo from "../../../../public/assets/desktop/about-us/canopy-development-logo.avif";
 import DotDecorator from "../../../../public/assets/desktop/about-us/dot-decorater-img.svg";
 
 // Simplified component interfaces
@@ -105,7 +105,7 @@ export const DesktopView = memo<DesktopViewProps>(({ data = defaultData }) => {
         {...containerMotion}
         className="hidden xl:block h-full"
       >
-        <div className="w-full">
+        <div className="w-full px-10">
           {/* Desktop Layout - Row (Vertical Stack) */}
           <div
             className="flex flex-col items-start"
@@ -193,7 +193,7 @@ const StaticImageLayout = ({ data }: { data: StaticLayoutData }) => {
     <>
       {/* Image Group Content - Horizontal Layout */}
       <div
-        className="flex items-center justify-start w-full pl-[136px]"
+        className="flex items-center justify-start w-full pl-[96px]"
         style={{
           gap: "80px",
         }}
@@ -577,7 +577,7 @@ const DescriptionSectionInline = ({
         }}
         initial={{ height: 0, opacity: 0 }}
         whileInView={{
-          height: createResponsiveValue(300, 446, 663),
+          height: createResponsiveValue(350, 446, 663),
           opacity: 1,
         }}
         viewport={{ once: true, amount: 0.2 }}
@@ -592,10 +592,18 @@ const DescriptionSectionInline = ({
       <motion.div
         className="absolute z-10"
         style={{
-          left: createResponsiveValue(100, 112, 125), // Figma: 112px at 1440px
-          top: createResponsiveValue(100, 112, 150),
-          width: createResponsiveValue(195, 219, 470), // Figma: 219px at 1440px
-          height: createResponsiveValue(135, 152, 344), // Figma: 152px at 1440px
+          left: `calc(${createResponsiveValue(
+            92,
+            103,
+            157
+          )} + (${createResponsiveValue(
+            211,
+            237,
+            330
+          )} - ${createResponsiveValue(150, 168, 235)}) / 2)`,
+          top: createResponsiveValue(140, 155, 200),
+          width: createResponsiveValue(150, 168, 235),
+          height: createResponsiveValue(105, 118, 165),
         }}
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -677,8 +685,8 @@ const DescriptionSectionInline = ({
       <motion.div
         className="absolute z-[1] bg-[#919996] left-0"
         style={{
-          top: createResponsiveValue(355, 399, 610),
-          height: createResponsiveValue(130, 146, 223),
+          top: createResponsiveValue(355, 420, 630),
+          height: createResponsiveValue(130, 146, 203),
           transformOrigin: "left",
         }}
         initial={{ width: 0, opacity: 0 }}

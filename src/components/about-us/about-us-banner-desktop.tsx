@@ -81,7 +81,7 @@ export function AboutUsBannerDesktop({
 
               {/* Flex Container - Sidebar and Content side by side with 42px gap */}
               <div
-                className="w-full flex gap-[40px] justify-end items-end"
+                className="w-full flex gap-[30px] xxl:gap-0 justify-end items-end"
                 style={{
                   paddingLeft: "clamp(27px, 3.54vw, 58px)",
                   paddingRight: "clamp(60px, 8.33vw, 120px)",
@@ -131,13 +131,10 @@ export function AboutUsBannerDesktop({
 
                 {/* Content - Mission and Vision */}
                 <div
-                  className="flex-1"
+                  className="flex-1 justify-end pb-[71px] flex"
                   style={{
                     minWidth: 0,
-                    display: "flex",
                     flexDirection: "column",
-                    justifyContent: "flex-end",
-                    paddingBottom: "71px",
                   }}
                 >
                   <FadeContent duration={800} delay={400}>

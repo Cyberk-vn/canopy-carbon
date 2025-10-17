@@ -23,17 +23,18 @@ export function useContactRedirect(): UseContactRedirectReturn {
         // Try mobile contact form first, then desktop contact form
         const mobileElement = document.getElementById("contact-footer-section");
         const desktopElement = document.getElementById("contact-desktop-form");
-        
+
         const element = mobileElement || desktopElement;
-        
+
         if (element) {
-          element.scrollIntoView({ 
+          element.scrollIntoView({
             behavior: "smooth",
             block: "start",
             inline: "nearest"
           });
           return true;
         }
+
         return false;
       } catch (error) {
         console.error("Error scrolling to contact section:", error);
@@ -42,10 +43,15 @@ export function useContactRedirect(): UseContactRedirectReturn {
     };
 
     const retry = () => {
-      if (attemptScroll() || retryCount >= maxRetries) {
+      if (attemptScroll()) {
         return;
       }
-      
+
+      if (retryCount >= maxRetries) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+
       retryCount++;
       setTimeout(retry, 200 * retryCount); // Exponential backoff: 200ms, 400ms, 600ms...
     };
@@ -55,20 +61,21 @@ export function useContactRedirect(): UseContactRedirectReturn {
 
   const redirectToContact = useCallback(() => {
     try {
+      const currentPath = window.location.pathname;
+
       // Check if we're already on the contact page
-      if (window.location.pathname === "/contact-us") {
-        // Just scroll to the section
+      if (currentPath === "/contact-us") {
         scrollToContactSection();
         return;
       }
 
       // Navigate to contact page
       router.push("/contact-us");
-      
+
       // Wait for navigation to complete, then scroll to ContactFooterSection
       setTimeout(() => {
         scrollToContactSection();
-      }, 300); // Increased initial delay for navigation
+      }, 500); // Increased initial delay for navigation
     } catch (error) {
       console.error("Error navigating to contact page:", error);
     }

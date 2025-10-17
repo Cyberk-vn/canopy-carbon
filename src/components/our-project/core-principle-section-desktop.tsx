@@ -279,14 +279,14 @@ const CorePrincipleSectionDesktop: React.FC<
             className="flex-shrink-0"
             style={{
               width: createResponsiveValueDesktop(304, 428, 428),
-              height: createResponsiveValueDesktop(488, 686, 686),
+              height: createResponsiveValueDesktop(488, 686, 679),
             }}
           >
             <Image
               src={PrincipleDecoratorImage}
               alt="Principle decorator"
               width={428}
-              height={686}
+              height={679}
               className="w-full h-full object-cover"
             />
           </div>
@@ -321,7 +321,7 @@ const CorePrincipleSectionDesktop: React.FC<
 
             {/* Principle Cards Grid - 5 columns x dynamic rows */}
             <div
-              className="grid ml-2"
+              className="grid ml-4"
               style={{
                 gridTemplateColumns: "repeat(5, 1fr)",
                 gridTemplateRows: gridRows,
@@ -348,7 +348,7 @@ const CorePrincipleSectionDesktop: React.FC<
                     backgroundColor: card.backgroundColor,
                     width: createResponsiveValueCard(124, 144, 182),
                     height: createResponsiveValueCard(90, 114, 145),
-                    paddingTop: createResponsiveValueDesktop(16, 24, 32),
+                    paddingTop: createResponsiveValueDesktop(16, 24, 38),
                     paddingLeft: createResponsiveValueDesktop(11, 16, 24),
                     paddingRight: createResponsiveValueDesktop(11, 16, 24),
                     paddingBottom: createResponsiveValueDesktop(6, 8, 12),
