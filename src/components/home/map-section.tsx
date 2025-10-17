@@ -32,7 +32,7 @@ const MapSection = () => {
       aria-label="Our Operations Map"
     >
       {/* Desktop Layout */}
-      <div className="hidden xl:block w-full mb-[101px] mt-[120px] 3xl:mt-[60px]">
+      <div className="hidden xl:block w-full mb-[250px] mt-[120px] 3xl:mt-[60px]">
         <Container
           maxWidth="full"
           className="map-section-container overflow-x-hidden"
