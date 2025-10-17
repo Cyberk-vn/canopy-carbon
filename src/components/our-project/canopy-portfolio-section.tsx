@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion } from "motion/react";
 import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
-import FadeContent from "@/src/components/animation/fade-content";
 
 // Image imports
 import CanopyPortfolioBg from "../../../public/assets/our-project/canopy-portfolio-section/canopy-portfolio-bg-381140.png";
@@ -111,8 +110,6 @@ const CanopyPortfolioSection: React.FC = () => {
     setCurrentProjectIndex((prev) => (prev + 1) % portfolioProjects.length);
   };
 
-  const currentProject = portfolioProjects[currentProjectIndex];
-
   return (
     <section className="w-full bg-[#232A26] relative -mt-[25px]">
       {/* Header Section */}
@@ -207,104 +204,91 @@ const CanopyPortfolioSection: React.FC = () => {
 
         <div className="relative px-6 md:px-[120px]">
           <div className="mx-auto md:mx-0 max-w-[637px] lg:max-w-[800px]">
-            {/* Project Card */}
+            {/* Project Cards Container */}
             <div className="relative z-10 mx-[16px] pt-0">
               <div className="overflow-hidden shadow-lg h-[596px] relative rounded-[5px] gap-0">
-                {/* Project Image */}
-                <FadeContent
-                  key={`image-${currentProject.id}`}
-                  duration={400}
-                  delay={0}
-                  threshold={0.1}
-                  className="relative w-full h-[384px] flex-shrink-0"
-                >
-                  <Image
-                    src={currentProject.imageUrl}
-                    alt={currentProject.title}
-                    fill
-                    className="object-cover transition-opacity duration-300"
-                    priority={true}
-                    sizes="(max-width: 768px) 100vw, 637px"
-                  />
-                </FadeContent>
+                {/* Pre-render all projects with visibility toggle */}
+                {portfolioProjects.map((project, index) => {
+                  const isCurrentProject = index === currentProjectIndex;
 
-                {/* Project Content - Positioned absolutely over the bottom portion */}
-                <FadeContent
-                  key={`content-bg-${currentProject.id}`}
-                  duration={300}
-                  delay={100}
-                  threshold={0.1}
-                  className={`absolute bottom-0 left-0 right-0 px-[12px] pt-[24px] h-[212px] w-full flex flex-col justify-between rounded-b-[5px] ${
-                    currentProject.isComingSoon
-                      ? "bg-[rgba(22,34,28,0.65)]"
-                      : "bg-[#16221C]"
-                  }`}
-                >
-                  {/* Top Content Container */}
-                  <div className="flex flex-col">
-                    {/* Project Title */}
-                    <FadeContent
-                      key={`title-${currentProject.id}`}
-                      duration={400}
-                      delay={150}
-                      threshold={0.1}
+                  return (
+                    <motion.div
+                      key={project.id}
+                      className="absolute inset-0"
+                      initial={{ opacity: 0 }}
+                      animate={{
+                        opacity: isCurrentProject ? 1 : 0,
+                        scale: isCurrentProject ? 1 : 0.98,
+                      }}
+                      transition={{
+                        opacity: { duration: 0.4, ease: "easeInOut" },
+                        scale: { duration: 0.3, ease: "easeOut" }
+                      }}
+                      style={{
+                        pointerEvents: isCurrentProject ? "auto" : "none",
+                        zIndex: isCurrentProject ? 2 : 1,
+                      }}
                     >
-                      <h3 className="font-roboto font-black text-[21px] leading-[1.429em] text-white text-center mb-[2.93px]">
-                        {currentProject.title}
-                      </h3>
-                    </FadeContent>
+                      {/* Project Image */}
+                      <div className="relative w-full h-[384px] flex-shrink-0">
+                        <Image
+                          src={project.imageUrl}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                          priority={index === 0}
+                          sizes="(max-width: 768px) 100vw, 637px"
+                        />
+                      </div>
 
-                    {/* Project Location */}
-                    <FadeContent
-                      key={`location-${currentProject.id}`}
-                      duration={400}
-                      delay={200}
-                      threshold={0.1}
-                    >
-                      <p className=" font-light text-[12px] leading-[2.333em] text-white text-center mb-[4px]">
-                        {currentProject.location}
-                      </p>
-                    </FadeContent>
-
-                    {/* Project Description - Only show if not Coming Soon */}
-                    {!currentProject.isComingSoon && (
-                      <FadeContent
-                        key={`description-${currentProject.id}`}
-                        duration={500}
-                        delay={250}
-                        threshold={0.1}
-                        className="overflow-hidden"
+                      {/* Project Content */}
+                      <div
+                        className={`absolute bottom-0 left-0 right-0 px-[12px] pt-[24px] h-[212px] w-full flex flex-col justify-between rounded-b-[5px] ${
+                          project.isComingSoon
+                            ? "bg-[rgba(22,34,28,0.65)]"
+                            : "bg-[#16221C]"
+                        }`}
                       >
-                        <p
-                          className="font-roboto font-normal text-center text-[12px] leading-[17px] text-white"
-                          style={{
-                            letterSpacing: "-4%",
-                          }}
-                        >
-                          {currentProject.description}
-                        </p>
-                      </FadeContent>
-                    )}
-                  </div>
+                        {/* Top Content Container */}
+                        <div className="flex flex-col">
+                          {/* Project Title */}
+                          <h3 className="font-roboto font-black text-[21px] leading-[1.429em] text-white text-center mb-[2.93px]">
+                            {project.title}
+                          </h3>
 
-                  {/* Read More Button - Only show if not Coming Soon */}
-                  {!currentProject.isComingSoon && (
-                    <FadeContent
-                      key={`button-${currentProject.id}`}
-                      duration={300}
-                      delay={300}
-                      threshold={0.1}
-                      className="text-center mb-[14px] justify-center flex items-center"
-                    >
-                      <button
-                        onClick={redirectToContact}
-                        className=" font-normal text-[12px] leading-[1.5em] text-[#7D8F89] hover:text-[#9CA9A3] hover:scale-105 transition-all duration-300"
-                      >
-                        Read More →
-                      </button>
-                    </FadeContent>
-                  )}
-                </FadeContent>
+                          {/* Project Location */}
+                          <p className=" font-light text-[12px] leading-[2.333em] text-white text-center mb-[4px]">
+                            {project.location}
+                          </p>
+
+                          {/* Project Description - Only show if not Coming Soon */}
+                          {!project.isComingSoon && (
+                            <p
+                              className="font-roboto font-normal text-center text-[12px] leading-[17px] text-white"
+                              style={{
+                                letterSpacing: "-4%",
+                              }}
+                            >
+                              {project.description}
+                            </p>
+                          )}
+                        </div>
+
+                        {/* Read More Button - Only show if not Coming Soon */}
+                        {!project.isComingSoon && (
+                          <div className="text-center mb-[14px] justify-center flex items-center">
+                            <button
+                              onClick={redirectToContact}
+                              className=" font-normal text-[12px] leading-[1.5em] text-[#7D8F89] hover:text-[#9CA9A3] hover:scale-105 transition-all duration-300"
+                            >
+                              Read More →
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
 
               {/* Navigation Arrows */}
