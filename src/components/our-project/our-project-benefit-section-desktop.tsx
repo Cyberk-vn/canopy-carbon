@@ -72,8 +72,7 @@ const OurProjectBenefitSectionDesktop: React.FC = () => {
               initial={{ opacity: 0.7, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-              className="font-open-sans md:font-bold 3xl:font-avenir-heavy 3xl:font-normal text-start lg:text-center w-auto text-[#DEDEDE] x1440
-              l:mr-10 mb-[18px]"
+              className="font-open-sans md:font-bold 3xl:font-avenir-heavy 3xl:font-normal text-start lg:text-center w-auto text-[#DEDEDE] mb-[18px] 3xl:mr-10"
               style={{
                 fontSize:
                   "clamp(32px, calc(32px + max(0px, (36 - 32) * ((100vw - 1440px) / 480))), 35px)",
