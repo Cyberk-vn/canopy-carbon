@@ -387,10 +387,9 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
 
                   {/* Right: Description - Fills remaining space */}
                   <div
-                    className="flex-1 rounded-[8px] flex items-start -mt-3"
+                    className="flex-1 rounded-[8px] flex items-start 3xl:-mt-3 pt-[15px]"
                     style={{
                       backgroundColor: "#F3F5F6",
-                      paddingTop: createResponsiveValue(10, 15),
                       paddingBottom: createResponsiveValue(14.17, 30.56),
                       paddingLeft: createResponsiveValue(14.17, 30.56),
                       paddingRight: createResponsiveValue(14.17, 30.56),
