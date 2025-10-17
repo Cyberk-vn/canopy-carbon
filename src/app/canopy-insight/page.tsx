@@ -21,6 +21,11 @@ const CanopyInsightPage = () => {
     <div className="min-h-screen bg-white">
       <CanopyInsightSection />
 
+      {/* Gradient overlay for desktop to smooth transition */}
+      {!isMobile && (
+        <div className="relative w-full h-32 bg-gradient-to-t from-white to-transparent -mt-32 z-10" />
+      )}
+
       {isMobile && (
         <div className="relative -mt-[221px] z-20">
           <InsightSection

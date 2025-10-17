@@ -16,7 +16,7 @@ export function CanopyPortfolioSectionDesktop() {
       threshold={0.1}
       easing="ease-out"
       className={cn(
-        "relative mx-auto flex w-full items-center justify-center",
+        "relative mx-auto flex w-full items-center justify-center mb-30",
         "h-[734px]"
       )}
     >
