@@ -138,7 +138,7 @@ export function NavigationMenu({
                   <Link
                     key={index}
                     href={item.url}
-                    className="nav-link-our-project flex items-center justify-center text-center transition-colors duration-200 flex-1 text-[16px] md:text-[12px] xl:text-[12px] 2xl:text-[12px] 3xl:text-[16px]"
+                    className="nav-link-our-project flex items-center hover:bg-transparent bg-[#ffffff0d] justify-center text-center transition-colors duration-200 flex-1 text-[16px] md:text-[12px] xl:text-[12px] 2xl:text-[12px] 3xl:text-[16px]"
                     style={{
                       padding: "6px 6px",
                       fontStyle: "normal",
@@ -149,7 +149,6 @@ export function NavigationMenu({
                       color: isActive
                         ? NAVIGATION_COLORS.active
                         : NAVIGATION_COLORS.default,
-                      backgroundColor: "rgba(255, 255, 255, 0.05)",
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
@@ -170,7 +169,7 @@ export function NavigationMenu({
                   <Link
                     key={index}
                     href={item.url}
-                    className="nav-link-about-us flex items-center justify-center text-center transition-colors duration-200 flex-1 text-[16px] md:text-[12px] xl:text-[12px] 2xl:text-[12px] 3xl:text-[16px]"
+                    className="nav-link-about-us flex hover:bg-transparent bg-[#ffffff0d] items-center justify-center text-center transition-colors duration-200 flex-1 text-[16px] md:text-[12px] xl:text-[12px] 2xl:text-[12px] 3xl:text-[16px]"
                     style={{
                       padding: "6px 6px",
                       fontStyle: "normal",
@@ -181,7 +180,6 @@ export function NavigationMenu({
                       color: isActive
                         ? NAVIGATION_COLORS.active
                         : NAVIGATION_COLORS.default,
-                      backgroundColor: "rgba(255, 255, 255, 0.05)",
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
