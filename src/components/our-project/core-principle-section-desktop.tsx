@@ -273,7 +273,7 @@ const CorePrincipleSectionDesktop: React.FC<
 
       {/* Desktop Layout - 1024px+ - With Decorator */}
       <section className="hidden lg:block w-full bg-[#1E2421]">
-        <div className="flex flex-row max-w-[1920px] mx-auto py-[11px] gap-[80px]">
+        <div className="flex flex-row max-w-[1920px] mx-auto py-[11px] gap-[30px] xxl:gap-[80px]">
           {/* Decorator Image */}
           <div
             className="flex-shrink-0"

@@ -65,14 +65,15 @@ const OurProjectBenefitSectionDesktop: React.FC = () => {
             initial={{ opacity: 0.8, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="flex flex-col items-start w-full xl:items-center xl:mx-auto xl:-ml-34 md:mt-12 xxl:mt-12"
+            className="flex flex-col items-start w-full lg:items-center xl:mx-auto xl:-ml-34 md:mt-12 xxl:mt-12"
           >
             {/* Title */}
             <motion.h2
               initial={{ opacity: 0.7, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-              className="font-open-sans md:font-bold 3xl:font-avenir-heavy 3xl:font-normal text-start xl:text-center w-auto text-[#DEDEDE] mr-10 mb-[18px]"
+              className="font-open-sans md:font-bold 3xl:font-avenir-heavy 3xl:font-normal text-start lg:text-center w-auto text-[#DEDEDE] x1440
+              l:mr-10 mb-[18px]"
               style={{
                 fontSize:
                   "clamp(32px, calc(32px + max(0px, (36 - 32) * ((100vw - 1440px) / 480))), 35px)",
