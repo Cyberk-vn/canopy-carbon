@@ -19,7 +19,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
       className="hidden md:block bg-white w-full overflow-hidden md:py-[48px] md:px-[48px] md:mt-[48px] 3xl:-ml-20"
       style={{
         paddingTop: createResponsiveValue(80, 107),
-        paddingBottom: createResponsiveValue(80, 107),
+        paddingBottom: createResponsiveValue(80, 230),
         paddingLeft: createResponsiveValue(68, 90),
         paddingRight: createResponsiveValue(68, 90),
       }}
