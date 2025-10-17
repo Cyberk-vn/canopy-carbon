@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, memo } from "react";
 import Image, { StaticImageData } from "next/image";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   OurProjectSectionProps,
   CarouselImage,
@@ -12,7 +12,7 @@ import {
   useSimpleMotion,
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
-import { useResponsiveCardDimensions } from "@/src/hooks/responsive/use-responsive-card-dimensions";
+import { useStableCardPositions } from "@/src/hooks/responsive/use-stable-card-positions";
 import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 
 // Image imports
@@ -223,11 +223,9 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
     null
   );
   const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false);
-  const [isPositionTransitioning, setIsPositionTransitioning] = useState(false);
   const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const userInteractionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const previousCardCountRef = useRef<number>(0);
 
   // Touch/swipe handling
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -235,41 +233,22 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
   const minSwipeDistance = 50;
   const totalGroups = cardGroups?.length || 0;
 
-  // Get current card count for responsive calculations
-  const currentCardCount = cardGroups?.[currentGroupIndex]?.cards.length || 0;
+  // Use stable card positions for both groups
+  const group1CardCount = cardGroups?.[0]?.cards.length || 0;
+  const group2CardCount = cardGroups?.[1]?.cards.length || 0;
 
-  // Use responsive card dimensions with unified height
-  const { dimensions, getCardPositions } = useResponsiveCardDimensions(
-    cardGroups || [],
-    currentCardCount
-  );
+  // Get stable dimensions and positions for both groups
+  const { dimensions: dimensions1, getCardPositions: getCardPositions1 } = useStableCardPositions(group1CardCount);
+  const { dimensions: dimensions2, getCardPositions: getCardPositions2 } = useStableCardPositions(group2CardCount);
 
-  // Handle group changes and position transitions
+  // Handle slide direction reset
   useEffect(() => {
-    if (cardGroups && cardGroups[currentGroupIndex]) {
-      const cardCount = cardGroups[currentGroupIndex].cards.length;
-      const previousCardCount = previousCardCountRef.current;
-
-      // Detect if we're switching between different card counts (5 <-> 6)
-      const isCardCountChange =
-        previousCardCount !== 0 && previousCardCount !== cardCount;
-
-      if (isCardCountChange) {
-        setIsPositionTransitioning(true);
-        setTimeout(() => setIsPositionTransitioning(false), 600);
-      }
-
-      // Update previous card count reference
-      previousCardCountRef.current = cardCount;
-
-      // Reset slide direction after transition completes
-      if (slideDirection) {
-        setTimeout(() => {
-          setSlideDirection(null);
-        }, 1200);
-      }
+    if (slideDirection) {
+      setTimeout(() => {
+        setSlideDirection(null);
+      }, 1200);
     }
-  }, [currentGroupIndex, cardGroups, slideDirection]);
+  }, [slideDirection]);
 
   const startAutoPlay = useCallback(() => {
     if (totalGroups <= 1 || isAutoPlayPaused) return;
@@ -385,8 +364,6 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
     );
   }
 
-  const currentGroup = cardGroups[currentGroupIndex];
-
   return (
     <div
       className="w-full flex flex-col overflow-visible z-10"
@@ -428,103 +405,140 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
           <div className="flex flex-col justify-center items-center mb-12">
             <div
               className="relative w-full mx-auto flex flex-col items-center overflow-hidden"
-              style={{ height: `${dimensions.containerHeight}px` }}
+              style={{ height: `${Math.max(dimensions1.containerHeight, dimensions2.containerHeight)}px` }}
             >
-              {currentGroup.cards.map((card, index) => {
-                const cardPositions = getCardPositions();
-                const position =
-                  cardPositions[index] ||
-                  cardPositions[cardPositions.length - 1];
+              {/* Pre-render both groups with AnimatePresence */}
+              <AnimatePresence initial={false} mode="sync">
+                {cardGroups?.map((group, groupIndex) => {
+                  const isCurrentGroup = groupIndex === currentGroupIndex;
+                  const groupDimensions = groupIndex === 0 ? dimensions1 : dimensions2;
+                  const groupGetCardPositions = groupIndex === 0 ? getCardPositions1 : getCardPositions2;
 
-                const isLastCard = index === currentGroup.cards.length - 1;
-                const isFirstCard = index === 0;
-                const isMiddleCard = !isFirstCard && !isLastCard;
-                let horizontalOffset = 0;
+                  return (
+                    <motion.div
+                      key={group.id}
+                      className="absolute inset-0 w-full h-full"
+                      initial={{ opacity: 0 }}
+                      animate={{
+                        opacity: isCurrentGroup ? 1 : 0,
+                        pointerEvents: isCurrentGroup ? 'auto' : 'none',
+                      }}
+                      transition={{
+                        opacity: { duration: 0.3, ease: "easeInOut" }
+                      }}
+                    >
+                    {group.cards.map((card, index) => {
+                      const cardPositions = groupGetCardPositions();
+                      const position =
+                        cardPositions[index] ||
+                        cardPositions[cardPositions.length - 1];
 
-                if (!isLastCard && slideDirection === "left") {
-                  horizontalOffset = isTransitioning
-                    ? Math.min(
-                        dimensions.cardWidth * 1.4,
-                        dimensions.availableWidth * 0.3
-                      )
-                    : 0;
-                } else if (!isLastCard && slideDirection === "right") {
-                  horizontalOffset = isTransitioning
-                    ? Math.max(
-                        -dimensions.cardWidth * 1.4,
-                        -dimensions.availableWidth * 0.3
-                      )
-                    : 0;
-                }
+                      const isLastCard = index === group.cards.length - 1;
+                      const isFirstCard = index === 0;
+                      const isMiddleCard = !isFirstCard && !isLastCard;
+                      let horizontalOffset = 0;
 
-                const middleCardEffects = isMiddleCard
-                  ? {
-                      filter: isTransitioning
-                        ? "brightness(1.1) saturate(1.2)"
-                        : "brightness(1) saturate(1)",
-                      boxShadow: isTransitioning
-                        ? "0px 8px 20px 0px rgba(1, 27, 13, 0.15), 0px 2px 6px 0px rgba(255, 255, 255, 0.1)"
-                        : "0px 4px 16px 0px rgba(1, 27, 13, 0.08)",
-                    }
-                  : {};
+                      if (!isLastCard && slideDirection === "left" && isCurrentGroup) {
+                        horizontalOffset = isTransitioning
+                          ? Math.min(
+                              groupDimensions.cardWidth * 1.4,
+                              groupDimensions.availableWidth * 0.3
+                            )
+                          : 0;
+                      } else if (!isLastCard && slideDirection === "right" && isCurrentGroup) {
+                        horizontalOffset = isTransitioning
+                          ? Math.max(
+                              -groupDimensions.cardWidth * 1.4,
+                              -groupDimensions.availableWidth * 0.3
+                            )
+                          : 0;
+                      }
 
-                return (
-                  <motion.div
-                    key={card.id}
-                    className="absolute cursor-pointer group flex items-center"
-                    style={{
-                      width: `${dimensions.cardWidth}px`,
-                      height: `${dimensions.cardHeight}px`,
-                      zIndex: currentGroup.cards.length - index,
-                    }}
-                    initial={{
-                      left: position.left,
-                      top: position.top,
-                      x: horizontalOffset,
-                      y: 0,
-                      scale: 1,
-                    }}
-                    animate={{
-                      left: position.left,
-                      top: position.top,
-                      x: horizontalOffset,
-                      y: 0,
-                      scale: 1,
-                      boxShadow:
-                        middleCardEffects.boxShadow ||
-                        "0px 4px 16px 0px rgba(1, 27, 13, 0.08)",
-                      filter:
-                        middleCardEffects.filter || "brightness(1) saturate(1)",
-                    }}
-                    transition={{
-                      duration: isPositionTransitioning
-                        ? 1.0
-                        : slideDirection
-                        ? 1.2
-                        : 0.5,
-                      ease: slideDirection ? "circOut" : "anticipate",
-                      delay: isPositionTransitioning
-                        ? index * 0.05
-                        : slideDirection
-                        ? index * 0.03
-                        : 0,
-                      type: "spring",
-                      stiffness: slideDirection ? 100 : 200,
-                      damping: slideDirection ? 25 : 20,
-                    }}
-                  >
-                    <Image
-                      src={card.src}
-                      alt={card.alt}
-                      fill
-                      className="object-cover"
-                      priority={true}
-                      placeholder="blur"
-                      sizes={`${dimensions.cardWidth}px`}
-                    />
-                  </motion.div>
-                );
-              })}
+                      const middleCardEffects = isMiddleCard && isCurrentGroup
+                        ? {
+                            filter: isTransitioning
+                              ? "brightness(1.1) saturate(1.2)"
+                              : "brightness(1) saturate(1)",
+                            boxShadow: isTransitioning
+                              ? "0px 8px 20px 0px rgba(1, 27, 13, 0.15), 0px 2px 6px 0px rgba(255, 255, 255, 0.1)"
+                              : "0px 4px 16px 0px rgba(1, 27, 13, 0.08)",
+                          }
+                        : {};
+
+                      return (
+                        <motion.div
+                          key={`${group.id}-${card.id}`}
+                          layoutId={isCurrentGroup ? `card-${index}` : undefined}
+                          className="absolute cursor-pointer group flex items-center"
+                          style={{
+                            width: `${groupDimensions.cardWidth}px`,
+                            height: `${groupDimensions.cardHeight}px`,
+                            zIndex: group.cards.length - index, // First card has highest z-index
+                          }}
+                          initial={{
+                            left: position.left,
+                            bottom: position.bottom,  // Changed from top to bottom
+                            x: 0,
+                            y: 0,
+                            scale: position.scale || 1,
+                          }}
+                          animate={{
+                            left: position.left,
+                            bottom: position.bottom,  // Changed from top to bottom
+                            x: horizontalOffset,
+                            y: 0,
+                            scale: position.scale || 1,
+                            boxShadow:
+                              middleCardEffects.boxShadow ||
+                              "0px 4px 16px 0px rgba(1, 27, 13, 0.08)",
+                            filter:
+                              middleCardEffects.filter || "brightness(1) saturate(1)",
+                          }}
+                          transition={{
+                            x: {
+                              duration: slideDirection && isCurrentGroup ? 1.2 : 0.5,
+                              ease: slideDirection ? "circOut" : "anticipate",
+                              delay: slideDirection && isCurrentGroup ? index * 0.03 : 0,
+                            },
+                            left: {
+                              type: "spring",
+                              stiffness: 300,
+                              damping: 30,
+                            },
+                            bottom: {  // Changed from top to bottom
+                              type: "spring",
+                              stiffness: 300,
+                              damping: 30,
+                            },
+                            scale: {
+                              type: "spring",
+                              stiffness: 300,
+                              damping: 30,
+                            },
+                            boxShadow: {
+                              duration: 0.3,
+                            },
+                            filter: {
+                              duration: 0.3,
+                            },
+                          }}
+                        >
+                          <Image
+                            src={card.src}
+                            alt={card.alt}
+                            fill
+                            className="object-cover"
+                            priority={groupIndex === 0}
+                            placeholder="blur"
+                            sizes={`${groupDimensions.cardWidth}px`}
+                          />
+                        </motion.div>
+                      );
+                    })}
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
             </div>
           </div>
 

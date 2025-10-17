@@ -2,9 +2,7 @@
 
 import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import { motion, AnimatePresence } from "motion/react";
-import { useInView } from "react-intersection-observer";
-import { useShouldLoadPair } from "@/src/hooks/responsive/use-lazy-carousel";
+import { motion } from "motion/react";
 
 // Image imports
 import BenefitLogoImage from "../../../public/assets/our-project/benefit-section/benefit-logo.svg";
@@ -52,82 +50,49 @@ const BenefitLogo = React.memo(() => (
 BenefitLogo.displayName = "BenefitLogo";
 
 /**
- * LazyCarouselImage component - Optimized carousel image with lazy loading
- * Extracted outside parent component and memoized for optimal performance
+ * CarouselImage component - Pre-loaded carousel image with visibility toggle
+ * All images are loaded upfront to prevent flickering
  */
-interface LazyCarouselImageProps {
+interface CarouselImageProps {
   image: CarouselImage;
-  pairIndex: number;
   imageIndex: number;
-  currentPairIndex: number;
-  carouselInView: boolean;
-  totalPairs: number;
 }
 
-const LazyCarouselImage = React.memo<LazyCarouselImageProps>(
-  ({
-    image,
-    pairIndex,
-    imageIndex,
-    currentPairIndex,
-    carouselInView,
-    totalPairs,
-  }) => {
-    const shouldLoad = useShouldLoadPair(
-      pairIndex,
-      currentPairIndex,
-      totalPairs
-    );
-    const isVisible = carouselInView && shouldLoad;
-    const isActivePair = pairIndex === currentPairIndex;
-
+const CarouselImageItem = React.memo<CarouselImageProps>(
+  ({ image, imageIndex }) => {
     return (
       <motion.div
         key={image.id}
-        className="w-[124px] h-[124px] relative flex-shrink-0 rounded-[2px] overflow-hidden bg-gray-200"
+        className="w-[124px] h-[124px] relative flex-shrink-0 rounded-[2px] overflow-hidden"
         initial={{
           opacity: 0,
           scale: 0.9,
-          y: 10,
         }}
         animate={{
-          opacity: isActivePair ? 1 : 0.7,
-          scale: isActivePair ? 1 : 0.95,
-          y: 0,
-          zIndex: isActivePair ? 10 : 5,
-          filter: isActivePair ? "brightness(1) saturate(1.05)" : "brightness(0.92) saturate(0.95)",
-        }}
-        exit={{
-          opacity: 0,
-          scale: 0.9,
-          y: -10,
+          opacity: 1,
+          scale: 1,
         }}
         transition={{
-          duration: 0.2,
-          ease: "easeInOut",
-          delay: imageIndex * 0.02,
+          duration: 0.3,
+          ease: "easeOut",
+          delay: imageIndex * 0.05,
         }}
       >
-        {isVisible ? (
-          <Image
-            src={image.src}
-            alt={image.alt}
-            fill
-            className="object-cover transition-transform duration-300 hover:scale-105"
-            placeholder="blur"
-            priority={true}
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 animate-pulse flex items-center justify-center">
-            <div className="w-8 h-8 border-2 border-gray-500 border-t-transparent rounded-full animate-spin opacity-50"></div>
-          </div>
-        )}
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          className="object-cover transition-transform duration-300 hover:scale-105"
+          placeholder="blur"
+          priority={true}
+          sizes="124px"
+        />
       </motion.div>
     );
   }
 );
 
-LazyCarouselImage.displayName = "LazyCarouselImage";
+CarouselImageItem.displayName = "CarouselImageItem";
 
 /**
  * Interface for individual carousel image
@@ -320,13 +285,6 @@ const OurProjectBenefitSection: React.FC = () => {
 
   const [currentPairIndex, setCurrentPairIndex] = useState(0);
 
-  // Intersection observer for the carousel section
-  const { ref: carouselRef, inView: carouselInView } = useInView({
-    threshold: 0.1,
-    rootMargin: "50px 0px",
-    triggerOnce: true, // Only trigger once for better performance
-  });
-
   const handlePrevPair = () => {
     setCurrentPairIndex((prev) =>
       prev === 0 ? carouselPairs.length - 1 : prev - 1
@@ -383,7 +341,6 @@ const OurProjectBenefitSection: React.FC = () => {
 
         {/* Carousel Section */}
         <motion.div
-          ref={carouselRef}
           initial={{ opacity: 0.7, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
@@ -419,32 +376,36 @@ const OurProjectBenefitSection: React.FC = () => {
 
             {/* Image Carousel */}
             <div className="relative flex justify-center items-center">
-              {/* Carousel Images with Layered Fade */}
+              {/* Carousel Images - All pre-loaded with visibility toggle */}
               <div className="relative flex justify-center items-center gap-[15px] min-h-[124px]">
-                <AnimatePresence>
-                  {carouselPairs.map((pair, pairIndex) => (
-                    <div
-                      key={pair.id}
-                      className="absolute flex justify-center items-center gap-[15px]"
-                      style={{
-                        opacity: pairIndex === currentPairIndex ? 1 : 0,
-                        pointerEvents: pairIndex === currentPairIndex ? "auto" : "none",
-                      }}
-                    >
-                      {pair.images.map((image, index) => (
-                        <LazyCarouselImage
-                          key={`${pair.id}-${image.id}`}
-                          image={image}
-                          pairIndex={pairIndex}
-                          imageIndex={index}
-                          currentPairIndex={currentPairIndex}
-                          carouselInView={carouselInView}
-                          totalPairs={carouselPairs.length}
-                        />
-                      ))}
-                    </div>
-                  ))}
-                </AnimatePresence>
+                {/* Render all pairs but only show current one */}
+                {carouselPairs.map((pair, pairIndex) => (
+                  <motion.div
+                    key={pair.id}
+                    className="absolute flex justify-center items-center gap-[15px]"
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: pairIndex === currentPairIndex ? 1 : 0,
+                      scale: pairIndex === currentPairIndex ? 1 : 0.95,
+                    }}
+                    transition={{
+                      opacity: { duration: 0.3, ease: "easeInOut" },
+                      scale: { duration: 0.3, ease: "easeOut" }
+                    }}
+                    style={{
+                      pointerEvents: pairIndex === currentPairIndex ? "auto" : "none",
+                      zIndex: pairIndex === currentPairIndex ? 2 : 1,
+                    }}
+                  >
+                    {pair.images.map((image, index) => (
+                      <CarouselImageItem
+                        key={`${pair.id}-${image.id}`}
+                        image={image}
+                        imageIndex={index}
+                      />
+                    ))}
+                  </motion.div>
+                ))}
               </div>
 
               {/* Left Arrow */}
