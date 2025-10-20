@@ -29,7 +29,7 @@ import CommunityImg from "../../../../public/assets/desktop/about-us/our-project
 import BiodiversityImg from "../../../../public/assets/desktop/about-us/our-project/biodiversity-img.png";
 
 // Logo and decorative elements
-import CanopyLogo from "../../../../public/assets/desktop/about-us/canopy-development-logo.avif";
+import CanopyLogo from "../../../../public/assets/desktop/about-us/canopy-development-logo.svg";
 import DotDecorator from "../../../../public/assets/desktop/about-us/dot-decorater-img.svg";
 
 // Simplified component interfaces
@@ -600,10 +600,10 @@ const DescriptionSectionInline = ({
             211,
             237,
             330
-          )} - ${createResponsiveValue(150, 168, 235)}) / 2)`,
+          )} - ${createResponsiveValue(185, 210, 290)}) / 2)`,
           top: createResponsiveValue(140, 155, 200),
-          width: createResponsiveValue(150, 168, 235),
-          height: createResponsiveValue(105, 118, 165),
+          width: createResponsiveValue(185, 210, 290),
+          height: createResponsiveValue(130, 147, 203),
         }}
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
