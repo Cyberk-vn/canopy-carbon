@@ -159,7 +159,33 @@ export const OurPracticalSectionDesktop = () => {
           top: 0,
           bottom: 0,
           background:
-            "linear-gradient(142deg, rgba(249, 249, 249, 0) 0%, rgba(249, 249, 249, 1) 100%)",
+            "linear-gradient(142deg, rgba(252, 252, 252, 0) 0%, rgba(252, 252, 252, 0.3) 30%, rgba(252, 252, 252, 0.7) 60%, rgba(252, 252, 252, 1) 100%)",
+        }}
+      />
+
+      {/* Top fade gradient */}
+      <div
+        className="absolute z-0 pointer-events-none hidden xl:block"
+        style={{
+          left: 0,
+          right: 0,
+          top: 0,
+          height: "15%",
+          background:
+            "linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%)",
+        }}
+      />
+
+      {/* Bottom fade gradient */}
+      <div
+        className="absolute z-0 pointer-events-none hidden xl:block"
+        style={{
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: "15%",
+          background:
+            "linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%)",
         }}
       />
 
@@ -234,7 +260,7 @@ export const OurPracticalSectionDesktop = () => {
                 delay={index * 150}
                 threshold={0.1}
                 initialOpacity={0}
-                className="absolute z-20 transition-all duration-300 hover:transform hover:scale-105"
+                className="absolute z-20"
                 style={{
                   left: createResponsiveValue(
                     position.left1280,
@@ -251,32 +277,47 @@ export const OurPracticalSectionDesktop = () => {
                     position.width1440,
                     position.width2200
                   ),
-                  backdropFilter: "blur(10px)",
                 }}
               >
-                {/* Card Title - 1280px: 17.78px → 1440px: WS 600 20px → 1920px: WS 600 22px */}
-                <h3
-                  className="font-['Work_Sans'] font-semibold text-[#506159] text-left ml-4"
+                <div
+                  className="cursor-pointer"
                   style={{
-                    fontSize: createResponsiveValue(17.78, 20, 22),
-                    lineHeight: "140%",
-                    letterSpacing: "0%",
-                    marginBottom: createResponsiveValue(8, 9, 10),
+                    backdropFilter: "blur(10px)",
+                    transform: "scale(1)",
+                    transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                    willChange: "transform",
+                  }}
+                  onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
+                    e.currentTarget.style.transform = "scale(1.03)";
+                  }}
+                  onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
+                    e.currentTarget.style.transform = "scale(1)";
                   }}
                 >
-                  {card.title}
-                </h3>
+                  {/* Card Title - 1280px: 17.78px → 1440px: WS 600 20px → 1920px: WS 600 22px */}
+                  <h3
+                    className="font-['Work_Sans'] font-semibold text-[#506159] text-left ml-4"
+                    style={{
+                      fontSize: createResponsiveValue(17.78, 20, 22),
+                      lineHeight: "140%",
+                      letterSpacing: "0%",
+                      marginBottom: createResponsiveValue(8, 9, 10),
+                    }}
+                  >
+                    {card.title}
+                  </h3>
 
-                {/* Card Description - 1280px: 13.33px → 1440px: WS 400 15px → 1920px: WS 400 18px */}
-                <p
-                  className="font-['Work_Sans'] font-normal text-[#798C9B] text-left leading-[32px] max-w-[760px]"
-                  style={{
-                    fontSize: createResponsiveValue(13.33, 15, 18),
-                    letterSpacing: "0%",
-                  }}
-                >
-                  {card.description}
-                </p>
+                  {/* Card Description - 1280px: 13.33px → 1440px: WS 400 15px → 1920px: WS 400 18px */}
+                  <p
+                    className="font-['Work_Sans'] font-normal text-[#798C9B] text-left leading-[32px] max-w-[760px]"
+                    style={{
+                      fontSize: createResponsiveValue(13.33, 15, 18),
+                      letterSpacing: "0%",
+                    }}
+                  >
+                    {card.description}
+                  </p>
+                </div>
               </FadeContent>
             );
           })}

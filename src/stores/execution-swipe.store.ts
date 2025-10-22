@@ -8,18 +8,22 @@ export interface ExecutionSwipeState {
   currentImageOffset: number;
   isTransitioning: boolean;
   transitionDuration: number;
-  
+
+  // Transition type flags for better sync
+  isPrincipleChanging: boolean;
+  isImageCycling: boolean;
+
   // Gesture tracking
   lastSwipeTimestamp: number;
   swipeVelocity: number;
-  
+
   // Auto-switch state
   autoSwitchEnabled: boolean;
   autoSwitchInterval: number;
   autoSwitchTimerId: NodeJS.Timeout | null;
   isPaused: boolean;
   lastInteractionTime: number;
-  
+
   // Performance optimization
   preloadedImages: Set<string>;
   
@@ -65,16 +69,21 @@ const useExecutionSwipeStore = create<ExecutionSwipeState>((set, get) => ({
   currentImageOffset: 1, // Start at index 1 (second image)
   isTransitioning: false,
   transitionDuration: 600,
+
+  // Transition type flags
+  isPrincipleChanging: false,
+  isImageCycling: false,
+
   lastSwipeTimestamp: 0,
   swipeVelocity: 0,
-  
+
   // Auto-switch initial state
   autoSwitchEnabled: true,
   autoSwitchInterval: 3000, // 3 seconds
   autoSwitchTimerId: null,
   isPaused: false,
   lastInteractionTime: 0,
-  
+
   preloadedImages: new Set(),
   
   actions: {
@@ -96,20 +105,23 @@ const useExecutionSwipeStore = create<ExecutionSwipeState>((set, get) => ({
         selectedPrincipleId: principleId,
         currentImageOffset: 1, // Reset to second image (main image)
         isTransitioning: true,
+        isPrincipleChanging: true,
+        isImageCycling: false,
         lastSwipeTimestamp: Date.now(),
         lastInteractionTime: Date.now(), // Record interaction time
       }));
-      
+
       // Reset auto-switch timer
       state.actions.stopAutoSwitch();
       state.actions.startAutoSwitch();
-      
-      // Auto-end transition after duration
+
+      // SYNC FIX: Match UI animation duration (600ms opacity transition)
       setTimeout(() => {
         set(() => ({
           isTransitioning: false,
+          isPrincipleChanging: false,
         }));
-      }, 300);
+      }, 600);
     },
     
     cyclePrinciple: (direction: 'next' | 'prev') => {
@@ -145,15 +157,18 @@ const useExecutionSwipeStore = create<ExecutionSwipeState>((set, get) => ({
       set(() => ({
         currentImageOffset: newOffset,
         isTransitioning: true,
+        isPrincipleChanging: false,
+        isImageCycling: true,
         lastSwipeTimestamp: Date.now(),
       }));
-      
-      // Auto-end transition after duration
+
+      // SYNC FIX: Match UI transition timing
       setTimeout(() => {
         set(() => ({
           isTransitioning: false,
+          isImageCycling: false,
         }));
-      }, 300);
+      }, 500);
     },
     
     setImageOffset: (offset: number) => {
@@ -167,11 +182,19 @@ const useExecutionSwipeStore = create<ExecutionSwipeState>((set, get) => ({
     
     handleSwipeGesture: (direction: 'left' | 'right', isLongSwipe: boolean = false) => {
       const state = get();
-      
+
+      // DEBOUNCE: Prevent rapid state changes
       if (state.isTransitioning) return;
-      
-      // Calculate all changes first
+
       const now = Date.now();
+      const timeSinceLastSwipe = now - state.lastSwipeTimestamp;
+
+      // Require minimum 100ms between swipes to prevent conflicts
+      if (timeSinceLastSwipe < 100) {
+        return;
+      }
+
+      // Calculate all changes first
       const velocity = isLongSwipe ? 200 : 100;
       
       if (isLongSwipe) {
@@ -191,6 +214,8 @@ const useExecutionSwipeStore = create<ExecutionSwipeState>((set, get) => ({
           lastSwipeTimestamp: now,
           swipeVelocity: velocity,
           isTransitioning: true,
+          isPrincipleChanging: true,
+          isImageCycling: false,
           isPaused: true, // Pause auto-switch
         }));
       } else {
@@ -210,6 +235,8 @@ const useExecutionSwipeStore = create<ExecutionSwipeState>((set, get) => ({
           lastSwipeTimestamp: now,
           swipeVelocity: velocity,
           isTransitioning: true,
+          isPrincipleChanging: false,
+          isImageCycling: true,
           isPaused: true, // Pause auto-switch
         }));
       }
@@ -234,10 +261,15 @@ const useExecutionSwipeStore = create<ExecutionSwipeState>((set, get) => ({
         set(() => ({ swipeVelocity: 0 }));
       }, 1000);
       
-      // End transition after duration
+      // SYNC FIX: End transition with proper timing based on type
+      const transitionDuration = isLongSwipe ? 600 : 500;
       setTimeout(() => {
-        set(() => ({ isTransitioning: false }));
-      }, 300);
+        set(() => ({
+          isTransitioning: false,
+          isPrincipleChanging: false,
+          isImageCycling: false,
+        }));
+      }, transitionDuration);
     },
     
     startAutoSwitch: () => {
@@ -395,6 +427,8 @@ const useExecutionSwipeStore = create<ExecutionSwipeState>((set, get) => ({
         selectedPrincipleId: 2,
         currentImageOffset: 1,
         isTransitioning: false,
+        isPrincipleChanging: false,
+        isImageCycling: false,
         transitionDuration: 600,
         lastSwipeTimestamp: 0,
         swipeVelocity: 0,
@@ -435,10 +469,16 @@ export const useSelectedPrincipleId = () =>
 export const useCurrentImageOffset = () => 
   useExecutionSwipeStore((state) => state.currentImageOffset);
 
-export const useIsTransitioning = () => 
+export const useIsTransitioning = () =>
   useExecutionSwipeStore((state) => state.isTransitioning);
 
-export const useTransitionDuration = () => 
+export const useIsPrincipleChanging = () =>
+  useExecutionSwipeStore((state) => state.isPrincipleChanging);
+
+export const useIsImageCycling = () =>
+  useExecutionSwipeStore((state) => state.isImageCycling);
+
+export const useTransitionDuration = () =>
   useExecutionSwipeStore((state) => state.transitionDuration);
 
 export const useSwipeVelocity = () => 

@@ -9,7 +9,7 @@ import FadeContent from "@/src/components/animation/fade-content";
 import { STATISTICS_ANIMATIONS } from "@/src/hooks/responsive/use-simple-motion";
 
 // Image imports
-import AboutUsBannerBg from "../../../public/assets/about-us/contact-us-banner-bg-image.png";
+import AboutUsBannerBg from "../../../public/assets/about-us/contact-us-banner-bg-image.jpeg";
 import BannerChildImage from "../../../public/assets/about-us/banner-child-image.png";
 import AboutUsBannerSecondBg from "../../../public/assets/about-us/contact-us-banner-second-bg.png";
 
@@ -124,7 +124,6 @@ export function AboutUsBanner({
             fill
             className="object-cover"
             priority
-            placeholder="blur"
             sizes="100vw"
           />
         </div>
@@ -238,7 +237,7 @@ export function AboutUsBanner({
       </div>
 
       {/* Secondary Banner Section with Smooth Transition */}
-      <div className="relative h-[515px] w-full z-10 -mt-10">
+      <div className="relative h-[535px] w-full z-10 -mt-10">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -262,7 +261,7 @@ export function AboutUsBanner({
         />
 
         {/* Content */}
-        <div className="relative z-20 h-full px-6 md:px-[120px] md:py-10 flex flex-col justify-start gap-[36px]">
+        <div className="relative z-20 h-full px-6 md:px-[120px] md:py-10 flex flex-col justify-start gap-[60px]">
           {/* Thesis Section */}
           <FadeContent
             duration={800}
@@ -297,9 +296,9 @@ export function AboutUsBanner({
                 </div>
               </div>
               {/* Our Thesis Statement Label */}
-              <div className="text-right w-full mt-[3px]">
+              <div className="text-right w-full mt-[10px]">
                 <h3
-                  className=" font-light text-[#D8DBD6] text-[12px] xxs:text-[13px] xs:text-[14px]"
+                  className=" font-light text-[#D8DBD6] text-[12px] xxs:text-[13px] xs:text-[13.5px]"
                   style={{
                     lineHeight: "10px",
                     fontWeight: 300,
@@ -364,14 +363,11 @@ export function AboutUsBanner({
                       </motion.div>
 
                       {/* Content Frame */}
-                      <div className="flex flex-col items-start w-full flex-1 justify-start gap-[4px]">
+                      <div className="flex flex-col items-start w-full flex-1 justify-start gap-[6px]">
                         {/* Statistics Title */}
                         <motion.h4
                           key={`title-${currentStatistic.id}`}
-                          className=" font-bold text-[#9DAE83] text-center w-full flex-shrink-0 text-[17px] xxs:text-[18px] xs:text-[19px]"
-                          style={{
-                            lineHeight: "24px",
-                          }}
+                          className=" font-bold text-[#9DAE83] text-center w-full flex-shrink-0 text-[17px] xxs:text-[18px] xs:text-[18.5px] leading-[1.5]"
                           {...STATISTICS_ANIMATIONS.progressiveTitleFade}
                         >
                           {currentStatistic.title}
@@ -380,10 +376,7 @@ export function AboutUsBanner({
                         {/* Statistics Description */}
                         <motion.p
                           key={`description-${currentStatistic.id}`}
-                          className=" font-normal text-white text-center w-full flex-1 flex text-[13px] xxs:text-[14px] xs:text-[15px]"
-                          style={{
-                            lineHeight: "20px",
-                          }}
+                          className=" font-normal text-white text-center w-full flex-1 flex text-[13px] xxs:text-[14px] xs:text-[14.5px] leading-normal"
                           {...STATISTICS_ANIMATIONS.progressiveDescriptionFade}
                         >
                           {currentStatistic.description}

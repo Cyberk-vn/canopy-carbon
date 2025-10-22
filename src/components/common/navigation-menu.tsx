@@ -76,7 +76,10 @@ export function NavigationMenu({
                       width={32}
                       height={32}
                       z-index={1}
-                      className="object-fill"
+                      className="object-fill brightness-125"
+                      style={{
+                        filter: "brightness(1.35) contrast(0.85) saturate(0.7)"
+                      }}
                     />
                   </div>
                 </div>
@@ -138,14 +141,13 @@ export function NavigationMenu({
                   <Link
                     key={index}
                     href={item.url}
-                    className="nav-link-our-project flex items-center hover:bg-transparent bg-[#ffffff0d] justify-center text-center transition-colors duration-200 flex-1 text-[16px] md:text-[12px] xl:text-[12px] 2xl:text-[12px] 3xl:text-[16px]"
+                    className="nav-link-our-project flex items-center hover:bg-transparent bg-[#ffffff0d] justify-center text-center transition-colors duration-200 flex-1 text-[16px] md:text-[12px] xl:text-[12px] 2xl:text-[12px] 3xl:text-[16px] font-work-sans"
                     style={{
                       padding: "6px 6px",
                       fontStyle: "normal",
                       textTransform: "uppercase",
                       fontWeight: 400,
                       lineHeight: "2em",
-                      fontFamily: "work-sans-v2, sans-serif",
                       color: isActive
                         ? NAVIGATION_COLORS.active
                         : NAVIGATION_COLORS.default,
@@ -169,14 +171,13 @@ export function NavigationMenu({
                   <Link
                     key={index}
                     href={item.url}
-                    className="nav-link-about-us flex hover:bg-transparent bg-[#ffffff0d] items-center justify-center text-center transition-colors duration-200 flex-1 text-[16px] md:text-[12px] xl:text-[12px] 2xl:text-[12px] 3xl:text-[16px]"
+                    className="nav-link-about-us flex hover:bg-transparent bg-[#ffffff0d] items-center justify-center text-center transition-colors duration-200 flex-1 text-[16px] md:text-[12px] xl:text-[12px] 2xl:text-[12px] 3xl:text-[16px] font-work-sans"
                     style={{
                       padding: "6px 6px",
                       fontStyle: "normal",
                       textTransform: "uppercase",
                       fontWeight: 400,
                       lineHeight: "2em",
-                      fontFamily: "work-sans-v2, sans-serif",
                       color: isActive
                         ? NAVIGATION_COLORS.active
                         : NAVIGATION_COLORS.default,
@@ -200,9 +201,8 @@ export function NavigationMenu({
                   <Link
                     key={index}
                     href={item.url}
-                    className="nav-link-default uppercase flex items-center justify-center px-1.5 py-1 text-center transition-colors duration-200 flex-1 3xl:h-[40px] text-[16px] md:text-[12px] xl:text-[12px] 2xl:text-[12px] 3xl:text-[16px]"
+                    className="nav-link-default uppercase flex items-center justify-center px-1.5 py-1 text-center transition-colors duration-200 flex-1 3xl:h-[40px] text-[16px] md:text-[12px] xl:text-[12px] 2xl:text-[12px] 3xl:text-[16px] font-work-sans"
                     style={{
-                      fontFamily: "work-sans-v2, sans-serif",
                       fontStyle: "normal",
                       color: isActive
                         ? NAVIGATION_COLORS.active

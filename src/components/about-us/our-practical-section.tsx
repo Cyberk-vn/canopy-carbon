@@ -106,7 +106,7 @@ export const OurPracticalSection = () => {
         <div className="row-start-1 col-start-1 z-10 w-full h-full">
           {/* Mobile Layout - Proper CSS Grid */}
           <div className="w-full h-full pt-[53px]">
-            <div className="grid grid-cols-1 gap-[34px] auto-rows-max">
+            <div className="grid grid-cols-1 gap-[46px] auto-rows-max">
               {practicalCards.map((card, index) => {
                 const isRightAligned = index === 1 || index === 3;
 
