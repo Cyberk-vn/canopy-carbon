@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion, useInView, AnimatePresence } from "motion/react";
+import { motion, useInView } from "motion/react";
 import {
   ExecutionItem,
   EnhancedExecutionItem,
@@ -57,7 +57,6 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
   const {
     selectedPrincipleId,
     currentImageOffset,
-    mobileExecutionItems,
     allPrinciples,
     autoSwitchState,
     actions,
@@ -179,10 +178,8 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
   // Mobile Execution Card Component
   const ExecutionCard = ({
     item,
-    principleId,
   }: {
     item: EnhancedExecutionItem;
-    principleId: number;
   }) => {
     const cardShadow = item.isMainCard
       ? "0px 3px 10px 0px rgba(1, 12, 27, 0.1)"
@@ -215,7 +212,6 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
         {/* Text Overlay for Selected Card */}
         {item.hasTextOverlay && (
           <div
-            key={`overlay-container-${principleId}`}
             className="absolute bottom-0 left-[-2] right-0 bg-[#F7F7F7] border-[#F7F7F7] flex items-center justify-center"
             style={{
               height: "64px",
@@ -229,8 +225,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                 fontWeight: 600,
               }}
             >
-              {allPrinciples.find((p) => p.id === principleId)?.title ||
-                item.title}
+              {item.title}
             </h3>
           </div>
         )}
@@ -254,7 +249,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
         {/* Section Title - Mobile */}
         {isMobile && (
           <motion.div
-            className="text-center"
+            className="text-center mb-8"
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{
@@ -357,7 +352,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
           </div>
         )}
 
-        {/* Mobile - Fixed 3-Card Layout with Fade Transitions */}
+        {/* Mobile - Pre-rendered 3-Card Layout with Smooth Transitions */}
         {isMobile && (
           <div>
             {/* Auto-switch status indicator for screen readers */}
@@ -385,9 +380,9 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                 userSelect: "none",
               }}
             >
-              {/* Fixed 3-Card Container */}
+              {/* Pre-rendered Principle Groups Container */}
               <div
-                className="flex items-center justify-center gap-4 px-6 py-[30px] min-h-[326px]"
+                className="relative px-6 my-[30px] min-h-[326px]"
                 style={{
                   willChange: "contents",
                   transform: "translate3d(0, 0, 0)",
@@ -395,63 +390,123 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                 role="group"
                 aria-label="Execution principle cards"
               >
-                <AnimatePresence mode="wait">
-                  {mobileExecutionItems.map((item, index) => {
-                    const isCenter = index === 1;
+                {/* Pre-render all principle groups */}
+                {allPrinciples.map((principle) => {
+                  const isActivePrinciple =
+                    principle.id === selectedPrincipleId;
 
-                    return (
-                      <motion.div
-                        key={`slide-${selectedPrincipleId}-${currentImageOffset}-${index}`}
-                        className={`flex-shrink-0 ${isCenter ? "z-10" : ""}`}
-                        style={{
-                          marginLeft: index > 0 ? "-2px" : "0",
-                          marginRight: index < 2 ? "-2px" : "0",
-                          willChange: "transform",
-                        }}
-                        initial={{
-                          x: 10,
-                          opacity: 0,
-                          scale: isCenter ? 0.95 : 0.9,
-                          y: isCenter ? 0 : 10,
-                        }}
-                        animate={{
-                          x: 0,
-                          opacity: isCenter ? 1 : 1,
-                          scale: isCenter ? 1.02 : 0.98,
-                          y: 0,
-                        }}
-                        exit={{
-                          x: -10,
-                          opacity: 0,
-                          scale: isCenter ? 0.95 : 0.9,
-                          y: isCenter ? 0 : -10,
-                        }}
-                        transition={{
-                          duration: 0.2,
-                          ease: "easeInOut",
-                        }}
-                      >
-                        <div
-                          style={{
-                            boxShadow: isCenter
-                              ? "0px 8px 24px 0px rgba(1, 12, 27, 0.15), 0px 2px 6px 0px rgba(255, 255, 255, 0.1)"
-                              : "0px 2px 8px 0px rgba(1, 12, 27, 0.05)",
-                            filter: isCenter
-                              ? "brightness(1) saturate(1.05)"
-                              : "brightness(0.92) saturate(0.95)",
-                            borderRadius: "8px",
-                            overflow: "hidden",
-                          }}
-                        >
-                          <ExecutionCard
-                            item={item}
-                            principleId={selectedPrincipleId}
-                          />
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </AnimatePresence>
+                  // Get the items for this specific principle
+                  const principleItems = (() => {
+                    // CRITICAL FIX: Use offset 1 (main image) for inactive principles
+                    // This ensures title always matches the displayed images
+                    const principleImageOffset = isActivePrinciple ? currentImageOffset : 1;
+
+                    const getImageIndex = (offset: number) => {
+                      return (
+                        (principleImageOffset +
+                          offset +
+                          principle.images.length) %
+                        principle.images.length
+                      );
+                    };
+
+                    return [
+                      {
+                        id: principle.id * 100 + 1,
+                        imageSrc: principle.images[getImageIndex(-1)],
+                        altText: `${principle.altTextBase} - Left card`,
+                        title: principle.title,
+                        cardWidth: 159,
+                        cardHeight: 250,
+                        isMainCard: false,
+                        hasTextOverlay: false,
+                        groupId: `execution-group-${principle.id}`,
+                        isSelected: false,
+                        selectionIndex: 0,
+                      },
+                      {
+                        id: principle.id * 100 + 2,
+                        imageSrc: principle.images[getImageIndex(0)],
+                        altText: `${principle.altTextBase} - Main featured card`,
+                        title: principle.title,
+                        cardWidth: 220,
+                        cardHeight: 326,
+                        isMainCard: true,
+                        hasTextOverlay: true,
+                        groupId: `execution-group-${principle.id}`,
+                        isSelected: true,
+                        selectionIndex: 1,
+                      },
+                      {
+                        id: principle.id * 100 + 3,
+                        imageSrc: principle.images[getImageIndex(1)],
+                        altText: `${principle.altTextBase} - Right card`,
+                        title: principle.title,
+                        cardWidth: 159,
+                        cardHeight: 250,
+                        isMainCard: false,
+                        hasTextOverlay: false,
+                        groupId: `execution-group-${principle.id}`,
+                        isSelected: false,
+                        selectionIndex: 2,
+                      },
+                    ];
+                  })();
+
+                  return (
+                    <motion.div
+                      key={`principle-group-${principle.id}`}
+                      className="absolute inset-0 flex items-center justify-center gap-4"
+                      animate={{
+                        opacity: isActivePrinciple ? 1 : 0,
+                      }}
+                      transition={{
+                        opacity: {
+                          duration: 0.6,
+                          ease: "easeInOut"
+                        }
+                      }}
+                      style={{
+                        pointerEvents: isActivePrinciple ? "auto" : "none",
+                        zIndex: isActivePrinciple ? 2 : 1,
+                      }}
+                    >
+                      {principleItems.map((item, index) => {
+                        const isCenter = index === 1;
+
+                        return (
+                          <div
+                            key={`card-${principle.id}-${index}`}
+                            className={`flex-shrink-0 transition-all duration-500 ease-out ${
+                              isCenter ? "z-10 scale-[1.02]" : "scale-[0.98]"
+                            }`}
+                            style={{
+                              marginLeft: index > 0 ? "-2px" : "0",
+                              marginRight: index < 2 ? "-2px" : "0",
+                            }}
+                          >
+                            <div
+                              style={{
+                                boxShadow: isCenter
+                                  ? "0px 8px 24px 0px rgba(1, 12, 27, 0.15), 0px 2px 6px 0px rgba(255, 255, 255, 0.1)"
+                                  : "0px 2px 8px 0px rgba(1, 12, 27, 0.05)",
+                                filter: isCenter
+                                  ? "brightness(1) saturate(1.05)"
+                                  : "brightness(0.92) saturate(0.95)",
+                                borderRadius: "0px",
+                                overflow: "hidden",
+                              }}
+                            >
+                              <ExecutionCard
+                                item={item}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </div>

@@ -158,7 +158,7 @@ export function InsightSectionDesktop({
           </FadeContent>
         </div>
 
-        <div className={cn("bg-[#F7F7F7] p-6 md:p-8 2xl:p-7 3xl:p-12")}>
+        <div className={cn("bg-[#FCFCFC] p-6 md:p-8 2xl:p-7 3xl:p-12")}>
           <div
             className={cn(
               "mx-auto flex w-full flex-col gap-8",

@@ -122,7 +122,7 @@ export const OurPurposeSection = () => {
         </div>
 
         {/* Desktop Layout - 768px-1024px → 1024px-2200px responsive */}
-        <div className="hidden md:flex flex-col w-full bg-[#FCFCFC] mb-[90px]">
+        <div className="hidden md:flex flex-col w-full bg-white mb-[90px]">
           <div className="flex flex-col w-full max-w-[1920px] mx-auto">
             {/* Content Container */}
             <motion.div

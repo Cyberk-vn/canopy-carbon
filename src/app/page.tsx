@@ -47,6 +47,8 @@ export default function Home() {
       abbreviation: "Biochar",
       fullTitle: "Agricultural Waste Management",
       description:
+        "Managing palm-based agricultural residues, primarily by converting biomass into biochar — cutting emissions and producing carbon-rich material for industrial use.",
+      mobileDescription:
         "Managing agricultural residues, primarily by converting biomass into biochar, cutting emissions and producing materials for industrial use.",
       iconType: "biochar",
     },

@@ -28,7 +28,7 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
       <div className="flex justify-center items-center max-w-[2200px] mx-auto">
         {/* Main Content Container - Responsive width */}
         <div
-          className="bg-[#F9F9F9] h-fit relative md:w-full md:p-[32px] md:mr-0 xl:mr-0"
+          className="h-fit relative md:w-full md:p-[32px] md:mr-0 xl:mr-0"
           style={{
             width: createResponsiveValue(957, 1410),
             marginRight: createResponsiveValue(44, 59),
@@ -37,6 +37,8 @@ const CollaborateWithUsSectionDesktop: React.FC = () => {
             paddingTop: createResponsiveValue(32, 33),
             paddingBottom: createResponsiveValue(32, 100),
             maxHeight: "492px",
+            background:
+              "linear-gradient(142deg, rgba(252, 252, 252, 0) 0%, rgba(252, 252, 252, 0.3) 30%, rgba(252, 252, 252, 0.7) 60%, rgba(252, 252, 252, 1) 100%)",
           }}
         >
           <div

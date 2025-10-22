@@ -172,7 +172,7 @@ export const OurPracticalSectionTablet = () => {
                 delay={index * 150}
                 threshold={0.1}
                 initialOpacity={0}
-                className="absolute z-20 transition-all duration-300 hover:transform hover:scale-105"
+                className="absolute z-20"
                 style={{
                   left: createResponsiveValue(
                     position.left768,
@@ -183,33 +183,48 @@ export const OurPracticalSectionTablet = () => {
                     position.width768,
                     position.width1280
                   ),
-                  backdropFilter: "blur(10px)",
                 }}
               >
-                {/* Card Title - 768px: OS 600 16px → 1280px: WS 600 17.78px */}
-                <h3
-                  className="md:font-['Open_Sans'] lg:font-['Work_Sans'] font-semibold text-[#506159] text-left"
+                <div
+                  className="cursor-pointer"
                   style={{
-                    fontSize: createResponsiveValue(16, 17.78),
-                    lineHeight: "140%",
-                    letterSpacing: "0%",
-                    marginBottom: createResponsiveValue(16, 8),
+                    backdropFilter: "blur(10px)",
+                    transform: "scale(1)",
+                    transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                    willChange: "transform",
+                  }}
+                  onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
+                    e.currentTarget.style.transform = "scale(1.03)";
+                  }}
+                  onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
+                    e.currentTarget.style.transform = "scale(1)";
                   }}
                 >
-                  {card.title}
-                </h3>
+                  {/* Card Title - 768px: OS 600 16px → 1280px: WS 600 17.78px */}
+                  <h3
+                    className="md:font-['Open_Sans'] lg:font-['Work_Sans'] font-semibold text-[#506159] text-left"
+                    style={{
+                      fontSize: createResponsiveValue(16, 17.78),
+                      lineHeight: "140%",
+                      letterSpacing: "0%",
+                      marginBottom: createResponsiveValue(16, 8),
+                    }}
+                  >
+                    {card.title}
+                  </h3>
 
-                {/* Card Description - 768px: OS 600 14px → 1280px: WS 400 13.33px */}
-                <p
-                  className="md:font-['Open_Sans'] md:font-semibold lg:font-['Work_Sans'] lg:font-normal text-[#798C9B] text-left"
-                  style={{
-                    fontSize: createResponsiveValue(14, 13.33),
-                    lineHeight: "150%",
-                    letterSpacing: "0%",
-                  }}
-                >
-                  {card.description}
-                </p>
+                  {/* Card Description - 768px: OS 600 14px → 1280px: WS 400 13.33px */}
+                  <p
+                    className="md:font-['Open_Sans'] md:font-semibold lg:font-['Work_Sans'] lg:font-normal text-[#798C9B] text-left"
+                    style={{
+                      fontSize: createResponsiveValue(14, 13.33),
+                      lineHeight: "150%",
+                      letterSpacing: "0%",
+                    }}
+                  >
+                    {card.description}
+                  </p>
+                </div>
               </FadeContent>
             );
           })}

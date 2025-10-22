@@ -146,10 +146,10 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
           <div className="flex-1 max-w-[1022px] ml-[98px] mt-[130px] mb-[93px]">
             {/* Header Section */}
             <div className="mb-[130px] ml-[20px]">
-              <h2 className="font-open-sans xxl:font-avenir-heavy xxl:font-normal font-bold xxl:text-[24px] 3xl:text-[30px] leading-[1.1] text-[#596E64] mb-[24px]">
+              <h2 className="font-open-sans xxl:font-avenir-heavy xxl:font-normal font-bold xxl:text-[24px] 3xl:text-[30px] leading-[1.3] text-[#596E64] mb-[24px]">
                 Canopy Project <br /> Development Roadmap
               </h2>
-              <p className="font-open-sans xxl:font-avenir-heavy font-semibold xxl:font-normal xxl:text-[24px] 3xl:text-[33px] leading-[1.1] text-[#BCC9C4] max-w-[788px] xxl:max-w-[970px]">
+              <p className="font-open-sans xxl:font-avenir-heavy font-semibold xxl:font-normal xxl:text-[24px] 3xl:text-[33px] leading-[1.3] text-[#BCC9C4] max-w-[788px] xxl:max-w-[970px]">
                 Our nature projects progress through structured development
                 phases, guided by disciplined decision-making at every step.
               </p>
@@ -295,7 +295,7 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
 
               {/* Description */}
               <p
-                className="font-open-sans xxl:font-avenir-heavy font-semibold xxl:font-normal xxl:text-[24px] 3xl:text-[33px] leading-normal text-[#BCC9C4] max-w-[788px] xxl:max-w-[970px]"
+                className="font-open-sans xxl:font-avenir-heavy font-semibold xxl:font-normal xxl:text-[24px] 3xl:text-[33px] leading-[1.3] text-[#BCC9C4] max-w-[788px] xxl:max-w-[970px]"
                 style={{
                   maxWidth: createResponsiveValue(456.59, 984.39),
                 }}

@@ -181,6 +181,13 @@ ServiceCardIcon.displayName = "ServiceCardIcon";
 // Animated Text Content Component
 const AnimatedTextContent = memo(
   ({ currentService }: { currentService: ServiceCardData }) => {
+    // Use mobileDescription on mobile if available, otherwise use description
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    const displayDescription =
+      isMobile && currentService.mobileDescription
+        ? currentService.mobileDescription
+        : currentService.description;
+
     return (
       <motion.div
         key={currentService.id}
@@ -188,7 +195,7 @@ const AnimatedTextContent = memo(
         initial="enter"
         animate="center"
         exit="exit"
-        className="text-center max-w-[96%] md:max-w-[278px] flex flex-col"
+        className="text-center max-w-[96%] md:max-w-[278px] flex flex-col gap-1"
       >
         {/* Animated Full Title with directional transitions */}
         <motion.h3
@@ -197,11 +204,7 @@ const AnimatedTextContent = memo(
           animate="center"
           exit="exit"
           transition={transitionConfig}
-          className=" font-bold text-[#5B5F58] text-center text-[12px] xxs:text-[13px] xs:text-[14px] md:text-[16px]"
-          style={{
-            lineHeight: "20px",
-            letterSpacing: "0.03",
-          }}
+          className="font-bold text-[#5B5F58] text-center text-[12px] xxs:text-[12.5px] xs:text-[13px] md:text-[16px] leading-normal"
         >
           {currentService.fullTitle}
         </motion.h3>
@@ -213,12 +216,9 @@ const AnimatedTextContent = memo(
           animate="center"
           exit="exit"
           transition={transitionConfig}
-          className=" font-normal text-[#5B5F58] text-center text-[11.5px] xxs:text-[12px] xs:text-[13px] md:text-[14px]"
-          style={{
-            lineHeight: "15px",
-          }}
+          className=" font-normal text-[#5B5F58] text-center text-[11.5px] xxs:text-[12px] xs:text-[12.5px] md:text-[14px] leading-normal"
         >
-          {currentService.description}
+          {displayDescription}
         </motion.p>
       </motion.div>
     );

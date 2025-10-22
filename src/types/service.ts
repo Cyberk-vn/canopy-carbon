@@ -3,6 +3,7 @@ export interface ServiceCardData {
   abbreviation: string;
   fullTitle: string;
   description: string;
+  mobileDescription?: string; // Optional: if provided, will be used on mobile devices
   iconType: 'arr' | 'redd' | 'wrc' | 'biochar';
 }
 

@@ -626,7 +626,7 @@ export function Banner({
 
                 {/* Main Content */}
                 <div className="col-start-4 row-start-2 lg:mr-[32px] xl:mr-[68px] xxl:mr-0 gap-[260px] 3xl:gap-[385px]">
-                  <div className="gap-[10px] flex flex-col justify-start">
+                  <div className="gap-[15px] flex flex-col justify-start">
                     {/* Main Title */}
                     <motion.h1
                       initial={{ opacity: 0, x: -50 }}
@@ -663,14 +663,15 @@ export function Banner({
                         "text-[16px] 3xl:text-[20px]",
                         "leading-[40px] lg:leading-[42px] xl:leading-[40px] 3xl:leading-[33px]",
                         "max-w-[618px] xl:max-w-[680px] xxl:max-w-[740px] 2xl:max-w-[800px] 3xl:max-w-[900px]",
-                        "font-open-sans 3xl:font-work-sans"
+                        "font-open-sans"
                       )}
                       style={{
                         fontWeight: "400",
                         letterSpacing: 0.02,
                       }}
                     >
-                      {subtitle}
+                      A Climate Infrastructure Company Specializing in
+                      Nature-Based Solutions.
                     </motion.p>
                   </div>
 
