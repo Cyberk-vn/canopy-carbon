@@ -12,14 +12,63 @@ import {
   getLogoUrl,
   getMobileMenuStyles,
 } from "@/src/lib/navigation";
-import { generateMetadata } from "@/src/lib/seo/metadata";
+import { Metadata } from "next";
 import {
   generateWebPageSchema,
   renderJsonLd,
 } from "@/src/lib/seo/structured-data";
 
-// Generate SEO metadata for Home page
-export const metadata = generateMetadata("home");
+// EXPLICIT metadata export for Home page
+// Following playbook requirement: each page must export metadata explicitly
+export const metadata: Metadata = {
+  title:
+    "Canopy Carbon – Building Climate Infrastructure Through Nature-Based Solutions",
+  description:
+    "Canopy Carbon pioneers large-scale, high-integrity nature-based carbon projects. We restore ecosystems, empower communities, and deliver measurable climate impact for a resilient future.",
+  keywords: [
+    "carbon credits",
+    "nature-based solutions",
+    "climate infrastructure",
+    "reforestation",
+    "wetland restoration",
+    "sustainability",
+    "carbon offset projects",
+  ],
+
+  // Open Graph metadata
+  openGraph: {
+    type: "website",
+    url: "/",
+    title:
+      "Canopy Carbon – Building Climate Infrastructure Through Nature-Based Solutions",
+    description:
+      "Canopy Carbon pioneers large-scale, high-integrity nature-based carbon projects. We restore ecosystems, empower communities, and deliver measurable climate impact.",
+    siteName: "Canopy Carbon",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: "Canopy Carbon - Nature-Based Climate Infrastructure",
+      },
+    ],
+  },
+
+  // Twitter Card metadata
+  twitter: {
+    card: "summary_large_image",
+    title: "Canopy Carbon – Building Climate Infrastructure",
+    description:
+      "Canopy Carbon pioneers large-scale, high-integrity nature-based carbon projects.",
+    images: ["/opengraph-image.png"],
+  },
+
+  // Canonical URL
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   const menuItems = getMenuItems();
