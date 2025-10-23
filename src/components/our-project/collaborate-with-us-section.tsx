@@ -23,7 +23,7 @@ const CollaborateWithUsSection = () => {
                   initial={{ opacity: 0.7, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-                  className="text-[#EDEDED] font-bold text-xl xxs:text-[21px] leading-[1.5em] text-left font-['Open_Sans']"
+                  className="text-[#EDEDED] font-bold text-xl xxs:text-[21px] leading-[18px] text-left font-['Open_Sans']"
                 >
                   Collaborate With Us
                 </motion.h2>
@@ -46,7 +46,7 @@ const CollaborateWithUsSection = () => {
                     who share our vision for high-integrity, nature-based <br />
                     development.
                   </p>
-                  <p className="text-[#9E9E9E] text-[13px] xs:text-[14px] leading-[1.385em] text-left font-['Open_Sans']">
+                  <p className="text-[#9E9E9E] text-[12px] leading-[18px] text-left font-['Open_Sans']">
                     Whether you&apos;re looking to{" "}
                     <span className="text-[#EDEDED]">co-develop a project</span>
                     ,{" "}
