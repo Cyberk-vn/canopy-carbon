@@ -19,11 +19,18 @@ import CorePrincipleSectionDesktop from "@/src/components/our-project/core-princ
 import OurProjectBenefitSectionDesktop from "@/src/components/our-project/our-project-benefit-section-desktop";
 import CanopyPortfolioSectionDesktop from "@/src/components/our-project/canopy-portfolio-section-desktop";
 import CollaborateWithUsSectionDesktop from "@/src/components/our-project/collaborate-with-us-section-desktop";
+import {
+  generateCollectionPageSchema,
+  renderJsonLd,
+} from "@/src/lib/seo/structured-data";
 
 const OurProjectPage = () => {
   const menuItems = getMenuItems();
   const logoUrl = getLogoUrl();
   const mobileMenuStyles = getMobileMenuStyles("our-project");
+
+  // Generate structured data for Our Projects page (as a collection page)
+  const collectionPageSchema = generateCollectionPageSchema("ourProjects");
 
   // Mobile-first image preloading for critical images
   useEffect(() => {
@@ -71,22 +78,29 @@ const OurProjectPage = () => {
   }, []);
 
   return (
-    <main className="h-full flex flex-col w-full">
-      {/* Render both banners and use CSS to show/hide - prevents flash */}
-      <div className="block md:hidden">
-        <OurProjectBanner
-          menuItems={menuItems}
-          logoUrl={logoUrl}
-          mobileMenuStyles={mobileMenuStyles}
-        />
-      </div>
-      <div className="hidden md:block">
-        <OurProjectBannerDesktop
-          menuItems={menuItems}
-          logoUrl={logoUrl}
-          mobileMenuStyles={mobileMenuStyles}
-        />
-      </div>
+    <>
+      {/* CollectionPage Schema for Our Projects */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(collectionPageSchema)}
+      />
+
+      <main className="h-full flex flex-col w-full">
+        {/* Render both banners and use CSS to show/hide - prevents flash */}
+        <div className="block md:hidden">
+          <OurProjectBanner
+            menuItems={menuItems}
+            logoUrl={logoUrl}
+            mobileMenuStyles={mobileMenuStyles}
+          />
+        </div>
+        <div className="hidden md:block">
+          <OurProjectBannerDesktop
+            menuItems={menuItems}
+            logoUrl={logoUrl}
+            mobileMenuStyles={mobileMenuStyles}
+          />
+        </div>
 
       {/* Core Principle Section - Responsive sections */}
       <div className="block md:hidden">
@@ -119,8 +133,9 @@ const OurProjectPage = () => {
         <CollaborateWithUsSectionDesktop />
       </div>
 
-      <FooterSection />
-    </main>
+        <FooterSection />
+      </main>
+    </>
   );
 };
 

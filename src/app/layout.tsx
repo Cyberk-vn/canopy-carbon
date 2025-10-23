@@ -3,6 +3,12 @@ import { Roboto, Open_Sans, Inter, Work_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ProductionGate } from "../components/ui/ProductionGate";
+import { generateRootMetadata } from "../lib/seo/metadata";
+import {
+  generateOrganizationSchema,
+  generateWebSiteSchema,
+  renderJsonLd,
+} from "../lib/seo/structured-data";
 
 const openSans = Open_Sans({
   weight: ["300", "400", "600", "700"],
@@ -42,19 +48,32 @@ const helveticaLight = localFont({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Canopy Carbon - Climate Infrastructure Company",
-  description:
-    "A Climate Infrastructure Company Specialising in Nature-Based Solutions.",
-};
+// Generate comprehensive SEO metadata
+export const metadata: Metadata = generateRootMetadata();
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Generate structured data schemas
+  const organizationSchema = generateOrganizationSchema();
+  const websiteSchema = generateWebSiteSchema();
+
   return (
     <html lang="en">
+      <head>
+        {/* Organization Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={renderJsonLd(organizationSchema)}
+        />
+        {/* Website Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={renderJsonLd(websiteSchema)}
+        />
+      </head>
       <body
         className={`${openSans.variable} ${roboto.variable} ${inter.variable} ${workSans.variable} ${avenirHeavy.variable} ${helveticaLight.variable} antialiased font-open-sans`}
       >

@@ -13,13 +13,27 @@ import {
 import CanopyInsightSection from "@/src/components/canopy-insight/canopy-insight-section";
 import { FooterSection } from "@/src/components/common";
 import { useResponsive } from "@/src/lib/utils/use-responsive";
+import {
+  generateWebPageSchema,
+  renderJsonLd,
+} from "@/src/lib/seo/structured-data";
 
 const CanopyInsightPage = () => {
   const { isMobile } = useResponsive();
 
+  // Generate structured data for Insights page
+  const webPageSchema = generateWebPageSchema("insights");
+
   return (
-    <div className="min-h-screen bg-white">
-      <CanopyInsightSection />
+    <>
+      {/* WebPage Schema for Insights */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(webPageSchema)}
+      />
+
+      <div className="min-h-screen bg-white">
+        <CanopyInsightSection />
 
       {/* Gradient overlay for desktop to smooth transition */}
       {!isMobile && (
@@ -55,10 +69,11 @@ const CanopyInsightPage = () => {
       {isMobile && <InsightSection3 />}
       {!isMobile && <InsightSection3Desktop />}
 
-      {isMobile && <CanopyPortfolioSection />}
-      {!isMobile && <CanopyPortfolioSectionDesktop />}
-      <FooterSection />
-    </div>
+        {isMobile && <CanopyPortfolioSection />}
+        {!isMobile && <CanopyPortfolioSectionDesktop />}
+        <FooterSection />
+      </div>
+    </>
   );
 };
 
