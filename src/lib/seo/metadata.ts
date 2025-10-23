@@ -13,6 +13,12 @@ export const generateMetadata = (
 ): Metadata => {
   const pageData = PAGE_SEO[pageKey];
   const canonicalUrl = `${SEO_CONFIG.siteUrl}${getPagePath(pageKey)}`;
+  const pagePath = getPagePath(pageKey);
+
+  // Use opengraph-image.png if it exists, otherwise use config path
+  const ogImageUrl = pagePath === "/"
+    ? `${SEO_CONFIG.siteUrl}/opengraph-image.png`
+    : `${SEO_CONFIG.siteUrl}${pagePath}/opengraph-image.png`;
 
   return {
     title: pageData.title,
@@ -42,7 +48,7 @@ export const generateMetadata = (
       description: pageData.description,
       images: [
         {
-          url: `${SEO_CONFIG.siteUrl}${pageData.ogImage}`,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: pageData.title,
@@ -55,7 +61,7 @@ export const generateMetadata = (
       card: "summary_large_image",
       title: pageData.title,
       description: pageData.description,
-      images: [`${SEO_CONFIG.siteUrl}${pageData.ogImage}`],
+      images: [ogImageUrl],
     },
 
     // Canonical URL
