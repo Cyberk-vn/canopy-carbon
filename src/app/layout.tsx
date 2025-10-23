@@ -48,16 +48,8 @@ const helveticaLight = localFont({
   display: "swap",
 });
 
-// Generate comprehensive SEO metadata with explicit metadataBase
-// CRITICAL: metadataBase MUST be explicit new URL() for social media bots
-const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
-  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-  : "https://www.canopycarbon.org";
-
-export const metadata: Metadata = {
-  ...generateRootMetadata(),
-  metadataBase: new URL(baseUrl),
-};
+// Generate comprehensive SEO metadata
+export const metadata: Metadata = generateRootMetadata();
 
 export default function RootLayout({
   children,
