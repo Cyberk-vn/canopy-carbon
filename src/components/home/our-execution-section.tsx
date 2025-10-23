@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion, useInView } from "motion/react";
+import { motion, useInView, AnimatePresence } from "motion/react";
 import {
   ExecutionItem,
   EnhancedExecutionItem,
@@ -61,7 +61,18 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
     autoSwitchState,
     actions,
     handleDragEnd, // Now comes from consolidated hook
+    canSwipe,
   } = useExecutionSwipe();
+
+  // Callback to sync animation completion with store state
+  const handleAnimationComplete = useCallback(() => {
+    // This ensures the component knows when Motion has finished animating
+    // Helps prevent mid-animation state changes
+    if (!canSwipe) {
+      // Transition should be complete by now
+      actions.endTransition();
+    }
+  }, [canSwipe, actions]);
 
   // Check for reduced motion preference
   const prefersReducedMotion = useRef(false);
@@ -115,12 +126,12 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
   };
 
   // Touch/drag handling for mobile swipe
-  const dragStart = useRef({ x: 0, y: 0 });
+  const dragStart = useRef({ x: 0, y: 0, timestamp: 0 });
   const isDragging = useRef(false);
 
   const handlePointerDown = useCallback(
     (e: React.PointerEvent) => {
-      dragStart.current = { x: e.clientX, y: e.clientY };
+      dragStart.current = { x: e.clientX, y: e.clientY, timestamp: Date.now() };
       isDragging.current = true;
       if (autoSwitchState.enabled) {
         actions.pauseAutoSwitch();
@@ -137,12 +148,18 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
       const deltaY = e.clientY - dragStart.current.y;
       const distance = Math.abs(deltaX);
 
+      // Calculate actual velocity (px/ms)
+      const endTime = Date.now();
+      const deltaTime = Math.max(endTime - dragStart.current.timestamp, 1); // Prevent division by zero
+      const velocityX = (deltaX / deltaTime) * 1000; // Convert to px/s
+      const velocityY = (deltaY / deltaTime) * 1000;
+
       // Only trigger swipe if horizontal movement is dominant
       if (distance > 50 && Math.abs(deltaX) > Math.abs(deltaY)) {
-        // Create mock DragInfo object for compatibility with existing handler
+        // Create DragInfo object with accurate velocity
         const mockInfo = {
           offset: { x: deltaX, y: deltaY },
-          velocity: { x: deltaX, y: deltaY },
+          velocity: { x: velocityX, y: velocityY },
         };
 
         handleDragEnd(e.nativeEvent as PointerEvent, mockInfo);
@@ -390,16 +407,17 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                 role="group"
                 aria-label="Execution principle cards"
               >
-                {/* Pre-render all principle groups */}
-                {allPrinciples.map((principle) => {
+                <AnimatePresence mode="wait" initial={false}>
+                  {/* Pre-render all principle groups */}
+                  {allPrinciples.map((principle) => {
                   const isActivePrinciple =
                     principle.id === selectedPrincipleId;
 
                   // Get the items for this specific principle
                   const principleItems = (() => {
-                    // CRITICAL FIX: Use offset 1 (main image) for inactive principles
-                    // This ensures title always matches the displayed images
-                    const principleImageOffset = isActivePrinciple ? currentImageOffset : 1;
+                    // SYNC FIX: Always use currentImageOffset to prevent visual jumps
+                    // All principles render with same offset, only opacity changes
+                    const principleImageOffset = currentImageOffset;
 
                     const getImageIndex = (offset: number) => {
                       return (
@@ -456,19 +474,30 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                   return (
                     <motion.div
                       key={`principle-group-${principle.id}`}
+                      layoutId={`execution-principle-${principle.id}`}
                       className="absolute inset-0 flex items-center justify-center gap-4"
+                      initial={false}
                       animate={{
                         opacity: isActivePrinciple ? 1 : 0,
+                      }}
+                      exit={{
+                        opacity: 0,
                       }}
                       transition={{
                         opacity: {
                           duration: 0.6,
-                          ease: "easeInOut"
+                          ease: [0.25, 0.46, 0.45, 0.94], // Cubic bezier for smoother easing
+                        },
+                        layout: {
+                          duration: 0.6,
+                          ease: [0.25, 0.46, 0.45, 0.94],
                         }
                       }}
+                      onAnimationComplete={isActivePrinciple ? handleAnimationComplete : undefined}
                       style={{
                         pointerEvents: isActivePrinciple ? "auto" : "none",
                         zIndex: isActivePrinciple ? 2 : 1,
+                        willChange: isActivePrinciple ? "opacity" : "auto",
                       }}
                     >
                       {principleItems.map((item, index) => {
@@ -507,6 +536,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                     </motion.div>
                   );
                 })}
+                </AnimatePresence>
               </div>
             </div>
           </div>
