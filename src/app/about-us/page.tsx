@@ -17,11 +17,18 @@ import {
   getLogoUrl,
   getMobileMenuStyles,
 } from "@/src/lib/navigation";
+import {
+  generateWebPageSchema,
+  renderJsonLd,
+} from "@/src/lib/seo/structured-data";
 
 const AboutUsPage = () => {
   const menuItems = getMenuItems();
   const logoUrl = getLogoUrl();
   const mobileMenuStyles = getMobileMenuStyles("about-us");
+
+  // Generate structured data for About Us page
+  const webPageSchema = generateWebPageSchema("aboutUs");
 
   // Mobile-first image preloading for critical images
   useEffect(() => {
@@ -99,37 +106,45 @@ const AboutUsPage = () => {
   };
 
   return (
-    <main className="h-full flex flex-col w-full">
-      <div className="block md:hidden">
-        <AboutUsBanner
-          menuItems={menuItems}
-          logoUrl={logoUrl}
-          mobileMenuStyles={mobileMenuStyles}
-        />
-      </div>
-      <div className="hidden md:block">
-        <AboutUsBannerDesktop
-          menuItems={menuItems}
-          logoUrl={logoUrl}
-          mobileMenuStyles={mobileMenuStyles}
-        />
-      </div>
+    <>
+      {/* WebPage Schema for About Us */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(webPageSchema)}
+      />
 
-      {/* Core content sections - always visible */}
-      <OurPurposeSection />
+      <main className="h-full flex flex-col w-full">
+        <div className="block md:hidden">
+          <AboutUsBanner
+            menuItems={menuItems}
+            logoUrl={logoUrl}
+            mobileMenuStyles={mobileMenuStyles}
+          />
+        </div>
+        <div className="hidden md:block">
+          <AboutUsBannerDesktop
+            menuItems={menuItems}
+            logoUrl={logoUrl}
+            mobileMenuStyles={mobileMenuStyles}
+          />
+        </div>
 
-      {/* Responsive sections - use CSS-based responsive design to prevent flash */}
-      <div className="block md:hidden">
-        <OurPracticalSection />
-      </div>
-      <OurPracticalSectionTablet />
-      <OurPracticalSectionDesktop />
+        {/* Core content sections - always visible */}
+        <OurPurposeSection />
 
-      {/* Common sections - always visible */}
-      <DevelopmentSequenceSection data={developmentSequenceData} />
-      <OurProjectSection />
-      <FooterSection />
-    </main>
+        {/* Responsive sections - use CSS-based responsive design to prevent flash */}
+        <div className="block md:hidden">
+          <OurPracticalSection />
+        </div>
+        <OurPracticalSectionTablet />
+        <OurPracticalSectionDesktop />
+
+        {/* Common sections - always visible */}
+        <DevelopmentSequenceSection data={developmentSequenceData} />
+        <OurProjectSection />
+        <FooterSection />
+      </main>
+    </>
   );
 };
 

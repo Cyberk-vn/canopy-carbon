@@ -1,38 +1,21 @@
-import { Metadata } from "next";
 import {
   ContactHeroSection,
   ContactHeroSectionDesktop,
   ContactFooterSection,
 } from "@/src/components/contact-us";
+import { generateMetadata } from "@/src/lib/seo/metadata";
+import {
+  generateWebPageSchema,
+  renderJsonLd,
+} from "@/src/lib/seo/structured-data";
 
-export const metadata: Metadata = {
-  title: "Contact | Canopy Carbon",
-  description:
-    "Connect with Canopy Carbon for high-integrity nature-based solutions. Partner with us as credit offtakers, capital allocators, researchers, or project proponents.",
-  keywords: [
-    "carbon credits",
-    "nature-based solutions",
-    "climate finance",
-    "sustainability",
-    "contact",
-    "partnerships",
-  ],
-  openGraph: {
-    title: "Contact | Canopy Carbon",
-    description:
-      "Connect with Canopy Carbon for high-integrity nature-based solutions. Partner with us as credit offtakers, capital allocators, researchers, or project proponents.",
-    type: "website",
-    url: "/contact-us",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact | Canopy Carbon",
-    description:
-      "Connect with Canopy Carbon for high-integrity nature-based solutions. Partner with us as credit offtakers, capital allocators, researchers, or project proponents.",
-  },
-};
+// Generate SEO metadata for Contact Us page
+export const metadata = generateMetadata("contactUs");
 
 const ContactUsPage = () => {
+  // Generate structured data for Contact Us page
+  const webPageSchema = generateWebPageSchema("contactUs");
+
   const contactUsCards = [
     {
       id: "credit-offtakers",
@@ -61,18 +44,26 @@ const ContactUsPage = () => {
   ];
 
   return (
-    <div className="bg-white">
-      <div className="block md:hidden">
-        <ContactHeroSection cards={contactUsCards} />
-      </div>
-      <div className="hidden md:block">
-        <ContactHeroSectionDesktop cards={contactUsCards} />
-      </div>
+    <>
+      {/* WebPage Schema for Contact Us */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(webPageSchema)}
+      />
 
-      <div className="block md:hidden">
-        <ContactFooterSection />
+      <div className="bg-white">
+        <div className="block md:hidden">
+          <ContactHeroSection cards={contactUsCards} />
+        </div>
+        <div className="hidden md:block">
+          <ContactHeroSectionDesktop cards={contactUsCards} />
+        </div>
+
+        <div className="block md:hidden">
+          <ContactFooterSection />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

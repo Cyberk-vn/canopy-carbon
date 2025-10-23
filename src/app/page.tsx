@@ -12,10 +12,21 @@ import {
   getLogoUrl,
   getMobileMenuStyles,
 } from "@/src/lib/navigation";
+import { generateMetadata } from "@/src/lib/seo/metadata";
+import {
+  generateWebPageSchema,
+  renderJsonLd,
+} from "@/src/lib/seo/structured-data";
+
+// Generate SEO metadata for Home page
+export const metadata = generateMetadata("home");
 
 export default function Home() {
   const menuItems = getMenuItems();
   const mobileMenuStyles = getMobileMenuStyles("home");
+
+  // Generate structured data for Home page
+  const webPageSchema = generateWebPageSchema("home");
 
   const serviceData: ServiceCardData[] = [
     {
@@ -56,6 +67,12 @@ export default function Home() {
 
   return (
     <>
+      {/* WebPage Schema for Home */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={renderJsonLd(webPageSchema)}
+      />
+
       <div className="min-h-screen flex flex-col gap-10 bg-[#FCFCFC] lg:bg-white xxl:gap-0">
         <Banner
           title="Canopy Carbon"
