@@ -626,7 +626,7 @@ export function Banner({
 
                 {/* Main Content */}
                 <div className="col-start-4 row-start-2 lg:mr-[32px] xl:mr-[68px] xxl:mr-0 gap-[260px] 3xl:gap-[385px]">
-                  <div className="gap-[15px] flex flex-col justify-start">
+                  <div className="gap-[17px] flex flex-col justify-start">
                     {/* Main Title */}
                     <motion.h1
                       initial={{ opacity: 0, x: -50 }}

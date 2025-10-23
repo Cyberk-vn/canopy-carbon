@@ -354,7 +354,7 @@ export const DesktopView = memo<DesktopViewProps>(({ data }) => {
                     width: createResponsiveValue(636.22, 1310),
                     maxWidth: "1105px",
                     height: "175px",
-                    backgroundColor: "rgba(207, 213, 219, 0.4)",
+                    backgroundColor: "rgba(207, 213, 219, 0.33)",
                     padding: createResponsiveValue(14.89, 32.11),
                     transformStyle: "preserve-3d",
                     perspective: "1000px",
