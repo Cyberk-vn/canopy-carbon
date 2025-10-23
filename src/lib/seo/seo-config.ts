@@ -137,7 +137,7 @@ export const PAGE_SEO = {
       "climate finance",
       "carbon portfolio",
     ],
-    ogImage: "/assets/our-project/our-project-banner-bg.png",
+    ogImage: "/assets/our-project/portfolio/canopy-portfolio-bg-image.png",
   },
 
   insights: {
@@ -152,7 +152,7 @@ export const PAGE_SEO = {
       "climate finance",
       "sustainability thought leadership",
     ],
-    ogImage: "/assets/canopy-insight/canopy-insight-banner-bg.png",
+    ogImage: "/assets/canopy-insight/banner-background-image.png",
   },
 
   contactUs: {
@@ -166,7 +166,7 @@ export const PAGE_SEO = {
       "carbon finance",
       "carbon credit buyers",
     ],
-    ogImage: "/assets/contact-us/contact-us-banner-bg-image.png",
+    ogImage: "/assets/contact-us/background-footer-image.png",
   },
 };
 
