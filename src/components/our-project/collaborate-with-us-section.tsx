@@ -34,7 +34,7 @@ const CollaborateWithUsSection = () => {
                   transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
                   className="flex flex-col gap-3 max-w-[342px] xxs:max-w-[360px] xs:max-w-[380px]"
                 >
-                  <p className="text-[#9E9E9E] text-[13px] xs:text-[14px] leading-[18px] text-left font-['Open_Sans']">
+                  <p className="text-[#9E9E9E] text-[12px] leading-[18px] text-left font-['Open_Sans']">
                     We believe meaningful climate solutions are built through
                     partnership. At Canopy, we welcome collaboration with{" "}
                     <span className="text-[#EDEDED]">project proponents</span>,{" "}

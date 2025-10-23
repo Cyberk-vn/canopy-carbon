@@ -305,7 +305,7 @@ export const TabletView = memo<TabletViewProps>(({ data }) => {
               <div
                 className="absolute inset-0 rounded-[5px]"
                 style={{
-                  backgroundColor: "rgba(207, 213, 219, 0.4)",
+                  backgroundColor: "rgba(207, 213, 219, 0.33)",
                 }}
               />
 
