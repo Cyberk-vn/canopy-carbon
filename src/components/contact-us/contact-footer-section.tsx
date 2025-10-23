@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
+import BackgroundFooterImage from "../../../public/assets/contact-us/background-footer-image.png";
 
 interface ContactFormData {
   name: string;
@@ -40,13 +41,14 @@ const ContactFooterSection = () => {
       {/* Background Image */}
       <div>
         <Image
-          src="/assets/contact-us/background-footer-image.png"
+          src={BackgroundFooterImage}
           alt=""
           className="object-cover inset-0 mt-50 z-0 w-[390px] h-[849px]"
           fill
           role="presentation"
           priority
           sizes="100vw"
+          placeholder="blur"
         />
         {/* overlay gradient */}
         <div

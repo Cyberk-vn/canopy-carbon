@@ -163,7 +163,7 @@ const defaultData = {
 
 export const MobileView = memo<MobileViewProps>(({ data = defaultData }) => {
   const { carouselData = defaultData.carouselData, descriptionData } = data;
-  
+
   // Contact redirect hook
   const { redirectToContact } = useContactRedirect();
 
@@ -238,8 +238,10 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
   const group2CardCount = cardGroups?.[1]?.cards.length || 0;
 
   // Get stable dimensions and positions for both groups
-  const { dimensions: dimensions1, getCardPositions: getCardPositions1 } = useStableCardPositions(group1CardCount);
-  const { dimensions: dimensions2, getCardPositions: getCardPositions2 } = useStableCardPositions(group2CardCount);
+  const { dimensions: dimensions1, getCardPositions: getCardPositions1 } =
+    useStableCardPositions(group1CardCount);
+  const { dimensions: dimensions2, getCardPositions: getCardPositions2 } =
+    useStableCardPositions(group2CardCount);
 
   // Handle slide direction reset
   useEffect(() => {
@@ -405,14 +407,21 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
           <div className="flex flex-col justify-center items-center mb-12">
             <div
               className="relative w-full mx-auto flex flex-col items-center overflow-hidden"
-              style={{ height: `${Math.max(dimensions1.containerHeight, dimensions2.containerHeight)}px` }}
+              style={{
+                height: `${Math.max(
+                  dimensions1.containerHeight,
+                  dimensions2.containerHeight
+                )}px`,
+              }}
             >
               {/* Pre-render both groups with AnimatePresence */}
               <AnimatePresence initial={false} mode="sync">
                 {cardGroups?.map((group, groupIndex) => {
                   const isCurrentGroup = groupIndex === currentGroupIndex;
-                  const groupDimensions = groupIndex === 0 ? dimensions1 : dimensions2;
-                  const groupGetCardPositions = groupIndex === 0 ? getCardPositions1 : getCardPositions2;
+                  const groupDimensions =
+                    groupIndex === 0 ? dimensions1 : dimensions2;
+                  const groupGetCardPositions =
+                    groupIndex === 0 ? getCardPositions1 : getCardPositions2;
 
                   return (
                     <motion.div
@@ -421,120 +430,137 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
                       initial={{ opacity: 0 }}
                       animate={{
                         opacity: isCurrentGroup ? 1 : 0,
-                        pointerEvents: isCurrentGroup ? 'auto' : 'none',
+                        pointerEvents: isCurrentGroup ? "auto" : "none",
                       }}
                       transition={{
-                        opacity: { duration: 0.3, ease: "easeInOut" }
+                        opacity: { duration: 0.3, ease: "easeInOut" },
                       }}
                     >
-                    {group.cards.map((card, index) => {
-                      const cardPositions = groupGetCardPositions();
-                      const position =
-                        cardPositions[index] ||
-                        cardPositions[cardPositions.length - 1];
+                      {group.cards.map((card, index) => {
+                        const cardPositions = groupGetCardPositions();
+                        const position =
+                          cardPositions[index] ||
+                          cardPositions[cardPositions.length - 1];
 
-                      const isLastCard = index === group.cards.length - 1;
-                      const isFirstCard = index === 0;
-                      const isMiddleCard = !isFirstCard && !isLastCard;
-                      let horizontalOffset = 0;
+                        const isLastCard = index === group.cards.length - 1;
+                        const isFirstCard = index === 0;
+                        const isMiddleCard = !isFirstCard && !isLastCard;
+                        let horizontalOffset = 0;
 
-                      if (!isLastCard && slideDirection === "left" && isCurrentGroup) {
-                        horizontalOffset = isTransitioning
-                          ? Math.min(
-                              groupDimensions.cardWidth * 1.4,
-                              groupDimensions.availableWidth * 0.3
-                            )
-                          : 0;
-                      } else if (!isLastCard && slideDirection === "right" && isCurrentGroup) {
-                        horizontalOffset = isTransitioning
-                          ? Math.max(
-                              -groupDimensions.cardWidth * 1.4,
-                              -groupDimensions.availableWidth * 0.3
-                            )
-                          : 0;
-                      }
+                        if (
+                          !isLastCard &&
+                          slideDirection === "left" &&
+                          isCurrentGroup
+                        ) {
+                          horizontalOffset = isTransitioning
+                            ? Math.min(
+                                groupDimensions.cardWidth * 1.4,
+                                groupDimensions.availableWidth * 0.3
+                              )
+                            : 0;
+                        } else if (
+                          !isLastCard &&
+                          slideDirection === "right" &&
+                          isCurrentGroup
+                        ) {
+                          horizontalOffset = isTransitioning
+                            ? Math.max(
+                                -groupDimensions.cardWidth * 1.4,
+                                -groupDimensions.availableWidth * 0.3
+                              )
+                            : 0;
+                        }
 
-                      const middleCardEffects = isMiddleCard && isCurrentGroup
-                        ? {
-                            filter: isTransitioning
-                              ? "brightness(1.1) saturate(1.2)"
-                              : "brightness(1) saturate(1)",
-                            boxShadow: isTransitioning
-                              ? "0px 8px 20px 0px rgba(1, 27, 13, 0.15), 0px 2px 6px 0px rgba(255, 255, 255, 0.1)"
-                              : "0px 4px 16px 0px rgba(1, 27, 13, 0.08)",
-                          }
-                        : {};
+                        const middleCardEffects =
+                          isMiddleCard && isCurrentGroup
+                            ? {
+                                filter: isTransitioning
+                                  ? "brightness(1.1) saturate(1.2)"
+                                  : "brightness(1) saturate(1)",
+                                boxShadow: isTransitioning
+                                  ? "0px 8px 20px 0px rgba(1, 27, 13, 0.15), 0px 2px 6px 0px rgba(255, 255, 255, 0.1)"
+                                  : "0px 4px 16px 0px rgba(1, 27, 13, 0.08)",
+                              }
+                            : {};
 
-                      return (
-                        <motion.div
-                          key={`${group.id}-${card.id}`}
-                          layoutId={isCurrentGroup ? `card-${index}` : undefined}
-                          className="absolute cursor-pointer group flex items-center"
-                          style={{
-                            width: `${groupDimensions.cardWidth}px`,
-                            height: `${groupDimensions.cardHeight}px`,
-                            zIndex: group.cards.length - index, // First card has highest z-index
-                          }}
-                          initial={{
-                            left: position.left,
-                            bottom: position.bottom,  // Changed from top to bottom
-                            x: 0,
-                            y: 0,
-                            scale: position.scale || 1,
-                          }}
-                          animate={{
-                            left: position.left,
-                            bottom: position.bottom,  // Changed from top to bottom
-                            x: horizontalOffset,
-                            y: 0,
-                            scale: position.scale || 1,
-                            boxShadow:
-                              middleCardEffects.boxShadow ||
-                              "0px 4px 16px 0px rgba(1, 27, 13, 0.08)",
-                            filter:
-                              middleCardEffects.filter || "brightness(1) saturate(1)",
-                          }}
-                          transition={{
-                            x: {
-                              duration: slideDirection && isCurrentGroup ? 1.2 : 0.5,
-                              ease: slideDirection ? "circOut" : "anticipate",
-                              delay: slideDirection && isCurrentGroup ? index * 0.03 : 0,
-                            },
-                            left: {
-                              type: "spring",
-                              stiffness: 300,
-                              damping: 30,
-                            },
-                            bottom: {  // Changed from top to bottom
-                              type: "spring",
-                              stiffness: 300,
-                              damping: 30,
-                            },
-                            scale: {
-                              type: "spring",
-                              stiffness: 300,
-                              damping: 30,
-                            },
-                            boxShadow: {
-                              duration: 0.3,
-                            },
-                            filter: {
-                              duration: 0.3,
-                            },
-                          }}
-                        >
-                          <Image
-                            src={card.src}
-                            alt={card.alt}
-                            fill
-                            className="object-cover"
-                            priority={groupIndex === 0}
-                            placeholder="blur"
-                            sizes={`${groupDimensions.cardWidth}px`}
-                          />
-                        </motion.div>
-                      );
-                    })}
+                        return (
+                          <motion.div
+                            key={`${group.id}-${card.id}`}
+                            layoutId={
+                              isCurrentGroup ? `card-${index}` : undefined
+                            }
+                            className="absolute cursor-pointer group flex items-center"
+                            style={{
+                              width: `${groupDimensions.cardWidth}px`,
+                              height: `${groupDimensions.cardHeight}px`,
+                              zIndex: group.cards.length - index, // First card has highest z-index
+                            }}
+                            initial={{
+                              left: position.left,
+                              bottom: position.bottom, // Changed from top to bottom
+                              x: 0,
+                              y: 0,
+                              scale: position.scale || 1,
+                            }}
+                            animate={{
+                              left: position.left,
+                              bottom: position.bottom, // Changed from top to bottom
+                              x: horizontalOffset,
+                              y: 0,
+                              scale: position.scale || 1,
+                              boxShadow:
+                                middleCardEffects.boxShadow ||
+                                "0px 4px 16px 0px rgba(1, 27, 13, 0.08)",
+                              filter:
+                                middleCardEffects.filter ||
+                                "brightness(1) saturate(1)",
+                            }}
+                            transition={{
+                              x: {
+                                duration:
+                                  slideDirection && isCurrentGroup ? 1.2 : 0.5,
+                                ease: slideDirection ? "circOut" : "anticipate",
+                                delay:
+                                  slideDirection && isCurrentGroup
+                                    ? index * 0.03
+                                    : 0,
+                              },
+                              left: {
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 30,
+                              },
+                              bottom: {
+                                // Changed from top to bottom
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 30,
+                              },
+                              scale: {
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 30,
+                              },
+                              boxShadow: {
+                                duration: 0.3,
+                              },
+                              filter: {
+                                duration: 0.3,
+                              },
+                            }}
+                          >
+                            <Image
+                              src={card.src}
+                              alt={card.alt}
+                              fill
+                              className="object-cover"
+                              priority={groupIndex === 0}
+                              placeholder="blur"
+                              sizes={`${groupDimensions.cardWidth}px`}
+                            />
+                          </motion.div>
+                        );
+                      })}
                     </motion.div>
                   );
                 })}
@@ -602,12 +628,12 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
               scale: 1.02,
               opacity: 0.85,
               backgroundColor: "rgba(87, 81, 81, 0.15)",
-              transition: { duration: 0.2, ease: "easeOut" }
+              transition: { duration: 0.2, ease: "easeOut" },
             }}
             whileTap={{
               scale: 0.98,
               opacity: 0.7,
-              transition: { duration: 0.1, ease: "easeIn" }
+              transition: { duration: 0.1, ease: "easeIn" },
             }}
             initial={{ opacity: 1, scale: 1 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -622,11 +648,11 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
               }}
               whileHover={{
                 color: "rgba(0, 0, 0, 0.6)",
-                transition: { duration: 0.2, ease: "easeOut" }
+                transition: { duration: 0.2, ease: "easeOut" },
               }}
               whileTap={{
                 color: "rgba(0, 0, 0, 0.8)",
-                transition: { duration: 0.1, ease: "easeIn" }
+                transition: { duration: 0.1, ease: "easeIn" },
               }}
             >
               {buttonText}
@@ -648,58 +674,18 @@ const DescriptionSectionInline = ({
 
   return (
     <div className="flex flex-col w-full min-h-[453px] relative overflow-hidden h-[480px]">
-      <div className="absolute inset-0 w-full h-full">
-        <div className="absolute -left-4 top-0 w-full h-full">
-          <Image
-            src={backgroundImage}
-            alt="Description background"
-            fill
-            className="object-cover object-left"
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-            sizes="100vw"
-          />
-        </div>
-
-        <div
-          className="absolute inset-0 w-full h-full"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.8) 85%, rgba(255, 255, 255, 1) 100%)",
-          }}
-        />
-
-        {/* Background overlay with #FCFCFC gradient */}
-        <div
-          className="absolute inset-0 w-full h-full"
-          style={{
-            background:
-              "linear-gradient(180deg, #FCFCFC 0%, rgba(252, 252, 252, 0) 80%, rgba(252, 252, 252, 0) 100%)",
-          }}
+      <div className="absolute -left-6 -right-6 w-[calc(100%+48px)] h-full">
+        <Image
+          src={backgroundImage}
+          alt="Description background"
+          fill
+          className="object-cover"
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+          sizes="100vw"
         />
       </div>
-
-      {/* Absolute positioned logo at top-right */}
-      {logoImage && (
-        <div className="absolute -right-13 top-0 z-20 w-auto h-auto overflow-hidden">
-          <Image
-            src={logoImage}
-            alt="Logo description absolute"
-            width={295}
-            height={295}
-            className="object-contain"
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-            style={{
-              maxWidth: "295px",
-              maxHeight: "295px",
-            }}
-            sizes="295px"
-          />
-        </div>
-      )}
 
       {/* Content Container - Flexbox layout to push text to bottom */}
       <div className="absolute bottom-0 z-10 flex flex-col justify-end h-full md:px-8 pb-6 ml-4">

@@ -196,7 +196,8 @@ const useExecutionSwipeStore = create<ExecutionSwipeState>((set, get) => ({
 
       // Calculate all changes first
       const velocity = isLongSwipe ? 200 : 100;
-      
+      const TRANSITION_DURATION = 600; // Standardized for all transitions
+
       if (isLongSwipe) {
         // Long swipes change principles
         let newPrincipleId: number;
@@ -205,7 +206,12 @@ const useExecutionSwipeStore = create<ExecutionSwipeState>((set, get) => ({
         } else {
           newPrincipleId = state.selectedPrincipleId === 4 ? 1 : state.selectedPrincipleId + 1;
         }
-        
+
+        // Stop auto-switch BEFORE state update to prevent race conditions
+        if (state.autoSwitchTimerId) {
+          clearInterval(state.autoSwitchTimerId);
+        }
+
         // Single batched state update for principle change
         set(() => ({
           selectedPrincipleId: newPrincipleId,
@@ -217,7 +223,28 @@ const useExecutionSwipeStore = create<ExecutionSwipeState>((set, get) => ({
           isPrincipleChanging: true,
           isImageCycling: false,
           isPaused: true, // Pause auto-switch
+          autoSwitchTimerId: null, // Clear timer reference
         }));
+
+        // Schedule coordinated cleanup after transition completes
+        setTimeout(() => {
+          const currentState = get();
+
+          // Only update if still in transition (not interrupted)
+          if (currentState.isPrincipleChanging && currentState.isTransitioning) {
+            set(() => ({
+              isTransitioning: false,
+              isPrincipleChanging: false,
+              swipeVelocity: 0,
+            }));
+
+            // Restart auto-switch after transition completes
+            if (currentState.autoSwitchEnabled) {
+              currentState.actions.startAutoSwitch();
+            }
+          }
+        }, TRANSITION_DURATION);
+
       } else {
         // Short swipes cycle images within current principle
         const imagesPerPrinciple = 4;
@@ -227,7 +254,7 @@ const useExecutionSwipeStore = create<ExecutionSwipeState>((set, get) => ({
         } else {
           newOffset = (state.currentImageOffset + 1) % imagesPerPrinciple;
         }
-        
+
         // Single batched state update for image change
         set(() => ({
           currentImageOffset: newOffset,
@@ -239,37 +266,30 @@ const useExecutionSwipeStore = create<ExecutionSwipeState>((set, get) => ({
           isImageCycling: true,
           isPaused: true, // Pause auto-switch
         }));
+
+        // Schedule coordinated cleanup after transition completes
+        setTimeout(() => {
+          const currentState = get();
+
+          // Only update if still in transition (not interrupted)
+          if (currentState.isImageCycling && currentState.isTransitioning) {
+            set(() => ({
+              isTransitioning: false,
+              isImageCycling: false,
+              swipeVelocity: 0,
+            }));
+          }
+        }, TRANSITION_DURATION);
       }
-      
-      // Handle auto-switch timer reset for principle changes
-      if (isLongSwipe) {
-        state.actions.stopAutoSwitch();
-        state.actions.startAutoSwitch();
-      }
-      
+
       // Resume auto-switch after interaction timeout (5 seconds)
       setTimeout(() => {
         const currentState = get();
         const timeSinceLastInteraction = Date.now() - currentState.lastInteractionTime;
-        if (timeSinceLastInteraction >= 5000) {
-          state.actions.resumeAutoSwitch();
+        if (timeSinceLastInteraction >= 5000 && currentState.isPaused) {
+          currentState.actions.resumeAutoSwitch();
         }
       }, 5000);
-      
-      // Reset velocity after delay
-      setTimeout(() => {
-        set(() => ({ swipeVelocity: 0 }));
-      }, 1000);
-      
-      // SYNC FIX: End transition with proper timing based on type
-      const transitionDuration = isLongSwipe ? 600 : 500;
-      setTimeout(() => {
-        set(() => ({
-          isTransitioning: false,
-          isPrincipleChanging: false,
-          isImageCycling: false,
-        }));
-      }, transitionDuration);
     },
     
     startAutoSwitch: () => {
