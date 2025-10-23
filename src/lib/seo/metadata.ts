@@ -52,6 +52,7 @@ export const generateMetadata = (
           width: 1200,
           height: 630,
           alt: pageData.title,
+          type: "image/png",
         },
       ],
     },
@@ -138,7 +139,12 @@ export const generateRootMetadata = (): Metadata => {
       siteName: SEO_CONFIG.siteName,
       title: SEO_CONFIG.defaultTitle,
       description: SEO_CONFIG.siteDescription,
-      images: [SEO_CONFIG.defaultOGImage],
+      images: [
+        {
+          ...SEO_CONFIG.defaultOGImage,
+          type: "image/png",
+        },
+      ],
     },
 
     // Twitter
