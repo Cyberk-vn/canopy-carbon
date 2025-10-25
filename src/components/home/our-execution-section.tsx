@@ -1,14 +1,10 @@
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import Image from "next/image";
-import { motion, useInView } from "motion/react";
-import {
-  ExecutionItem,
-  EnhancedExecutionItem,
-  OurExecutionSectionProps,
-} from "@/src/types/execution";
-import { useExecutionSwipe } from "@/src/hooks/execution/use-execution-swipe";
+import { motion, useInView, AnimatePresence } from "motion/react";
+import { ExecutionItem, OurExecutionSectionProps } from "@/src/types/execution";
+import { EXECUTION_PRINCIPLES } from "@/src/types/execution-swipe";
 import { Container } from "@/src/components/shared";
 import { useResponsive } from "@/src/lib/utils/use-responsive";
 
@@ -53,211 +49,153 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
   // Responsive hook for conditional rendering
   const { isMobile } = useResponsive();
 
-  // Use Zustand store for state management (now consolidated)
-  const {
-    selectedPrincipleId,
-    currentImageOffset,
-    allPrinciples,
-    autoSwitchState,
-    actions,
-    handleDragEnd, // Now comes from consolidated hook
-    canSwipe, // Used internally by handleDragEnd to prevent overlapping transitions
-  } = useExecutionSwipe();
+  // Mobile carousel state - matching mobile-view pattern
+  const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [slideDirection, setSlideDirection] = useState<"left" | "right" | null>(
+    null
+  );
+  const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false);
+  const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const userInteractionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // CSS transitions handle animation timing automatically
-  // No need for animation completion callbacks with pure CSS approach
+  // Touch/swipe handling
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const minSwipeDistance = 50;
+  const totalGroups = 4; // 4 execution principles
 
-  // Check for reduced motion preference
-  const prefersReducedMotion = useRef(false);
+  // Card dimensions for mobile
+  const cardDimensions = {
+    left: { width: 159, height: 250 },
+    center: { width: 220, height: 326 },
+    right: { width: 159, height: 250 },
+  };
 
+  // Auto-reset slide direction after animation completes
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    prefersReducedMotion.current = mediaQuery.matches;
+    if (slideDirection) {
+      const timer = setTimeout(() => {
+        setSlideDirection(null);
+      }, 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [slideDirection]);
 
-    const handleChange = (e: MediaQueryListEvent) => {
-      prefersReducedMotion.current = e.matches;
+  // Auto-play logic
+  const startAutoPlay = useCallback(() => {
+    if (totalGroups <= 1 || isAutoPlayPaused) return;
 
-      // Disable auto-switch if user prefers reduced motion
-      if (e.matches && autoSwitchState.enabled) {
-        actions.toggleAutoSwitch();
+    if (autoPlayTimeoutRef.current) {
+      clearTimeout(autoPlayTimeoutRef.current);
+    }
+
+    autoPlayTimeoutRef.current = setTimeout(() => {
+      setSlideDirection("left");
+      setTimeout(() => {
+        setCurrentGroupIndex((prev) => (prev + 1) % totalGroups);
+      }, 50);
+    }, 3000);
+  }, [totalGroups, isAutoPlayPaused]);
+
+  const pauseAutoPlay = useCallback(() => {
+    setIsAutoPlayPaused(true);
+    if (autoPlayTimeoutRef.current) {
+      clearTimeout(autoPlayTimeoutRef.current);
+    }
+
+    // Clear any existing user interaction timeout
+    if (userInteractionTimeoutRef.current) {
+      clearTimeout(userInteractionTimeoutRef.current);
+    }
+
+    // Resume auto-play after 3 seconds of no interaction
+    userInteractionTimeoutRef.current = setTimeout(() => {
+      setIsAutoPlayPaused(false);
+    }, 3000);
+  }, []);
+
+  // Start auto-play on mount and when group changes
+  useEffect(() => {
+    if (!isMobile) return;
+
+    startAutoPlay();
+    return () => {
+      if (autoPlayTimeoutRef.current) {
+        clearTimeout(autoPlayTimeoutRef.current);
       }
     };
+  }, [startAutoPlay, currentGroupIndex, isMobile]);
 
-    mediaQuery.addEventListener("change", handleChange);
-
-    // Initial check - disable auto-switch if reduced motion is preferred
-    if (mediaQuery.matches && autoSwitchState.enabled) {
-      actions.toggleAutoSwitch();
-    }
-
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [autoSwitchState.enabled, actions]);
-
-  // Handle pause/resume on hover and focus events
-  const handleMouseEnter = () => {
-    if (autoSwitchState.enabled) {
-      actions.pauseAutoSwitch();
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (autoSwitchState.enabled) {
-      actions.resumeAutoSwitch();
-    }
-  };
-
-  const handleFocus = () => {
-    if (autoSwitchState.enabled) {
-      actions.pauseAutoSwitch();
-    }
-  };
-
-  const handleBlur = () => {
-    if (autoSwitchState.enabled) {
-      actions.resumeAutoSwitch();
-    }
-  };
-
-  // Touch/drag handling for mobile swipe
-  const dragStart = useRef({ x: 0, y: 0, timestamp: 0 });
-  const isDragging = useRef(false);
-
-  const handlePointerDown = useCallback(
-    (e: React.PointerEvent) => {
-      dragStart.current = { x: e.clientX, y: e.clientY, timestamp: Date.now() };
-      isDragging.current = true;
-      if (autoSwitchState.enabled) {
-        actions.pauseAutoSwitch();
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (autoPlayTimeoutRef.current) {
+        clearTimeout(autoPlayTimeoutRef.current);
       }
-    },
-    [autoSwitchState.enabled, actions]
-  );
-
-  const handlePointerUp = useCallback(
-    (e: React.PointerEvent) => {
-      if (!isDragging.current) return;
-
-      const deltaX = e.clientX - dragStart.current.x;
-      const deltaY = e.clientY - dragStart.current.y;
-      const distance = Math.abs(deltaX);
-
-      // Calculate actual velocity (px/ms)
-      const endTime = Date.now();
-      const deltaTime = Math.max(endTime - dragStart.current.timestamp, 1); // Prevent division by zero
-      const velocityX = (deltaX / deltaTime) * 1000; // Convert to px/s
-      const velocityY = (deltaY / deltaTime) * 1000;
-
-      // More sensitive: reduced from 50px to 25px, and more lenient vertical tolerance
-      const minSwipeDistance = 25;
-      const horizontalRatio = Math.abs(deltaX) / (Math.abs(deltaY) || 1);
-
-      // Trigger swipe if horizontal movement is at least 60% of total movement (more lenient)
-      if (distance > minSwipeDistance && horizontalRatio > 0.6) {
-        // Create DragInfo object with accurate velocity
-        const mockInfo = {
-          offset: { x: deltaX, y: deltaY },
-          velocity: { x: velocityX, y: velocityY },
-        };
-
-        handleDragEnd(e.nativeEvent as PointerEvent, mockInfo);
+      if (userInteractionTimeoutRef.current) {
+        clearTimeout(userInteractionTimeoutRef.current);
       }
+    };
+  }, []);
 
-      isDragging.current = false;
+  // Touch event handlers
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
 
-      // Resume auto-switch after delay
-      setTimeout(() => {
-        if (autoSwitchState.enabled) {
-          actions.resumeAutoSwitch();
-        }
-      }, 1000);
-    },
-    [autoSwitchState.enabled, actions, handleDragEnd]
-  );
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
 
-  // Legacy touch events for compatibility
-  const handleTouchStart = () => {
-    if (autoSwitchState.enabled) {
-      actions.pauseAutoSwitch();
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && totalGroups > 1) {
+      handleNext();
+    }
+    if (isRightSwipe && totalGroups > 1) {
+      handlePrev();
     }
   };
 
-  const handleTouchEnd = () => {
+  const handleNext = () => {
+    if (isTransitioning || totalGroups <= 1) return;
+
+    pauseAutoPlay();
+    setIsTransitioning(true);
+    setSlideDirection("left");
+
     setTimeout(() => {
-      if (autoSwitchState.enabled) {
-        actions.resumeAutoSwitch();
-      }
-    }, 1000);
+      setCurrentGroupIndex((prev) => (prev + 1) % totalGroups);
+      setIsTransitioning(false);
+    }, 50);
   };
 
-  // Mobile Execution Card Component
-  const ExecutionCard = ({
-    item,
-  }: {
-    item: EnhancedExecutionItem;
-  }) => {
-    const cardShadow = item.isMainCard
-      ? "0px 3px 10px 0px rgba(1, 12, 27, 0.1)"
-      : "";
+  const handlePrev = () => {
+    if (isTransitioning || totalGroups <= 1) return;
 
-    return (
-      <div
-        className="relative"
-        style={{
-          width: `${item.cardWidth}px`,
-          height: `${item.cardHeight}px`,
-          boxShadow: cardShadow,
-          willChange: item.isMainCard ? "transform" : "auto",
-          transform: "translate3d(0, 0, 0)",
-        }}
-      >
-        {/* Direct image render - no loading states or placeholders */}
-        <Image
-          src={item.imageSrc}
-          alt={item.altText}
-          width={item.cardWidth}
-          height={item.cardHeight}
-          className="w-full h-full object-cover"
-          priority={item.isMainCard}
-          loading={item.isMainCard ? "eager" : "lazy"}
-          decoding="async"
-          fetchPriority={item.isMainCard ? "high" : "auto"}
-        />
+    pauseAutoPlay();
+    setIsTransitioning(true);
+    setSlideDirection("right");
 
-        {/* Text Overlay for Selected Card */}
-        {item.hasTextOverlay && (
-          <div
-            className="absolute bottom-0 left-[-2] right-0 bg-[#F7F7F7] border-[#F7F7F7] flex items-center justify-center"
-            style={{
-              height: "64px",
-              width: item.cardWidth + 4,
-            }}
-          >
-            <h3
-              className="text-black font-semibold text-[15px] leading-[1.6] text-center"
-              style={{
-                fontFamily: "Open Sans",
-                fontWeight: 600,
-              }}
-            >
-              {item.title}
-            </h3>
-          </div>
-        )}
-      </div>
-    );
+    setTimeout(() => {
+      setCurrentGroupIndex((prev) => (prev - 1 + totalGroups) % totalGroups);
+      setIsTransitioning(false);
+    }, 50);
   };
 
   return (
     <section
       ref={sectionRef}
-      className={`relative overflow-hidden w-full focus:outline-none ${className}`}
-      tabIndex={0}
+      className={`relative overflow-hidden w-full ${className}`}
       role="region"
       aria-label="Our Execution Ethos"
-      aria-live="polite"
-      aria-atomic="false"
-      onFocus={handleFocus}
-      onBlur={handleBlur}
     >
       <Container maxWidth="full" className="mt-6 lg:px-0">
         {/* Section Title - Mobile */}
@@ -366,158 +304,195 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
           </div>
         )}
 
-        {/* Mobile - Pre-rendered 3-Card Layout with Smooth Transitions */}
+        {/* Mobile - Pre-rendered Groups with Position-Based Animation */}
         {isMobile && (
-          <div>
-            {/* Auto-switch status indicator for screen readers */}
-            <div className="sr-only" aria-live="polite">
-              {autoSwitchState.enabled &&
-              autoSwitchState.isRunning &&
-              !autoSwitchState.isPaused
-                ? "Auto-switching cards every 3 seconds. Hover or focus to pause."
-                : autoSwitchState.isPaused
-                ? "Auto-switching paused"
-                : "Auto-switching disabled"}
-            </div>
-
+          <div
+            className="relative w-full overflow-hidden px-6 my-[20px] pb-3"
+            style={{ touchAction: "pan-y" }}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
             <div
-              className="relative w-full overflow-visible cursor-grab active:cursor-grabbing"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-              onPointerDown={handlePointerDown}
-              onPointerUp={handlePointerUp}
-              aria-label="Execution principles carousel"
-              style={{
-                touchAction: "pan-y pinch-zoom",
-                userSelect: "none",
-              }}
+              className="relative mx-auto flex flex-col items-center"
+              style={{ height: `${cardDimensions.center.height}px` }}
             >
-              {/* Pre-rendered Principle Groups Container */}
-              <div
-                className="relative px-6 my-[30px] min-h-[326px]"
-                style={{
-                  willChange: "contents",
-                  transform: "translate3d(0, 0, 0)",
-                }}
-                role="group"
-                aria-label="Execution principle cards"
-              >
-                {/* Pre-render all principle groups - CSS transitions for iOS compatibility */}
-                {allPrinciples.map((principle) => {
-                  const isActivePrinciple =
-                    principle.id === selectedPrincipleId;
-
-                  // Get the items for this specific principle
-                  const principleItems = (() => {
-                    // SYNC FIX: Always use currentImageOffset to prevent visual jumps
-                    // All principles render with same offset, only opacity changes
-                    const principleImageOffset = currentImageOffset;
-
-                    const getImageIndex = (offset: number) => {
-                      return (
-                        (principleImageOffset +
-                          offset +
-                          principle.images.length) %
-                        principle.images.length
-                      );
-                    };
-
-                    return [
-                      {
-                        id: principle.id * 100 + 1,
-                        imageSrc: principle.images[getImageIndex(-1)],
-                        altText: `${principle.altTextBase} - Left card`,
-                        title: principle.title,
-                        cardWidth: 159,
-                        cardHeight: 250,
-                        isMainCard: false,
-                        hasTextOverlay: false,
-                        groupId: `execution-group-${principle.id}`,
-                        isSelected: false,
-                        selectionIndex: 0,
-                      },
-                      {
-                        id: principle.id * 100 + 2,
-                        imageSrc: principle.images[getImageIndex(0)],
-                        altText: `${principle.altTextBase} - Main featured card`,
-                        title: principle.title,
-                        cardWidth: 220,
-                        cardHeight: 326,
-                        isMainCard: true,
-                        hasTextOverlay: true,
-                        groupId: `execution-group-${principle.id}`,
-                        isSelected: true,
-                        selectionIndex: 1,
-                      },
-                      {
-                        id: principle.id * 100 + 3,
-                        imageSrc: principle.images[getImageIndex(1)],
-                        altText: `${principle.altTextBase} - Right card`,
-                        title: principle.title,
-                        cardWidth: 159,
-                        cardHeight: 250,
-                        isMainCard: false,
-                        hasTextOverlay: false,
-                        groupId: `execution-group-${principle.id}`,
-                        isSelected: false,
-                        selectionIndex: 2,
-                      },
-                    ];
-                  })();
+              {/* Pre-render all 4 principle groups with AnimatePresence sync */}
+              <AnimatePresence initial={false} mode="sync">
+                {EXECUTION_PRINCIPLES.map((principle, groupIndex) => {
+                  const isCurrentGroup = groupIndex === currentGroupIndex;
+                  const images = principle.images;
 
                   return (
-                    <div
-                      key={`principle-group-${principle.id}`}
-                      className="absolute inset-0 flex items-center justify-center gap-4 transition-opacity duration-500 ease-out"
-                      style={{
-                        opacity: isActivePrinciple ? 1 : 0,
-                        pointerEvents: isActivePrinciple ? "auto" : "none",
-                        zIndex: isActivePrinciple ? 2 : 1,
-                        visibility: isActivePrinciple ? "visible" : "hidden",
-                        willChange: isActivePrinciple ? "opacity" : "auto",
-                        transform: "translate3d(0, 0, 0)", // Force GPU acceleration
+                    <motion.div
+                      key={principle.id}
+                      className="absolute inset-0 w-full h-full"
+                      initial={{ opacity: 0 }}
+                      animate={{
+                        opacity: isCurrentGroup ? 1 : 0,
+                        pointerEvents: isCurrentGroup ? "auto" : "none",
                       }}
-                      aria-hidden={!isActivePrinciple}
+                      transition={{
+                        opacity: { duration: 0.3, ease: "easeInOut" },
+                      }}
                     >
-                      {principleItems.map((item, index) => {
-                        const isCenter = index === 1;
-
-                        return (
+                      <div className="flex items-center justify-center gap-4 h-full">
+                        {/* Left card */}
+                        <motion.div
+                          className="flex-shrink-0"
+                          animate={{
+                            x:
+                              slideDirection === "left" &&
+                              isCurrentGroup &&
+                              isTransitioning
+                                ? cardDimensions.left.width * 1.4
+                                : slideDirection === "right" &&
+                                  isCurrentGroup &&
+                                  isTransitioning
+                                ? -cardDimensions.left.width * 1.4
+                                : 0,
+                            scale: isCurrentGroup && isTransitioning ? 0.98 : 1,
+                          }}
+                          transition={{
+                            duration: 0.6,
+                            ease: "easeOut",
+                            scale: { duration: 0.5, ease: "easeInOut" },
+                          }}
+                        >
                           <div
-                            key={`card-${principle.id}-${index}`}
-                            className={`flex-shrink-0 transition-all duration-500 ease-out ${
-                              isCenter ? "z-10 scale-[1.02]" : "scale-[0.98]"
-                            }`}
+                            className="relative"
                             style={{
-                              marginLeft: index > 0 ? "-2px" : "0",
-                              marginRight: index < 2 ? "-2px" : "0",
+                              width: `${cardDimensions.left.width}px`,
+                              height: `${cardDimensions.left.height}px`,
+                              boxShadow:
+                                "0px 2px 8px 0px rgba(1, 12, 27, 0.05)",
+                              filter: "brightness(0.92) saturate(0.95)",
                             }}
                           >
+                            <Image
+                              src={images[0]}
+                              alt={`${principle.title} - Left`}
+                              width={cardDimensions.left.width}
+                              height={cardDimensions.left.height}
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                        </motion.div>
+
+                        {/* Center card (Main) */}
+                        <motion.div
+                          className="flex-shrink-0 z-10"
+                          animate={{
+                            x:
+                              slideDirection === "left" &&
+                              isCurrentGroup &&
+                              isTransitioning
+                                ? cardDimensions.center.width * 1.4
+                                : slideDirection === "right" &&
+                                  isCurrentGroup &&
+                                  isTransitioning
+                                ? -cardDimensions.center.width * 1.4
+                                : 0,
+                            scale: isCurrentGroup && isTransitioning ? 1.05 : 1,
+                            filter:
+                              isCurrentGroup && isTransitioning
+                                ? "brightness(1.1) saturate(1.2)"
+                                : "brightness(1) saturate(1)",
+                            boxShadow:
+                              isCurrentGroup && isTransitioning
+                                ? "0px 8px 20px 0px rgba(1, 12, 27, 0.15), 0px 2px 6px 0px rgba(255, 255, 255, 0.1)"
+                                : "0px 4px 16px 0px rgba(1, 12, 27, 0.08)",
+                          }}
+                          transition={{
+                            duration: 0.6,
+                            ease: "easeOut",
+                            scale: {
+                              duration: 0.4,
+                              ease: [0.34, 1.56, 0.64, 1],
+                            },
+                          }}
+                        >
+                          <div
+                            className="relative"
+                            style={{
+                              width: `${cardDimensions.center.width}px`,
+                              height: `${cardDimensions.center.height}px`,
+                            }}
+                          >
+                            <Image
+                              src={images[1]}
+                              alt={`${principle.title} - Main`}
+                              width={cardDimensions.center.width}
+                              height={cardDimensions.center.height}
+                              className="w-full h-full object-cover"
+                              priority={isCurrentGroup}
+                            />
+                            {/* Text overlay */}
                             <div
-                              style={{
-                                boxShadow: isCenter
-                                  ? "0px 8px 24px 0px rgba(1, 12, 27, 0.15), 0px 2px 6px 0px rgba(255, 255, 255, 0.1)"
-                                  : "0px 2px 8px 0px rgba(1, 12, 27, 0.05)",
-                                filter: isCenter
-                                  ? "brightness(1) saturate(1.05)"
-                                  : "brightness(0.92) saturate(0.95)",
-                                borderRadius: "0px",
-                                overflow: "hidden",
-                              }}
+                              className="absolute bottom-0 left-0 right-0 bg-[#F7F7F7] flex items-center justify-center"
+                              style={{ height: "64px" }}
                             >
-                              <ExecutionCard
-                                item={item}
-                              />
+                              <h3
+                                className="text-black font-semibold text-[15px] leading-[1.6] text-center px-2"
+                                style={{
+                                  fontFamily: "Open Sans",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                {principle.title}
+                              </h3>
                             </div>
                           </div>
-                        );
-                      })}
-                    </div>
+                        </motion.div>
+
+                        {/* Right card */}
+                        <motion.div
+                          className="flex-shrink-0"
+                          animate={{
+                            x:
+                              slideDirection === "left" &&
+                              isCurrentGroup &&
+                              isTransitioning
+                                ? cardDimensions.right.width * 1.4
+                                : slideDirection === "right" &&
+                                  isCurrentGroup &&
+                                  isTransitioning
+                                ? -cardDimensions.right.width * 1.4
+                                : 0,
+                            scale: isCurrentGroup && isTransitioning ? 0.98 : 1,
+                          }}
+                          transition={{
+                            duration: 0.6,
+                            ease: "easeOut",
+                            scale: { duration: 0.5, ease: "easeInOut" },
+                          }}
+                        >
+                          <div
+                            className="relative"
+                            style={{
+                              width: `${cardDimensions.right.width}px`,
+                              height: `${cardDimensions.right.height}px`,
+                              boxShadow:
+                                "0px 2px 8px 0px rgba(1, 12, 27, 0.05)",
+                              filter: "brightness(0.92) saturate(0.95)",
+                            }}
+                          >
+                            <Image
+                              src={images[2]}
+                              alt={`${principle.title} - Right`}
+                              width={cardDimensions.right.width}
+                              height={cardDimensions.right.height}
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                        </motion.div>
+                      </div>
+                    </motion.div>
                   );
                 })}
-              </div>
+              </AnimatePresence>
             </div>
           </div>
         )}

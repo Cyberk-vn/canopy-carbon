@@ -7,7 +7,7 @@ import {
   getLogoUrl,
   getMobileMenuStyles,
 } from "@/src/lib/navigation";
-import FadeContent from "@/src/components/animation/fade-content";
+import FadeInView from "@/src/components/animation/fade-in-view";
 import { cn } from "@/src/lib/utils";
 
 // Static image imports
@@ -25,7 +25,7 @@ export function CanopyInsightSection() {
   return (
     <div
       className={cn(
-        "relative xl:h-[700px] h-[927px] 2xl:h-[1089px] 3xl:h-[1198px] mx-auto"
+        "relative xl:h-[700px] h-[1000px] 2xl:h-[1089px] 3xl:h-[1198px] mx-auto bg-[#DCDCDC4D]"
       )}
     >
       <Image
@@ -56,8 +56,9 @@ export function CanopyInsightSection() {
         priority
         className={cn("object-cover block md:hidden")}
       />
+      {/* Desktop/Tablet gradient overlay */}
       <div
-        className="absolute inset-0 z-10"
+        className="absolute inset-0 z-10 hidden md:block"
         style={{
           background:
             "linear-gradient(180deg, #FCFCFC 27%, rgba(0, 0, 0, 0.14) 60.00000133849027%, rgba(255, 255, 255, 0.8) 86.6666693436472%, #FCFCFC 100%)",
@@ -90,13 +91,11 @@ export function CanopyInsightSection() {
             "px-6 md:px-[30px] xl:px-7"
           )}
         >
-          <FadeContent
-            duration={500}
-            delay={100}
-            threshold={0.1}
+          <FadeInView
+            duration={0.5}
+            delay={0.1}
+            amount={0.1}
             className="flex items-center justify-center xl:items-start xl:justify-start"
-            easing="cubic-bezier(0.25, 0.46, 0.45, 0.94)"
-            initialOpacity={0}
           >
             {/* Regular bird image - shown up to 2xl */}
             <Image
@@ -120,23 +119,21 @@ export function CanopyInsightSection() {
                 "3xl:w-[526px] 3xl:h-[648px]"
               )}
             />
-          </FadeContent>
+          </FadeInView>
           <div
             className={cn(
               "relative lg:w-[705px] lg:mb-25 2xl:mt-[65px] 3xl:mt-15"
             )}
           >
-            <FadeContent
-              duration={600}
-              delay={200}
-              threshold={0.1}
-              easing="ease-out"
-              initialOpacity={0}
+            <FadeInView
+              duration={0.6}
+              delay={0.2}
+              amount={0.1}
               className={cn("canopy-fade-up-content")}
             >
               <div
                 className={cn(
-                  "mb-3 md:mb-8 lg:mb-14 text-4xl font-work-sans text-[#2A4035] font-semibold md:text-[36px] lg:text-[45px] 2xl:text-[64px]",
+                  "mb-3 md:mb-8 lg:mb-14 text-4xl font-open-sans md:font-work-sans text-[#2A4035] font-semibold md:text-[36px] lg:text-[45px] 2xl:text-[64px]",
                   "3xl:font-avenir-heavy 3xl:font-normal 3xl:text-[65px] 3xl:leading-[91px]"
                 )}
               >
@@ -170,7 +167,7 @@ export function CanopyInsightSection() {
                   intelligence.
                 </p>
               </div>
-            </FadeContent>
+            </FadeInView>
           </div>
         </div>
       </div>

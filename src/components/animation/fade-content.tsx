@@ -44,7 +44,29 @@ const FadeContent: React.FC<FadeContentProps> = ({
 
     observer.observe(element);
 
-    return () => observer.disconnect();
+    // Check if element is already in viewport on mount
+    const checkInitialVisibility = () => {
+      const rect = element.getBoundingClientRect();
+      const isInViewport =
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+
+      if (isInViewport) {
+        setTimeout(() => {
+          setInView(true);
+        }, delay);
+      }
+    };
+
+    // Run check after a small delay to ensure DOM is ready
+    const timeoutId = setTimeout(checkInitialVisibility, 50);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timeoutId);
+    };
   }, [threshold, delay]);
 
   const internalAnimationStyles: React.CSSProperties = {
