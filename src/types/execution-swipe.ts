@@ -39,9 +39,9 @@ export interface ExecutionSwipeConfig {
 
 // Default configuration constants
 export const DEFAULT_SWIPE_CONFIG: ExecutionSwipeConfig = {
-  shortSwipeThreshold: 50,
-  longSwipeThreshold: 150,
-  velocityThreshold: 100,
+  shortSwipeThreshold: 30, // Reduced from 50px for more sensitive swipe detection
+  longSwipeThreshold: 100, // Reduced from 150px for easier principle switching
+  velocityThreshold: 50, // Reduced from 100 for faster velocity-based detection
   maxVelocity: 500,
   transitionDuration: 300,
   dragElastic: 0.1,

@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion, useInView, AnimatePresence } from "motion/react";
+import { motion, useInView } from "motion/react";
 import {
   ExecutionItem,
   EnhancedExecutionItem,
@@ -61,18 +61,11 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
     autoSwitchState,
     actions,
     handleDragEnd, // Now comes from consolidated hook
-    canSwipe,
+    canSwipe, // Used internally by handleDragEnd to prevent overlapping transitions
   } = useExecutionSwipe();
 
-  // Callback to sync animation completion with store state
-  const handleAnimationComplete = useCallback(() => {
-    // This ensures the component knows when Motion has finished animating
-    // Helps prevent mid-animation state changes
-    if (!canSwipe) {
-      // Transition should be complete by now
-      actions.endTransition();
-    }
-  }, [canSwipe, actions]);
+  // CSS transitions handle animation timing automatically
+  // No need for animation completion callbacks with pure CSS approach
 
   // Check for reduced motion preference
   const prefersReducedMotion = useRef(false);
@@ -154,8 +147,12 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
       const velocityX = (deltaX / deltaTime) * 1000; // Convert to px/s
       const velocityY = (deltaY / deltaTime) * 1000;
 
-      // Only trigger swipe if horizontal movement is dominant
-      if (distance > 50 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      // More sensitive: reduced from 50px to 25px, and more lenient vertical tolerance
+      const minSwipeDistance = 25;
+      const horizontalRatio = Math.abs(deltaX) / (Math.abs(deltaY) || 1);
+
+      // Trigger swipe if horizontal movement is at least 60% of total movement (more lenient)
+      if (distance > minSwipeDistance && horizontalRatio > 0.6) {
         // Create DragInfo object with accurate velocity
         const mockInfo = {
           offset: { x: deltaX, y: deltaY },
@@ -407,9 +404,8 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                 role="group"
                 aria-label="Execution principle cards"
               >
-                <AnimatePresence mode="wait" initial={false}>
-                  {/* Pre-render all principle groups */}
-                  {allPrinciples.map((principle) => {
+                {/* Pre-render all principle groups - CSS transitions for iOS compatibility */}
+                {allPrinciples.map((principle) => {
                   const isActivePrinciple =
                     principle.id === selectedPrincipleId;
 
@@ -472,33 +468,18 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                   })();
 
                   return (
-                    <motion.div
+                    <div
                       key={`principle-group-${principle.id}`}
-                      layoutId={`execution-principle-${principle.id}`}
-                      className="absolute inset-0 flex items-center justify-center gap-4"
-                      initial={false}
-                      animate={{
-                        opacity: isActivePrinciple ? 1 : 0,
-                      }}
-                      exit={{
-                        opacity: 0,
-                      }}
-                      transition={{
-                        opacity: {
-                          duration: 0.6,
-                          ease: [0.25, 0.46, 0.45, 0.94], // Cubic bezier for smoother easing
-                        },
-                        layout: {
-                          duration: 0.6,
-                          ease: [0.25, 0.46, 0.45, 0.94],
-                        }
-                      }}
-                      onAnimationComplete={isActivePrinciple ? handleAnimationComplete : undefined}
+                      className="absolute inset-0 flex items-center justify-center gap-4 transition-opacity duration-500 ease-out"
                       style={{
+                        opacity: isActivePrinciple ? 1 : 0,
                         pointerEvents: isActivePrinciple ? "auto" : "none",
                         zIndex: isActivePrinciple ? 2 : 1,
+                        visibility: isActivePrinciple ? "visible" : "hidden",
                         willChange: isActivePrinciple ? "opacity" : "auto",
+                        transform: "translate3d(0, 0, 0)", // Force GPU acceleration
                       }}
+                      aria-hidden={!isActivePrinciple}
                     >
                       {principleItems.map((item, index) => {
                         const isCenter = index === 1;
@@ -533,10 +514,9 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                           </div>
                         );
                       })}
-                    </motion.div>
+                    </div>
                   );
                 })}
-                </AnimatePresence>
               </div>
             </div>
           </div>
