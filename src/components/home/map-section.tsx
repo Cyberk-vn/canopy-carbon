@@ -242,7 +242,7 @@ const MapSection = () => {
             }}
           >
             <div
-              className="w-[736px] h-[383px]"
+              className="w-[736px] h-[383px] mobile-map-container"
               style={{
                 minWidth: "736px",
                 width: "736px",
@@ -253,7 +253,8 @@ const MapSection = () => {
                 alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
                 width={736}
                 height={383}
-                className="w-[736px] h-[383px] object-cover"
+                className="w-[736px] h-[383px] object-contain"
+                unoptimized={true}
                 priority
               />
             </div>
@@ -315,6 +316,27 @@ const MapSection = () => {
           .scrollbar-hide {
             -webkit-overflow-scrolling: touch;
           }
+        }
+
+        /* iOS-specific optimizations for sharp SVG rendering */
+        .mobile-map-container {
+          /* Force GPU acceleration to prevent blurriness */
+          -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+          /* Optimize rendering performance */
+          will-change: transform;
+          /* Prevent subpixel rendering issues */
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+        }
+
+        /* Sharper image rendering on iOS */
+        .mobile-map-container :global(img) {
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+          /* Prevent image smoothing that causes blurriness */
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
         }
 
         /* Fluid padding-left for map section container */
