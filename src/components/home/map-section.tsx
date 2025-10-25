@@ -13,7 +13,7 @@ import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect"
 // Image imports
 import MapDesktop from "../../../public/assets/desktop/home/map-desktop.svg";
 import DecoratorIcon from "../../../public/assets/desktop/home/decorator-icon.png";
-import MapImageMobile from "../../../public/assets/map-image.svg";
+import MapImageMobile from "../../../public/assets/map-image.png";
 
 const MapSection = () => {
   // Contact redirect hook
