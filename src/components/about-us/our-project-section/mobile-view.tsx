@@ -371,8 +371,8 @@ const OurTeamCarouselInline = ({ data }: { data: InlineCarouselData }) => {
       className="w-full flex flex-col overflow-visible z-10"
       style={{ backgroundColor: "rgba(250, 250, 250, 0)" }}
     >
-      <div className="flex gap-[8px] ml-[13px] mb-1 absolute mt-[15px] z-40">
-        <div className="w-[107px] h-[43px] relative flex-shrink-0">
+      <div className="flex gap-[8px] ml-[13px] mb-1 absolute mt-[20px] z-40">
+        <div className="w-[107px] h-[36px] relative flex-shrink-0">
           <Image
             src={OurTeamHeaderImage}
             alt="Header decoration 1"

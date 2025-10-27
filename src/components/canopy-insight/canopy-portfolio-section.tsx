@@ -5,6 +5,9 @@ import { motion } from "motion/react";
 import FadeContent from "@/src/components/animation/fade-content";
 import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
 
+// Static image import
+import BuiltOnResearchBg from "@/public/assets/canopy-insight/built-on-research-section-bg-image.png";
+
 export function CanopyPortfolioSection() {
   // Contact redirect hook
   const { redirectToContact } = useContactRedirect();
@@ -20,14 +23,13 @@ export function CanopyPortfolioSection() {
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <Image
-          src="/assets/canopy-insight/built-on-research-section-bg-image.png"
+          src={BuiltOnResearchBg}
           alt="Canopy Portfolio Background"
           fill
+          priority
+          placeholder="blur"
           className="object-cover"
-          style={{
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-          }}
+          sizes="100vw"
         />
       </div>
 
@@ -36,7 +38,7 @@ export function CanopyPortfolioSection() {
         className="absolute inset-0 w-full h-full z-10"
         style={{
           background:
-            "linear-gradient(180deg, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 0.3) 53%, rgba(255, 255, 255, 0) 100%, rgba(255, 255, 255, 1) 100%)",
+            "linear-gradient(180deg, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%)",
         }}
       />
 

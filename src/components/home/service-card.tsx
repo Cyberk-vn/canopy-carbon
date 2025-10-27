@@ -13,10 +13,10 @@ import Image from "next/image";
 import { motion, AnimatePresence, PanInfo } from "motion/react";
 
 // Icon imports
-import ArrIcon from "../../../public/assets/icon/arr-icon.png";
-import ReddIcon from "../../../public/assets/icon/redd-icon.png";
-import WrcIcon from "../../../public/assets/icon/wrc-icon.png";
-import BiocharIcon from "../../../public/assets/icon/blochar-icon.png";
+import ArrIcon from "../../../public/assets/desktop/icon/arr-icon.svg";
+import ReddIcon from "../../../public/assets/desktop/icon/redd-icon.svg";
+import WrcIcon from "../../../public/assets/desktop/icon/wrc-icon.svg";
+import BiocharIcon from "../../../public/assets/desktop/icon/blochar-icon.svg";
 
 interface ServiceCardProps {
   services: ServiceCardData[];
