@@ -242,7 +242,7 @@ const MapSection = () => {
             }}
           >
             <div
-              className="w-[736px] h-[383px] mobile-map-container"
+              className="w-[736px] h-[383px]"
               style={{
                 minWidth: "736px",
                 width: "736px",
@@ -253,9 +253,10 @@ const MapSection = () => {
                 alt="Map showing Canopy Carbon's current operational focus in Indonesia with strategic locations highlighted for carbon project development"
                 width={736}
                 height={383}
-                className="w-[736px] h-[383px] object-contain"
-                unoptimized={true}
+                sizes="(max-width: 768px) 736px, 736px"
+                quality={100}
                 priority
+                className="w-[736px] h-[383px] object-contain"
               />
             </div>
           </div>
