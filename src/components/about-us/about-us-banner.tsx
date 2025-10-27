@@ -121,10 +121,12 @@ export function AboutUsBanner({
           <Image
             src={AboutUsBannerBg}
             alt="About Us Banner Background"
-            fill
-            className="object-cover"
+            width={1920}
+            height={828}
+            className="w-[1920px] h-[828px] object-cover"
             priority
-            sizes="100vw"
+            quality={100}
+            sizes="(max-width: 768px) 100vw, 1920px"
           />
         </div>
 

@@ -56,6 +56,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
     null
   );
   const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false);
+  const [isAutoPlayTransition, setIsAutoPlayTransition] = useState(false);
   const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const userInteractionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -91,6 +92,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
     }
 
     autoPlayTimeoutRef.current = setTimeout(() => {
+      setIsAutoPlayTransition(true);
       setSlideDirection("left");
       setTimeout(() => {
         setCurrentGroupIndex((prev) => (prev + 1) % totalGroups);
@@ -168,6 +170,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
     if (isTransitioning || totalGroups <= 1) return;
 
     pauseAutoPlay();
+    setIsAutoPlayTransition(false);
     setIsTransitioning(true);
     setSlideDirection("left");
 
@@ -181,6 +184,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
     if (isTransitioning || totalGroups <= 1) return;
 
     pauseAutoPlay();
+    setIsAutoPlayTransition(false);
     setIsTransitioning(true);
     setSlideDirection("right");
 
@@ -351,7 +355,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                                   isTransitioning
                                 ? -cardDimensions.left.width * 1.4
                                 : 0,
-                            scale: isCurrentGroup && isTransitioning ? 0.98 : 1,
+                            scale: isCurrentGroup && isTransitioning && isAutoPlayTransition ? 0.98 : 1,
                           }}
                           transition={{
                             duration: 0.6,
@@ -394,7 +398,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                                   isTransitioning
                                 ? -cardDimensions.center.width * 1.4
                                 : 0,
-                            scale: isCurrentGroup && isTransitioning ? 1.05 : 1,
+                            scale: isCurrentGroup && isTransitioning && isAutoPlayTransition ? 1.05 : 1,
                             filter:
                               isCurrentGroup && isTransitioning
                                 ? "brightness(1.1) saturate(1.2)"
@@ -460,7 +464,7 @@ const OurExecutionSection = ({ className = "" }: OurExecutionSectionProps) => {
                                   isTransitioning
                                 ? -cardDimensions.right.width * 1.4
                                 : 0,
-                            scale: isCurrentGroup && isTransitioning ? 0.98 : 1,
+                            scale: isCurrentGroup && isTransitioning && isAutoPlayTransition ? 0.98 : 1,
                           }}
                           transition={{
                             duration: 0.6,

@@ -47,8 +47,8 @@ const ContactFooterSection = () => {
           fill
           role="presentation"
           priority
-          sizes="100vw"
-          placeholder="blur"
+          sizes="(max-width: 768px) 390px, 390px"
+          quality={100}
         />
         {/* overlay gradient */}
         <div
