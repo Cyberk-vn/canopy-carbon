@@ -199,6 +199,7 @@ const RoadmapSection = () => {
                     width={696}
                     height={285}
                     className="w-full h-full object-contain"
+                    quality={100}
                     priority
                   />
                 </div>

@@ -78,7 +78,7 @@ export function NavigationMenu({
                       z-index={1}
                       className="object-fill brightness-125"
                       style={{
-                        filter: "brightness(1.35) contrast(0.85) saturate(0.7)"
+                        filter: "brightness(1.35) contrast(0.85) saturate(0.7)",
                       }}
                     />
                   </div>
@@ -109,8 +109,8 @@ export function NavigationMenu({
                       <Image
                         src={
                           useWhiteMenuIcon
-                            ? "/assets/icon/menu-icon-white.png"
-                            : "/assets/icon/menu-icon.png"
+                            ? "/assets/icon/menu-icon-white.svg"
+                            : "/assets/icon/menu-icon.svg"
                         }
                         alt="Menu"
                         width={24}

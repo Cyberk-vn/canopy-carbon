@@ -37,6 +37,8 @@ const RoadmapMarker: React.FC<RoadmapMarkerProps> = ({
         alt={`Roadmap node ${nodeId} marker`}
         width={19}
         height={28}
+        priority
+        quality={100}
         className="w-full h-full object-contain"
       />
     </motion.div>
