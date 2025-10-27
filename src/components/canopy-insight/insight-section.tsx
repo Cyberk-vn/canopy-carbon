@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion } from "motion/react";
 import {
   useSimpleMotion,
@@ -13,7 +13,7 @@ interface InsightSectionProps {
   title: string;
   description: string;
   images: {
-    src: string;
+    src: string | StaticImageData;
     alt: string;
   }[];
   showDecorators?: boolean;
@@ -117,11 +117,12 @@ export function InsightSection({
                     alt={image.alt}
                     width={dimensions.cardWidth}
                     height={dimensions.cardHeight}
-                    quality={isFirst ? 90 : 50}
+                    quality={isFirst ? 100 : 50}
+                    priority
                     className="w-full h-auto"
                     style={{
-                      boxShadow: "0px 12px 12px 0px #011B0D4D",
                       filter: isFirst ? "none" : "blur(.3px)",
+                      boxShadow: "0px 8px 16px 0px rgba(1, 27, 13, 0.15)",
                     }}
                   />
                 </div>
