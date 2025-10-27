@@ -7,6 +7,7 @@ import {
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
 import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
+import { useInsightCardPositions } from "@/src/hooks/responsive/use-insight-card-positions";
 
 interface InsightSectionProps {
   title: string;
@@ -26,6 +27,10 @@ export function InsightSection({
 }: InsightSectionProps) {
   // Contact redirect hook
   const { redirectToContact } = useContactRedirect();
+
+  // Card positions hook for responsive stacking
+  const { dimensions, getCardPositions } = useInsightCardPositions();
+  const cardPositions = getCardPositions();
 
   // Simple Motion animations
   const containerMotion = useSimpleMotion(
@@ -79,27 +84,49 @@ export function InsightSection({
           {description}
         </motion.div>
 
-        {/* Mobile Card Image Container */}
+        {/* Mobile Card Image Container - Stacked Images */}
         <motion.div
           {...SIMPLE_ANIMATIONS.slideInUp}
           {...imagesMotion}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           className="w-full flex flex-col gap-4 px-[15px]"
         >
-          <div className="relative w-full mx-auto">
-            <Image
-              src={
-                images[0]?.src ||
-                "/assets/canopy-insight/bayond-emission-card-mobile-1.png"
-              }
-              alt={images[0]?.alt || "Mobile Card"}
-              width={342}
-              height={216}
-              className="object-contain w-full h-auto"
-              style={{
-                boxShadow: "0px 12px 12px 0px #011B0D4D",
-              }}
-            />
+          <div
+            className="relative w-full"
+            style={{ height: `${dimensions.containerHeight}px` }}
+          >
+            {/* Stack 5 images from left to right with dynamic overlap */}
+            {images.slice(0, 5).map((image, index) => {
+              const isFirst = index === 0;
+              const zIndex = 50 - index * 10; // First image has highest z-index
+              const position = cardPositions[index] || cardPositions[0];
+
+              return (
+                <div
+                  key={index}
+                  className="absolute"
+                  style={{
+                    left: `${position.left}px`,
+                    top: `${position.top}px`,
+                    width: `${dimensions.cardWidth}px`,
+                    zIndex,
+                  }}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={dimensions.cardWidth}
+                    height={dimensions.cardHeight}
+                    quality={isFirst ? 90 : 50}
+                    className="w-full h-auto"
+                    style={{
+                      boxShadow: "0px 12px 12px 0px #011B0D4D",
+                      filter: isFirst ? "none" : "blur(.3px)",
+                    }}
+                  />
+                </div>
+              );
+            })}
           </div>
 
           {/* Request Access Button */}
