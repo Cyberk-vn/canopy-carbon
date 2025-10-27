@@ -88,15 +88,21 @@ export const OurPracticalSection = () => {
             <div className="w-full h-[975px] flex flex-col">
               <div className="h-[121px]"></div>
               <div className="flex-1 relative">
-                <Image
-                  src={OurPracticalBgMobile}
-                  alt="Mobile Background"
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                  placeholder="blur"
-                  sizes="100vw"
-                />
+                <div className="w-full h-[975px] relative">
+                  <Image
+                    src={OurPracticalBgMobile}
+                    alt="Mobile Background"
+                    width={736}
+                    height={975}
+                    className="w-[736px] h-[975px] object-contain"
+                    sizes="(max-width: 768px) 100vw, 100vw"
+                    quality={100}
+                    priority
+                  />
+
+                  {/* overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/100 via-white/50 to-white/70 pointer-events-none" />
+                </div>
               </div>
             </div>
           </div>
