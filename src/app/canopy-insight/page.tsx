@@ -18,6 +18,13 @@ import {
   renderJsonLd,
 } from "@/src/lib/seo/structured-data";
 
+// Static imports for InsightSection 1 images
+import offsetsCard1 from "@/public/assets/canopy-insight/offsets-role-first-set/1.png";
+import offsetsCard2 from "@/public/assets/canopy-insight/offsets-role-first-set/2.png";
+import offsetsCard3 from "@/public/assets/canopy-insight/offsets-role-first-set/3.png";
+import offsetsCard4 from "@/public/assets/canopy-insight/offsets-role-first-set/4.png";
+import offsetsCard5 from "@/public/assets/canopy-insight/offsets-role-first-set/5.png";
+
 const CanopyInsightPage = () => {
   const { isMobile } = useResponsive();
 
@@ -47,23 +54,23 @@ const CanopyInsightPage = () => {
               description="This paper reframes carbon offsets not just as a compensatory tool, but as a strategic enabler in global decarbonisation. It shows how offsets support hard-to-abate sectors, channel finance to climate-positive projects, and bridge the gap while emissions reductions align with net zero. When designed with integrity, carbon offsets are not a concession—but a climate necessity."
               images={[
                 {
-                  src: "/assets/canopy-insight/offsets-role-first-set/1.png",
+                  src: offsetsCard1,
                   alt: "Carbon Offsets Strategic Case - Card 1",
                 },
                 {
-                  src: "/assets/canopy-insight/offsets-role-first-set/2.png",
+                  src: offsetsCard2,
                   alt: "Carbon Offsets Strategic Case - Card 2",
                 },
                 {
-                  src: "/assets/canopy-insight/offsets-role-first-set/3.png",
+                  src: offsetsCard3,
                   alt: "Carbon Offsets Strategic Case - Card 3",
                 },
                 {
-                  src: "/assets/canopy-insight/offsets-role-first-set/4.png",
+                  src: offsetsCard4,
                   alt: "Carbon Offsets Strategic Case - Card 4",
                 },
                 {
-                  src: "/assets/canopy-insight/offsets-role-first-set/5.png",
+                  src: offsetsCard5,
                   alt: "Carbon Offsets Strategic Case - Card 5",
                 },
               ]}
