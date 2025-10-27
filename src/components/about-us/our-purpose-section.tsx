@@ -112,8 +112,8 @@ export const OurPurposeSection = () => {
                   alt="Canopy Carbon App Icon"
                   fill
                   className="object-contain"
-                  loading="lazy"
-                  placeholder="blur"
+                  quality={100}
+                  priority
                   sizes="250px"
                 />
               </div>

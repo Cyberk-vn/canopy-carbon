@@ -15,6 +15,8 @@ import {
   useSimpleMotion,
   SIMPLE_ANIMATIONS,
 } from "@/src/hooks/responsive/use-simple-motion";
+import roadMapImage from "@/public/assets/home/roadmap-mobile/road-map.png";
+import appIconImage from "@/public/assets/home/roadmap-mobile/app-icon.png";
 
 const MobileRoadmap: React.FC = () => {
   const containerMotion = useSimpleMotion("roadmap-container");
@@ -65,11 +67,13 @@ const MobileRoadmap: React.FC = () => {
             }}
           >
             <Image
-              src="/assets/home/roadmap-mobile/road-map.png"
+              src={roadMapImage}
               alt="Roadmap path"
               width={292}
               height={964}
+              priority
               className="absolute top-0 left-0 w-full h-full object-contain"
+              quality={100}
             />
           </motion.div>
 
@@ -89,11 +93,13 @@ const MobileRoadmap: React.FC = () => {
             }}
           >
             <Image
-              src="/assets/home/roadmap-mobile/app-icon.png"
+              src={appIconImage}
               alt="Canopy Carbon App Icon"
               width={40}
               height={40}
               className="w-full h-full object-cover rounded-full opacity-80"
+              priority
+              quality={100}
             />
           </motion.div>
 
