@@ -5,6 +5,10 @@ import { motion } from "motion/react";
 import { NavigationMenu } from "../common";
 import type { ContactCardsProps } from "@/src/types/contact-us";
 
+// Static image imports for Next.js optimization
+import backgroundOverlay from "@/public/assets/contact-us/background-content-contact-us-image-overlay.png";
+import logoImage from "@/public/assets/banner-shared-component/logo.png";
+
 const ContactCard = ({
   title,
   description,
@@ -71,7 +75,7 @@ export function ContactHeroSection({ cards }: ContactCardsProps) {
         {/* Background Image - Mobile only */}
         <div className="absolute w-full h-full top-0 left-0">
           <Image
-            src="/assets/contact-us/background-content-contact-us-image-overlay.png"
+            src={backgroundOverlay}
             alt=""
             fill
             className="object-cover"
@@ -135,11 +139,13 @@ export function ContactHeroSection({ cards }: ContactCardsProps) {
         >
           <div className="flex items-center px-6">
             <Image
-              src="/assets/banner-shared-component/logo.png"
+              src={logoImage}
               alt="Logo"
               width={40}
               height={40}
-              className="object-cover rounded-full"
+              priority
+              quality={100}
+              className="object-cover rounded-full opacity-65"
             />
 
             {/* Double Line Decorator */}

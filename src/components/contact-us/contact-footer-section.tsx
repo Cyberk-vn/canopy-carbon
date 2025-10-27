@@ -61,7 +61,7 @@ const ContactFooterSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 w-full max-w-[342px] mx-auto pt-6">
+      <div className="relative z-20 mx-6 pt-6 w-[calc(100% - 48px)]">
         <div className="space-y-4">
           {/* Header Title - Always at top */}
           <motion.h2
