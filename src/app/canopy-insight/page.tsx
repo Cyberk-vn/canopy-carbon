@@ -47,8 +47,24 @@ const CanopyInsightPage = () => {
               description="This paper reframes carbon offsets not just as a compensatory tool, but as a strategic enabler in global decarbonisation. It shows how offsets support hard-to-abate sectors, channel finance to climate-positive projects, and bridge the gap while emissions reductions align with net zero. When designed with integrity, carbon offsets are not a concession—but a climate necessity."
               images={[
                 {
-                  src: "/assets/canopy-insight/bayond-emission-card-mobile-1.png",
-                  alt: "Beyond Emissions Card Mobile",
+                  src: "/assets/canopy-insight/offsets-role-first-set/1.png",
+                  alt: "Carbon Offsets Strategic Case - Card 1",
+                },
+                {
+                  src: "/assets/canopy-insight/offsets-role-first-set/2.png",
+                  alt: "Carbon Offsets Strategic Case - Card 2",
+                },
+                {
+                  src: "/assets/canopy-insight/offsets-role-first-set/3.png",
+                  alt: "Carbon Offsets Strategic Case - Card 3",
+                },
+                {
+                  src: "/assets/canopy-insight/offsets-role-first-set/4.png",
+                  alt: "Carbon Offsets Strategic Case - Card 4",
+                },
+                {
+                  src: "/assets/canopy-insight/offsets-role-first-set/5.png",
+                  alt: "Carbon Offsets Strategic Case - Card 5",
                 },
               ]}
               showDecorators={true}
