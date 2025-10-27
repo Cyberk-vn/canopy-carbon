@@ -6,6 +6,7 @@ import { memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { useContactRedirect } from "@/src/hooks/navigation/use-contact-redirect";
+import OurTeamHeaderImage from "../../../../public/assets/about-us/our-team-header-image.png";
 
 interface MobileViewProps {
   data: DevelopmentSequenceSectionProps["data"];
@@ -265,15 +266,27 @@ export const MobileView = memo<MobileViewProps>(({ data }) => {
             </p>
           </div>
 
-          {/* Decorative Image */}
-          <div className="w-[136px] h-[55px] justify-self-end">
-            <Image
-              src="/assets/about-us/development-sequence/right-title-effect-image-side.png"
-              alt="Development sequence decorative element"
-              width={136}
-              height={55}
-              className="w-full h-full object-cover"
+          {/* Black Card với Dots Image */}
+          <div className="relative w-[100px] h-[53px] justify-self-end">
+            {/* Black background card */}
+            <div
+              className="absolute inset-0 rounded-tl-[8px]"
+              style={{ backgroundColor: "rgba(29, 31, 31, 0.9)" }}
             />
+
+            {/* Dots image - 50% overflow left */}
+            <div className="absolute left-[-40px] top-[60%] -translate-y-1/2">
+              <Image
+                src={OurTeamHeaderImage}
+                alt="Development sequence decorative element"
+                width={81}
+                height={46}
+                className="w-[81px] h-[46px] object-cover"
+                quality={100}
+                priority
+                sizes="(max-width: 768px) 81px, 81px"
+              />
+            </div>
           </div>
         </div>
       </div>
