@@ -1,5 +1,17 @@
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import { SEO_CONFIG, PAGE_SEO, PageKey } from "./seo-config";
+
+/**
+ * Page-specific theme colors matching each page's primary background
+ * These colors will appear in the browser chrome (address bar, task switcher)
+ */
+const PAGE_THEME_COLORS: Record<PageKey, string> = {
+  home: "#010101", // Warm off-white (matches main wrapper)
+  aboutUs: "#E4E4E4", // Pure white (clean, professional)
+  ourProjects: "#242A26", // Dark blue-green charcoal (unique dark theme)
+  insights: "#E8E9EB", // Pure white (content-focused)
+  contactUs: "#FFFFFF", // Pure white (approachable)
+};
 
 /**
  * Generate complete metadata for a page
@@ -16,9 +28,10 @@ export const generateMetadata = (
   const pagePath = getPagePath(pageKey);
 
   // Use opengraph-image.png if it exists, otherwise use config path
-  const ogImageUrl = pagePath === "/"
-    ? `${SEO_CONFIG.siteUrl}/opengraph-image.png`
-    : `${SEO_CONFIG.siteUrl}${pagePath}/opengraph-image.png`;
+  const ogImageUrl =
+    pagePath === "/"
+      ? `${SEO_CONFIG.siteUrl}/opengraph-image.png`
+      : `${SEO_CONFIG.siteUrl}${pagePath}/opengraph-image.png`;
 
   return {
     title: pageData.title,
@@ -93,6 +106,17 @@ const getPagePath = (pageKey: PageKey): string => {
   };
 
   return paths[pageKey];
+};
+
+/**
+ * Generate viewport configuration for a page
+ * @param pageKey - The page identifier from PAGE_SEO
+ * @returns Next.js Viewport object with page-specific theme color
+ */
+export const generateViewport = (pageKey: PageKey): Viewport => {
+  return {
+    themeColor: PAGE_THEME_COLORS[pageKey],
+  };
 };
 
 /**

@@ -3,7 +3,7 @@ import {
   ContactHeroSectionDesktop,
   ContactFooterSection,
 } from "@/src/components/contact-us";
-import { generateMetadata } from "@/src/lib/seo/metadata";
+import { generateMetadata, generateViewport } from "@/src/lib/seo/metadata";
 import {
   generateWebPageSchema,
   renderJsonLd,
@@ -11,6 +11,9 @@ import {
 
 // Generate SEO metadata for Contact Us page
 export const metadata = generateMetadata("contactUs");
+
+// Generate viewport with page-specific theme color
+export const viewport = generateViewport("contactUs");
 
 const ContactUsPage = () => {
   // Generate structured data for Contact Us page
