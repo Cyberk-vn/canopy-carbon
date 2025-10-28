@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Roboto, Open_Sans, Inter, Work_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ProductionGate } from "../components/ui/ProductionGate";
 import { generateRootMetadata } from "../lib/seo/metadata";
 import {
   generateOrganizationSchema,
@@ -77,7 +76,7 @@ export default function RootLayout({
       <body
         className={`${openSans.variable} ${roboto.variable} ${inter.variable} ${workSans.variable} ${avenirHeavy.variable} ${helveticaLight.variable} antialiased font-open-sans`}
       >
-        <ProductionGate>{children}</ProductionGate>
+        {children}
       </body>
     </html>
   );
