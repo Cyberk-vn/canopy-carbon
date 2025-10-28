@@ -7,7 +7,7 @@ import { SEO_CONFIG, PAGE_SEO, PageKey } from "./seo-config";
  */
 const PAGE_THEME_COLORS: Record<PageKey, string> = {
   home: "#010101", // Warm off-white (matches main wrapper)
-  aboutUs: "#E4E4E4", // Pure white (clean, professional)
+  aboutUs: "#E8E8E8", // Pure white (clean, professional)
   ourProjects: "#242A26", // Dark blue-green charcoal (unique dark theme)
   insights: "#E8E9EB", // Pure white (content-focused)
   contactUs: "#FFFFFF", // Pure white (approachable)
