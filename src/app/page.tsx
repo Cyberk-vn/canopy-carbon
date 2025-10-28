@@ -12,7 +12,7 @@ import {
   getLogoUrl,
   getMobileMenuStyles,
 } from "@/src/lib/navigation";
-import { generateMetadata } from "@/src/lib/seo/metadata";
+import { generateMetadata, generateViewport } from "@/src/lib/seo/metadata";
 import {
   generateWebPageSchema,
   renderJsonLd,
@@ -20,6 +20,9 @@ import {
 
 // Generate SEO metadata for Home page
 export const metadata = generateMetadata("home");
+
+// Generate viewport with page-specific theme color
+export const viewport = generateViewport("home");
 
 export default function Home() {
   const menuItems = getMenuItems();
