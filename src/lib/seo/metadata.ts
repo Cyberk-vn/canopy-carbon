@@ -146,7 +146,7 @@ export const generateRootMetadata = (): Metadata => {
     },
 
     // Manifest
-    manifest: "/manifest.json",
+    manifest: "/manifest.webmanifest",
 
     // Verification (add your verification codes when available)
     verification: {
