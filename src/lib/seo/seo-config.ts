@@ -5,17 +5,17 @@
 
 /**
  * Get the base URL based on the environment
- * Supports both production and Vercel preview deployments
+ * Prioritizes explicit SITE_URL over auto-detected Vercel URL
  */
 const getBaseUrl = (): string => {
-  // Check for Vercel environment variables
-  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
-    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
-  }
-
-  // Check for custom environment variable
+  // Check for custom environment variable first (production override)
   if (process.env.NEXT_PUBLIC_SITE_URL) {
     return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+
+  // Fall back to Vercel environment variables (for preview deployments)
+  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
+    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
   }
 
   // Default to production URL
