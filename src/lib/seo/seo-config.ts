@@ -4,25 +4,17 @@
  */
 
 /**
- * Get the base URL based on the environment
- * Prioritizes explicit SITE_URL over auto-detected Vercel URL
+ * Base URL for the website
+ * Hardcoded to production URL for consistent canonical URLs across all environments
+ *
+ * Note: Preview deployments will also use production URL for canonical tags,
+ * which is SEO best practice to avoid duplicate content issues.
+ *
+ * For environment-specific URLs (if needed in the future), use:
+ * - process.env.NEXT_PUBLIC_SITE_URL (custom override)
+ * - process.env.NEXT_PUBLIC_VERCEL_URL (Vercel preview deployments)
  */
-const getBaseUrl = (): string => {
-  // Check for custom environment variable first (production override)
-  if (process.env.NEXT_PUBLIC_SITE_URL) {
-    return process.env.NEXT_PUBLIC_SITE_URL;
-  }
-
-  // Fall back to Vercel environment variables (for preview deployments)
-  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
-    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
-  }
-
-  // Default to production URL
-  return "https://www.canopycarbon.org";
-};
-
-const BASE_URL = getBaseUrl();
+const BASE_URL = "https://www.canopycarbon.org";
 
 export const SEO_CONFIG = {
   // Base configuration
